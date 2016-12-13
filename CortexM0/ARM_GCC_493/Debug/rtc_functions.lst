@@ -1,0 +1,1431 @@
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 6
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"rtc_functions.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.RTC_1_GetMinutes,"ax",%progbits
+  18              		.align	2
+  19              		.code	16
+  20              		.thumb_func
+  21              		.type	RTC_1_GetMinutes, %function
+  22              	RTC_1_GetMinutes:
+  23              	.LFB38:
+  24              		.file 1 "Generated_Source\\PSoC4/RTC_1.h"
+   1:Generated_Source\PSoC4/RTC_1.h **** /***************************************************************************//**
+   2:Generated_Source\PSoC4/RTC_1.h **** * \file Name: RTC_1.h
+   3:Generated_Source\PSoC4/RTC_1.h **** * \version 1.10
+   4:Generated_Source\PSoC4/RTC_1.h **** *
+   5:Generated_Source\PSoC4/RTC_1.h **** * \brief
+   6:Generated_Source\PSoC4/RTC_1.h **** *  This file provides constants and parameter values for the RTC_P4 Component.
+   7:Generated_Source\PSoC4/RTC_1.h **** *
+   8:Generated_Source\PSoC4/RTC_1.h **** ********************************************************************************
+   9:Generated_Source\PSoC4/RTC_1.h **** * Copyright 2015-2016, Cypress Semiconductor Corporation.  All rights reserved.
+  10:Generated_Source\PSoC4/RTC_1.h **** * You may use this file only in accordance with the license, terms, conditions,
+  11:Generated_Source\PSoC4/RTC_1.h **** * disclaimers, and limitations in the end user license agreement accompanying
+  12:Generated_Source\PSoC4/RTC_1.h **** * the software package with which this file was provided.
+  13:Generated_Source\PSoC4/RTC_1.h **** *******************************************************************************/
+  14:Generated_Source\PSoC4/RTC_1.h **** 
+  15:Generated_Source\PSoC4/RTC_1.h **** #if !defined(CY_RTC_P4_RTC_1_H)
+  16:Generated_Source\PSoC4/RTC_1.h **** #define CY_RTC_P4_RTC_1_H
+  17:Generated_Source\PSoC4/RTC_1.h **** 
+  18:Generated_Source\PSoC4/RTC_1.h **** #include <cytypes.h>
+  19:Generated_Source\PSoC4/RTC_1.h **** #include <CyLib.h>
+  20:Generated_Source\PSoC4/RTC_1.h **** 
+  21:Generated_Source\PSoC4/RTC_1.h **** 
+  22:Generated_Source\PSoC4/RTC_1.h **** /*******************************************************************************
+  23:Generated_Source\PSoC4/RTC_1.h **** *    Data types definition
+  24:Generated_Source\PSoC4/RTC_1.h **** *******************************************************************************/
+  25:Generated_Source\PSoC4/RTC_1.h **** 
+  26:Generated_Source\PSoC4/RTC_1.h **** typedef enum
+  27:Generated_Source\PSoC4/RTC_1.h **** {
+  28:Generated_Source\PSoC4/RTC_1.h ****     RTC_1_DST_DATE_RELATIVE = 0u,
+  29:Generated_Source\PSoC4/RTC_1.h ****     RTC_1_DST_DATE_FIXED = 1u
+  30:Generated_Source\PSoC4/RTC_1.h **** }RTC_1_DST_DATETYPE_ENUM;
+  31:Generated_Source\PSoC4/RTC_1.h **** 
+  32:Generated_Source\PSoC4/RTC_1.h **** /**
+  33:Generated_Source\PSoC4/RTC_1.h **** * \addtogroup group_structures
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 2
+
+
+  34:Generated_Source\PSoC4/RTC_1.h **** * @{
+  35:Generated_Source\PSoC4/RTC_1.h **** */
+  36:Generated_Source\PSoC4/RTC_1.h **** 
+  37:Generated_Source\PSoC4/RTC_1.h **** /**
+  38:Generated_Source\PSoC4/RTC_1.h **** * This is the data structure that is used to save the current time and date 
+  39:Generated_Source\PSoC4/RTC_1.h **** * (RTC_currentTimeDate), and Alarm time and date (RTC_alarmCfgTimeDate).
+  40:Generated_Source\PSoC4/RTC_1.h **** */
+  41:Generated_Source\PSoC4/RTC_1.h **** typedef struct
+  42:Generated_Source\PSoC4/RTC_1.h **** {
+  43:Generated_Source\PSoC4/RTC_1.h ****     uint32 time;
+  44:Generated_Source\PSoC4/RTC_1.h ****     uint32 date;
+  45:Generated_Source\PSoC4/RTC_1.h ****     uint32 dayOfWeek;
+  46:Generated_Source\PSoC4/RTC_1.h ****     uint32 status;
+  47:Generated_Source\PSoC4/RTC_1.h **** }RTC_1_DATE_TIME;
+  48:Generated_Source\PSoC4/RTC_1.h **** 
+  49:Generated_Source\PSoC4/RTC_1.h **** /**
+  50:Generated_Source\PSoC4/RTC_1.h **** * This is the data structure that is used to save time and date values for 
+  51:Generated_Source\PSoC4/RTC_1.h **** * Daylight Savings Time Start and Stop (RTC_dstTimeDateStart and 
+  52:Generated_Source\PSoC4/RTC_1.h **** * RTC_dstTimeDateStop).
+  53:Generated_Source\PSoC4/RTC_1.h **** */
+  54:Generated_Source\PSoC4/RTC_1.h **** typedef struct
+  55:Generated_Source\PSoC4/RTC_1.h **** {
+  56:Generated_Source\PSoC4/RTC_1.h ****     uint32 hour;
+  57:Generated_Source\PSoC4/RTC_1.h ****     uint32 dayOfWeek;
+  58:Generated_Source\PSoC4/RTC_1.h ****     uint32 dayOfMonth;
+  59:Generated_Source\PSoC4/RTC_1.h ****     uint32 weekOfMonth;
+  60:Generated_Source\PSoC4/RTC_1.h ****     uint32 month;
+  61:Generated_Source\PSoC4/RTC_1.h ****     uint8  timeFormat;
+  62:Generated_Source\PSoC4/RTC_1.h **** }RTC_1_DST_TIME;
+  63:Generated_Source\PSoC4/RTC_1.h **** 
+  64:Generated_Source\PSoC4/RTC_1.h **** /** @} structures */
+  65:Generated_Source\PSoC4/RTC_1.h **** 
+  66:Generated_Source\PSoC4/RTC_1.h **** /*******************************************************************************
+  67:Generated_Source\PSoC4/RTC_1.h **** *    Enumerated Types and Parameters
+  68:Generated_Source\PSoC4/RTC_1.h **** *******************************************************************************/
+  69:Generated_Source\PSoC4/RTC_1.h **** /* Time Format setting constants */
+  70:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__HOUR_12 1
+  71:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__HOUR_24 0
+  72:Generated_Source\PSoC4/RTC_1.h **** 
+  73:Generated_Source\PSoC4/RTC_1.h **** /*  Date Format setting constants */
+  74:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__MM_DD_YYYY 0
+  75:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__DD_MM_YYYY 1
+  76:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__YYYY_MM_DD 2
+  77:Generated_Source\PSoC4/RTC_1.h **** 
+  78:Generated_Source\PSoC4/RTC_1.h **** /* Date Type setting constants */
+  79:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__RELATIVE 0
+  80:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__FIXED 1
+  81:Generated_Source\PSoC4/RTC_1.h **** 
+  82:Generated_Source\PSoC4/RTC_1.h **** /* DST Hour setting constants */
+  83:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H0000 0
+  84:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H0100 1
+  85:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H0200 2
+  86:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H0300 3
+  87:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H0400 4
+  88:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H0500 5
+  89:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H0600 6
+  90:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H0700 7
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 3
+
+
+  91:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H0800 8
+  92:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H0900 9
+  93:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H1000 10
+  94:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H1100 11
+  95:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H1200 12
+  96:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H1300 13
+  97:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H1400 14
+  98:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H1500 15
+  99:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H1600 16
+ 100:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H1700 17
+ 101:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H1800 18
+ 102:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H1900 19
+ 103:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H2000 20
+ 104:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H2100 21
+ 105:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H2200 22
+ 106:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H2300 23
+ 107:Generated_Source\PSoC4/RTC_1.h **** 
+ 108:Generated_Source\PSoC4/RTC_1.h **** /* DST DayOfWeek setting constants */
+ 109:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__SUNDAY 1
+ 110:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__MONDAY 2
+ 111:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__TUESDAY 3
+ 112:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__WEDNESDAY 4
+ 113:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__THURSDAY 5
+ 114:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__FRIDAY 6
+ 115:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__SATURDAY 7
+ 116:Generated_Source\PSoC4/RTC_1.h **** 
+ 117:Generated_Source\PSoC4/RTC_1.h **** /* DST Month setting constants */
+ 118:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__JAN 1
+ 119:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__FEB 2
+ 120:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__MAR 3
+ 121:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__APR 4
+ 122:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__MAY 5
+ 123:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__JUN 6
+ 124:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__JUL 7
+ 125:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__AUG 8
+ 126:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__SEP 9
+ 127:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__OCT 10
+ 128:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__NOV 11
+ 129:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__DEC 12
+ 130:Generated_Source\PSoC4/RTC_1.h **** 
+ 131:Generated_Source\PSoC4/RTC_1.h **** /* DST WeekOfMonth setting constants */
+ 132:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__FIRST 1
+ 133:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__SECOND 2
+ 134:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__THIRD 3
+ 135:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__FOURTH 4
+ 136:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__FIFTH 5
+ 137:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__LAST 6
+ 138:Generated_Source\PSoC4/RTC_1.h **** 
+ 139:Generated_Source\PSoC4/RTC_1.h **** 
+ 140:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_DATA_FORMAT     (0u)
+ 141:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_TIME_FORMAT     (0u)
+ 142:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_UPDATE_MODE     (0u)
+ 143:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_SECOND          (0u)
+ 144:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_MINUTE          (0u)
+ 145:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_HOUR            (0u)
+ 146:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_DAY             (1u)
+ 147:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_MONTH           (1u)
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 4
+
+
+ 148:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_YEAR            (1970u)
+ 149:Generated_Source\PSoC4/RTC_1.h **** 
+ 150:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_ALARM_STATUS    (1u)
+ 151:Generated_Source\PSoC4/RTC_1.h **** 
+ 152:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_DST_STATUS      (1u)
+ 153:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_DST_DATE_TYPE   (0u)
+ 154:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_DST_START_MONTH (3uL)
+ 155:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_DST_START_WOM   (6uL)
+ 156:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_DST_START_DOM   (22uL)
+ 157:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_DST_START_DOW   (1uL)
+ 158:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_DST_START_HRS   (0uL)
+ 159:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_DST_STOP_MONTH  (10uL)
+ 160:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_DST_STOP_DOM    (22uL)
+ 161:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_DST_STOP_DOW    (1uL)
+ 162:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_DST_STOP_WOM    (6uL)
+ 163:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_DST_STOP_HRS    (0uL)
+ 164:Generated_Source\PSoC4/RTC_1.h **** 
+ 165:Generated_Source\PSoC4/RTC_1.h **** /* Day of week definitions */
+ 166:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_SUNDAY     (RTC_1__SUNDAY)
+ 167:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_MONDAY     (RTC_1__MONDAY)
+ 168:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_TUESDAY    (RTC_1__TUESDAY)
+ 169:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_WEDNESDAY  (RTC_1__WEDNESDAY)
+ 170:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_THURSDAY   (RTC_1__THURSDAY)
+ 171:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_FRIDAY     (RTC_1__FRIDAY)
+ 172:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_SATURDAY   (RTC_1__SATURDAY)
+ 173:Generated_Source\PSoC4/RTC_1.h **** 
+ 174:Generated_Source\PSoC4/RTC_1.h **** /* DST WeekOfMonth setting constants definitions */
+ 175:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_FIRST      (RTC_1__FIRST)
+ 176:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_SECOND     (RTC_1__SECOND)
+ 177:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_THIRD      (RTC_1__THIRD)
+ 178:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_FOURTH     (RTC_1__FOURTH)
+ 179:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_FIFTH      (RTC_1__FIFTH)
+ 180:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_LAST       (RTC_1__LAST)
+ 181:Generated_Source\PSoC4/RTC_1.h **** 
+ 182:Generated_Source\PSoC4/RTC_1.h **** /* Month definitions */
+ 183:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_JANUARY    (RTC_1__JAN)
+ 184:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_FEBRUARY   (RTC_1__FEB)
+ 185:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_MARCH      (RTC_1__MAR)
+ 186:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_APRIL      (RTC_1__APR)
+ 187:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_MAY        (RTC_1__MAY)
+ 188:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_JUNE       (RTC_1__JUN)
+ 189:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_JULY       (RTC_1__JUL)
+ 190:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_AUGUST     (RTC_1__AUG)
+ 191:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_SEPTEMBER  (RTC_1__SEP)
+ 192:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_OCTOBER    (RTC_1__OCT)
+ 193:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_NOVEMBER   (RTC_1__NOV)
+ 194:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_DECEMBER   (RTC_1__DEC)
+ 195:Generated_Source\PSoC4/RTC_1.h **** 
+ 196:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_DAYS_PER_WEEK       (7u)
+ 197:Generated_Source\PSoC4/RTC_1.h **** 
+ 198:Generated_Source\PSoC4/RTC_1.h **** /* Number of days in month definitions */
+ 199:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_DAYS_IN_JANUARY     (31u)
+ 200:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_DAYS_IN_FEBRUARY    (28u)
+ 201:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_DAYS_IN_MARCH       (31u)
+ 202:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_DAYS_IN_APRIL       (30u)
+ 203:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_DAYS_IN_MAY         (31u)
+ 204:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_DAYS_IN_JUNE        (30u)
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 5
+
+
+ 205:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_DAYS_IN_JULY        (31u)
+ 206:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_DAYS_IN_AUGUST      (31u)
+ 207:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_DAYS_IN_SEPTEMBER   (30u)
+ 208:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_DAYS_IN_OCTOBER     (31u)
+ 209:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_DAYS_IN_NOVEMBER    (30u)
+ 210:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_DAYS_IN_DECEMBER    (31u)
+ 211:Generated_Source\PSoC4/RTC_1.h **** 
+ 212:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_MONTHS_PER_YEAR     (12uL)
+ 213:Generated_Source\PSoC4/RTC_1.h **** 
+ 214:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_HOURS_PER_DAY       (24uL)
+ 215:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_HOURS_PER_HALF_DAY  (12uL)
+ 216:Generated_Source\PSoC4/RTC_1.h **** 
+ 217:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_SECONDS_PER_MINUTE  (60uL)
+ 218:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_SECONDS_PER_HOUR    (3600uL)
+ 219:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_SECONDS_PER_DAY     (24uL * 3600uL)
+ 220:Generated_Source\PSoC4/RTC_1.h **** 
+ 221:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_SECONDS_PER_LEAP_YEAR    (366uL * 24uL * 3600uL)
+ 222:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_SECONDS_PER_NONLEAP_YEAR (365uL * 24uL * 3600uL)
+ 223:Generated_Source\PSoC4/RTC_1.h **** 
+ 224:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_UNIX_TIME_PM   ((12uL * 3600uL) + 1uL)
+ 225:Generated_Source\PSoC4/RTC_1.h **** 
+ 226:Generated_Source\PSoC4/RTC_1.h **** /* AM/PM status definitions */
+ 227:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_AM                 (0u)
+ 228:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_PM                 (1u)
+ 229:Generated_Source\PSoC4/RTC_1.h **** 
+ 230:Generated_Source\PSoC4/RTC_1.h **** /* Time format definitions */
+ 231:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_12_HOURS_FORMAT    (RTC_1__HOUR_12)
+ 232:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_24_HOURS_FORMAT    (RTC_1__HOUR_24)
+ 233:Generated_Source\PSoC4/RTC_1.h **** 
+ 234:Generated_Source\PSoC4/RTC_1.h **** /* UNIX time begins in 1970 year.  */
+ 235:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_YEAR_0             (1970u)
+ 236:Generated_Source\PSoC4/RTC_1.h **** 
+ 237:Generated_Source\PSoC4/RTC_1.h **** /* Definition of date register fields */
+ 238:Generated_Source\PSoC4/RTC_1.h **** #if(RTC_1_INITIAL_DATA_FORMAT == RTC_1__MM_DD_YYYY)
+ 239:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_10_MONTH_OFFSET   (28u)
+ 240:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_MONTH_OFFSET      (24u)
+ 241:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_10_DAY_OFFSET     (20u)
+ 242:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_DAY_OFFSET        (16u)
+ 243:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_1000_YEAR_OFFSET  (12u)
+ 244:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_100_YEAR_OFFSET   (8u)
+ 245:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_10_YEAR_OFFSET    (4u)
+ 246:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_YEAR_OFFSET       (0u)
+ 247:Generated_Source\PSoC4/RTC_1.h **** #elif(RTC_1_INITIAL_DATA_FORMAT == RTC_1__DD_MM_YYYY)
+ 248:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_10_MONTH_OFFSET   (20u)
+ 249:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_MONTH_OFFSET      (16u)
+ 250:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_10_DAY_OFFSET     (28u)
+ 251:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_DAY_OFFSET        (24u)
+ 252:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_1000_YEAR_OFFSET  (12u)
+ 253:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_100_YEAR_OFFSET   (8u)
+ 254:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_10_YEAR_OFFSET    (4u)
+ 255:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_YEAR_OFFSET       (0u)
+ 256:Generated_Source\PSoC4/RTC_1.h **** #else
+ 257:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_10_MONTH_OFFSET   (12u)
+ 258:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_MONTH_OFFSET      (8u)
+ 259:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_10_DAY_OFFSET     (4u)
+ 260:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_DAY_OFFSET        (0u)
+ 261:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_1000_YEAR_OFFSET  (28u)
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 6
+
+
+ 262:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_100_YEAR_OFFSET   (24u)
+ 263:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_10_YEAR_OFFSET    (20u)
+ 264:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_YEAR_OFFSET       (16u)
+ 265:Generated_Source\PSoC4/RTC_1.h **** #endif /* (RTC_1_INITIAL_DATA_FORMAT == RTC_1__MM_DD_YYYY) */
+ 266:Generated_Source\PSoC4/RTC_1.h **** 
+ 267:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_10_MONTH_MASK          (0x00000001uL << RTC_1_10_MONTH_OFFSET)
+ 268:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_MONTH_MASK             (0x0000000FuL << RTC_1_MONTH_OFFSET)
+ 269:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_10_DAY_MASK            (0x00000003uL << RTC_1_10_DAY_OFFSET)
+ 270:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_DAY_MASK               (0x0000000FuL << RTC_1_DAY_OFFSET)
+ 271:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_1000_YEAR_MASK         (0x00000003uL << RTC_1_1000_YEAR_OFFSET)
+ 272:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_100_YEAR_MASK          (0x0000000FuL << RTC_1_100_YEAR_OFFSET)
+ 273:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_10_YEAR_MASK           (0x0000000FuL << RTC_1_10_YEAR_OFFSET)
+ 274:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_YEAR_MASK              (0x0000000FuL << RTC_1_YEAR_OFFSET)
+ 275:Generated_Source\PSoC4/RTC_1.h **** 
+ 276:Generated_Source\PSoC4/RTC_1.h **** #define  RTC_1_MONTH_FULL_MASK       (RTC_1_10_MONTH_MASK  | RTC_1_MONTH_MASK)
+ 277:Generated_Source\PSoC4/RTC_1.h **** #define  RTC_1_DAY_FULL_MASK         (RTC_1_10_DAY_MASK    | RTC_1_DAY_MASK)
+ 278:Generated_Source\PSoC4/RTC_1.h **** #define  RTC_1_YEAR_FULL_MASK        (RTC_1_1000_YEAR_MASK | RTC_1_100_YEAR_MASK |\
+ 279:Generated_Source\PSoC4/RTC_1.h ****                                                  RTC_1_10_YEAR_MASK   | RTC_1_YEAR_MASK)
+ 280:Generated_Source\PSoC4/RTC_1.h **** 
+ 281:Generated_Source\PSoC4/RTC_1.h **** 
+ 282:Generated_Source\PSoC4/RTC_1.h **** /* Definition of time register fields */
+ 283:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_TIME_FORMAT_OFFSET     (23u)
+ 284:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_PERIOD_OF_DAY_OFFSET   (22u)
+ 285:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_10_HOURS_OFFSET        (20u)
+ 286:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_HOURS_OFFSET           (16u)
+ 287:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_10_MINUTES_OFFSET      (12u)
+ 288:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_MINUTES_OFFSET         (8u)
+ 289:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_10_SECONDS_OFFSET      (4u)
+ 290:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_SECONDS_OFFSET         (0u)
+ 291:Generated_Source\PSoC4/RTC_1.h **** 
+ 292:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_TIME_FORMAT_MASK       (0x00000001uL << RTC_1_TIME_FORMAT_OFFSET)
+ 293:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_PERIOD_OF_DAY_MASK     (0x00000001uL << RTC_1_PERIOD_OF_DAY_OFFSET)
+ 294:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_10_HOURS_MASK          (0x00000003uL << RTC_1_10_HOURS_OFFSET)
+ 295:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_HOURS_MASK             (0x0000000FuL << RTC_1_HOURS_OFFSET)
+ 296:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_10_MINUTES_MASK        (0x00000007uL << RTC_1_10_MINUTES_OFFSET)
+ 297:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_MINUTES_MASK           (0x0000000FuL << RTC_1_MINUTES_OFFSET)
+ 298:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_10_SECONDS_MASK        (0x00000007uL << RTC_1_10_SECONDS_OFFSET)
+ 299:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_SECONDS_MASK           (0x0000000FuL << RTC_1_SECONDS_OFFSET)
+ 300:Generated_Source\PSoC4/RTC_1.h **** 
+ 301:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_HOURS_FULL_MASK        (RTC_1_10_HOURS_MASK   | RTC_1_HOURS_MASK)
+ 302:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_MINUTES_FULL_MASK      (RTC_1_10_MINUTES_MASK | RTC_1_MINUTES_MASK)
+ 303:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_SECONDS_FULL_MASK      (RTC_1_10_SECONDS_MASK | RTC_1_SECONDS_MASK)
+ 304:Generated_Source\PSoC4/RTC_1.h **** 
+ 305:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_ALARM_SEC_MASK         (0x00000001uL)
+ 306:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_ALARM_MIN_MASK         (0x00000002uL)
+ 307:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_ALARM_HOUR_MASK        (0x00000004uL)
+ 308:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_ALARM_DAYOFWEEK_MASK   (0x00000008uL)
+ 309:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_ALARM_DAYOFMONTH_MASK  (0x00000010uL)
+ 310:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_ALARM_MONTH_MASK       (0x00000020uL)
+ 311:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_ALARM_YEAR_MASK        (0x00000040uL)
+ 312:Generated_Source\PSoC4/RTC_1.h **** 
+ 313:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_STATUS_DST_OFFSET      (1u)
+ 314:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_STATUS_ALARM_OFFSET    (2u)
+ 315:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_STATUS_LY_OFFSET       (3u)
+ 316:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_STATUS_AM_PM_OFFSET    (4u)
+ 317:Generated_Source\PSoC4/RTC_1.h **** 
+ 318:Generated_Source\PSoC4/RTC_1.h **** /* Definition of the RTC status values. */
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 7
+
+
+ 319:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_STATUS_DST             (1uL << RTC_1_STATUS_DST_OFFSET)
+ 320:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_STATUS_LY              (1uL << RTC_1_STATUS_LY_OFFSET)
+ 321:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_STATUS_AM_PM           (1uL << RTC_1_STATUS_AM_PM_OFFSET)
+ 322:Generated_Source\PSoC4/RTC_1.h **** 
+ 323:Generated_Source\PSoC4/RTC_1.h **** /* Number of bits per one BCD digit. */
+ 324:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_BCD_NUMBER_SIZE        (4u)
+ 325:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_BCD_ONE_DIGIT_MASK     (0x0000000FuL)
+ 326:Generated_Source\PSoC4/RTC_1.h **** 
+ 327:Generated_Source\PSoC4/RTC_1.h **** /*******************************************************************************
+ 328:Generated_Source\PSoC4/RTC_1.h **** *    Function Prototypes
+ 329:Generated_Source\PSoC4/RTC_1.h **** *******************************************************************************/
+ 330:Generated_Source\PSoC4/RTC_1.h **** /**
+ 331:Generated_Source\PSoC4/RTC_1.h **** * \addtogroup group_api
+ 332:Generated_Source\PSoC4/RTC_1.h **** * @{
+ 333:Generated_Source\PSoC4/RTC_1.h **** */
+ 334:Generated_Source\PSoC4/RTC_1.h **** void   RTC_1_Start(void);
+ 335:Generated_Source\PSoC4/RTC_1.h **** void   RTC_1_Stop(void);
+ 336:Generated_Source\PSoC4/RTC_1.h **** void   RTC_1_Init(void);
+ 337:Generated_Source\PSoC4/RTC_1.h **** void   RTC_1_SetUnixTime(uint64 unixTime);
+ 338:Generated_Source\PSoC4/RTC_1.h **** uint64 RTC_1_GetUnixTime(void);
+ 339:Generated_Source\PSoC4/RTC_1.h **** void   RTC_1_SetPeriod(uint32 ticks, uint32 refOneSecTicks);
+ 340:Generated_Source\PSoC4/RTC_1.h **** uint32 RTC_1_GetPeriod(void);
+ 341:Generated_Source\PSoC4/RTC_1.h **** uint32 RTC_1_GetRefOneSec(void);
+ 342:Generated_Source\PSoC4/RTC_1.h **** void   RTC_1_SetDateAndTime(uint32 inputTime, uint32 inputDate);
+ 343:Generated_Source\PSoC4/RTC_1.h **** void   RTC_1_GetDateAndTime(RTC_1_DATE_TIME* dateTime);
+ 344:Generated_Source\PSoC4/RTC_1.h **** uint32 RTC_1_GetTime(void);
+ 345:Generated_Source\PSoC4/RTC_1.h **** uint32 RTC_1_GetDate(void);
+ 346:Generated_Source\PSoC4/RTC_1.h **** void   RTC_1_SetAlarmDateAndTime(const RTC_1_DATE_TIME* alarmTime);
+ 347:Generated_Source\PSoC4/RTC_1.h **** void   RTC_1_GetAlarmDateAndTime(RTC_1_DATE_TIME* alarmTimeDate);
+ 348:Generated_Source\PSoC4/RTC_1.h **** void   RTC_1_SetAlarmMask(uint32 mask);
+ 349:Generated_Source\PSoC4/RTC_1.h **** uint32 RTC_1_GetAlarmMask(void);
+ 350:Generated_Source\PSoC4/RTC_1.h **** uint32 RTC_1_ReadStatus(void);
+ 351:Generated_Source\PSoC4/RTC_1.h **** uint32 RTC_1_GetAlarmStatus(void);
+ 352:Generated_Source\PSoC4/RTC_1.h **** void   RTC_1_ClearAlarmStatus(void);
+ 353:Generated_Source\PSoC4/RTC_1.h **** void   RTC_1_SetDSTStartTime(const RTC_1_DST_TIME* dstStartTime,
+ 354:Generated_Source\PSoC4/RTC_1.h ****                                               RTC_1_DST_DATETYPE_ENUM type);
+ 355:Generated_Source\PSoC4/RTC_1.h **** void   RTC_1_SetDSTStopTime(const RTC_1_DST_TIME* dstStopTime,
+ 356:Generated_Source\PSoC4/RTC_1.h ****                                              RTC_1_DST_DATETYPE_ENUM type);
+ 357:Generated_Source\PSoC4/RTC_1.h **** uint32 RTC_1_ConvertBCDToDec(uint32 bcdNum);
+ 358:Generated_Source\PSoC4/RTC_1.h **** uint32 RTC_1_ConvertDecToBCD(uint32 decNum);
+ 359:Generated_Source\PSoC4/RTC_1.h **** void   RTC_1_Update(void);
+ 360:Generated_Source\PSoC4/RTC_1.h **** void*  RTC_1_SetAlarmHandler(void (*CallbackFunction)(void));
+ 361:Generated_Source\PSoC4/RTC_1.h **** 
+ 362:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_ConstructDate(uint32 month, uint32 day, uint32 year);
+ 363:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_ConstructTime(uint32 timeFormat, uint32 stateAmPm, uint32 hour, uint32 min, uin
+ 364:Generated_Source\PSoC4/RTC_1.h **** /** @} api */
+ 365:Generated_Source\PSoC4/RTC_1.h **** 
+ 366:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_GetTimeFormat(uint32 inputTime);
+ 367:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_SetTimeFormat(uint32 inputTime, uint32 timeFormat);
+ 368:Generated_Source\PSoC4/RTC_1.h **** 
+ 369:Generated_Source\PSoC4/RTC_1.h **** /**
+ 370:Generated_Source\PSoC4/RTC_1.h **** * \addtogroup group_api
+ 371:Generated_Source\PSoC4/RTC_1.h **** * @{
+ 372:Generated_Source\PSoC4/RTC_1.h **** */
+ 373:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_LeapYear(uint32 year);
+ 374:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_IsBitSet(uint32 var, uint32 mask);
+ 375:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_GetSecond(uint32 inputTime);
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 8
+
+
+ 376:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_GetMinutes(uint32 inputTime);
+ 377:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_GetHours(uint32 inputTime);
+ 378:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_GetAmPm(uint32 inputTime);
+ 379:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_GetDay(uint32 date);
+ 380:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_GetMonth(uint32 date);
+ 381:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_GetYear(uint32 date);
+ 382:Generated_Source\PSoC4/RTC_1.h **** /** @} api */
+ 383:Generated_Source\PSoC4/RTC_1.h **** 
+ 384:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_SetSecond(uint32 inputTime, uint32 inputSecond);
+ 385:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_SetMinutes(uint32 inputTime, uint32 inputMinute);
+ 386:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_SetHours(uint32 inputTime, uint32 inputHours);
+ 387:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_SetAmPm(uint32 inputTime, uint32 periodOfDay);
+ 388:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_SetDay(uint32 inputDate, uint32 inputDay);
+ 389:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_SetMonth(uint32 inputDate, uint32 inputMonth);
+ 390:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_SetYear(uint32 inputDate, uint32 inputYear);
+ 391:Generated_Source\PSoC4/RTC_1.h **** 
+ 392:Generated_Source\PSoC4/RTC_1.h **** uint64 RTC_1_ConstructUnixAlarmTime(const RTC_1_DATE_TIME* alarmTime, uint8 alarmCfgMask);
+ 393:Generated_Source\PSoC4/RTC_1.h **** uint64 RTC_1_GetDstUnixTime(const RTC_1_DST_TIME* dstTime);
+ 394:Generated_Source\PSoC4/RTC_1.h **** uint64 RTC_1_GetNexAlarmTime(uint64 curUnixTime, uint8 alarmCfgMask);
+ 395:Generated_Source\PSoC4/RTC_1.h **** 
+ 396:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_GetNextMinSec(uint32 curVal);
+ 397:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_GetNextHour(uint32 curVal);
+ 398:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_GetNextDay(uint32 curYear, uint32 curMonth, uint32 curDay, uint32 alarmCfgMask)
+ 399:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_GetNextMonth(uint32 curMonth);
+ 400:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_GetNextYear(uint32 curYear);
+ 401:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_GetDayOfWeek(uint32 day, uint32 month, uint32 year);
+ 402:Generated_Source\PSoC4/RTC_1.h **** 
+ 403:Generated_Source\PSoC4/RTC_1.h **** uint32 RTC_1_DaysInMonth(uint32 month, uint32 year);
+ 404:Generated_Source\PSoC4/RTC_1.h **** uint32 RTC_1_DaysBeforeMonth(uint32 month, uint32 year);
+ 405:Generated_Source\PSoC4/RTC_1.h **** 
+ 406:Generated_Source\PSoC4/RTC_1.h **** /**
+ 407:Generated_Source\PSoC4/RTC_1.h **** * \addtogroup group_api
+ 408:Generated_Source\PSoC4/RTC_1.h **** * @{
+ 409:Generated_Source\PSoC4/RTC_1.h **** */
+ 410:Generated_Source\PSoC4/RTC_1.h **** void   RTC_1_UnixToDateTime(RTC_1_DATE_TIME* dateTime, uint64 unixTime, uint32 timeFormat);
+ 411:Generated_Source\PSoC4/RTC_1.h **** uint64 RTC_1_DateTimeToUnix(uint32 inputDate, uint32 inputTime);
+ 412:Generated_Source\PSoC4/RTC_1.h **** /** @} api */
+ 413:Generated_Source\PSoC4/RTC_1.h **** 
+ 414:Generated_Source\PSoC4/RTC_1.h **** uint32 RTC_1_RelativeToFixed(uint32 dayOfWeek, uint32 weekOfMonth, uint32 month, uint32 year);
+ 415:Generated_Source\PSoC4/RTC_1.h **** 
+ 416:Generated_Source\PSoC4/RTC_1.h **** 
+ 417:Generated_Source\PSoC4/RTC_1.h **** #if defined(CYDEV_RTC_SOURCE_WDT)
+ 418:Generated_Source\PSoC4/RTC_1.h ****     #if((0u != CYDEV_WDT_GENERATE_ISR) && (0u == RTC_1_INITIAL_UPDATE_MODE))
+ 419:Generated_Source\PSoC4/RTC_1.h ****         static void RTC_1_CySysRtcSetCallback(uint32 wdtNumber);
+ 420:Generated_Source\PSoC4/RTC_1.h ****         static void RTC_1_CySysRtcResetCallback(uint32 wdtNumber);
+ 421:Generated_Source\PSoC4/RTC_1.h ****     #endif /* ((0u != CYDEV_WDT_GENERATE_ISR) && (0u == RTC_1_INITIAL_UPDATE_MODE)) */
+ 422:Generated_Source\PSoC4/RTC_1.h **** #endif /* (CYDEV_RTC_SOURCE_WDT) */
+ 423:Generated_Source\PSoC4/RTC_1.h **** 
+ 424:Generated_Source\PSoC4/RTC_1.h **** /*******************************************************************************
+ 425:Generated_Source\PSoC4/RTC_1.h **** * Function Name: RTC_1_IsBitSet
+ 426:Generated_Source\PSoC4/RTC_1.h **** ****************************************************************************//**
+ 427:Generated_Source\PSoC4/RTC_1.h **** *
+ 428:Generated_Source\PSoC4/RTC_1.h **** * \brief
+ 429:Generated_Source\PSoC4/RTC_1.h **** *  Checks the state of a bit passed through parameter.
+ 430:Generated_Source\PSoC4/RTC_1.h **** *
+ 431:Generated_Source\PSoC4/RTC_1.h **** * \param
+ 432:Generated_Source\PSoC4/RTC_1.h **** *  var The variable to be checked.
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 9
+
+
+ 433:Generated_Source\PSoC4/RTC_1.h **** * \param
+ 434:Generated_Source\PSoC4/RTC_1.h **** *  mask The mask for a bit to be checked.
+ 435:Generated_Source\PSoC4/RTC_1.h **** *
+ 436:Generated_Source\PSoC4/RTC_1.h **** * \return
+ 437:Generated_Source\PSoC4/RTC_1.h **** *  0u - Bit is not set.
+ 438:Generated_Source\PSoC4/RTC_1.h **** * \return
+ 439:Generated_Source\PSoC4/RTC_1.h **** *  1u - Bit is set.
+ 440:Generated_Source\PSoC4/RTC_1.h **** *
+ 441:Generated_Source\PSoC4/RTC_1.h **** *******************************************************************************/
+ 442:Generated_Source\PSoC4/RTC_1.h **** static CY_INLINE uint32 RTC_1_IsBitSet(uint32 var, uint32 mask)
+ 443:Generated_Source\PSoC4/RTC_1.h **** {
+ 444:Generated_Source\PSoC4/RTC_1.h ****     return ((mask == (var & mask)) ? 1Lu : 0Lu);
+ 445:Generated_Source\PSoC4/RTC_1.h **** }
+ 446:Generated_Source\PSoC4/RTC_1.h **** 
+ 447:Generated_Source\PSoC4/RTC_1.h **** 
+ 448:Generated_Source\PSoC4/RTC_1.h **** /*******************************************************************************
+ 449:Generated_Source\PSoC4/RTC_1.h **** * Function Name: RTC_1_LeapYear
+ 450:Generated_Source\PSoC4/RTC_1.h **** ****************************************************************************//**
+ 451:Generated_Source\PSoC4/RTC_1.h **** *
+ 452:Generated_Source\PSoC4/RTC_1.h **** * \brief
+ 453:Generated_Source\PSoC4/RTC_1.h **** * Checks whether the year passed through the parameter is
+ 454:Generated_Source\PSoC4/RTC_1.h **** * leap or no.
+ 455:Generated_Source\PSoC4/RTC_1.h **** *
+ 456:Generated_Source\PSoC4/RTC_1.h **** * \param
+ 457:Generated_Source\PSoC4/RTC_1.h **** *  year The year to be checked.
+ 458:Generated_Source\PSoC4/RTC_1.h **** *
+ 459:Generated_Source\PSoC4/RTC_1.h **** *
+ 460:Generated_Source\PSoC4/RTC_1.h **** * \return
+ 461:Generated_Source\PSoC4/RTC_1.h **** *  0u - The year is not leap.
+ 462:Generated_Source\PSoC4/RTC_1.h **** * \return
+ 463:Generated_Source\PSoC4/RTC_1.h **** *  1u - The year is leap.
+ 464:Generated_Source\PSoC4/RTC_1.h **** *
+ 465:Generated_Source\PSoC4/RTC_1.h **** *******************************************************************************/
+ 466:Generated_Source\PSoC4/RTC_1.h **** static CY_INLINE uint32 RTC_1_LeapYear(uint32 year)
+ 467:Generated_Source\PSoC4/RTC_1.h **** {
+ 468:Generated_Source\PSoC4/RTC_1.h ****     uint32 retVal;
+ 469:Generated_Source\PSoC4/RTC_1.h **** 
+ 470:Generated_Source\PSoC4/RTC_1.h ****     if(((0u == (year % 4Lu)) && (0u != (year % 100Lu))) || (0u == (year % 400Lu)))
+ 471:Generated_Source\PSoC4/RTC_1.h ****     {
+ 472:Generated_Source\PSoC4/RTC_1.h ****         retVal = 1uL;
+ 473:Generated_Source\PSoC4/RTC_1.h ****     }
+ 474:Generated_Source\PSoC4/RTC_1.h ****     else
+ 475:Generated_Source\PSoC4/RTC_1.h ****     {
+ 476:Generated_Source\PSoC4/RTC_1.h ****         retVal = 0uL;
+ 477:Generated_Source\PSoC4/RTC_1.h ****     }
+ 478:Generated_Source\PSoC4/RTC_1.h **** 
+ 479:Generated_Source\PSoC4/RTC_1.h ****     return(retVal);
+ 480:Generated_Source\PSoC4/RTC_1.h **** }
+ 481:Generated_Source\PSoC4/RTC_1.h **** 
+ 482:Generated_Source\PSoC4/RTC_1.h **** 
+ 483:Generated_Source\PSoC4/RTC_1.h **** /*******************************************************************************
+ 484:Generated_Source\PSoC4/RTC_1.h **** * Function Name: RTC_1_GetSecond
+ 485:Generated_Source\PSoC4/RTC_1.h **** ****************************************************************************//**
+ 486:Generated_Source\PSoC4/RTC_1.h **** *
+ 487:Generated_Source\PSoC4/RTC_1.h **** * \brief
+ 488:Generated_Source\PSoC4/RTC_1.h **** *  Returns the seconds value from the time value that is passed as a/the parameter.
+ 489:Generated_Source\PSoC4/RTC_1.h **** *
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 10
+
+
+ 490:Generated_Source\PSoC4/RTC_1.h **** * \param
+ 491:Generated_Source\PSoC4/RTC_1.h **** *  time The time value.
+ 492:Generated_Source\PSoC4/RTC_1.h **** *
+ 493:Generated_Source\PSoC4/RTC_1.h **** * \return
+ 494:Generated_Source\PSoC4/RTC_1.h **** *  The seconds value.
+ 495:Generated_Source\PSoC4/RTC_1.h **** *
+ 496:Generated_Source\PSoC4/RTC_1.h **** *******************************************************************************/
+ 497:Generated_Source\PSoC4/RTC_1.h **** static CY_INLINE uint32 RTC_1_GetSecond(uint32 inputTime)
+ 498:Generated_Source\PSoC4/RTC_1.h **** {
+ 499:Generated_Source\PSoC4/RTC_1.h ****     uint32 retVal;
+ 500:Generated_Source\PSoC4/RTC_1.h **** 
+ 501:Generated_Source\PSoC4/RTC_1.h ****     retVal  = ((inputTime & RTC_1_10_SECONDS_MASK) >> RTC_1_10_SECONDS_OFFSET) * 10u;
+ 502:Generated_Source\PSoC4/RTC_1.h ****     retVal += (inputTime & RTC_1_SECONDS_MASK) >> RTC_1_SECONDS_OFFSET;
+ 503:Generated_Source\PSoC4/RTC_1.h **** 
+ 504:Generated_Source\PSoC4/RTC_1.h ****     return (retVal);
+ 505:Generated_Source\PSoC4/RTC_1.h **** }
+ 506:Generated_Source\PSoC4/RTC_1.h **** 
+ 507:Generated_Source\PSoC4/RTC_1.h **** 
+ 508:Generated_Source\PSoC4/RTC_1.h **** /*******************************************************************************
+ 509:Generated_Source\PSoC4/RTC_1.h **** * Function Name: RTC_1_GetMinutes
+ 510:Generated_Source\PSoC4/RTC_1.h **** ****************************************************************************//**
+ 511:Generated_Source\PSoC4/RTC_1.h **** *
+ 512:Generated_Source\PSoC4/RTC_1.h **** * \brief
+ 513:Generated_Source\PSoC4/RTC_1.h **** *  Returns the minutes value from the time value that is passed as a/the 
+ 514:Generated_Source\PSoC4/RTC_1.h **** * parameter.
+ 515:Generated_Source\PSoC4/RTC_1.h **** *
+ 516:Generated_Source\PSoC4/RTC_1.h **** * \param
+ 517:Generated_Source\PSoC4/RTC_1.h **** *  time The time value.
+ 518:Generated_Source\PSoC4/RTC_1.h **** *
+ 519:Generated_Source\PSoC4/RTC_1.h **** * \return
+ 520:Generated_Source\PSoC4/RTC_1.h **** *  The minutes value.
+ 521:Generated_Source\PSoC4/RTC_1.h **** *
+ 522:Generated_Source\PSoC4/RTC_1.h **** *******************************************************************************/
+ 523:Generated_Source\PSoC4/RTC_1.h **** static CY_INLINE uint32 RTC_1_GetMinutes(uint32 inputTime)
+ 524:Generated_Source\PSoC4/RTC_1.h **** {
+  25              		.loc 1 524 0
+  26              		.cfi_startproc
+  27 0000 80B5     		push	{r7, lr}
+  28              		.cfi_def_cfa_offset 8
+  29              		.cfi_offset 7, -8
+  30              		.cfi_offset 14, -4
+  31 0002 84B0     		sub	sp, sp, #16
+  32              		.cfi_def_cfa_offset 24
+  33 0004 00AF     		add	r7, sp, #0
+  34              		.cfi_def_cfa_register 7
+  35 0006 7860     		str	r0, [r7, #4]
+ 525:Generated_Source\PSoC4/RTC_1.h ****     uint32 retVal;
+ 526:Generated_Source\PSoC4/RTC_1.h **** 
+ 527:Generated_Source\PSoC4/RTC_1.h ****     retVal  = ((inputTime & RTC_1_10_MINUTES_MASK) >> RTC_1_10_MINUTES_OFFSET) * 10u;
+  36              		.loc 1 527 0
+  37 0008 7A68     		ldr	r2, [r7, #4]
+  38 000a E023     		mov	r3, #224
+  39 000c DB01     		lsl	r3, r3, #7
+  40 000e 1340     		and	r3, r2
+  41 0010 1A0B     		lsr	r2, r3, #12
+  42 0012 131C     		mov	r3, r2
+  43 0014 9B00     		lsl	r3, r3, #2
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 11
+
+
+  44 0016 9B18     		add	r3, r3, r2
+  45 0018 5B00     		lsl	r3, r3, #1
+  46 001a FB60     		str	r3, [r7, #12]
+ 528:Generated_Source\PSoC4/RTC_1.h ****     retVal += (inputTime & RTC_1_MINUTES_MASK) >> RTC_1_MINUTES_OFFSET;
+  47              		.loc 1 528 0
+  48 001c 7A68     		ldr	r2, [r7, #4]
+  49 001e F023     		mov	r3, #240
+  50 0020 1B01     		lsl	r3, r3, #4
+  51 0022 1340     		and	r3, r2
+  52 0024 1B0A     		lsr	r3, r3, #8
+  53 0026 FA68     		ldr	r2, [r7, #12]
+  54 0028 D318     		add	r3, r2, r3
+  55 002a FB60     		str	r3, [r7, #12]
+ 529:Generated_Source\PSoC4/RTC_1.h **** 
+ 530:Generated_Source\PSoC4/RTC_1.h ****     return (retVal);
+  56              		.loc 1 530 0
+  57 002c FB68     		ldr	r3, [r7, #12]
+ 531:Generated_Source\PSoC4/RTC_1.h **** }
+  58              		.loc 1 531 0
+  59 002e 181C     		mov	r0, r3
+  60 0030 BD46     		mov	sp, r7
+  61 0032 04B0     		add	sp, sp, #16
+  62              		@ sp needed
+  63 0034 80BD     		pop	{r7, pc}
+  64              		.cfi_endproc
+  65              	.LFE38:
+  66              		.size	RTC_1_GetMinutes, .-RTC_1_GetMinutes
+  67 0036 C046     		.section	.text.RTC_1_GetHours,"ax",%progbits
+  68              		.align	2
+  69              		.code	16
+  70              		.thumb_func
+  71              		.type	RTC_1_GetHours, %function
+  72              	RTC_1_GetHours:
+  73              	.LFB39:
+ 532:Generated_Source\PSoC4/RTC_1.h **** 
+ 533:Generated_Source\PSoC4/RTC_1.h **** 
+ 534:Generated_Source\PSoC4/RTC_1.h **** /*******************************************************************************
+ 535:Generated_Source\PSoC4/RTC_1.h **** * Function Name: RTC_1_GetHours
+ 536:Generated_Source\PSoC4/RTC_1.h **** ****************************************************************************//**
+ 537:Generated_Source\PSoC4/RTC_1.h **** *
+ 538:Generated_Source\PSoC4/RTC_1.h **** * \brief
+ 539:Generated_Source\PSoC4/RTC_1.h **** *  Returns the hours value from the time value that is passed as a/the parameter.
+ 540:Generated_Source\PSoC4/RTC_1.h **** *
+ 541:Generated_Source\PSoC4/RTC_1.h **** * \param
+ 542:Generated_Source\PSoC4/RTC_1.h **** *  time The time value.
+ 543:Generated_Source\PSoC4/RTC_1.h **** *
+ 544:Generated_Source\PSoC4/RTC_1.h **** * \return
+ 545:Generated_Source\PSoC4/RTC_1.h **** *  The hours value.
+ 546:Generated_Source\PSoC4/RTC_1.h **** *
+ 547:Generated_Source\PSoC4/RTC_1.h **** *******************************************************************************/
+ 548:Generated_Source\PSoC4/RTC_1.h **** static CY_INLINE uint32 RTC_1_GetHours(uint32 inputTime)
+ 549:Generated_Source\PSoC4/RTC_1.h **** {
+  74              		.loc 1 549 0
+  75              		.cfi_startproc
+  76 0000 80B5     		push	{r7, lr}
+  77              		.cfi_def_cfa_offset 8
+  78              		.cfi_offset 7, -8
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 12
+
+
+  79              		.cfi_offset 14, -4
+  80 0002 84B0     		sub	sp, sp, #16
+  81              		.cfi_def_cfa_offset 24
+  82 0004 00AF     		add	r7, sp, #0
+  83              		.cfi_def_cfa_register 7
+  84 0006 7860     		str	r0, [r7, #4]
+ 550:Generated_Source\PSoC4/RTC_1.h ****     uint32 retVal;
+ 551:Generated_Source\PSoC4/RTC_1.h **** 
+ 552:Generated_Source\PSoC4/RTC_1.h ****     retVal  = ((inputTime & RTC_1_10_HOURS_MASK) >> RTC_1_10_HOURS_OFFSET) * 10u;
+  85              		.loc 1 552 0
+  86 0008 7A68     		ldr	r2, [r7, #4]
+  87 000a C023     		mov	r3, #192
+  88 000c 9B03     		lsl	r3, r3, #14
+  89 000e 1340     		and	r3, r2
+  90 0010 1A0D     		lsr	r2, r3, #20
+  91 0012 131C     		mov	r3, r2
+  92 0014 9B00     		lsl	r3, r3, #2
+  93 0016 9B18     		add	r3, r3, r2
+  94 0018 5B00     		lsl	r3, r3, #1
+  95 001a FB60     		str	r3, [r7, #12]
+ 553:Generated_Source\PSoC4/RTC_1.h ****     retVal += (inputTime & RTC_1_HOURS_MASK) >> RTC_1_HOURS_OFFSET;
+  96              		.loc 1 553 0
+  97 001c 7A68     		ldr	r2, [r7, #4]
+  98 001e F023     		mov	r3, #240
+  99 0020 1B03     		lsl	r3, r3, #12
+ 100 0022 1340     		and	r3, r2
+ 101 0024 1B0C     		lsr	r3, r3, #16
+ 102 0026 FA68     		ldr	r2, [r7, #12]
+ 103 0028 D318     		add	r3, r2, r3
+ 104 002a FB60     		str	r3, [r7, #12]
+ 554:Generated_Source\PSoC4/RTC_1.h **** 
+ 555:Generated_Source\PSoC4/RTC_1.h ****     return (retVal);
+ 105              		.loc 1 555 0
+ 106 002c FB68     		ldr	r3, [r7, #12]
+ 556:Generated_Source\PSoC4/RTC_1.h **** }
+ 107              		.loc 1 556 0
+ 108 002e 181C     		mov	r0, r3
+ 109 0030 BD46     		mov	sp, r7
+ 110 0032 04B0     		add	sp, sp, #16
+ 111              		@ sp needed
+ 112 0034 80BD     		pop	{r7, pc}
+ 113              		.cfi_endproc
+ 114              	.LFE39:
+ 115              		.size	RTC_1_GetHours, .-RTC_1_GetHours
+ 116 0036 C046     		.bss
+ 117              		.align	2
+ 118              	current_time:
+ 119 0000 00000000 		.space	4
+ 120              		.align	2
+ 121              	ref_time:
+ 122 0004 00000000 		.space	4
+ 123              		.section	.text.rtc_check_time,"ax",%progbits
+ 124              		.align	2
+ 125              		.global	rtc_check_time
+ 126              		.code	16
+ 127              		.thumb_func
+ 128              		.type	rtc_check_time, %function
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 13
+
+
+ 129              	rtc_check_time:
+ 130              	.LFB62:
+ 131              		.file 2 "rtc_functions\\rtc_functions.c"
+   1:rtc_functions/rtc_functions.c **** /*
+   2:rtc_functions/rtc_functions.c **** **
+   3:rtc_functions/rtc_functions.c **** **
+   4:rtc_functions/rtc_functions.c **** ** File Name: rtc_functions.c
+   5:rtc_functions/rtc_functions.c **** **
+   6:rtc_functions/rtc_functions.c **** **
+   7:rtc_functions/rtc_functions.c **** */
+   8:rtc_functions/rtc_functions.c **** 
+   9:rtc_functions/rtc_functions.c **** #include <project.h>
+  10:rtc_functions/rtc_functions.c **** #include "rtc_functions.h"
+  11:rtc_functions/rtc_functions.c **** #include "cf_external_functions.h"
+  12:rtc_functions/rtc_functions.c **** #include "cf_chain_flow_support.h"
+  13:rtc_functions/rtc_functions.c **** #include "cf_events.h"
+  14:rtc_functions/rtc_functions.c **** #define CF_HOUR_TICK           7
+  15:rtc_functions/rtc_functions.c **** 
+  16:rtc_functions/rtc_functions.c **** 
+  17:rtc_functions/rtc_functions.c **** static uint32 current_time;
+  18:rtc_functions/rtc_functions.c **** static uint32 ref_time;
+  19:rtc_functions/rtc_functions.c **** 
+  20:rtc_functions/rtc_functions.c **** void rtc_check_time( void )
+  21:rtc_functions/rtc_functions.c **** {
+ 132              		.loc 2 21 0
+ 133              		.cfi_startproc
+ 134 0000 98B5     		push	{r3, r4, r7, lr}
+ 135              		.cfi_def_cfa_offset 16
+ 136              		.cfi_offset 3, -16
+ 137              		.cfi_offset 4, -12
+ 138              		.cfi_offset 7, -8
+ 139              		.cfi_offset 14, -4
+ 140 0002 00AF     		add	r7, sp, #0
+ 141              		.cfi_def_cfa_register 7
+  22:rtc_functions/rtc_functions.c ****     
+  23:rtc_functions/rtc_functions.c ****     current_time = RTC_1_GetTime();
+ 142              		.loc 2 23 0
+ 143 0004 FFF7FEFF 		bl	RTC_1_GetTime
+ 144 0008 021C     		mov	r2, r0
+ 145 000a 184B     		ldr	r3, .L8
+ 146 000c 1A60     		str	r2, [r3]
+  24:rtc_functions/rtc_functions.c ****     cf_send_interrupt_event( CF_SECOND_TICK, 1);
+ 147              		.loc 2 24 0
+ 148 000e 0520     		mov	r0, #5
+ 149 0010 0121     		mov	r1, #1
+ 150 0012 FFF7FEFF 		bl	cf_send_interrupt_event
+  25:rtc_functions/rtc_functions.c **** 
+  26:rtc_functions/rtc_functions.c ****     if( RTC_1_GetMinutes( current_time) != RTC_1_GetMinutes(ref_time ) )
+ 151              		.loc 2 26 0
+ 152 0016 154B     		ldr	r3, .L8
+ 153 0018 1B68     		ldr	r3, [r3]
+ 154 001a 181C     		mov	r0, r3
+ 155 001c FFF7FEFF 		bl	RTC_1_GetMinutes
+ 156 0020 041C     		mov	r4, r0
+ 157 0022 134B     		ldr	r3, .L8+4
+ 158 0024 1B68     		ldr	r3, [r3]
+ 159 0026 181C     		mov	r0, r3
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 14
+
+
+ 160 0028 FFF7FEFF 		bl	RTC_1_GetMinutes
+ 161 002c 031C     		mov	r3, r0
+ 162 002e 9C42     		cmp	r4, r3
+ 163 0030 03D0     		beq	.L6
+  27:rtc_functions/rtc_functions.c ****     {
+  28:rtc_functions/rtc_functions.c ****         cf_send_interrupt_event( CF_MINUTE_TICK, 1);
+ 164              		.loc 2 28 0
+ 165 0032 0620     		mov	r0, #6
+ 166 0034 0121     		mov	r1, #1
+ 167 0036 FFF7FEFF 		bl	cf_send_interrupt_event
+ 168              	.L6:
+  29:rtc_functions/rtc_functions.c ****     }
+  30:rtc_functions/rtc_functions.c ****     if( RTC_1_GetHours( current_time) != RTC_1_GetHours(ref_time ) )
+ 169              		.loc 2 30 0
+ 170 003a 0C4B     		ldr	r3, .L8
+ 171 003c 1B68     		ldr	r3, [r3]
+ 172 003e 181C     		mov	r0, r3
+ 173 0040 FFF7FEFF 		bl	RTC_1_GetHours
+ 174 0044 041C     		mov	r4, r0
+ 175 0046 0A4B     		ldr	r3, .L8+4
+ 176 0048 1B68     		ldr	r3, [r3]
+ 177 004a 181C     		mov	r0, r3
+ 178 004c FFF7FEFF 		bl	RTC_1_GetHours
+ 179 0050 031C     		mov	r3, r0
+ 180 0052 9C42     		cmp	r4, r3
+ 181 0054 03D0     		beq	.L7
+  31:rtc_functions/rtc_functions.c ****     {
+  32:rtc_functions/rtc_functions.c ****         cf_send_interrupt_event( CF_HOUR_TICK, 1);
+ 182              		.loc 2 32 0
+ 183 0056 0720     		mov	r0, #7
+ 184 0058 0121     		mov	r1, #1
+ 185 005a FFF7FEFF 		bl	cf_send_interrupt_event
+ 186              	.L7:
+  33:rtc_functions/rtc_functions.c ****     }
+  34:rtc_functions/rtc_functions.c ****     ref_time = current_time;
+ 187              		.loc 2 34 0
+ 188 005e 034B     		ldr	r3, .L8
+ 189 0060 1A68     		ldr	r2, [r3]
+ 190 0062 034B     		ldr	r3, .L8+4
+ 191 0064 1A60     		str	r2, [r3]
+  35:rtc_functions/rtc_functions.c ****       
+  36:rtc_functions/rtc_functions.c ****     
+  37:rtc_functions/rtc_functions.c ****     
+  38:rtc_functions/rtc_functions.c ****     
+  39:rtc_functions/rtc_functions.c ****     
+  40:rtc_functions/rtc_functions.c ****     
+  41:rtc_functions/rtc_functions.c **** }
+ 192              		.loc 2 41 0
+ 193 0066 BD46     		mov	sp, r7
+ 194              		@ sp needed
+ 195 0068 98BD     		pop	{r3, r4, r7, pc}
+ 196              	.L9:
+ 197 006a C046     		.align	2
+ 198              	.L8:
+ 199 006c 00000000 		.word	current_time
+ 200 0070 04000000 		.word	ref_time
+ 201              		.cfi_endproc
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 15
+
+
+ 202              	.LFE62:
+ 203              		.size	rtc_check_time, .-rtc_check_time
+ 204              		.section	.text.init_rtc,"ax",%progbits
+ 205              		.align	2
+ 206              		.global	init_rtc
+ 207              		.code	16
+ 208              		.thumb_func
+ 209              		.type	init_rtc, %function
+ 210              	init_rtc:
+ 211              	.LFB63:
+  42:rtc_functions/rtc_functions.c **** 
+  43:rtc_functions/rtc_functions.c **** int init_rtc(void)
+  44:rtc_functions/rtc_functions.c **** {
+ 212              		.loc 2 44 0
+ 213              		.cfi_startproc
+ 214 0000 80B5     		push	{r7, lr}
+ 215              		.cfi_def_cfa_offset 8
+ 216              		.cfi_offset 7, -8
+ 217              		.cfi_offset 14, -4
+ 218 0002 00AF     		add	r7, sp, #0
+ 219              		.cfi_def_cfa_register 7
+  45:rtc_functions/rtc_functions.c ****     
+  46:rtc_functions/rtc_functions.c ****     RTC_1_Start();
+ 220              		.loc 2 46 0
+ 221 0004 FFF7FEFF 		bl	RTC_1_Start
+  47:rtc_functions/rtc_functions.c ****     RTC_1_SetPeriod( 1, 1 );
+ 222              		.loc 2 47 0
+ 223 0008 0120     		mov	r0, #1
+ 224 000a 0121     		mov	r1, #1
+ 225 000c FFF7FEFF 		bl	RTC_1_SetPeriod
+  48:rtc_functions/rtc_functions.c ****     ref_time = RTC_1_GetTime();
+ 226              		.loc 2 48 0
+ 227 0010 FFF7FEFF 		bl	RTC_1_GetTime
+ 228 0014 021C     		mov	r2, r0
+ 229 0016 034B     		ldr	r3, .L12
+ 230 0018 1A60     		str	r2, [r3]
+  49:rtc_functions/rtc_functions.c ****     return CF_DISABLE;
+ 231              		.loc 2 49 0
+ 232 001a 0223     		mov	r3, #2
+  50:rtc_functions/rtc_functions.c **** }
+ 233              		.loc 2 50 0
+ 234 001c 181C     		mov	r0, r3
+ 235 001e BD46     		mov	sp, r7
+ 236              		@ sp needed
+ 237 0020 80BD     		pop	{r7, pc}
+ 238              	.L13:
+ 239 0022 C046     		.align	2
+ 240              	.L12:
+ 241 0024 04000000 		.word	ref_time
+ 242              		.cfi_endproc
+ 243              	.LFE63:
+ 244              		.size	init_rtc, .-init_rtc
+ 245              		.text
+ 246              	.Letext0:
+ 247              		.file 3 "Generated_Source\\PSoC4/cytypes.h"
+ 248              		.section	.debug_info,"",%progbits
+ 249              	.Ldebug_info0:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 16
+
+
+ 250 0000 4A010000 		.4byte	0x14a
+ 251 0004 0400     		.2byte	0x4
+ 252 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 253 000a 04       		.byte	0x4
+ 254 000b 01       		.uleb128 0x1
+ 255 000c 0E000000 		.4byte	.LASF19
+ 256 0010 01       		.byte	0x1
+ 257 0011 88010000 		.4byte	.LASF20
+ 258 0015 EF000000 		.4byte	.LASF21
+ 259 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 260 001d 00000000 		.4byte	0
+ 261 0021 00000000 		.4byte	.Ldebug_line0
+ 262 0025 02       		.uleb128 0x2
+ 263 0026 01       		.byte	0x1
+ 264 0027 06       		.byte	0x6
+ 265 0028 C8010000 		.4byte	.LASF0
+ 266 002c 02       		.uleb128 0x2
+ 267 002d 01       		.byte	0x1
+ 268 002e 08       		.byte	0x8
+ 269 002f 45010000 		.4byte	.LASF1
+ 270 0033 02       		.uleb128 0x2
+ 271 0034 02       		.byte	0x2
+ 272 0035 05       		.byte	0x5
+ 273 0036 F4010000 		.4byte	.LASF2
+ 274 003a 02       		.uleb128 0x2
+ 275 003b 02       		.byte	0x2
+ 276 003c 07       		.byte	0x7
+ 277 003d B5010000 		.4byte	.LASF3
+ 278 0041 02       		.uleb128 0x2
+ 279 0042 04       		.byte	0x4
+ 280 0043 05       		.byte	0x5
+ 281 0044 58010000 		.4byte	.LASF4
+ 282 0048 02       		.uleb128 0x2
+ 283 0049 04       		.byte	0x4
+ 284 004a 07       		.byte	0x7
+ 285 004b C6000000 		.4byte	.LASF5
+ 286 004f 02       		.uleb128 0x2
+ 287 0050 08       		.byte	0x8
+ 288 0051 05       		.byte	0x5
+ 289 0052 00000000 		.4byte	.LASF6
+ 290 0056 02       		.uleb128 0x2
+ 291 0057 08       		.byte	0x8
+ 292 0058 07       		.byte	0x7
+ 293 0059 D8000000 		.4byte	.LASF7
+ 294 005d 03       		.uleb128 0x3
+ 295 005e 04       		.byte	0x4
+ 296 005f 05       		.byte	0x5
+ 297 0060 696E7400 		.ascii	"int\000"
+ 298 0064 02       		.uleb128 0x2
+ 299 0065 04       		.byte	0x4
+ 300 0066 07       		.byte	0x7
+ 301 0067 9C000000 		.4byte	.LASF8
+ 302 006b 04       		.uleb128 0x4
+ 303 006c A9000000 		.4byte	.LASF22
+ 304 0070 03       		.byte	0x3
+ 305 0071 9A01     		.2byte	0x19a
+ 306 0073 48000000 		.4byte	0x48
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 17
+
+
+ 307 0077 02       		.uleb128 0x2
+ 308 0078 04       		.byte	0x4
+ 309 0079 04       		.byte	0x4
+ 310 007a EE010000 		.4byte	.LASF9
+ 311 007e 02       		.uleb128 0x2
+ 312 007f 08       		.byte	0x8
+ 313 0080 04       		.byte	0x4
+ 314 0081 72010000 		.4byte	.LASF10
+ 315 0085 02       		.uleb128 0x2
+ 316 0086 01       		.byte	0x1
+ 317 0087 08       		.byte	0x8
+ 318 0088 53010000 		.4byte	.LASF11
+ 319 008c 02       		.uleb128 0x2
+ 320 008d 04       		.byte	0x4
+ 321 008e 07       		.byte	0x7
+ 322 008f FE010000 		.4byte	.LASF12
+ 323 0093 05       		.uleb128 0x5
+ 324 0094 D4010000 		.4byte	.LASF13
+ 325 0098 01       		.byte	0x1
+ 326 0099 0B02     		.2byte	0x20b
+ 327 009b 6B000000 		.4byte	0x6b
+ 328 009f 00000000 		.4byte	.LFB38
+ 329 00a3 36000000 		.4byte	.LFE38-.LFB38
+ 330 00a7 01       		.uleb128 0x1
+ 331 00a8 9C       		.byte	0x9c
+ 332 00a9 CC000000 		.4byte	0xcc
+ 333 00ad 06       		.uleb128 0x6
+ 334 00ae 68010000 		.4byte	.LASF15
+ 335 00b2 01       		.byte	0x1
+ 336 00b3 0B02     		.2byte	0x20b
+ 337 00b5 6B000000 		.4byte	0x6b
+ 338 00b9 02       		.uleb128 0x2
+ 339 00ba 91       		.byte	0x91
+ 340 00bb 6C       		.sleb128 -20
+ 341 00bc 07       		.uleb128 0x7
+ 342 00bd 61010000 		.4byte	.LASF16
+ 343 00c1 01       		.byte	0x1
+ 344 00c2 0D02     		.2byte	0x20d
+ 345 00c4 6B000000 		.4byte	0x6b
+ 346 00c8 02       		.uleb128 0x2
+ 347 00c9 91       		.byte	0x91
+ 348 00ca 74       		.sleb128 -12
+ 349 00cb 00       		.byte	0
+ 350 00cc 05       		.uleb128 0x5
+ 351 00cd 79010000 		.4byte	.LASF14
+ 352 00d1 01       		.byte	0x1
+ 353 00d2 2402     		.2byte	0x224
+ 354 00d4 6B000000 		.4byte	0x6b
+ 355 00d8 00000000 		.4byte	.LFB39
+ 356 00dc 36000000 		.4byte	.LFE39-.LFB39
+ 357 00e0 01       		.uleb128 0x1
+ 358 00e1 9C       		.byte	0x9c
+ 359 00e2 05010000 		.4byte	0x105
+ 360 00e6 06       		.uleb128 0x6
+ 361 00e7 68010000 		.4byte	.LASF15
+ 362 00eb 01       		.byte	0x1
+ 363 00ec 2402     		.2byte	0x224
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 18
+
+
+ 364 00ee 6B000000 		.4byte	0x6b
+ 365 00f2 02       		.uleb128 0x2
+ 366 00f3 91       		.byte	0x91
+ 367 00f4 6C       		.sleb128 -20
+ 368 00f5 07       		.uleb128 0x7
+ 369 00f6 61010000 		.4byte	.LASF16
+ 370 00fa 01       		.byte	0x1
+ 371 00fb 2602     		.2byte	0x226
+ 372 00fd 6B000000 		.4byte	0x6b
+ 373 0101 02       		.uleb128 0x2
+ 374 0102 91       		.byte	0x91
+ 375 0103 74       		.sleb128 -12
+ 376 0104 00       		.byte	0
+ 377 0105 08       		.uleb128 0x8
+ 378 0106 A6010000 		.4byte	.LASF23
+ 379 010a 02       		.byte	0x2
+ 380 010b 14       		.byte	0x14
+ 381 010c 00000000 		.4byte	.LFB62
+ 382 0110 74000000 		.4byte	.LFE62-.LFB62
+ 383 0114 01       		.uleb128 0x1
+ 384 0115 9C       		.byte	0x9c
+ 385 0116 09       		.uleb128 0x9
+ 386 0117 E5010000 		.4byte	.LASF24
+ 387 011b 02       		.byte	0x2
+ 388 011c 2B       		.byte	0x2b
+ 389 011d 5D000000 		.4byte	0x5d
+ 390 0121 00000000 		.4byte	.LFB63
+ 391 0125 28000000 		.4byte	.LFE63-.LFB63
+ 392 0129 01       		.uleb128 0x1
+ 393 012a 9C       		.byte	0x9c
+ 394 012b 0A       		.uleb128 0xa
+ 395 012c B0000000 		.4byte	.LASF17
+ 396 0130 02       		.byte	0x2
+ 397 0131 11       		.byte	0x11
+ 398 0132 6B000000 		.4byte	0x6b
+ 399 0136 05       		.uleb128 0x5
+ 400 0137 03       		.byte	0x3
+ 401 0138 00000000 		.4byte	current_time
+ 402 013c 0A       		.uleb128 0xa
+ 403 013d BD000000 		.4byte	.LASF18
+ 404 0141 02       		.byte	0x2
+ 405 0142 12       		.byte	0x12
+ 406 0143 6B000000 		.4byte	0x6b
+ 407 0147 05       		.uleb128 0x5
+ 408 0148 03       		.byte	0x3
+ 409 0149 04000000 		.4byte	ref_time
+ 410 014d 00       		.byte	0
+ 411              		.section	.debug_abbrev,"",%progbits
+ 412              	.Ldebug_abbrev0:
+ 413 0000 01       		.uleb128 0x1
+ 414 0001 11       		.uleb128 0x11
+ 415 0002 01       		.byte	0x1
+ 416 0003 25       		.uleb128 0x25
+ 417 0004 0E       		.uleb128 0xe
+ 418 0005 13       		.uleb128 0x13
+ 419 0006 0B       		.uleb128 0xb
+ 420 0007 03       		.uleb128 0x3
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 19
+
+
+ 421 0008 0E       		.uleb128 0xe
+ 422 0009 1B       		.uleb128 0x1b
+ 423 000a 0E       		.uleb128 0xe
+ 424 000b 55       		.uleb128 0x55
+ 425 000c 17       		.uleb128 0x17
+ 426 000d 11       		.uleb128 0x11
+ 427 000e 01       		.uleb128 0x1
+ 428 000f 10       		.uleb128 0x10
+ 429 0010 17       		.uleb128 0x17
+ 430 0011 00       		.byte	0
+ 431 0012 00       		.byte	0
+ 432 0013 02       		.uleb128 0x2
+ 433 0014 24       		.uleb128 0x24
+ 434 0015 00       		.byte	0
+ 435 0016 0B       		.uleb128 0xb
+ 436 0017 0B       		.uleb128 0xb
+ 437 0018 3E       		.uleb128 0x3e
+ 438 0019 0B       		.uleb128 0xb
+ 439 001a 03       		.uleb128 0x3
+ 440 001b 0E       		.uleb128 0xe
+ 441 001c 00       		.byte	0
+ 442 001d 00       		.byte	0
+ 443 001e 03       		.uleb128 0x3
+ 444 001f 24       		.uleb128 0x24
+ 445 0020 00       		.byte	0
+ 446 0021 0B       		.uleb128 0xb
+ 447 0022 0B       		.uleb128 0xb
+ 448 0023 3E       		.uleb128 0x3e
+ 449 0024 0B       		.uleb128 0xb
+ 450 0025 03       		.uleb128 0x3
+ 451 0026 08       		.uleb128 0x8
+ 452 0027 00       		.byte	0
+ 453 0028 00       		.byte	0
+ 454 0029 04       		.uleb128 0x4
+ 455 002a 16       		.uleb128 0x16
+ 456 002b 00       		.byte	0
+ 457 002c 03       		.uleb128 0x3
+ 458 002d 0E       		.uleb128 0xe
+ 459 002e 3A       		.uleb128 0x3a
+ 460 002f 0B       		.uleb128 0xb
+ 461 0030 3B       		.uleb128 0x3b
+ 462 0031 05       		.uleb128 0x5
+ 463 0032 49       		.uleb128 0x49
+ 464 0033 13       		.uleb128 0x13
+ 465 0034 00       		.byte	0
+ 466 0035 00       		.byte	0
+ 467 0036 05       		.uleb128 0x5
+ 468 0037 2E       		.uleb128 0x2e
+ 469 0038 01       		.byte	0x1
+ 470 0039 03       		.uleb128 0x3
+ 471 003a 0E       		.uleb128 0xe
+ 472 003b 3A       		.uleb128 0x3a
+ 473 003c 0B       		.uleb128 0xb
+ 474 003d 3B       		.uleb128 0x3b
+ 475 003e 05       		.uleb128 0x5
+ 476 003f 27       		.uleb128 0x27
+ 477 0040 19       		.uleb128 0x19
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 20
+
+
+ 478 0041 49       		.uleb128 0x49
+ 479 0042 13       		.uleb128 0x13
+ 480 0043 11       		.uleb128 0x11
+ 481 0044 01       		.uleb128 0x1
+ 482 0045 12       		.uleb128 0x12
+ 483 0046 06       		.uleb128 0x6
+ 484 0047 40       		.uleb128 0x40
+ 485 0048 18       		.uleb128 0x18
+ 486 0049 9742     		.uleb128 0x2117
+ 487 004b 19       		.uleb128 0x19
+ 488 004c 01       		.uleb128 0x1
+ 489 004d 13       		.uleb128 0x13
+ 490 004e 00       		.byte	0
+ 491 004f 00       		.byte	0
+ 492 0050 06       		.uleb128 0x6
+ 493 0051 05       		.uleb128 0x5
+ 494 0052 00       		.byte	0
+ 495 0053 03       		.uleb128 0x3
+ 496 0054 0E       		.uleb128 0xe
+ 497 0055 3A       		.uleb128 0x3a
+ 498 0056 0B       		.uleb128 0xb
+ 499 0057 3B       		.uleb128 0x3b
+ 500 0058 05       		.uleb128 0x5
+ 501 0059 49       		.uleb128 0x49
+ 502 005a 13       		.uleb128 0x13
+ 503 005b 02       		.uleb128 0x2
+ 504 005c 18       		.uleb128 0x18
+ 505 005d 00       		.byte	0
+ 506 005e 00       		.byte	0
+ 507 005f 07       		.uleb128 0x7
+ 508 0060 34       		.uleb128 0x34
+ 509 0061 00       		.byte	0
+ 510 0062 03       		.uleb128 0x3
+ 511 0063 0E       		.uleb128 0xe
+ 512 0064 3A       		.uleb128 0x3a
+ 513 0065 0B       		.uleb128 0xb
+ 514 0066 3B       		.uleb128 0x3b
+ 515 0067 05       		.uleb128 0x5
+ 516 0068 49       		.uleb128 0x49
+ 517 0069 13       		.uleb128 0x13
+ 518 006a 02       		.uleb128 0x2
+ 519 006b 18       		.uleb128 0x18
+ 520 006c 00       		.byte	0
+ 521 006d 00       		.byte	0
+ 522 006e 08       		.uleb128 0x8
+ 523 006f 2E       		.uleb128 0x2e
+ 524 0070 00       		.byte	0
+ 525 0071 3F       		.uleb128 0x3f
+ 526 0072 19       		.uleb128 0x19
+ 527 0073 03       		.uleb128 0x3
+ 528 0074 0E       		.uleb128 0xe
+ 529 0075 3A       		.uleb128 0x3a
+ 530 0076 0B       		.uleb128 0xb
+ 531 0077 3B       		.uleb128 0x3b
+ 532 0078 0B       		.uleb128 0xb
+ 533 0079 27       		.uleb128 0x27
+ 534 007a 19       		.uleb128 0x19
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 21
+
+
+ 535 007b 11       		.uleb128 0x11
+ 536 007c 01       		.uleb128 0x1
+ 537 007d 12       		.uleb128 0x12
+ 538 007e 06       		.uleb128 0x6
+ 539 007f 40       		.uleb128 0x40
+ 540 0080 18       		.uleb128 0x18
+ 541 0081 9642     		.uleb128 0x2116
+ 542 0083 19       		.uleb128 0x19
+ 543 0084 00       		.byte	0
+ 544 0085 00       		.byte	0
+ 545 0086 09       		.uleb128 0x9
+ 546 0087 2E       		.uleb128 0x2e
+ 547 0088 00       		.byte	0
+ 548 0089 3F       		.uleb128 0x3f
+ 549 008a 19       		.uleb128 0x19
+ 550 008b 03       		.uleb128 0x3
+ 551 008c 0E       		.uleb128 0xe
+ 552 008d 3A       		.uleb128 0x3a
+ 553 008e 0B       		.uleb128 0xb
+ 554 008f 3B       		.uleb128 0x3b
+ 555 0090 0B       		.uleb128 0xb
+ 556 0091 27       		.uleb128 0x27
+ 557 0092 19       		.uleb128 0x19
+ 558 0093 49       		.uleb128 0x49
+ 559 0094 13       		.uleb128 0x13
+ 560 0095 11       		.uleb128 0x11
+ 561 0096 01       		.uleb128 0x1
+ 562 0097 12       		.uleb128 0x12
+ 563 0098 06       		.uleb128 0x6
+ 564 0099 40       		.uleb128 0x40
+ 565 009a 18       		.uleb128 0x18
+ 566 009b 9642     		.uleb128 0x2116
+ 567 009d 19       		.uleb128 0x19
+ 568 009e 00       		.byte	0
+ 569 009f 00       		.byte	0
+ 570 00a0 0A       		.uleb128 0xa
+ 571 00a1 34       		.uleb128 0x34
+ 572 00a2 00       		.byte	0
+ 573 00a3 03       		.uleb128 0x3
+ 574 00a4 0E       		.uleb128 0xe
+ 575 00a5 3A       		.uleb128 0x3a
+ 576 00a6 0B       		.uleb128 0xb
+ 577 00a7 3B       		.uleb128 0x3b
+ 578 00a8 0B       		.uleb128 0xb
+ 579 00a9 49       		.uleb128 0x49
+ 580 00aa 13       		.uleb128 0x13
+ 581 00ab 02       		.uleb128 0x2
+ 582 00ac 18       		.uleb128 0x18
+ 583 00ad 00       		.byte	0
+ 584 00ae 00       		.byte	0
+ 585 00af 00       		.byte	0
+ 586              		.section	.debug_aranges,"",%progbits
+ 587 0000 34000000 		.4byte	0x34
+ 588 0004 0200     		.2byte	0x2
+ 589 0006 00000000 		.4byte	.Ldebug_info0
+ 590 000a 04       		.byte	0x4
+ 591 000b 00       		.byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 22
+
+
+ 592 000c 0000     		.2byte	0
+ 593 000e 0000     		.2byte	0
+ 594 0010 00000000 		.4byte	.LFB38
+ 595 0014 36000000 		.4byte	.LFE38-.LFB38
+ 596 0018 00000000 		.4byte	.LFB39
+ 597 001c 36000000 		.4byte	.LFE39-.LFB39
+ 598 0020 00000000 		.4byte	.LFB62
+ 599 0024 74000000 		.4byte	.LFE62-.LFB62
+ 600 0028 00000000 		.4byte	.LFB63
+ 601 002c 28000000 		.4byte	.LFE63-.LFB63
+ 602 0030 00000000 		.4byte	0
+ 603 0034 00000000 		.4byte	0
+ 604              		.section	.debug_ranges,"",%progbits
+ 605              	.Ldebug_ranges0:
+ 606 0000 00000000 		.4byte	.LFB38
+ 607 0004 36000000 		.4byte	.LFE38
+ 608 0008 00000000 		.4byte	.LFB39
+ 609 000c 36000000 		.4byte	.LFE39
+ 610 0010 00000000 		.4byte	.LFB62
+ 611 0014 74000000 		.4byte	.LFE62
+ 612 0018 00000000 		.4byte	.LFB63
+ 613 001c 28000000 		.4byte	.LFE63
+ 614 0020 00000000 		.4byte	0
+ 615 0024 00000000 		.4byte	0
+ 616              		.section	.debug_line,"",%progbits
+ 617              	.Ldebug_line0:
+ 618 0000 C0000000 		.section	.debug_str,"MS",%progbits,1
+ 618      02006300 
+ 618      00000201 
+ 618      FB0E0D00 
+ 618      01010101 
+ 619              	.LASF6:
+ 620 0000 6C6F6E67 		.ascii	"long long int\000"
+ 620      206C6F6E 
+ 620      6720696E 
+ 620      7400
+ 621              	.LASF19:
+ 622 000e 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 622      4320342E 
+ 622      392E3320 
+ 622      32303135 
+ 622      30333033 
+ 623 0041 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 623      20726576 
+ 623      6973696F 
+ 623      6E203232 
+ 623      31323230 
+ 624 0074 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 624      66756E63 
+ 624      74696F6E 
+ 624      2D736563 
+ 624      74696F6E 
+ 625              	.LASF8:
+ 626 009c 756E7369 		.ascii	"unsigned int\000"
+ 626      676E6564 
+ 626      20696E74 
+ 626      00
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 23
+
+
+ 627              	.LASF22:
+ 628 00a9 75696E74 		.ascii	"uint32\000"
+ 628      333200
+ 629              	.LASF17:
+ 630 00b0 63757272 		.ascii	"current_time\000"
+ 630      656E745F 
+ 630      74696D65 
+ 630      00
+ 631              	.LASF18:
+ 632 00bd 7265665F 		.ascii	"ref_time\000"
+ 632      74696D65 
+ 632      00
+ 633              	.LASF5:
+ 634 00c6 6C6F6E67 		.ascii	"long unsigned int\000"
+ 634      20756E73 
+ 634      69676E65 
+ 634      6420696E 
+ 634      7400
+ 635              	.LASF7:
+ 636 00d8 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 636      206C6F6E 
+ 636      6720756E 
+ 636      7369676E 
+ 636      65642069 
+ 637              	.LASF21:
+ 638 00ef 433A5C55 		.ascii	"C:\\Users\\glenn\\OneDrive\\PSOC\\moisture_sensor_4"
+ 638      73657273 
+ 638      5C676C65 
+ 638      6E6E5C4F 
+ 638      6E654472 
+ 639 011d 6D5C4D6F 		.ascii	"m\\Moisture_Sensor\\Moisture_Sensor.cydsn\000"
+ 639      69737475 
+ 639      72655F53 
+ 639      656E736F 
+ 639      725C4D6F 
+ 640              	.LASF1:
+ 641 0145 756E7369 		.ascii	"unsigned char\000"
+ 641      676E6564 
+ 641      20636861 
+ 641      7200
+ 642              	.LASF11:
+ 643 0153 63686172 		.ascii	"char\000"
+ 643      00
+ 644              	.LASF4:
+ 645 0158 6C6F6E67 		.ascii	"long int\000"
+ 645      20696E74 
+ 645      00
+ 646              	.LASF16:
+ 647 0161 72657456 		.ascii	"retVal\000"
+ 647      616C00
+ 648              	.LASF15:
+ 649 0168 696E7075 		.ascii	"inputTime\000"
+ 649      7454696D 
+ 649      6500
+ 650              	.LASF10:
+ 651 0172 646F7562 		.ascii	"double\000"
+ 651      6C6500
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 24
+
+
+ 652              	.LASF14:
+ 653 0179 5254435F 		.ascii	"RTC_1_GetHours\000"
+ 653      315F4765 
+ 653      74486F75 
+ 653      727300
+ 654              	.LASF20:
+ 655 0188 7274635F 		.ascii	"rtc_functions\\rtc_functions.c\000"
+ 655      66756E63 
+ 655      74696F6E 
+ 655      735C7274 
+ 655      635F6675 
+ 656              	.LASF23:
+ 657 01a6 7274635F 		.ascii	"rtc_check_time\000"
+ 657      63686563 
+ 657      6B5F7469 
+ 657      6D6500
+ 658              	.LASF3:
+ 659 01b5 73686F72 		.ascii	"short unsigned int\000"
+ 659      7420756E 
+ 659      7369676E 
+ 659      65642069 
+ 659      6E7400
+ 660              	.LASF0:
+ 661 01c8 7369676E 		.ascii	"signed char\000"
+ 661      65642063 
+ 661      68617200 
+ 662              	.LASF13:
+ 663 01d4 5254435F 		.ascii	"RTC_1_GetMinutes\000"
+ 663      315F4765 
+ 663      744D696E 
+ 663      75746573 
+ 663      00
+ 664              	.LASF24:
+ 665 01e5 696E6974 		.ascii	"init_rtc\000"
+ 665      5F727463 
+ 665      00
+ 666              	.LASF9:
+ 667 01ee 666C6F61 		.ascii	"float\000"
+ 667      7400
+ 668              	.LASF2:
+ 669 01f4 73686F72 		.ascii	"short int\000"
+ 669      7420696E 
+ 669      7400
+ 670              	.LASF12:
+ 671 01fe 73697A65 		.ascii	"sizetype\000"
+ 671      74797065 
+ 671      00
+ 672              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

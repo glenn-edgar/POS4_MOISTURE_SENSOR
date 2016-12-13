@@ -1,0 +1,8 @@
+C:/Users/glenn/OneDrive/PSOC/moisture_sensor_4m/Moisture_Sensor/Moisture_Sensor.cydsn/CortexM0/ARM_GCC_493/Debug/CyBootAsmGnu.o : C:/Users/glenn/OneDrive/PSOC/moisture_sensor_4m/Moisture_Sensor/Moisture_Sensor.cydsn/Generated_Source/PSoC4/CyBootAsmGnu.s C:/Users/glenn/OneDrive/PSOC/moisture_sensor_4m/Moisture_Sensor/Moisture_Sensor.cydsn/Generated_Source/PSoC4/cydevicegnu_trm.inc C:/Users/glenn/OneDrive/PSOC/moisture_sensor_4m/Moisture_Sensor/Moisture_Sensor.cydsn/Generated_Source/PSoC4/cyfittergnu.inc 
+
+C:/Users/glenn/OneDrive/PSOC/moisture_sensor_4m/Moisture_Sensor/Moisture_Sensor.cydsn/Generated_Source/PSoC4/CyBootAsmGnu.s : 
+
+C:/Users/glenn/OneDrive/PSOC/moisture_sensor_4m/Moisture_Sensor/Moisture_Sensor.cydsn/Generated_Source/PSoC4/cydevicegnu_trm.inc : 
+
+C:/Users/glenn/OneDrive/PSOC/moisture_sensor_4m/Moisture_Sensor/Moisture_Sensor.cydsn/Generated_Source/PSoC4/cyfittergnu.inc : 
+

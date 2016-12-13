@@ -1,0 +1,186 @@
+#***************************************************************************
+
+#sjplacer
+
+#Version:            1.1
+
+#Build Date:         Apr 29 2016 09:00:55
+
+#File Generated:     Dec 12 2016 12:18:32
+
+#Purpose:            
+
+#Copyright (C) 2010-2011 by Softjin Technologies Pvt Ltd. All rights reserved.
+
+#***************************************************************************
+
+Executing : C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\bin/sjplacer.exe --proj-name Moisture_Sensor --netlist-vh2 Moisture_Sensor_p.vh2 --arch-file C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\dev/arch/p4_udb2x2.ark --rrg-file C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\dev/psoc4/4/route_arch-rrg.cydata --irq-file C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\dev/psoc4/4/irqconn.cydata --drq-file C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\dev/psoc4/4/triggerconn.cydata --dsi-conn-file C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\dev/psoc4/4/dsiconn.cydata --pins-file pins_64-TQFP.xml --lib-file Moisture_Sensor_p.lib --sdc-file Moisture_Sensor.sdc --io-pcf Moisture_Sensor.pci --outdir .
+
+		Softjin Techologies Placer, Version 1.1
+
+Build Date : Apr 29 2016	08:58:44
+
+D2004: Option and Settings Summary
+=============================================================
+Netlist vh2 file          - Moisture_Sensor_p.vh2
+Architecture file         - C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\dev/arch/p4_udb2x2.ark
+Package                   - 
+Defparam file             - 
+SDC file                  - Moisture_Sensor.sdc
+Output directory          - .
+Timing library            - Moisture_Sensor_p.lib
+IO Placement file         - Moisture_Sensor.pci
+
+D2050: Starting reading inputs for placer
+=============================================================
+D2065: Reading netlist file : "Moisture_Sensor_p.vh2"
+D2065: Reading arch file : "C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\dev/arch/p4_udb2x2.ark"
+D2051: Reading of inputs for placer completed successfully
+
+D2053: Starting placement of the design
+=============================================================
+
+Phase 2
+Phase 3
+
+Design Statistics after Packing
+    Number of Combinational MCs 	:	9
+    Number of Sequential MCs    	:	17
+    Number of DPs               	:	3
+    Number of Controls          	:	1
+    Number of Status            	:	2
+    Number of SyncCells         	:	0
+    Number of count7cells       	:	1
+
+Device Utilization Summary after Packing
+    Macrocells                  :	26/32
+    UDBS                        :	4/4
+    IOs                         :	34/51
+
+
+D2088: Phase 3, elapsed time : 0.0 (sec)
+
+Phase 4
+D2088: Phase 4, elapsed time : 0.0 (sec)
+
+Phase 6
+
+######################################################################
+Placement Timing Summary
+
+The timing summary is based on estimated routing delays after
+placement. For final timing report, please carry out the timing
+analysis after routing.
+======================================================================
+
+######################################################################
+                     Clock Summary 
+======================================================================
+Number of clocks: 16
+Clock: ADC_SAR_Seq_1_intClock | Frequency: N/A       | Target:   1.5 MHz
+Clock: ADC_SAR_Seq_1_intClock(FFB) | Frequency: N/A       | Target:   1.5 MHz
+Clock: CapSense_1_SampleClk | Frequency: N/A       | Target:   0.2 MHz
+Clock: CapSense_1_SampleClk(FFB) | Frequency: N/A       | Target:   0.2 MHz
+Clock: CapSense_1_SenseClk  | Frequency: N/A       | Target:   0.2 MHz
+Clock: CapSense_1_SenseClk(FFB) | Frequency: N/A       | Target:   0.2 MHz
+Clock: CyHFCLK              | Frequency:  44.9 MHz | Target:  40.0 MHz
+Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
+Clock: CyIMO                | Frequency: N/A       | Target:  40.0 MHz
+Clock: CyLFCLK              | Frequency: N/A       | Target:   0.0 MHz
+Clock: CyRouted1            | Frequency: N/A       | Target:  40.0 MHz
+Clock: CySYSCLK             | Frequency: N/A       | Target:  40.0 MHz
+Clock: CyWCO                | Frequency: N/A       | Target:   0.0 MHz
+Clock: I2C_1_SCBCLK         | Frequency: N/A       | Target:   1.6 MHz
+Clock: I2C_1_SCBCLK(FFB)    | Frequency: N/A       | Target:   1.6 MHz
+Clock: UART_1_IntClock      | Frequency:  41.1 MHz | Target:   0.3 MHz
+
+======================================================================
+                     End of Clock Summary
+######################################################################
+
+D2088: Phase 6, elapsed time : 0.0 (sec)
+
+Phase 7
+######################################################################
+                     Clock Summary 
+======================================================================
+Number of clocks: 16
+Clock: ADC_SAR_Seq_1_intClock | Frequency: N/A       | Target:   1.5 MHz
+Clock: ADC_SAR_Seq_1_intClock(FFB) | Frequency: N/A       | Target:   1.5 MHz
+Clock: CapSense_1_SampleClk | Frequency: N/A       | Target:   0.2 MHz
+Clock: CapSense_1_SampleClk(FFB) | Frequency: N/A       | Target:   0.2 MHz
+Clock: CapSense_1_SenseClk  | Frequency: N/A       | Target:   0.2 MHz
+Clock: CapSense_1_SenseClk(FFB) | Frequency: N/A       | Target:   0.2 MHz
+Clock: CyHFCLK              | Frequency:   2.0 MHz | Target:  40.0 MHz
+Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
+Clock: CyIMO                | Frequency: N/A       | Target:  40.0 MHz
+Clock: CyLFCLK              | Frequency: N/A       | Target:   0.0 MHz
+Clock: CyRouted1            | Frequency: N/A       | Target:  40.0 MHz
+Clock: CySYSCLK             | Frequency: N/A       | Target:  40.0 MHz
+Clock: CyWCO                | Frequency: N/A       | Target:   0.0 MHz
+Clock: I2C_1_SCBCLK         | Frequency: N/A       | Target:   1.6 MHz
+Clock: I2C_1_SCBCLK(FFB)    | Frequency: N/A       | Target:   1.6 MHz
+Clock: UART_1_IntClock      | Frequency:   2.0 MHz | Target:   0.3 MHz
+
+======================================================================
+                     End of Clock Summary
+######################################################################
+D2088: Phase 7, elapsed time : 0.3 (sec)
+
+Final Design Statistics
+    Number of Combinational MCs 	:	9
+    Number of Sequential MCs    	:	17
+    Number of DPs               	:	3
+    Number of Controls          	:	1
+    Number of Status            	:	2
+    Number of SyncCells         	:	0
+    Number of count7cells       	:	1
+    Number of IOs       	:	34
+
+Device Utilization Summary
+    Macrocells                  :	26/32
+    IOs                         :	34/51
+
+
+
+######################################################################
+Placement Timing Summary
+
+The timing summary is based on estimated routing delays after
+placement. For final timing report, please carry out the timing
+analysis after routing.
+======================================================================
+
+
+######################################################################
+                     Clock Summary 
+======================================================================
+Number of clocks: 16
+Clock: ADC_SAR_Seq_1_intClock | Frequency: N/A       | Target:   1.5 MHz
+Clock: ADC_SAR_Seq_1_intClock(FFB) | Frequency: N/A       | Target:   1.5 MHz
+Clock: CapSense_1_SampleClk | Frequency: N/A       | Target:   0.2 MHz
+Clock: CapSense_1_SampleClk(FFB) | Frequency: N/A       | Target:   0.2 MHz
+Clock: CapSense_1_SenseClk  | Frequency: N/A       | Target:   0.2 MHz
+Clock: CapSense_1_SenseClk(FFB) | Frequency: N/A       | Target:   0.2 MHz
+Clock: CyHFCLK              | Frequency:   2.1 MHz | Target:  40.0 MHz
+Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
+Clock: CyIMO                | Frequency: N/A       | Target:  40.0 MHz
+Clock: CyLFCLK              | Frequency: N/A       | Target:   0.0 MHz
+Clock: CyRouted1            | Frequency: N/A       | Target:  40.0 MHz
+Clock: CySYSCLK             | Frequency: N/A       | Target:  40.0 MHz
+Clock: CyWCO                | Frequency: N/A       | Target:   0.0 MHz
+Clock: I2C_1_SCBCLK         | Frequency: N/A       | Target:   1.6 MHz
+Clock: I2C_1_SCBCLK(FFB)    | Frequency: N/A       | Target:   1.6 MHz
+Clock: UART_1_IntClock      | Frequency:   2.1 MHz | Target:   0.3 MHz
+
+======================================================================
+                     End of Clock Summary
+######################################################################
+
+Phase 8
+D2088: Phase 8, elapsed time : 0.0 (sec)
+
+D2054: Placement of the design completed successfully
+
+I2076: Total run-time: 0.8 sec.
+

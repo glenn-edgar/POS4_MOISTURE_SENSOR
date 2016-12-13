@@ -1,0 +1,1398 @@
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccqbLwrn.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 6
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"main.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.process_status_data,"ax",%progbits
+  18              		.align	2
+  19              		.code	16
+  20              		.thumb_func
+  21              		.type	process_status_data, %function
+  22              	process_status_data:
+  23              	.LFB62:
+  24              		.file 1 "main.c"
+   1:main.c        **** /* ========================================
+   2:main.c        ****  *
+   3:main.c        ****  * Copyright YOUR COMPANY, THE YEAR
+   4:main.c        ****  * All Rights Reserved
+   5:main.c        ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:main.c        ****  *
+   7:main.c        ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:main.c        ****  * WHICH IS THE PROPERTY OF your company.
+   9:main.c        ****  *
+  10:main.c        ****  * ========================================
+  11:main.c        **** */
+  12:main.c        **** #include <project.h>
+  13:main.c        **** #include "cf_chain_flow_support.h"
+  14:main.c        **** 
+  15:main.c        **** #include "cf_events.h"
+  16:main.c        **** #include "cf_status_bit.h"
+  17:main.c        **** #include "rtc_functions.h"
+  18:main.c        **** #include "configuration_data.h"
+  19:main.c        **** #include "modbus_serial_ctrl.h"
+  20:main.c        **** #include "event_fifo.h"
+  21:main.c        **** 
+  22:main.c        **** CY_ISR(WdtIsrHandler);
+  23:main.c        **** #define ENABLE_WATCH_DOG 0
+  24:main.c        **** static void setup_one_second_timer_watch_dog( void );
+  25:main.c        **** static void SysTickInit( void );
+  26:main.c        **** 
+  27:main.c        **** static inline void  process_status_data( unsigned status_data)
+  28:main.c        **** {
+  25              		.loc 1 28 0
+  26              		.cfi_startproc
+  27 0000 80B5     		push	{r7, lr}
+  28              		.cfi_def_cfa_offset 8
+  29              		.cfi_offset 7, -8
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccqbLwrn.s 			page 2
+
+
+  30              		.cfi_offset 14, -4
+  31 0002 82B0     		sub	sp, sp, #8
+  32              		.cfi_def_cfa_offset 16
+  33 0004 00AF     		add	r7, sp, #0
+  34              		.cfi_def_cfa_register 7
+  35 0006 7860     		str	r0, [r7, #4]
+  29:main.c        **** 
+  30:main.c        ****     
+  31:main.c        ****     if( status_data &  CF_PROCESS_TIMER_TICK )
+  36              		.loc 1 31 0
+  37 0008 7B68     		ldr	r3, [r7, #4]
+  38 000a 0122     		mov	r2, #1
+  39 000c 1340     		and	r3, r2
+  40 000e 06D0     		beq	.L2
+  32:main.c        ****     {
+  33:main.c        ****         cf_process_cf_event( CF_TIME_TICK_EVENT, TICK_INTERVAL );
+  41              		.loc 1 33 0
+  42 0010 0220     		mov	r0, #2
+  43 0012 1021     		mov	r1, #16
+  44 0014 FFF7FEFF 		bl	cf_process_cf_event
+  34:main.c        ****         cf_status_clear_bit(  CF_PROCESS_TIMER_TICK );
+  45              		.loc 1 34 0
+  46 0018 0120     		mov	r0, #1
+  47 001a FFF7FEFF 		bl	cf_status_clear_bit
+  48              	.L2:
+  35:main.c        ****     }
+  36:main.c        ****     if( status_data & CF_PROCESS_MODBUS )
+  49              		.loc 1 36 0
+  50 001e 7B68     		ldr	r3, [r7, #4]
+  51 0020 0222     		mov	r2, #2
+  52 0022 1340     		and	r3, r2
+  53 0024 04D0     		beq	.L1
+  37:main.c        ****     {
+  38:main.c        ****       process_rx_modbus_rtu_message( );
+  54              		.loc 1 38 0
+  55 0026 FFF7FEFF 		bl	process_rx_modbus_rtu_message
+  39:main.c        ****       cf_status_clear_bit(  CF_PROCESS_MODBUS );
+  56              		.loc 1 39 0
+  57 002a 0220     		mov	r0, #2
+  58 002c FFF7FEFF 		bl	cf_status_clear_bit
+  59              	.L1:
+  40:main.c        ****     }
+  41:main.c        ****     
+  42:main.c        **** }
+  60              		.loc 1 42 0
+  61 0030 BD46     		mov	sp, r7
+  62 0032 02B0     		add	sp, sp, #8
+  63              		@ sp needed
+  64 0034 80BD     		pop	{r7, pc}
+  65              		.cfi_endproc
+  66              	.LFE62:
+  67              		.size	process_status_data, .-process_status_data
+  68 0036 C046     		.bss
+  69              		.align	2
+  70              	event_number:
+  71 0000 00000000 		.space	4
+  72              		.align	2
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccqbLwrn.s 			page 3
+
+
+  73              	event_id:
+  74 0004 00000000 		.space	4
+  75              		.align	2
+  76              	event_data:
+  77 0008 00000000 		.space	4
+  78              		.align	2
+  79              	status_data:
+  80 000c 00000000 		.space	4
+  81              		.section	.text.main,"ax",%progbits
+  82              		.align	2
+  83              		.global	main
+  84              		.code	16
+  85              		.thumb_func
+  86              		.type	main, %function
+  87              	main:
+  88              	.LFB63:
+  43:main.c        **** 
+  44:main.c        **** // static varibles to save stack space
+  45:main.c        **** static int event_number;
+  46:main.c        **** static unsigned event_id;
+  47:main.c        **** static unsigned event_data;
+  48:main.c        **** static unsigned status_data;
+  49:main.c        **** //CY_SYS_WDT_MODE_RESET,CY_SYS_WDT_MODE_INT 
+  50:main.c        **** // CySysGetResetReason() 
+  51:main.c        **** 
+  52:main.c        **** CY_ISR_PROTO(watch_dog_isr );
+  53:main.c        **** 
+  54:main.c        **** 
+  55:main.c        **** 
+  56:main.c        **** 
+  57:main.c        **** int main()
+  58:main.c        **** 
+  59:main.c        **** {
+  89              		.loc 1 59 0
+  90              		.cfi_startproc
+  91 0000 80B5     		push	{r7, lr}
+  92              		.cfi_def_cfa_offset 8
+  93              		.cfi_offset 7, -8
+  94              		.cfi_offset 14, -4
+  95 0002 00AF     		add	r7, sp, #0
+  96              		.cfi_def_cfa_register 7
+  60:main.c        **** 
+  61:main.c        ****     CyGlobalIntDisable;  // Chain Global Interrupts  initialization chain will enable interrupts 
+  97              		.loc 1 61 0
+  98              	@ 61 "main.c" 1
+  99 0004 72B6     		CPSID   i
+ 100              	@ 0 "" 2
+  62:main.c        ****     CySysGetResetReason(CY_SYS_RESET_WDT); // record reset cause indirectlr
+ 101              		.loc 1 62 0
+ 102              		.code	16
+ 103 0006 0120     		mov	r0, #1
+ 104 0008 FFF7FEFF 		bl	CySysGetResetReason
+  63:main.c        ****     CySysClkWcoStart();   
+ 105              		.loc 1 63 0
+ 106 000c FFF7FEFF 		bl	CySysClkWcoStart
+  64:main.c        **** 
+  65:main.c        **** 
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccqbLwrn.s 			page 4
+
+
+  66:main.c        ****     cf_initialize_status_manager();             
+ 107              		.loc 1 66 0
+ 108 0010 FFF7FEFF 		bl	cf_initialize_status_manager
+  67:main.c        ****     cf_initialize_event_manager();
+ 109              		.loc 1 67 0
+ 110 0014 FFF7FEFF 		bl	cf_initialize_event_manager
+  68:main.c        ****     initialize_cf_system(  );
+ 111              		.loc 1 68 0
+ 112 0018 FFF7FEFF 		bl	initialize_cf_system
+  69:main.c        ****     initialize_configuration_data(); 
+ 113              		.loc 1 69 0
+ 114 001c FFF7FEFF 		bl	initialize_configuration_data
+  70:main.c        ****     EF_initialize();
+ 115              		.loc 1 70 0
+ 116 0020 FFF7FEFF 		bl	EF_initialize
+  71:main.c        ****     EF_enqueue_elemement( 0, EVENTS_SYSTEM_REBOOT,0 );  // power up event
+ 117              		.loc 1 71 0
+ 118 0024 0020     		mov	r0, #0
+ 119 0026 0021     		mov	r1, #0
+ 120 0028 0022     		mov	r2, #0
+ 121 002a FFF7FEFF 		bl	EF_enqueue_elemement
+  72:main.c        **** 
+  73:main.c        ****     
+  74:main.c        ****     CyDelay(1000); 
+ 122              		.loc 1 74 0
+ 123 002e FA23     		mov	r3, #250
+ 124 0030 9B00     		lsl	r3, r3, #2
+ 125 0032 181C     		mov	r0, r3
+ 126 0034 FFF7FEFF 		bl	CyDelay
+  75:main.c        ****     /* Switch LFCLK source from ILO to WCO. */
+  76:main.c        ****     CySysClkSetLfclkSource(CY_SYS_CLK_LFCLK_SRC_WCO);
+ 127              		.loc 1 76 0
+ 128 0038 8023     		mov	r3, #128
+ 129 003a DB05     		lsl	r3, r3, #23
+ 130 003c 181C     		mov	r0, r3
+ 131 003e FFF7FEFF 		bl	CySysClkSetLfclkSource
+  77:main.c        **** 
+  78:main.c        ****     setup_one_second_timer_watch_dog();
+ 132              		.loc 1 78 0
+ 133 0042 FFF7FEFF 		bl	setup_one_second_timer_watch_dog
+  79:main.c        ****    SysTickInit(  );
+ 134              		.loc 1 79 0
+ 135 0046 FFF7FEFF 		bl	SysTickInit
+  80:main.c        ****     
+  81:main.c        ****     
+  82:main.c        ****     
+  83:main.c        ****     
+  84:main.c        ****     cf_process_cf_event( CF_SYSTEM_INIT , 0);
+ 136              		.loc 1 84 0
+ 137 004a 0020     		mov	r0, #0
+ 138 004c 0021     		mov	r1, #0
+ 139 004e FFF7FEFF 		bl	cf_process_cf_event
+ 140              	.L7:
+  85:main.c        ****     for(;;)
+  86:main.c        ****     {
+  87:main.c        ****         status_data = cf_get_status();
+ 141              		.loc 1 87 0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccqbLwrn.s 			page 5
+
+
+ 142 0052 FFF7FEFF 		bl	cf_get_status
+ 143 0056 021C     		mov	r2, r0
+ 144 0058 104B     		ldr	r3, .L8
+ 145 005a 1A60     		str	r2, [r3]
+  88:main.c        ****         if( status_data != 0 )
+ 146              		.loc 1 88 0
+ 147 005c 0F4B     		ldr	r3, .L8
+ 148 005e 1B68     		ldr	r3, [r3]
+ 149 0060 002B     		cmp	r3, #0
+ 150 0062 05D0     		beq	.L5
+  89:main.c        ****         {
+  90:main.c        ****             process_status_data( status_data);
+ 151              		.loc 1 90 0
+ 152 0064 0D4B     		ldr	r3, .L8
+ 153 0066 1B68     		ldr	r3, [r3]
+ 154 0068 181C     		mov	r0, r3
+ 155 006a FFF7FEFF 		bl	process_status_data
+ 156 006e 14E0     		b	.L6
+ 157              	.L5:
+  91:main.c        ****              
+  92:main.c        ****         }
+  93:main.c        ****         else
+  94:main.c        ****         {
+  95:main.c        ****            
+  96:main.c        ****            event_number = cf_rx_event( &event_id, &event_data );
+ 158              		.loc 1 96 0
+ 159 0070 0B4A     		ldr	r2, .L8+4
+ 160 0072 0C4B     		ldr	r3, .L8+8
+ 161 0074 101C     		mov	r0, r2
+ 162 0076 191C     		mov	r1, r3
+ 163 0078 FFF7FEFF 		bl	cf_rx_event
+ 164 007c 021C     		mov	r2, r0
+ 165 007e 0A4B     		ldr	r3, .L8+12
+ 166 0080 1A60     		str	r2, [r3]
+  97:main.c        ****            if( event_number > 0 )
+ 167              		.loc 1 97 0
+ 168 0082 094B     		ldr	r3, .L8+12
+ 169 0084 1B68     		ldr	r3, [r3]
+ 170 0086 002B     		cmp	r3, #0
+ 171 0088 07DD     		ble	.L6
+  98:main.c        ****            {
+  99:main.c        ****             
+ 100:main.c        ****              
+ 101:main.c        ****               cf_process_cf_event( event_id, event_data);
+ 172              		.loc 1 101 0
+ 173 008a 054B     		ldr	r3, .L8+4
+ 174 008c 1A68     		ldr	r2, [r3]
+ 175 008e 054B     		ldr	r3, .L8+8
+ 176 0090 1B68     		ldr	r3, [r3]
+ 177 0092 101C     		mov	r0, r2
+ 178 0094 191C     		mov	r1, r3
+ 179 0096 FFF7FEFF 		bl	cf_process_cf_event
+ 180              	.L6:
+ 102:main.c        ****            }
+ 103:main.c        ****            else
+ 104:main.c        ****            {
+ 105:main.c        ****              ; // add sleep for low power apps
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccqbLwrn.s 			page 6
+
+
+ 106:main.c        ****            }
+ 107:main.c        ****         }  
+ 108:main.c        ****     }   
+ 181              		.loc 1 108 0
+ 182 009a DAE7     		b	.L7
+ 183              	.L9:
+ 184              		.align	2
+ 185              	.L8:
+ 186 009c 0C000000 		.word	status_data
+ 187 00a0 04000000 		.word	event_id
+ 188 00a4 08000000 		.word	event_data
+ 189 00a8 00000000 		.word	event_number
+ 190              		.cfi_endproc
+ 191              	.LFE63:
+ 192              		.size	main, .-main
+ 193              		.section	.text.WdtIsrHandler,"ax",%progbits
+ 194              		.align	2
+ 195              		.global	WdtIsrHandler
+ 196              		.code	16
+ 197              		.thumb_func
+ 198              		.type	WdtIsrHandler, %function
+ 199              	WdtIsrHandler:
+ 200              	.LFB64:
+ 109:main.c        **** }
+ 110:main.c        **** 
+ 111:main.c        **** 
+ 112:main.c        **** 
+ 113:main.c        **** /*
+ 114:main.c        **** **
+ 115:main.c        **** ** Watch Dog interrupt 
+ 116:main.c        **** **
+ 117:main.c        **** **
+ 118:main.c        **** **
+ 119:main.c        **** **
+ 120:main.c        **** */
+ 121:main.c        **** 
+ 122:main.c        **** 
+ 123:main.c        **** // setup 1 second interrupt
+ 124:main.c        **** #define WDT_COUNT0_MATCH 0x8000
+ 125:main.c        **** // setup 2 second watchdog timeout
+ 126:main.c        **** #define WDT_COUNT1_MATCH 4
+ 127:main.c        **** 
+ 128:main.c        **** 
+ 129:main.c        **** 
+ 130:main.c        **** 
+ 131:main.c        **** CY_ISR(WdtIsrHandler)
+ 132:main.c        **** {
+ 201              		.loc 1 132 0
+ 202              		.cfi_startproc
+ 203 0000 80B5     		push	{r7, lr}
+ 204              		.cfi_def_cfa_offset 8
+ 205              		.cfi_offset 7, -8
+ 206              		.cfi_offset 14, -4
+ 207 0002 00AF     		add	r7, sp, #0
+ 208              		.cfi_def_cfa_register 7
+ 133:main.c        **** 
+ 134:main.c        ****     /* Clear interrupts state */
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccqbLwrn.s 			page 7
+
+
+ 135:main.c        **** 	
+ 136:main.c        ****     RTC_1_Update();
+ 209              		.loc 1 136 0
+ 210 0004 FFF7FEFF 		bl	RTC_1_Update
+ 137:main.c        ****     rtc_check_time();
+ 211              		.loc 1 137 0
+ 212 0008 FFF7FEFF 		bl	rtc_check_time
+ 138:main.c        ****     CySysWdtClearInterrupt(CY_SYS_WDT_COUNTER0_INT);
+ 213              		.loc 1 138 0
+ 214 000c 0420     		mov	r0, #4
+ 215 000e FFF7FEFF 		bl	CySysWdtClearInterrupt
+ 139:main.c        ****     WdtIsr_ClearPending();
+ 216              		.loc 1 139 0
+ 217 0012 FFF7FEFF 		bl	WdtIsr_ClearPending
+ 140:main.c        ****     
+ 141:main.c        ****   
+ 142:main.c        ****      
+ 143:main.c        **** }
+ 218              		.loc 1 143 0
+ 219 0016 BD46     		mov	sp, r7
+ 220              		@ sp needed
+ 221 0018 80BD     		pop	{r7, pc}
+ 222              		.cfi_endproc
+ 223              	.LFE64:
+ 224              		.size	WdtIsrHandler, .-WdtIsrHandler
+ 225 001a C046     		.section	.text.setup_one_second_timer_watch_dog,"ax",%progbits
+ 226              		.align	2
+ 227              		.code	16
+ 228              		.thumb_func
+ 229              		.type	setup_one_second_timer_watch_dog, %function
+ 230              	setup_one_second_timer_watch_dog:
+ 231              	.LFB65:
+ 144:main.c        **** 
+ 145:main.c        **** 
+ 146:main.c        **** 
+ 147:main.c        **** 
+ 148:main.c        **** static void setup_one_second_timer_watch_dog( void )
+ 149:main.c        **** {
+ 232              		.loc 1 149 0
+ 233              		.cfi_startproc
+ 234 0000 80B5     		push	{r7, lr}
+ 235              		.cfi_def_cfa_offset 8
+ 236              		.cfi_offset 7, -8
+ 237              		.cfi_offset 14, -4
+ 238 0002 00AF     		add	r7, sp, #0
+ 239              		.cfi_def_cfa_register 7
+ 150:main.c        **** 	/* Setup ISR for interrupts at WDT counter 0 events. */
+ 151:main.c        ****     WdtIsr_StartEx(WdtIsrHandler);
+ 240              		.loc 1 151 0
+ 241 0004 0D4B     		ldr	r3, .L12
+ 242 0006 181C     		mov	r0, r3
+ 243 0008 FFF7FEFF 		bl	WdtIsr_StartEx
+ 152:main.c        **** 
+ 153:main.c        ****     /* Enable global interrupts. */
+ 154:main.c        ****     CyGlobalIntEnable;
+ 244              		.loc 1 154 0
+ 245              	@ 154 "main.c" 1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccqbLwrn.s 			page 8
+
+
+ 246 000c 62B6     		CPSIE   i
+ 247              	@ 0 "" 2
+ 155:main.c        **** 	
+ 156:main.c        **** 	/* Set WDT counter 0 to generate interrupt on match */
+ 157:main.c        **** 	CySysWdtWriteMode(CY_SYS_WDT_COUNTER0, CY_SYS_WDT_MODE_INT);
+ 248              		.loc 1 157 0
+ 249              		.code	16
+ 250 000e 0020     		mov	r0, #0
+ 251 0010 0121     		mov	r1, #1
+ 252 0012 FFF7FEFF 		bl	CySysWdtSetMode
+ 158:main.c        **** 	CySysWdtWriteMatch(CY_SYS_WDT_COUNTER0, WDT_COUNT0_MATCH);
+ 253              		.loc 1 158 0
+ 254 0016 8023     		mov	r3, #128
+ 255 0018 1B02     		lsl	r3, r3, #8
+ 256 001a 0020     		mov	r0, #0
+ 257 001c 191C     		mov	r1, r3
+ 258 001e FFF7FEFF 		bl	CySysWdtSetMatch
+ 159:main.c        **** 	CySysWdtWriteClearOnMatch(CY_SYS_WDT_COUNTER0, 1u);
+ 259              		.loc 1 159 0
+ 260 0022 0020     		mov	r0, #0
+ 261 0024 0121     		mov	r1, #1
+ 262 0026 FFF7FEFF 		bl	CySysWdtSetClearOnMatch
+ 160:main.c        **** #if ENABLE_WATCH_DOG	
+ 161:main.c        **** 	/* Enable WDT counters 0 and 1 cascade */
+ 162:main.c        **** 	CySysWdtWriteCascade(CY_SYS_WDT_CASCADE_01);
+ 163:main.c        ****     
+ 164:main.c        **** 	/* Set WDT counter 1 to generate reset on match */
+ 165:main.c        **** 	CySysWdtWriteMatch(CY_SYS_WDT_COUNTER1, WDT_COUNT1_MATCH);
+ 166:main.c        **** 	CySysWdtWriteMode(CY_SYS_WDT_COUNTER1, CY_SYS_WDT_MODE_RESET);
+ 167:main.c        ****     CySysWdtWriteClearOnMatch(CY_SYS_WDT_COUNTER1, 1u);
+ 168:main.c        **** 	
+ 169:main.c        **** 
+ 170:main.c        ****     CySysWdtEnable(CY_SYS_WDT_COUNTER0_MASK | CY_SYS_WDT_COUNTER1_MASK);
+ 171:main.c        **** #else
+ 172:main.c        ****     CySysWdtEnable(CY_SYS_WDT_COUNTER0_MASK );
+ 263              		.loc 1 172 0
+ 264 002a 0120     		mov	r0, #1
+ 265 002c FFF7FEFF 		bl	CySysWdtEnable
+ 173:main.c        **** #endif
+ 174:main.c        **** 
+ 175:main.c        ****     
+ 176:main.c        **** 	/* Lock WDT registers and try to disable WDT counters 0 and 1 */
+ 177:main.c        **** 	CySysWdtLock();
+ 266              		.loc 1 177 0
+ 267 0030 FFF7FEFF 		bl	CySysWdtLock
+ 178:main.c        ****     init_rtc();
+ 268              		.loc 1 178 0
+ 269 0034 FFF7FEFF 		bl	init_rtc
+ 179:main.c        **** 
+ 180:main.c        **** 
+ 181:main.c        **** }
+ 270              		.loc 1 181 0
+ 271 0038 BD46     		mov	sp, r7
+ 272              		@ sp needed
+ 273 003a 80BD     		pop	{r7, pc}
+ 274              	.L13:
+ 275              		.align	2
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccqbLwrn.s 			page 9
+
+
+ 276              	.L12:
+ 277 003c 00000000 		.word	WdtIsrHandler
+ 278              		.cfi_endproc
+ 279              	.LFE65:
+ 280              		.size	setup_one_second_timer_watch_dog, .-setup_one_second_timer_watch_dog
+ 281              		.comm	switch_on,4,4
+ 282              		.bss
+ 283              		.align	2
+ 284              	sub_divide_count:
+ 285 0010 00000000 		.space	4
+ 286              		.align	2
+ 287              	deglitch_register:
+ 288 0014 00000000 		.space	4
+ 289              		.section	.text.process_switch_functions,"ax",%progbits
+ 290              		.align	2
+ 291              		.code	16
+ 292              		.thumb_func
+ 293              		.type	process_switch_functions, %function
+ 294              	process_switch_functions:
+ 295              	.LFB66:
+ 182:main.c        **** 
+ 183:main.c        **** /*
+ 184:main.c        **** **
+ 185:main.c        **** ** SysTick Support
+ 186:main.c        **** **
+ 187:main.c        **** **
+ 188:main.c        **** **
+ 189:main.c        **** */
+ 190:main.c        **** 
+ 191:main.c        **** #define Thousand_Hz_Time    33
+ 192:main.c        **** #define Hundred_Hz_Divide   10
+ 193:main.c        **** #define DEGLITCH_MASK      0x7
+ 194:main.c        **** 
+ 195:main.c        **** 
+ 196:main.c        **** volatile uint32 switch_on;
+ 197:main.c        **** static volatile uint32 sub_divide_count;
+ 198:main.c        **** static volatile uint32 deglitch_register;
+ 199:main.c        **** 
+ 200:main.c        **** static inline void process_switch_functions( void )
+ 201:main.c        **** {
+ 296              		.loc 1 201 0
+ 297              		.cfi_startproc
+ 298 0000 80B5     		push	{r7, lr}
+ 299              		.cfi_def_cfa_offset 8
+ 300              		.cfi_offset 7, -8
+ 301              		.cfi_offset 14, -4
+ 302 0002 00AF     		add	r7, sp, #0
+ 303              		.cfi_def_cfa_register 7
+ 202:main.c        ****     deglitch_register = deglitch_register << 1;
+ 304              		.loc 1 202 0
+ 305 0004 124B     		ldr	r3, .L18
+ 306 0006 1B68     		ldr	r3, [r3]
+ 307 0008 5A00     		lsl	r2, r3, #1
+ 308 000a 114B     		ldr	r3, .L18
+ 309 000c 1A60     		str	r2, [r3]
+ 203:main.c        ****     if( Switch_Pin_Read() == 1 )
+ 310              		.loc 1 203 0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccqbLwrn.s 			page 10
+
+
+ 311 000e FFF7FEFF 		bl	Switch_Pin_Read
+ 312 0012 031E     		sub	r3, r0, #0
+ 313 0014 012B     		cmp	r3, #1
+ 314 0016 05D1     		bne	.L15
+ 204:main.c        ****     {
+ 205:main.c        ****        deglitch_register = deglitch_register | 1;
+ 315              		.loc 1 205 0
+ 316 0018 0D4B     		ldr	r3, .L18
+ 317 001a 1B68     		ldr	r3, [r3]
+ 318 001c 0122     		mov	r2, #1
+ 319 001e 1A43     		orr	r2, r3
+ 320 0020 0B4B     		ldr	r3, .L18
+ 321 0022 1A60     		str	r2, [r3]
+ 322              	.L15:
+ 206:main.c        ****     }
+ 207:main.c        ****     deglitch_register = deglitch_register & DEGLITCH_MASK;
+ 323              		.loc 1 207 0
+ 324 0024 0A4B     		ldr	r3, .L18
+ 325 0026 1B68     		ldr	r3, [r3]
+ 326 0028 0722     		mov	r2, #7
+ 327 002a 1A40     		and	r2, r3
+ 328 002c 084B     		ldr	r3, .L18
+ 329 002e 1A60     		str	r2, [r3]
+ 208:main.c        ****     if( deglitch_register == DEGLITCH_MASK )
+ 330              		.loc 1 208 0
+ 331 0030 074B     		ldr	r3, .L18
+ 332 0032 1B68     		ldr	r3, [r3]
+ 333 0034 072B     		cmp	r3, #7
+ 334 0036 02D1     		bne	.L16
+ 209:main.c        ****     {
+ 210:main.c        ****         switch_on = 1;
+ 335              		.loc 1 210 0
+ 336 0038 064B     		ldr	r3, .L18+4
+ 337 003a 0122     		mov	r2, #1
+ 338 003c 1A60     		str	r2, [r3]
+ 339              	.L16:
+ 211:main.c        ****     }
+ 212:main.c        ****     if( deglitch_register == 0 )
+ 340              		.loc 1 212 0
+ 341 003e 044B     		ldr	r3, .L18
+ 342 0040 1B68     		ldr	r3, [r3]
+ 343 0042 002B     		cmp	r3, #0
+ 344 0044 02D1     		bne	.L14
+ 213:main.c        ****     {
+ 214:main.c        ****         switch_on = 0;
+ 345              		.loc 1 214 0
+ 346 0046 034B     		ldr	r3, .L18+4
+ 347 0048 0022     		mov	r2, #0
+ 348 004a 1A60     		str	r2, [r3]
+ 349              	.L14:
+ 215:main.c        ****     }
+ 216:main.c        **** }
+ 350              		.loc 1 216 0
+ 351 004c BD46     		mov	sp, r7
+ 352              		@ sp needed
+ 353 004e 80BD     		pop	{r7, pc}
+ 354              	.L19:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccqbLwrn.s 			page 11
+
+
+ 355              		.align	2
+ 356              	.L18:
+ 357 0050 14000000 		.word	deglitch_register
+ 358 0054 00000000 		.word	switch_on
+ 359              		.cfi_endproc
+ 360              	.LFE66:
+ 361              		.size	process_switch_functions, .-process_switch_functions
+ 362              		.section	.text.SysTickCallBackHandler,"ax",%progbits
+ 363              		.align	2
+ 364              		.code	16
+ 365              		.thumb_func
+ 366              		.type	SysTickCallBackHandler, %function
+ 367              	SysTickCallBackHandler:
+ 368              	.LFB67:
+ 217:main.c        ****     
+ 218:main.c        ****     
+ 219:main.c        **** 
+ 220:main.c        **** static inline void SysTickCallBackHandler( void )
+ 221:main.c        **** {
+ 369              		.loc 1 221 0
+ 370              		.cfi_startproc
+ 371 0000 80B5     		push	{r7, lr}
+ 372              		.cfi_def_cfa_offset 8
+ 373              		.cfi_offset 7, -8
+ 374              		.cfi_offset 14, -4
+ 375 0002 00AF     		add	r7, sp, #0
+ 376              		.cfi_def_cfa_register 7
+ 222:main.c        ****     sub_divide_count += 1;
+ 377              		.loc 1 222 0
+ 378 0004 0A4B     		ldr	r3, .L22
+ 379 0006 1B68     		ldr	r3, [r3]
+ 380 0008 5A1C     		add	r2, r3, #1
+ 381 000a 094B     		ldr	r3, .L22
+ 382 000c 1A60     		str	r2, [r3]
+ 223:main.c        ****     if( sub_divide_count >= Hundred_Hz_Divide )
+ 383              		.loc 1 223 0
+ 384 000e 084B     		ldr	r3, .L22
+ 385 0010 1B68     		ldr	r3, [r3]
+ 386 0012 092B     		cmp	r3, #9
+ 387 0014 07D9     		bls	.L21
+ 224:main.c        ****     {
+ 225:main.c        ****         cf_set_interrupt_status_bit( CF_PROCESS_TIMER_TICK  );
+ 388              		.loc 1 225 0
+ 389 0016 0120     		mov	r0, #1
+ 390 0018 FFF7FEFF 		bl	cf_set_interrupt_status_bit
+ 226:main.c        ****         process_switch_functions();
+ 391              		.loc 1 226 0
+ 392 001c FFF7FEFF 		bl	process_switch_functions
+ 227:main.c        ****         
+ 228:main.c        ****         sub_divide_count = 0;
+ 393              		.loc 1 228 0
+ 394 0020 034B     		ldr	r3, .L22
+ 395 0022 0022     		mov	r2, #0
+ 396 0024 1A60     		str	r2, [r3]
+ 397              	.L21:
+ 229:main.c        ****     }
+ 230:main.c        ****     // process_modbus time interval interrupt
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccqbLwrn.s 			page 12
+
+
+ 231:main.c        ****     modbus_timer_interrupt( );
+ 398              		.loc 1 231 0
+ 399 0026 FFF7FEFF 		bl	modbus_timer_interrupt
+ 232:main.c        **** }
+ 400              		.loc 1 232 0
+ 401 002a BD46     		mov	sp, r7
+ 402              		@ sp needed
+ 403 002c 80BD     		pop	{r7, pc}
+ 404              	.L23:
+ 405 002e C046     		.align	2
+ 406              	.L22:
+ 407 0030 10000000 		.word	sub_divide_count
+ 408              		.cfi_endproc
+ 409              	.LFE67:
+ 410              		.size	SysTickCallBackHandler, .-SysTickCallBackHandler
+ 411              		.section	.text.SysTickInit,"ax",%progbits
+ 412              		.align	2
+ 413              		.code	16
+ 414              		.thumb_func
+ 415              		.type	SysTickInit, %function
+ 416              	SysTickInit:
+ 417              	.LFB68:
+ 233:main.c        **** 
+ 234:main.c        **** 
+ 235:main.c        **** /*
+ 236:main.c        **** **
+ 237:main.c        **** ** Sys Tick is setup to 1 KHZ Interrupt
+ 238:main.c        **** **
+ 239:main.c        **** */
+ 240:main.c        **** static void SysTickInit( void )
+ 241:main.c        **** {
+ 418              		.loc 1 241 0
+ 419              		.cfi_startproc
+ 420 0000 80B5     		push	{r7, lr}
+ 421              		.cfi_def_cfa_offset 8
+ 422              		.cfi_offset 7, -8
+ 423              		.cfi_offset 14, -4
+ 424 0002 00AF     		add	r7, sp, #0
+ 425              		.cfi_def_cfa_register 7
+ 242:main.c        ****     switch_on = 0;
+ 426              		.loc 1 242 0
+ 427 0004 0B4B     		ldr	r3, .L25
+ 428 0006 0022     		mov	r2, #0
+ 429 0008 1A60     		str	r2, [r3]
+ 243:main.c        ****     deglitch_register = 0;
+ 430              		.loc 1 243 0
+ 431 000a 0B4B     		ldr	r3, .L25+4
+ 432 000c 0022     		mov	r2, #0
+ 433 000e 1A60     		str	r2, [r3]
+ 244:main.c        ****     CySysTickStart();
+ 434              		.loc 1 244 0
+ 435 0010 FFF7FEFF 		bl	CySysTickStart
+ 245:main.c        ****     CySysTickSetClockSource(CY_SYS_SYST_CSR_CLK_SRC_LFCLK);
+ 436              		.loc 1 245 0
+ 437 0014 0020     		mov	r0, #0
+ 438 0016 FFF7FEFF 		bl	CySysTickSetClockSource
+ 246:main.c        ****     CySysTickSetCallback(0, SysTickCallBackHandler );
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccqbLwrn.s 			page 13
+
+
+ 439              		.loc 1 246 0
+ 440 001a 084B     		ldr	r3, .L25+8
+ 441 001c 0020     		mov	r0, #0
+ 442 001e 191C     		mov	r1, r3
+ 443 0020 FFF7FEFF 		bl	CySysTickSetCallback
+ 247:main.c        ****     CySysTickSetReload(Thousand_Hz_Time);
+ 444              		.loc 1 247 0
+ 445 0024 2120     		mov	r0, #33
+ 446 0026 FFF7FEFF 		bl	CySysTickSetReload
+ 248:main.c        ****     
+ 249:main.c        ****     CySysTickEnableInterrupt();
+ 447              		.loc 1 249 0
+ 448 002a FFF7FEFF 		bl	CySysTickEnableInterrupt
+ 250:main.c        **** }...
+ 449              		.loc 1 250 0
+ 450 002e BD46     		mov	sp, r7
+ 451              		@ sp needed
+ 452 0030 80BD     		pop	{r7, pc}
+ 453              	.L26:
+ 454 0032 C046     		.align	2
+ 455              	.L25:
+ 456 0034 00000000 		.word	switch_on
+ 457 0038 14000000 		.word	deglitch_register
+ 458 003c 00000000 		.word	SysTickCallBackHandler
+ 459              		.cfi_endproc
+ 460              	.LFE68:
+ 461              		.size	SysTickInit, .-SysTickInit
+ 462              		.text
+ 463              	.Letext0:
+ 464              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 465              		.section	.debug_info,"",%progbits
+ 466              	.Ldebug_info0:
+ 467 0000 9A010000 		.4byte	0x19a
+ 468 0004 0400     		.2byte	0x4
+ 469 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 470 000a 04       		.byte	0x4
+ 471 000b 01       		.uleb128 0x1
+ 472 000c AD000000 		.4byte	.LASF25
+ 473 0010 01       		.byte	0x1
+ 474 0011 AE010000 		.4byte	.LASF26
+ 475 0015 FC010000 		.4byte	.LASF27
+ 476 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 477 001d 00000000 		.4byte	0
+ 478 0021 00000000 		.4byte	.Ldebug_line0
+ 479 0025 02       		.uleb128 0x2
+ 480 0026 01       		.byte	0x1
+ 481 0027 06       		.byte	0x6
+ 482 0028 52020000 		.4byte	.LASF0
+ 483 002c 02       		.uleb128 0x2
+ 484 002d 01       		.byte	0x1
+ 485 002e 08       		.byte	0x8
+ 486 002f 5A000000 		.4byte	.LASF1
+ 487 0033 02       		.uleb128 0x2
+ 488 0034 02       		.byte	0x2
+ 489 0035 05       		.byte	0x5
+ 490 0036 DB010000 		.4byte	.LASF2
+ 491 003a 02       		.uleb128 0x2
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccqbLwrn.s 			page 14
+
+
+ 492 003b 02       		.byte	0x2
+ 493 003c 07       		.byte	0x7
+ 494 003d 85000000 		.4byte	.LASF3
+ 495 0041 02       		.uleb128 0x2
+ 496 0042 04       		.byte	0x4
+ 497 0043 05       		.byte	0x5
+ 498 0044 98000000 		.4byte	.LASF4
+ 499 0048 02       		.uleb128 0x2
+ 500 0049 04       		.byte	0x4
+ 501 004a 07       		.byte	0x7
+ 502 004b 73000000 		.4byte	.LASF5
+ 503 004f 02       		.uleb128 0x2
+ 504 0050 08       		.byte	0x8
+ 505 0051 05       		.byte	0x5
+ 506 0052 A0010000 		.4byte	.LASF6
+ 507 0056 02       		.uleb128 0x2
+ 508 0057 08       		.byte	0x8
+ 509 0058 07       		.byte	0x7
+ 510 0059 4F010000 		.4byte	.LASF7
+ 511 005d 03       		.uleb128 0x3
+ 512 005e 04       		.byte	0x4
+ 513 005f 05       		.byte	0x5
+ 514 0060 696E7400 		.ascii	"int\000"
+ 515 0064 02       		.uleb128 0x2
+ 516 0065 04       		.byte	0x4
+ 517 0066 07       		.byte	0x7
+ 518 0067 42010000 		.4byte	.LASF8
+ 519 006b 04       		.uleb128 0x4
+ 520 006c 3B010000 		.4byte	.LASF28
+ 521 0070 02       		.byte	0x2
+ 522 0071 9A01     		.2byte	0x19a
+ 523 0073 48000000 		.4byte	0x48
+ 524 0077 02       		.uleb128 0x2
+ 525 0078 04       		.byte	0x4
+ 526 0079 04       		.byte	0x4
+ 527 007a 4B000000 		.4byte	.LASF9
+ 528 007e 02       		.uleb128 0x2
+ 529 007f 08       		.byte	0x8
+ 530 0080 04       		.byte	0x4
+ 531 0081 A1000000 		.4byte	.LASF10
+ 532 0085 02       		.uleb128 0x2
+ 533 0086 01       		.byte	0x1
+ 534 0087 08       		.byte	0x8
+ 535 0088 B5010000 		.4byte	.LASF11
+ 536 008c 05       		.uleb128 0x5
+ 537 008d 6B000000 		.4byte	0x6b
+ 538 0091 02       		.uleb128 0x2
+ 539 0092 04       		.byte	0x4
+ 540 0093 07       		.byte	0x7
+ 541 0094 97010000 		.4byte	.LASF12
+ 542 0098 06       		.uleb128 0x6
+ 543 0099 18000000 		.4byte	.LASF29
+ 544 009d 01       		.byte	0x1
+ 545 009e 1B       		.byte	0x1b
+ 546 009f 00000000 		.4byte	.LFB62
+ 547 00a3 36000000 		.4byte	.LFE62-.LFB62
+ 548 00a7 01       		.uleb128 0x1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccqbLwrn.s 			page 15
+
+
+ 549 00a8 9C       		.byte	0x9c
+ 550 00a9 BC000000 		.4byte	0xbc
+ 551 00ad 07       		.uleb128 0x7
+ 552 00ae 00000000 		.4byte	.LASF22
+ 553 00b2 01       		.byte	0x1
+ 554 00b3 1B       		.byte	0x1b
+ 555 00b4 64000000 		.4byte	0x64
+ 556 00b8 02       		.uleb128 0x2
+ 557 00b9 91       		.byte	0x91
+ 558 00ba 74       		.sleb128 -12
+ 559 00bb 00       		.byte	0
+ 560 00bc 08       		.uleb128 0x8
+ 561 00bd A8000000 		.4byte	.LASF13
+ 562 00c1 01       		.byte	0x1
+ 563 00c2 39       		.byte	0x39
+ 564 00c3 5D000000 		.4byte	0x5d
+ 565 00c7 00000000 		.4byte	.LFB63
+ 566 00cb AC000000 		.4byte	.LFE63-.LFB63
+ 567 00cf 01       		.uleb128 0x1
+ 568 00d0 9C       		.byte	0x9c
+ 569 00d1 09       		.uleb128 0x9
+ 570 00d2 89010000 		.4byte	.LASF14
+ 571 00d6 01       		.byte	0x1
+ 572 00d7 83       		.byte	0x83
+ 573 00d8 00000000 		.4byte	.LFB64
+ 574 00dc 1A000000 		.4byte	.LFE64-.LFB64
+ 575 00e0 01       		.uleb128 0x1
+ 576 00e1 9C       		.byte	0x9c
+ 577 00e2 0A       		.uleb128 0xa
+ 578 00e3 BA010000 		.4byte	.LASF15
+ 579 00e7 01       		.byte	0x1
+ 580 00e8 94       		.byte	0x94
+ 581 00e9 00000000 		.4byte	.LFB65
+ 582 00ed 40000000 		.4byte	.LFE65-.LFB65
+ 583 00f1 01       		.uleb128 0x1
+ 584 00f2 9C       		.byte	0x9c
+ 585 00f3 0A       		.uleb128 0xa
+ 586 00f4 70010000 		.4byte	.LASF16
+ 587 00f8 01       		.byte	0x1
+ 588 00f9 C8       		.byte	0xc8
+ 589 00fa 00000000 		.4byte	.LFB66
+ 590 00fe 58000000 		.4byte	.LFE66-.LFB66
+ 591 0102 01       		.uleb128 0x1
+ 592 0103 9C       		.byte	0x9c
+ 593 0104 0A       		.uleb128 0xa
+ 594 0105 E5010000 		.4byte	.LASF17
+ 595 0109 01       		.byte	0x1
+ 596 010a DC       		.byte	0xdc
+ 597 010b 00000000 		.4byte	.LFB67
+ 598 010f 34000000 		.4byte	.LFE67-.LFB67
+ 599 0113 01       		.uleb128 0x1
+ 600 0114 9C       		.byte	0x9c
+ 601 0115 0A       		.uleb128 0xa
+ 602 0116 0C000000 		.4byte	.LASF18
+ 603 011a 01       		.byte	0x1
+ 604 011b F0       		.byte	0xf0
+ 605 011c 00000000 		.4byte	.LFB68
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccqbLwrn.s 			page 16
+
+
+ 606 0120 40000000 		.4byte	.LFE68-.LFB68
+ 607 0124 01       		.uleb128 0x1
+ 608 0125 9C       		.byte	0x9c
+ 609 0126 0B       		.uleb128 0xb
+ 610 0127 2C000000 		.4byte	.LASF19
+ 611 012b 01       		.byte	0x1
+ 612 012c 2D       		.byte	0x2d
+ 613 012d 5D000000 		.4byte	0x5d
+ 614 0131 05       		.uleb128 0x5
+ 615 0132 03       		.byte	0x3
+ 616 0133 00000000 		.4byte	event_number
+ 617 0137 0B       		.uleb128 0xb
+ 618 0138 51000000 		.4byte	.LASF20
+ 619 013c 01       		.byte	0x1
+ 620 013d 2E       		.byte	0x2e
+ 621 013e 64000000 		.4byte	0x64
+ 622 0142 05       		.uleb128 0x5
+ 623 0143 03       		.byte	0x3
+ 624 0144 04000000 		.4byte	event_id
+ 625 0148 0B       		.uleb128 0xb
+ 626 0149 68000000 		.4byte	.LASF21
+ 627 014d 01       		.byte	0x1
+ 628 014e 2F       		.byte	0x2f
+ 629 014f 64000000 		.4byte	0x64
+ 630 0153 05       		.uleb128 0x5
+ 631 0154 03       		.byte	0x3
+ 632 0155 08000000 		.4byte	event_data
+ 633 0159 0B       		.uleb128 0xb
+ 634 015a 00000000 		.4byte	.LASF22
+ 635 015e 01       		.byte	0x1
+ 636 015f 30       		.byte	0x30
+ 637 0160 64000000 		.4byte	0x64
+ 638 0164 05       		.uleb128 0x5
+ 639 0165 03       		.byte	0x3
+ 640 0166 0C000000 		.4byte	status_data
+ 641 016a 0B       		.uleb128 0xb
+ 642 016b 5E020000 		.4byte	.LASF23
+ 643 016f 01       		.byte	0x1
+ 644 0170 C5       		.byte	0xc5
+ 645 0171 8C000000 		.4byte	0x8c
+ 646 0175 05       		.uleb128 0x5
+ 647 0176 03       		.byte	0x3
+ 648 0177 10000000 		.4byte	sub_divide_count
+ 649 017b 0B       		.uleb128 0xb
+ 650 017c 39000000 		.4byte	.LASF24
+ 651 0180 01       		.byte	0x1
+ 652 0181 C6       		.byte	0xc6
+ 653 0182 8C000000 		.4byte	0x8c
+ 654 0186 05       		.uleb128 0x5
+ 655 0187 03       		.byte	0x3
+ 656 0188 14000000 		.4byte	deglitch_register
+ 657 018c 0C       		.uleb128 0xc
+ 658 018d 66010000 		.4byte	.LASF30
+ 659 0191 01       		.byte	0x1
+ 660 0192 C4       		.byte	0xc4
+ 661 0193 8C000000 		.4byte	0x8c
+ 662 0197 05       		.uleb128 0x5
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccqbLwrn.s 			page 17
+
+
+ 663 0198 03       		.byte	0x3
+ 664 0199 00000000 		.4byte	switch_on
+ 665 019d 00       		.byte	0
+ 666              		.section	.debug_abbrev,"",%progbits
+ 667              	.Ldebug_abbrev0:
+ 668 0000 01       		.uleb128 0x1
+ 669 0001 11       		.uleb128 0x11
+ 670 0002 01       		.byte	0x1
+ 671 0003 25       		.uleb128 0x25
+ 672 0004 0E       		.uleb128 0xe
+ 673 0005 13       		.uleb128 0x13
+ 674 0006 0B       		.uleb128 0xb
+ 675 0007 03       		.uleb128 0x3
+ 676 0008 0E       		.uleb128 0xe
+ 677 0009 1B       		.uleb128 0x1b
+ 678 000a 0E       		.uleb128 0xe
+ 679 000b 55       		.uleb128 0x55
+ 680 000c 17       		.uleb128 0x17
+ 681 000d 11       		.uleb128 0x11
+ 682 000e 01       		.uleb128 0x1
+ 683 000f 10       		.uleb128 0x10
+ 684 0010 17       		.uleb128 0x17
+ 685 0011 00       		.byte	0
+ 686 0012 00       		.byte	0
+ 687 0013 02       		.uleb128 0x2
+ 688 0014 24       		.uleb128 0x24
+ 689 0015 00       		.byte	0
+ 690 0016 0B       		.uleb128 0xb
+ 691 0017 0B       		.uleb128 0xb
+ 692 0018 3E       		.uleb128 0x3e
+ 693 0019 0B       		.uleb128 0xb
+ 694 001a 03       		.uleb128 0x3
+ 695 001b 0E       		.uleb128 0xe
+ 696 001c 00       		.byte	0
+ 697 001d 00       		.byte	0
+ 698 001e 03       		.uleb128 0x3
+ 699 001f 24       		.uleb128 0x24
+ 700 0020 00       		.byte	0
+ 701 0021 0B       		.uleb128 0xb
+ 702 0022 0B       		.uleb128 0xb
+ 703 0023 3E       		.uleb128 0x3e
+ 704 0024 0B       		.uleb128 0xb
+ 705 0025 03       		.uleb128 0x3
+ 706 0026 08       		.uleb128 0x8
+ 707 0027 00       		.byte	0
+ 708 0028 00       		.byte	0
+ 709 0029 04       		.uleb128 0x4
+ 710 002a 16       		.uleb128 0x16
+ 711 002b 00       		.byte	0
+ 712 002c 03       		.uleb128 0x3
+ 713 002d 0E       		.uleb128 0xe
+ 714 002e 3A       		.uleb128 0x3a
+ 715 002f 0B       		.uleb128 0xb
+ 716 0030 3B       		.uleb128 0x3b
+ 717 0031 05       		.uleb128 0x5
+ 718 0032 49       		.uleb128 0x49
+ 719 0033 13       		.uleb128 0x13
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccqbLwrn.s 			page 18
+
+
+ 720 0034 00       		.byte	0
+ 721 0035 00       		.byte	0
+ 722 0036 05       		.uleb128 0x5
+ 723 0037 35       		.uleb128 0x35
+ 724 0038 00       		.byte	0
+ 725 0039 49       		.uleb128 0x49
+ 726 003a 13       		.uleb128 0x13
+ 727 003b 00       		.byte	0
+ 728 003c 00       		.byte	0
+ 729 003d 06       		.uleb128 0x6
+ 730 003e 2E       		.uleb128 0x2e
+ 731 003f 01       		.byte	0x1
+ 732 0040 03       		.uleb128 0x3
+ 733 0041 0E       		.uleb128 0xe
+ 734 0042 3A       		.uleb128 0x3a
+ 735 0043 0B       		.uleb128 0xb
+ 736 0044 3B       		.uleb128 0x3b
+ 737 0045 0B       		.uleb128 0xb
+ 738 0046 27       		.uleb128 0x27
+ 739 0047 19       		.uleb128 0x19
+ 740 0048 11       		.uleb128 0x11
+ 741 0049 01       		.uleb128 0x1
+ 742 004a 12       		.uleb128 0x12
+ 743 004b 06       		.uleb128 0x6
+ 744 004c 40       		.uleb128 0x40
+ 745 004d 18       		.uleb128 0x18
+ 746 004e 9642     		.uleb128 0x2116
+ 747 0050 19       		.uleb128 0x19
+ 748 0051 01       		.uleb128 0x1
+ 749 0052 13       		.uleb128 0x13
+ 750 0053 00       		.byte	0
+ 751 0054 00       		.byte	0
+ 752 0055 07       		.uleb128 0x7
+ 753 0056 05       		.uleb128 0x5
+ 754 0057 00       		.byte	0
+ 755 0058 03       		.uleb128 0x3
+ 756 0059 0E       		.uleb128 0xe
+ 757 005a 3A       		.uleb128 0x3a
+ 758 005b 0B       		.uleb128 0xb
+ 759 005c 3B       		.uleb128 0x3b
+ 760 005d 0B       		.uleb128 0xb
+ 761 005e 49       		.uleb128 0x49
+ 762 005f 13       		.uleb128 0x13
+ 763 0060 02       		.uleb128 0x2
+ 764 0061 18       		.uleb128 0x18
+ 765 0062 00       		.byte	0
+ 766 0063 00       		.byte	0
+ 767 0064 08       		.uleb128 0x8
+ 768 0065 2E       		.uleb128 0x2e
+ 769 0066 00       		.byte	0
+ 770 0067 3F       		.uleb128 0x3f
+ 771 0068 19       		.uleb128 0x19
+ 772 0069 03       		.uleb128 0x3
+ 773 006a 0E       		.uleb128 0xe
+ 774 006b 3A       		.uleb128 0x3a
+ 775 006c 0B       		.uleb128 0xb
+ 776 006d 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccqbLwrn.s 			page 19
+
+
+ 777 006e 0B       		.uleb128 0xb
+ 778 006f 49       		.uleb128 0x49
+ 779 0070 13       		.uleb128 0x13
+ 780 0071 11       		.uleb128 0x11
+ 781 0072 01       		.uleb128 0x1
+ 782 0073 12       		.uleb128 0x12
+ 783 0074 06       		.uleb128 0x6
+ 784 0075 40       		.uleb128 0x40
+ 785 0076 18       		.uleb128 0x18
+ 786 0077 9642     		.uleb128 0x2116
+ 787 0079 19       		.uleb128 0x19
+ 788 007a 00       		.byte	0
+ 789 007b 00       		.byte	0
+ 790 007c 09       		.uleb128 0x9
+ 791 007d 2E       		.uleb128 0x2e
+ 792 007e 00       		.byte	0
+ 793 007f 3F       		.uleb128 0x3f
+ 794 0080 19       		.uleb128 0x19
+ 795 0081 03       		.uleb128 0x3
+ 796 0082 0E       		.uleb128 0xe
+ 797 0083 3A       		.uleb128 0x3a
+ 798 0084 0B       		.uleb128 0xb
+ 799 0085 3B       		.uleb128 0x3b
+ 800 0086 0B       		.uleb128 0xb
+ 801 0087 27       		.uleb128 0x27
+ 802 0088 19       		.uleb128 0x19
+ 803 0089 11       		.uleb128 0x11
+ 804 008a 01       		.uleb128 0x1
+ 805 008b 12       		.uleb128 0x12
+ 806 008c 06       		.uleb128 0x6
+ 807 008d 40       		.uleb128 0x40
+ 808 008e 18       		.uleb128 0x18
+ 809 008f 9642     		.uleb128 0x2116
+ 810 0091 19       		.uleb128 0x19
+ 811 0092 00       		.byte	0
+ 812 0093 00       		.byte	0
+ 813 0094 0A       		.uleb128 0xa
+ 814 0095 2E       		.uleb128 0x2e
+ 815 0096 00       		.byte	0
+ 816 0097 03       		.uleb128 0x3
+ 817 0098 0E       		.uleb128 0xe
+ 818 0099 3A       		.uleb128 0x3a
+ 819 009a 0B       		.uleb128 0xb
+ 820 009b 3B       		.uleb128 0x3b
+ 821 009c 0B       		.uleb128 0xb
+ 822 009d 27       		.uleb128 0x27
+ 823 009e 19       		.uleb128 0x19
+ 824 009f 11       		.uleb128 0x11
+ 825 00a0 01       		.uleb128 0x1
+ 826 00a1 12       		.uleb128 0x12
+ 827 00a2 06       		.uleb128 0x6
+ 828 00a3 40       		.uleb128 0x40
+ 829 00a4 18       		.uleb128 0x18
+ 830 00a5 9642     		.uleb128 0x2116
+ 831 00a7 19       		.uleb128 0x19
+ 832 00a8 00       		.byte	0
+ 833 00a9 00       		.byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccqbLwrn.s 			page 20
+
+
+ 834 00aa 0B       		.uleb128 0xb
+ 835 00ab 34       		.uleb128 0x34
+ 836 00ac 00       		.byte	0
+ 837 00ad 03       		.uleb128 0x3
+ 838 00ae 0E       		.uleb128 0xe
+ 839 00af 3A       		.uleb128 0x3a
+ 840 00b0 0B       		.uleb128 0xb
+ 841 00b1 3B       		.uleb128 0x3b
+ 842 00b2 0B       		.uleb128 0xb
+ 843 00b3 49       		.uleb128 0x49
+ 844 00b4 13       		.uleb128 0x13
+ 845 00b5 02       		.uleb128 0x2
+ 846 00b6 18       		.uleb128 0x18
+ 847 00b7 00       		.byte	0
+ 848 00b8 00       		.byte	0
+ 849 00b9 0C       		.uleb128 0xc
+ 850 00ba 34       		.uleb128 0x34
+ 851 00bb 00       		.byte	0
+ 852 00bc 03       		.uleb128 0x3
+ 853 00bd 0E       		.uleb128 0xe
+ 854 00be 3A       		.uleb128 0x3a
+ 855 00bf 0B       		.uleb128 0xb
+ 856 00c0 3B       		.uleb128 0x3b
+ 857 00c1 0B       		.uleb128 0xb
+ 858 00c2 49       		.uleb128 0x49
+ 859 00c3 13       		.uleb128 0x13
+ 860 00c4 3F       		.uleb128 0x3f
+ 861 00c5 19       		.uleb128 0x19
+ 862 00c6 02       		.uleb128 0x2
+ 863 00c7 18       		.uleb128 0x18
+ 864 00c8 00       		.byte	0
+ 865 00c9 00       		.byte	0
+ 866 00ca 00       		.byte	0
+ 867              		.section	.debug_aranges,"",%progbits
+ 868 0000 4C000000 		.4byte	0x4c
+ 869 0004 0200     		.2byte	0x2
+ 870 0006 00000000 		.4byte	.Ldebug_info0
+ 871 000a 04       		.byte	0x4
+ 872 000b 00       		.byte	0
+ 873 000c 0000     		.2byte	0
+ 874 000e 0000     		.2byte	0
+ 875 0010 00000000 		.4byte	.LFB62
+ 876 0014 36000000 		.4byte	.LFE62-.LFB62
+ 877 0018 00000000 		.4byte	.LFB63
+ 878 001c AC000000 		.4byte	.LFE63-.LFB63
+ 879 0020 00000000 		.4byte	.LFB64
+ 880 0024 1A000000 		.4byte	.LFE64-.LFB64
+ 881 0028 00000000 		.4byte	.LFB65
+ 882 002c 40000000 		.4byte	.LFE65-.LFB65
+ 883 0030 00000000 		.4byte	.LFB66
+ 884 0034 58000000 		.4byte	.LFE66-.LFB66
+ 885 0038 00000000 		.4byte	.LFB67
+ 886 003c 34000000 		.4byte	.LFE67-.LFB67
+ 887 0040 00000000 		.4byte	.LFB68
+ 888 0044 40000000 		.4byte	.LFE68-.LFB68
+ 889 0048 00000000 		.4byte	0
+ 890 004c 00000000 		.4byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccqbLwrn.s 			page 21
+
+
+ 891              		.section	.debug_ranges,"",%progbits
+ 892              	.Ldebug_ranges0:
+ 893 0000 00000000 		.4byte	.LFB62
+ 894 0004 36000000 		.4byte	.LFE62
+ 895 0008 00000000 		.4byte	.LFB63
+ 896 000c AC000000 		.4byte	.LFE63
+ 897 0010 00000000 		.4byte	.LFB64
+ 898 0014 1A000000 		.4byte	.LFE64
+ 899 0018 00000000 		.4byte	.LFB65
+ 900 001c 40000000 		.4byte	.LFE65
+ 901 0020 00000000 		.4byte	.LFB66
+ 902 0024 58000000 		.4byte	.LFE66
+ 903 0028 00000000 		.4byte	.LFB67
+ 904 002c 34000000 		.4byte	.LFE67
+ 905 0030 00000000 		.4byte	.LFB68
+ 906 0034 40000000 		.4byte	.LFE68
+ 907 0038 00000000 		.4byte	0
+ 908 003c 00000000 		.4byte	0
+ 909              		.section	.debug_line,"",%progbits
+ 910              	.Ldebug_line0:
+ 911 0000 F9000000 		.section	.debug_str,"MS",%progbits,1
+ 911      02004100 
+ 911      00000201 
+ 911      FB0E0D00 
+ 911      01010101 
+ 912              	.LASF22:
+ 913 0000 73746174 		.ascii	"status_data\000"
+ 913      75735F64 
+ 913      61746100 
+ 914              	.LASF18:
+ 915 000c 53797354 		.ascii	"SysTickInit\000"
+ 915      69636B49 
+ 915      6E697400 
+ 916              	.LASF29:
+ 917 0018 70726F63 		.ascii	"process_status_data\000"
+ 917      6573735F 
+ 917      73746174 
+ 917      75735F64 
+ 917      61746100 
+ 918              	.LASF19:
+ 919 002c 6576656E 		.ascii	"event_number\000"
+ 919      745F6E75 
+ 919      6D626572 
+ 919      00
+ 920              	.LASF24:
+ 921 0039 6465676C 		.ascii	"deglitch_register\000"
+ 921      69746368 
+ 921      5F726567 
+ 921      69737465 
+ 921      7200
+ 922              	.LASF9:
+ 923 004b 666C6F61 		.ascii	"float\000"
+ 923      7400
+ 924              	.LASF20:
+ 925 0051 6576656E 		.ascii	"event_id\000"
+ 925      745F6964 
+ 925      00
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccqbLwrn.s 			page 22
+
+
+ 926              	.LASF1:
+ 927 005a 756E7369 		.ascii	"unsigned char\000"
+ 927      676E6564 
+ 927      20636861 
+ 927      7200
+ 928              	.LASF21:
+ 929 0068 6576656E 		.ascii	"event_data\000"
+ 929      745F6461 
+ 929      746100
+ 930              	.LASF5:
+ 931 0073 6C6F6E67 		.ascii	"long unsigned int\000"
+ 931      20756E73 
+ 931      69676E65 
+ 931      6420696E 
+ 931      7400
+ 932              	.LASF3:
+ 933 0085 73686F72 		.ascii	"short unsigned int\000"
+ 933      7420756E 
+ 933      7369676E 
+ 933      65642069 
+ 933      6E7400
+ 934              	.LASF4:
+ 935 0098 6C6F6E67 		.ascii	"long int\000"
+ 935      20696E74 
+ 935      00
+ 936              	.LASF10:
+ 937 00a1 646F7562 		.ascii	"double\000"
+ 937      6C6500
+ 938              	.LASF13:
+ 939 00a8 6D61696E 		.ascii	"main\000"
+ 939      00
+ 940              	.LASF25:
+ 941 00ad 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 941      4320342E 
+ 941      392E3320 
+ 941      32303135 
+ 941      30333033 
+ 942 00e0 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 942      20726576 
+ 942      6973696F 
+ 942      6E203232 
+ 942      31323230 
+ 943 0113 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 943      66756E63 
+ 943      74696F6E 
+ 943      2D736563 
+ 943      74696F6E 
+ 944              	.LASF28:
+ 945 013b 75696E74 		.ascii	"uint32\000"
+ 945      333200
+ 946              	.LASF8:
+ 947 0142 756E7369 		.ascii	"unsigned int\000"
+ 947      676E6564 
+ 947      20696E74 
+ 947      00
+ 948              	.LASF7:
+ 949 014f 6C6F6E67 		.ascii	"long long unsigned int\000"
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccqbLwrn.s 			page 23
+
+
+ 949      206C6F6E 
+ 949      6720756E 
+ 949      7369676E 
+ 949      65642069 
+ 950              	.LASF30:
+ 951 0166 73776974 		.ascii	"switch_on\000"
+ 951      63685F6F 
+ 951      6E00
+ 952              	.LASF16:
+ 953 0170 70726F63 		.ascii	"process_switch_functions\000"
+ 953      6573735F 
+ 953      73776974 
+ 953      63685F66 
+ 953      756E6374 
+ 954              	.LASF14:
+ 955 0189 57647449 		.ascii	"WdtIsrHandler\000"
+ 955      73724861 
+ 955      6E646C65 
+ 955      7200
+ 956              	.LASF12:
+ 957 0197 73697A65 		.ascii	"sizetype\000"
+ 957      74797065 
+ 957      00
+ 958              	.LASF6:
+ 959 01a0 6C6F6E67 		.ascii	"long long int\000"
+ 959      206C6F6E 
+ 959      6720696E 
+ 959      7400
+ 960              	.LASF26:
+ 961 01ae 6D61696E 		.ascii	"main.c\000"
+ 961      2E6300
+ 962              	.LASF11:
+ 963 01b5 63686172 		.ascii	"char\000"
+ 963      00
+ 964              	.LASF15:
+ 965 01ba 73657475 		.ascii	"setup_one_second_timer_watch_dog\000"
+ 965      705F6F6E 
+ 965      655F7365 
+ 965      636F6E64 
+ 965      5F74696D 
+ 966              	.LASF2:
+ 967 01db 73686F72 		.ascii	"short int\000"
+ 967      7420696E 
+ 967      7400
+ 968              	.LASF17:
+ 969 01e5 53797354 		.ascii	"SysTickCallBackHandler\000"
+ 969      69636B43 
+ 969      616C6C42 
+ 969      61636B48 
+ 969      616E646C 
+ 970              	.LASF27:
+ 971 01fc 433A5C55 		.ascii	"C:\\Users\\glenn\\OneDrive\\PSOC\\moisture_sensor_4"
+ 971      73657273 
+ 971      5C676C65 
+ 971      6E6E5C4F 
+ 971      6E654472 
+ 972 022a 6D5C4D6F 		.ascii	"m\\Moisture_Sensor\\Moisture_Sensor.cydsn\000"
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccqbLwrn.s 			page 24
+
+
+ 972      69737475 
+ 972      72655F53 
+ 972      656E736F 
+ 972      725C4D6F 
+ 973              	.LASF0:
+ 974 0252 7369676E 		.ascii	"signed char\000"
+ 974      65642063 
+ 974      68617200 
+ 975              	.LASF23:
+ 976 025e 7375625F 		.ascii	"sub_divide_count\000"
+ 976      64697669 
+ 976      64655F63 
+ 976      6F756E74 
+ 976      00
+ 977              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

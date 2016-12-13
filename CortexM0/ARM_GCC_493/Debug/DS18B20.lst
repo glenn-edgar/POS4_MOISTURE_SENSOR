@@ -1,0 +1,3716 @@
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 6
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"DS18B20.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.bss
+  18              	bDoneFlag:
+  19 0000 00       		.space	1
+  20              	nLastDiscrepancy_u8:
+  21 0001 00       		.space	1
+  22              		.section	.text.DS1820_Reset,"ax",%progbits
+  23              		.align	2
+  24              		.global	DS1820_Reset
+  25              		.code	16
+  26              		.thumb_func
+  27              		.type	DS1820_Reset, %function
+  28              	DS1820_Reset:
+  29              	.LFB62:
+  30              		.file 1 "one_wire\\DS18B20.c"
+   1:one_wire/DS18B20.c ****    /*** FILEHEADER ****************************************************************
+   2:one_wire/DS18B20.c ****  *
+   3:one_wire/DS18B20.c ****  *    FILENAME:    ds1820.h
+   4:one_wire/DS18B20.c ****  *    DATE:        25.02.2005
+   5:one_wire/DS18B20.c ****  *    AUTHOR:      Christian Stadler
+   6:one_wire/DS18B20.c ****  *
+   7:one_wire/DS18B20.c ****  *    crc and search code ported from  PaulStoffregen/OneWire/OneWire.cpp (audrino code )
+   8:one_wire/DS18B20.c ****  *    DESCRIPTION: Driver for DS1820 1-Wire Temperature sensor (Dallas)
+   9:one_wire/DS18B20.c ****  *    Modified by Glenn Edgar for CYPRESS Products
+  10:one_wire/DS18B20.c ****  *
+  11:one_wire/DS18B20.c ****  ******************************************************************************/
+  12:one_wire/DS18B20.c **** 
+  13:one_wire/DS18B20.c **** 
+  14:one_wire/DS18B20.c **** 
+  15:one_wire/DS18B20.c **** #include <project.h>
+  16:one_wire/DS18B20.c **** #include "DS18B20.h"
+  17:one_wire/DS18B20.c **** 
+  18:one_wire/DS18B20.c **** 
+  19:one_wire/DS18B20.c **** #define TEMP_RES              0x100 /* temperature resolution => 1/256°C = 0.0039°C */
+  20:one_wire/DS18B20.c **** 
+  21:one_wire/DS18B20.c **** 
+  22:one_wire/DS18B20.c **** /* -------------------------------------------------------------------------- */
+  23:one_wire/DS18B20.c **** /*                         DS1820 Timing Parameters                           */
+  24:one_wire/DS18B20.c **** /* -------------------------------------------------------------------------- */
+  25:one_wire/DS18B20.c **** 
+  26:one_wire/DS18B20.c **** #define DS1820_RST_PULSE       480   /* master reset pulse time in [us] */
+  27:one_wire/DS18B20.c **** #define DS1820_MSTR_BITSTART   2     /* delay time for bit start by master */
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 2
+
+
+  28:one_wire/DS18B20.c **** #define DS1820_PRESENCE_WAIT   40    /* delay after master reset pulse in [us] */
+  29:one_wire/DS18B20.c **** #define DS1820_PRESENCE_FIN    480   /* dealy after reading of presence pulse [us] */
+  30:one_wire/DS18B20.c **** #define DS1820_BITREAD_DLY     5     /* bit read delay */
+  31:one_wire/DS18B20.c **** #define DS1820_BITWRITE_DLY    100   /* bit write delay */
+  32:one_wire/DS18B20.c **** 
+  33:one_wire/DS18B20.c **** 
+  34:one_wire/DS18B20.c **** /* -------------------------------------------------------------------------- */
+  35:one_wire/DS18B20.c **** /*                            DS1820 Registers                                */
+  36:one_wire/DS18B20.c **** /* -------------------------------------------------------------------------- */
+  37:one_wire/DS18B20.c **** 
+  38:one_wire/DS18B20.c **** #define DS1820_REG_TEMPLSB    0
+  39:one_wire/DS18B20.c **** #define DS1820_REG_TEMPMSB    1
+  40:one_wire/DS18B20.c **** #define DS1820_REG_CNTREMAIN  6
+  41:one_wire/DS18B20.c **** #define DS1820_REG_CNTPERSEC  7
+  42:one_wire/DS18B20.c **** #define DS1820_SCRPADMEM_LEN  9     /* length of scratchpad memory */
+  43:one_wire/DS18B20.c **** 
+  44:one_wire/DS18B20.c **** 
+  45:one_wire/DS18B20.c **** 
+  46:one_wire/DS18B20.c **** 
+  47:one_wire/DS18B20.c **** /* -------------------------------------------------------------------------- */
+  48:one_wire/DS18B20.c **** /*                            DS1820 Commands                                 */
+  49:one_wire/DS18B20.c **** /* -------------------------------------------------------------------------- */
+  50:one_wire/DS18B20.c **** 
+  51:one_wire/DS18B20.c **** #define DS1820_CMD_SEARCHROM     0xF0
+  52:one_wire/DS18B20.c **** #define DS1820_CMD_READROM       0x33
+  53:one_wire/DS18B20.c **** #define DS1820_CMD_MATCHROM      0x55
+  54:one_wire/DS18B20.c **** #define DS1820_CMD_SKIPROM       0xCC
+  55:one_wire/DS18B20.c **** #define DS1820_CMD_ALARMSEARCH   0xEC
+  56:one_wire/DS18B20.c **** #define DS1820_CMD_CONVERTTEMP   0x44
+  57:one_wire/DS18B20.c **** #define DS1820_CMD_WRITESCRPAD   0x4E
+  58:one_wire/DS18B20.c **** #define DS1820_CMD_READSCRPAD    0xBE
+  59:one_wire/DS18B20.c **** #define DS1820_CMD_COPYSCRPAD    0x48
+  60:one_wire/DS18B20.c **** #define DS1820_CMD_RECALLEE      0xB8
+  61:one_wire/DS18B20.c **** 
+  62:one_wire/DS18B20.c **** 
+  63:one_wire/DS18B20.c **** #define DS1820_FAMILY_CODE_DS18B20      0x28
+  64:one_wire/DS18B20.c **** #define DS1820_FAMILY_CODE_DS18S20      0x10
+  65:one_wire/DS18B20.c **** 
+  66:one_wire/DS18B20.c **** 
+  67:one_wire/DS18B20.c **** /* -------------------------------------------------------------------------- */
+  68:one_wire/DS18B20.c **** /*                            static variables                                */
+  69:one_wire/DS18B20.c **** /* -------------------------------------------------------------------------- */
+  70:one_wire/DS18B20.c **** 
+  71:one_wire/DS18B20.c **** static uint8 bDoneFlag;
+  72:one_wire/DS18B20.c **** static uint8 nLastDiscrepancy_u8;
+  73:one_wire/DS18B20.c **** 
+  74:one_wire/DS18B20.c **** 
+  75:one_wire/DS18B20.c **** 
+  76:one_wire/DS18B20.c **** 
+  77:one_wire/DS18B20.c **** 
+  78:one_wire/DS18B20.c **** 
+  79:one_wire/DS18B20.c **** 
+  80:one_wire/DS18B20.c **** 
+  81:one_wire/DS18B20.c **** 
+  82:one_wire/DS18B20.c **** 
+  83:one_wire/DS18B20.c **** static uint8 compute_crc8(const uint8 *addr, uint8 len);
+  84:one_wire/DS18B20.c **** 
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 3
+
+
+  85:one_wire/DS18B20.c **** 
+  86:one_wire/DS18B20.c **** 
+  87:one_wire/DS18B20.c **** 
+  88:one_wire/DS18B20.c **** 
+  89:one_wire/DS18B20.c **** 
+  90:one_wire/DS18B20.c **** 
+  91:one_wire/DS18B20.c **** /*******************************************************************************
+  92:one_wire/DS18B20.c ****  * FUNCTION:   DS1820_Reset
+  93:one_wire/DS18B20.c ****  * PURPOSE:    Initializes the DS1820 device.
+  94:one_wire/DS18B20.c ****  *
+  95:one_wire/DS18B20.c ****  * INPUT:      -
+  96:one_wire/DS18B20.c ****  * OUTPUT:     -
+  97:one_wire/DS18B20.c ****  * RETURN:     FALSE if at least one device is on the 1-wire bus, TRUE otherwise
+  98:one_wire/DS18B20.c ****  ******************************************************************************/
+  99:one_wire/DS18B20.c **** uint8 DS1820_Reset(ONE_WIRE_IO *io)
+ 100:one_wire/DS18B20.c **** {
+  31              		.loc 1 100 0
+  32              		.cfi_startproc
+  33 0000 90B5     		push	{r4, r7, lr}
+  34              		.cfi_def_cfa_offset 12
+  35              		.cfi_offset 4, -12
+  36              		.cfi_offset 7, -8
+  37              		.cfi_offset 14, -4
+  38 0002 85B0     		sub	sp, sp, #20
+  39              		.cfi_def_cfa_offset 32
+  40 0004 00AF     		add	r7, sp, #0
+  41              		.cfi_def_cfa_register 7
+  42 0006 7860     		str	r0, [r7, #4]
+ 101:one_wire/DS18B20.c ****    uint8 bPresPulse;
+ 102:one_wire/DS18B20.c ****    uint8  criticalState;
+ 103:one_wire/DS18B20.c ****    criticalState = CyEnterCriticalSection();
+  43              		.loc 1 103 0
+  44 0008 0F23     		mov	r3, #15
+  45 000a FC18     		add	r4, r7, r3
+  46 000c FFF7FEFF 		bl	CyEnterCriticalSection
+  47 0010 031C     		mov	r3, r0
+  48 0012 2370     		strb	r3, [r4]
+ 104:one_wire/DS18B20.c ****    
+ 105:one_wire/DS18B20.c ****    /* reset pulse */
+ 106:one_wire/DS18B20.c ****    io->pin_write(0);
+  49              		.loc 1 106 0
+  50 0014 7B68     		ldr	r3, [r7, #4]
+  51 0016 5B68     		ldr	r3, [r3, #4]
+  52 0018 0020     		mov	r0, #0
+  53 001a 9847     		blx	r3
+ 107:one_wire/DS18B20.c ****    CyDelayUs(DS1820_RST_PULSE);
+  54              		.loc 1 107 0
+  55 001c F023     		mov	r3, #240
+  56 001e 5B00     		lsl	r3, r3, #1
+  57 0020 181C     		mov	r0, r3
+  58 0022 FFF7FEFF 		bl	CyDelayUs
+ 108:one_wire/DS18B20.c ****    io->pin_write(1);
+  59              		.loc 1 108 0
+  60 0026 7B68     		ldr	r3, [r7, #4]
+  61 0028 5B68     		ldr	r3, [r3, #4]
+  62 002a 0120     		mov	r0, #1
+  63 002c 9847     		blx	r3
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 4
+
+
+ 109:one_wire/DS18B20.c **** 
+ 110:one_wire/DS18B20.c ****    /* wait until pullup pull 1-wire bus to high */
+ 111:one_wire/DS18B20.c ****    CyDelayUs(DS1820_PRESENCE_WAIT);
+  64              		.loc 1 111 0
+  65 002e 2820     		mov	r0, #40
+  66 0030 FFF7FEFF 		bl	CyDelayUs
+ 112:one_wire/DS18B20.c **** 
+ 113:one_wire/DS18B20.c ****    /* get presence pulse */
+ 114:one_wire/DS18B20.c ****    bPresPulse = io->pin_read();
+  67              		.loc 1 114 0
+  68 0034 7B68     		ldr	r3, [r7, #4]
+  69 0036 1B68     		ldr	r3, [r3]
+  70 0038 0E22     		mov	r2, #14
+  71 003a BC18     		add	r4, r7, r2
+  72 003c 9847     		blx	r3
+  73 003e 031C     		mov	r3, r0
+  74 0040 2370     		strb	r3, [r4]
+ 115:one_wire/DS18B20.c **** 
+ 116:one_wire/DS18B20.c ****     CyDelayUs(424);
+  75              		.loc 1 116 0
+  76 0042 D423     		mov	r3, #212
+  77 0044 5B00     		lsl	r3, r3, #1
+  78 0046 181C     		mov	r0, r3
+  79 0048 FFF7FEFF 		bl	CyDelayUs
+ 117:one_wire/DS18B20.c ****    
+ 118:one_wire/DS18B20.c ****    CyExitCriticalSection(criticalState);
+  80              		.loc 1 118 0
+  81 004c 0F23     		mov	r3, #15
+  82 004e FB18     		add	r3, r7, r3
+  83 0050 1B78     		ldrb	r3, [r3]
+  84 0052 181C     		mov	r0, r3
+  85 0054 FFF7FEFF 		bl	CyExitCriticalSection
+ 119:one_wire/DS18B20.c **** 
+ 120:one_wire/DS18B20.c ****    return bPresPulse;
+  86              		.loc 1 120 0
+  87 0058 0E23     		mov	r3, #14
+  88 005a FB18     		add	r3, r7, r3
+  89 005c 1B78     		ldrb	r3, [r3]
+ 121:one_wire/DS18B20.c **** }
+  90              		.loc 1 121 0
+  91 005e 181C     		mov	r0, r3
+  92 0060 BD46     		mov	sp, r7
+  93 0062 05B0     		add	sp, sp, #20
+  94              		@ sp needed
+  95 0064 90BD     		pop	{r4, r7, pc}
+  96              		.cfi_endproc
+  97              	.LFE62:
+  98              		.size	DS1820_Reset, .-DS1820_Reset
+  99 0066 C046     		.section	.text.DS1820_ReadBit,"ax",%progbits
+ 100              		.align	2
+ 101              		.global	DS1820_ReadBit
+ 102              		.code	16
+ 103              		.thumb_func
+ 104              		.type	DS1820_ReadBit, %function
+ 105              	DS1820_ReadBit:
+ 106              	.LFB63:
+ 122:one_wire/DS18B20.c **** 
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 5
+
+
+ 123:one_wire/DS18B20.c **** 
+ 124:one_wire/DS18B20.c **** /*******************************************************************************
+ 125:one_wire/DS18B20.c ****  * FUNCTION:   DS1820_ReadBit
+ 126:one_wire/DS18B20.c ****  * PURPOSE:    Reads a single bit from the DS1820 device.
+ 127:one_wire/DS18B20.c ****  *
+ 128:one_wire/DS18B20.c ****  * INPUT:      -
+ 129:one_wire/DS18B20.c ****  * OUTPUT:     -
+ 130:one_wire/DS18B20.c ****  * RETURN:     bool        value of the bit which as been read form the DS1820
+ 131:one_wire/DS18B20.c ****  ******************************************************************************/
+ 132:one_wire/DS18B20.c **** uint8 DS1820_ReadBit(ONE_WIRE_IO *io)
+ 133:one_wire/DS18B20.c **** {
+ 107              		.loc 1 133 0
+ 108              		.cfi_startproc
+ 109 0000 90B5     		push	{r4, r7, lr}
+ 110              		.cfi_def_cfa_offset 12
+ 111              		.cfi_offset 4, -12
+ 112              		.cfi_offset 7, -8
+ 113              		.cfi_offset 14, -4
+ 114 0002 85B0     		sub	sp, sp, #20
+ 115              		.cfi_def_cfa_offset 32
+ 116 0004 00AF     		add	r7, sp, #0
+ 117              		.cfi_def_cfa_register 7
+ 118 0006 7860     		str	r0, [r7, #4]
+ 134:one_wire/DS18B20.c ****    uint8 bBit;
+ 135:one_wire/DS18B20.c **** 
+ 136:one_wire/DS18B20.c ****     uint8  criticalState;
+ 137:one_wire/DS18B20.c ****     criticalState = CyEnterCriticalSection();
+ 119              		.loc 1 137 0
+ 120 0008 0F23     		mov	r3, #15
+ 121 000a FC18     		add	r4, r7, r3
+ 122 000c FFF7FEFF 		bl	CyEnterCriticalSection
+ 123 0010 031C     		mov	r3, r0
+ 124 0012 2370     		strb	r3, [r4]
+ 138:one_wire/DS18B20.c **** 
+ 139:one_wire/DS18B20.c ****    
+ 140:one_wire/DS18B20.c ****    io->pin_write(0);
+ 125              		.loc 1 140 0
+ 126 0014 7B68     		ldr	r3, [r7, #4]
+ 127 0016 5B68     		ldr	r3, [r3, #4]
+ 128 0018 0020     		mov	r0, #0
+ 129 001a 9847     		blx	r3
+ 141:one_wire/DS18B20.c ****    CyDelayUs(DS1820_MSTR_BITSTART);
+ 130              		.loc 1 141 0
+ 131 001c 0220     		mov	r0, #2
+ 132 001e FFF7FEFF 		bl	CyDelayUs
+ 142:one_wire/DS18B20.c ****    io->pin_write(1);
+ 133              		.loc 1 142 0
+ 134 0022 7B68     		ldr	r3, [r7, #4]
+ 135 0024 5B68     		ldr	r3, [r3, #4]
+ 136 0026 0120     		mov	r0, #1
+ 137 0028 9847     		blx	r3
+ 143:one_wire/DS18B20.c ****    CyDelayUs(DS1820_BITREAD_DLY);
+ 138              		.loc 1 143 0
+ 139 002a 0520     		mov	r0, #5
+ 140 002c FFF7FEFF 		bl	CyDelayUs
+ 144:one_wire/DS18B20.c **** 
+ 145:one_wire/DS18B20.c ****    bBit = io->pin_read();
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 6
+
+
+ 141              		.loc 1 145 0
+ 142 0030 7B68     		ldr	r3, [r7, #4]
+ 143 0032 1B68     		ldr	r3, [r3]
+ 144 0034 0E22     		mov	r2, #14
+ 145 0036 BC18     		add	r4, r7, r2
+ 146 0038 9847     		blx	r3
+ 147 003a 031C     		mov	r3, r0
+ 148 003c 2370     		strb	r3, [r4]
+ 146:one_wire/DS18B20.c ****    
+ 147:one_wire/DS18B20.c ****    CyExitCriticalSection(criticalState);
+ 149              		.loc 1 147 0
+ 150 003e 0F23     		mov	r3, #15
+ 151 0040 FB18     		add	r3, r7, r3
+ 152 0042 1B78     		ldrb	r3, [r3]
+ 153 0044 181C     		mov	r0, r3
+ 154 0046 FFF7FEFF 		bl	CyExitCriticalSection
+ 148:one_wire/DS18B20.c **** 
+ 149:one_wire/DS18B20.c ****    return (bBit);
+ 155              		.loc 1 149 0
+ 156 004a 0E23     		mov	r3, #14
+ 157 004c FB18     		add	r3, r7, r3
+ 158 004e 1B78     		ldrb	r3, [r3]
+ 150:one_wire/DS18B20.c **** }
+ 159              		.loc 1 150 0
+ 160 0050 181C     		mov	r0, r3
+ 161 0052 BD46     		mov	sp, r7
+ 162 0054 05B0     		add	sp, sp, #20
+ 163              		@ sp needed
+ 164 0056 90BD     		pop	{r4, r7, pc}
+ 165              		.cfi_endproc
+ 166              	.LFE63:
+ 167              		.size	DS1820_ReadBit, .-DS1820_ReadBit
+ 168              		.section	.text.DS1820_WriteBit,"ax",%progbits
+ 169              		.align	2
+ 170              		.global	DS1820_WriteBit
+ 171              		.code	16
+ 172              		.thumb_func
+ 173              		.type	DS1820_WriteBit, %function
+ 174              	DS1820_WriteBit:
+ 175              	.LFB64:
+ 151:one_wire/DS18B20.c **** 
+ 152:one_wire/DS18B20.c **** 
+ 153:one_wire/DS18B20.c **** /*******************************************************************************
+ 154:one_wire/DS18B20.c ****  * FUNCTION:   DS1820_WriteBit
+ 155:one_wire/DS18B20.c ****  * PURPOSE:    Writes a single bit to the DS1820 device.
+ 156:one_wire/DS18B20.c ****  *
+ 157:one_wire/DS18B20.c ****  * INPUT:      bBit        value of bit to be written
+ 158:one_wire/DS18B20.c ****  * OUTPUT:     -
+ 159:one_wire/DS18B20.c ****  * RETURN:     -
+ 160:one_wire/DS18B20.c ****  ******************************************************************************/
+ 161:one_wire/DS18B20.c **** void DS1820_WriteBit(ONE_WIRE_IO *io,uint8 bBit)
+ 162:one_wire/DS18B20.c **** {
+ 176              		.loc 1 162 0
+ 177              		.cfi_startproc
+ 178 0000 90B5     		push	{r4, r7, lr}
+ 179              		.cfi_def_cfa_offset 12
+ 180              		.cfi_offset 4, -12
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 7
+
+
+ 181              		.cfi_offset 7, -8
+ 182              		.cfi_offset 14, -4
+ 183 0002 85B0     		sub	sp, sp, #20
+ 184              		.cfi_def_cfa_offset 32
+ 185 0004 00AF     		add	r7, sp, #0
+ 186              		.cfi_def_cfa_register 7
+ 187 0006 7860     		str	r0, [r7, #4]
+ 188 0008 0A1C     		mov	r2, r1
+ 189 000a FB1C     		add	r3, r7, #3
+ 190 000c 1A70     		strb	r2, [r3]
+ 163:one_wire/DS18B20.c ****     uint8  criticalState;
+ 164:one_wire/DS18B20.c ****     criticalState = CyEnterCriticalSection();
+ 191              		.loc 1 164 0
+ 192 000e 0F23     		mov	r3, #15
+ 193 0010 FC18     		add	r4, r7, r3
+ 194 0012 FFF7FEFF 		bl	CyEnterCriticalSection
+ 195 0016 031C     		mov	r3, r0
+ 196 0018 2370     		strb	r3, [r4]
+ 165:one_wire/DS18B20.c ****     
+ 166:one_wire/DS18B20.c ****    io-> pin_write(0);
+ 197              		.loc 1 166 0
+ 198 001a 7B68     		ldr	r3, [r7, #4]
+ 199 001c 5B68     		ldr	r3, [r3, #4]
+ 200 001e 0020     		mov	r0, #0
+ 201 0020 9847     		blx	r3
+ 167:one_wire/DS18B20.c ****    CyDelayUs(DS1820_MSTR_BITSTART);
+ 202              		.loc 1 167 0
+ 203 0022 0220     		mov	r0, #2
+ 204 0024 FFF7FEFF 		bl	CyDelayUs
+ 168:one_wire/DS18B20.c **** 
+ 169:one_wire/DS18B20.c ****    if (bBit != 0)  // False
+ 205              		.loc 1 169 0
+ 206 0028 FB1C     		add	r3, r7, #3
+ 207 002a 1B78     		ldrb	r3, [r3]
+ 208 002c 002B     		cmp	r3, #0
+ 209 002e 03D0     		beq	.L6
+ 170:one_wire/DS18B20.c ****    {
+ 171:one_wire/DS18B20.c ****       io->pin_write(1);
+ 210              		.loc 1 171 0
+ 211 0030 7B68     		ldr	r3, [r7, #4]
+ 212 0032 5B68     		ldr	r3, [r3, #4]
+ 213 0034 0120     		mov	r0, #1
+ 214 0036 9847     		blx	r3
+ 215              	.L6:
+ 172:one_wire/DS18B20.c ****    }
+ 173:one_wire/DS18B20.c **** 
+ 174:one_wire/DS18B20.c ****    CyDelayUs(DS1820_BITWRITE_DLY);
+ 216              		.loc 1 174 0
+ 217 0038 6420     		mov	r0, #100
+ 218 003a FFF7FEFF 		bl	CyDelayUs
+ 175:one_wire/DS18B20.c ****    io->pin_write(1);
+ 219              		.loc 1 175 0
+ 220 003e 7B68     		ldr	r3, [r7, #4]
+ 221 0040 5B68     		ldr	r3, [r3, #4]
+ 222 0042 0120     		mov	r0, #1
+ 223 0044 9847     		blx	r3
+ 176:one_wire/DS18B20.c ****    
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 8
+
+
+ 177:one_wire/DS18B20.c ****    CyExitCriticalSection(criticalState);
+ 224              		.loc 1 177 0
+ 225 0046 0F23     		mov	r3, #15
+ 226 0048 FB18     		add	r3, r7, r3
+ 227 004a 1B78     		ldrb	r3, [r3]
+ 228 004c 181C     		mov	r0, r3
+ 229 004e FFF7FEFF 		bl	CyExitCriticalSection
+ 178:one_wire/DS18B20.c **** }
+ 230              		.loc 1 178 0
+ 231 0052 BD46     		mov	sp, r7
+ 232 0054 05B0     		add	sp, sp, #20
+ 233              		@ sp needed
+ 234 0056 90BD     		pop	{r4, r7, pc}
+ 235              		.cfi_endproc
+ 236              	.LFE64:
+ 237              		.size	DS1820_WriteBit, .-DS1820_WriteBit
+ 238              		.section	.text.DS1820_ReadByte,"ax",%progbits
+ 239              		.align	2
+ 240              		.global	DS1820_ReadByte
+ 241              		.code	16
+ 242              		.thumb_func
+ 243              		.type	DS1820_ReadByte, %function
+ 244              	DS1820_ReadByte:
+ 245              	.LFB65:
+ 179:one_wire/DS18B20.c **** 
+ 180:one_wire/DS18B20.c **** 
+ 181:one_wire/DS18B20.c **** /*******************************************************************************
+ 182:one_wire/DS18B20.c ****  * FUNCTION:   DS1820_ReadByte
+ 183:one_wire/DS18B20.c ****  * PURPOSE:    Reads a single byte from the DS1820 device.
+ 184:one_wire/DS18B20.c ****  *
+ 185:one_wire/DS18B20.c ****  * INPUT:      -
+ 186:one_wire/DS18B20.c ****  * OUTPUT:     -
+ 187:one_wire/DS18B20.c ****  * RETURN:     uint8          byte which has been read from the DS1820
+ 188:one_wire/DS18B20.c ****  ******************************************************************************/
+ 189:one_wire/DS18B20.c **** uint8 DS1820_ReadByte(ONE_WIRE_IO *io)
+ 190:one_wire/DS18B20.c **** {
+ 246              		.loc 1 190 0
+ 247              		.cfi_startproc
+ 248 0000 80B5     		push	{r7, lr}
+ 249              		.cfi_def_cfa_offset 8
+ 250              		.cfi_offset 7, -8
+ 251              		.cfi_offset 14, -4
+ 252 0002 84B0     		sub	sp, sp, #16
+ 253              		.cfi_def_cfa_offset 24
+ 254 0004 00AF     		add	r7, sp, #0
+ 255              		.cfi_def_cfa_register 7
+ 256 0006 7860     		str	r0, [r7, #4]
+ 191:one_wire/DS18B20.c ****    uint8 i;
+ 192:one_wire/DS18B20.c ****    uint8 value = 0;
+ 257              		.loc 1 192 0
+ 258 0008 0E23     		mov	r3, #14
+ 259 000a FB18     		add	r3, r7, r3
+ 260 000c 0022     		mov	r2, #0
+ 261 000e 1A70     		strb	r2, [r3]
+ 193:one_wire/DS18B20.c **** 
+ 194:one_wire/DS18B20.c ****    for (i=0 ; i < 8; i++)
+ 262              		.loc 1 194 0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 9
+
+
+ 263 0010 0F23     		mov	r3, #15
+ 264 0012 FB18     		add	r3, r7, r3
+ 265 0014 0022     		mov	r2, #0
+ 266 0016 1A70     		strb	r2, [r3]
+ 267 0018 1EE0     		b	.L8
+ 268              	.L10:
+ 195:one_wire/DS18B20.c ****    {
+ 196:one_wire/DS18B20.c ****       if ( DS1820_ReadBit(io) )
+ 269              		.loc 1 196 0
+ 270 001a 7B68     		ldr	r3, [r7, #4]
+ 271 001c 181C     		mov	r0, r3
+ 272 001e FFF7FEFF 		bl	DS1820_ReadBit
+ 273 0022 031E     		sub	r3, r0, #0
+ 274 0024 0ED0     		beq	.L9
+ 197:one_wire/DS18B20.c ****       {
+ 198:one_wire/DS18B20.c ****          value |= (1 << i);
+ 275              		.loc 1 198 0
+ 276 0026 0F23     		mov	r3, #15
+ 277 0028 FB18     		add	r3, r7, r3
+ 278 002a 1B78     		ldrb	r3, [r3]
+ 279 002c 0122     		mov	r2, #1
+ 280 002e 9A40     		lsl	r2, r2, r3
+ 281 0030 131C     		mov	r3, r2
+ 282 0032 DAB2     		uxtb	r2, r3
+ 283 0034 0E23     		mov	r3, #14
+ 284 0036 FB18     		add	r3, r7, r3
+ 285 0038 1B78     		ldrb	r3, [r3]
+ 286 003a 1343     		orr	r3, r2
+ 287 003c DAB2     		uxtb	r2, r3
+ 288 003e 0E23     		mov	r3, #14
+ 289 0040 FB18     		add	r3, r7, r3
+ 290 0042 1A70     		strb	r2, [r3]
+ 291              	.L9:
+ 199:one_wire/DS18B20.c ****       }
+ 200:one_wire/DS18B20.c ****       CyDelayUs(120);
+ 292              		.loc 1 200 0 discriminator 2
+ 293 0044 7820     		mov	r0, #120
+ 294 0046 FFF7FEFF 		bl	CyDelayUs
+ 194:one_wire/DS18B20.c ****    {
+ 295              		.loc 1 194 0 discriminator 2
+ 296 004a 0F23     		mov	r3, #15
+ 297 004c FB18     		add	r3, r7, r3
+ 298 004e 1A78     		ldrb	r2, [r3]
+ 299 0050 0F23     		mov	r3, #15
+ 300 0052 FB18     		add	r3, r7, r3
+ 301 0054 0132     		add	r2, r2, #1
+ 302 0056 1A70     		strb	r2, [r3]
+ 303              	.L8:
+ 194:one_wire/DS18B20.c ****    {
+ 304              		.loc 1 194 0 is_stmt 0 discriminator 1
+ 305 0058 0F23     		mov	r3, #15
+ 306 005a FB18     		add	r3, r7, r3
+ 307 005c 1B78     		ldrb	r3, [r3]
+ 308 005e 072B     		cmp	r3, #7
+ 309 0060 DBD9     		bls	.L10
+ 201:one_wire/DS18B20.c ****    }
+ 202:one_wire/DS18B20.c ****    return(value);
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 10
+
+
+ 310              		.loc 1 202 0 is_stmt 1
+ 311 0062 0E23     		mov	r3, #14
+ 312 0064 FB18     		add	r3, r7, r3
+ 313 0066 1B78     		ldrb	r3, [r3]
+ 203:one_wire/DS18B20.c **** }
+ 314              		.loc 1 203 0
+ 315 0068 181C     		mov	r0, r3
+ 316 006a BD46     		mov	sp, r7
+ 317 006c 04B0     		add	sp, sp, #16
+ 318              		@ sp needed
+ 319 006e 80BD     		pop	{r7, pc}
+ 320              		.cfi_endproc
+ 321              	.LFE65:
+ 322              		.size	DS1820_ReadByte, .-DS1820_ReadByte
+ 323              		.section	.text.DS1820_WriteByte,"ax",%progbits
+ 324              		.align	2
+ 325              		.global	DS1820_WriteByte
+ 326              		.code	16
+ 327              		.thumb_func
+ 328              		.type	DS1820_WriteByte, %function
+ 329              	DS1820_WriteByte:
+ 330              	.LFB66:
+ 204:one_wire/DS18B20.c **** 
+ 205:one_wire/DS18B20.c **** 
+ 206:one_wire/DS18B20.c **** /*******************************************************************************
+ 207:one_wire/DS18B20.c ****  * FUNCTION:   DS1820_WriteByte
+ 208:one_wire/DS18B20.c ****  * PURPOSE:    Writes a single byte to the DS1820 device.
+ 209:one_wire/DS18B20.c ****  *
+ 210:one_wire/DS18B20.c ****  * INPUT:      val_u8         byte to be written
+ 211:one_wire/DS18B20.c ****  * OUTPUT:     -
+ 212:one_wire/DS18B20.c ****  * RETURN:     -
+ 213:one_wire/DS18B20.c ****  ******************************************************************************/
+ 214:one_wire/DS18B20.c **** void DS1820_WriteByte(ONE_WIRE_IO *io,uint8 val_u8)
+ 215:one_wire/DS18B20.c **** {
+ 331              		.loc 1 215 0
+ 332              		.cfi_startproc
+ 333 0000 80B5     		push	{r7, lr}
+ 334              		.cfi_def_cfa_offset 8
+ 335              		.cfi_offset 7, -8
+ 336              		.cfi_offset 14, -4
+ 337 0002 84B0     		sub	sp, sp, #16
+ 338              		.cfi_def_cfa_offset 24
+ 339 0004 00AF     		add	r7, sp, #0
+ 340              		.cfi_def_cfa_register 7
+ 341 0006 7860     		str	r0, [r7, #4]
+ 342 0008 0A1C     		mov	r2, r1
+ 343 000a FB1C     		add	r3, r7, #3
+ 344 000c 1A70     		strb	r2, [r3]
+ 216:one_wire/DS18B20.c ****    uint8 i;
+ 217:one_wire/DS18B20.c ****    uint8 temp;
+ 218:one_wire/DS18B20.c **** 
+ 219:one_wire/DS18B20.c ****    for (i=0; i < 8; i++)      /* writes byte, one bit at a time */
+ 345              		.loc 1 219 0
+ 346 000e 0F23     		mov	r3, #15
+ 347 0010 FB18     		add	r3, r7, r3
+ 348 0012 0022     		mov	r2, #0
+ 349 0014 1A70     		strb	r2, [r3]
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 11
+
+
+ 350 0016 1FE0     		b	.L13
+ 351              	.L14:
+ 220:one_wire/DS18B20.c ****    {
+ 221:one_wire/DS18B20.c ****       temp = val_u8 >> i;     /* shifts val right 'i' spaces */
+ 352              		.loc 1 221 0 discriminator 3
+ 353 0018 FB1C     		add	r3, r7, #3
+ 354 001a 1A78     		ldrb	r2, [r3]
+ 355 001c 0F23     		mov	r3, #15
+ 356 001e FB18     		add	r3, r7, r3
+ 357 0020 1B78     		ldrb	r3, [r3]
+ 358 0022 1A41     		asr	r2, r2, r3
+ 359 0024 0E23     		mov	r3, #14
+ 360 0026 FB18     		add	r3, r7, r3
+ 361 0028 1A70     		strb	r2, [r3]
+ 222:one_wire/DS18B20.c ****       temp &= 0x01;           /* copy that bit to temp */
+ 362              		.loc 1 222 0 discriminator 3
+ 363 002a 0E23     		mov	r3, #14
+ 364 002c FB18     		add	r3, r7, r3
+ 365 002e 0E22     		mov	r2, #14
+ 366 0030 BA18     		add	r2, r7, r2
+ 367 0032 1278     		ldrb	r2, [r2]
+ 368 0034 0121     		mov	r1, #1
+ 369 0036 0A40     		and	r2, r1
+ 370 0038 1A70     		strb	r2, [r3]
+ 223:one_wire/DS18B20.c ****       DS1820_WriteBit(io,temp);  /* write bit in temp into */
+ 371              		.loc 1 223 0 discriminator 3
+ 372 003a 7A68     		ldr	r2, [r7, #4]
+ 373 003c 0E23     		mov	r3, #14
+ 374 003e FB18     		add	r3, r7, r3
+ 375 0040 1B78     		ldrb	r3, [r3]
+ 376 0042 101C     		mov	r0, r2
+ 377 0044 191C     		mov	r1, r3
+ 378 0046 FFF7FEFF 		bl	DS1820_WriteBit
+ 219:one_wire/DS18B20.c ****    {
+ 379              		.loc 1 219 0 discriminator 3
+ 380 004a 0F23     		mov	r3, #15
+ 381 004c FB18     		add	r3, r7, r3
+ 382 004e 1A78     		ldrb	r2, [r3]
+ 383 0050 0F23     		mov	r3, #15
+ 384 0052 FB18     		add	r3, r7, r3
+ 385 0054 0132     		add	r2, r2, #1
+ 386 0056 1A70     		strb	r2, [r3]
+ 387              	.L13:
+ 219:one_wire/DS18B20.c ****    {
+ 388              		.loc 1 219 0 is_stmt 0 discriminator 1
+ 389 0058 0F23     		mov	r3, #15
+ 390 005a FB18     		add	r3, r7, r3
+ 391 005c 1B78     		ldrb	r3, [r3]
+ 392 005e 072B     		cmp	r3, #7
+ 393 0060 DAD9     		bls	.L14
+ 224:one_wire/DS18B20.c ****    }
+ 225:one_wire/DS18B20.c **** 
+ 226:one_wire/DS18B20.c ****    CyDelayUs(105);
+ 394              		.loc 1 226 0 is_stmt 1
+ 395 0062 6920     		mov	r0, #105
+ 396 0064 FFF7FEFF 		bl	CyDelayUs
+ 227:one_wire/DS18B20.c **** }
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 12
+
+
+ 397              		.loc 1 227 0
+ 398 0068 BD46     		mov	sp, r7
+ 399 006a 04B0     		add	sp, sp, #16
+ 400              		@ sp needed
+ 401 006c 80BD     		pop	{r7, pc}
+ 402              		.cfi_endproc
+ 403              	.LFE66:
+ 404              		.size	DS1820_WriteByte, .-DS1820_WriteByte
+ 405 006e C046     		.section	.text.DS1820_AddrDevice,"ax",%progbits
+ 406              		.align	2
+ 407              		.global	DS1820_AddrDevice
+ 408              		.code	16
+ 409              		.thumb_func
+ 410              		.type	DS1820_AddrDevice, %function
+ 411              	DS1820_AddrDevice:
+ 412              	.LFB67:
+ 228:one_wire/DS18B20.c **** 
+ 229:one_wire/DS18B20.c **** 
+ 230:one_wire/DS18B20.c **** 
+ 231:one_wire/DS18B20.c **** /* -------------------------------------------------------------------------- */
+ 232:one_wire/DS18B20.c **** /*                             API Interface                                  */
+ 233:one_wire/DS18B20.c **** /* -------------------------------------------------------------------------- */
+ 234:one_wire/DS18B20.c **** 
+ 235:one_wire/DS18B20.c **** 
+ 236:one_wire/DS18B20.c **** /*******************************************************************************
+ 237:one_wire/DS18B20.c ****  * FUNCTION:   DS1820_AddrDevice
+ 238:one_wire/DS18B20.c ****  * PURPOSE:    Addresses a single or all devices on the 1-wire bus.
+ 239:one_wire/DS18B20.c ****  *
+ 240:one_wire/DS18B20.c ****  * INPUT:      nAddrMethod       use DS1820_CMD_MATCHROM to select a single
+ 241:one_wire/DS18B20.c ****  *                               device or DS1820_CMD_SKIPROM to select all
+ 242:one_wire/DS18B20.c ****  * OUTPUT:     -
+ 243:one_wire/DS18B20.c ****  * RETURN:     -
+ 244:one_wire/DS18B20.c ****  ******************************************************************************/
+ 245:one_wire/DS18B20.c **** void DS1820_AddrDevice(ONE_WIRE_IO *io,ONE_WIRE_ADDRESS *addr)
+ 246:one_wire/DS18B20.c **** {
+ 413              		.loc 1 246 0
+ 414              		.cfi_startproc
+ 415 0000 80B5     		push	{r7, lr}
+ 416              		.cfi_def_cfa_offset 8
+ 417              		.cfi_offset 7, -8
+ 418              		.cfi_offset 14, -4
+ 419 0002 84B0     		sub	sp, sp, #16
+ 420              		.cfi_def_cfa_offset 24
+ 421 0004 00AF     		add	r7, sp, #0
+ 422              		.cfi_def_cfa_register 7
+ 423 0006 7860     		str	r0, [r7, #4]
+ 424 0008 3960     		str	r1, [r7]
+ 247:one_wire/DS18B20.c ****    uint8 i;
+ 248:one_wire/DS18B20.c ****    
+ 249:one_wire/DS18B20.c ****       DS1820_WriteByte(io,DS1820_CMD_MATCHROM);     /* address single devices on bus */
+ 425              		.loc 1 249 0
+ 426 000a 7B68     		ldr	r3, [r7, #4]
+ 427 000c 181C     		mov	r0, r3
+ 428 000e 5521     		mov	r1, #85
+ 429 0010 FFF7FEFF 		bl	DS1820_WriteByte
+ 250:one_wire/DS18B20.c ****       for (i = 0; i < DS1820_ADDR_LEN; i ++)
+ 430              		.loc 1 250 0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 13
+
+
+ 431 0014 0F23     		mov	r3, #15
+ 432 0016 FB18     		add	r3, r7, r3
+ 433 0018 0022     		mov	r2, #0
+ 434 001a 1A70     		strb	r2, [r3]
+ 435 001c 10E0     		b	.L16
+ 436              	.L17:
+ 251:one_wire/DS18B20.c ****       {
+ 252:one_wire/DS18B20.c ****          DS1820_WriteByte(io,addr->nRomAddr_au8[i]);
+ 437              		.loc 1 252 0 discriminator 3
+ 438 001e 0F23     		mov	r3, #15
+ 439 0020 FB18     		add	r3, r7, r3
+ 440 0022 1B78     		ldrb	r3, [r3]
+ 441 0024 3A68     		ldr	r2, [r7]
+ 442 0026 D35C     		ldrb	r3, [r2, r3]
+ 443 0028 7A68     		ldr	r2, [r7, #4]
+ 444 002a 101C     		mov	r0, r2
+ 445 002c 191C     		mov	r1, r3
+ 446 002e FFF7FEFF 		bl	DS1820_WriteByte
+ 250:one_wire/DS18B20.c ****       for (i = 0; i < DS1820_ADDR_LEN; i ++)
+ 447              		.loc 1 250 0 discriminator 3
+ 448 0032 0F23     		mov	r3, #15
+ 449 0034 FB18     		add	r3, r7, r3
+ 450 0036 1A78     		ldrb	r2, [r3]
+ 451 0038 0F23     		mov	r3, #15
+ 452 003a FB18     		add	r3, r7, r3
+ 453 003c 0132     		add	r2, r2, #1
+ 454 003e 1A70     		strb	r2, [r3]
+ 455              	.L16:
+ 250:one_wire/DS18B20.c ****       for (i = 0; i < DS1820_ADDR_LEN; i ++)
+ 456              		.loc 1 250 0 is_stmt 0 discriminator 1
+ 457 0040 0F23     		mov	r3, #15
+ 458 0042 FB18     		add	r3, r7, r3
+ 459 0044 1B78     		ldrb	r3, [r3]
+ 460 0046 072B     		cmp	r3, #7
+ 461 0048 E9D9     		bls	.L17
+ 253:one_wire/DS18B20.c ****       }
+ 254:one_wire/DS18B20.c ****  
+ 255:one_wire/DS18B20.c **** }
+ 462              		.loc 1 255 0 is_stmt 1
+ 463 004a BD46     		mov	sp, r7
+ 464 004c 04B0     		add	sp, sp, #16
+ 465              		@ sp needed
+ 466 004e 80BD     		pop	{r7, pc}
+ 467              		.cfi_endproc
+ 468              	.LFE67:
+ 469              		.size	DS1820_AddrDevice, .-DS1820_AddrDevice
+ 470              		.section	.text.DS1820_FindNextDevice,"ax",%progbits
+ 471              		.align	2
+ 472              		.global	DS1820_FindNextDevice
+ 473              		.code	16
+ 474              		.thumb_func
+ 475              		.type	DS1820_FindNextDevice, %function
+ 476              	DS1820_FindNextDevice:
+ 477              	.LFB68:
+ 256:one_wire/DS18B20.c **** 
+ 257:one_wire/DS18B20.c **** 
+ 258:one_wire/DS18B20.c **** /*******************************************************************************
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 14
+
+
+ 259:one_wire/DS18B20.c ****  * FUNCTION:   DS1820_FindNextDevice
+ 260:one_wire/DS18B20.c ****  * PURPOSE:    Finds next device connected to the 1-wire bus.
+ 261:one_wire/DS18B20.c ****  *
+ 262:one_wire/DS18B20.c ****  * INPUT:      -
+ 263:one_wire/DS18B20.c ****  * OUTPUT:     nRomAddr_au8[]       ROM code of the next device
+ 264:one_wire/DS18B20.c ****  * RETURN:     bool                 TRUE if there are more devices on the 1-wire
+ 265:one_wire/DS18B20.c ****  *                                  bus, FALSE otherwise
+ 266:one_wire/DS18B20.c ****  ******************************************************************************/
+ 267:one_wire/DS18B20.c **** uint8 DS1820_FindNextDevice(ONE_WIRE_IO *io,ONE_WIRE_ADDRESS *addr)
+ 268:one_wire/DS18B20.c **** {
+ 478              		.loc 1 268 0
+ 479              		.cfi_startproc
+ 480 0000 90B5     		push	{r4, r7, lr}
+ 481              		.cfi_def_cfa_offset 12
+ 482              		.cfi_offset 4, -12
+ 483              		.cfi_offset 7, -8
+ 484              		.cfi_offset 14, -4
+ 485 0002 87B0     		sub	sp, sp, #28
+ 486              		.cfi_def_cfa_offset 40
+ 487 0004 00AF     		add	r7, sp, #0
+ 488              		.cfi_def_cfa_register 7
+ 489 0006 7860     		str	r0, [r7, #4]
+ 490 0008 3960     		str	r1, [r7]
+ 269:one_wire/DS18B20.c ****     uint8 state_u8;
+ 270:one_wire/DS18B20.c ****     uint8 byteidx_u8;
+ 271:one_wire/DS18B20.c ****     uint8 mask_u8 = 1;
+ 491              		.loc 1 271 0
+ 492 000a 1523     		mov	r3, #21
+ 493 000c FB18     		add	r3, r7, r3
+ 494 000e 0122     		mov	r2, #1
+ 495 0010 1A70     		strb	r2, [r3]
+ 272:one_wire/DS18B20.c ****     uint8 bitpos_u8 = 1;
+ 496              		.loc 1 272 0
+ 497 0012 1423     		mov	r3, #20
+ 498 0014 FB18     		add	r3, r7, r3
+ 499 0016 0122     		mov	r2, #1
+ 500 0018 1A70     		strb	r2, [r3]
+ 273:one_wire/DS18B20.c ****     uint8 nDiscrepancyMarker_u8 = 0;
+ 501              		.loc 1 273 0
+ 502 001a 1323     		mov	r3, #19
+ 503 001c FB18     		add	r3, r7, r3
+ 504 001e 0022     		mov	r2, #0
+ 505 0020 1A70     		strb	r2, [r3]
+ 274:one_wire/DS18B20.c ****     uint8 bit_b;
+ 275:one_wire/DS18B20.c ****     uint8 bStatus;
+ 276:one_wire/DS18B20.c ****     uint8 next_b = 0; //FALSE;
+ 506              		.loc 1 276 0
+ 507 0022 1123     		mov	r3, #17
+ 508 0024 FB18     		add	r3, r7, r3
+ 509 0026 0022     		mov	r2, #0
+ 510 0028 1A70     		strb	r2, [r3]
+ 277:one_wire/DS18B20.c ****     uint8 crc8;
+ 278:one_wire/DS18B20.c **** 
+ 279:one_wire/DS18B20.c ****     /* init ROM address */
+ 280:one_wire/DS18B20.c ****     for (byteidx_u8=0; byteidx_u8 < 8; byteidx_u8 ++)
+ 511              		.loc 1 280 0
+ 512 002a 1623     		mov	r3, #22
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 15
+
+
+ 513 002c FB18     		add	r3, r7, r3
+ 514 002e 0022     		mov	r2, #0
+ 515 0030 1A70     		strb	r2, [r3]
+ 516 0032 0CE0     		b	.L19
+ 517              	.L20:
+ 281:one_wire/DS18B20.c ****     {
+ 282:one_wire/DS18B20.c ****         addr->nRomAddr_au8[byteidx_u8] = 0x00;
+ 518              		.loc 1 282 0 discriminator 3
+ 519 0034 1623     		mov	r3, #22
+ 520 0036 FB18     		add	r3, r7, r3
+ 521 0038 1B78     		ldrb	r3, [r3]
+ 522 003a 3A68     		ldr	r2, [r7]
+ 523 003c 0021     		mov	r1, #0
+ 524 003e D154     		strb	r1, [r2, r3]
+ 280:one_wire/DS18B20.c ****     {
+ 525              		.loc 1 280 0 discriminator 3
+ 526 0040 1623     		mov	r3, #22
+ 527 0042 FB18     		add	r3, r7, r3
+ 528 0044 1A78     		ldrb	r2, [r3]
+ 529 0046 1623     		mov	r3, #22
+ 530 0048 FB18     		add	r3, r7, r3
+ 531 004a 0132     		add	r2, r2, #1
+ 532 004c 1A70     		strb	r2, [r3]
+ 533              	.L19:
+ 280:one_wire/DS18B20.c ****     {
+ 534              		.loc 1 280 0 is_stmt 0 discriminator 1
+ 535 004e 1623     		mov	r3, #22
+ 536 0050 FB18     		add	r3, r7, r3
+ 537 0052 1B78     		ldrb	r3, [r3]
+ 538 0054 072B     		cmp	r3, #7
+ 539 0056 EDD9     		bls	.L20
+ 283:one_wire/DS18B20.c ****     }
+ 284:one_wire/DS18B20.c **** 
+ 285:one_wire/DS18B20.c ****     bStatus = DS1820_Reset(io);        /* reset the 1-wire */
+ 540              		.loc 1 285 0 is_stmt 1
+ 541 0058 1023     		mov	r3, #16
+ 542 005a FC18     		add	r4, r7, r3
+ 543 005c 7B68     		ldr	r3, [r7, #4]
+ 544 005e 181C     		mov	r0, r3
+ 545 0060 FFF7FEFF 		bl	DS1820_Reset
+ 546 0064 031C     		mov	r3, r0
+ 547 0066 2370     		strb	r3, [r4]
+ 286:one_wire/DS18B20.c **** 
+ 287:one_wire/DS18B20.c ****     if (bStatus || bDoneFlag)        /* no device found */
+ 548              		.loc 1 287 0
+ 549 0068 1023     		mov	r3, #16
+ 550 006a FB18     		add	r3, r7, r3
+ 551 006c 1B78     		ldrb	r3, [r3]
+ 552 006e 002B     		cmp	r3, #0
+ 553 0070 03D1     		bne	.L21
+ 554              		.loc 1 287 0 is_stmt 0 discriminator 1
+ 555 0072 824B     		ldr	r3, .L39
+ 556 0074 1B78     		ldrb	r3, [r3]
+ 557 0076 002B     		cmp	r3, #0
+ 558 0078 04D0     		beq	.L22
+ 559              	.L21:
+ 288:one_wire/DS18B20.c ****     {
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 16
+
+
+ 289:one_wire/DS18B20.c ****         nLastDiscrepancy_u8 = 0;     /* reset the search */
+ 560              		.loc 1 289 0 is_stmt 1
+ 561 007a 814B     		ldr	r3, .L39+4
+ 562 007c 0022     		mov	r2, #0
+ 563 007e 1A70     		strb	r2, [r3]
+ 290:one_wire/DS18B20.c ****         return 0; //FALSE;
+ 564              		.loc 1 290 0
+ 565 0080 0023     		mov	r3, #0
+ 566 0082 F7E0     		b	.L23
+ 567              	.L22:
+ 291:one_wire/DS18B20.c ****     }
+ 292:one_wire/DS18B20.c **** 
+ 293:one_wire/DS18B20.c ****     /* send search rom command */
+ 294:one_wire/DS18B20.c ****     DS1820_WriteByte(io,DS1820_CMD_SEARCHROM);
+ 568              		.loc 1 294 0
+ 569 0084 7B68     		ldr	r3, [r7, #4]
+ 570 0086 181C     		mov	r0, r3
+ 571 0088 F021     		mov	r1, #240
+ 572 008a FFF7FEFF 		bl	DS1820_WriteByte
+ 295:one_wire/DS18B20.c **** 
+ 296:one_wire/DS18B20.c ****     byteidx_u8 = 0;
+ 573              		.loc 1 296 0
+ 574 008e 1623     		mov	r3, #22
+ 575 0090 FB18     		add	r3, r7, r3
+ 576 0092 0022     		mov	r2, #0
+ 577 0094 1A70     		strb	r2, [r3]
+ 578              	.L35:
+ 297:one_wire/DS18B20.c ****     do
+ 298:one_wire/DS18B20.c ****     {
+ 299:one_wire/DS18B20.c ****         state_u8 = 0;
+ 579              		.loc 1 299 0
+ 580 0096 1723     		mov	r3, #23
+ 581 0098 FB18     		add	r3, r7, r3
+ 582 009a 0022     		mov	r2, #0
+ 583 009c 1A70     		strb	r2, [r3]
+ 300:one_wire/DS18B20.c **** 
+ 301:one_wire/DS18B20.c ****         /* read bit */
+ 302:one_wire/DS18B20.c ****         if ( DS1820_ReadBit(io) != 0 )
+ 584              		.loc 1 302 0
+ 585 009e 7B68     		ldr	r3, [r7, #4]
+ 586 00a0 181C     		mov	r0, r3
+ 587 00a2 FFF7FEFF 		bl	DS1820_ReadBit
+ 588 00a6 031E     		sub	r3, r0, #0
+ 589 00a8 03D0     		beq	.L24
+ 303:one_wire/DS18B20.c ****         {
+ 304:one_wire/DS18B20.c ****             state_u8 = 2;
+ 590              		.loc 1 304 0
+ 591 00aa 1723     		mov	r3, #23
+ 592 00ac FB18     		add	r3, r7, r3
+ 593 00ae 0222     		mov	r2, #2
+ 594 00b0 1A70     		strb	r2, [r3]
+ 595              	.L24:
+ 305:one_wire/DS18B20.c ****         }
+ 306:one_wire/DS18B20.c ****         CyDelayUs(120);
+ 596              		.loc 1 306 0
+ 597 00b2 7820     		mov	r0, #120
+ 598 00b4 FFF7FEFF 		bl	CyDelayUs
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 17
+
+
+ 307:one_wire/DS18B20.c **** 
+ 308:one_wire/DS18B20.c ****         /* read bit complement */
+ 309:one_wire/DS18B20.c ****         if ( DS1820_ReadBit(io) != 0 )
+ 599              		.loc 1 309 0
+ 600 00b8 7B68     		ldr	r3, [r7, #4]
+ 601 00ba 181C     		mov	r0, r3
+ 602 00bc FFF7FEFF 		bl	DS1820_ReadBit
+ 603 00c0 031E     		sub	r3, r0, #0
+ 604 00c2 07D0     		beq	.L25
+ 310:one_wire/DS18B20.c ****         {
+ 311:one_wire/DS18B20.c ****             state_u8 |= 1;
+ 605              		.loc 1 311 0
+ 606 00c4 1723     		mov	r3, #23
+ 607 00c6 FB18     		add	r3, r7, r3
+ 608 00c8 1722     		mov	r2, #23
+ 609 00ca BA18     		add	r2, r7, r2
+ 610 00cc 1278     		ldrb	r2, [r2]
+ 611 00ce 0121     		mov	r1, #1
+ 612 00d0 0A43     		orr	r2, r1
+ 613 00d2 1A70     		strb	r2, [r3]
+ 614              	.L25:
+ 312:one_wire/DS18B20.c ****         }
+ 313:one_wire/DS18B20.c ****         CyDelayUs(120);
+ 615              		.loc 1 313 0
+ 616 00d4 7820     		mov	r0, #120
+ 617 00d6 FFF7FEFF 		bl	CyDelayUs
+ 314:one_wire/DS18B20.c **** 
+ 315:one_wire/DS18B20.c ****         /* description for values of state_u8: */
+ 316:one_wire/DS18B20.c ****         /* 00    There are devices connected to the bus which have conflicting */
+ 317:one_wire/DS18B20.c ****         /*       bits in the current ROM code bit position. */
+ 318:one_wire/DS18B20.c ****         /* 01    All devices connected to the bus have a 0 in this bit position. */
+ 319:one_wire/DS18B20.c ****         /* 10    All devices connected to the bus have a 1 in this bit position. */
+ 320:one_wire/DS18B20.c ****         /* 11    There are no devices connected to the 1-wire bus. */
+ 321:one_wire/DS18B20.c **** 
+ 322:one_wire/DS18B20.c ****         /* if there are no devices on the bus */
+ 323:one_wire/DS18B20.c ****         if (state_u8 == 3)
+ 618              		.loc 1 323 0
+ 619 00da 1723     		mov	r3, #23
+ 620 00dc FB18     		add	r3, r7, r3
+ 621 00de 1B78     		ldrb	r3, [r3]
+ 622 00e0 032B     		cmp	r3, #3
+ 623 00e2 00D1     		bne	.L26
+ 324:one_wire/DS18B20.c ****         {
+ 325:one_wire/DS18B20.c ****             break;
+ 624              		.loc 1 325 0
+ 625 00e4 90E0     		b	.L27
+ 626              	.L26:
+ 326:one_wire/DS18B20.c ****         }
+ 327:one_wire/DS18B20.c ****         else
+ 328:one_wire/DS18B20.c ****         {
+ 329:one_wire/DS18B20.c ****             /* devices have the same logical value at this position */
+ 330:one_wire/DS18B20.c ****             if (state_u8 > 0)
+ 627              		.loc 1 330 0
+ 628 00e6 1723     		mov	r3, #23
+ 629 00e8 FB18     		add	r3, r7, r3
+ 630 00ea 1B78     		ldrb	r3, [r3]
+ 631 00ec 002B     		cmp	r3, #0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 18
+
+
+ 632 00ee 07D0     		beq	.L28
+ 331:one_wire/DS18B20.c ****             {
+ 332:one_wire/DS18B20.c ****                 /* get bit value */
+ 333:one_wire/DS18B20.c ****                 bit_b = (uint8)(state_u8 >> 1);
+ 633              		.loc 1 333 0
+ 634 00f0 1223     		mov	r3, #18
+ 635 00f2 FB18     		add	r3, r7, r3
+ 636 00f4 1722     		mov	r2, #23
+ 637 00f6 BA18     		add	r2, r7, r2
+ 638 00f8 1278     		ldrb	r2, [r2]
+ 639 00fa 5208     		lsr	r2, r2, #1
+ 640 00fc 1A70     		strb	r2, [r3]
+ 641 00fe 2EE0     		b	.L29
+ 642              	.L28:
+ 334:one_wire/DS18B20.c ****             }
+ 335:one_wire/DS18B20.c ****             /* devices have confilcting bits in the current ROM code */
+ 336:one_wire/DS18B20.c ****             else
+ 337:one_wire/DS18B20.c ****             {
+ 338:one_wire/DS18B20.c ****                 /* if there was a conflict on the last iteration */
+ 339:one_wire/DS18B20.c ****                 if (bitpos_u8 < nLastDiscrepancy_u8)
+ 643              		.loc 1 339 0
+ 644 0100 5F4B     		ldr	r3, .L39+4
+ 645 0102 1B78     		ldrb	r3, [r3]
+ 646 0104 1422     		mov	r2, #20
+ 647 0106 BA18     		add	r2, r7, r2
+ 648 0108 1278     		ldrb	r2, [r2]
+ 649 010a 9A42     		cmp	r2, r3
+ 650 010c 10D2     		bcs	.L30
+ 340:one_wire/DS18B20.c ****                 {
+ 341:one_wire/DS18B20.c ****                     /* take same bit as in last iteration */
+ 342:one_wire/DS18B20.c ****                     bit_b = ( (addr->nRomAddr_au8[byteidx_u8] & mask_u8) > 0 );
+ 651              		.loc 1 342 0
+ 652 010e 1623     		mov	r3, #22
+ 653 0110 FB18     		add	r3, r7, r3
+ 654 0112 1B78     		ldrb	r3, [r3]
+ 655 0114 3A68     		ldr	r2, [r7]
+ 656 0116 D35C     		ldrb	r3, [r2, r3]
+ 657 0118 1522     		mov	r2, #21
+ 658 011a BA18     		add	r2, r7, r2
+ 659 011c 1278     		ldrb	r2, [r2]
+ 660 011e 1340     		and	r3, r2
+ 661 0120 DBB2     		uxtb	r3, r3
+ 662 0122 5A1E     		sub	r2, r3, #1
+ 663 0124 9341     		sbc	r3, r3, r2
+ 664 0126 DAB2     		uxtb	r2, r3
+ 665 0128 1223     		mov	r3, #18
+ 666 012a FB18     		add	r3, r7, r3
+ 667 012c 1A70     		strb	r2, [r3]
+ 668 012e 0BE0     		b	.L31
+ 669              	.L30:
+ 343:one_wire/DS18B20.c ****                 }
+ 344:one_wire/DS18B20.c ****                 else
+ 345:one_wire/DS18B20.c ****                 {
+ 346:one_wire/DS18B20.c ****                     bit_b = (bitpos_u8 == nLastDiscrepancy_u8);
+ 670              		.loc 1 346 0
+ 671 0130 534B     		ldr	r3, .L39+4
+ 672 0132 1B78     		ldrb	r3, [r3]
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 19
+
+
+ 673 0134 1422     		mov	r2, #20
+ 674 0136 BA18     		add	r2, r7, r2
+ 675 0138 1278     		ldrb	r2, [r2]
+ 676 013a D31A     		sub	r3, r2, r3
+ 677 013c 5A42     		neg	r2, r3
+ 678 013e 5341     		adc	r3, r3, r2
+ 679 0140 DAB2     		uxtb	r2, r3
+ 680 0142 1223     		mov	r3, #18
+ 681 0144 FB18     		add	r3, r7, r3
+ 682 0146 1A70     		strb	r2, [r3]
+ 683              	.L31:
+ 347:one_wire/DS18B20.c ****                 }
+ 348:one_wire/DS18B20.c **** 
+ 349:one_wire/DS18B20.c ****                 if (bit_b == 0)
+ 684              		.loc 1 349 0
+ 685 0148 1223     		mov	r3, #18
+ 686 014a FB18     		add	r3, r7, r3
+ 687 014c 1B78     		ldrb	r3, [r3]
+ 688 014e 002B     		cmp	r3, #0
+ 689 0150 05D1     		bne	.L29
+ 350:one_wire/DS18B20.c ****                 {
+ 351:one_wire/DS18B20.c ****                     nDiscrepancyMarker_u8 = bitpos_u8;
+ 690              		.loc 1 351 0
+ 691 0152 1323     		mov	r3, #19
+ 692 0154 FB18     		add	r3, r7, r3
+ 693 0156 1422     		mov	r2, #20
+ 694 0158 BA18     		add	r2, r7, r2
+ 695 015a 1278     		ldrb	r2, [r2]
+ 696 015c 1A70     		strb	r2, [r3]
+ 697              	.L29:
+ 352:one_wire/DS18B20.c ****                 }
+ 353:one_wire/DS18B20.c ****             }
+ 354:one_wire/DS18B20.c **** 
+ 355:one_wire/DS18B20.c ****             /* store bit in ROM address */
+ 356:one_wire/DS18B20.c ****            if (bit_b != 0)
+ 698              		.loc 1 356 0
+ 699 015e 1223     		mov	r3, #18
+ 700 0160 FB18     		add	r3, r7, r3
+ 701 0162 1B78     		ldrb	r3, [r3]
+ 702 0164 002B     		cmp	r3, #0
+ 703 0166 0FD0     		beq	.L32
+ 357:one_wire/DS18B20.c ****            {
+ 358:one_wire/DS18B20.c ****                addr->nRomAddr_au8[byteidx_u8] |= mask_u8;
+ 704              		.loc 1 358 0
+ 705 0168 1623     		mov	r3, #22
+ 706 016a FB18     		add	r3, r7, r3
+ 707 016c 1B78     		ldrb	r3, [r3]
+ 708 016e 1622     		mov	r2, #22
+ 709 0170 BA18     		add	r2, r7, r2
+ 710 0172 1278     		ldrb	r2, [r2]
+ 711 0174 3968     		ldr	r1, [r7]
+ 712 0176 895C     		ldrb	r1, [r1, r2]
+ 713 0178 1522     		mov	r2, #21
+ 714 017a BA18     		add	r2, r7, r2
+ 715 017c 1278     		ldrb	r2, [r2]
+ 716 017e 0A43     		orr	r2, r1
+ 717 0180 D1B2     		uxtb	r1, r2
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 20
+
+
+ 718 0182 3A68     		ldr	r2, [r7]
+ 719 0184 D154     		strb	r1, [r2, r3]
+ 720 0186 13E0     		b	.L33
+ 721              	.L32:
+ 359:one_wire/DS18B20.c ****            }
+ 360:one_wire/DS18B20.c ****            else
+ 361:one_wire/DS18B20.c ****            {
+ 362:one_wire/DS18B20.c ****                addr->nRomAddr_au8[byteidx_u8] &= ~mask_u8;
+ 722              		.loc 1 362 0
+ 723 0188 1623     		mov	r3, #22
+ 724 018a FB18     		add	r3, r7, r3
+ 725 018c 1B78     		ldrb	r3, [r3]
+ 726 018e 1622     		mov	r2, #22
+ 727 0190 BA18     		add	r2, r7, r2
+ 728 0192 1278     		ldrb	r2, [r2]
+ 729 0194 3968     		ldr	r1, [r7]
+ 730 0196 8A5C     		ldrb	r2, [r1, r2]
+ 731 0198 D0B2     		uxtb	r0, r2
+ 732 019a 1522     		mov	r2, #21
+ 733 019c BA18     		add	r2, r7, r2
+ 734 019e 1278     		ldrb	r2, [r2]
+ 735 01a0 D243     		mvn	r2, r2
+ 736 01a2 D1B2     		uxtb	r1, r2
+ 737 01a4 021C     		add	r2, r0, #0
+ 738 01a6 0A40     		and	r2, r1
+ 739 01a8 D2B2     		uxtb	r2, r2
+ 740 01aa D1B2     		uxtb	r1, r2
+ 741 01ac 3A68     		ldr	r2, [r7]
+ 742 01ae D154     		strb	r1, [r2, r3]
+ 743              	.L33:
+ 363:one_wire/DS18B20.c ****            }
+ 364:one_wire/DS18B20.c **** 
+ 365:one_wire/DS18B20.c ****            DS1820_WriteBit(io,bit_b);
+ 744              		.loc 1 365 0
+ 745 01b0 7A68     		ldr	r2, [r7, #4]
+ 746 01b2 1223     		mov	r3, #18
+ 747 01b4 FB18     		add	r3, r7, r3
+ 748 01b6 1B78     		ldrb	r3, [r3]
+ 749 01b8 101C     		mov	r0, r2
+ 750 01ba 191C     		mov	r1, r3
+ 751 01bc FFF7FEFF 		bl	DS1820_WriteBit
+ 366:one_wire/DS18B20.c **** 
+ 367:one_wire/DS18B20.c ****            /* increment bit position */
+ 368:one_wire/DS18B20.c ****            bitpos_u8 ++;
+ 752              		.loc 1 368 0
+ 753 01c0 1423     		mov	r3, #20
+ 754 01c2 FB18     		add	r3, r7, r3
+ 755 01c4 1A78     		ldrb	r2, [r3]
+ 756 01c6 1423     		mov	r3, #20
+ 757 01c8 FB18     		add	r3, r7, r3
+ 758 01ca 0132     		add	r2, r2, #1
+ 759 01cc 1A70     		strb	r2, [r3]
+ 369:one_wire/DS18B20.c **** 
+ 370:one_wire/DS18B20.c ****            /* calculate next mask value */
+ 371:one_wire/DS18B20.c ****            mask_u8 = mask_u8 << 1;
+ 760              		.loc 1 371 0
+ 761 01ce 1523     		mov	r3, #21
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 21
+
+
+ 762 01d0 FA18     		add	r2, r7, r3
+ 763 01d2 1523     		mov	r3, #21
+ 764 01d4 FB18     		add	r3, r7, r3
+ 765 01d6 1B78     		ldrb	r3, [r3]
+ 766 01d8 DB18     		add	r3, r3, r3
+ 767 01da 1370     		strb	r3, [r2]
+ 372:one_wire/DS18B20.c **** 
+ 373:one_wire/DS18B20.c ****            /* check if this byte has finished */
+ 374:one_wire/DS18B20.c ****            if (mask_u8 == 0)
+ 768              		.loc 1 374 0
+ 769 01dc 1523     		mov	r3, #21
+ 770 01de FB18     		add	r3, r7, r3
+ 771 01e0 1B78     		ldrb	r3, [r3]
+ 772 01e2 002B     		cmp	r3, #0
+ 773 01e4 0AD1     		bne	.L34
+ 375:one_wire/DS18B20.c ****            {
+ 376:one_wire/DS18B20.c ****                byteidx_u8 ++;  /* advance to next byte of ROM mask */
+ 774              		.loc 1 376 0
+ 775 01e6 1623     		mov	r3, #22
+ 776 01e8 FB18     		add	r3, r7, r3
+ 777 01ea 1A78     		ldrb	r2, [r3]
+ 778 01ec 1623     		mov	r3, #22
+ 779 01ee FB18     		add	r3, r7, r3
+ 780 01f0 0132     		add	r2, r2, #1
+ 781 01f2 1A70     		strb	r2, [r3]
+ 377:one_wire/DS18B20.c ****                mask_u8 = 1;    /* update mask */
+ 782              		.loc 1 377 0
+ 783 01f4 1523     		mov	r3, #21
+ 784 01f6 FB18     		add	r3, r7, r3
+ 785 01f8 0122     		mov	r2, #1
+ 786 01fa 1A70     		strb	r2, [r3]
+ 787              	.L34:
+ 378:one_wire/DS18B20.c ****            }
+ 379:one_wire/DS18B20.c ****         }
+ 380:one_wire/DS18B20.c ****     } while (byteidx_u8 < DS1820_ADDR_LEN);
+ 788              		.loc 1 380 0
+ 789 01fc 1623     		mov	r3, #22
+ 790 01fe FB18     		add	r3, r7, r3
+ 791 0200 1B78     		ldrb	r3, [r3]
+ 792 0202 072B     		cmp	r3, #7
+ 793 0204 00D8     		bhi	.LCB686
+ 794 0206 46E7     		b	.L35	@long jump
+ 795              	.LCB686:
+ 796              	.L27:
+ 381:one_wire/DS18B20.c **** 
+ 382:one_wire/DS18B20.c **** 
+ 383:one_wire/DS18B20.c ****     /* if search was unsuccessful then */
+ 384:one_wire/DS18B20.c ****     if (bitpos_u8 < 65)
+ 797              		.loc 1 384 0
+ 798 0208 1423     		mov	r3, #20
+ 799 020a FB18     		add	r3, r7, r3
+ 800 020c 1B78     		ldrb	r3, [r3]
+ 801 020e 402B     		cmp	r3, #64
+ 802 0210 03D8     		bhi	.L36
+ 385:one_wire/DS18B20.c ****     {
+ 386:one_wire/DS18B20.c ****         /* reset the last discrepancy to 0 */
+ 387:one_wire/DS18B20.c ****         nLastDiscrepancy_u8 = 0;
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 22
+
+
+ 803              		.loc 1 387 0
+ 804 0212 1B4B     		ldr	r3, .L39+4
+ 805 0214 0022     		mov	r2, #0
+ 806 0216 1A70     		strb	r2, [r3]
+ 807 0218 29E0     		b	.L37
+ 808              	.L36:
+ 388:one_wire/DS18B20.c ****     }
+ 389:one_wire/DS18B20.c ****     else
+ 390:one_wire/DS18B20.c ****     {
+ 391:one_wire/DS18B20.c ****         /* search was successful */
+ 392:one_wire/DS18B20.c ****         nLastDiscrepancy_u8 = nDiscrepancyMarker_u8;
+ 809              		.loc 1 392 0
+ 810 021a 194B     		ldr	r3, .L39+4
+ 811 021c 1322     		mov	r2, #19
+ 812 021e BA18     		add	r2, r7, r2
+ 813 0220 1278     		ldrb	r2, [r2]
+ 814 0222 1A70     		strb	r2, [r3]
+ 393:one_wire/DS18B20.c ****         bDoneFlag = (nLastDiscrepancy_u8 == 0);
+ 815              		.loc 1 393 0
+ 816 0224 164B     		ldr	r3, .L39+4
+ 817 0226 1B78     		ldrb	r3, [r3]
+ 818 0228 5A42     		neg	r2, r3
+ 819 022a 5341     		adc	r3, r3, r2
+ 820 022c DBB2     		uxtb	r3, r3
+ 821 022e 1A1C     		mov	r2, r3
+ 822 0230 124B     		ldr	r3, .L39
+ 823 0232 1A70     		strb	r2, [r3]
+ 394:one_wire/DS18B20.c **** 
+ 395:one_wire/DS18B20.c ****         /* indicates search is not complete yet, more parts remain */
+ 396:one_wire/DS18B20.c ****         next_b = 1 ; //TRUE;
+ 824              		.loc 1 396 0
+ 825 0234 1123     		mov	r3, #17
+ 826 0236 FB18     		add	r3, r7, r3
+ 827 0238 0122     		mov	r2, #1
+ 828 023a 1A70     		strb	r2, [r3]
+ 397:one_wire/DS18B20.c ****         // lets check crc on rom code
+ 398:one_wire/DS18B20.c ****         crc8 = compute_crc8(&addr->nRomAddr_au8[0], 7);
+ 829              		.loc 1 398 0
+ 830 023c 3B68     		ldr	r3, [r7]
+ 831 023e 0F22     		mov	r2, #15
+ 832 0240 BC18     		add	r4, r7, r2
+ 833 0242 181C     		mov	r0, r3
+ 834 0244 0721     		mov	r1, #7
+ 835 0246 FFF7FEFF 		bl	compute_crc8
+ 836 024a 031C     		mov	r3, r0
+ 837 024c 2370     		strb	r3, [r4]
+ 399:one_wire/DS18B20.c ****         if( crc8 == addr->nRomAddr_au8[7] )
+ 838              		.loc 1 399 0
+ 839 024e 3B68     		ldr	r3, [r7]
+ 840 0250 DB79     		ldrb	r3, [r3, #7]
+ 841 0252 0F22     		mov	r2, #15
+ 842 0254 BA18     		add	r2, r7, r2
+ 843 0256 1278     		ldrb	r2, [r2]
+ 844 0258 9A42     		cmp	r2, r3
+ 845 025a 04D1     		bne	.L38
+ 400:one_wire/DS18B20.c ****         {
+ 401:one_wire/DS18B20.c ****             next_b = 1; // crc passed
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 23
+
+
+ 846              		.loc 1 401 0
+ 847 025c 1123     		mov	r3, #17
+ 848 025e FB18     		add	r3, r7, r3
+ 849 0260 0122     		mov	r2, #1
+ 850 0262 1A70     		strb	r2, [r3]
+ 851 0264 03E0     		b	.L37
+ 852              	.L38:
+ 402:one_wire/DS18B20.c ****         }
+ 403:one_wire/DS18B20.c ****         else
+ 404:one_wire/DS18B20.c ****         {
+ 405:one_wire/DS18B20.c ****             next_b = 0;  // crc failed
+ 853              		.loc 1 405 0
+ 854 0266 1123     		mov	r3, #17
+ 855 0268 FB18     		add	r3, r7, r3
+ 856 026a 0022     		mov	r2, #0
+ 857 026c 1A70     		strb	r2, [r3]
+ 858              	.L37:
+ 406:one_wire/DS18B20.c ****         }
+ 407:one_wire/DS18B20.c ****     }
+ 408:one_wire/DS18B20.c **** 
+ 409:one_wire/DS18B20.c ****     return next_b;
+ 859              		.loc 1 409 0
+ 860 026e 1123     		mov	r3, #17
+ 861 0270 FB18     		add	r3, r7, r3
+ 862 0272 1B78     		ldrb	r3, [r3]
+ 863              	.L23:
+ 410:one_wire/DS18B20.c **** }
+ 864              		.loc 1 410 0
+ 865 0274 181C     		mov	r0, r3
+ 866 0276 BD46     		mov	sp, r7
+ 867 0278 07B0     		add	sp, sp, #28
+ 868              		@ sp needed
+ 869 027a 90BD     		pop	{r4, r7, pc}
+ 870              	.L40:
+ 871              		.align	2
+ 872              	.L39:
+ 873 027c 00000000 		.word	bDoneFlag
+ 874 0280 01000000 		.word	nLastDiscrepancy_u8
+ 875              		.cfi_endproc
+ 876              	.LFE68:
+ 877              		.size	DS1820_FindNextDevice, .-DS1820_FindNextDevice
+ 878              		.section	.text.DS1820_FindFirstDevice,"ax",%progbits
+ 879              		.align	2
+ 880              		.global	DS1820_FindFirstDevice
+ 881              		.code	16
+ 882              		.thumb_func
+ 883              		.type	DS1820_FindFirstDevice, %function
+ 884              	DS1820_FindFirstDevice:
+ 885              	.LFB69:
+ 411:one_wire/DS18B20.c **** 
+ 412:one_wire/DS18B20.c **** 
+ 413:one_wire/DS18B20.c **** /*******************************************************************************
+ 414:one_wire/DS18B20.c ****  * FUNCTION:   DS1820_FindFirstDevice
+ 415:one_wire/DS18B20.c ****  * PURPOSE:    Starts the device search on the 1-wire bus.
+ 416:one_wire/DS18B20.c ****  *
+ 417:one_wire/DS18B20.c ****  * INPUT:      -
+ 418:one_wire/DS18B20.c ****  * OUTPUT:     nRomAddr_au8[]       ROM code of the first device
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 24
+
+
+ 419:one_wire/DS18B20.c ****  * RETURN:     bool                 TRUE if there are more devices on the 1-wire
+ 420:one_wire/DS18B20.c ****  *                                  bus, FALSE otherwise
+ 421:one_wire/DS18B20.c ****  ******************************************************************************/
+ 422:one_wire/DS18B20.c **** uint8 DS1820_FindFirstDevice(ONE_WIRE_IO *io,ONE_WIRE_ADDRESS *addr)
+ 423:one_wire/DS18B20.c **** {
+ 886              		.loc 1 423 0
+ 887              		.cfi_startproc
+ 888 0000 80B5     		push	{r7, lr}
+ 889              		.cfi_def_cfa_offset 8
+ 890              		.cfi_offset 7, -8
+ 891              		.cfi_offset 14, -4
+ 892 0002 82B0     		sub	sp, sp, #8
+ 893              		.cfi_def_cfa_offset 16
+ 894 0004 00AF     		add	r7, sp, #0
+ 895              		.cfi_def_cfa_register 7
+ 896 0006 7860     		str	r0, [r7, #4]
+ 897 0008 3960     		str	r1, [r7]
+ 424:one_wire/DS18B20.c ****     nLastDiscrepancy_u8 = 0;
+ 898              		.loc 1 424 0
+ 899 000a 084B     		ldr	r3, .L43
+ 900 000c 0022     		mov	r2, #0
+ 901 000e 1A70     		strb	r2, [r3]
+ 425:one_wire/DS18B20.c ****     bDoneFlag = 0; //FALSE;
+ 902              		.loc 1 425 0
+ 903 0010 074B     		ldr	r3, .L43+4
+ 904 0012 0022     		mov	r2, #0
+ 905 0014 1A70     		strb	r2, [r3]
+ 426:one_wire/DS18B20.c **** 
+ 427:one_wire/DS18B20.c ****     return ( DS1820_FindNextDevice(io,addr) );
+ 906              		.loc 1 427 0
+ 907 0016 7A68     		ldr	r2, [r7, #4]
+ 908 0018 3B68     		ldr	r3, [r7]
+ 909 001a 101C     		mov	r0, r2
+ 910 001c 191C     		mov	r1, r3
+ 911 001e FFF7FEFF 		bl	DS1820_FindNextDevice
+ 912 0022 031C     		mov	r3, r0
+ 428:one_wire/DS18B20.c **** }
+ 913              		.loc 1 428 0
+ 914 0024 181C     		mov	r0, r3
+ 915 0026 BD46     		mov	sp, r7
+ 916 0028 02B0     		add	sp, sp, #8
+ 917              		@ sp needed
+ 918 002a 80BD     		pop	{r7, pc}
+ 919              	.L44:
+ 920              		.align	2
+ 921              	.L43:
+ 922 002c 01000000 		.word	nLastDiscrepancy_u8
+ 923 0030 00000000 		.word	bDoneFlag
+ 924              		.cfi_endproc
+ 925              	.LFE69:
+ 926              		.size	DS1820_FindFirstDevice, .-DS1820_FindFirstDevice
+ 927              		.section	.text.DS1820_StartTemp_Reading,"ax",%progbits
+ 928              		.align	2
+ 929              		.global	DS1820_StartTemp_Reading
+ 930              		.code	16
+ 931              		.thumb_func
+ 932              		.type	DS1820_StartTemp_Reading, %function
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 25
+
+
+ 933              	DS1820_StartTemp_Reading:
+ 934              	.LFB70:
+ 429:one_wire/DS18B20.c **** 
+ 430:one_wire/DS18B20.c **** 
+ 431:one_wire/DS18B20.c **** 
+ 432:one_wire/DS18B20.c **** /*******************************************************************************
+ 433:one_wire/DS18B20.c ****  * FUNCTION:   DS1820_GetTempRaw
+ 434:one_wire/DS18B20.c ****  * PURPOSE:    Get temperature raw value from single DS1820 device.
+ 435:one_wire/DS18B20.c ****  *
+ 436:one_wire/DS18B20.c ****  *             Scratchpad Memory Layout
+ 437:one_wire/DS18B20.c ****  *             Byte  Register
+ 438:one_wire/DS18B20.c ****  *             0     Temperature_LSB
+ 439:one_wire/DS18B20.c ****  *             1     Temperature_MSB
+ 440:one_wire/DS18B20.c ****  *             2     Temp Alarm High / User Byte 1
+ 441:one_wire/DS18B20.c ****  *             3     Temp Alarm Low / User Byte 2
+ 442:one_wire/DS18B20.c ****  *             4     Reserved
+ 443:one_wire/DS18B20.c ****  *             5     Reserved
+ 444:one_wire/DS18B20.c ****  *             6     Count_Remain
+ 445:one_wire/DS18B20.c ****  *             7     Count_per_C
+ 446:one_wire/DS18B20.c ****  *             8     CRC
+ 447:one_wire/DS18B20.c ****  *
+ 448:one_wire/DS18B20.c ****  *             Temperature calculation for DS18S20 (Family Code 0x10):
+ 449:one_wire/DS18B20.c ****  *             =======================================================
+ 450:one_wire/DS18B20.c ****  *                                             (Count_per_C - Count_Remain)
+ 451:one_wire/DS18B20.c ****  *             Temperature = temp_raw - 0.25 + ----------------------------
+ 452:one_wire/DS18B20.c ****  *                                                     Count_per_C
+ 453:one_wire/DS18B20.c ****  *
+ 454:one_wire/DS18B20.c ****  *             Where temp_raw is the value from the temp_MSB and temp_LSB with
+ 455:one_wire/DS18B20.c ****  *             the least significant bit removed (the 0.5C bit).
+ 456:one_wire/DS18B20.c ****  *
+ 457:one_wire/DS18B20.c ****  *
+ 458:one_wire/DS18B20.c ****  *             Temperature calculation for DS18B20 (Family Code 0x28):
+ 459:one_wire/DS18B20.c ****  *             =======================================================
+ 460:one_wire/DS18B20.c ****  *                      bit7   bit6   bit5   bit4   bit3   bit2   bit1   bit0
+ 461:one_wire/DS18B20.c ****  *             LSB      2^3    2^2    2^1    2^0    2^-1   2^-2   2^-3   2^-4
+ 462:one_wire/DS18B20.c ****  *                      bit15  bit14  bit13  bit12  bit3   bit2   bit1   bit0
+ 463:one_wire/DS18B20.c ****  *             MSB      S      S      S      S      S      2^6    2^5    2^4
+ 464:one_wire/DS18B20.c ****  *
+ 465:one_wire/DS18B20.c ****  *             The temperature data is stored as a 16-bit sign-extended two’s
+ 466:one_wire/DS18B20.c ****  *             complement number in the temperature register. The sign bits (S)
+ 467:one_wire/DS18B20.c ****  *             indicate if the temperature is positive or negative: for
+ 468:one_wire/DS18B20.c ****  *             positive numbers S = 0 and for negative numbers S = 1.
+ 469:one_wire/DS18B20.c ****  *
+ 470:one_wire/DS18B20.c ****  * RETURN:     sint16         raw temperature value with a resolution
+ 471:one_wire/DS18B20.c ****  *                            of 1/256°C
+ 472:one_wire/DS18B20.c ****  ******************************************************************************/
+ 473:one_wire/DS18B20.c **** void DS1820_StartTemp_Reading(ONE_WIRE_IO *io,ONE_WIRE_ADDRESS *addr)
+ 474:one_wire/DS18B20.c **** {
+ 935              		.loc 1 474 0
+ 936              		.cfi_startproc
+ 937 0000 80B5     		push	{r7, lr}
+ 938              		.cfi_def_cfa_offset 8
+ 939              		.cfi_offset 7, -8
+ 940              		.cfi_offset 14, -4
+ 941 0002 82B0     		sub	sp, sp, #8
+ 942              		.cfi_def_cfa_offset 16
+ 943 0004 00AF     		add	r7, sp, #0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 26
+
+
+ 944              		.cfi_def_cfa_register 7
+ 945 0006 7860     		str	r0, [r7, #4]
+ 946 0008 3960     		str	r1, [r7]
+ 475:one_wire/DS18B20.c **** 
+ 476:one_wire/DS18B20.c ****     /* --- start temperature conversion -------------------------------------- */
+ 477:one_wire/DS18B20.c ****     DS1820_Reset(io);
+ 947              		.loc 1 477 0
+ 948 000a 7B68     		ldr	r3, [r7, #4]
+ 949 000c 181C     		mov	r0, r3
+ 950 000e FFF7FEFF 		bl	DS1820_Reset
+ 478:one_wire/DS18B20.c ****     DS1820_AddrDevice(io,addr);     /* address the device */
+ 951              		.loc 1 478 0
+ 952 0012 7A68     		ldr	r2, [r7, #4]
+ 953 0014 3B68     		ldr	r3, [r7]
+ 954 0016 101C     		mov	r0, r2
+ 955 0018 191C     		mov	r1, r3
+ 956 001a FFF7FEFF 		bl	DS1820_AddrDevice
+ 479:one_wire/DS18B20.c ****     io->pin_write(1);
+ 957              		.loc 1 479 0
+ 958 001e 7B68     		ldr	r3, [r7, #4]
+ 959 0020 5B68     		ldr	r3, [r3, #4]
+ 960 0022 0120     		mov	r0, #1
+ 961 0024 9847     		blx	r3
+ 480:one_wire/DS18B20.c ****     DS1820_WriteByte(io,DS1820_CMD_CONVERTTEMP);   /* start conversion */
+ 962              		.loc 1 480 0
+ 963 0026 7B68     		ldr	r3, [r7, #4]
+ 964 0028 181C     		mov	r0, r3
+ 965 002a 4421     		mov	r1, #68
+ 966 002c FFF7FEFF 		bl	DS1820_WriteByte
+ 481:one_wire/DS18B20.c ****     //DS1820_DelayMs(DS1820_TEMPCONVERT_DLY);   /* wait for temperature conversion */
+ 482:one_wire/DS18B20.c ****  }
+ 967              		.loc 1 482 0
+ 968 0030 BD46     		mov	sp, r7
+ 969 0032 02B0     		add	sp, sp, #8
+ 970              		@ sp needed
+ 971 0034 80BD     		pop	{r7, pc}
+ 972              		.cfi_endproc
+ 973              	.LFE70:
+ 974              		.size	DS1820_StartTemp_Reading, .-DS1820_StartTemp_Reading
+ 975              		.global	__aeabi_idiv
+ 976 0036 C046     		.section	.text.DS1820_GetTempRaw,"ax",%progbits
+ 977              		.align	2
+ 978              		.global	DS1820_GetTempRaw
+ 979              		.code	16
+ 980              		.thumb_func
+ 981              		.type	DS1820_GetTempRaw, %function
+ 982              	DS1820_GetTempRaw:
+ 983              	.LFB71:
+ 483:one_wire/DS18B20.c **** 
+ 484:one_wire/DS18B20.c **** 
+ 485:one_wire/DS18B20.c **** // Delay 750 between Colum    CyDelay(750);
+ 486:one_wire/DS18B20.c **** 
+ 487:one_wire/DS18B20.c **** int16 DS1820_GetTempRaw(ONE_WIRE_IO *io,ONE_WIRE_ADDRESS *addr)
+ 488:one_wire/DS18B20.c **** {
+ 984              		.loc 1 488 0
+ 985              		.cfi_startproc
+ 986 0000 90B5     		push	{r4, r7, lr}
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 27
+
+
+ 987              		.cfi_def_cfa_offset 12
+ 988              		.cfi_offset 4, -12
+ 989              		.cfi_offset 7, -8
+ 990              		.cfi_offset 14, -4
+ 991 0002 87B0     		sub	sp, sp, #28
+ 992              		.cfi_def_cfa_offset 40
+ 993 0004 00AF     		add	r7, sp, #0
+ 994              		.cfi_def_cfa_register 7
+ 995 0006 7860     		str	r0, [r7, #4]
+ 996 0008 3960     		str	r1, [r7]
+ 489:one_wire/DS18B20.c ****     uint8 i;
+ 490:one_wire/DS18B20.c ****     uint16 temp_u16;
+ 491:one_wire/DS18B20.c ****     uint16 highres_u16;
+ 492:one_wire/DS18B20.c ****     uint8 scrpad[DS1820_SCRPADMEM_LEN];
+ 493:one_wire/DS18B20.c **** 
+ 494:one_wire/DS18B20.c ****     /* --- read sratchpad ---------------------------------------------------- */
+ 495:one_wire/DS18B20.c ****     DS1820_Reset(io);
+ 997              		.loc 1 495 0
+ 998 000a 7B68     		ldr	r3, [r7, #4]
+ 999 000c 181C     		mov	r0, r3
+ 1000 000e FFF7FEFF 		bl	DS1820_Reset
+ 496:one_wire/DS18B20.c ****     DS1820_AddrDevice(io,addr);   /* address the device */
+ 1001              		.loc 1 496 0
+ 1002 0012 7A68     		ldr	r2, [r7, #4]
+ 1003 0014 3B68     		ldr	r3, [r7]
+ 1004 0016 101C     		mov	r0, r2
+ 1005 0018 191C     		mov	r1, r3
+ 1006 001a FFF7FEFF 		bl	DS1820_AddrDevice
+ 497:one_wire/DS18B20.c ****     DS1820_WriteByte(io,DS1820_CMD_READSCRPAD);  /* read scratch pad */
+ 1007              		.loc 1 497 0
+ 1008 001e 7B68     		ldr	r3, [r7, #4]
+ 1009 0020 181C     		mov	r0, r3
+ 1010 0022 BE21     		mov	r1, #190
+ 1011 0024 FFF7FEFF 		bl	DS1820_WriteByte
+ 498:one_wire/DS18B20.c **** 
+ 499:one_wire/DS18B20.c ****     /* read scratch pad data */
+ 500:one_wire/DS18B20.c ****     for (i=0; i < DS1820_SCRPADMEM_LEN; i++)
+ 1012              		.loc 1 500 0
+ 1013 0028 1723     		mov	r3, #23
+ 1014 002a FB18     		add	r3, r7, r3
+ 1015 002c 0022     		mov	r2, #0
+ 1016 002e 1A70     		strb	r2, [r3]
+ 1017 0030 12E0     		b	.L47
+ 1018              	.L48:
+ 501:one_wire/DS18B20.c ****     {
+ 502:one_wire/DS18B20.c ****         scrpad[i] = DS1820_ReadByte(io);
+ 1019              		.loc 1 502 0 discriminator 3
+ 1020 0032 1723     		mov	r3, #23
+ 1021 0034 FB18     		add	r3, r7, r3
+ 1022 0036 1C78     		ldrb	r4, [r3]
+ 1023 0038 7B68     		ldr	r3, [r7, #4]
+ 1024 003a 181C     		mov	r0, r3
+ 1025 003c FFF7FEFF 		bl	DS1820_ReadByte
+ 1026 0040 031C     		mov	r3, r0
+ 1027 0042 1A1C     		mov	r2, r3
+ 1028 0044 0823     		mov	r3, #8
+ 1029 0046 FB18     		add	r3, r7, r3
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 28
+
+
+ 1030 0048 1A55     		strb	r2, [r3, r4]
+ 500:one_wire/DS18B20.c ****     {
+ 1031              		.loc 1 500 0 discriminator 3
+ 1032 004a 1723     		mov	r3, #23
+ 1033 004c FB18     		add	r3, r7, r3
+ 1034 004e 1A78     		ldrb	r2, [r3]
+ 1035 0050 1723     		mov	r3, #23
+ 1036 0052 FB18     		add	r3, r7, r3
+ 1037 0054 0132     		add	r2, r2, #1
+ 1038 0056 1A70     		strb	r2, [r3]
+ 1039              	.L47:
+ 500:one_wire/DS18B20.c ****     {
+ 1040              		.loc 1 500 0 is_stmt 0 discriminator 1
+ 1041 0058 1723     		mov	r3, #23
+ 1042 005a FB18     		add	r3, r7, r3
+ 1043 005c 1B78     		ldrb	r3, [r3]
+ 1044 005e 082B     		cmp	r3, #8
+ 1045 0060 E7D9     		bls	.L48
+ 503:one_wire/DS18B20.c ****     }
+ 504:one_wire/DS18B20.c **** 
+ 505:one_wire/DS18B20.c **** 
+ 506:one_wire/DS18B20.c ****     /* --- calculate temperature --------------------------------------------- */
+ 507:one_wire/DS18B20.c ****     /* Formular for temperature calculation: */
+ 508:one_wire/DS18B20.c ****     /* Temp = Temp_read - 0.25 + ((Count_per_C - Count_Remain)/Count_per_C) */
+ 509:one_wire/DS18B20.c **** 
+ 510:one_wire/DS18B20.c ****     /* get raw value of temperature (0.5°C resolution) */
+ 511:one_wire/DS18B20.c ****     temp_u16 = 0;
+ 1046              		.loc 1 511 0 is_stmt 1
+ 1047 0062 1223     		mov	r3, #18
+ 1048 0064 FB18     		add	r3, r7, r3
+ 1049 0066 0022     		mov	r2, #0
+ 1050 0068 1A80     		strh	r2, [r3]
+ 512:one_wire/DS18B20.c ****     temp_u16 = (uint16)((uint16)scrpad[DS1820_REG_TEMPMSB] << 8);
+ 1051              		.loc 1 512 0
+ 1052 006a 0823     		mov	r3, #8
+ 1053 006c FB18     		add	r3, r7, r3
+ 1054 006e 5B78     		ldrb	r3, [r3, #1]
+ 1055 0070 9AB2     		uxth	r2, r3
+ 1056 0072 1223     		mov	r3, #18
+ 1057 0074 FB18     		add	r3, r7, r3
+ 1058 0076 1202     		lsl	r2, r2, #8
+ 1059 0078 1A80     		strh	r2, [r3]
+ 513:one_wire/DS18B20.c ****     temp_u16 |= (uint16)(scrpad[DS1820_REG_TEMPLSB]);
+ 1060              		.loc 1 513 0
+ 1061 007a 0823     		mov	r3, #8
+ 1062 007c FB18     		add	r3, r7, r3
+ 1063 007e 1B78     		ldrb	r3, [r3]
+ 1064 0080 99B2     		uxth	r1, r3
+ 1065 0082 1223     		mov	r3, #18
+ 1066 0084 FB18     		add	r3, r7, r3
+ 1067 0086 1222     		mov	r2, #18
+ 1068 0088 BA18     		add	r2, r7, r2
+ 1069 008a 1288     		ldrh	r2, [r2]
+ 1070 008c 0A43     		orr	r2, r1
+ 1071 008e 1A80     		strh	r2, [r3]
+ 514:one_wire/DS18B20.c **** 
+ 515:one_wire/DS18B20.c ****     if (addr->nRomAddr_au8[0] == DS1820_FAMILY_CODE_DS18S20)
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 29
+
+
+ 1072              		.loc 1 515 0
+ 1073 0090 3B68     		ldr	r3, [r7]
+ 1074 0092 1B78     		ldrb	r3, [r3]
+ 1075 0094 102B     		cmp	r3, #16
+ 1076 0096 46D1     		bne	.L49
+ 516:one_wire/DS18B20.c ****     {
+ 517:one_wire/DS18B20.c ****         /* get temperature value in 1°C resolution */
+ 518:one_wire/DS18B20.c ****         temp_u16 >>= 1;
+ 1077              		.loc 1 518 0
+ 1078 0098 1223     		mov	r3, #18
+ 1079 009a FB18     		add	r3, r7, r3
+ 1080 009c 1222     		mov	r2, #18
+ 1081 009e BA18     		add	r2, r7, r2
+ 1082 00a0 1288     		ldrh	r2, [r2]
+ 1083 00a2 5208     		lsr	r2, r2, #1
+ 1084 00a4 1A80     		strh	r2, [r3]
+ 519:one_wire/DS18B20.c ****     
+ 520:one_wire/DS18B20.c ****         /* temperature resolution is TEMP_RES (0x100), so 1°C equals 0x100 */
+ 521:one_wire/DS18B20.c ****         /* => convert to temperature to 1/256°C resolution */
+ 522:one_wire/DS18B20.c ****         temp_u16 = ((uint16)temp_u16 << 8);
+ 1085              		.loc 1 522 0
+ 1086 00a6 1223     		mov	r3, #18
+ 1087 00a8 FB18     		add	r3, r7, r3
+ 1088 00aa 1222     		mov	r2, #18
+ 1089 00ac BA18     		add	r2, r7, r2
+ 1090 00ae 1288     		ldrh	r2, [r2]
+ 1091 00b0 1202     		lsl	r2, r2, #8
+ 1092 00b2 1A80     		strh	r2, [r3]
+ 523:one_wire/DS18B20.c ****     
+ 524:one_wire/DS18B20.c ****         /* now substract 0.25°C */
+ 525:one_wire/DS18B20.c ****         temp_u16 -= ((uint16)TEMP_RES >> 2);
+ 1093              		.loc 1 525 0
+ 1094 00b4 1223     		mov	r3, #18
+ 1095 00b6 FB18     		add	r3, r7, r3
+ 1096 00b8 1222     		mov	r2, #18
+ 1097 00ba BA18     		add	r2, r7, r2
+ 1098 00bc 1288     		ldrh	r2, [r2]
+ 1099 00be 403A     		sub	r2, r2, #64
+ 1100 00c0 1A80     		strh	r2, [r3]
+ 526:one_wire/DS18B20.c ****     
+ 527:one_wire/DS18B20.c ****         /* now calculate high resolution */
+ 528:one_wire/DS18B20.c ****         highres_u16 = scrpad[DS1820_REG_CNTPERSEC] - scrpad[DS1820_REG_CNTREMAIN];
+ 1101              		.loc 1 528 0
+ 1102 00c2 0823     		mov	r3, #8
+ 1103 00c4 FB18     		add	r3, r7, r3
+ 1104 00c6 DB79     		ldrb	r3, [r3, #7]
+ 1105 00c8 99B2     		uxth	r1, r3
+ 1106 00ca 0823     		mov	r3, #8
+ 1107 00cc FB18     		add	r3, r7, r3
+ 1108 00ce 9B79     		ldrb	r3, [r3, #6]
+ 1109 00d0 9AB2     		uxth	r2, r3
+ 1110 00d2 1423     		mov	r3, #20
+ 1111 00d4 FB18     		add	r3, r7, r3
+ 1112 00d6 8A1A     		sub	r2, r1, r2
+ 1113 00d8 1A80     		strh	r2, [r3]
+ 529:one_wire/DS18B20.c ****         highres_u16 = ((uint16)highres_u16 << 8);
+ 1114              		.loc 1 529 0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 30
+
+
+ 1115 00da 1423     		mov	r3, #20
+ 1116 00dc FB18     		add	r3, r7, r3
+ 1117 00de 1422     		mov	r2, #20
+ 1118 00e0 BA18     		add	r2, r7, r2
+ 1119 00e2 1288     		ldrh	r2, [r2]
+ 1120 00e4 1202     		lsl	r2, r2, #8
+ 1121 00e6 1A80     		strh	r2, [r3]
+ 530:one_wire/DS18B20.c ****         if (scrpad[DS1820_REG_CNTPERSEC])
+ 1122              		.loc 1 530 0
+ 1123 00e8 0823     		mov	r3, #8
+ 1124 00ea FB18     		add	r3, r7, r3
+ 1125 00ec DB79     		ldrb	r3, [r3, #7]
+ 1126 00ee 002B     		cmp	r3, #0
+ 1127 00f0 0ED0     		beq	.L50
+ 531:one_wire/DS18B20.c ****         {
+ 532:one_wire/DS18B20.c ****             highres_u16 = highres_u16 / (uint16)scrpad[DS1820_REG_CNTPERSEC];
+ 1128              		.loc 1 532 0
+ 1129 00f2 1423     		mov	r3, #20
+ 1130 00f4 FB18     		add	r3, r7, r3
+ 1131 00f6 1A88     		ldrh	r2, [r3]
+ 1132 00f8 0823     		mov	r3, #8
+ 1133 00fa FB18     		add	r3, r7, r3
+ 1134 00fc DB79     		ldrb	r3, [r3, #7]
+ 1135 00fe 101C     		mov	r0, r2
+ 1136 0100 191C     		mov	r1, r3
+ 1137 0102 FFF7FEFF 		bl	__aeabi_idiv
+ 1138 0106 031C     		mov	r3, r0
+ 1139 0108 1A1C     		mov	r2, r3
+ 1140 010a 1423     		mov	r3, #20
+ 1141 010c FB18     		add	r3, r7, r3
+ 1142 010e 1A80     		strh	r2, [r3]
+ 1143              	.L50:
+ 533:one_wire/DS18B20.c ****         }
+ 534:one_wire/DS18B20.c ****     
+ 535:one_wire/DS18B20.c ****         /* now calculate result */
+ 536:one_wire/DS18B20.c ****         highres_u16 = highres_u16 + temp_u16;
+ 1144              		.loc 1 536 0
+ 1145 0110 1423     		mov	r3, #20
+ 1146 0112 FB18     		add	r3, r7, r3
+ 1147 0114 1422     		mov	r2, #20
+ 1148 0116 B918     		add	r1, r7, r2
+ 1149 0118 1222     		mov	r2, #18
+ 1150 011a BA18     		add	r2, r7, r2
+ 1151 011c 0988     		ldrh	r1, [r1]
+ 1152 011e 1288     		ldrh	r2, [r2]
+ 1153 0120 8A18     		add	r2, r1, r2
+ 1154 0122 1A80     		strh	r2, [r3]
+ 1155 0124 0CE0     		b	.L51
+ 1156              	.L49:
+ 537:one_wire/DS18B20.c ****     }
+ 538:one_wire/DS18B20.c ****     else
+ 539:one_wire/DS18B20.c ****     {
+ 540:one_wire/DS18B20.c ****         /* 12 bit temperature value has 0.0625°C resolution */
+ 541:one_wire/DS18B20.c ****         /* shift left by 4 to get 1/256°C resolution */
+ 542:one_wire/DS18B20.c ****         highres_u16 = temp_u16;
+ 1157              		.loc 1 542 0
+ 1158 0126 1423     		mov	r3, #20
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 31
+
+
+ 1159 0128 FB18     		add	r3, r7, r3
+ 1160 012a 1222     		mov	r2, #18
+ 1161 012c BA18     		add	r2, r7, r2
+ 1162 012e 1288     		ldrh	r2, [r2]
+ 1163 0130 1A80     		strh	r2, [r3]
+ 543:one_wire/DS18B20.c ****         highres_u16 <<= 4;
+ 1164              		.loc 1 543 0
+ 1165 0132 1423     		mov	r3, #20
+ 1166 0134 FB18     		add	r3, r7, r3
+ 1167 0136 1422     		mov	r2, #20
+ 1168 0138 BA18     		add	r2, r7, r2
+ 1169 013a 1288     		ldrh	r2, [r2]
+ 1170 013c 1201     		lsl	r2, r2, #4
+ 1171 013e 1A80     		strh	r2, [r3]
+ 1172              	.L51:
+ 544:one_wire/DS18B20.c ****     }
+ 545:one_wire/DS18B20.c **** 
+ 546:one_wire/DS18B20.c ****     return (highres_u16);
+ 1173              		.loc 1 546 0
+ 1174 0140 1423     		mov	r3, #20
+ 1175 0142 FB18     		add	r3, r7, r3
+ 1176 0144 1B88     		ldrh	r3, [r3]
+ 1177 0146 1BB2     		sxth	r3, r3
+ 547:one_wire/DS18B20.c **** }
+ 1178              		.loc 1 547 0
+ 1179 0148 181C     		mov	r0, r3
+ 1180 014a BD46     		mov	sp, r7
+ 1181 014c 07B0     		add	sp, sp, #28
+ 1182              		@ sp needed
+ 1183 014e 90BD     		pop	{r4, r7, pc}
+ 1184              		.cfi_endproc
+ 1185              	.LFE71:
+ 1186              		.size	DS1820_GetTempRaw, .-DS1820_GetTempRaw
+ 1187              		.section	.rodata
+ 1188              		.align	2
+ 1189              		.type	crc_table, %object
+ 1190              		.size	crc_table, 256
+ 1191              	crc_table:
+ 1192 0000 00       		.byte	0
+ 1193 0001 5E       		.byte	94
+ 1194 0002 BC       		.byte	-68
+ 1195 0003 E2       		.byte	-30
+ 1196 0004 61       		.byte	97
+ 1197 0005 3F       		.byte	63
+ 1198 0006 DD       		.byte	-35
+ 1199 0007 83       		.byte	-125
+ 1200 0008 C2       		.byte	-62
+ 1201 0009 9C       		.byte	-100
+ 1202 000a 7E       		.byte	126
+ 1203 000b 20       		.byte	32
+ 1204 000c A3       		.byte	-93
+ 1205 000d FD       		.byte	-3
+ 1206 000e 1F       		.byte	31
+ 1207 000f 41       		.byte	65
+ 1208 0010 9D       		.byte	-99
+ 1209 0011 C3       		.byte	-61
+ 1210 0012 21       		.byte	33
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 32
+
+
+ 1211 0013 7F       		.byte	127
+ 1212 0014 FC       		.byte	-4
+ 1213 0015 A2       		.byte	-94
+ 1214 0016 40       		.byte	64
+ 1215 0017 1E       		.byte	30
+ 1216 0018 5F       		.byte	95
+ 1217 0019 01       		.byte	1
+ 1218 001a E3       		.byte	-29
+ 1219 001b BD       		.byte	-67
+ 1220 001c 3E       		.byte	62
+ 1221 001d 60       		.byte	96
+ 1222 001e 82       		.byte	-126
+ 1223 001f DC       		.byte	-36
+ 1224 0020 23       		.byte	35
+ 1225 0021 7D       		.byte	125
+ 1226 0022 9F       		.byte	-97
+ 1227 0023 C1       		.byte	-63
+ 1228 0024 42       		.byte	66
+ 1229 0025 1C       		.byte	28
+ 1230 0026 FE       		.byte	-2
+ 1231 0027 A0       		.byte	-96
+ 1232 0028 E1       		.byte	-31
+ 1233 0029 BF       		.byte	-65
+ 1234 002a 5D       		.byte	93
+ 1235 002b 03       		.byte	3
+ 1236 002c 80       		.byte	-128
+ 1237 002d DE       		.byte	-34
+ 1238 002e 3C       		.byte	60
+ 1239 002f 62       		.byte	98
+ 1240 0030 BE       		.byte	-66
+ 1241 0031 E0       		.byte	-32
+ 1242 0032 02       		.byte	2
+ 1243 0033 5C       		.byte	92
+ 1244 0034 DF       		.byte	-33
+ 1245 0035 81       		.byte	-127
+ 1246 0036 63       		.byte	99
+ 1247 0037 3D       		.byte	61
+ 1248 0038 7C       		.byte	124
+ 1249 0039 22       		.byte	34
+ 1250 003a C0       		.byte	-64
+ 1251 003b 9E       		.byte	-98
+ 1252 003c 1D       		.byte	29
+ 1253 003d 43       		.byte	67
+ 1254 003e A1       		.byte	-95
+ 1255 003f FF       		.byte	-1
+ 1256 0040 46       		.byte	70
+ 1257 0041 18       		.byte	24
+ 1258 0042 FA       		.byte	-6
+ 1259 0043 A4       		.byte	-92
+ 1260 0044 27       		.byte	39
+ 1261 0045 79       		.byte	121
+ 1262 0046 9B       		.byte	-101
+ 1263 0047 C5       		.byte	-59
+ 1264 0048 84       		.byte	-124
+ 1265 0049 DA       		.byte	-38
+ 1266 004a 38       		.byte	56
+ 1267 004b 66       		.byte	102
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 33
+
+
+ 1268 004c E5       		.byte	-27
+ 1269 004d BB       		.byte	-69
+ 1270 004e 59       		.byte	89
+ 1271 004f 07       		.byte	7
+ 1272 0050 DB       		.byte	-37
+ 1273 0051 85       		.byte	-123
+ 1274 0052 67       		.byte	103
+ 1275 0053 39       		.byte	57
+ 1276 0054 BA       		.byte	-70
+ 1277 0055 E4       		.byte	-28
+ 1278 0056 06       		.byte	6
+ 1279 0057 58       		.byte	88
+ 1280 0058 19       		.byte	25
+ 1281 0059 47       		.byte	71
+ 1282 005a A5       		.byte	-91
+ 1283 005b FB       		.byte	-5
+ 1284 005c 78       		.byte	120
+ 1285 005d 26       		.byte	38
+ 1286 005e C4       		.byte	-60
+ 1287 005f 9A       		.byte	-102
+ 1288 0060 65       		.byte	101
+ 1289 0061 3B       		.byte	59
+ 1290 0062 D9       		.byte	-39
+ 1291 0063 87       		.byte	-121
+ 1292 0064 04       		.byte	4
+ 1293 0065 5A       		.byte	90
+ 1294 0066 B8       		.byte	-72
+ 1295 0067 E6       		.byte	-26
+ 1296 0068 A7       		.byte	-89
+ 1297 0069 F9       		.byte	-7
+ 1298 006a 1B       		.byte	27
+ 1299 006b 45       		.byte	69
+ 1300 006c C6       		.byte	-58
+ 1301 006d 98       		.byte	-104
+ 1302 006e 7A       		.byte	122
+ 1303 006f 24       		.byte	36
+ 1304 0070 F8       		.byte	-8
+ 1305 0071 A6       		.byte	-90
+ 1306 0072 44       		.byte	68
+ 1307 0073 1A       		.byte	26
+ 1308 0074 99       		.byte	-103
+ 1309 0075 C7       		.byte	-57
+ 1310 0076 25       		.byte	37
+ 1311 0077 7B       		.byte	123
+ 1312 0078 3A       		.byte	58
+ 1313 0079 64       		.byte	100
+ 1314 007a 86       		.byte	-122
+ 1315 007b D8       		.byte	-40
+ 1316 007c 5B       		.byte	91
+ 1317 007d 05       		.byte	5
+ 1318 007e E7       		.byte	-25
+ 1319 007f B9       		.byte	-71
+ 1320 0080 8C       		.byte	-116
+ 1321 0081 D2       		.byte	-46
+ 1322 0082 30       		.byte	48
+ 1323 0083 6E       		.byte	110
+ 1324 0084 ED       		.byte	-19
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 34
+
+
+ 1325 0085 B3       		.byte	-77
+ 1326 0086 51       		.byte	81
+ 1327 0087 0F       		.byte	15
+ 1328 0088 4E       		.byte	78
+ 1329 0089 10       		.byte	16
+ 1330 008a F2       		.byte	-14
+ 1331 008b AC       		.byte	-84
+ 1332 008c 2F       		.byte	47
+ 1333 008d 71       		.byte	113
+ 1334 008e 93       		.byte	-109
+ 1335 008f CD       		.byte	-51
+ 1336 0090 11       		.byte	17
+ 1337 0091 4F       		.byte	79
+ 1338 0092 AD       		.byte	-83
+ 1339 0093 F3       		.byte	-13
+ 1340 0094 70       		.byte	112
+ 1341 0095 2E       		.byte	46
+ 1342 0096 CC       		.byte	-52
+ 1343 0097 92       		.byte	-110
+ 1344 0098 D3       		.byte	-45
+ 1345 0099 8D       		.byte	-115
+ 1346 009a 6F       		.byte	111
+ 1347 009b 31       		.byte	49
+ 1348 009c B2       		.byte	-78
+ 1349 009d EC       		.byte	-20
+ 1350 009e 0E       		.byte	14
+ 1351 009f 50       		.byte	80
+ 1352 00a0 AF       		.byte	-81
+ 1353 00a1 F1       		.byte	-15
+ 1354 00a2 13       		.byte	19
+ 1355 00a3 4D       		.byte	77
+ 1356 00a4 CE       		.byte	-50
+ 1357 00a5 90       		.byte	-112
+ 1358 00a6 72       		.byte	114
+ 1359 00a7 2C       		.byte	44
+ 1360 00a8 6D       		.byte	109
+ 1361 00a9 33       		.byte	51
+ 1362 00aa D1       		.byte	-47
+ 1363 00ab 8F       		.byte	-113
+ 1364 00ac 0C       		.byte	12
+ 1365 00ad 52       		.byte	82
+ 1366 00ae B0       		.byte	-80
+ 1367 00af EE       		.byte	-18
+ 1368 00b0 32       		.byte	50
+ 1369 00b1 6C       		.byte	108
+ 1370 00b2 8E       		.byte	-114
+ 1371 00b3 D0       		.byte	-48
+ 1372 00b4 53       		.byte	83
+ 1373 00b5 0D       		.byte	13
+ 1374 00b6 EF       		.byte	-17
+ 1375 00b7 B1       		.byte	-79
+ 1376 00b8 F0       		.byte	-16
+ 1377 00b9 AE       		.byte	-82
+ 1378 00ba 4C       		.byte	76
+ 1379 00bb 12       		.byte	18
+ 1380 00bc 91       		.byte	-111
+ 1381 00bd CF       		.byte	-49
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 35
+
+
+ 1382 00be 2D       		.byte	45
+ 1383 00bf 73       		.byte	115
+ 1384 00c0 CA       		.byte	-54
+ 1385 00c1 94       		.byte	-108
+ 1386 00c2 76       		.byte	118
+ 1387 00c3 28       		.byte	40
+ 1388 00c4 AB       		.byte	-85
+ 1389 00c5 F5       		.byte	-11
+ 1390 00c6 17       		.byte	23
+ 1391 00c7 49       		.byte	73
+ 1392 00c8 08       		.byte	8
+ 1393 00c9 56       		.byte	86
+ 1394 00ca B4       		.byte	-76
+ 1395 00cb EA       		.byte	-22
+ 1396 00cc 69       		.byte	105
+ 1397 00cd 37       		.byte	55
+ 1398 00ce D5       		.byte	-43
+ 1399 00cf 8B       		.byte	-117
+ 1400 00d0 57       		.byte	87
+ 1401 00d1 09       		.byte	9
+ 1402 00d2 EB       		.byte	-21
+ 1403 00d3 B5       		.byte	-75
+ 1404 00d4 36       		.byte	54
+ 1405 00d5 68       		.byte	104
+ 1406 00d6 8A       		.byte	-118
+ 1407 00d7 D4       		.byte	-44
+ 1408 00d8 95       		.byte	-107
+ 1409 00d9 CB       		.byte	-53
+ 1410 00da 29       		.byte	41
+ 1411 00db 77       		.byte	119
+ 1412 00dc F4       		.byte	-12
+ 1413 00dd AA       		.byte	-86
+ 1414 00de 48       		.byte	72
+ 1415 00df 16       		.byte	22
+ 1416 00e0 E9       		.byte	-23
+ 1417 00e1 B7       		.byte	-73
+ 1418 00e2 55       		.byte	85
+ 1419 00e3 0B       		.byte	11
+ 1420 00e4 88       		.byte	-120
+ 1421 00e5 D6       		.byte	-42
+ 1422 00e6 34       		.byte	52
+ 1423 00e7 6A       		.byte	106
+ 1424 00e8 2B       		.byte	43
+ 1425 00e9 75       		.byte	117
+ 1426 00ea 97       		.byte	-105
+ 1427 00eb C9       		.byte	-55
+ 1428 00ec 4A       		.byte	74
+ 1429 00ed 14       		.byte	20
+ 1430 00ee F6       		.byte	-10
+ 1431 00ef A8       		.byte	-88
+ 1432 00f0 74       		.byte	116
+ 1433 00f1 2A       		.byte	42
+ 1434 00f2 C8       		.byte	-56
+ 1435 00f3 96       		.byte	-106
+ 1436 00f4 15       		.byte	21
+ 1437 00f5 4B       		.byte	75
+ 1438 00f6 A9       		.byte	-87
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 36
+
+
+ 1439 00f7 F7       		.byte	-9
+ 1440 00f8 B6       		.byte	-74
+ 1441 00f9 E8       		.byte	-24
+ 1442 00fa 0A       		.byte	10
+ 1443 00fb 54       		.byte	84
+ 1444 00fc D7       		.byte	-41
+ 1445 00fd 89       		.byte	-119
+ 1446 00fe 6B       		.byte	107
+ 1447 00ff 35       		.byte	53
+ 1448              		.section	.text.compute_crc8,"ax",%progbits
+ 1449              		.align	2
+ 1450              		.code	16
+ 1451              		.thumb_func
+ 1452              		.type	compute_crc8, %function
+ 1453              	compute_crc8:
+ 1454              	.LFB72:
+ 548:one_wire/DS18B20.c **** static const uint8 crc_table[] = {
+ 549:one_wire/DS18B20.c ****       0, 94,188,226, 97, 63,221,131,194,156,126, 32,163,253, 31, 65,
+ 550:one_wire/DS18B20.c ****     157,195, 33,127,252,162, 64, 30, 95,  1,227,189, 62, 96,130,220,
+ 551:one_wire/DS18B20.c ****      35,125,159,193, 66, 28,254,160,225,191, 93,  3,128,222, 60, 98,
+ 552:one_wire/DS18B20.c ****     190,224,  2, 92,223,129, 99, 61,124, 34,192,158, 29, 67,161,255,
+ 553:one_wire/DS18B20.c ****      70, 24,250,164, 39,121,155,197,132,218, 56,102,229,187, 89,  7,
+ 554:one_wire/DS18B20.c ****     219,133,103, 57,186,228,  6, 88, 25, 71,165,251,120, 38,196,154,
+ 555:one_wire/DS18B20.c ****     101, 59,217,135,  4, 90,184,230,167,249, 27, 69,198,152,122, 36,
+ 556:one_wire/DS18B20.c ****     248,166, 68, 26,153,199, 37,123, 58,100,134,216, 91,  5,231,185,
+ 557:one_wire/DS18B20.c ****     140,210, 48,110,237,179, 81, 15, 78, 16,242,172, 47,113,147,205,
+ 558:one_wire/DS18B20.c ****      17, 79,173,243,112, 46,204,146,211,141,111, 49,178,236, 14, 80,
+ 559:one_wire/DS18B20.c ****     175,241, 19, 77,206,144,114, 44,109, 51,209,143, 12, 82,176,238,
+ 560:one_wire/DS18B20.c ****      50,108,142,208, 83, 13,239,177,240,174, 76, 18,145,207, 45,115,
+ 561:one_wire/DS18B20.c ****     202,148,118, 40,171,245, 23, 73,  8, 86,180,234,105, 55,213,139,
+ 562:one_wire/DS18B20.c ****      87,  9,235,181, 54,104,138,212,149,203, 41,119,244,170, 72, 22,
+ 563:one_wire/DS18B20.c ****     233,183, 85, 11,136,214, 52,106, 43,117,151,201, 74, 20,246,168,
+ 564:one_wire/DS18B20.c ****     116, 42,200,150, 21, 75,169,247,182,232, 10, 84,215,137,107, 53};
+ 565:one_wire/DS18B20.c **** 
+ 566:one_wire/DS18B20.c **** //
+ 567:one_wire/DS18B20.c **** // Compute a Dallas Semiconductor 8 bit CRC. These show up in the ROM
+ 568:one_wire/DS18B20.c **** // and the registers.  (note: this might better be done without to
+ 569:one_wire/DS18B20.c **** // table, it would probably be smaller and certainly fast enough
+ 570:one_wire/DS18B20.c **** // compared to all those delayMicrosecond() calls.  But I got
+ 571:one_wire/DS18B20.c **** // confused, so I use this table from the examples.)
+ 572:one_wire/DS18B20.c **** //
+ 573:one_wire/DS18B20.c **** static uint8 compute_crc8(const uint8 *addr, uint8 len)
+ 574:one_wire/DS18B20.c **** {
+ 1455              		.loc 1 574 0
+ 1456              		.cfi_startproc
+ 1457 0000 80B5     		push	{r7, lr}
+ 1458              		.cfi_def_cfa_offset 8
+ 1459              		.cfi_offset 7, -8
+ 1460              		.cfi_offset 14, -4
+ 1461 0002 84B0     		sub	sp, sp, #16
+ 1462              		.cfi_def_cfa_offset 24
+ 1463 0004 00AF     		add	r7, sp, #0
+ 1464              		.cfi_def_cfa_register 7
+ 1465 0006 7860     		str	r0, [r7, #4]
+ 1466 0008 0A1C     		mov	r2, r1
+ 1467 000a FB1C     		add	r3, r7, #3
+ 1468 000c 1A70     		strb	r2, [r3]
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 37
+
+
+ 575:one_wire/DS18B20.c **** 	uint8 crc = 0;
+ 1469              		.loc 1 575 0
+ 1470 000e 0F23     		mov	r3, #15
+ 1471 0010 FB18     		add	r3, r7, r3
+ 1472 0012 0022     		mov	r2, #0
+ 1473 0014 1A70     		strb	r2, [r3]
+ 576:one_wire/DS18B20.c **** 
+ 577:one_wire/DS18B20.c **** 	while (len--) {
+ 1474              		.loc 1 577 0
+ 1475 0016 0EE0     		b	.L54
+ 1476              	.L55:
+ 578:one_wire/DS18B20.c **** 		crc = crc_table[(crc ^ *addr++)];
+ 1477              		.loc 1 578 0
+ 1478 0018 7B68     		ldr	r3, [r7, #4]
+ 1479 001a 5A1C     		add	r2, r3, #1
+ 1480 001c 7A60     		str	r2, [r7, #4]
+ 1481 001e 1A78     		ldrb	r2, [r3]
+ 1482 0020 0F23     		mov	r3, #15
+ 1483 0022 FB18     		add	r3, r7, r3
+ 1484 0024 1B78     		ldrb	r3, [r3]
+ 1485 0026 5340     		eor	r3, r2
+ 1486 0028 DBB2     		uxtb	r3, r3
+ 1487 002a 191C     		mov	r1, r3
+ 1488 002c 0F23     		mov	r3, #15
+ 1489 002e FB18     		add	r3, r7, r3
+ 1490 0030 084A     		ldr	r2, .L57
+ 1491 0032 525C     		ldrb	r2, [r2, r1]
+ 1492 0034 1A70     		strb	r2, [r3]
+ 1493              	.L54:
+ 577:one_wire/DS18B20.c **** 		crc = crc_table[(crc ^ *addr++)];
+ 1494              		.loc 1 577 0
+ 1495 0036 FB1C     		add	r3, r7, #3
+ 1496 0038 1B78     		ldrb	r3, [r3]
+ 1497 003a FA1C     		add	r2, r7, #3
+ 1498 003c 591E     		sub	r1, r3, #1
+ 1499 003e 1170     		strb	r1, [r2]
+ 1500 0040 002B     		cmp	r3, #0
+ 1501 0042 E9D1     		bne	.L55
+ 579:one_wire/DS18B20.c **** 	}
+ 580:one_wire/DS18B20.c **** 	return crc;
+ 1502              		.loc 1 580 0
+ 1503 0044 0F23     		mov	r3, #15
+ 1504 0046 FB18     		add	r3, r7, r3
+ 1505 0048 1B78     		ldrb	r3, [r3]
+ 581:one_wire/DS18B20.c **** }
+ 1506              		.loc 1 581 0
+ 1507 004a 181C     		mov	r0, r3
+ 1508 004c BD46     		mov	sp, r7
+ 1509 004e 04B0     		add	sp, sp, #16
+ 1510              		@ sp needed
+ 1511 0050 80BD     		pop	{r7, pc}
+ 1512              	.L58:
+ 1513 0052 C046     		.align	2
+ 1514              	.L57:
+ 1515 0054 00000000 		.word	crc_table
+ 1516              		.cfi_endproc
+ 1517              	.LFE72:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 38
+
+
+ 1518              		.size	compute_crc8, .-compute_crc8
+ 1519              		.text
+ 1520              	.Letext0:
+ 1521              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 1522              		.file 3 "one_wire\\DS18B20.h"
+ 1523              		.section	.debug_info,"",%progbits
+ 1524              	.Ldebug_info0:
+ 1525 0000 1E050000 		.4byte	0x51e
+ 1526 0004 0400     		.2byte	0x4
+ 1527 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1528 000a 04       		.byte	0x4
+ 1529 000b 01       		.uleb128 0x1
+ 1530 000c 4F020000 		.4byte	.LASF55
+ 1531 0010 01       		.byte	0x1
+ 1532 0011 CA010000 		.4byte	.LASF56
+ 1533 0015 DD020000 		.4byte	.LASF57
+ 1534 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 1535 001d 00000000 		.4byte	0
+ 1536 0021 00000000 		.4byte	.Ldebug_line0
+ 1537 0025 02       		.uleb128 0x2
+ 1538 0026 01       		.byte	0x1
+ 1539 0027 06       		.byte	0x6
+ 1540 0028 84010000 		.4byte	.LASF0
+ 1541 002c 02       		.uleb128 0x2
+ 1542 002d 01       		.byte	0x1
+ 1543 002e 08       		.byte	0x8
+ 1544 002f 5F010000 		.4byte	.LASF1
+ 1545 0033 02       		.uleb128 0x2
+ 1546 0034 02       		.byte	0x2
+ 1547 0035 05       		.byte	0x5
+ 1548 0036 22000000 		.4byte	.LASF2
+ 1549 003a 02       		.uleb128 0x2
+ 1550 003b 02       		.byte	0x2
+ 1551 003c 07       		.byte	0x7
+ 1552 003d 05020000 		.4byte	.LASF3
+ 1553 0041 02       		.uleb128 0x2
+ 1554 0042 04       		.byte	0x4
+ 1555 0043 05       		.byte	0x5
+ 1556 0044 FE000000 		.4byte	.LASF4
+ 1557 0048 02       		.uleb128 0x2
+ 1558 0049 04       		.byte	0x4
+ 1559 004a 07       		.byte	0x7
+ 1560 004b DD010000 		.4byte	.LASF5
+ 1561 004f 02       		.uleb128 0x2
+ 1562 0050 08       		.byte	0x8
+ 1563 0051 05       		.byte	0x5
+ 1564 0052 E3000000 		.4byte	.LASF6
+ 1565 0056 02       		.uleb128 0x2
+ 1566 0057 08       		.byte	0x8
+ 1567 0058 07       		.byte	0x7
+ 1568 0059 90010000 		.4byte	.LASF7
+ 1569 005d 03       		.uleb128 0x3
+ 1570 005e 04       		.byte	0x4
+ 1571 005f 05       		.byte	0x5
+ 1572 0060 696E7400 		.ascii	"int\000"
+ 1573 0064 02       		.uleb128 0x2
+ 1574 0065 04       		.byte	0x4
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 39
+
+
+ 1575 0066 07       		.byte	0x7
+ 1576 0067 BD010000 		.4byte	.LASF8
+ 1577 006b 04       		.uleb128 0x4
+ 1578 006c 9E000000 		.4byte	.LASF9
+ 1579 0070 02       		.byte	0x2
+ 1580 0071 9801     		.2byte	0x198
+ 1581 0073 2C000000 		.4byte	0x2c
+ 1582 0077 04       		.uleb128 0x4
+ 1583 0078 80000000 		.4byte	.LASF10
+ 1584 007c 02       		.byte	0x2
+ 1585 007d 9901     		.2byte	0x199
+ 1586 007f 3A000000 		.4byte	0x3a
+ 1587 0083 04       		.uleb128 0x4
+ 1588 0084 8E000000 		.4byte	.LASF11
+ 1589 0088 02       		.byte	0x2
+ 1590 0089 9C01     		.2byte	0x19c
+ 1591 008b 33000000 		.4byte	0x33
+ 1592 008f 02       		.uleb128 0x2
+ 1593 0090 04       		.byte	0x4
+ 1594 0091 04       		.byte	0x4
+ 1595 0092 D8000000 		.4byte	.LASF12
+ 1596 0096 02       		.uleb128 0x2
+ 1597 0097 08       		.byte	0x8
+ 1598 0098 04       		.byte	0x4
+ 1599 0099 47030000 		.4byte	.LASF13
+ 1600 009d 02       		.uleb128 0x2
+ 1601 009e 01       		.byte	0x1
+ 1602 009f 08       		.byte	0x8
+ 1603 00a0 24020000 		.4byte	.LASF14
+ 1604 00a4 02       		.uleb128 0x2
+ 1605 00a5 04       		.byte	0x4
+ 1606 00a6 07       		.byte	0x7
+ 1607 00a7 2C000000 		.4byte	.LASF15
+ 1608 00ab 05       		.uleb128 0x5
+ 1609 00ac 04       		.byte	0x4
+ 1610 00ad B1000000 		.4byte	0xb1
+ 1611 00b1 06       		.uleb128 0x6
+ 1612 00b2 6B000000 		.4byte	0x6b
+ 1613 00b6 07       		.uleb128 0x7
+ 1614 00b7 56010000 		.4byte	.LASF16
+ 1615 00bb 03       		.byte	0x3
+ 1616 00bc 10       		.byte	0x10
+ 1617 00bd C1000000 		.4byte	0xc1
+ 1618 00c1 05       		.uleb128 0x5
+ 1619 00c2 04       		.byte	0x4
+ 1620 00c3 C7000000 		.4byte	0xc7
+ 1621 00c7 08       		.uleb128 0x8
+ 1622 00c8 6B000000 		.4byte	0x6b
+ 1623 00cc 07       		.uleb128 0x7
+ 1624 00cd A4000000 		.4byte	.LASF17
+ 1625 00d1 03       		.byte	0x3
+ 1626 00d2 11       		.byte	0x11
+ 1627 00d3 D7000000 		.4byte	0xd7
+ 1628 00d7 05       		.uleb128 0x5
+ 1629 00d8 04       		.byte	0x4
+ 1630 00d9 DD000000 		.4byte	0xdd
+ 1631 00dd 09       		.uleb128 0x9
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 40
+
+
+ 1632 00de E8000000 		.4byte	0xe8
+ 1633 00e2 0A       		.uleb128 0xa
+ 1634 00e3 6B000000 		.4byte	0x6b
+ 1635 00e7 00       		.byte	0
+ 1636 00e8 0B       		.uleb128 0xb
+ 1637 00e9 08       		.byte	0x8
+ 1638 00ea 03       		.byte	0x3
+ 1639 00eb 15       		.byte	0x15
+ 1640 00ec 09010000 		.4byte	0x109
+ 1641 00f0 0C       		.uleb128 0xc
+ 1642 00f1 71030000 		.4byte	.LASF18
+ 1643 00f5 03       		.byte	0x3
+ 1644 00f6 17       		.byte	0x17
+ 1645 00f7 B6000000 		.4byte	0xb6
+ 1646 00fb 00       		.byte	0
+ 1647 00fc 0C       		.uleb128 0xc
+ 1648 00fd 94000000 		.4byte	.LASF19
+ 1649 0101 03       		.byte	0x3
+ 1650 0102 18       		.byte	0x18
+ 1651 0103 CC000000 		.4byte	0xcc
+ 1652 0107 04       		.byte	0x4
+ 1653 0108 00       		.byte	0
+ 1654 0109 07       		.uleb128 0x7
+ 1655 010a 18020000 		.4byte	.LASF20
+ 1656 010e 03       		.byte	0x3
+ 1657 010f 19       		.byte	0x19
+ 1658 0110 14010000 		.4byte	0x114
+ 1659 0114 06       		.uleb128 0x6
+ 1660 0115 E8000000 		.4byte	0xe8
+ 1661 0119 0B       		.uleb128 0xb
+ 1662 011a 08       		.byte	0x8
+ 1663 011b 03       		.byte	0x3
+ 1664 011c 1B       		.byte	0x1b
+ 1665 011d 2E010000 		.4byte	0x12e
+ 1666 0121 0C       		.uleb128 0xc
+ 1667 0122 F1000000 		.4byte	.LASF21
+ 1668 0126 03       		.byte	0x3
+ 1669 0127 1D       		.byte	0x1d
+ 1670 0128 2E010000 		.4byte	0x12e
+ 1671 012c 00       		.byte	0
+ 1672 012d 00       		.byte	0
+ 1673 012e 0D       		.uleb128 0xd
+ 1674 012f 6B000000 		.4byte	0x6b
+ 1675 0133 3E010000 		.4byte	0x13e
+ 1676 0137 0E       		.uleb128 0xe
+ 1677 0138 A4000000 		.4byte	0xa4
+ 1678 013c 07       		.byte	0x7
+ 1679 013d 00       		.byte	0
+ 1680 013e 07       		.uleb128 0x7
+ 1681 013f C7000000 		.4byte	.LASF22
+ 1682 0143 03       		.byte	0x3
+ 1683 0144 1E       		.byte	0x1e
+ 1684 0145 19010000 		.4byte	0x119
+ 1685 0149 0F       		.uleb128 0xf
+ 1686 014a 49010000 		.4byte	.LASF25
+ 1687 014e 01       		.byte	0x1
+ 1688 014f 63       		.byte	0x63
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 41
+
+
+ 1689 0150 6B000000 		.4byte	0x6b
+ 1690 0154 00000000 		.4byte	.LFB62
+ 1691 0158 66000000 		.4byte	.LFE62-.LFB62
+ 1692 015c 01       		.uleb128 0x1
+ 1693 015d 9C       		.byte	0x9c
+ 1694 015e 8C010000 		.4byte	0x18c
+ 1695 0162 10       		.uleb128 0x10
+ 1696 0163 696F00   		.ascii	"io\000"
+ 1697 0166 01       		.byte	0x1
+ 1698 0167 63       		.byte	0x63
+ 1699 0168 8C010000 		.4byte	0x18c
+ 1700 016c 02       		.uleb128 0x2
+ 1701 016d 91       		.byte	0x91
+ 1702 016e 64       		.sleb128 -28
+ 1703 016f 11       		.uleb128 0x11
+ 1704 0170 33030000 		.4byte	.LASF23
+ 1705 0174 01       		.byte	0x1
+ 1706 0175 65       		.byte	0x65
+ 1707 0176 6B000000 		.4byte	0x6b
+ 1708 017a 02       		.uleb128 0x2
+ 1709 017b 91       		.byte	0x91
+ 1710 017c 6E       		.sleb128 -18
+ 1711 017d 11       		.uleb128 0x11
+ 1712 017e 22010000 		.4byte	.LASF24
+ 1713 0182 01       		.byte	0x1
+ 1714 0183 66       		.byte	0x66
+ 1715 0184 6B000000 		.4byte	0x6b
+ 1716 0188 02       		.uleb128 0x2
+ 1717 0189 91       		.byte	0x91
+ 1718 018a 6F       		.sleb128 -17
+ 1719 018b 00       		.byte	0
+ 1720 018c 05       		.uleb128 0x5
+ 1721 018d 04       		.byte	0x4
+ 1722 018e 09010000 		.4byte	0x109
+ 1723 0192 0F       		.uleb128 0xf
+ 1724 0193 63000000 		.4byte	.LASF26
+ 1725 0197 01       		.byte	0x1
+ 1726 0198 84       		.byte	0x84
+ 1727 0199 6B000000 		.4byte	0x6b
+ 1728 019d 00000000 		.4byte	.LFB63
+ 1729 01a1 58000000 		.4byte	.LFE63-.LFB63
+ 1730 01a5 01       		.uleb128 0x1
+ 1731 01a6 9C       		.byte	0x9c
+ 1732 01a7 D5010000 		.4byte	0x1d5
+ 1733 01ab 10       		.uleb128 0x10
+ 1734 01ac 696F00   		.ascii	"io\000"
+ 1735 01af 01       		.byte	0x1
+ 1736 01b0 84       		.byte	0x84
+ 1737 01b1 8C010000 		.4byte	0x18c
+ 1738 01b5 02       		.uleb128 0x2
+ 1739 01b6 91       		.byte	0x91
+ 1740 01b7 64       		.sleb128 -28
+ 1741 01b8 11       		.uleb128 0x11
+ 1742 01b9 7A030000 		.4byte	.LASF27
+ 1743 01bd 01       		.byte	0x1
+ 1744 01be 86       		.byte	0x86
+ 1745 01bf 6B000000 		.4byte	0x6b
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 42
+
+
+ 1746 01c3 02       		.uleb128 0x2
+ 1747 01c4 91       		.byte	0x91
+ 1748 01c5 6E       		.sleb128 -18
+ 1749 01c6 11       		.uleb128 0x11
+ 1750 01c7 22010000 		.4byte	.LASF24
+ 1751 01cb 01       		.byte	0x1
+ 1752 01cc 88       		.byte	0x88
+ 1753 01cd 6B000000 		.4byte	0x6b
+ 1754 01d1 02       		.uleb128 0x2
+ 1755 01d2 91       		.byte	0x91
+ 1756 01d3 6F       		.sleb128 -17
+ 1757 01d4 00       		.byte	0
+ 1758 01d5 12       		.uleb128 0x12
+ 1759 01d6 3F000000 		.4byte	.LASF30
+ 1760 01da 01       		.byte	0x1
+ 1761 01db A1       		.byte	0xa1
+ 1762 01dc 00000000 		.4byte	.LFB64
+ 1763 01e0 58000000 		.4byte	.LFE64-.LFB64
+ 1764 01e4 01       		.uleb128 0x1
+ 1765 01e5 9C       		.byte	0x9c
+ 1766 01e6 14020000 		.4byte	0x214
+ 1767 01ea 10       		.uleb128 0x10
+ 1768 01eb 696F00   		.ascii	"io\000"
+ 1769 01ee 01       		.byte	0x1
+ 1770 01ef A1       		.byte	0xa1
+ 1771 01f0 8C010000 		.4byte	0x18c
+ 1772 01f4 02       		.uleb128 0x2
+ 1773 01f5 91       		.byte	0x91
+ 1774 01f6 64       		.sleb128 -28
+ 1775 01f7 13       		.uleb128 0x13
+ 1776 01f8 7A030000 		.4byte	.LASF27
+ 1777 01fc 01       		.byte	0x1
+ 1778 01fd A1       		.byte	0xa1
+ 1779 01fe 6B000000 		.4byte	0x6b
+ 1780 0202 02       		.uleb128 0x2
+ 1781 0203 91       		.byte	0x91
+ 1782 0204 63       		.sleb128 -29
+ 1783 0205 11       		.uleb128 0x11
+ 1784 0206 22010000 		.4byte	.LASF24
+ 1785 020a 01       		.byte	0x1
+ 1786 020b A3       		.byte	0xa3
+ 1787 020c 6B000000 		.4byte	0x6b
+ 1788 0210 02       		.uleb128 0x2
+ 1789 0211 91       		.byte	0x91
+ 1790 0212 6F       		.sleb128 -17
+ 1791 0213 00       		.byte	0
+ 1792 0214 0F       		.uleb128 0xf
+ 1793 0215 AE000000 		.4byte	.LASF28
+ 1794 0219 01       		.byte	0x1
+ 1795 021a BD       		.byte	0xbd
+ 1796 021b 6B000000 		.4byte	0x6b
+ 1797 021f 00000000 		.4byte	.LFB65
+ 1798 0223 70000000 		.4byte	.LFE65-.LFB65
+ 1799 0227 01       		.uleb128 0x1
+ 1800 0228 9C       		.byte	0x9c
+ 1801 0229 55020000 		.4byte	0x255
+ 1802 022d 10       		.uleb128 0x10
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 43
+
+
+ 1803 022e 696F00   		.ascii	"io\000"
+ 1804 0231 01       		.byte	0x1
+ 1805 0232 BD       		.byte	0xbd
+ 1806 0233 8C010000 		.4byte	0x18c
+ 1807 0237 02       		.uleb128 0x2
+ 1808 0238 91       		.byte	0x91
+ 1809 0239 6C       		.sleb128 -20
+ 1810 023a 14       		.uleb128 0x14
+ 1811 023b 6900     		.ascii	"i\000"
+ 1812 023d 01       		.byte	0x1
+ 1813 023e BF       		.byte	0xbf
+ 1814 023f 6B000000 		.4byte	0x6b
+ 1815 0243 02       		.uleb128 0x2
+ 1816 0244 91       		.byte	0x91
+ 1817 0245 77       		.sleb128 -9
+ 1818 0246 11       		.uleb128 0x11
+ 1819 0247 7A000000 		.4byte	.LASF29
+ 1820 024b 01       		.byte	0x1
+ 1821 024c C0       		.byte	0xc0
+ 1822 024d 6B000000 		.4byte	0x6b
+ 1823 0251 02       		.uleb128 0x2
+ 1824 0252 91       		.byte	0x91
+ 1825 0253 76       		.sleb128 -10
+ 1826 0254 00       		.byte	0
+ 1827 0255 12       		.uleb128 0x12
+ 1828 0256 60030000 		.4byte	.LASF31
+ 1829 025a 01       		.byte	0x1
+ 1830 025b D6       		.byte	0xd6
+ 1831 025c 00000000 		.4byte	.LFB66
+ 1832 0260 6E000000 		.4byte	.LFE66-.LFB66
+ 1833 0264 01       		.uleb128 0x1
+ 1834 0265 9C       		.byte	0x9c
+ 1835 0266 A0020000 		.4byte	0x2a0
+ 1836 026a 10       		.uleb128 0x10
+ 1837 026b 696F00   		.ascii	"io\000"
+ 1838 026e 01       		.byte	0x1
+ 1839 026f D6       		.byte	0xd6
+ 1840 0270 8C010000 		.4byte	0x18c
+ 1841 0274 02       		.uleb128 0x2
+ 1842 0275 91       		.byte	0x91
+ 1843 0276 6C       		.sleb128 -20
+ 1844 0277 13       		.uleb128 0x13
+ 1845 0278 85030000 		.4byte	.LASF32
+ 1846 027c 01       		.byte	0x1
+ 1847 027d D6       		.byte	0xd6
+ 1848 027e 6B000000 		.4byte	0x6b
+ 1849 0282 02       		.uleb128 0x2
+ 1850 0283 91       		.byte	0x91
+ 1851 0284 6B       		.sleb128 -21
+ 1852 0285 14       		.uleb128 0x14
+ 1853 0286 6900     		.ascii	"i\000"
+ 1854 0288 01       		.byte	0x1
+ 1855 0289 D8       		.byte	0xd8
+ 1856 028a 6B000000 		.4byte	0x6b
+ 1857 028e 02       		.uleb128 0x2
+ 1858 028f 91       		.byte	0x91
+ 1859 0290 77       		.sleb128 -9
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 44
+
+
+ 1860 0291 11       		.uleb128 0x11
+ 1861 0292 DE000000 		.4byte	.LASF33
+ 1862 0296 01       		.byte	0x1
+ 1863 0297 D9       		.byte	0xd9
+ 1864 0298 6B000000 		.4byte	0x6b
+ 1865 029c 02       		.uleb128 0x2
+ 1866 029d 91       		.byte	0x91
+ 1867 029e 76       		.sleb128 -10
+ 1868 029f 00       		.byte	0
+ 1869 02a0 12       		.uleb128 0x12
+ 1870 02a1 30010000 		.4byte	.LASF34
+ 1871 02a5 01       		.byte	0x1
+ 1872 02a6 F5       		.byte	0xf5
+ 1873 02a7 00000000 		.4byte	.LFB67
+ 1874 02ab 50000000 		.4byte	.LFE67-.LFB67
+ 1875 02af 01       		.uleb128 0x1
+ 1876 02b0 9C       		.byte	0x9c
+ 1877 02b1 DD020000 		.4byte	0x2dd
+ 1878 02b5 10       		.uleb128 0x10
+ 1879 02b6 696F00   		.ascii	"io\000"
+ 1880 02b9 01       		.byte	0x1
+ 1881 02ba F5       		.byte	0xf5
+ 1882 02bb 8C010000 		.4byte	0x18c
+ 1883 02bf 02       		.uleb128 0x2
+ 1884 02c0 91       		.byte	0x91
+ 1885 02c1 6C       		.sleb128 -20
+ 1886 02c2 13       		.uleb128 0x13
+ 1887 02c3 1D010000 		.4byte	.LASF35
+ 1888 02c7 01       		.byte	0x1
+ 1889 02c8 F5       		.byte	0xf5
+ 1890 02c9 DD020000 		.4byte	0x2dd
+ 1891 02cd 02       		.uleb128 0x2
+ 1892 02ce 91       		.byte	0x91
+ 1893 02cf 68       		.sleb128 -24
+ 1894 02d0 14       		.uleb128 0x14
+ 1895 02d1 6900     		.ascii	"i\000"
+ 1896 02d3 01       		.byte	0x1
+ 1897 02d4 F7       		.byte	0xf7
+ 1898 02d5 6B000000 		.4byte	0x6b
+ 1899 02d9 02       		.uleb128 0x2
+ 1900 02da 91       		.byte	0x91
+ 1901 02db 77       		.sleb128 -9
+ 1902 02dc 00       		.byte	0
+ 1903 02dd 05       		.uleb128 0x5
+ 1904 02de 04       		.byte	0x4
+ 1905 02df 3E010000 		.4byte	0x13e
+ 1906 02e3 15       		.uleb128 0x15
+ 1907 02e4 07010000 		.4byte	.LASF36
+ 1908 02e8 01       		.byte	0x1
+ 1909 02e9 0B01     		.2byte	0x10b
+ 1910 02eb 6B000000 		.4byte	0x6b
+ 1911 02ef 00000000 		.4byte	.LFB68
+ 1912 02f3 84020000 		.4byte	.LFE68-.LFB68
+ 1913 02f7 01       		.uleb128 0x1
+ 1914 02f8 9C       		.byte	0x9c
+ 1915 02f9 A2030000 		.4byte	0x3a2
+ 1916 02fd 16       		.uleb128 0x16
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 45
+
+
+ 1917 02fe 696F00   		.ascii	"io\000"
+ 1918 0301 01       		.byte	0x1
+ 1919 0302 0B01     		.2byte	0x10b
+ 1920 0304 8C010000 		.4byte	0x18c
+ 1921 0308 02       		.uleb128 0x2
+ 1922 0309 91       		.byte	0x91
+ 1923 030a 5C       		.sleb128 -36
+ 1924 030b 17       		.uleb128 0x17
+ 1925 030c 1D010000 		.4byte	.LASF35
+ 1926 0310 01       		.byte	0x1
+ 1927 0311 0B01     		.2byte	0x10b
+ 1928 0313 DD020000 		.4byte	0x2dd
+ 1929 0317 02       		.uleb128 0x2
+ 1930 0318 91       		.byte	0x91
+ 1931 0319 58       		.sleb128 -40
+ 1932 031a 18       		.uleb128 0x18
+ 1933 031b BE000000 		.4byte	.LASF37
+ 1934 031f 01       		.byte	0x1
+ 1935 0320 0D01     		.2byte	0x10d
+ 1936 0322 6B000000 		.4byte	0x6b
+ 1937 0326 02       		.uleb128 0x2
+ 1938 0327 91       		.byte	0x91
+ 1939 0328 6F       		.sleb128 -17
+ 1940 0329 18       		.uleb128 0x18
+ 1941 032a 08000000 		.4byte	.LASF38
+ 1942 032e 01       		.byte	0x1
+ 1943 032f 0E01     		.2byte	0x10e
+ 1944 0331 6B000000 		.4byte	0x6b
+ 1945 0335 02       		.uleb128 0x2
+ 1946 0336 91       		.byte	0x91
+ 1947 0337 6E       		.sleb128 -18
+ 1948 0338 18       		.uleb128 0x18
+ 1949 0339 00000000 		.4byte	.LASF39
+ 1950 033d 01       		.byte	0x1
+ 1951 033e 0F01     		.2byte	0x10f
+ 1952 0340 6B000000 		.4byte	0x6b
+ 1953 0344 02       		.uleb128 0x2
+ 1954 0345 91       		.byte	0x91
+ 1955 0346 6D       		.sleb128 -19
+ 1956 0347 18       		.uleb128 0x18
+ 1957 0348 EF010000 		.4byte	.LASF40
+ 1958 034c 01       		.byte	0x1
+ 1959 034d 1001     		.2byte	0x110
+ 1960 034f 6B000000 		.4byte	0x6b
+ 1961 0353 02       		.uleb128 0x2
+ 1962 0354 91       		.byte	0x91
+ 1963 0355 6C       		.sleb128 -20
+ 1964 0356 18       		.uleb128 0x18
+ 1965 0357 A7010000 		.4byte	.LASF41
+ 1966 035b 01       		.byte	0x1
+ 1967 035c 1101     		.2byte	0x111
+ 1968 035e 6B000000 		.4byte	0x6b
+ 1969 0362 02       		.uleb128 0x2
+ 1970 0363 91       		.byte	0x91
+ 1971 0364 6B       		.sleb128 -21
+ 1972 0365 18       		.uleb128 0x18
+ 1973 0366 7F030000 		.4byte	.LASF42
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 46
+
+
+ 1974 036a 01       		.byte	0x1
+ 1975 036b 1201     		.2byte	0x112
+ 1976 036d 6B000000 		.4byte	0x6b
+ 1977 0371 02       		.uleb128 0x2
+ 1978 0372 91       		.byte	0x91
+ 1979 0373 6A       		.sleb128 -22
+ 1980 0374 18       		.uleb128 0x18
+ 1981 0375 72000000 		.4byte	.LASF43
+ 1982 0379 01       		.byte	0x1
+ 1983 037a 1301     		.2byte	0x113
+ 1984 037c 6B000000 		.4byte	0x6b
+ 1985 0380 02       		.uleb128 0x2
+ 1986 0381 91       		.byte	0x91
+ 1987 0382 68       		.sleb128 -24
+ 1988 0383 18       		.uleb128 0x18
+ 1989 0384 42010000 		.4byte	.LASF44
+ 1990 0388 01       		.byte	0x1
+ 1991 0389 1401     		.2byte	0x114
+ 1992 038b 6B000000 		.4byte	0x6b
+ 1993 038f 02       		.uleb128 0x2
+ 1994 0390 91       		.byte	0x91
+ 1995 0391 69       		.sleb128 -23
+ 1996 0392 18       		.uleb128 0x18
+ 1997 0393 1D000000 		.4byte	.LASF45
+ 1998 0397 01       		.byte	0x1
+ 1999 0398 1501     		.2byte	0x115
+ 2000 039a 6B000000 		.4byte	0x6b
+ 2001 039e 02       		.uleb128 0x2
+ 2002 039f 91       		.byte	0x91
+ 2003 03a0 67       		.sleb128 -25
+ 2004 03a1 00       		.byte	0
+ 2005 03a2 15       		.uleb128 0x15
+ 2006 03a3 6D010000 		.4byte	.LASF46
+ 2007 03a7 01       		.byte	0x1
+ 2008 03a8 A601     		.2byte	0x1a6
+ 2009 03aa 6B000000 		.4byte	0x6b
+ 2010 03ae 00000000 		.4byte	.LFB69
+ 2011 03b2 34000000 		.4byte	.LFE69-.LFB69
+ 2012 03b6 01       		.uleb128 0x1
+ 2013 03b7 9C       		.byte	0x9c
+ 2014 03b8 DA030000 		.4byte	0x3da
+ 2015 03bc 16       		.uleb128 0x16
+ 2016 03bd 696F00   		.ascii	"io\000"
+ 2017 03c0 01       		.byte	0x1
+ 2018 03c1 A601     		.2byte	0x1a6
+ 2019 03c3 8C010000 		.4byte	0x18c
+ 2020 03c7 02       		.uleb128 0x2
+ 2021 03c8 91       		.byte	0x91
+ 2022 03c9 74       		.sleb128 -12
+ 2023 03ca 17       		.uleb128 0x17
+ 2024 03cb 1D010000 		.4byte	.LASF35
+ 2025 03cf 01       		.byte	0x1
+ 2026 03d0 A601     		.2byte	0x1a6
+ 2027 03d2 DD020000 		.4byte	0x2dd
+ 2028 03d6 02       		.uleb128 0x2
+ 2029 03d7 91       		.byte	0x91
+ 2030 03d8 70       		.sleb128 -16
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 47
+
+
+ 2031 03d9 00       		.byte	0
+ 2032 03da 19       		.uleb128 0x19
+ 2033 03db 36020000 		.4byte	.LASF47
+ 2034 03df 01       		.byte	0x1
+ 2035 03e0 D901     		.2byte	0x1d9
+ 2036 03e2 00000000 		.4byte	.LFB70
+ 2037 03e6 36000000 		.4byte	.LFE70-.LFB70
+ 2038 03ea 01       		.uleb128 0x1
+ 2039 03eb 9C       		.byte	0x9c
+ 2040 03ec 0E040000 		.4byte	0x40e
+ 2041 03f0 16       		.uleb128 0x16
+ 2042 03f1 696F00   		.ascii	"io\000"
+ 2043 03f4 01       		.byte	0x1
+ 2044 03f5 D901     		.2byte	0x1d9
+ 2045 03f7 8C010000 		.4byte	0x18c
+ 2046 03fb 02       		.uleb128 0x2
+ 2047 03fc 91       		.byte	0x91
+ 2048 03fd 74       		.sleb128 -12
+ 2049 03fe 17       		.uleb128 0x17
+ 2050 03ff 1D010000 		.4byte	.LASF35
+ 2051 0403 01       		.byte	0x1
+ 2052 0404 D901     		.2byte	0x1d9
+ 2053 0406 DD020000 		.4byte	0x2dd
+ 2054 040a 02       		.uleb128 0x2
+ 2055 040b 91       		.byte	0x91
+ 2056 040c 70       		.sleb128 -16
+ 2057 040d 00       		.byte	0
+ 2058 040e 15       		.uleb128 0x15
+ 2059 040f 4E030000 		.4byte	.LASF48
+ 2060 0413 01       		.byte	0x1
+ 2061 0414 E701     		.2byte	0x1e7
+ 2062 0416 83000000 		.4byte	0x83
+ 2063 041a 00000000 		.4byte	.LFB71
+ 2064 041e 50010000 		.4byte	.LFE71-.LFB71
+ 2065 0422 01       		.uleb128 0x1
+ 2066 0423 9C       		.byte	0x9c
+ 2067 0424 80040000 		.4byte	0x480
+ 2068 0428 16       		.uleb128 0x16
+ 2069 0429 696F00   		.ascii	"io\000"
+ 2070 042c 01       		.byte	0x1
+ 2071 042d E701     		.2byte	0x1e7
+ 2072 042f 8C010000 		.4byte	0x18c
+ 2073 0433 02       		.uleb128 0x2
+ 2074 0434 91       		.byte	0x91
+ 2075 0435 5C       		.sleb128 -36
+ 2076 0436 17       		.uleb128 0x17
+ 2077 0437 1D010000 		.4byte	.LASF35
+ 2078 043b 01       		.byte	0x1
+ 2079 043c E701     		.2byte	0x1e7
+ 2080 043e DD020000 		.4byte	0x2dd
+ 2081 0442 02       		.uleb128 0x2
+ 2082 0443 91       		.byte	0x91
+ 2083 0444 58       		.sleb128 -40
+ 2084 0445 1A       		.uleb128 0x1a
+ 2085 0446 6900     		.ascii	"i\000"
+ 2086 0448 01       		.byte	0x1
+ 2087 0449 E901     		.2byte	0x1e9
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 48
+
+
+ 2088 044b 6B000000 		.4byte	0x6b
+ 2089 044f 02       		.uleb128 0x2
+ 2090 0450 91       		.byte	0x91
+ 2091 0451 6F       		.sleb128 -17
+ 2092 0452 18       		.uleb128 0x18
+ 2093 0453 3E030000 		.4byte	.LASF49
+ 2094 0457 01       		.byte	0x1
+ 2095 0458 EA01     		.2byte	0x1ea
+ 2096 045a 77000000 		.4byte	0x77
+ 2097 045e 02       		.uleb128 0x2
+ 2098 045f 91       		.byte	0x91
+ 2099 0460 6A       		.sleb128 -22
+ 2100 0461 18       		.uleb128 0x18
+ 2101 0462 F9010000 		.4byte	.LASF50
+ 2102 0466 01       		.byte	0x1
+ 2103 0467 EB01     		.2byte	0x1eb
+ 2104 0469 77000000 		.4byte	0x77
+ 2105 046d 02       		.uleb128 0x2
+ 2106 046e 91       		.byte	0x91
+ 2107 046f 6C       		.sleb128 -20
+ 2108 0470 18       		.uleb128 0x18
+ 2109 0471 87000000 		.4byte	.LASF51
+ 2110 0475 01       		.byte	0x1
+ 2111 0476 EC01     		.2byte	0x1ec
+ 2112 0478 80040000 		.4byte	0x480
+ 2113 047c 02       		.uleb128 0x2
+ 2114 047d 91       		.byte	0x91
+ 2115 047e 60       		.sleb128 -32
+ 2116 047f 00       		.byte	0
+ 2117 0480 0D       		.uleb128 0xd
+ 2118 0481 6B000000 		.4byte	0x6b
+ 2119 0485 90040000 		.4byte	0x490
+ 2120 0489 0E       		.uleb128 0xe
+ 2121 048a A4000000 		.4byte	0xa4
+ 2122 048e 08       		.byte	0x8
+ 2123 048f 00       		.byte	0
+ 2124 0490 1B       		.uleb128 0x1b
+ 2125 0491 29020000 		.4byte	.LASF58
+ 2126 0495 01       		.byte	0x1
+ 2127 0496 3D02     		.2byte	0x23d
+ 2128 0498 6B000000 		.4byte	0x6b
+ 2129 049c 00000000 		.4byte	.LFB72
+ 2130 04a0 58000000 		.4byte	.LFE72-.LFB72
+ 2131 04a4 01       		.uleb128 0x1
+ 2132 04a5 9C       		.byte	0x9c
+ 2133 04a6 D8040000 		.4byte	0x4d8
+ 2134 04aa 17       		.uleb128 0x17
+ 2135 04ab 1D010000 		.4byte	.LASF35
+ 2136 04af 01       		.byte	0x1
+ 2137 04b0 3D02     		.2byte	0x23d
+ 2138 04b2 AB000000 		.4byte	0xab
+ 2139 04b6 02       		.uleb128 0x2
+ 2140 04b7 91       		.byte	0x91
+ 2141 04b8 6C       		.sleb128 -20
+ 2142 04b9 16       		.uleb128 0x16
+ 2143 04ba 6C656E00 		.ascii	"len\000"
+ 2144 04be 01       		.byte	0x1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 49
+
+
+ 2145 04bf 3D02     		.2byte	0x23d
+ 2146 04c1 6B000000 		.4byte	0x6b
+ 2147 04c5 02       		.uleb128 0x2
+ 2148 04c6 91       		.byte	0x91
+ 2149 04c7 6B       		.sleb128 -21
+ 2150 04c8 1A       		.uleb128 0x1a
+ 2151 04c9 63726300 		.ascii	"crc\000"
+ 2152 04cd 01       		.byte	0x1
+ 2153 04ce 3F02     		.2byte	0x23f
+ 2154 04d0 6B000000 		.4byte	0x6b
+ 2155 04d4 02       		.uleb128 0x2
+ 2156 04d5 91       		.byte	0x91
+ 2157 04d6 77       		.sleb128 -9
+ 2158 04d7 00       		.byte	0
+ 2159 04d8 11       		.uleb128 0x11
+ 2160 04d9 13000000 		.4byte	.LASF52
+ 2161 04dd 01       		.byte	0x1
+ 2162 04de 47       		.byte	0x47
+ 2163 04df 6B000000 		.4byte	0x6b
+ 2164 04e3 05       		.uleb128 0x5
+ 2165 04e4 03       		.byte	0x3
+ 2166 04e5 00000000 		.4byte	bDoneFlag
+ 2167 04e9 11       		.uleb128 0x11
+ 2168 04ea 4F000000 		.4byte	.LASF53
+ 2169 04ee 01       		.byte	0x1
+ 2170 04ef 48       		.byte	0x48
+ 2171 04f0 6B000000 		.4byte	0x6b
+ 2172 04f4 05       		.uleb128 0x5
+ 2173 04f5 03       		.byte	0x3
+ 2174 04f6 01000000 		.4byte	nLastDiscrepancy_u8
+ 2175 04fa 0D       		.uleb128 0xd
+ 2176 04fb 6B000000 		.4byte	0x6b
+ 2177 04ff 0A050000 		.4byte	0x50a
+ 2178 0503 0E       		.uleb128 0xe
+ 2179 0504 A4000000 		.4byte	0xa4
+ 2180 0508 FF       		.byte	0xff
+ 2181 0509 00       		.byte	0
+ 2182 050a 18       		.uleb128 0x18
+ 2183 050b 35000000 		.4byte	.LASF54
+ 2184 050f 01       		.byte	0x1
+ 2185 0510 2402     		.2byte	0x224
+ 2186 0512 1C050000 		.4byte	0x51c
+ 2187 0516 05       		.uleb128 0x5
+ 2188 0517 03       		.byte	0x3
+ 2189 0518 00000000 		.4byte	crc_table
+ 2190 051c 06       		.uleb128 0x6
+ 2191 051d FA040000 		.4byte	0x4fa
+ 2192 0521 00       		.byte	0
+ 2193              		.section	.debug_abbrev,"",%progbits
+ 2194              	.Ldebug_abbrev0:
+ 2195 0000 01       		.uleb128 0x1
+ 2196 0001 11       		.uleb128 0x11
+ 2197 0002 01       		.byte	0x1
+ 2198 0003 25       		.uleb128 0x25
+ 2199 0004 0E       		.uleb128 0xe
+ 2200 0005 13       		.uleb128 0x13
+ 2201 0006 0B       		.uleb128 0xb
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 50
+
+
+ 2202 0007 03       		.uleb128 0x3
+ 2203 0008 0E       		.uleb128 0xe
+ 2204 0009 1B       		.uleb128 0x1b
+ 2205 000a 0E       		.uleb128 0xe
+ 2206 000b 55       		.uleb128 0x55
+ 2207 000c 17       		.uleb128 0x17
+ 2208 000d 11       		.uleb128 0x11
+ 2209 000e 01       		.uleb128 0x1
+ 2210 000f 10       		.uleb128 0x10
+ 2211 0010 17       		.uleb128 0x17
+ 2212 0011 00       		.byte	0
+ 2213 0012 00       		.byte	0
+ 2214 0013 02       		.uleb128 0x2
+ 2215 0014 24       		.uleb128 0x24
+ 2216 0015 00       		.byte	0
+ 2217 0016 0B       		.uleb128 0xb
+ 2218 0017 0B       		.uleb128 0xb
+ 2219 0018 3E       		.uleb128 0x3e
+ 2220 0019 0B       		.uleb128 0xb
+ 2221 001a 03       		.uleb128 0x3
+ 2222 001b 0E       		.uleb128 0xe
+ 2223 001c 00       		.byte	0
+ 2224 001d 00       		.byte	0
+ 2225 001e 03       		.uleb128 0x3
+ 2226 001f 24       		.uleb128 0x24
+ 2227 0020 00       		.byte	0
+ 2228 0021 0B       		.uleb128 0xb
+ 2229 0022 0B       		.uleb128 0xb
+ 2230 0023 3E       		.uleb128 0x3e
+ 2231 0024 0B       		.uleb128 0xb
+ 2232 0025 03       		.uleb128 0x3
+ 2233 0026 08       		.uleb128 0x8
+ 2234 0027 00       		.byte	0
+ 2235 0028 00       		.byte	0
+ 2236 0029 04       		.uleb128 0x4
+ 2237 002a 16       		.uleb128 0x16
+ 2238 002b 00       		.byte	0
+ 2239 002c 03       		.uleb128 0x3
+ 2240 002d 0E       		.uleb128 0xe
+ 2241 002e 3A       		.uleb128 0x3a
+ 2242 002f 0B       		.uleb128 0xb
+ 2243 0030 3B       		.uleb128 0x3b
+ 2244 0031 05       		.uleb128 0x5
+ 2245 0032 49       		.uleb128 0x49
+ 2246 0033 13       		.uleb128 0x13
+ 2247 0034 00       		.byte	0
+ 2248 0035 00       		.byte	0
+ 2249 0036 05       		.uleb128 0x5
+ 2250 0037 0F       		.uleb128 0xf
+ 2251 0038 00       		.byte	0
+ 2252 0039 0B       		.uleb128 0xb
+ 2253 003a 0B       		.uleb128 0xb
+ 2254 003b 49       		.uleb128 0x49
+ 2255 003c 13       		.uleb128 0x13
+ 2256 003d 00       		.byte	0
+ 2257 003e 00       		.byte	0
+ 2258 003f 06       		.uleb128 0x6
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 51
+
+
+ 2259 0040 26       		.uleb128 0x26
+ 2260 0041 00       		.byte	0
+ 2261 0042 49       		.uleb128 0x49
+ 2262 0043 13       		.uleb128 0x13
+ 2263 0044 00       		.byte	0
+ 2264 0045 00       		.byte	0
+ 2265 0046 07       		.uleb128 0x7
+ 2266 0047 16       		.uleb128 0x16
+ 2267 0048 00       		.byte	0
+ 2268 0049 03       		.uleb128 0x3
+ 2269 004a 0E       		.uleb128 0xe
+ 2270 004b 3A       		.uleb128 0x3a
+ 2271 004c 0B       		.uleb128 0xb
+ 2272 004d 3B       		.uleb128 0x3b
+ 2273 004e 0B       		.uleb128 0xb
+ 2274 004f 49       		.uleb128 0x49
+ 2275 0050 13       		.uleb128 0x13
+ 2276 0051 00       		.byte	0
+ 2277 0052 00       		.byte	0
+ 2278 0053 08       		.uleb128 0x8
+ 2279 0054 15       		.uleb128 0x15
+ 2280 0055 00       		.byte	0
+ 2281 0056 27       		.uleb128 0x27
+ 2282 0057 19       		.uleb128 0x19
+ 2283 0058 49       		.uleb128 0x49
+ 2284 0059 13       		.uleb128 0x13
+ 2285 005a 00       		.byte	0
+ 2286 005b 00       		.byte	0
+ 2287 005c 09       		.uleb128 0x9
+ 2288 005d 15       		.uleb128 0x15
+ 2289 005e 01       		.byte	0x1
+ 2290 005f 27       		.uleb128 0x27
+ 2291 0060 19       		.uleb128 0x19
+ 2292 0061 01       		.uleb128 0x1
+ 2293 0062 13       		.uleb128 0x13
+ 2294 0063 00       		.byte	0
+ 2295 0064 00       		.byte	0
+ 2296 0065 0A       		.uleb128 0xa
+ 2297 0066 05       		.uleb128 0x5
+ 2298 0067 00       		.byte	0
+ 2299 0068 49       		.uleb128 0x49
+ 2300 0069 13       		.uleb128 0x13
+ 2301 006a 00       		.byte	0
+ 2302 006b 00       		.byte	0
+ 2303 006c 0B       		.uleb128 0xb
+ 2304 006d 13       		.uleb128 0x13
+ 2305 006e 01       		.byte	0x1
+ 2306 006f 0B       		.uleb128 0xb
+ 2307 0070 0B       		.uleb128 0xb
+ 2308 0071 3A       		.uleb128 0x3a
+ 2309 0072 0B       		.uleb128 0xb
+ 2310 0073 3B       		.uleb128 0x3b
+ 2311 0074 0B       		.uleb128 0xb
+ 2312 0075 01       		.uleb128 0x1
+ 2313 0076 13       		.uleb128 0x13
+ 2314 0077 00       		.byte	0
+ 2315 0078 00       		.byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 52
+
+
+ 2316 0079 0C       		.uleb128 0xc
+ 2317 007a 0D       		.uleb128 0xd
+ 2318 007b 00       		.byte	0
+ 2319 007c 03       		.uleb128 0x3
+ 2320 007d 0E       		.uleb128 0xe
+ 2321 007e 3A       		.uleb128 0x3a
+ 2322 007f 0B       		.uleb128 0xb
+ 2323 0080 3B       		.uleb128 0x3b
+ 2324 0081 0B       		.uleb128 0xb
+ 2325 0082 49       		.uleb128 0x49
+ 2326 0083 13       		.uleb128 0x13
+ 2327 0084 38       		.uleb128 0x38
+ 2328 0085 0B       		.uleb128 0xb
+ 2329 0086 00       		.byte	0
+ 2330 0087 00       		.byte	0
+ 2331 0088 0D       		.uleb128 0xd
+ 2332 0089 01       		.uleb128 0x1
+ 2333 008a 01       		.byte	0x1
+ 2334 008b 49       		.uleb128 0x49
+ 2335 008c 13       		.uleb128 0x13
+ 2336 008d 01       		.uleb128 0x1
+ 2337 008e 13       		.uleb128 0x13
+ 2338 008f 00       		.byte	0
+ 2339 0090 00       		.byte	0
+ 2340 0091 0E       		.uleb128 0xe
+ 2341 0092 21       		.uleb128 0x21
+ 2342 0093 00       		.byte	0
+ 2343 0094 49       		.uleb128 0x49
+ 2344 0095 13       		.uleb128 0x13
+ 2345 0096 2F       		.uleb128 0x2f
+ 2346 0097 0B       		.uleb128 0xb
+ 2347 0098 00       		.byte	0
+ 2348 0099 00       		.byte	0
+ 2349 009a 0F       		.uleb128 0xf
+ 2350 009b 2E       		.uleb128 0x2e
+ 2351 009c 01       		.byte	0x1
+ 2352 009d 3F       		.uleb128 0x3f
+ 2353 009e 19       		.uleb128 0x19
+ 2354 009f 03       		.uleb128 0x3
+ 2355 00a0 0E       		.uleb128 0xe
+ 2356 00a1 3A       		.uleb128 0x3a
+ 2357 00a2 0B       		.uleb128 0xb
+ 2358 00a3 3B       		.uleb128 0x3b
+ 2359 00a4 0B       		.uleb128 0xb
+ 2360 00a5 27       		.uleb128 0x27
+ 2361 00a6 19       		.uleb128 0x19
+ 2362 00a7 49       		.uleb128 0x49
+ 2363 00a8 13       		.uleb128 0x13
+ 2364 00a9 11       		.uleb128 0x11
+ 2365 00aa 01       		.uleb128 0x1
+ 2366 00ab 12       		.uleb128 0x12
+ 2367 00ac 06       		.uleb128 0x6
+ 2368 00ad 40       		.uleb128 0x40
+ 2369 00ae 18       		.uleb128 0x18
+ 2370 00af 9642     		.uleb128 0x2116
+ 2371 00b1 19       		.uleb128 0x19
+ 2372 00b2 01       		.uleb128 0x1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 53
+
+
+ 2373 00b3 13       		.uleb128 0x13
+ 2374 00b4 00       		.byte	0
+ 2375 00b5 00       		.byte	0
+ 2376 00b6 10       		.uleb128 0x10
+ 2377 00b7 05       		.uleb128 0x5
+ 2378 00b8 00       		.byte	0
+ 2379 00b9 03       		.uleb128 0x3
+ 2380 00ba 08       		.uleb128 0x8
+ 2381 00bb 3A       		.uleb128 0x3a
+ 2382 00bc 0B       		.uleb128 0xb
+ 2383 00bd 3B       		.uleb128 0x3b
+ 2384 00be 0B       		.uleb128 0xb
+ 2385 00bf 49       		.uleb128 0x49
+ 2386 00c0 13       		.uleb128 0x13
+ 2387 00c1 02       		.uleb128 0x2
+ 2388 00c2 18       		.uleb128 0x18
+ 2389 00c3 00       		.byte	0
+ 2390 00c4 00       		.byte	0
+ 2391 00c5 11       		.uleb128 0x11
+ 2392 00c6 34       		.uleb128 0x34
+ 2393 00c7 00       		.byte	0
+ 2394 00c8 03       		.uleb128 0x3
+ 2395 00c9 0E       		.uleb128 0xe
+ 2396 00ca 3A       		.uleb128 0x3a
+ 2397 00cb 0B       		.uleb128 0xb
+ 2398 00cc 3B       		.uleb128 0x3b
+ 2399 00cd 0B       		.uleb128 0xb
+ 2400 00ce 49       		.uleb128 0x49
+ 2401 00cf 13       		.uleb128 0x13
+ 2402 00d0 02       		.uleb128 0x2
+ 2403 00d1 18       		.uleb128 0x18
+ 2404 00d2 00       		.byte	0
+ 2405 00d3 00       		.byte	0
+ 2406 00d4 12       		.uleb128 0x12
+ 2407 00d5 2E       		.uleb128 0x2e
+ 2408 00d6 01       		.byte	0x1
+ 2409 00d7 3F       		.uleb128 0x3f
+ 2410 00d8 19       		.uleb128 0x19
+ 2411 00d9 03       		.uleb128 0x3
+ 2412 00da 0E       		.uleb128 0xe
+ 2413 00db 3A       		.uleb128 0x3a
+ 2414 00dc 0B       		.uleb128 0xb
+ 2415 00dd 3B       		.uleb128 0x3b
+ 2416 00de 0B       		.uleb128 0xb
+ 2417 00df 27       		.uleb128 0x27
+ 2418 00e0 19       		.uleb128 0x19
+ 2419 00e1 11       		.uleb128 0x11
+ 2420 00e2 01       		.uleb128 0x1
+ 2421 00e3 12       		.uleb128 0x12
+ 2422 00e4 06       		.uleb128 0x6
+ 2423 00e5 40       		.uleb128 0x40
+ 2424 00e6 18       		.uleb128 0x18
+ 2425 00e7 9642     		.uleb128 0x2116
+ 2426 00e9 19       		.uleb128 0x19
+ 2427 00ea 01       		.uleb128 0x1
+ 2428 00eb 13       		.uleb128 0x13
+ 2429 00ec 00       		.byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 54
+
+
+ 2430 00ed 00       		.byte	0
+ 2431 00ee 13       		.uleb128 0x13
+ 2432 00ef 05       		.uleb128 0x5
+ 2433 00f0 00       		.byte	0
+ 2434 00f1 03       		.uleb128 0x3
+ 2435 00f2 0E       		.uleb128 0xe
+ 2436 00f3 3A       		.uleb128 0x3a
+ 2437 00f4 0B       		.uleb128 0xb
+ 2438 00f5 3B       		.uleb128 0x3b
+ 2439 00f6 0B       		.uleb128 0xb
+ 2440 00f7 49       		.uleb128 0x49
+ 2441 00f8 13       		.uleb128 0x13
+ 2442 00f9 02       		.uleb128 0x2
+ 2443 00fa 18       		.uleb128 0x18
+ 2444 00fb 00       		.byte	0
+ 2445 00fc 00       		.byte	0
+ 2446 00fd 14       		.uleb128 0x14
+ 2447 00fe 34       		.uleb128 0x34
+ 2448 00ff 00       		.byte	0
+ 2449 0100 03       		.uleb128 0x3
+ 2450 0101 08       		.uleb128 0x8
+ 2451 0102 3A       		.uleb128 0x3a
+ 2452 0103 0B       		.uleb128 0xb
+ 2453 0104 3B       		.uleb128 0x3b
+ 2454 0105 0B       		.uleb128 0xb
+ 2455 0106 49       		.uleb128 0x49
+ 2456 0107 13       		.uleb128 0x13
+ 2457 0108 02       		.uleb128 0x2
+ 2458 0109 18       		.uleb128 0x18
+ 2459 010a 00       		.byte	0
+ 2460 010b 00       		.byte	0
+ 2461 010c 15       		.uleb128 0x15
+ 2462 010d 2E       		.uleb128 0x2e
+ 2463 010e 01       		.byte	0x1
+ 2464 010f 3F       		.uleb128 0x3f
+ 2465 0110 19       		.uleb128 0x19
+ 2466 0111 03       		.uleb128 0x3
+ 2467 0112 0E       		.uleb128 0xe
+ 2468 0113 3A       		.uleb128 0x3a
+ 2469 0114 0B       		.uleb128 0xb
+ 2470 0115 3B       		.uleb128 0x3b
+ 2471 0116 05       		.uleb128 0x5
+ 2472 0117 27       		.uleb128 0x27
+ 2473 0118 19       		.uleb128 0x19
+ 2474 0119 49       		.uleb128 0x49
+ 2475 011a 13       		.uleb128 0x13
+ 2476 011b 11       		.uleb128 0x11
+ 2477 011c 01       		.uleb128 0x1
+ 2478 011d 12       		.uleb128 0x12
+ 2479 011e 06       		.uleb128 0x6
+ 2480 011f 40       		.uleb128 0x40
+ 2481 0120 18       		.uleb128 0x18
+ 2482 0121 9642     		.uleb128 0x2116
+ 2483 0123 19       		.uleb128 0x19
+ 2484 0124 01       		.uleb128 0x1
+ 2485 0125 13       		.uleb128 0x13
+ 2486 0126 00       		.byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 55
+
+
+ 2487 0127 00       		.byte	0
+ 2488 0128 16       		.uleb128 0x16
+ 2489 0129 05       		.uleb128 0x5
+ 2490 012a 00       		.byte	0
+ 2491 012b 03       		.uleb128 0x3
+ 2492 012c 08       		.uleb128 0x8
+ 2493 012d 3A       		.uleb128 0x3a
+ 2494 012e 0B       		.uleb128 0xb
+ 2495 012f 3B       		.uleb128 0x3b
+ 2496 0130 05       		.uleb128 0x5
+ 2497 0131 49       		.uleb128 0x49
+ 2498 0132 13       		.uleb128 0x13
+ 2499 0133 02       		.uleb128 0x2
+ 2500 0134 18       		.uleb128 0x18
+ 2501 0135 00       		.byte	0
+ 2502 0136 00       		.byte	0
+ 2503 0137 17       		.uleb128 0x17
+ 2504 0138 05       		.uleb128 0x5
+ 2505 0139 00       		.byte	0
+ 2506 013a 03       		.uleb128 0x3
+ 2507 013b 0E       		.uleb128 0xe
+ 2508 013c 3A       		.uleb128 0x3a
+ 2509 013d 0B       		.uleb128 0xb
+ 2510 013e 3B       		.uleb128 0x3b
+ 2511 013f 05       		.uleb128 0x5
+ 2512 0140 49       		.uleb128 0x49
+ 2513 0141 13       		.uleb128 0x13
+ 2514 0142 02       		.uleb128 0x2
+ 2515 0143 18       		.uleb128 0x18
+ 2516 0144 00       		.byte	0
+ 2517 0145 00       		.byte	0
+ 2518 0146 18       		.uleb128 0x18
+ 2519 0147 34       		.uleb128 0x34
+ 2520 0148 00       		.byte	0
+ 2521 0149 03       		.uleb128 0x3
+ 2522 014a 0E       		.uleb128 0xe
+ 2523 014b 3A       		.uleb128 0x3a
+ 2524 014c 0B       		.uleb128 0xb
+ 2525 014d 3B       		.uleb128 0x3b
+ 2526 014e 05       		.uleb128 0x5
+ 2527 014f 49       		.uleb128 0x49
+ 2528 0150 13       		.uleb128 0x13
+ 2529 0151 02       		.uleb128 0x2
+ 2530 0152 18       		.uleb128 0x18
+ 2531 0153 00       		.byte	0
+ 2532 0154 00       		.byte	0
+ 2533 0155 19       		.uleb128 0x19
+ 2534 0156 2E       		.uleb128 0x2e
+ 2535 0157 01       		.byte	0x1
+ 2536 0158 3F       		.uleb128 0x3f
+ 2537 0159 19       		.uleb128 0x19
+ 2538 015a 03       		.uleb128 0x3
+ 2539 015b 0E       		.uleb128 0xe
+ 2540 015c 3A       		.uleb128 0x3a
+ 2541 015d 0B       		.uleb128 0xb
+ 2542 015e 3B       		.uleb128 0x3b
+ 2543 015f 05       		.uleb128 0x5
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 56
+
+
+ 2544 0160 27       		.uleb128 0x27
+ 2545 0161 19       		.uleb128 0x19
+ 2546 0162 11       		.uleb128 0x11
+ 2547 0163 01       		.uleb128 0x1
+ 2548 0164 12       		.uleb128 0x12
+ 2549 0165 06       		.uleb128 0x6
+ 2550 0166 40       		.uleb128 0x40
+ 2551 0167 18       		.uleb128 0x18
+ 2552 0168 9642     		.uleb128 0x2116
+ 2553 016a 19       		.uleb128 0x19
+ 2554 016b 01       		.uleb128 0x1
+ 2555 016c 13       		.uleb128 0x13
+ 2556 016d 00       		.byte	0
+ 2557 016e 00       		.byte	0
+ 2558 016f 1A       		.uleb128 0x1a
+ 2559 0170 34       		.uleb128 0x34
+ 2560 0171 00       		.byte	0
+ 2561 0172 03       		.uleb128 0x3
+ 2562 0173 08       		.uleb128 0x8
+ 2563 0174 3A       		.uleb128 0x3a
+ 2564 0175 0B       		.uleb128 0xb
+ 2565 0176 3B       		.uleb128 0x3b
+ 2566 0177 05       		.uleb128 0x5
+ 2567 0178 49       		.uleb128 0x49
+ 2568 0179 13       		.uleb128 0x13
+ 2569 017a 02       		.uleb128 0x2
+ 2570 017b 18       		.uleb128 0x18
+ 2571 017c 00       		.byte	0
+ 2572 017d 00       		.byte	0
+ 2573 017e 1B       		.uleb128 0x1b
+ 2574 017f 2E       		.uleb128 0x2e
+ 2575 0180 01       		.byte	0x1
+ 2576 0181 03       		.uleb128 0x3
+ 2577 0182 0E       		.uleb128 0xe
+ 2578 0183 3A       		.uleb128 0x3a
+ 2579 0184 0B       		.uleb128 0xb
+ 2580 0185 3B       		.uleb128 0x3b
+ 2581 0186 05       		.uleb128 0x5
+ 2582 0187 27       		.uleb128 0x27
+ 2583 0188 19       		.uleb128 0x19
+ 2584 0189 49       		.uleb128 0x49
+ 2585 018a 13       		.uleb128 0x13
+ 2586 018b 11       		.uleb128 0x11
+ 2587 018c 01       		.uleb128 0x1
+ 2588 018d 12       		.uleb128 0x12
+ 2589 018e 06       		.uleb128 0x6
+ 2590 018f 40       		.uleb128 0x40
+ 2591 0190 18       		.uleb128 0x18
+ 2592 0191 9742     		.uleb128 0x2117
+ 2593 0193 19       		.uleb128 0x19
+ 2594 0194 01       		.uleb128 0x1
+ 2595 0195 13       		.uleb128 0x13
+ 2596 0196 00       		.byte	0
+ 2597 0197 00       		.byte	0
+ 2598 0198 00       		.byte	0
+ 2599              		.section	.debug_aranges,"",%progbits
+ 2600 0000 6C000000 		.4byte	0x6c
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 57
+
+
+ 2601 0004 0200     		.2byte	0x2
+ 2602 0006 00000000 		.4byte	.Ldebug_info0
+ 2603 000a 04       		.byte	0x4
+ 2604 000b 00       		.byte	0
+ 2605 000c 0000     		.2byte	0
+ 2606 000e 0000     		.2byte	0
+ 2607 0010 00000000 		.4byte	.LFB62
+ 2608 0014 66000000 		.4byte	.LFE62-.LFB62
+ 2609 0018 00000000 		.4byte	.LFB63
+ 2610 001c 58000000 		.4byte	.LFE63-.LFB63
+ 2611 0020 00000000 		.4byte	.LFB64
+ 2612 0024 58000000 		.4byte	.LFE64-.LFB64
+ 2613 0028 00000000 		.4byte	.LFB65
+ 2614 002c 70000000 		.4byte	.LFE65-.LFB65
+ 2615 0030 00000000 		.4byte	.LFB66
+ 2616 0034 6E000000 		.4byte	.LFE66-.LFB66
+ 2617 0038 00000000 		.4byte	.LFB67
+ 2618 003c 50000000 		.4byte	.LFE67-.LFB67
+ 2619 0040 00000000 		.4byte	.LFB68
+ 2620 0044 84020000 		.4byte	.LFE68-.LFB68
+ 2621 0048 00000000 		.4byte	.LFB69
+ 2622 004c 34000000 		.4byte	.LFE69-.LFB69
+ 2623 0050 00000000 		.4byte	.LFB70
+ 2624 0054 36000000 		.4byte	.LFE70-.LFB70
+ 2625 0058 00000000 		.4byte	.LFB71
+ 2626 005c 50010000 		.4byte	.LFE71-.LFB71
+ 2627 0060 00000000 		.4byte	.LFB72
+ 2628 0064 58000000 		.4byte	.LFE72-.LFB72
+ 2629 0068 00000000 		.4byte	0
+ 2630 006c 00000000 		.4byte	0
+ 2631              		.section	.debug_ranges,"",%progbits
+ 2632              	.Ldebug_ranges0:
+ 2633 0000 00000000 		.4byte	.LFB62
+ 2634 0004 66000000 		.4byte	.LFE62
+ 2635 0008 00000000 		.4byte	.LFB63
+ 2636 000c 58000000 		.4byte	.LFE63
+ 2637 0010 00000000 		.4byte	.LFB64
+ 2638 0014 58000000 		.4byte	.LFE64
+ 2639 0018 00000000 		.4byte	.LFB65
+ 2640 001c 70000000 		.4byte	.LFE65
+ 2641 0020 00000000 		.4byte	.LFB66
+ 2642 0024 6E000000 		.4byte	.LFE66
+ 2643 0028 00000000 		.4byte	.LFB67
+ 2644 002c 50000000 		.4byte	.LFE67
+ 2645 0030 00000000 		.4byte	.LFB68
+ 2646 0034 84020000 		.4byte	.LFE68
+ 2647 0038 00000000 		.4byte	.LFB69
+ 2648 003c 34000000 		.4byte	.LFE69
+ 2649 0040 00000000 		.4byte	.LFB70
+ 2650 0044 36000000 		.4byte	.LFE70
+ 2651 0048 00000000 		.4byte	.LFB71
+ 2652 004c 50010000 		.4byte	.LFE71
+ 2653 0050 00000000 		.4byte	.LFB72
+ 2654 0054 58000000 		.4byte	.LFE72
+ 2655 0058 00000000 		.4byte	0
+ 2656 005c 00000000 		.4byte	0
+ 2657              		.section	.debug_line,"",%progbits
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 58
+
+
+ 2658              	.Ldebug_line0:
+ 2659 0000 F9010000 		.section	.debug_str,"MS",%progbits,1
+ 2659      02005A00 
+ 2659      00000201 
+ 2659      FB0E0D00 
+ 2659      01010101 
+ 2660              	.LASF39:
+ 2661 0000 6D61736B 		.ascii	"mask_u8\000"
+ 2661      5F753800 
+ 2662              	.LASF38:
+ 2663 0008 62797465 		.ascii	"byteidx_u8\000"
+ 2663      6964785F 
+ 2663      753800
+ 2664              	.LASF52:
+ 2665 0013 62446F6E 		.ascii	"bDoneFlag\000"
+ 2665      65466C61 
+ 2665      6700
+ 2666              	.LASF45:
+ 2667 001d 63726338 		.ascii	"crc8\000"
+ 2667      00
+ 2668              	.LASF2:
+ 2669 0022 73686F72 		.ascii	"short int\000"
+ 2669      7420696E 
+ 2669      7400
+ 2670              	.LASF15:
+ 2671 002c 73697A65 		.ascii	"sizetype\000"
+ 2671      74797065 
+ 2671      00
+ 2672              	.LASF54:
+ 2673 0035 6372635F 		.ascii	"crc_table\000"
+ 2673      7461626C 
+ 2673      6500
+ 2674              	.LASF30:
+ 2675 003f 44533138 		.ascii	"DS1820_WriteBit\000"
+ 2675      32305F57 
+ 2675      72697465 
+ 2675      42697400 
+ 2676              	.LASF53:
+ 2677 004f 6E4C6173 		.ascii	"nLastDiscrepancy_u8\000"
+ 2677      74446973 
+ 2677      63726570 
+ 2677      616E6379 
+ 2677      5F753800 
+ 2678              	.LASF26:
+ 2679 0063 44533138 		.ascii	"DS1820_ReadBit\000"
+ 2679      32305F52 
+ 2679      65616442 
+ 2679      697400
+ 2680              	.LASF43:
+ 2681 0072 62537461 		.ascii	"bStatus\000"
+ 2681      74757300 
+ 2682              	.LASF29:
+ 2683 007a 76616C75 		.ascii	"value\000"
+ 2683      6500
+ 2684              	.LASF10:
+ 2685 0080 75696E74 		.ascii	"uint16\000"
+ 2685      313600
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 59
+
+
+ 2686              	.LASF51:
+ 2687 0087 73637270 		.ascii	"scrpad\000"
+ 2687      616400
+ 2688              	.LASF11:
+ 2689 008e 696E7431 		.ascii	"int16\000"
+ 2689      3600
+ 2690              	.LASF19:
+ 2691 0094 70696E5F 		.ascii	"pin_write\000"
+ 2691      77726974 
+ 2691      6500
+ 2692              	.LASF9:
+ 2693 009e 75696E74 		.ascii	"uint8\000"
+ 2693      3800
+ 2694              	.LASF17:
+ 2695 00a4 50494E5F 		.ascii	"PIN_WRITE\000"
+ 2695      57524954 
+ 2695      4500
+ 2696              	.LASF28:
+ 2697 00ae 44533138 		.ascii	"DS1820_ReadByte\000"
+ 2697      32305F52 
+ 2697      65616442 
+ 2697      79746500 
+ 2698              	.LASF37:
+ 2699 00be 73746174 		.ascii	"state_u8\000"
+ 2699      655F7538 
+ 2699      00
+ 2700              	.LASF22:
+ 2701 00c7 4F4E455F 		.ascii	"ONE_WIRE_ADDRESS\000"
+ 2701      57495245 
+ 2701      5F414444 
+ 2701      52455353 
+ 2701      00
+ 2702              	.LASF12:
+ 2703 00d8 666C6F61 		.ascii	"float\000"
+ 2703      7400
+ 2704              	.LASF33:
+ 2705 00de 74656D70 		.ascii	"temp\000"
+ 2705      00
+ 2706              	.LASF6:
+ 2707 00e3 6C6F6E67 		.ascii	"long long int\000"
+ 2707      206C6F6E 
+ 2707      6720696E 
+ 2707      7400
+ 2708              	.LASF21:
+ 2709 00f1 6E526F6D 		.ascii	"nRomAddr_au8\000"
+ 2709      41646472 
+ 2709      5F617538 
+ 2709      00
+ 2710              	.LASF4:
+ 2711 00fe 6C6F6E67 		.ascii	"long int\000"
+ 2711      20696E74 
+ 2711      00
+ 2712              	.LASF36:
+ 2713 0107 44533138 		.ascii	"DS1820_FindNextDevice\000"
+ 2713      32305F46 
+ 2713      696E644E 
+ 2713      65787444 
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 60
+
+
+ 2713      65766963 
+ 2714              	.LASF35:
+ 2715 011d 61646472 		.ascii	"addr\000"
+ 2715      00
+ 2716              	.LASF24:
+ 2717 0122 63726974 		.ascii	"criticalState\000"
+ 2717      6963616C 
+ 2717      53746174 
+ 2717      6500
+ 2718              	.LASF34:
+ 2719 0130 44533138 		.ascii	"DS1820_AddrDevice\000"
+ 2719      32305F41 
+ 2719      64647244 
+ 2719      65766963 
+ 2719      6500
+ 2720              	.LASF44:
+ 2721 0142 6E657874 		.ascii	"next_b\000"
+ 2721      5F6200
+ 2722              	.LASF25:
+ 2723 0149 44533138 		.ascii	"DS1820_Reset\000"
+ 2723      32305F52 
+ 2723      65736574 
+ 2723      00
+ 2724              	.LASF16:
+ 2725 0156 50494E5F 		.ascii	"PIN_READ\000"
+ 2725      52454144 
+ 2725      00
+ 2726              	.LASF1:
+ 2727 015f 756E7369 		.ascii	"unsigned char\000"
+ 2727      676E6564 
+ 2727      20636861 
+ 2727      7200
+ 2728              	.LASF46:
+ 2729 016d 44533138 		.ascii	"DS1820_FindFirstDevice\000"
+ 2729      32305F46 
+ 2729      696E6446 
+ 2729      69727374 
+ 2729      44657669 
+ 2730              	.LASF0:
+ 2731 0184 7369676E 		.ascii	"signed char\000"
+ 2731      65642063 
+ 2731      68617200 
+ 2732              	.LASF7:
+ 2733 0190 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2733      206C6F6E 
+ 2733      6720756E 
+ 2733      7369676E 
+ 2733      65642069 
+ 2734              	.LASF41:
+ 2735 01a7 6E446973 		.ascii	"nDiscrepancyMarker_u8\000"
+ 2735      63726570 
+ 2735      616E6379 
+ 2735      4D61726B 
+ 2735      65725F75 
+ 2736              	.LASF8:
+ 2737 01bd 756E7369 		.ascii	"unsigned int\000"
+ 2737      676E6564 
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 61
+
+
+ 2737      20696E74 
+ 2737      00
+ 2738              	.LASF56:
+ 2739 01ca 6F6E655F 		.ascii	"one_wire\\DS18B20.c\000"
+ 2739      77697265 
+ 2739      5C445331 
+ 2739      38423230 
+ 2739      2E6300
+ 2740              	.LASF5:
+ 2741 01dd 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2741      20756E73 
+ 2741      69676E65 
+ 2741      6420696E 
+ 2741      7400
+ 2742              	.LASF40:
+ 2743 01ef 62697470 		.ascii	"bitpos_u8\000"
+ 2743      6F735F75 
+ 2743      3800
+ 2744              	.LASF50:
+ 2745 01f9 68696768 		.ascii	"highres_u16\000"
+ 2745      7265735F 
+ 2745      75313600 
+ 2746              	.LASF3:
+ 2747 0205 73686F72 		.ascii	"short unsigned int\000"
+ 2747      7420756E 
+ 2747      7369676E 
+ 2747      65642069 
+ 2747      6E7400
+ 2748              	.LASF20:
+ 2749 0218 4F4E455F 		.ascii	"ONE_WIRE_IO\000"
+ 2749      57495245 
+ 2749      5F494F00 
+ 2750              	.LASF14:
+ 2751 0224 63686172 		.ascii	"char\000"
+ 2751      00
+ 2752              	.LASF58:
+ 2753 0229 636F6D70 		.ascii	"compute_crc8\000"
+ 2753      7574655F 
+ 2753      63726338 
+ 2753      00
+ 2754              	.LASF47:
+ 2755 0236 44533138 		.ascii	"DS1820_StartTemp_Reading\000"
+ 2755      32305F53 
+ 2755      74617274 
+ 2755      54656D70 
+ 2755      5F526561 
+ 2756              	.LASF55:
+ 2757 024f 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 2757      4320342E 
+ 2757      392E3320 
+ 2757      32303135 
+ 2757      30333033 
+ 2758 0282 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 2758      20726576 
+ 2758      6973696F 
+ 2758      6E203232 
+ 2758      31323230 
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccxDx73F.s 			page 62
+
+
+ 2759 02b5 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 2759      66756E63 
+ 2759      74696F6E 
+ 2759      2D736563 
+ 2759      74696F6E 
+ 2760              	.LASF57:
+ 2761 02dd 433A5C55 		.ascii	"C:\\Users\\glenn\\OneDrive\\PSOC\\moisture_sensor_4"
+ 2761      73657273 
+ 2761      5C676C65 
+ 2761      6E6E5C4F 
+ 2761      6E654472 
+ 2762 030b 6D5C4D6F 		.ascii	"m\\Moisture_Sensor\\Moisture_Sensor.cydsn\000"
+ 2762      69737475 
+ 2762      72655F53 
+ 2762      656E736F 
+ 2762      725C4D6F 
+ 2763              	.LASF23:
+ 2764 0333 62507265 		.ascii	"bPresPulse\000"
+ 2764      7350756C 
+ 2764      736500
+ 2765              	.LASF49:
+ 2766 033e 74656D70 		.ascii	"temp_u16\000"
+ 2766      5F753136 
+ 2766      00
+ 2767              	.LASF13:
+ 2768 0347 646F7562 		.ascii	"double\000"
+ 2768      6C6500
+ 2769              	.LASF48:
+ 2770 034e 44533138 		.ascii	"DS1820_GetTempRaw\000"
+ 2770      32305F47 
+ 2770      65745465 
+ 2770      6D705261 
+ 2770      7700
+ 2771              	.LASF31:
+ 2772 0360 44533138 		.ascii	"DS1820_WriteByte\000"
+ 2772      32305F57 
+ 2772      72697465 
+ 2772      42797465 
+ 2772      00
+ 2773              	.LASF18:
+ 2774 0371 70696E5F 		.ascii	"pin_read\000"
+ 2774      72656164 
+ 2774      00
+ 2775              	.LASF27:
+ 2776 037a 62426974 		.ascii	"bBit\000"
+ 2776      00
+ 2777              	.LASF42:
+ 2778 037f 6269745F 		.ascii	"bit_b\000"
+ 2778      6200
+ 2779              	.LASF32:
+ 2780 0385 76616C5F 		.ascii	"val_u8\000"
+ 2780      753800
+ 2781              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

@@ -1,0 +1,5 @@
+C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\Moisture_Sensor.cyprj|23eb6002-2068-4025-b87c-d057dcb48bb5
+C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|aa8ee8d2-4a5f-4c80-b8bd-88336c14019b
+C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|a1739af0-0ea9-42a7-bc51-c67d63268104
+C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|d5627261-7320-4c43-bdfa-23277a992a87
+C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|699687d7-bb9e-4eb5-8c35-1dedb6222395
