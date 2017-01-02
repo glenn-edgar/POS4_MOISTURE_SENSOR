@@ -20,7 +20,7 @@
 #include "event_fifo.h"
 
 CY_ISR(WdtIsrHandler);
-#define ENABLE_WATCH_DOG 0
+#define ENABLE_WATCH_DOG 1
 static void setup_one_second_timer_watch_dog( void );
 static void SysTickInit( void );
 

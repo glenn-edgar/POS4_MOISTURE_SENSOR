@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -9,7 +9,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 1
    6              		.eabi_attribute 24, 1
    7              		.eabi_attribute 25, 1
    8              		.eabi_attribute 26, 1
-   9              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 30, 2
   10              		.eabi_attribute 34, 0
   11              		.eabi_attribute 18, 4
   12              		.code	16
@@ -17,14 +17,22 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 1
   14              		.text
   15              	.Ltext0:
   16              		.cfi_sections	.debug_frame
-  17              		.section	.text.look_for_dht22_response,"ax",%progbits
-  18              		.align	2
-  19              		.code	16
-  20              		.thumb_func
-  21              		.type	look_for_dht22_response, %function
-  22              	look_for_dht22_response:
-  23              	.LFB62:
-  24              		.file 1 "humidity_sensor\\dht22.c"
+  17              		.global	__aeabi_i2f
+  18              		.global	__aeabi_fdiv
+  19              		.global	__aeabi_f2d
+  20              		.global	__aeabi_ddiv
+  21              		.global	__aeabi_dmul
+  22              		.global	__aeabi_dadd
+  23              		.global	__aeabi_d2f
+  24              		.section	.text.DHT22_get_data,"ax",%progbits
+  25              		.align	2
+  26              		.global	DHT22_get_data
+  27              		.code	16
+  28              		.thumb_func
+  29              		.type	DHT22_get_data, %function
+  30              	DHT22_get_data:
+  31              	.LFB64:
+  32              		.file 1 "humidity_sensor\\dht22.c"
    1:humidity_sensor/dht22.c **** /*
    2:humidity_sensor/dht22.c **** **
    3:humidity_sensor/dht22.c **** ** File DHT22.c
@@ -37,350 +45,88 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 1
   10:humidity_sensor/dht22.c **** 
   11:humidity_sensor/dht22.c **** static int look_for_dht22_response( DHT22_SENSOR *dht22_sensor )
   12:humidity_sensor/dht22.c **** {
-  25              		.loc 1 12 0
-  26              		.cfi_startproc
-  27 0000 80B5     		push	{r7, lr}
-  28              		.cfi_def_cfa_offset 8
-  29              		.cfi_offset 7, -8
-  30              		.cfi_offset 14, -4
-  31 0002 84B0     		sub	sp, sp, #16
-  32              		.cfi_def_cfa_offset 24
-  33 0004 00AF     		add	r7, sp, #0
-  34              		.cfi_def_cfa_register 7
-  35 0006 7860     		str	r0, [r7, #4]
   13:humidity_sensor/dht22.c ****     uint32 i;
   14:humidity_sensor/dht22.c ****     // look for trans to zero
   15:humidity_sensor/dht22.c ****     // look for trans to one
   16:humidity_sensor/dht22.c ****     // look for trans to zero
   17:humidity_sensor/dht22.c ****     for( i = 0; i < 60; i++)
-  36              		.loc 1 17 0
-  37 0008 0023     		mov	r3, #0
-  38 000a FB60     		str	r3, [r7, #12]
-  39 000c 0BE0     		b	.L2
-  40              	.L5:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 2
-
-
   18:humidity_sensor/dht22.c ****     {
   19:humidity_sensor/dht22.c ****         if( dht22_sensor->pin_read() == 0 )
-  41              		.loc 1 19 0
-  42 000e 7B68     		ldr	r3, [r7, #4]
-  43 0010 1B68     		ldr	r3, [r3]
-  44 0012 9847     		blx	r3
-  45 0014 031E     		sub	r3, r0, #0
-  46 0016 00D1     		bne	.L3
   20:humidity_sensor/dht22.c ****         {
   21:humidity_sensor/dht22.c ****             break;
-  47              		.loc 1 21 0
-  48 0018 08E0     		b	.L4
-  49              	.L3:
   22:humidity_sensor/dht22.c ****         }
   23:humidity_sensor/dht22.c ****         CyDelayUs(1);
-  50              		.loc 1 23 0 discriminator 2
-  51 001a 0120     		mov	r0, #1
-  52 001c FFF7FEFF 		bl	CyDelayUs
-  17:humidity_sensor/dht22.c ****     {
-  53              		.loc 1 17 0 discriminator 2
-  54 0020 FB68     		ldr	r3, [r7, #12]
-  55 0022 0133     		add	r3, r3, #1
-  56 0024 FB60     		str	r3, [r7, #12]
-  57              	.L2:
-  17:humidity_sensor/dht22.c ****     {
-  58              		.loc 1 17 0 is_stmt 0 discriminator 1
-  59 0026 FB68     		ldr	r3, [r7, #12]
-  60 0028 3B2B     		cmp	r3, #59
-  61 002a F0D9     		bls	.L5
-  62              	.L4:
   24:humidity_sensor/dht22.c ****     }
   25:humidity_sensor/dht22.c ****     if( i > 50 )
-  63              		.loc 1 25 0 is_stmt 1
-  64 002c FB68     		ldr	r3, [r7, #12]
-  65 002e 322B     		cmp	r3, #50
-  66 0030 01D9     		bls	.L6
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 2
+
+
   26:humidity_sensor/dht22.c ****     {
   27:humidity_sensor/dht22.c ****         return 0;
-  67              		.loc 1 27 0
-  68 0032 0023     		mov	r3, #0
-  69 0034 2EE0     		b	.L7
-  70              	.L6:
   28:humidity_sensor/dht22.c ****     }
   29:humidity_sensor/dht22.c ****     for( i = 0; i < 100; i++)
-  71              		.loc 1 29 0
-  72 0036 0023     		mov	r3, #0
-  73 0038 FB60     		str	r3, [r7, #12]
-  74 003a 0BE0     		b	.L8
-  75              	.L11:
   30:humidity_sensor/dht22.c ****     {
   31:humidity_sensor/dht22.c ****         if( dht22_sensor->pin_read() != 0 )
-  76              		.loc 1 31 0
-  77 003c 7B68     		ldr	r3, [r7, #4]
-  78 003e 1B68     		ldr	r3, [r3]
-  79 0040 9847     		blx	r3
-  80 0042 031E     		sub	r3, r0, #0
-  81 0044 00D0     		beq	.L9
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 3
-
-
   32:humidity_sensor/dht22.c ****         {
   33:humidity_sensor/dht22.c ****             break;
-  82              		.loc 1 33 0
-  83 0046 08E0     		b	.L10
-  84              	.L9:
   34:humidity_sensor/dht22.c ****         }
   35:humidity_sensor/dht22.c ****         CyDelayUs(1);
-  85              		.loc 1 35 0 discriminator 2
-  86 0048 0120     		mov	r0, #1
-  87 004a FFF7FEFF 		bl	CyDelayUs
-  29:humidity_sensor/dht22.c ****     {
-  88              		.loc 1 29 0 discriminator 2
-  89 004e FB68     		ldr	r3, [r7, #12]
-  90 0050 0133     		add	r3, r3, #1
-  91 0052 FB60     		str	r3, [r7, #12]
-  92              	.L8:
-  29:humidity_sensor/dht22.c ****     {
-  93              		.loc 1 29 0 is_stmt 0 discriminator 1
-  94 0054 FB68     		ldr	r3, [r7, #12]
-  95 0056 632B     		cmp	r3, #99
-  96 0058 F0D9     		bls	.L11
-  97              	.L10:
   36:humidity_sensor/dht22.c ****     }    
   37:humidity_sensor/dht22.c ****     if(  i > 90 ) 
-  98              		.loc 1 37 0 is_stmt 1
-  99 005a FB68     		ldr	r3, [r7, #12]
- 100 005c 5A2B     		cmp	r3, #90
- 101 005e 01D9     		bls	.L12
   38:humidity_sensor/dht22.c ****     {
   39:humidity_sensor/dht22.c ****         
   40:humidity_sensor/dht22.c ****         return 0;
- 102              		.loc 1 40 0
- 103 0060 0023     		mov	r3, #0
- 104 0062 17E0     		b	.L7
- 105              	.L12:
   41:humidity_sensor/dht22.c ****     }
   42:humidity_sensor/dht22.c ****     
   43:humidity_sensor/dht22.c ****    for( i = 0; i < 100; i++)
- 106              		.loc 1 43 0
- 107 0064 0023     		mov	r3, #0
- 108 0066 FB60     		str	r3, [r7, #12]
- 109 0068 0BE0     		b	.L13
- 110              	.L16:
   44:humidity_sensor/dht22.c ****     {
   45:humidity_sensor/dht22.c ****         if( dht22_sensor->pin_read() == 0 )
- 111              		.loc 1 45 0
- 112 006a 7B68     		ldr	r3, [r7, #4]
- 113 006c 1B68     		ldr	r3, [r3]
- 114 006e 9847     		blx	r3
- 115 0070 031E     		sub	r3, r0, #0
- 116 0072 00D1     		bne	.L14
   46:humidity_sensor/dht22.c ****         {
   47:humidity_sensor/dht22.c ****             break;
- 117              		.loc 1 47 0
- 118 0074 08E0     		b	.L15
- 119              	.L14:
   48:humidity_sensor/dht22.c ****         }
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 4
-
-
   49:humidity_sensor/dht22.c ****         CyDelayUs(1);
- 120              		.loc 1 49 0 discriminator 2
- 121 0076 0120     		mov	r0, #1
- 122 0078 FFF7FEFF 		bl	CyDelayUs
-  43:humidity_sensor/dht22.c ****     {
- 123              		.loc 1 43 0 discriminator 2
- 124 007c FB68     		ldr	r3, [r7, #12]
- 125 007e 0133     		add	r3, r3, #1
- 126 0080 FB60     		str	r3, [r7, #12]
- 127              	.L13:
-  43:humidity_sensor/dht22.c ****     {
- 128              		.loc 1 43 0 is_stmt 0 discriminator 1
- 129 0082 FB68     		ldr	r3, [r7, #12]
- 130 0084 632B     		cmp	r3, #99
- 131 0086 F0D9     		bls	.L16
- 132              	.L15:
   50:humidity_sensor/dht22.c ****     }    
   51:humidity_sensor/dht22.c ****     if(  i > 90) 
- 133              		.loc 1 51 0 is_stmt 1
- 134 0088 FB68     		ldr	r3, [r7, #12]
- 135 008a 5A2B     		cmp	r3, #90
- 136 008c 01D9     		bls	.L17
   52:humidity_sensor/dht22.c ****     {
   53:humidity_sensor/dht22.c ****         
   54:humidity_sensor/dht22.c ****         return 0;
- 137              		.loc 1 54 0
- 138 008e 0023     		mov	r3, #0
- 139 0090 00E0     		b	.L7
- 140              	.L17:
   55:humidity_sensor/dht22.c ****     }
   56:humidity_sensor/dht22.c ****     return 1;
- 141              		.loc 1 56 0
- 142 0092 0123     		mov	r3, #1
- 143              	.L7:
   57:humidity_sensor/dht22.c **** }
- 144              		.loc 1 57 0
- 145 0094 181C     		mov	r0, r3
- 146 0096 BD46     		mov	sp, r7
- 147 0098 04B0     		add	sp, sp, #16
- 148              		@ sp needed
- 149 009a 80BD     		pop	{r7, pc}
- 150              		.cfi_endproc
- 151              	.LFE62:
- 152              		.size	look_for_dht22_response, .-look_for_dht22_response
- 153              		.section	.text.read_bit,"ax",%progbits
- 154              		.align	2
- 155              		.code	16
- 156              		.thumb_func
- 157              		.type	read_bit, %function
- 158              	read_bit:
- 159              	.LFB63:
   58:humidity_sensor/dht22.c **** 
   59:humidity_sensor/dht22.c **** 
   60:humidity_sensor/dht22.c **** static uint32 read_bit( DHT22_SENSOR *dht22_sensor, uint32 *status_flag )
   61:humidity_sensor/dht22.c **** {
- 160              		.loc 1 61 0
- 161              		.cfi_startproc
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 5
-
-
- 162 0000 80B5     		push	{r7, lr}
- 163              		.cfi_def_cfa_offset 8
- 164              		.cfi_offset 7, -8
- 165              		.cfi_offset 14, -4
- 166 0002 84B0     		sub	sp, sp, #16
- 167              		.cfi_def_cfa_offset 24
- 168 0004 00AF     		add	r7, sp, #0
- 169              		.cfi_def_cfa_register 7
- 170 0006 7860     		str	r0, [r7, #4]
- 171 0008 3960     		str	r1, [r7]
   62:humidity_sensor/dht22.c ****     int i;
   63:humidity_sensor/dht22.c ****     *status_flag = 1;
- 172              		.loc 1 63 0
- 173 000a 3B68     		ldr	r3, [r7]
- 174 000c 0122     		mov	r2, #1
- 175 000e 1A60     		str	r2, [r3]
   64:humidity_sensor/dht22.c ****     for( i = 0; i < 12; i++)
- 176              		.loc 1 64 0
- 177 0010 0023     		mov	r3, #0
- 178 0012 FB60     		str	r3, [r7, #12]
- 179 0014 0BE0     		b	.L19
- 180              	.L22:
   65:humidity_sensor/dht22.c ****     {
   66:humidity_sensor/dht22.c ****         if( dht22_sensor->pin_read() != 0 )
- 181              		.loc 1 66 0
- 182 0016 7B68     		ldr	r3, [r7, #4]
- 183 0018 1B68     		ldr	r3, [r3]
- 184 001a 9847     		blx	r3
- 185 001c 031E     		sub	r3, r0, #0
- 186 001e 00D0     		beq	.L20
   67:humidity_sensor/dht22.c ****         {
   68:humidity_sensor/dht22.c ****             break;
- 187              		.loc 1 68 0
- 188 0020 08E0     		b	.L21
- 189              	.L20:
   69:humidity_sensor/dht22.c ****         }
   70:humidity_sensor/dht22.c ****         CyDelayUs(10);
- 190              		.loc 1 70 0 discriminator 2
- 191 0022 0A20     		mov	r0, #10
- 192 0024 FFF7FEFF 		bl	CyDelayUs
-  64:humidity_sensor/dht22.c ****     {
- 193              		.loc 1 64 0 discriminator 2
- 194 0028 FB68     		ldr	r3, [r7, #12]
- 195 002a 0133     		add	r3, r3, #1
- 196 002c FB60     		str	r3, [r7, #12]
- 197              	.L19:
-  64:humidity_sensor/dht22.c ****     {
- 198              		.loc 1 64 0 is_stmt 0 discriminator 1
- 199 002e FB68     		ldr	r3, [r7, #12]
- 200 0030 0B2B     		cmp	r3, #11
- 201 0032 F0DD     		ble	.L22
- 202              	.L21:
   71:humidity_sensor/dht22.c ****     }
   72:humidity_sensor/dht22.c ****     for( i = 0; i < 11; i++)
- 203              		.loc 1 72 0 is_stmt 1
- 204 0034 0023     		mov	r3, #0
- 205 0036 FB60     		str	r3, [r7, #12]
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 6
-
-
- 206 0038 0BE0     		b	.L23
- 207              	.L26:
   73:humidity_sensor/dht22.c ****     {
   74:humidity_sensor/dht22.c ****         if( dht22_sensor->pin_read() == 0 )
- 208              		.loc 1 74 0
- 209 003a 7B68     		ldr	r3, [r7, #4]
- 210 003c 1B68     		ldr	r3, [r3]
- 211 003e 9847     		blx	r3
- 212 0040 031E     		sub	r3, r0, #0
- 213 0042 00D1     		bne	.L24
   75:humidity_sensor/dht22.c ****         {
   76:humidity_sensor/dht22.c ****             break;
- 214              		.loc 1 76 0
- 215 0044 08E0     		b	.L25
- 216              	.L24:
   77:humidity_sensor/dht22.c ****         }
   78:humidity_sensor/dht22.c ****         CyDelayUs(10);
- 217              		.loc 1 78 0 discriminator 2
- 218 0046 0A20     		mov	r0, #10
- 219 0048 FFF7FEFF 		bl	CyDelayUs
-  72:humidity_sensor/dht22.c ****     {
- 220              		.loc 1 72 0 discriminator 2
- 221 004c FB68     		ldr	r3, [r7, #12]
- 222 004e 0133     		add	r3, r3, #1
- 223 0050 FB60     		str	r3, [r7, #12]
- 224              	.L23:
-  72:humidity_sensor/dht22.c ****     {
- 225              		.loc 1 72 0 is_stmt 0 discriminator 1
- 226 0052 FB68     		ldr	r3, [r7, #12]
- 227 0054 0A2B     		cmp	r3, #10
- 228 0056 F0DD     		ble	.L26
- 229              	.L25:
   79:humidity_sensor/dht22.c ****     }    
   80:humidity_sensor/dht22.c ****     if(  i < 4  )
- 230              		.loc 1 80 0 is_stmt 1
- 231 0058 FB68     		ldr	r3, [r7, #12]
- 232 005a 032B     		cmp	r3, #3
- 233 005c 01DC     		bgt	.L27
   81:humidity_sensor/dht22.c ****     {
   82:humidity_sensor/dht22.c ****         
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 3
+
+
   83:humidity_sensor/dht22.c ****         return 0;
- 234              		.loc 1 83 0
- 235 005e 0023     		mov	r3, #0
- 236 0060 00E0     		b	.L28
- 237              	.L27:
   84:humidity_sensor/dht22.c ****     }
   85:humidity_sensor/dht22.c ****     
   86:humidity_sensor/dht22.c ****     
   87:humidity_sensor/dht22.c ****     return 1;
- 238              		.loc 1 87 0
- 239 0062 0123     		mov	r3, #1
- 240              	.L28:
   88:humidity_sensor/dht22.c ****  }
- 241              		.loc 1 88 0
- 242 0064 181C     		mov	r0, r3
- 243 0066 BD46     		mov	sp, r7
- 244 0068 04B0     		add	sp, sp, #16
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 7
-
-
- 245              		@ sp needed
- 246 006a 80BD     		pop	{r7, pc}
- 247              		.cfi_endproc
- 248              	.LFE63:
- 249              		.size	read_bit, .-read_bit
- 250              		.global	__aeabi_i2f
- 251              		.global	__aeabi_fdiv
- 252              		.global	__aeabi_f2d
- 253              		.global	__aeabi_ddiv
- 254              		.global	__aeabi_dmul
- 255              		.global	__aeabi_dadd
- 256              		.global	__aeabi_d2f
- 257              		.section	.text.DHT22_get_data,"ax",%progbits
- 258              		.align	2
- 259              		.global	DHT22_get_data
- 260              		.code	16
- 261              		.thumb_func
- 262              		.type	DHT22_get_data, %function
- 263              	DHT22_get_data:
- 264              	.LFB64:
   89:humidity_sensor/dht22.c ****             
   90:humidity_sensor/dht22.c ****    
   91:humidity_sensor/dht22.c ****         
@@ -389,21 +135,33 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 1
   94:humidity_sensor/dht22.c **** 
   95:humidity_sensor/dht22.c **** void DHT22_get_data( DHT22_SENSOR *dht22_sensor, uint32  *status_flag, uint32 *step_number, float *
   96:humidity_sensor/dht22.c **** {
- 265              		.loc 1 96 0
- 266              		.cfi_startproc
- 267 0000 90B5     		push	{r4, r7, lr}
- 268              		.cfi_def_cfa_offset 12
- 269              		.cfi_offset 4, -12
- 270              		.cfi_offset 7, -8
- 271              		.cfi_offset 14, -4
- 272 0002 8FB0     		sub	sp, sp, #60
- 273              		.cfi_def_cfa_offset 72
- 274 0004 00AF     		add	r7, sp, #0
- 275              		.cfi_def_cfa_register 7
- 276 0006 F860     		str	r0, [r7, #12]
- 277 0008 B960     		str	r1, [r7, #8]
- 278 000a 7A60     		str	r2, [r7, #4]
- 279 000c 3B60     		str	r3, [r7]
+  33              		.loc 1 96 0
+  34              		.cfi_startproc
+  35              	.LVL0:
+  36 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  37              		.cfi_def_cfa_offset 20
+  38              		.cfi_offset 4, -20
+  39              		.cfi_offset 5, -16
+  40              		.cfi_offset 6, -12
+  41              		.cfi_offset 7, -8
+  42              		.cfi_offset 14, -4
+  43 0002 4446     		mov	r4, r8
+  44 0004 4D46     		mov	r5, r9
+  45 0006 5F46     		mov	r7, fp
+  46 0008 5646     		mov	r6, r10
+  47 000a F0B4     		push	{r4, r5, r6, r7}
+  48              		.cfi_def_cfa_offset 36
+  49              		.cfi_offset 8, -36
+  50              		.cfi_offset 9, -32
+  51              		.cfi_offset 10, -28
+  52              		.cfi_offset 11, -24
+  53 000c 87B0     		sub	sp, sp, #28
+  54              		.cfi_def_cfa_offset 64
+  55              		.loc 1 96 0
+  56 000e 8846     		mov	r8, r1
+  57 0010 0192     		str	r2, [sp, #4]
+  58 0012 051C     		mov	r5, r0
+  59 0014 0393     		str	r3, [sp, #12]
   97:humidity_sensor/dht22.c ****    uint8  data[5];
   98:humidity_sensor/dht22.c ****    uint32  i; 
   99:humidity_sensor/dht22.c ****    uint32  j;
@@ -415,1222 +173,2314 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 1
  105:humidity_sensor/dht22.c ****    
  106:humidity_sensor/dht22.c ****    uint8  criticalState;
  107:humidity_sensor/dht22.c ****    criticalState = CyEnterCriticalSection();
- 280              		.loc 1 107 0
- 281 000e 2723     		mov	r3, #39
- 282 0010 FC18     		add	r4, r7, r3
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 8
-
-
- 283 0012 FFF7FEFF 		bl	CyEnterCriticalSection
- 284 0016 031C     		mov	r3, r0
- 285 0018 2370     		strb	r3, [r4]
+  60              		.loc 1 107 0
+  61 0016 FFF7FEFF 		bl	CyEnterCriticalSection
+  62              	.LVL1:
  108:humidity_sensor/dht22.c ****    
  109:humidity_sensor/dht22.c ****    dht22_sensor->pin_write(0);
- 286              		.loc 1 109 0
- 287 001a FB68     		ldr	r3, [r7, #12]
- 288 001c 5B68     		ldr	r3, [r3, #4]
- 289 001e 0020     		mov	r0, #0
- 290 0020 9847     		blx	r3
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 4
+
+
+  63              		.loc 1 109 0
+  64 001a 6B68     		ldr	r3, [r5, #4]
+ 107:humidity_sensor/dht22.c ****    
+  65              		.loc 1 107 0
+  66 001c 0290     		str	r0, [sp, #8]
+  67              	.LVL2:
+  68              		.loc 1 109 0
+  69 001e 0020     		mov	r0, #0
+  70 0020 9847     		blx	r3
+  71              	.LVL3:
  110:humidity_sensor/dht22.c ****    CyDelayUs(1500);
- 291              		.loc 1 110 0
- 292 0022 784B     		ldr	r3, .L41
- 293 0024 181C     		mov	r0, r3
- 294 0026 FFF7FEFF 		bl	CyDelayUs
+  72              		.loc 1 110 0
+  73 0022 6048     		ldr	r0, .L48
+  74 0024 FFF7FEFF 		bl	CyDelayUs
+  75              	.LVL4:
  111:humidity_sensor/dht22.c ****    dht22_sensor->pin_write(1);
- 295              		.loc 1 111 0
- 296 002a FB68     		ldr	r3, [r7, #12]
- 297 002c 5B68     		ldr	r3, [r3, #4]
- 298 002e 0120     		mov	r0, #1
- 299 0030 9847     		blx	r3
+  76              		.loc 1 111 0
+  77 0028 0120     		mov	r0, #1
+  78 002a 6B68     		ldr	r3, [r5, #4]
+  79 002c 9847     		blx	r3
+  80              	.LVL5:
+  81              	.LBB6:
+  82              	.LBB7:
+  17:humidity_sensor/dht22.c ****     {
+  83              		.loc 1 17 0
+  84 002e 0024     		mov	r4, #0
+  85 0030 05E0     		b	.L3
+  86              	.LVL6:
+  87              	.L44:
+  23:humidity_sensor/dht22.c ****     }
+  88              		.loc 1 23 0
+  89 0032 0120     		mov	r0, #1
+  17:humidity_sensor/dht22.c ****     {
+  90              		.loc 1 17 0
+  91 0034 0134     		add	r4, r4, #1
+  92              	.LVL7:
+  23:humidity_sensor/dht22.c ****     }
+  93              		.loc 1 23 0
+  94 0036 FFF7FEFF 		bl	CyDelayUs
+  95              	.LVL8:
+  17:humidity_sensor/dht22.c ****     {
+  96              		.loc 1 17 0
+  97 003a 3C2C     		cmp	r4, #60
+  98 003c 75D0     		beq	.L4
+  99              	.LVL9:
+ 100              	.L3:
+  19:humidity_sensor/dht22.c ****         {
+ 101              		.loc 1 19 0
+ 102 003e 2B68     		ldr	r3, [r5]
+ 103 0040 9847     		blx	r3
+ 104              	.LVL10:
+ 105 0042 0028     		cmp	r0, #0
+ 106 0044 F5D1     		bne	.L44
+  25:humidity_sensor/dht22.c ****     {
+ 107              		.loc 1 25 0
+ 108 0046 322C     		cmp	r4, #50
+ 109 0048 6FD8     		bhi	.L4
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 5
+
+
+ 110 004a 0024     		mov	r4, #0
+ 111              	.LVL11:
+ 112 004c 05E0     		b	.L6
+ 113              	.LVL12:
+ 114              	.L45:
+  35:humidity_sensor/dht22.c ****     }    
+ 115              		.loc 1 35 0
+ 116 004e 0130     		add	r0, r0, #1
+  29:humidity_sensor/dht22.c ****     {
+ 117              		.loc 1 29 0
+ 118 0050 0134     		add	r4, r4, #1
+ 119              	.LVL13:
+  35:humidity_sensor/dht22.c ****     }    
+ 120              		.loc 1 35 0
+ 121 0052 FFF7FEFF 		bl	CyDelayUs
+ 122              	.LVL14:
+  29:humidity_sensor/dht22.c ****     {
+ 123              		.loc 1 29 0
+ 124 0056 642C     		cmp	r4, #100
+ 125 0058 67D0     		beq	.L4
+ 126              	.LVL15:
+ 127              	.L6:
+  31:humidity_sensor/dht22.c ****         {
+ 128              		.loc 1 31 0
+ 129 005a 2B68     		ldr	r3, [r5]
+ 130 005c 9847     		blx	r3
+ 131              	.LVL16:
+ 132 005e 0028     		cmp	r0, #0
+ 133 0060 F5D0     		beq	.L45
+  37:humidity_sensor/dht22.c ****     {
+ 134              		.loc 1 37 0
+ 135 0062 5A2C     		cmp	r4, #90
+ 136 0064 61D8     		bhi	.L4
+ 137 0066 0024     		mov	r4, #0
+ 138              	.LVL17:
+ 139 0068 05E0     		b	.L8
+ 140              	.LVL18:
+ 141              	.L46:
+  49:humidity_sensor/dht22.c ****     }    
+ 142              		.loc 1 49 0
+ 143 006a 0120     		mov	r0, #1
+  43:humidity_sensor/dht22.c ****     {
+ 144              		.loc 1 43 0
+ 145 006c 0134     		add	r4, r4, #1
+ 146              	.LVL19:
+  49:humidity_sensor/dht22.c ****     }    
+ 147              		.loc 1 49 0
+ 148 006e FFF7FEFF 		bl	CyDelayUs
+ 149              	.LVL20:
+  43:humidity_sensor/dht22.c ****     {
+ 150              		.loc 1 43 0
+ 151 0072 642C     		cmp	r4, #100
+ 152 0074 59D0     		beq	.L4
+ 153              	.LVL21:
+ 154              	.L8:
+  45:humidity_sensor/dht22.c ****         {
+ 155              		.loc 1 45 0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 6
+
+
+ 156 0076 2B68     		ldr	r3, [r5]
+ 157 0078 9847     		blx	r3
+ 158              	.LVL22:
+ 159 007a 0028     		cmp	r0, #0
+ 160 007c F5D1     		bne	.L46
+  51:humidity_sensor/dht22.c ****     {
+ 161              		.loc 1 51 0
+ 162 007e 5A2C     		cmp	r4, #90
+ 163 0080 53D8     		bhi	.L4
+ 164 0082 0027     		mov	r7, #0
+ 165              	.LVL23:
+ 166              	.L20:
+ 167              	.LBE7:
+ 168              	.LBE6:
  112:humidity_sensor/dht22.c ****    if( look_for_dht22_response( dht22_sensor ) == 0 )
- 300              		.loc 1 112 0
- 301 0032 FB68     		ldr	r3, [r7, #12]
- 302 0034 181C     		mov	r0, r3
- 303 0036 FFF7FEFF 		bl	look_for_dht22_response
- 304 003a 031E     		sub	r3, r0, #0
- 305 003c 06D1     		bne	.L30
  113:humidity_sensor/dht22.c ****    {
  114:humidity_sensor/dht22.c ****       *status_flag = 0;
- 306              		.loc 1 114 0
- 307 003e BB68     		ldr	r3, [r7, #8]
- 308 0040 0022     		mov	r2, #0
- 309 0042 1A60     		str	r2, [r3]
  115:humidity_sensor/dht22.c ****       *step_number = 0;
- 310              		.loc 1 115 0
- 311 0044 7B68     		ldr	r3, [r7, #4]
- 312 0046 0022     		mov	r2, #0
- 313 0048 1A60     		str	r2, [r3]
  116:humidity_sensor/dht22.c ****       return;
- 314              		.loc 1 116 0
- 315 004a D7E0     		b	.L29
- 316              	.L30:
  117:humidity_sensor/dht22.c ****    }
  118:humidity_sensor/dht22.c ****    for( i = 0; i < 5; i++ )
- 317              		.loc 1 118 0
- 318 004c 0023     		mov	r3, #0
- 319 004e 7B63     		str	r3, [r7, #52]
- 320 0050 42E0     		b	.L32
- 321              	.L37:
  119:humidity_sensor/dht22.c ****    {
  120:humidity_sensor/dht22.c ****      data[i] = 0;
- 322              		.loc 1 120 0
- 323 0052 1423     		mov	r3, #20
- 324 0054 FA18     		add	r2, r7, r3
- 325 0056 7B6B     		ldr	r3, [r7, #52]
- 326 0058 D318     		add	r3, r2, r3
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 9
-
-
- 327 005a 0022     		mov	r2, #0
- 328 005c 1A70     		strb	r2, [r3]
+ 169              		.loc 1 120 0
+ 170 0084 0023     		mov	r3, #0
+ 171 0086 04AA     		add	r2, sp, #16
+ 172 0088 D355     		strb	r3, [r2, r7]
+ 173              	.LVL24:
+ 174 008a 0833     		add	r3, r3, #8
+ 175 008c 9A46     		mov	r10, r3
  121:humidity_sensor/dht22.c ****      mask = 0x80;
- 329              		.loc 1 121 0
- 330 005e 8023     		mov	r3, #128
- 331 0060 0024     		mov	r4, #0
- 332 0062 BB62     		str	r3, [r7, #40]
- 333 0064 FC62     		str	r4, [r7, #44]
+ 176              		.loc 1 121 0
+ 177 008e 0023     		mov	r3, #0
+ 178 0090 9946     		mov	r9, r3
+ 179              	.LBB8:
+ 180              	.LBB9:
+  63:humidity_sensor/dht22.c ****     for( i = 0; i < 12; i++)
+ 181              		.loc 1 63 0
+ 182 0092 0133     		add	r3, r3, #1
+ 183              	.LBE9:
+ 184              	.LBE8:
+ 185              		.loc 1 121 0
+ 186 0094 8026     		mov	r6, #128
+ 187              	.LBB12:
+ 188              	.LBB10:
+  63:humidity_sensor/dht22.c ****     for( i = 0; i < 12; i++)
+ 189              		.loc 1 63 0
+ 190 0096 9B46     		mov	fp, r3
+ 191              	.LVL25:
+ 192              	.L19:
+ 193 0098 4346     		mov	r3, r8
+ 194 009a 5A46     		mov	r2, fp
+ 195 009c 0C24     		mov	r4, #12
+ 196 009e 1A60     		str	r2, [r3]
+ 197              	.LVL26:
+ 198              	.L11:
+  66:humidity_sensor/dht22.c ****         {
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 7
+
+
+ 199              		.loc 1 66 0
+ 200 00a0 2B68     		ldr	r3, [r5]
+ 201 00a2 9847     		blx	r3
+ 202              	.LVL27:
+ 203 00a4 0028     		cmp	r0, #0
+ 204 00a6 05D1     		bne	.L12
+  70:humidity_sensor/dht22.c ****     }
+ 205              		.loc 1 70 0
+ 206 00a8 0A20     		mov	r0, #10
+ 207 00aa 013C     		sub	r4, r4, #1
+ 208              	.LVL28:
+ 209 00ac FFF7FEFF 		bl	CyDelayUs
+ 210              	.LVL29:
+  64:humidity_sensor/dht22.c ****     {
+ 211              		.loc 1 64 0
+ 212 00b0 002C     		cmp	r4, #0
+ 213 00b2 F5D1     		bne	.L11
+ 214              	.L12:
+ 215              	.LVL30:
+  63:humidity_sensor/dht22.c ****     for( i = 0; i < 12; i++)
+ 216              		.loc 1 63 0
+ 217 00b4 0024     		mov	r4, #0
+ 218              	.LVL31:
+ 219              	.L10:
+  74:humidity_sensor/dht22.c ****         {
+ 220              		.loc 1 74 0
+ 221 00b6 2B68     		ldr	r3, [r5]
+ 222 00b8 9847     		blx	r3
+ 223              	.LVL32:
+ 224 00ba 0028     		cmp	r0, #0
+ 225 00bc 41D0     		beq	.L13
+  78:humidity_sensor/dht22.c ****     }    
+ 226              		.loc 1 78 0
+ 227 00be 0A20     		mov	r0, #10
+  72:humidity_sensor/dht22.c ****     {
+ 228              		.loc 1 72 0
+ 229 00c0 0134     		add	r4, r4, #1
+ 230              	.LVL33:
+  78:humidity_sensor/dht22.c ****     }    
+ 231              		.loc 1 78 0
+ 232 00c2 FFF7FEFF 		bl	CyDelayUs
+ 233              	.LVL34:
+  72:humidity_sensor/dht22.c ****     {
+ 234              		.loc 1 72 0
+ 235 00c6 0B2C     		cmp	r4, #11
+ 236 00c8 F5D1     		bne	.L10
+ 237              	.L39:
+ 238              	.LBE10:
+ 239              	.LBE12:
  122:humidity_sensor/dht22.c ****      for( j = 0; j < 8 ; j++ )
- 334              		.loc 1 122 0
- 335 0066 0023     		mov	r3, #0
- 336 0068 3B63     		str	r3, [r7, #48]
- 337 006a 2FE0     		b	.L33
- 338              	.L36:
  123:humidity_sensor/dht22.c ****      {
  124:humidity_sensor/dht22.c ****       bit = read_bit( dht22_sensor,  status_flag );
- 339              		.loc 1 124 0
- 340 006c FA68     		ldr	r2, [r7, #12]
- 341 006e BB68     		ldr	r3, [r7, #8]
- 342 0070 101C     		mov	r0, r2
- 343 0072 191C     		mov	r1, r3
- 344 0074 FFF7FEFF 		bl	read_bit
- 345 0078 031C     		mov	r3, r0
- 346 007a 3B62     		str	r3, [r7, #32]
  125:humidity_sensor/dht22.c ****       if( *status_flag == 0 )
- 347              		.loc 1 125 0
- 348 007c BB68     		ldr	r3, [r7, #8]
- 349 007e 1B68     		ldr	r3, [r3]
- 350 0080 002B     		cmp	r3, #0
- 351 0082 04D1     		bne	.L34
+ 240              		.loc 1 125 0
+ 241 00ca 4346     		mov	r3, r8
+ 242 00cc 1B68     		ldr	r3, [r3]
+ 243 00ce 002B     		cmp	r3, #0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 8
+
+
+ 244 00d0 3DD0     		beq	.L24
  126:humidity_sensor/dht22.c ****       {
  127:humidity_sensor/dht22.c ****         *step_number = i+1;
- 352              		.loc 1 127 0
- 353 0084 7B6B     		ldr	r3, [r7, #52]
- 354 0086 5A1C     		add	r2, r3, #1
- 355 0088 7B68     		ldr	r3, [r7, #4]
- 356 008a 1A60     		str	r2, [r3]
  128:humidity_sensor/dht22.c ****         return;
- 357              		.loc 1 128 0
- 358 008c B6E0     		b	.L29
- 359              	.L34:
  129:humidity_sensor/dht22.c ****       }
  130:humidity_sensor/dht22.c ****       if( bit != 0 )
- 360              		.loc 1 130 0
- 361 008e 3B6A     		ldr	r3, [r7, #32]
- 362 0090 002B     		cmp	r3, #0
- 363 0092 0FD0     		beq	.L35
  131:humidity_sensor/dht22.c ****       {
  132:humidity_sensor/dht22.c ****         data[i] = data[i] | mask;
- 364              		.loc 1 132 0
- 365 0094 1423     		mov	r3, #20
- 366 0096 FA18     		add	r2, r7, r3
- 367 0098 7B6B     		ldr	r3, [r7, #52]
- 368 009a D318     		add	r3, r2, r3
- 369 009c 1A78     		ldrb	r2, [r3]
- 370 009e BB6A     		ldr	r3, [r7, #40]
- 371 00a0 FC6A     		ldr	r4, [r7, #44]
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 10
-
-
- 372 00a2 DBB2     		uxtb	r3, r3
- 373 00a4 1343     		orr	r3, r2
- 374 00a6 D9B2     		uxtb	r1, r3
- 375 00a8 1423     		mov	r3, #20
- 376 00aa FA18     		add	r2, r7, r3
- 377 00ac 7B6B     		ldr	r3, [r7, #52]
- 378 00ae D318     		add	r3, r2, r3
- 379 00b0 0A1C     		add	r2, r1, #0
- 380 00b2 1A70     		strb	r2, [r3]
- 381              	.L35:
+ 245              		.loc 1 132 0
+ 246 00d2 04AB     		add	r3, sp, #16
+ 247 00d4 DB5D     		ldrb	r3, [r3, r7]
+ 248 00d6 04AA     		add	r2, sp, #16
+ 249 00d8 3343     		orr	r3, r6
+ 250 00da D355     		strb	r3, [r2, r7]
+ 251              	.L25:
  133:humidity_sensor/dht22.c ****       }
  134:humidity_sensor/dht22.c ****       mask = mask >> 1 ;
- 382              		.loc 1 134 0 discriminator 2
- 383 00b4 FB6A     		ldr	r3, [r7, #44]
- 384 00b6 DB07     		lsl	r3, r3, #31
- 385 00b8 BA6A     		ldr	r2, [r7, #40]
- 386 00ba 5208     		lsr	r2, r2, #1
- 387 00bc 1343     		orr	r3, r2
- 388 00be BB62     		str	r3, [r7, #40]
- 389 00c0 FB6A     		ldr	r3, [r7, #44]
- 390 00c2 5B08     		lsr	r3, r3, #1
- 391 00c4 FB62     		str	r3, [r7, #44]
+ 252              		.loc 1 134 0 discriminator 2
+ 253 00dc 4B46     		mov	r3, r9
+ 254 00de 7608     		lsr	r6, r6, #1
+ 255              	.LVL35:
+ 256 00e0 DB07     		lsl	r3, r3, #31
+ 257 00e2 1E43     		orr	r6, r3
+ 258 00e4 4B46     		mov	r3, r9
+ 259 00e6 5B08     		lsr	r3, r3, #1
+ 260 00e8 9946     		mov	r9, r3
+ 261              	.LVL36:
+ 262 00ea 0123     		mov	r3, #1
+ 263              	.LVL37:
+ 264 00ec 5B42     		neg	r3, r3
+ 265 00ee 9C46     		mov	ip, r3
+ 266 00f0 E244     		add	r10, r10, ip
+ 267              	.LVL38:
  122:humidity_sensor/dht22.c ****      {
- 392              		.loc 1 122 0 discriminator 2
- 393 00c6 3B6B     		ldr	r3, [r7, #48]
- 394 00c8 0133     		add	r3, r3, #1
- 395 00ca 3B63     		str	r3, [r7, #48]
- 396              	.L33:
- 122:humidity_sensor/dht22.c ****      {
- 397              		.loc 1 122 0 is_stmt 0 discriminator 1
- 398 00cc 3B6B     		ldr	r3, [r7, #48]
- 399 00ce 072B     		cmp	r3, #7
- 400 00d0 CCD9     		bls	.L36
+ 268              		.loc 1 122 0 discriminator 2
+ 269 00f2 5346     		mov	r3, r10
+ 270 00f4 002B     		cmp	r3, #0
+ 271 00f6 CFD1     		bne	.L19
  118:humidity_sensor/dht22.c ****    {
- 401              		.loc 1 118 0 is_stmt 1 discriminator 2
- 402 00d2 7B6B     		ldr	r3, [r7, #52]
- 403 00d4 0133     		add	r3, r3, #1
- 404 00d6 7B63     		str	r3, [r7, #52]
- 405              	.L32:
- 118:humidity_sensor/dht22.c ****    {
- 406              		.loc 1 118 0 is_stmt 0 discriminator 1
- 407 00d8 7B6B     		ldr	r3, [r7, #52]
- 408 00da 042B     		cmp	r3, #4
- 409 00dc B9D9     		bls	.L37
+ 272              		.loc 1 118 0 discriminator 2
+ 273 00f8 0137     		add	r7, r7, #1
+ 274              	.LVL39:
+ 275 00fa 052F     		cmp	r7, #5
+ 276 00fc C2D1     		bne	.L20
  135:humidity_sensor/dht22.c ****     }
  136:humidity_sensor/dht22.c ****   }
  137:humidity_sensor/dht22.c ****   CyExitCriticalSection(criticalState);
- 410              		.loc 1 137 0 is_stmt 1
- 411 00de 2723     		mov	r3, #39
- 412 00e0 FB18     		add	r3, r7, r3
- 413 00e2 1B78     		ldrb	r3, [r3]
- 414 00e4 181C     		mov	r0, r3
- 415 00e6 FFF7FEFF 		bl	CyExitCriticalSection
+ 277              		.loc 1 137 0
+ 278 00fe 0298     		ldr	r0, [sp, #8]
+ 279 0100 FFF7FEFF 		bl	CyExitCriticalSection
+ 280              	.LVL40:
  138:humidity_sensor/dht22.c ****   checksum = ( data[0] +data[1] +data[2]+data[3] )&0xff;
- 416              		.loc 1 138 0
- 417 00ea 1423     		mov	r3, #20
- 418 00ec FB18     		add	r3, r7, r3
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 11
+ 281              		.loc 1 138 0
+ 282 0104 04AB     		add	r3, sp, #16
+ 283 0106 1A78     		ldrb	r2, [r3]
+ 284 0108 5878     		ldrb	r0, [r3, #1]
+ 285 010a 9C78     		ldrb	r4, [r3, #2]
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 9
 
 
- 419 00ee 1B78     		ldrb	r3, [r3]
- 420 00f0 9AB2     		uxth	r2, r3
- 421 00f2 1423     		mov	r3, #20
- 422 00f4 FB18     		add	r3, r7, r3
- 423 00f6 5B78     		ldrb	r3, [r3, #1]
- 424 00f8 9BB2     		uxth	r3, r3
- 425 00fa D318     		add	r3, r2, r3
- 426 00fc 9AB2     		uxth	r2, r3
- 427 00fe 1423     		mov	r3, #20
- 428 0100 FB18     		add	r3, r7, r3
- 429 0102 9B78     		ldrb	r3, [r3, #2]
- 430 0104 9BB2     		uxth	r3, r3
- 431 0106 D318     		add	r3, r2, r3
- 432 0108 9AB2     		uxth	r2, r3
- 433 010a 1423     		mov	r3, #20
- 434 010c FB18     		add	r3, r7, r3
- 435 010e DB78     		ldrb	r3, [r3, #3]
- 436 0110 9BB2     		uxth	r3, r3
- 437 0112 D318     		add	r3, r2, r3
- 438 0114 9AB2     		uxth	r2, r3
- 439 0116 1E23     		mov	r3, #30
- 440 0118 FB18     		add	r3, r7, r3
- 441 011a FF21     		mov	r1, #255
- 442 011c 0A40     		and	r2, r1
- 443 011e 1A80     		strh	r2, [r3]
+ 286              	.LVL41:
+ 287 010c DD78     		ldrb	r5, [r3, #3]
+ 288              	.LVL42:
+ 289 010e 8318     		add	r3, r0, r2
+ 290 0110 1B19     		add	r3, r3, r4
  139:humidity_sensor/dht22.c ****   if( checksum == data[4] )
- 444              		.loc 1 139 0
- 445 0120 1423     		mov	r3, #20
- 446 0122 FB18     		add	r3, r7, r3
- 447 0124 1B79     		ldrb	r3, [r3, #4]
- 448 0126 9BB2     		uxth	r3, r3
- 449 0128 1E22     		mov	r2, #30
- 450 012a BA18     		add	r2, r7, r2
- 451 012c 1288     		ldrh	r2, [r2]
- 452 012e 9A42     		cmp	r2, r3
- 453 0130 5ED1     		bne	.L38
+ 291              		.loc 1 139 0
+ 292 0112 04A9     		add	r1, sp, #16
+ 138:humidity_sensor/dht22.c ****   checksum = ( data[0] +data[1] +data[2]+data[3] )&0xff;
+ 293              		.loc 1 138 0
+ 294 0114 5B19     		add	r3, r3, r5
+ 295              		.loc 1 139 0
+ 296 0116 0979     		ldrb	r1, [r1, #4]
+ 297 0118 DBB2     		uxtb	r3, r3
+ 298 011a 8B42     		cmp	r3, r1
+ 299 011c 1BD0     		beq	.L47
  140:humidity_sensor/dht22.c ****   {
  141:humidity_sensor/dht22.c ****      temp_1 = data[0] <<8 | data[1];
- 454              		.loc 1 141 0
- 455 0132 1423     		mov	r3, #20
- 456 0134 FB18     		add	r3, r7, r3
- 457 0136 1B78     		ldrb	r3, [r3]
- 458 0138 1B02     		lsl	r3, r3, #8
- 459 013a 99B2     		uxth	r1, r3
- 460 013c 1423     		mov	r3, #20
- 461 013e FB18     		add	r3, r7, r3
- 462 0140 5B78     		ldrb	r3, [r3, #1]
- 463 0142 9AB2     		uxth	r2, r3
- 464 0144 1C23     		mov	r3, #28
- 465 0146 FB18     		add	r3, r7, r3
- 466 0148 0A43     		orr	r2, r1
- 467 014a 1A80     		strh	r2, [r3]
  142:humidity_sensor/dht22.c ****      temp_2 = data[2] << 8 | data[3];
- 468              		.loc 1 142 0
- 469 014c 1423     		mov	r3, #20
- 470 014e FB18     		add	r3, r7, r3
- 471 0150 9B78     		ldrb	r3, [r3, #2]
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 12
-
-
- 472 0152 1B02     		lsl	r3, r3, #8
- 473 0154 99B2     		uxth	r1, r3
- 474 0156 1423     		mov	r3, #20
- 475 0158 FB18     		add	r3, r7, r3
- 476 015a DB78     		ldrb	r3, [r3, #3]
- 477 015c 9AB2     		uxth	r2, r3
- 478 015e 1A23     		mov	r3, #26
- 479 0160 FB18     		add	r3, r7, r3
- 480 0162 0A43     		orr	r2, r1
- 481 0164 1A80     		strh	r2, [r3]
  143:humidity_sensor/dht22.c ****      *humidity = (float) temp_1/10.;
- 482              		.loc 1 143 0
- 483 0166 1C23     		mov	r3, #28
- 484 0168 FB18     		add	r3, r7, r3
- 485 016a 0022     		mov	r2, #0
- 486 016c 9B5E     		ldrsh	r3, [r3, r2]
- 487 016e 181C     		mov	r0, r3
- 488 0170 FFF7FEFF 		bl	__aeabi_i2f
- 489 0174 031C     		add	r3, r0, #0
- 490 0176 181C     		add	r0, r3, #0
- 491 0178 2349     		ldr	r1, .L41+4
- 492 017a FFF7FEFF 		bl	__aeabi_fdiv
- 493 017e 031C     		add	r3, r0, #0
- 494 0180 1A1C     		add	r2, r3, #0
- 495 0182 BB6C     		ldr	r3, [r7, #72]
- 496 0184 1A60     		str	r2, [r3]
  144:humidity_sensor/dht22.c ****      *temperature = (((( float) temp_2)/10.)*9/5)+32;
- 497              		.loc 1 144 0
- 498 0186 1A23     		mov	r3, #26
- 499 0188 FB18     		add	r3, r7, r3
- 500 018a 0022     		mov	r2, #0
- 501 018c 9B5E     		ldrsh	r3, [r3, r2]
- 502 018e 181C     		mov	r0, r3
- 503 0190 FFF7FEFF 		bl	__aeabi_i2f
- 504 0194 031C     		add	r3, r0, #0
- 505 0196 181C     		add	r0, r3, #0
- 506 0198 FFF7FEFF 		bl	__aeabi_f2d
- 507 019c 031C     		mov	r3, r0
- 508 019e 0C1C     		mov	r4, r1
- 509 01a0 181C     		mov	r0, r3
- 510 01a2 211C     		mov	r1, r4
- 511 01a4 0022     		mov	r2, #0
- 512 01a6 194B     		ldr	r3, .L41+8
- 513 01a8 FFF7FEFF 		bl	__aeabi_ddiv
- 514 01ac 031C     		mov	r3, r0
- 515 01ae 0C1C     		mov	r4, r1
- 516 01b0 181C     		mov	r0, r3
- 517 01b2 211C     		mov	r1, r4
- 518 01b4 0022     		mov	r2, #0
- 519 01b6 164B     		ldr	r3, .L41+12
- 520 01b8 FFF7FEFF 		bl	__aeabi_dmul
- 521 01bc 031C     		mov	r3, r0
- 522 01be 0C1C     		mov	r4, r1
- 523 01c0 181C     		mov	r0, r3
- 524 01c2 211C     		mov	r1, r4
- 525 01c4 0022     		mov	r2, #0
- 526 01c6 134B     		ldr	r3, .L41+16
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 13
-
-
- 527 01c8 FFF7FEFF 		bl	__aeabi_ddiv
- 528 01cc 031C     		mov	r3, r0
- 529 01ce 0C1C     		mov	r4, r1
- 530 01d0 181C     		mov	r0, r3
- 531 01d2 211C     		mov	r1, r4
- 532 01d4 0022     		mov	r2, #0
- 533 01d6 104B     		ldr	r3, .L41+20
- 534 01d8 FFF7FEFF 		bl	__aeabi_dadd
- 535 01dc 031C     		mov	r3, r0
- 536 01de 0C1C     		mov	r4, r1
- 537 01e0 181C     		mov	r0, r3
- 538 01e2 211C     		mov	r1, r4
- 539 01e4 FFF7FEFF 		bl	__aeabi_d2f
- 540 01e8 021C     		add	r2, r0, #0
- 541 01ea 3B68     		ldr	r3, [r7]
- 542 01ec 1A60     		str	r2, [r3]
- 543 01ee 05E0     		b	.L29
- 544              	.L38:
  145:humidity_sensor/dht22.c ****   }
  146:humidity_sensor/dht22.c ****   else
  147:humidity_sensor/dht22.c ****   {
  148:humidity_sensor/dht22.c ****      *humidity = -1.;
- 545              		.loc 1 148 0
- 546 01f0 BB6C     		ldr	r3, [r7, #72]
- 547 01f2 0A4A     		ldr	r2, .L41+24
- 548 01f4 1A60     		str	r2, [r3]
+ 300              		.loc 1 148 0
+ 301 011e 224B     		ldr	r3, .L48+4
+ 302 0120 109A     		ldr	r2, [sp, #64]
+ 303              	.LVL43:
+ 304 0122 1360     		str	r3, [r2]
  149:humidity_sensor/dht22.c ****      *temperature = -1.;
- 549              		.loc 1 149 0
- 550 01f6 3B68     		ldr	r3, [r7]
- 551 01f8 084A     		ldr	r2, .L41+24
- 552 01fa 1A60     		str	r2, [r3]
- 553              	.L29:
+ 305              		.loc 1 149 0
+ 306 0124 039A     		ldr	r2, [sp, #12]
+ 307 0126 1360     		str	r3, [r2]
+ 308 0128 04E0     		b	.L1
+ 309              	.LVL44:
+ 310              	.L4:
+ 114:humidity_sensor/dht22.c ****       *step_number = 0;
+ 311              		.loc 1 114 0
+ 312 012a 0023     		mov	r3, #0
+ 313 012c 4246     		mov	r2, r8
+ 314 012e 1360     		str	r3, [r2]
+ 115:humidity_sensor/dht22.c ****       return;
+ 315              		.loc 1 115 0
+ 316 0130 019A     		ldr	r2, [sp, #4]
+ 317 0132 1360     		str	r3, [r2]
+ 318              	.LVL45:
+ 319              	.L1:
  150:humidity_sensor/dht22.c ****   }
  151:humidity_sensor/dht22.c ****    
  152:humidity_sensor/dht22.c **** }...
- 554              		.loc 1 152 0
- 555 01fc BD46     		mov	sp, r7
- 556 01fe 0FB0     		add	sp, sp, #60
- 557              		@ sp needed
- 558 0200 90BD     		pop	{r4, r7, pc}
- 559              	.L42:
- 560 0202 C046     		.align	2
- 561              	.L41:
- 562 0204 DC050000 		.word	1500
- 563 0208 00002041 		.word	1092616192
- 564 020c 00002440 		.word	1076101120
- 565 0210 00002240 		.word	1075970048
- 566 0214 00001440 		.word	1075052544
- 567 0218 00004040 		.word	1077936128
- 568 021c 000080BF 		.word	-1082130432
- 569              		.cfi_endproc
- 570              	.LFE64:
- 571              		.size	DHT22_get_data, .-DHT22_get_data
- 572              		.text
- 573              	.Letext0:
- 574              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
- 575              		.file 3 "humidity_sensor\\dht22.h"
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 14
+ 320              		.loc 1 152 0
+ 321 0134 07B0     		add	sp, sp, #28
+ 322              		@ sp needed
+ 323              	.LVL46:
+ 324 0136 3CBC     		pop	{r2, r3, r4, r5}
+ 325 0138 9046     		mov	r8, r2
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 10
 
 
- 576              		.section	.debug_info,"",%progbits
- 577              	.Ldebug_info0:
- 578 0000 8F020000 		.4byte	0x28f
- 579 0004 0400     		.2byte	0x4
- 580 0006 00000000 		.4byte	.Ldebug_abbrev0
- 581 000a 04       		.byte	0x4
- 582 000b 01       		.uleb128 0x1
- 583 000c AF000000 		.4byte	.LASF36
- 584 0010 01       		.byte	0x1
- 585 0011 41000000 		.4byte	.LASF37
- 586 0015 0A020000 		.4byte	.LASF38
- 587 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 588 001d 00000000 		.4byte	0
- 589 0021 00000000 		.4byte	.Ldebug_line0
- 590 0025 02       		.uleb128 0x2
- 591 0026 01       		.byte	0x1
- 592 0027 06       		.byte	0x6
- 593 0028 60020000 		.4byte	.LASF0
- 594 002c 02       		.uleb128 0x2
- 595 002d 01       		.byte	0x1
- 596 002e 08       		.byte	0x8
- 597 002f 9A000000 		.4byte	.LASF1
- 598 0033 02       		.uleb128 0x2
- 599 0034 02       		.byte	0x2
- 600 0035 05       		.byte	0x5
- 601 0036 D9010000 		.4byte	.LASF2
- 602 003a 02       		.uleb128 0x2
- 603 003b 02       		.byte	0x2
- 604 003c 07       		.byte	0x7
- 605 003d 7E000000 		.4byte	.LASF3
- 606 0041 02       		.uleb128 0x2
- 607 0042 04       		.byte	0x4
- 608 0043 05       		.byte	0x5
- 609 0044 F8010000 		.4byte	.LASF4
- 610 0048 02       		.uleb128 0x2
- 611 0049 04       		.byte	0x4
- 612 004a 07       		.byte	0x7
- 613 004b 5F000000 		.4byte	.LASF5
- 614 004f 02       		.uleb128 0x2
- 615 0050 08       		.byte	0x8
- 616 0051 05       		.byte	0x5
- 617 0052 A5010000 		.4byte	.LASF6
- 618 0056 02       		.uleb128 0x2
- 619 0057 08       		.byte	0x8
- 620 0058 07       		.byte	0x7
- 621 0059 65010000 		.4byte	.LASF7
- 622 005d 03       		.uleb128 0x3
- 623 005e 04       		.byte	0x4
- 624 005f 05       		.byte	0x5
- 625 0060 696E7400 		.ascii	"int\000"
- 626 0064 02       		.uleb128 0x2
- 627 0065 04       		.byte	0x4
- 628 0066 07       		.byte	0x7
- 629 0067 4B010000 		.4byte	.LASF8
- 630 006b 04       		.uleb128 0x4
- 631 006c F2010000 		.4byte	.LASF9
- 632 0070 02       		.byte	0x2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 15
+ 326 013a 9946     		mov	r9, r3
+ 327 013c A246     		mov	r10, r4
+ 328 013e AB46     		mov	fp, r5
+ 329 0140 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 330              	.LVL47:
+ 331              	.L13:
+ 332              	.LBB13:
+ 333              	.LBB11:
+  80:humidity_sensor/dht22.c ****     if(  i < 4  )
+ 334              		.loc 1 80 0
+ 335 0142 032C     		cmp	r4, #3
+ 336 0144 C1DC     		bgt	.L39
+ 337              	.LBE11:
+ 338              	.LBE13:
+ 125:humidity_sensor/dht22.c ****       if( *status_flag == 0 )
+ 339              		.loc 1 125 0
+ 340 0146 4346     		mov	r3, r8
+ 341 0148 1B68     		ldr	r3, [r3]
+ 342 014a 002B     		cmp	r3, #0
+ 343 014c C6D1     		bne	.L25
+ 344              	.L24:
+ 127:humidity_sensor/dht22.c ****         *step_number = i+1;
+ 345              		.loc 1 127 0
+ 346 014e 019B     		ldr	r3, [sp, #4]
+ 347 0150 0137     		add	r7, r7, #1
+ 348              	.LVL48:
+ 349 0152 1F60     		str	r7, [r3]
+ 128:humidity_sensor/dht22.c ****         return;
+ 350              		.loc 1 128 0
+ 351 0154 EEE7     		b	.L1
+ 352              	.LVL49:
+ 353              	.L47:
+ 141:humidity_sensor/dht22.c ****      temp_1 = data[0] <<8 | data[1];
+ 354              		.loc 1 141 0
+ 355 0156 1202     		lsl	r2, r2, #8
+ 356              	.LVL50:
+ 357 0158 1043     		orr	r0, r2
+ 358              	.LVL51:
+ 143:humidity_sensor/dht22.c ****      *humidity = (float) temp_1/10.;
+ 359              		.loc 1 143 0
+ 360 015a 00B2     		sxth	r0, r0
+ 361 015c FFF7FEFF 		bl	__aeabi_i2f
+ 362              	.LVL52:
+ 363 0160 1249     		ldr	r1, .L48+8
+ 364 0162 FFF7FEFF 		bl	__aeabi_fdiv
+ 365              	.LVL53:
+ 366 0166 109B     		ldr	r3, [sp, #64]
+ 367 0168 1860     		str	r0, [r3]
+ 142:humidity_sensor/dht22.c ****      temp_2 = data[2] << 8 | data[3];
+ 368              		.loc 1 142 0
+ 369 016a 2002     		lsl	r0, r4, #8
+ 370 016c 2843     		orr	r0, r5
+ 144:humidity_sensor/dht22.c ****      *temperature = (((( float) temp_2)/10.)*9/5)+32;
+ 371              		.loc 1 144 0
+ 372 016e 00B2     		sxth	r0, r0
+ 373 0170 FFF7FEFF 		bl	__aeabi_i2f
+ 374              	.LVL54:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 11
 
 
- 633 0071 9801     		.2byte	0x198
- 634 0073 2C000000 		.4byte	0x2c
- 635 0077 04       		.uleb128 0x4
- 636 0078 3D010000 		.4byte	.LASF10
- 637 007c 02       		.byte	0x2
- 638 007d 9901     		.2byte	0x199
- 639 007f 3A000000 		.4byte	0x3a
- 640 0083 04       		.uleb128 0x4
- 641 0084 44010000 		.4byte	.LASF11
- 642 0088 02       		.byte	0x2
- 643 0089 9A01     		.2byte	0x19a
- 644 008b 48000000 		.4byte	0x48
- 645 008f 04       		.uleb128 0x4
- 646 0090 59000000 		.4byte	.LASF12
- 647 0094 02       		.byte	0x2
- 648 0095 9C01     		.2byte	0x19c
- 649 0097 33000000 		.4byte	0x33
- 650 009b 02       		.uleb128 0x2
- 651 009c 04       		.byte	0x4
- 652 009d 04       		.byte	0x4
- 653 009e 09000000 		.4byte	.LASF13
- 654 00a2 02       		.uleb128 0x2
- 655 00a3 08       		.byte	0x8
- 656 00a4 04       		.byte	0x4
- 657 00a5 A8000000 		.4byte	.LASF14
- 658 00a9 04       		.uleb128 0x4
- 659 00aa 14000000 		.4byte	.LASF15
- 660 00ae 02       		.byte	0x2
- 661 00af A401     		.2byte	0x1a4
- 662 00b1 56000000 		.4byte	0x56
- 663 00b5 02       		.uleb128 0x2
- 664 00b6 01       		.byte	0x1
- 665 00b7 08       		.byte	0x8
- 666 00b8 BC010000 		.4byte	.LASF16
- 667 00bc 02       		.uleb128 0x2
- 668 00bd 04       		.byte	0x4
- 669 00be 07       		.byte	0x7
- 670 00bf 92010000 		.4byte	.LASF17
- 671 00c3 05       		.uleb128 0x5
- 672 00c4 04       		.byte	0x4
- 673 00c5 83000000 		.4byte	0x83
- 674 00c9 06       		.uleb128 0x6
- 675 00ca 01020000 		.4byte	.LASF18
- 676 00ce 03       		.byte	0x3
- 677 00cf 11       		.byte	0x11
- 678 00d0 D4000000 		.4byte	0xd4
- 679 00d4 05       		.uleb128 0x5
- 680 00d5 04       		.byte	0x4
- 681 00d6 DA000000 		.4byte	0xda
- 682 00da 07       		.uleb128 0x7
- 683 00db 6B000000 		.4byte	0x6b
- 684 00df 06       		.uleb128 0x6
- 685 00e0 9B010000 		.4byte	.LASF19
- 686 00e4 03       		.byte	0x3
- 687 00e5 12       		.byte	0x12
- 688 00e6 EA000000 		.4byte	0xea
- 689 00ea 05       		.uleb128 0x5
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 16
+ 375 0174 FFF7FEFF 		bl	__aeabi_f2d
+ 376              	.LVL55:
+ 377 0178 0022     		mov	r2, #0
+ 378 017a 0D4B     		ldr	r3, .L48+12
+ 379 017c FFF7FEFF 		bl	__aeabi_ddiv
+ 380              	.LVL56:
+ 381 0180 0022     		mov	r2, #0
+ 382 0182 0C4B     		ldr	r3, .L48+16
+ 383 0184 FFF7FEFF 		bl	__aeabi_dmul
+ 384              	.LVL57:
+ 385 0188 0022     		mov	r2, #0
+ 386 018a 0B4B     		ldr	r3, .L48+20
+ 387 018c FFF7FEFF 		bl	__aeabi_ddiv
+ 388              	.LVL58:
+ 389 0190 0A4B     		ldr	r3, .L48+24
+ 390 0192 0022     		mov	r2, #0
+ 391 0194 FFF7FEFF 		bl	__aeabi_dadd
+ 392              	.LVL59:
+ 393 0198 FFF7FEFF 		bl	__aeabi_d2f
+ 394              	.LVL60:
+ 395 019c 039B     		ldr	r3, [sp, #12]
+ 396 019e 1860     		str	r0, [r3]
+ 397 01a0 C8E7     		b	.L1
+ 398              	.L49:
+ 399 01a2 C046     		.align	2
+ 400              	.L48:
+ 401 01a4 DC050000 		.word	1500
+ 402 01a8 000080BF 		.word	-1082130432
+ 403 01ac 00002041 		.word	1092616192
+ 404 01b0 00002440 		.word	1076101120
+ 405 01b4 00002240 		.word	1075970048
+ 406 01b8 00001440 		.word	1075052544
+ 407 01bc 00004040 		.word	1077936128
+ 408              		.cfi_endproc
+ 409              	.LFE64:
+ 410              		.size	DHT22_get_data, .-DHT22_get_data
+ 411              		.text
+ 412              	.Letext0:
+ 413              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 414              		.file 3 "humidity_sensor\\dht22.h"
+ 415              		.file 4 "Generated_Source\\PSoC4/CyLib.h"
+ 416              		.section	.debug_info,"",%progbits
+ 417              	.Ldebug_info0:
+ 418 0000 AB030000 		.4byte	0x3ab
+ 419 0004 0400     		.2byte	0x4
+ 420 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 421 000a 04       		.byte	0x4
+ 422 000b 01       		.uleb128 0x1
+ 423 000c 43000000 		.4byte	.LASF36
+ 424 0010 01       		.byte	0x1
+ 425 0011 0E020000 		.4byte	.LASF37
+ 426 0015 3D020000 		.4byte	.LASF38
+ 427 0019 20000000 		.4byte	.Ldebug_ranges0+0x20
+ 428 001d 00000000 		.4byte	0
+ 429 0021 00000000 		.4byte	.Ldebug_line0
+ 430 0025 02       		.uleb128 0x2
+ 431 0026 01       		.byte	0x1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 12
 
 
- 690 00eb 04       		.byte	0x4
- 691 00ec F0000000 		.4byte	0xf0
- 692 00f0 08       		.uleb128 0x8
- 693 00f1 FB000000 		.4byte	0xfb
- 694 00f5 09       		.uleb128 0x9
- 695 00f6 6B000000 		.4byte	0x6b
- 696 00fa 00       		.byte	0
- 697 00fb 0A       		.uleb128 0xa
- 698 00fc 08       		.byte	0x8
- 699 00fd 03       		.byte	0x3
- 700 00fe 14       		.byte	0x14
- 701 00ff 1C010000 		.4byte	0x11c
- 702 0103 0B       		.uleb128 0xb
- 703 0104 B3010000 		.4byte	.LASF20
- 704 0108 03       		.byte	0x3
- 705 0109 16       		.byte	0x16
- 706 010a C9000000 		.4byte	0xc9
- 707 010e 00       		.byte	0
- 708 010f 0B       		.uleb128 0xb
- 709 0110 7C010000 		.4byte	.LASF21
- 710 0114 03       		.byte	0x3
- 711 0115 17       		.byte	0x17
- 712 0116 DF000000 		.4byte	0xdf
- 713 011a 04       		.byte	0x4
- 714 011b 00       		.byte	0
- 715 011c 06       		.uleb128 0x6
- 716 011d 58010000 		.4byte	.LASF22
- 717 0121 03       		.byte	0x3
- 718 0122 18       		.byte	0x18
- 719 0123 27010000 		.4byte	0x127
- 720 0127 0C       		.uleb128 0xc
- 721 0128 FB000000 		.4byte	0xfb
- 722 012c 0D       		.uleb128 0xd
- 723 012d C1010000 		.4byte	.LASF23
- 724 0131 01       		.byte	0x1
- 725 0132 0B       		.byte	0xb
- 726 0133 5D000000 		.4byte	0x5d
- 727 0137 00000000 		.4byte	.LFB62
- 728 013b 9C000000 		.4byte	.LFE62-.LFB62
- 729 013f 01       		.uleb128 0x1
- 730 0140 9C       		.byte	0x9c
- 731 0141 60010000 		.4byte	0x160
- 732 0145 0E       		.uleb128 0xe
- 733 0146 71000000 		.4byte	.LASF25
- 734 014a 01       		.byte	0x1
- 735 014b 0B       		.byte	0xb
- 736 014c 60010000 		.4byte	0x160
- 737 0150 02       		.uleb128 0x2
- 738 0151 91       		.byte	0x91
- 739 0152 6C       		.sleb128 -20
- 740 0153 0F       		.uleb128 0xf
- 741 0154 6900     		.ascii	"i\000"
- 742 0156 01       		.byte	0x1
- 743 0157 0D       		.byte	0xd
- 744 0158 83000000 		.4byte	0x83
- 745 015c 02       		.uleb128 0x2
- 746 015d 91       		.byte	0x91
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 17
+ 432 0027 06       		.byte	0x6
+ 433 0028 93020000 		.4byte	.LASF0
+ 434 002c 02       		.uleb128 0x2
+ 435 002d 01       		.byte	0x1
+ 436 002e 08       		.byte	0x8
+ 437 002f F0000000 		.4byte	.LASF1
+ 438 0033 02       		.uleb128 0x2
+ 439 0034 02       		.byte	0x2
+ 440 0035 05       		.byte	0x5
+ 441 0036 F5010000 		.4byte	.LASF2
+ 442 003a 02       		.uleb128 0x2
+ 443 003b 02       		.byte	0x2
+ 444 003c 07       		.byte	0x7
+ 445 003d 16000000 		.4byte	.LASF3
+ 446 0041 02       		.uleb128 0x2
+ 447 0042 04       		.byte	0x4
+ 448 0043 05       		.byte	0x5
+ 449 0044 26020000 		.4byte	.LASF4
+ 450 0048 02       		.uleb128 0x2
+ 451 0049 04       		.byte	0x4
+ 452 004a 07       		.byte	0x7
+ 453 004b 04010000 		.4byte	.LASF5
+ 454 004f 02       		.uleb128 0x2
+ 455 0050 08       		.byte	0x8
+ 456 0051 05       		.byte	0x5
+ 457 0052 B7010000 		.4byte	.LASF6
+ 458 0056 02       		.uleb128 0x2
+ 459 0057 08       		.byte	0x8
+ 460 0058 07       		.byte	0x7
+ 461 0059 BB020000 		.4byte	.LASF7
+ 462 005d 03       		.uleb128 0x3
+ 463 005e 04       		.byte	0x4
+ 464 005f 05       		.byte	0x5
+ 465 0060 696E7400 		.ascii	"int\000"
+ 466 0064 02       		.uleb128 0x2
+ 467 0065 04       		.byte	0x4
+ 468 0066 07       		.byte	0x7
+ 469 0067 5E010000 		.4byte	.LASF8
+ 470 006b 04       		.uleb128 0x4
+ 471 006c 23010000 		.4byte	.LASF9
+ 472 0070 02       		.byte	0x2
+ 473 0071 9801     		.2byte	0x198
+ 474 0073 2C000000 		.4byte	0x2c
+ 475 0077 04       		.uleb128 0x4
+ 476 0078 39010000 		.4byte	.LASF10
+ 477 007c 02       		.byte	0x2
+ 478 007d 9901     		.2byte	0x199
+ 479 007f 3A000000 		.4byte	0x3a
+ 480 0083 04       		.uleb128 0x4
+ 481 0084 40010000 		.4byte	.LASF11
+ 482 0088 02       		.byte	0x2
+ 483 0089 9A01     		.2byte	0x19a
+ 484 008b 48000000 		.4byte	0x48
+ 485 008f 04       		.uleb128 0x4
+ 486 0090 FE000000 		.4byte	.LASF12
+ 487 0094 02       		.byte	0x2
+ 488 0095 9C01     		.2byte	0x19c
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 13
 
 
- 747 015e 74       		.sleb128 -12
- 748 015f 00       		.byte	0
- 749 0160 05       		.uleb128 0x5
- 750 0161 04       		.byte	0x4
- 751 0162 1C010000 		.4byte	0x11c
- 752 0166 0D       		.uleb128 0xd
- 753 0167 91000000 		.4byte	.LASF24
- 754 016b 01       		.byte	0x1
- 755 016c 3C       		.byte	0x3c
- 756 016d 83000000 		.4byte	0x83
- 757 0171 00000000 		.4byte	.LFB63
- 758 0175 6C000000 		.4byte	.LFE63-.LFB63
- 759 0179 01       		.uleb128 0x1
- 760 017a 9C       		.byte	0x9c
- 761 017b A8010000 		.4byte	0x1a8
- 762 017f 0E       		.uleb128 0xe
- 763 0180 71000000 		.4byte	.LASF25
- 764 0184 01       		.byte	0x1
- 765 0185 3C       		.byte	0x3c
- 766 0186 60010000 		.4byte	0x160
- 767 018a 02       		.uleb128 0x2
- 768 018b 91       		.byte	0x91
- 769 018c 6C       		.sleb128 -20
- 770 018d 0E       		.uleb128 0xe
- 771 018e 35000000 		.4byte	.LASF26
- 772 0192 01       		.byte	0x1
- 773 0193 3C       		.byte	0x3c
- 774 0194 C3000000 		.4byte	0xc3
- 775 0198 02       		.uleb128 0x2
- 776 0199 91       		.byte	0x91
- 777 019a 68       		.sleb128 -24
- 778 019b 0F       		.uleb128 0xf
- 779 019c 6900     		.ascii	"i\000"
- 780 019e 01       		.byte	0x1
- 781 019f 3E       		.byte	0x3e
- 782 01a0 5D000000 		.4byte	0x5d
- 783 01a4 02       		.uleb128 0x2
- 784 01a5 91       		.byte	0x91
- 785 01a6 74       		.sleb128 -12
- 786 01a7 00       		.byte	0
- 787 01a8 10       		.uleb128 0x10
- 788 01a9 E3010000 		.4byte	.LASF39
- 789 01ad 01       		.byte	0x1
- 790 01ae 5F       		.byte	0x5f
- 791 01af 00000000 		.4byte	.LFB64
- 792 01b3 20020000 		.4byte	.LFE64-.LFB64
- 793 01b7 01       		.uleb128 0x1
- 794 01b8 9C       		.byte	0x9c
- 795 01b9 80020000 		.4byte	0x280
- 796 01bd 0E       		.uleb128 0xe
- 797 01be 71000000 		.4byte	.LASF25
- 798 01c2 01       		.byte	0x1
- 799 01c3 5F       		.byte	0x5f
- 800 01c4 60010000 		.4byte	0x160
- 801 01c8 02       		.uleb128 0x2
- 802 01c9 91       		.byte	0x91
- 803 01ca 44       		.sleb128 -60
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 18
+ 489 0097 33000000 		.4byte	0x33
+ 490 009b 02       		.uleb128 0x2
+ 491 009c 04       		.byte	0x4
+ 492 009d 04       		.byte	0x4
+ 493 009e 09000000 		.4byte	.LASF13
+ 494 00a2 02       		.uleb128 0x2
+ 495 00a3 08       		.byte	0x8
+ 496 00a4 04       		.byte	0x4
+ 497 00a5 32010000 		.4byte	.LASF14
+ 498 00a9 04       		.uleb128 0x4
+ 499 00aa 0F000000 		.4byte	.LASF15
+ 500 00ae 02       		.byte	0x2
+ 501 00af A401     		.2byte	0x1a4
+ 502 00b1 56000000 		.4byte	0x56
+ 503 00b5 02       		.uleb128 0x2
+ 504 00b6 01       		.byte	0x1
+ 505 00b7 08       		.byte	0x8
+ 506 00b8 2F020000 		.4byte	.LASF16
+ 507 00bc 02       		.uleb128 0x2
+ 508 00bd 04       		.byte	0x4
+ 509 00be 07       		.byte	0x7
+ 510 00bf A4010000 		.4byte	.LASF17
+ 511 00c3 05       		.uleb128 0x5
+ 512 00c4 34020000 		.4byte	.LASF18
+ 513 00c8 03       		.byte	0x3
+ 514 00c9 11       		.byte	0x11
+ 515 00ca CE000000 		.4byte	0xce
+ 516 00ce 06       		.uleb128 0x6
+ 517 00cf 04       		.byte	0x4
+ 518 00d0 D4000000 		.4byte	0xd4
+ 519 00d4 07       		.uleb128 0x7
+ 520 00d5 6B000000 		.4byte	0x6b
+ 521 00d9 05       		.uleb128 0x5
+ 522 00da AD010000 		.4byte	.LASF19
+ 523 00de 03       		.byte	0x3
+ 524 00df 12       		.byte	0x12
+ 525 00e0 E4000000 		.4byte	0xe4
+ 526 00e4 06       		.uleb128 0x6
+ 527 00e5 04       		.byte	0x4
+ 528 00e6 EA000000 		.4byte	0xea
+ 529 00ea 08       		.uleb128 0x8
+ 530 00eb F5000000 		.4byte	0xf5
+ 531 00ef 09       		.uleb128 0x9
+ 532 00f0 6B000000 		.4byte	0x6b
+ 533 00f4 00       		.byte	0
+ 534 00f5 0A       		.uleb128 0xa
+ 535 00f6 08       		.byte	0x8
+ 536 00f7 03       		.byte	0x3
+ 537 00f8 14       		.byte	0x14
+ 538 00f9 16010000 		.4byte	0x116
+ 539 00fd 0B       		.uleb128 0xb
+ 540 00fe C5010000 		.4byte	.LASF20
+ 541 0102 03       		.byte	0x3
+ 542 0103 16       		.byte	0x16
+ 543 0104 C3000000 		.4byte	0xc3
+ 544 0108 00       		.byte	0
+ 545 0109 0B       		.uleb128 0xb
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 14
 
 
- 804 01cb 0E       		.uleb128 0xe
- 805 01cc 35000000 		.4byte	.LASF26
- 806 01d0 01       		.byte	0x1
- 807 01d1 5F       		.byte	0x5f
- 808 01d2 C3000000 		.4byte	0xc3
- 809 01d6 02       		.uleb128 0x2
- 810 01d7 91       		.byte	0x91
- 811 01d8 40       		.sleb128 -64
- 812 01d9 0E       		.uleb128 0xe
- 813 01da 86010000 		.4byte	.LASF27
- 814 01de 01       		.byte	0x1
- 815 01df 5F       		.byte	0x5f
- 816 01e0 C3000000 		.4byte	0xc3
- 817 01e4 03       		.uleb128 0x3
- 818 01e5 91       		.byte	0x91
- 819 01e6 BC7F     		.sleb128 -68
- 820 01e8 0E       		.uleb128 0xe
- 821 01e9 1B000000 		.4byte	.LASF28
- 822 01ed 01       		.byte	0x1
- 823 01ee 5F       		.byte	0x5f
- 824 01ef 80020000 		.4byte	0x280
- 825 01f3 03       		.uleb128 0x3
- 826 01f4 91       		.byte	0x91
- 827 01f5 B87F     		.sleb128 -72
- 828 01f7 0E       		.uleb128 0xe
- 829 01f8 00000000 		.4byte	.LASF29
- 830 01fc 01       		.byte	0x1
- 831 01fd 5F       		.byte	0x5f
- 832 01fe 80020000 		.4byte	0x280
- 833 0202 02       		.uleb128 0x2
- 834 0203 91       		.byte	0x91
- 835 0204 00       		.sleb128 0
- 836 0205 11       		.uleb128 0x11
- 837 0206 27000000 		.4byte	.LASF30
- 838 020a 01       		.byte	0x1
- 839 020b 61       		.byte	0x61
- 840 020c 86020000 		.4byte	0x286
- 841 0210 02       		.uleb128 0x2
- 842 0211 91       		.byte	0x91
- 843 0212 4C       		.sleb128 -52
- 844 0213 0F       		.uleb128 0xf
- 845 0214 6900     		.ascii	"i\000"
- 846 0216 01       		.byte	0x1
- 847 0217 62       		.byte	0x62
- 848 0218 83000000 		.4byte	0x83
- 849 021c 02       		.uleb128 0x2
- 850 021d 91       		.byte	0x91
- 851 021e 6C       		.sleb128 -20
- 852 021f 0F       		.uleb128 0xf
- 853 0220 6A00     		.ascii	"j\000"
- 854 0222 01       		.byte	0x1
- 855 0223 63       		.byte	0x63
- 856 0224 83000000 		.4byte	0x83
- 857 0228 02       		.uleb128 0x2
- 858 0229 91       		.byte	0x91
- 859 022a 68       		.sleb128 -24
- 860 022b 11       		.uleb128 0x11
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 19
+ 546 010a 8E010000 		.4byte	.LASF21
+ 547 010e 03       		.byte	0x3
+ 548 010f 17       		.byte	0x17
+ 549 0110 D9000000 		.4byte	0xd9
+ 550 0114 04       		.byte	0x4
+ 551 0115 00       		.byte	0
+ 552 0116 05       		.uleb128 0x5
+ 553 0117 6B010000 		.4byte	.LASF22
+ 554 011b 03       		.byte	0x3
+ 555 011c 18       		.byte	0x18
+ 556 011d 21010000 		.4byte	0x121
+ 557 0121 0C       		.uleb128 0xc
+ 558 0122 F5000000 		.4byte	0xf5
+ 559 0126 0D       		.uleb128 0xd
+ 560 0127 DD010000 		.4byte	.LASF23
+ 561 012b 01       		.byte	0x1
+ 562 012c 0B       		.byte	0xb
+ 563 012d 5D000000 		.4byte	0x5d
+ 564 0131 01       		.byte	0x1
+ 565 0132 4B010000 		.4byte	0x14b
+ 566 0136 0E       		.uleb128 0xe
+ 567 0137 16010000 		.4byte	.LASF25
+ 568 013b 01       		.byte	0x1
+ 569 013c 0B       		.byte	0xb
+ 570 013d 4B010000 		.4byte	0x14b
+ 571 0141 0F       		.uleb128 0xf
+ 572 0142 6900     		.ascii	"i\000"
+ 573 0144 01       		.byte	0x1
+ 574 0145 0D       		.byte	0xd
+ 575 0146 83000000 		.4byte	0x83
+ 576 014a 00       		.byte	0
+ 577 014b 06       		.uleb128 0x6
+ 578 014c 04       		.byte	0x4
+ 579 014d 16010000 		.4byte	0x116
+ 580 0151 0D       		.uleb128 0xd
+ 581 0152 29010000 		.4byte	.LASF24
+ 582 0156 01       		.byte	0x1
+ 583 0157 3C       		.byte	0x3c
+ 584 0158 83000000 		.4byte	0x83
+ 585 015c 01       		.byte	0x1
+ 586 015d 81010000 		.4byte	0x181
+ 587 0161 0E       		.uleb128 0xe
+ 588 0162 16010000 		.4byte	.LASF25
+ 589 0166 01       		.byte	0x1
+ 590 0167 3C       		.byte	0x3c
+ 591 0168 4B010000 		.4byte	0x14b
+ 592 016c 0E       		.uleb128 0xe
+ 593 016d E4000000 		.4byte	.LASF26
+ 594 0171 01       		.byte	0x1
+ 595 0172 3C       		.byte	0x3c
+ 596 0173 81010000 		.4byte	0x181
+ 597 0177 0F       		.uleb128 0xf
+ 598 0178 6900     		.ascii	"i\000"
+ 599 017a 01       		.byte	0x1
+ 600 017b 3E       		.byte	0x3e
+ 601 017c 5D000000 		.4byte	0x5d
+ 602 0180 00       		.byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 15
 
 
- 861 022c 0F000000 		.4byte	.LASF31
- 862 0230 01       		.byte	0x1
- 863 0231 64       		.byte	0x64
- 864 0232 A9000000 		.4byte	0xa9
- 865 0236 02       		.uleb128 0x2
- 866 0237 91       		.byte	0x91
- 867 0238 60       		.sleb128 -32
- 868 0239 0F       		.uleb128 0xf
- 869 023a 62697400 		.ascii	"bit\000"
- 870 023e 01       		.byte	0x1
- 871 023f 65       		.byte	0x65
- 872 0240 83000000 		.4byte	0x83
- 873 0244 02       		.uleb128 0x2
- 874 0245 91       		.byte	0x91
- 875 0246 58       		.sleb128 -40
- 876 0247 11       		.uleb128 0x11
- 877 0248 7A020000 		.4byte	.LASF32
- 878 024c 01       		.byte	0x1
- 879 024d 66       		.byte	0x66
- 880 024e 8F000000 		.4byte	0x8f
- 881 0252 02       		.uleb128 0x2
- 882 0253 91       		.byte	0x91
- 883 0254 54       		.sleb128 -44
- 884 0255 11       		.uleb128 0x11
- 885 0256 81020000 		.4byte	.LASF33
- 886 025a 01       		.byte	0x1
- 887 025b 67       		.byte	0x67
- 888 025c 8F000000 		.4byte	0x8f
- 889 0260 02       		.uleb128 0x2
- 890 0261 91       		.byte	0x91
- 891 0262 52       		.sleb128 -46
- 892 0263 11       		.uleb128 0x11
- 893 0264 2C000000 		.4byte	.LASF34
- 894 0268 01       		.byte	0x1
- 895 0269 68       		.byte	0x68
- 896 026a 77000000 		.4byte	0x77
- 897 026e 02       		.uleb128 0x2
- 898 026f 91       		.byte	0x91
- 899 0270 56       		.sleb128 -42
- 900 0271 11       		.uleb128 0x11
- 901 0272 6C020000 		.4byte	.LASF35
- 902 0276 01       		.byte	0x1
- 903 0277 6A       		.byte	0x6a
- 904 0278 6B000000 		.4byte	0x6b
- 905 027c 02       		.uleb128 0x2
- 906 027d 91       		.byte	0x91
- 907 027e 5F       		.sleb128 -33
- 908 027f 00       		.byte	0
- 909 0280 05       		.uleb128 0x5
- 910 0281 04       		.byte	0x4
- 911 0282 9B000000 		.4byte	0x9b
- 912 0286 12       		.uleb128 0x12
- 913 0287 6B000000 		.4byte	0x6b
- 914 028b 13       		.uleb128 0x13
- 915 028c BC000000 		.4byte	0xbc
- 916 0290 04       		.byte	0x4
- 917 0291 00       		.byte	0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 20
+ 603 0181 06       		.uleb128 0x6
+ 604 0182 04       		.byte	0x4
+ 605 0183 83000000 		.4byte	0x83
+ 606 0187 10       		.uleb128 0x10
+ 607 0188 FF010000 		.4byte	.LASF39
+ 608 018c 01       		.byte	0x1
+ 609 018d 5F       		.byte	0x5f
+ 610 018e 00000000 		.4byte	.LFB64
+ 611 0192 C0010000 		.4byte	.LFE64-.LFB64
+ 612 0196 01       		.uleb128 0x1
+ 613 0197 9C       		.byte	0x9c
+ 614 0198 6F030000 		.4byte	0x36f
+ 615 019c 11       		.uleb128 0x11
+ 616 019d 16010000 		.4byte	.LASF25
+ 617 01a1 01       		.byte	0x1
+ 618 01a2 5F       		.byte	0x5f
+ 619 01a3 4B010000 		.4byte	0x14b
+ 620 01a7 00000000 		.4byte	.LLST0
+ 621 01ab 11       		.uleb128 0x11
+ 622 01ac E4000000 		.4byte	.LASF26
+ 623 01b0 01       		.byte	0x1
+ 624 01b1 5F       		.byte	0x5f
+ 625 01b2 81010000 		.4byte	0x181
+ 626 01b6 5E000000 		.4byte	.LLST1
+ 627 01ba 11       		.uleb128 0x11
+ 628 01bb 98010000 		.4byte	.LASF27
+ 629 01bf 01       		.byte	0x1
+ 630 01c0 5F       		.byte	0x5f
+ 631 01c1 81010000 		.4byte	0x181
+ 632 01c5 95000000 		.4byte	.LLST2
+ 633 01c9 11       		.uleb128 0x11
+ 634 01ca 29000000 		.4byte	.LASF28
+ 635 01ce 01       		.byte	0x1
+ 636 01cf 5F       		.byte	0x5f
+ 637 01d0 6F030000 		.4byte	0x36f
+ 638 01d4 B4000000 		.4byte	.LLST3
+ 639 01d8 12       		.uleb128 0x12
+ 640 01d9 00000000 		.4byte	.LASF29
+ 641 01dd 01       		.byte	0x1
+ 642 01de 5F       		.byte	0x5f
+ 643 01df 6F030000 		.4byte	0x36f
+ 644 01e3 02       		.uleb128 0x2
+ 645 01e4 91       		.byte	0x91
+ 646 01e5 00       		.sleb128 0
+ 647 01e6 13       		.uleb128 0x13
+ 648 01e7 35000000 		.4byte	.LASF30
+ 649 01eb 01       		.byte	0x1
+ 650 01ec 61       		.byte	0x61
+ 651 01ed 75030000 		.4byte	0x375
+ 652 01f1 02       		.uleb128 0x2
+ 653 01f2 91       		.byte	0x91
+ 654 01f3 50       		.sleb128 -48
+ 655 01f4 14       		.uleb128 0x14
+ 656 01f5 6900     		.ascii	"i\000"
+ 657 01f7 01       		.byte	0x1
+ 658 01f8 62       		.byte	0x62
+ 659 01f9 83000000 		.4byte	0x83
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 16
 
 
- 918 0292 00       		.byte	0
- 919              		.section	.debug_abbrev,"",%progbits
- 920              	.Ldebug_abbrev0:
- 921 0000 01       		.uleb128 0x1
- 922 0001 11       		.uleb128 0x11
- 923 0002 01       		.byte	0x1
- 924 0003 25       		.uleb128 0x25
- 925 0004 0E       		.uleb128 0xe
- 926 0005 13       		.uleb128 0x13
- 927 0006 0B       		.uleb128 0xb
- 928 0007 03       		.uleb128 0x3
- 929 0008 0E       		.uleb128 0xe
- 930 0009 1B       		.uleb128 0x1b
- 931 000a 0E       		.uleb128 0xe
- 932 000b 55       		.uleb128 0x55
- 933 000c 17       		.uleb128 0x17
- 934 000d 11       		.uleb128 0x11
- 935 000e 01       		.uleb128 0x1
- 936 000f 10       		.uleb128 0x10
- 937 0010 17       		.uleb128 0x17
- 938 0011 00       		.byte	0
- 939 0012 00       		.byte	0
- 940 0013 02       		.uleb128 0x2
- 941 0014 24       		.uleb128 0x24
- 942 0015 00       		.byte	0
- 943 0016 0B       		.uleb128 0xb
- 944 0017 0B       		.uleb128 0xb
- 945 0018 3E       		.uleb128 0x3e
- 946 0019 0B       		.uleb128 0xb
- 947 001a 03       		.uleb128 0x3
- 948 001b 0E       		.uleb128 0xe
- 949 001c 00       		.byte	0
- 950 001d 00       		.byte	0
- 951 001e 03       		.uleb128 0x3
- 952 001f 24       		.uleb128 0x24
- 953 0020 00       		.byte	0
- 954 0021 0B       		.uleb128 0xb
- 955 0022 0B       		.uleb128 0xb
- 956 0023 3E       		.uleb128 0x3e
- 957 0024 0B       		.uleb128 0xb
- 958 0025 03       		.uleb128 0x3
- 959 0026 08       		.uleb128 0x8
- 960 0027 00       		.byte	0
- 961 0028 00       		.byte	0
- 962 0029 04       		.uleb128 0x4
- 963 002a 16       		.uleb128 0x16
- 964 002b 00       		.byte	0
- 965 002c 03       		.uleb128 0x3
- 966 002d 0E       		.uleb128 0xe
- 967 002e 3A       		.uleb128 0x3a
- 968 002f 0B       		.uleb128 0xb
- 969 0030 3B       		.uleb128 0x3b
- 970 0031 05       		.uleb128 0x5
- 971 0032 49       		.uleb128 0x49
- 972 0033 13       		.uleb128 0x13
- 973 0034 00       		.byte	0
- 974 0035 00       		.byte	0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 21
+ 660 01fd D3000000 		.4byte	.LLST4
+ 661 0201 14       		.uleb128 0x14
+ 662 0202 6A00     		.ascii	"j\000"
+ 663 0204 01       		.byte	0x1
+ 664 0205 63       		.byte	0x63
+ 665 0206 83000000 		.4byte	0x83
+ 666 020a 09010000 		.4byte	.LLST5
+ 667 020e 15       		.uleb128 0x15
+ 668 020f D8010000 		.4byte	.LASF31
+ 669 0213 01       		.byte	0x1
+ 670 0214 64       		.byte	0x64
+ 671 0215 A9000000 		.4byte	0xa9
+ 672 0219 59010000 		.4byte	.LLST6
+ 673 021d 0F       		.uleb128 0xf
+ 674 021e 62697400 		.ascii	"bit\000"
+ 675 0222 01       		.byte	0x1
+ 676 0223 65       		.byte	0x65
+ 677 0224 83000000 		.4byte	0x83
+ 678 0228 15       		.uleb128 0x15
+ 679 0229 AD020000 		.4byte	.LASF32
+ 680 022d 01       		.byte	0x1
+ 681 022e 66       		.byte	0x66
+ 682 022f 8F000000 		.4byte	0x8f
+ 683 0233 B5010000 		.4byte	.LLST7
+ 684 0237 13       		.uleb128 0x13
+ 685 0238 B4020000 		.4byte	.LASF33
+ 686 023c 01       		.byte	0x1
+ 687 023d 67       		.byte	0x67
+ 688 023e 8F000000 		.4byte	0x8f
+ 689 0242 0E       		.uleb128 0xe
+ 690 0243 74       		.byte	0x74
+ 691 0244 00       		.sleb128 0
+ 692 0245 08       		.byte	0x8
+ 693 0246 FF       		.byte	0xff
+ 694 0247 1A       		.byte	0x1a
+ 695 0248 38       		.byte	0x38
+ 696 0249 24       		.byte	0x24
+ 697 024a 75       		.byte	0x75
+ 698 024b 00       		.sleb128 0
+ 699 024c 08       		.byte	0x8
+ 700 024d FF       		.byte	0xff
+ 701 024e 1A       		.byte	0x1a
+ 702 024f 21       		.byte	0x21
+ 703 0250 9F       		.byte	0x9f
+ 704 0251 15       		.uleb128 0x15
+ 705 0252 3A000000 		.4byte	.LASF34
+ 706 0256 01       		.byte	0x1
+ 707 0257 68       		.byte	0x68
+ 708 0258 77000000 		.4byte	0x77
+ 709 025c 0B020000 		.4byte	.LLST8
+ 710 0260 13       		.uleb128 0x13
+ 711 0261 9F020000 		.4byte	.LASF35
+ 712 0265 01       		.byte	0x1
+ 713 0266 6A       		.byte	0x6a
+ 714 0267 6B000000 		.4byte	0x6b
+ 715 026b 02       		.uleb128 0x2
+ 716 026c 91       		.byte	0x91
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 17
 
 
- 975 0036 05       		.uleb128 0x5
- 976 0037 0F       		.uleb128 0xf
- 977 0038 00       		.byte	0
- 978 0039 0B       		.uleb128 0xb
- 979 003a 0B       		.uleb128 0xb
- 980 003b 49       		.uleb128 0x49
- 981 003c 13       		.uleb128 0x13
- 982 003d 00       		.byte	0
- 983 003e 00       		.byte	0
- 984 003f 06       		.uleb128 0x6
- 985 0040 16       		.uleb128 0x16
- 986 0041 00       		.byte	0
- 987 0042 03       		.uleb128 0x3
- 988 0043 0E       		.uleb128 0xe
- 989 0044 3A       		.uleb128 0x3a
- 990 0045 0B       		.uleb128 0xb
- 991 0046 3B       		.uleb128 0x3b
- 992 0047 0B       		.uleb128 0xb
- 993 0048 49       		.uleb128 0x49
- 994 0049 13       		.uleb128 0x13
- 995 004a 00       		.byte	0
- 996 004b 00       		.byte	0
- 997 004c 07       		.uleb128 0x7
- 998 004d 15       		.uleb128 0x15
- 999 004e 00       		.byte	0
- 1000 004f 27       		.uleb128 0x27
- 1001 0050 19       		.uleb128 0x19
- 1002 0051 49       		.uleb128 0x49
- 1003 0052 13       		.uleb128 0x13
- 1004 0053 00       		.byte	0
- 1005 0054 00       		.byte	0
- 1006 0055 08       		.uleb128 0x8
- 1007 0056 15       		.uleb128 0x15
- 1008 0057 01       		.byte	0x1
- 1009 0058 27       		.uleb128 0x27
- 1010 0059 19       		.uleb128 0x19
- 1011 005a 01       		.uleb128 0x1
- 1012 005b 13       		.uleb128 0x13
- 1013 005c 00       		.byte	0
- 1014 005d 00       		.byte	0
- 1015 005e 09       		.uleb128 0x9
- 1016 005f 05       		.uleb128 0x5
- 1017 0060 00       		.byte	0
- 1018 0061 49       		.uleb128 0x49
- 1019 0062 13       		.uleb128 0x13
- 1020 0063 00       		.byte	0
- 1021 0064 00       		.byte	0
- 1022 0065 0A       		.uleb128 0xa
- 1023 0066 13       		.uleb128 0x13
- 1024 0067 01       		.byte	0x1
- 1025 0068 0B       		.uleb128 0xb
- 1026 0069 0B       		.uleb128 0xb
- 1027 006a 3A       		.uleb128 0x3a
- 1028 006b 0B       		.uleb128 0xb
- 1029 006c 3B       		.uleb128 0x3b
- 1030 006d 0B       		.uleb128 0xb
- 1031 006e 01       		.uleb128 0x1
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 22
+ 717 026d 48       		.sleb128 -56
+ 718 026e 16       		.uleb128 0x16
+ 719 026f 26010000 		.4byte	0x126
+ 720 0273 2E000000 		.4byte	.LBB6
+ 721 0277 56000000 		.4byte	.LBE6-.LBB6
+ 722 027b 01       		.byte	0x1
+ 723 027c 70       		.byte	0x70
+ 724 027d C9020000 		.4byte	0x2c9
+ 725 0281 17       		.uleb128 0x17
+ 726 0282 36010000 		.4byte	0x136
+ 727 0286 D4020000 		.4byte	.LLST9
+ 728 028a 18       		.uleb128 0x18
+ 729 028b 2E000000 		.4byte	.LBB7
+ 730 028f 56000000 		.4byte	.LBE7-.LBB7
+ 731 0293 19       		.uleb128 0x19
+ 732 0294 41010000 		.4byte	0x141
+ 733 0298 27030000 		.4byte	.LLST10
+ 734 029c 1A       		.uleb128 0x1a
+ 735 029d 3A000000 		.4byte	.LVL8
+ 736 02a1 85030000 		.4byte	0x385
+ 737 02a5 AF020000 		.4byte	0x2af
+ 738 02a9 1B       		.uleb128 0x1b
+ 739 02aa 01       		.uleb128 0x1
+ 740 02ab 50       		.byte	0x50
+ 741 02ac 01       		.uleb128 0x1
+ 742 02ad 31       		.byte	0x31
+ 743 02ae 00       		.byte	0
+ 744 02af 1C       		.uleb128 0x1c
+ 745 02b0 56000000 		.4byte	.LVL14
+ 746 02b4 85030000 		.4byte	0x385
+ 747 02b8 1D       		.uleb128 0x1d
+ 748 02b9 72000000 		.4byte	.LVL20
+ 749 02bd 85030000 		.4byte	0x385
+ 750 02c1 1B       		.uleb128 0x1b
+ 751 02c2 01       		.uleb128 0x1
+ 752 02c3 50       		.byte	0x50
+ 753 02c4 01       		.uleb128 0x1
+ 754 02c5 31       		.byte	0x31
+ 755 02c6 00       		.byte	0
+ 756 02c7 00       		.byte	0
+ 757 02c8 00       		.byte	0
+ 758 02c9 1E       		.uleb128 0x1e
+ 759 02ca 51010000 		.4byte	0x151
+ 760 02ce 92000000 		.4byte	.LBB8
+ 761 02d2 00000000 		.4byte	.Ldebug_ranges0+0
+ 762 02d6 01       		.byte	0x1
+ 763 02d7 7C       		.byte	0x7c
+ 764 02d8 20030000 		.4byte	0x320
+ 765 02dc 17       		.uleb128 0x17
+ 766 02dd 61010000 		.4byte	0x161
+ 767 02e1 AF030000 		.4byte	.LLST11
+ 768 02e5 17       		.uleb128 0x17
+ 769 02e6 6C010000 		.4byte	0x16c
+ 770 02ea E9030000 		.4byte	.LLST12
+ 771 02ee 1F       		.uleb128 0x1f
+ 772 02ef 00000000 		.4byte	.Ldebug_ranges0+0
+ 773 02f3 19       		.uleb128 0x19
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 18
 
 
- 1032 006f 13       		.uleb128 0x13
- 1033 0070 00       		.byte	0
- 1034 0071 00       		.byte	0
- 1035 0072 0B       		.uleb128 0xb
- 1036 0073 0D       		.uleb128 0xd
- 1037 0074 00       		.byte	0
- 1038 0075 03       		.uleb128 0x3
- 1039 0076 0E       		.uleb128 0xe
- 1040 0077 3A       		.uleb128 0x3a
- 1041 0078 0B       		.uleb128 0xb
- 1042 0079 3B       		.uleb128 0x3b
- 1043 007a 0B       		.uleb128 0xb
- 1044 007b 49       		.uleb128 0x49
- 1045 007c 13       		.uleb128 0x13
- 1046 007d 38       		.uleb128 0x38
- 1047 007e 0B       		.uleb128 0xb
- 1048 007f 00       		.byte	0
- 1049 0080 00       		.byte	0
- 1050 0081 0C       		.uleb128 0xc
- 1051 0082 26       		.uleb128 0x26
- 1052 0083 00       		.byte	0
- 1053 0084 49       		.uleb128 0x49
- 1054 0085 13       		.uleb128 0x13
- 1055 0086 00       		.byte	0
- 1056 0087 00       		.byte	0
- 1057 0088 0D       		.uleb128 0xd
- 1058 0089 2E       		.uleb128 0x2e
- 1059 008a 01       		.byte	0x1
- 1060 008b 03       		.uleb128 0x3
- 1061 008c 0E       		.uleb128 0xe
- 1062 008d 3A       		.uleb128 0x3a
- 1063 008e 0B       		.uleb128 0xb
- 1064 008f 3B       		.uleb128 0x3b
- 1065 0090 0B       		.uleb128 0xb
- 1066 0091 27       		.uleb128 0x27
- 1067 0092 19       		.uleb128 0x19
- 1068 0093 49       		.uleb128 0x49
- 1069 0094 13       		.uleb128 0x13
- 1070 0095 11       		.uleb128 0x11
- 1071 0096 01       		.uleb128 0x1
- 1072 0097 12       		.uleb128 0x12
- 1073 0098 06       		.uleb128 0x6
- 1074 0099 40       		.uleb128 0x40
- 1075 009a 18       		.uleb128 0x18
- 1076 009b 9642     		.uleb128 0x2116
- 1077 009d 19       		.uleb128 0x19
- 1078 009e 01       		.uleb128 0x1
- 1079 009f 13       		.uleb128 0x13
- 1080 00a0 00       		.byte	0
- 1081 00a1 00       		.byte	0
- 1082 00a2 0E       		.uleb128 0xe
- 1083 00a3 05       		.uleb128 0x5
- 1084 00a4 00       		.byte	0
- 1085 00a5 03       		.uleb128 0x3
- 1086 00a6 0E       		.uleb128 0xe
- 1087 00a7 3A       		.uleb128 0x3a
- 1088 00a8 0B       		.uleb128 0xb
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 23
+ 774 02f4 77010000 		.4byte	0x177
+ 775 02f8 07040000 		.4byte	.LLST13
+ 776 02fc 1A       		.uleb128 0x1a
+ 777 02fd B0000000 		.4byte	.LVL29
+ 778 0301 85030000 		.4byte	0x385
+ 779 0305 0F030000 		.4byte	0x30f
+ 780 0309 1B       		.uleb128 0x1b
+ 781 030a 01       		.uleb128 0x1
+ 782 030b 50       		.byte	0x50
+ 783 030c 01       		.uleb128 0x1
+ 784 030d 3A       		.byte	0x3a
+ 785 030e 00       		.byte	0
+ 786 030f 1D       		.uleb128 0x1d
+ 787 0310 C6000000 		.4byte	.LVL34
+ 788 0314 85030000 		.4byte	0x385
+ 789 0318 1B       		.uleb128 0x1b
+ 790 0319 01       		.uleb128 0x1
+ 791 031a 50       		.byte	0x50
+ 792 031b 01       		.uleb128 0x1
+ 793 031c 3A       		.byte	0x3a
+ 794 031d 00       		.byte	0
+ 795 031e 00       		.byte	0
+ 796 031f 00       		.byte	0
+ 797 0320 1C       		.uleb128 0x1c
+ 798 0321 1A000000 		.4byte	.LVL1
+ 799 0325 96030000 		.4byte	0x396
+ 800 0329 20       		.uleb128 0x20
+ 801 032a 22000000 		.4byte	.LVL3
+ 802 032e 38030000 		.4byte	0x338
+ 803 0332 1B       		.uleb128 0x1b
+ 804 0333 01       		.uleb128 0x1
+ 805 0334 50       		.byte	0x50
+ 806 0335 01       		.uleb128 0x1
+ 807 0336 30       		.byte	0x30
+ 808 0337 00       		.byte	0
+ 809 0338 1A       		.uleb128 0x1a
+ 810 0339 28000000 		.4byte	.LVL4
+ 811 033d 85030000 		.4byte	0x385
+ 812 0341 4D030000 		.4byte	0x34d
+ 813 0345 1B       		.uleb128 0x1b
+ 814 0346 01       		.uleb128 0x1
+ 815 0347 50       		.byte	0x50
+ 816 0348 03       		.uleb128 0x3
+ 817 0349 0A       		.byte	0xa
+ 818 034a DC05     		.2byte	0x5dc
+ 819 034c 00       		.byte	0
+ 820 034d 20       		.uleb128 0x20
+ 821 034e 2E000000 		.4byte	.LVL5
+ 822 0352 5C030000 		.4byte	0x35c
+ 823 0356 1B       		.uleb128 0x1b
+ 824 0357 01       		.uleb128 0x1
+ 825 0358 50       		.byte	0x50
+ 826 0359 01       		.uleb128 0x1
+ 827 035a 31       		.byte	0x31
+ 828 035b 00       		.byte	0
+ 829 035c 1D       		.uleb128 0x1d
+ 830 035d 04010000 		.4byte	.LVL40
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 19
 
 
- 1089 00a9 3B       		.uleb128 0x3b
- 1090 00aa 0B       		.uleb128 0xb
- 1091 00ab 49       		.uleb128 0x49
- 1092 00ac 13       		.uleb128 0x13
- 1093 00ad 02       		.uleb128 0x2
- 1094 00ae 18       		.uleb128 0x18
- 1095 00af 00       		.byte	0
- 1096 00b0 00       		.byte	0
- 1097 00b1 0F       		.uleb128 0xf
- 1098 00b2 34       		.uleb128 0x34
- 1099 00b3 00       		.byte	0
- 1100 00b4 03       		.uleb128 0x3
- 1101 00b5 08       		.uleb128 0x8
- 1102 00b6 3A       		.uleb128 0x3a
- 1103 00b7 0B       		.uleb128 0xb
- 1104 00b8 3B       		.uleb128 0x3b
- 1105 00b9 0B       		.uleb128 0xb
- 1106 00ba 49       		.uleb128 0x49
- 1107 00bb 13       		.uleb128 0x13
- 1108 00bc 02       		.uleb128 0x2
- 1109 00bd 18       		.uleb128 0x18
- 1110 00be 00       		.byte	0
- 1111 00bf 00       		.byte	0
- 1112 00c0 10       		.uleb128 0x10
- 1113 00c1 2E       		.uleb128 0x2e
- 1114 00c2 01       		.byte	0x1
- 1115 00c3 3F       		.uleb128 0x3f
- 1116 00c4 19       		.uleb128 0x19
- 1117 00c5 03       		.uleb128 0x3
- 1118 00c6 0E       		.uleb128 0xe
- 1119 00c7 3A       		.uleb128 0x3a
- 1120 00c8 0B       		.uleb128 0xb
- 1121 00c9 3B       		.uleb128 0x3b
- 1122 00ca 0B       		.uleb128 0xb
- 1123 00cb 27       		.uleb128 0x27
- 1124 00cc 19       		.uleb128 0x19
- 1125 00cd 11       		.uleb128 0x11
- 1126 00ce 01       		.uleb128 0x1
- 1127 00cf 12       		.uleb128 0x12
- 1128 00d0 06       		.uleb128 0x6
- 1129 00d1 40       		.uleb128 0x40
- 1130 00d2 18       		.uleb128 0x18
- 1131 00d3 9642     		.uleb128 0x2116
- 1132 00d5 19       		.uleb128 0x19
- 1133 00d6 01       		.uleb128 0x1
- 1134 00d7 13       		.uleb128 0x13
- 1135 00d8 00       		.byte	0
- 1136 00d9 00       		.byte	0
- 1137 00da 11       		.uleb128 0x11
- 1138 00db 34       		.uleb128 0x34
- 1139 00dc 00       		.byte	0
- 1140 00dd 03       		.uleb128 0x3
- 1141 00de 0E       		.uleb128 0xe
- 1142 00df 3A       		.uleb128 0x3a
- 1143 00e0 0B       		.uleb128 0xb
- 1144 00e1 3B       		.uleb128 0x3b
- 1145 00e2 0B       		.uleb128 0xb
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 24
+ 831 0361 A1030000 		.4byte	0x3a1
+ 832 0365 1B       		.uleb128 0x1b
+ 833 0366 01       		.uleb128 0x1
+ 834 0367 50       		.byte	0x50
+ 835 0368 04       		.uleb128 0x4
+ 836 0369 91       		.byte	0x91
+ 837 036a 48       		.sleb128 -56
+ 838 036b 94       		.byte	0x94
+ 839 036c 01       		.byte	0x1
+ 840 036d 00       		.byte	0
+ 841 036e 00       		.byte	0
+ 842 036f 06       		.uleb128 0x6
+ 843 0370 04       		.byte	0x4
+ 844 0371 9B000000 		.4byte	0x9b
+ 845 0375 21       		.uleb128 0x21
+ 846 0376 6B000000 		.4byte	0x6b
+ 847 037a 85030000 		.4byte	0x385
+ 848 037e 22       		.uleb128 0x22
+ 849 037f BC000000 		.4byte	0xbc
+ 850 0383 04       		.byte	0x4
+ 851 0384 00       		.byte	0
+ 852 0385 23       		.uleb128 0x23
+ 853 0386 CE010000 		.4byte	.LASF40
+ 854 038a 04       		.byte	0x4
+ 855 038b D8       		.byte	0xd8
+ 856 038c 96030000 		.4byte	0x396
+ 857 0390 09       		.uleb128 0x9
+ 858 0391 77000000 		.4byte	0x77
+ 859 0395 00       		.byte	0
+ 860 0396 24       		.uleb128 0x24
+ 861 0397 47010000 		.4byte	.LASF41
+ 862 039b 04       		.byte	0x4
+ 863 039c E3       		.byte	0xe3
+ 864 039d 6B000000 		.4byte	0x6b
+ 865 03a1 25       		.uleb128 0x25
+ 866 03a2 78010000 		.4byte	.LASF42
+ 867 03a6 04       		.byte	0x4
+ 868 03a7 E4       		.byte	0xe4
+ 869 03a8 09       		.uleb128 0x9
+ 870 03a9 6B000000 		.4byte	0x6b
+ 871 03ad 00       		.byte	0
+ 872 03ae 00       		.byte	0
+ 873              		.section	.debug_abbrev,"",%progbits
+ 874              	.Ldebug_abbrev0:
+ 875 0000 01       		.uleb128 0x1
+ 876 0001 11       		.uleb128 0x11
+ 877 0002 01       		.byte	0x1
+ 878 0003 25       		.uleb128 0x25
+ 879 0004 0E       		.uleb128 0xe
+ 880 0005 13       		.uleb128 0x13
+ 881 0006 0B       		.uleb128 0xb
+ 882 0007 03       		.uleb128 0x3
+ 883 0008 0E       		.uleb128 0xe
+ 884 0009 1B       		.uleb128 0x1b
+ 885 000a 0E       		.uleb128 0xe
+ 886 000b 55       		.uleb128 0x55
+ 887 000c 17       		.uleb128 0x17
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 20
 
 
- 1146 00e3 49       		.uleb128 0x49
- 1147 00e4 13       		.uleb128 0x13
- 1148 00e5 02       		.uleb128 0x2
- 1149 00e6 18       		.uleb128 0x18
- 1150 00e7 00       		.byte	0
- 1151 00e8 00       		.byte	0
- 1152 00e9 12       		.uleb128 0x12
- 1153 00ea 01       		.uleb128 0x1
- 1154 00eb 01       		.byte	0x1
- 1155 00ec 49       		.uleb128 0x49
- 1156 00ed 13       		.uleb128 0x13
- 1157 00ee 00       		.byte	0
- 1158 00ef 00       		.byte	0
- 1159 00f0 13       		.uleb128 0x13
- 1160 00f1 21       		.uleb128 0x21
- 1161 00f2 00       		.byte	0
- 1162 00f3 49       		.uleb128 0x49
- 1163 00f4 13       		.uleb128 0x13
- 1164 00f5 2F       		.uleb128 0x2f
- 1165 00f6 0B       		.uleb128 0xb
- 1166 00f7 00       		.byte	0
- 1167 00f8 00       		.byte	0
- 1168 00f9 00       		.byte	0
- 1169              		.section	.debug_aranges,"",%progbits
- 1170 0000 2C000000 		.4byte	0x2c
- 1171 0004 0200     		.2byte	0x2
- 1172 0006 00000000 		.4byte	.Ldebug_info0
- 1173 000a 04       		.byte	0x4
- 1174 000b 00       		.byte	0
- 1175 000c 0000     		.2byte	0
- 1176 000e 0000     		.2byte	0
- 1177 0010 00000000 		.4byte	.LFB62
- 1178 0014 9C000000 		.4byte	.LFE62-.LFB62
- 1179 0018 00000000 		.4byte	.LFB63
- 1180 001c 6C000000 		.4byte	.LFE63-.LFB63
- 1181 0020 00000000 		.4byte	.LFB64
- 1182 0024 20020000 		.4byte	.LFE64-.LFB64
- 1183 0028 00000000 		.4byte	0
- 1184 002c 00000000 		.4byte	0
- 1185              		.section	.debug_ranges,"",%progbits
- 1186              	.Ldebug_ranges0:
- 1187 0000 00000000 		.4byte	.LFB62
- 1188 0004 9C000000 		.4byte	.LFE62
- 1189 0008 00000000 		.4byte	.LFB63
- 1190 000c 6C000000 		.4byte	.LFE63
- 1191 0010 00000000 		.4byte	.LFB64
- 1192 0014 20020000 		.4byte	.LFE64
- 1193 0018 00000000 		.4byte	0
- 1194 001c 00000000 		.4byte	0
- 1195              		.section	.debug_line,"",%progbits
- 1196              	.Ldebug_line0:
- 1197 0000 4E010000 		.section	.debug_str,"MS",%progbits,1
- 1197      02005D00 
- 1197      00000201 
- 1197      FB0E0D00 
- 1197      01010101 
- 1198              	.LASF29:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 25
+ 888 000d 11       		.uleb128 0x11
+ 889 000e 01       		.uleb128 0x1
+ 890 000f 10       		.uleb128 0x10
+ 891 0010 17       		.uleb128 0x17
+ 892 0011 00       		.byte	0
+ 893 0012 00       		.byte	0
+ 894 0013 02       		.uleb128 0x2
+ 895 0014 24       		.uleb128 0x24
+ 896 0015 00       		.byte	0
+ 897 0016 0B       		.uleb128 0xb
+ 898 0017 0B       		.uleb128 0xb
+ 899 0018 3E       		.uleb128 0x3e
+ 900 0019 0B       		.uleb128 0xb
+ 901 001a 03       		.uleb128 0x3
+ 902 001b 0E       		.uleb128 0xe
+ 903 001c 00       		.byte	0
+ 904 001d 00       		.byte	0
+ 905 001e 03       		.uleb128 0x3
+ 906 001f 24       		.uleb128 0x24
+ 907 0020 00       		.byte	0
+ 908 0021 0B       		.uleb128 0xb
+ 909 0022 0B       		.uleb128 0xb
+ 910 0023 3E       		.uleb128 0x3e
+ 911 0024 0B       		.uleb128 0xb
+ 912 0025 03       		.uleb128 0x3
+ 913 0026 08       		.uleb128 0x8
+ 914 0027 00       		.byte	0
+ 915 0028 00       		.byte	0
+ 916 0029 04       		.uleb128 0x4
+ 917 002a 16       		.uleb128 0x16
+ 918 002b 00       		.byte	0
+ 919 002c 03       		.uleb128 0x3
+ 920 002d 0E       		.uleb128 0xe
+ 921 002e 3A       		.uleb128 0x3a
+ 922 002f 0B       		.uleb128 0xb
+ 923 0030 3B       		.uleb128 0x3b
+ 924 0031 05       		.uleb128 0x5
+ 925 0032 49       		.uleb128 0x49
+ 926 0033 13       		.uleb128 0x13
+ 927 0034 00       		.byte	0
+ 928 0035 00       		.byte	0
+ 929 0036 05       		.uleb128 0x5
+ 930 0037 16       		.uleb128 0x16
+ 931 0038 00       		.byte	0
+ 932 0039 03       		.uleb128 0x3
+ 933 003a 0E       		.uleb128 0xe
+ 934 003b 3A       		.uleb128 0x3a
+ 935 003c 0B       		.uleb128 0xb
+ 936 003d 3B       		.uleb128 0x3b
+ 937 003e 0B       		.uleb128 0xb
+ 938 003f 49       		.uleb128 0x49
+ 939 0040 13       		.uleb128 0x13
+ 940 0041 00       		.byte	0
+ 941 0042 00       		.byte	0
+ 942 0043 06       		.uleb128 0x6
+ 943 0044 0F       		.uleb128 0xf
+ 944 0045 00       		.byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 21
 
 
- 1199 0000 68756D69 		.ascii	"humidity\000"
- 1199      64697479 
- 1199      00
- 1200              	.LASF13:
- 1201 0009 666C6F61 		.ascii	"float\000"
- 1201      7400
- 1202              	.LASF31:
- 1203 000f 6D61736B 		.ascii	"mask\000"
- 1203      00
- 1204              	.LASF15:
- 1205 0014 75696E74 		.ascii	"uint64\000"
- 1205      363400
- 1206              	.LASF28:
- 1207 001b 74656D70 		.ascii	"temperature\000"
- 1207      65726174 
- 1207      75726500 
- 1208              	.LASF30:
- 1209 0027 64617461 		.ascii	"data\000"
- 1209      00
- 1210              	.LASF34:
- 1211 002c 63686563 		.ascii	"checksum\000"
- 1211      6B73756D 
- 1211      00
- 1212              	.LASF26:
- 1213 0035 73746174 		.ascii	"status_flag\000"
- 1213      75735F66 
- 1213      6C616700 
- 1214              	.LASF37:
- 1215 0041 68756D69 		.ascii	"humidity_sensor\\dht22.c\000"
- 1215      64697479 
- 1215      5F73656E 
- 1215      736F725C 
- 1215      64687432 
- 1216              	.LASF12:
- 1217 0059 696E7431 		.ascii	"int16\000"
- 1217      3600
- 1218              	.LASF5:
- 1219 005f 6C6F6E67 		.ascii	"long unsigned int\000"
- 1219      20756E73 
- 1219      69676E65 
- 1219      6420696E 
- 1219      7400
- 1220              	.LASF25:
- 1221 0071 64687432 		.ascii	"dht22_sensor\000"
- 1221      325F7365 
- 1221      6E736F72 
- 1221      00
- 1222              	.LASF3:
- 1223 007e 73686F72 		.ascii	"short unsigned int\000"
- 1223      7420756E 
- 1223      7369676E 
- 1223      65642069 
- 1223      6E7400
- 1224              	.LASF24:
- 1225 0091 72656164 		.ascii	"read_bit\000"
- 1225      5F626974 
- 1225      00
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 26
+ 945 0046 0B       		.uleb128 0xb
+ 946 0047 0B       		.uleb128 0xb
+ 947 0048 49       		.uleb128 0x49
+ 948 0049 13       		.uleb128 0x13
+ 949 004a 00       		.byte	0
+ 950 004b 00       		.byte	0
+ 951 004c 07       		.uleb128 0x7
+ 952 004d 15       		.uleb128 0x15
+ 953 004e 00       		.byte	0
+ 954 004f 27       		.uleb128 0x27
+ 955 0050 19       		.uleb128 0x19
+ 956 0051 49       		.uleb128 0x49
+ 957 0052 13       		.uleb128 0x13
+ 958 0053 00       		.byte	0
+ 959 0054 00       		.byte	0
+ 960 0055 08       		.uleb128 0x8
+ 961 0056 15       		.uleb128 0x15
+ 962 0057 01       		.byte	0x1
+ 963 0058 27       		.uleb128 0x27
+ 964 0059 19       		.uleb128 0x19
+ 965 005a 01       		.uleb128 0x1
+ 966 005b 13       		.uleb128 0x13
+ 967 005c 00       		.byte	0
+ 968 005d 00       		.byte	0
+ 969 005e 09       		.uleb128 0x9
+ 970 005f 05       		.uleb128 0x5
+ 971 0060 00       		.byte	0
+ 972 0061 49       		.uleb128 0x49
+ 973 0062 13       		.uleb128 0x13
+ 974 0063 00       		.byte	0
+ 975 0064 00       		.byte	0
+ 976 0065 0A       		.uleb128 0xa
+ 977 0066 13       		.uleb128 0x13
+ 978 0067 01       		.byte	0x1
+ 979 0068 0B       		.uleb128 0xb
+ 980 0069 0B       		.uleb128 0xb
+ 981 006a 3A       		.uleb128 0x3a
+ 982 006b 0B       		.uleb128 0xb
+ 983 006c 3B       		.uleb128 0x3b
+ 984 006d 0B       		.uleb128 0xb
+ 985 006e 01       		.uleb128 0x1
+ 986 006f 13       		.uleb128 0x13
+ 987 0070 00       		.byte	0
+ 988 0071 00       		.byte	0
+ 989 0072 0B       		.uleb128 0xb
+ 990 0073 0D       		.uleb128 0xd
+ 991 0074 00       		.byte	0
+ 992 0075 03       		.uleb128 0x3
+ 993 0076 0E       		.uleb128 0xe
+ 994 0077 3A       		.uleb128 0x3a
+ 995 0078 0B       		.uleb128 0xb
+ 996 0079 3B       		.uleb128 0x3b
+ 997 007a 0B       		.uleb128 0xb
+ 998 007b 49       		.uleb128 0x49
+ 999 007c 13       		.uleb128 0x13
+ 1000 007d 38       		.uleb128 0x38
+ 1001 007e 0B       		.uleb128 0xb
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 22
 
 
- 1226              	.LASF1:
- 1227 009a 756E7369 		.ascii	"unsigned char\000"
- 1227      676E6564 
- 1227      20636861 
- 1227      7200
- 1228              	.LASF14:
- 1229 00a8 646F7562 		.ascii	"double\000"
- 1229      6C6500
- 1230              	.LASF36:
- 1231 00af 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 1231      4320342E 
- 1231      392E3320 
- 1231      32303135 
- 1231      30333033 
- 1232 00e2 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
- 1232      20726576 
- 1232      6973696F 
- 1232      6E203232 
- 1232      31323230 
- 1233 0115 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
- 1233      66756E63 
- 1233      74696F6E 
- 1233      2D736563 
- 1233      74696F6E 
- 1234              	.LASF10:
- 1235 013d 75696E74 		.ascii	"uint16\000"
- 1235      313600
- 1236              	.LASF11:
- 1237 0144 75696E74 		.ascii	"uint32\000"
- 1237      333200
- 1238              	.LASF8:
- 1239 014b 756E7369 		.ascii	"unsigned int\000"
- 1239      676E6564 
- 1239      20696E74 
- 1239      00
- 1240              	.LASF22:
- 1241 0158 44485432 		.ascii	"DHT22_SENSOR\000"
- 1241      325F5345 
- 1241      4E534F52 
- 1241      00
- 1242              	.LASF7:
- 1243 0165 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1243      206C6F6E 
- 1243      6720756E 
- 1243      7369676E 
- 1243      65642069 
- 1244              	.LASF21:
- 1245 017c 70696E5F 		.ascii	"pin_write\000"
- 1245      77726974 
- 1245      6500
- 1246              	.LASF27:
- 1247 0186 73746570 		.ascii	"step_number\000"
- 1247      5F6E756D 
- 1247      62657200 
- 1248              	.LASF17:
- 1249 0192 73697A65 		.ascii	"sizetype\000"
- 1249      74797065 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 27
+ 1002 007f 00       		.byte	0
+ 1003 0080 00       		.byte	0
+ 1004 0081 0C       		.uleb128 0xc
+ 1005 0082 26       		.uleb128 0x26
+ 1006 0083 00       		.byte	0
+ 1007 0084 49       		.uleb128 0x49
+ 1008 0085 13       		.uleb128 0x13
+ 1009 0086 00       		.byte	0
+ 1010 0087 00       		.byte	0
+ 1011 0088 0D       		.uleb128 0xd
+ 1012 0089 2E       		.uleb128 0x2e
+ 1013 008a 01       		.byte	0x1
+ 1014 008b 03       		.uleb128 0x3
+ 1015 008c 0E       		.uleb128 0xe
+ 1016 008d 3A       		.uleb128 0x3a
+ 1017 008e 0B       		.uleb128 0xb
+ 1018 008f 3B       		.uleb128 0x3b
+ 1019 0090 0B       		.uleb128 0xb
+ 1020 0091 27       		.uleb128 0x27
+ 1021 0092 19       		.uleb128 0x19
+ 1022 0093 49       		.uleb128 0x49
+ 1023 0094 13       		.uleb128 0x13
+ 1024 0095 20       		.uleb128 0x20
+ 1025 0096 0B       		.uleb128 0xb
+ 1026 0097 01       		.uleb128 0x1
+ 1027 0098 13       		.uleb128 0x13
+ 1028 0099 00       		.byte	0
+ 1029 009a 00       		.byte	0
+ 1030 009b 0E       		.uleb128 0xe
+ 1031 009c 05       		.uleb128 0x5
+ 1032 009d 00       		.byte	0
+ 1033 009e 03       		.uleb128 0x3
+ 1034 009f 0E       		.uleb128 0xe
+ 1035 00a0 3A       		.uleb128 0x3a
+ 1036 00a1 0B       		.uleb128 0xb
+ 1037 00a2 3B       		.uleb128 0x3b
+ 1038 00a3 0B       		.uleb128 0xb
+ 1039 00a4 49       		.uleb128 0x49
+ 1040 00a5 13       		.uleb128 0x13
+ 1041 00a6 00       		.byte	0
+ 1042 00a7 00       		.byte	0
+ 1043 00a8 0F       		.uleb128 0xf
+ 1044 00a9 34       		.uleb128 0x34
+ 1045 00aa 00       		.byte	0
+ 1046 00ab 03       		.uleb128 0x3
+ 1047 00ac 08       		.uleb128 0x8
+ 1048 00ad 3A       		.uleb128 0x3a
+ 1049 00ae 0B       		.uleb128 0xb
+ 1050 00af 3B       		.uleb128 0x3b
+ 1051 00b0 0B       		.uleb128 0xb
+ 1052 00b1 49       		.uleb128 0x49
+ 1053 00b2 13       		.uleb128 0x13
+ 1054 00b3 00       		.byte	0
+ 1055 00b4 00       		.byte	0
+ 1056 00b5 10       		.uleb128 0x10
+ 1057 00b6 2E       		.uleb128 0x2e
+ 1058 00b7 01       		.byte	0x1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 23
 
 
- 1249      00
- 1250              	.LASF19:
- 1251 019b 50494E5F 		.ascii	"PIN_WRITE\000"
- 1251      57524954 
- 1251      4500
- 1252              	.LASF6:
- 1253 01a5 6C6F6E67 		.ascii	"long long int\000"
- 1253      206C6F6E 
- 1253      6720696E 
- 1253      7400
- 1254              	.LASF20:
- 1255 01b3 70696E5F 		.ascii	"pin_read\000"
- 1255      72656164 
- 1255      00
- 1256              	.LASF16:
- 1257 01bc 63686172 		.ascii	"char\000"
- 1257      00
- 1258              	.LASF23:
- 1259 01c1 6C6F6F6B 		.ascii	"look_for_dht22_response\000"
- 1259      5F666F72 
- 1259      5F646874 
- 1259      32325F72 
- 1259      6573706F 
- 1260              	.LASF2:
- 1261 01d9 73686F72 		.ascii	"short int\000"
- 1261      7420696E 
- 1261      7400
- 1262              	.LASF39:
- 1263 01e3 44485432 		.ascii	"DHT22_get_data\000"
- 1263      325F6765 
- 1263      745F6461 
- 1263      746100
- 1264              	.LASF9:
- 1265 01f2 75696E74 		.ascii	"uint8\000"
- 1265      3800
- 1266              	.LASF4:
- 1267 01f8 6C6F6E67 		.ascii	"long int\000"
- 1267      20696E74 
- 1267      00
- 1268              	.LASF18:
- 1269 0201 50494E5F 		.ascii	"PIN_READ\000"
- 1269      52454144 
- 1269      00
- 1270              	.LASF38:
- 1271 020a 433A5C55 		.ascii	"C:\\Users\\glenn\\OneDrive\\PSOC\\moisture_sensor_4"
- 1271      73657273 
- 1271      5C676C65 
- 1271      6E6E5C4F 
- 1271      6E654472 
- 1272 0238 6D5C4D6F 		.ascii	"m\\Moisture_Sensor\\Moisture_Sensor.cydsn\000"
- 1272      69737475 
- 1272      72655F53 
- 1272      656E736F 
- 1272      725C4D6F 
- 1273              	.LASF0:
- 1274 0260 7369676E 		.ascii	"signed char\000"
- 1274      65642063 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJNRvXQ.s 			page 28
+ 1059 00b8 3F       		.uleb128 0x3f
+ 1060 00b9 19       		.uleb128 0x19
+ 1061 00ba 03       		.uleb128 0x3
+ 1062 00bb 0E       		.uleb128 0xe
+ 1063 00bc 3A       		.uleb128 0x3a
+ 1064 00bd 0B       		.uleb128 0xb
+ 1065 00be 3B       		.uleb128 0x3b
+ 1066 00bf 0B       		.uleb128 0xb
+ 1067 00c0 27       		.uleb128 0x27
+ 1068 00c1 19       		.uleb128 0x19
+ 1069 00c2 11       		.uleb128 0x11
+ 1070 00c3 01       		.uleb128 0x1
+ 1071 00c4 12       		.uleb128 0x12
+ 1072 00c5 06       		.uleb128 0x6
+ 1073 00c6 40       		.uleb128 0x40
+ 1074 00c7 18       		.uleb128 0x18
+ 1075 00c8 9642     		.uleb128 0x2116
+ 1076 00ca 19       		.uleb128 0x19
+ 1077 00cb 01       		.uleb128 0x1
+ 1078 00cc 13       		.uleb128 0x13
+ 1079 00cd 00       		.byte	0
+ 1080 00ce 00       		.byte	0
+ 1081 00cf 11       		.uleb128 0x11
+ 1082 00d0 05       		.uleb128 0x5
+ 1083 00d1 00       		.byte	0
+ 1084 00d2 03       		.uleb128 0x3
+ 1085 00d3 0E       		.uleb128 0xe
+ 1086 00d4 3A       		.uleb128 0x3a
+ 1087 00d5 0B       		.uleb128 0xb
+ 1088 00d6 3B       		.uleb128 0x3b
+ 1089 00d7 0B       		.uleb128 0xb
+ 1090 00d8 49       		.uleb128 0x49
+ 1091 00d9 13       		.uleb128 0x13
+ 1092 00da 02       		.uleb128 0x2
+ 1093 00db 17       		.uleb128 0x17
+ 1094 00dc 00       		.byte	0
+ 1095 00dd 00       		.byte	0
+ 1096 00de 12       		.uleb128 0x12
+ 1097 00df 05       		.uleb128 0x5
+ 1098 00e0 00       		.byte	0
+ 1099 00e1 03       		.uleb128 0x3
+ 1100 00e2 0E       		.uleb128 0xe
+ 1101 00e3 3A       		.uleb128 0x3a
+ 1102 00e4 0B       		.uleb128 0xb
+ 1103 00e5 3B       		.uleb128 0x3b
+ 1104 00e6 0B       		.uleb128 0xb
+ 1105 00e7 49       		.uleb128 0x49
+ 1106 00e8 13       		.uleb128 0x13
+ 1107 00e9 02       		.uleb128 0x2
+ 1108 00ea 18       		.uleb128 0x18
+ 1109 00eb 00       		.byte	0
+ 1110 00ec 00       		.byte	0
+ 1111 00ed 13       		.uleb128 0x13
+ 1112 00ee 34       		.uleb128 0x34
+ 1113 00ef 00       		.byte	0
+ 1114 00f0 03       		.uleb128 0x3
+ 1115 00f1 0E       		.uleb128 0xe
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 24
 
 
- 1274      68617200 
- 1275              	.LASF35:
- 1276 026c 63726974 		.ascii	"criticalState\000"
- 1276      6963616C 
- 1276      53746174 
- 1276      6500
- 1277              	.LASF32:
- 1278 027a 74656D70 		.ascii	"temp_1\000"
- 1278      5F3100
- 1279              	.LASF33:
- 1280 0281 74656D70 		.ascii	"temp_2\000"
- 1280      5F3200
- 1281              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ 1116 00f2 3A       		.uleb128 0x3a
+ 1117 00f3 0B       		.uleb128 0xb
+ 1118 00f4 3B       		.uleb128 0x3b
+ 1119 00f5 0B       		.uleb128 0xb
+ 1120 00f6 49       		.uleb128 0x49
+ 1121 00f7 13       		.uleb128 0x13
+ 1122 00f8 02       		.uleb128 0x2
+ 1123 00f9 18       		.uleb128 0x18
+ 1124 00fa 00       		.byte	0
+ 1125 00fb 00       		.byte	0
+ 1126 00fc 14       		.uleb128 0x14
+ 1127 00fd 34       		.uleb128 0x34
+ 1128 00fe 00       		.byte	0
+ 1129 00ff 03       		.uleb128 0x3
+ 1130 0100 08       		.uleb128 0x8
+ 1131 0101 3A       		.uleb128 0x3a
+ 1132 0102 0B       		.uleb128 0xb
+ 1133 0103 3B       		.uleb128 0x3b
+ 1134 0104 0B       		.uleb128 0xb
+ 1135 0105 49       		.uleb128 0x49
+ 1136 0106 13       		.uleb128 0x13
+ 1137 0107 02       		.uleb128 0x2
+ 1138 0108 17       		.uleb128 0x17
+ 1139 0109 00       		.byte	0
+ 1140 010a 00       		.byte	0
+ 1141 010b 15       		.uleb128 0x15
+ 1142 010c 34       		.uleb128 0x34
+ 1143 010d 00       		.byte	0
+ 1144 010e 03       		.uleb128 0x3
+ 1145 010f 0E       		.uleb128 0xe
+ 1146 0110 3A       		.uleb128 0x3a
+ 1147 0111 0B       		.uleb128 0xb
+ 1148 0112 3B       		.uleb128 0x3b
+ 1149 0113 0B       		.uleb128 0xb
+ 1150 0114 49       		.uleb128 0x49
+ 1151 0115 13       		.uleb128 0x13
+ 1152 0116 02       		.uleb128 0x2
+ 1153 0117 17       		.uleb128 0x17
+ 1154 0118 00       		.byte	0
+ 1155 0119 00       		.byte	0
+ 1156 011a 16       		.uleb128 0x16
+ 1157 011b 1D       		.uleb128 0x1d
+ 1158 011c 01       		.byte	0x1
+ 1159 011d 31       		.uleb128 0x31
+ 1160 011e 13       		.uleb128 0x13
+ 1161 011f 11       		.uleb128 0x11
+ 1162 0120 01       		.uleb128 0x1
+ 1163 0121 12       		.uleb128 0x12
+ 1164 0122 06       		.uleb128 0x6
+ 1165 0123 58       		.uleb128 0x58
+ 1166 0124 0B       		.uleb128 0xb
+ 1167 0125 59       		.uleb128 0x59
+ 1168 0126 0B       		.uleb128 0xb
+ 1169 0127 01       		.uleb128 0x1
+ 1170 0128 13       		.uleb128 0x13
+ 1171 0129 00       		.byte	0
+ 1172 012a 00       		.byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 25
+
+
+ 1173 012b 17       		.uleb128 0x17
+ 1174 012c 05       		.uleb128 0x5
+ 1175 012d 00       		.byte	0
+ 1176 012e 31       		.uleb128 0x31
+ 1177 012f 13       		.uleb128 0x13
+ 1178 0130 02       		.uleb128 0x2
+ 1179 0131 17       		.uleb128 0x17
+ 1180 0132 00       		.byte	0
+ 1181 0133 00       		.byte	0
+ 1182 0134 18       		.uleb128 0x18
+ 1183 0135 0B       		.uleb128 0xb
+ 1184 0136 01       		.byte	0x1
+ 1185 0137 11       		.uleb128 0x11
+ 1186 0138 01       		.uleb128 0x1
+ 1187 0139 12       		.uleb128 0x12
+ 1188 013a 06       		.uleb128 0x6
+ 1189 013b 00       		.byte	0
+ 1190 013c 00       		.byte	0
+ 1191 013d 19       		.uleb128 0x19
+ 1192 013e 34       		.uleb128 0x34
+ 1193 013f 00       		.byte	0
+ 1194 0140 31       		.uleb128 0x31
+ 1195 0141 13       		.uleb128 0x13
+ 1196 0142 02       		.uleb128 0x2
+ 1197 0143 17       		.uleb128 0x17
+ 1198 0144 00       		.byte	0
+ 1199 0145 00       		.byte	0
+ 1200 0146 1A       		.uleb128 0x1a
+ 1201 0147 898201   		.uleb128 0x4109
+ 1202 014a 01       		.byte	0x1
+ 1203 014b 11       		.uleb128 0x11
+ 1204 014c 01       		.uleb128 0x1
+ 1205 014d 31       		.uleb128 0x31
+ 1206 014e 13       		.uleb128 0x13
+ 1207 014f 01       		.uleb128 0x1
+ 1208 0150 13       		.uleb128 0x13
+ 1209 0151 00       		.byte	0
+ 1210 0152 00       		.byte	0
+ 1211 0153 1B       		.uleb128 0x1b
+ 1212 0154 8A8201   		.uleb128 0x410a
+ 1213 0157 00       		.byte	0
+ 1214 0158 02       		.uleb128 0x2
+ 1215 0159 18       		.uleb128 0x18
+ 1216 015a 9142     		.uleb128 0x2111
+ 1217 015c 18       		.uleb128 0x18
+ 1218 015d 00       		.byte	0
+ 1219 015e 00       		.byte	0
+ 1220 015f 1C       		.uleb128 0x1c
+ 1221 0160 898201   		.uleb128 0x4109
+ 1222 0163 00       		.byte	0
+ 1223 0164 11       		.uleb128 0x11
+ 1224 0165 01       		.uleb128 0x1
+ 1225 0166 31       		.uleb128 0x31
+ 1226 0167 13       		.uleb128 0x13
+ 1227 0168 00       		.byte	0
+ 1228 0169 00       		.byte	0
+ 1229 016a 1D       		.uleb128 0x1d
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 26
+
+
+ 1230 016b 898201   		.uleb128 0x4109
+ 1231 016e 01       		.byte	0x1
+ 1232 016f 11       		.uleb128 0x11
+ 1233 0170 01       		.uleb128 0x1
+ 1234 0171 31       		.uleb128 0x31
+ 1235 0172 13       		.uleb128 0x13
+ 1236 0173 00       		.byte	0
+ 1237 0174 00       		.byte	0
+ 1238 0175 1E       		.uleb128 0x1e
+ 1239 0176 1D       		.uleb128 0x1d
+ 1240 0177 01       		.byte	0x1
+ 1241 0178 31       		.uleb128 0x31
+ 1242 0179 13       		.uleb128 0x13
+ 1243 017a 52       		.uleb128 0x52
+ 1244 017b 01       		.uleb128 0x1
+ 1245 017c 55       		.uleb128 0x55
+ 1246 017d 17       		.uleb128 0x17
+ 1247 017e 58       		.uleb128 0x58
+ 1248 017f 0B       		.uleb128 0xb
+ 1249 0180 59       		.uleb128 0x59
+ 1250 0181 0B       		.uleb128 0xb
+ 1251 0182 01       		.uleb128 0x1
+ 1252 0183 13       		.uleb128 0x13
+ 1253 0184 00       		.byte	0
+ 1254 0185 00       		.byte	0
+ 1255 0186 1F       		.uleb128 0x1f
+ 1256 0187 0B       		.uleb128 0xb
+ 1257 0188 01       		.byte	0x1
+ 1258 0189 55       		.uleb128 0x55
+ 1259 018a 17       		.uleb128 0x17
+ 1260 018b 00       		.byte	0
+ 1261 018c 00       		.byte	0
+ 1262 018d 20       		.uleb128 0x20
+ 1263 018e 898201   		.uleb128 0x4109
+ 1264 0191 01       		.byte	0x1
+ 1265 0192 11       		.uleb128 0x11
+ 1266 0193 01       		.uleb128 0x1
+ 1267 0194 01       		.uleb128 0x1
+ 1268 0195 13       		.uleb128 0x13
+ 1269 0196 00       		.byte	0
+ 1270 0197 00       		.byte	0
+ 1271 0198 21       		.uleb128 0x21
+ 1272 0199 01       		.uleb128 0x1
+ 1273 019a 01       		.byte	0x1
+ 1274 019b 49       		.uleb128 0x49
+ 1275 019c 13       		.uleb128 0x13
+ 1276 019d 01       		.uleb128 0x1
+ 1277 019e 13       		.uleb128 0x13
+ 1278 019f 00       		.byte	0
+ 1279 01a0 00       		.byte	0
+ 1280 01a1 22       		.uleb128 0x22
+ 1281 01a2 21       		.uleb128 0x21
+ 1282 01a3 00       		.byte	0
+ 1283 01a4 49       		.uleb128 0x49
+ 1284 01a5 13       		.uleb128 0x13
+ 1285 01a6 2F       		.uleb128 0x2f
+ 1286 01a7 0B       		.uleb128 0xb
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 27
+
+
+ 1287 01a8 00       		.byte	0
+ 1288 01a9 00       		.byte	0
+ 1289 01aa 23       		.uleb128 0x23
+ 1290 01ab 2E       		.uleb128 0x2e
+ 1291 01ac 01       		.byte	0x1
+ 1292 01ad 3F       		.uleb128 0x3f
+ 1293 01ae 19       		.uleb128 0x19
+ 1294 01af 03       		.uleb128 0x3
+ 1295 01b0 0E       		.uleb128 0xe
+ 1296 01b1 3A       		.uleb128 0x3a
+ 1297 01b2 0B       		.uleb128 0xb
+ 1298 01b3 3B       		.uleb128 0x3b
+ 1299 01b4 0B       		.uleb128 0xb
+ 1300 01b5 27       		.uleb128 0x27
+ 1301 01b6 19       		.uleb128 0x19
+ 1302 01b7 3C       		.uleb128 0x3c
+ 1303 01b8 19       		.uleb128 0x19
+ 1304 01b9 01       		.uleb128 0x1
+ 1305 01ba 13       		.uleb128 0x13
+ 1306 01bb 00       		.byte	0
+ 1307 01bc 00       		.byte	0
+ 1308 01bd 24       		.uleb128 0x24
+ 1309 01be 2E       		.uleb128 0x2e
+ 1310 01bf 00       		.byte	0
+ 1311 01c0 3F       		.uleb128 0x3f
+ 1312 01c1 19       		.uleb128 0x19
+ 1313 01c2 03       		.uleb128 0x3
+ 1314 01c3 0E       		.uleb128 0xe
+ 1315 01c4 3A       		.uleb128 0x3a
+ 1316 01c5 0B       		.uleb128 0xb
+ 1317 01c6 3B       		.uleb128 0x3b
+ 1318 01c7 0B       		.uleb128 0xb
+ 1319 01c8 27       		.uleb128 0x27
+ 1320 01c9 19       		.uleb128 0x19
+ 1321 01ca 49       		.uleb128 0x49
+ 1322 01cb 13       		.uleb128 0x13
+ 1323 01cc 3C       		.uleb128 0x3c
+ 1324 01cd 19       		.uleb128 0x19
+ 1325 01ce 00       		.byte	0
+ 1326 01cf 00       		.byte	0
+ 1327 01d0 25       		.uleb128 0x25
+ 1328 01d1 2E       		.uleb128 0x2e
+ 1329 01d2 01       		.byte	0x1
+ 1330 01d3 3F       		.uleb128 0x3f
+ 1331 01d4 19       		.uleb128 0x19
+ 1332 01d5 03       		.uleb128 0x3
+ 1333 01d6 0E       		.uleb128 0xe
+ 1334 01d7 3A       		.uleb128 0x3a
+ 1335 01d8 0B       		.uleb128 0xb
+ 1336 01d9 3B       		.uleb128 0x3b
+ 1337 01da 0B       		.uleb128 0xb
+ 1338 01db 27       		.uleb128 0x27
+ 1339 01dc 19       		.uleb128 0x19
+ 1340 01dd 3C       		.uleb128 0x3c
+ 1341 01de 19       		.uleb128 0x19
+ 1342 01df 00       		.byte	0
+ 1343 01e0 00       		.byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 28
+
+
+ 1344 01e1 00       		.byte	0
+ 1345              		.section	.debug_loc,"",%progbits
+ 1346              	.Ldebug_loc0:
+ 1347              	.LLST0:
+ 1348 0000 00000000 		.4byte	.LVL0
+ 1349 0004 19000000 		.4byte	.LVL1-1
+ 1350 0008 0100     		.2byte	0x1
+ 1351 000a 50       		.byte	0x50
+ 1352 000b 19000000 		.4byte	.LVL1-1
+ 1353 000f 0E010000 		.4byte	.LVL42
+ 1354 0013 0100     		.2byte	0x1
+ 1355 0015 55       		.byte	0x55
+ 1356 0016 0E010000 		.4byte	.LVL42
+ 1357 001a 2A010000 		.4byte	.LVL44
+ 1358 001e 0400     		.2byte	0x4
+ 1359 0020 F3       		.byte	0xf3
+ 1360 0021 01       		.uleb128 0x1
+ 1361 0022 50       		.byte	0x50
+ 1362 0023 9F       		.byte	0x9f
+ 1363 0024 2A010000 		.4byte	.LVL44
+ 1364 0028 34010000 		.4byte	.LVL45
+ 1365 002c 0100     		.2byte	0x1
+ 1366 002e 55       		.byte	0x55
+ 1367 002f 34010000 		.4byte	.LVL45
+ 1368 0033 42010000 		.4byte	.LVL47
+ 1369 0037 0400     		.2byte	0x4
+ 1370 0039 F3       		.byte	0xf3
+ 1371 003a 01       		.uleb128 0x1
+ 1372 003b 50       		.byte	0x50
+ 1373 003c 9F       		.byte	0x9f
+ 1374 003d 42010000 		.4byte	.LVL47
+ 1375 0041 56010000 		.4byte	.LVL49
+ 1376 0045 0100     		.2byte	0x1
+ 1377 0047 55       		.byte	0x55
+ 1378 0048 56010000 		.4byte	.LVL49
+ 1379 004c C0010000 		.4byte	.LFE64
+ 1380 0050 0400     		.2byte	0x4
+ 1381 0052 F3       		.byte	0xf3
+ 1382 0053 01       		.uleb128 0x1
+ 1383 0054 50       		.byte	0x50
+ 1384 0055 9F       		.byte	0x9f
+ 1385 0056 00000000 		.4byte	0
+ 1386 005a 00000000 		.4byte	0
+ 1387              	.LLST1:
+ 1388 005e 00000000 		.4byte	.LVL0
+ 1389 0062 19000000 		.4byte	.LVL1-1
+ 1390 0066 0100     		.2byte	0x1
+ 1391 0068 51       		.byte	0x51
+ 1392 0069 19000000 		.4byte	.LVL1-1
+ 1393 006d 36010000 		.4byte	.LVL46
+ 1394 0071 0100     		.2byte	0x1
+ 1395 0073 58       		.byte	0x58
+ 1396 0074 36010000 		.4byte	.LVL46
+ 1397 0078 42010000 		.4byte	.LVL47
+ 1398 007c 0400     		.2byte	0x4
+ 1399 007e F3       		.byte	0xf3
+ 1400 007f 01       		.uleb128 0x1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 29
+
+
+ 1401 0080 51       		.byte	0x51
+ 1402 0081 9F       		.byte	0x9f
+ 1403 0082 42010000 		.4byte	.LVL47
+ 1404 0086 C0010000 		.4byte	.LFE64
+ 1405 008a 0100     		.2byte	0x1
+ 1406 008c 58       		.byte	0x58
+ 1407 008d 00000000 		.4byte	0
+ 1408 0091 00000000 		.4byte	0
+ 1409              	.LLST2:
+ 1410 0095 00000000 		.4byte	.LVL0
+ 1411 0099 19000000 		.4byte	.LVL1-1
+ 1412 009d 0100     		.2byte	0x1
+ 1413 009f 52       		.byte	0x52
+ 1414 00a0 19000000 		.4byte	.LVL1-1
+ 1415 00a4 C0010000 		.4byte	.LFE64
+ 1416 00a8 0200     		.2byte	0x2
+ 1417 00aa 91       		.byte	0x91
+ 1418 00ab 44       		.sleb128 -60
+ 1419 00ac 00000000 		.4byte	0
+ 1420 00b0 00000000 		.4byte	0
+ 1421              	.LLST3:
+ 1422 00b4 00000000 		.4byte	.LVL0
+ 1423 00b8 19000000 		.4byte	.LVL1-1
+ 1424 00bc 0100     		.2byte	0x1
+ 1425 00be 53       		.byte	0x53
+ 1426 00bf 19000000 		.4byte	.LVL1-1
+ 1427 00c3 C0010000 		.4byte	.LFE64
+ 1428 00c7 0200     		.2byte	0x2
+ 1429 00c9 91       		.byte	0x91
+ 1430 00ca 4C       		.sleb128 -52
+ 1431 00cb 00000000 		.4byte	0
+ 1432 00cf 00000000 		.4byte	0
+ 1433              	.LLST4:
+ 1434 00d3 84000000 		.4byte	.LVL23
+ 1435 00d7 2A010000 		.4byte	.LVL44
+ 1436 00db 0100     		.2byte	0x1
+ 1437 00dd 57       		.byte	0x57
+ 1438 00de 42010000 		.4byte	.LVL47
+ 1439 00e2 52010000 		.4byte	.LVL48
+ 1440 00e6 0100     		.2byte	0x1
+ 1441 00e8 57       		.byte	0x57
+ 1442 00e9 52010000 		.4byte	.LVL48
+ 1443 00ed 56010000 		.4byte	.LVL49
+ 1444 00f1 0300     		.2byte	0x3
+ 1445 00f3 77       		.byte	0x77
+ 1446 00f4 7F       		.sleb128 -1
+ 1447 00f5 9F       		.byte	0x9f
+ 1448 00f6 56010000 		.4byte	.LVL49
+ 1449 00fa C0010000 		.4byte	.LFE64
+ 1450 00fe 0100     		.2byte	0x1
+ 1451 0100 57       		.byte	0x57
+ 1452 0101 00000000 		.4byte	0
+ 1453 0105 00000000 		.4byte	0
+ 1454              	.LLST5:
+ 1455 0109 8A000000 		.4byte	.LVL24
+ 1456 010d 98000000 		.4byte	.LVL25
+ 1457 0111 0200     		.2byte	0x2
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 30
+
+
+ 1458 0113 30       		.byte	0x30
+ 1459 0114 9F       		.byte	0x9f
+ 1460 0115 98000000 		.4byte	.LVL25
+ 1461 0119 EA000000 		.4byte	.LVL36
+ 1462 011d 0500     		.2byte	0x5
+ 1463 011f 38       		.byte	0x38
+ 1464 0120 7A       		.byte	0x7a
+ 1465 0121 00       		.sleb128 0
+ 1466 0122 1C       		.byte	0x1c
+ 1467 0123 9F       		.byte	0x9f
+ 1468 0124 EA000000 		.4byte	.LVL36
+ 1469 0128 F2000000 		.4byte	.LVL38
+ 1470 012c 0500     		.2byte	0x5
+ 1471 012e 39       		.byte	0x39
+ 1472 012f 7A       		.byte	0x7a
+ 1473 0130 00       		.sleb128 0
+ 1474 0131 1C       		.byte	0x1c
+ 1475 0132 9F       		.byte	0x9f
+ 1476 0133 F2000000 		.4byte	.LVL38
+ 1477 0137 2A010000 		.4byte	.LVL44
+ 1478 013b 0500     		.2byte	0x5
+ 1479 013d 38       		.byte	0x38
+ 1480 013e 7A       		.byte	0x7a
+ 1481 013f 00       		.sleb128 0
+ 1482 0140 1C       		.byte	0x1c
+ 1483 0141 9F       		.byte	0x9f
+ 1484 0142 42010000 		.4byte	.LVL47
+ 1485 0146 C0010000 		.4byte	.LFE64
+ 1486 014a 0500     		.2byte	0x5
+ 1487 014c 38       		.byte	0x38
+ 1488 014d 7A       		.byte	0x7a
+ 1489 014e 00       		.sleb128 0
+ 1490 014f 1C       		.byte	0x1c
+ 1491 0150 9F       		.byte	0x9f
+ 1492 0151 00000000 		.4byte	0
+ 1493 0155 00000000 		.4byte	0
+ 1494              	.LLST6:
+ 1495 0159 8A000000 		.4byte	.LVL24
+ 1496 015d 98000000 		.4byte	.LVL25
+ 1497 0161 0A00     		.2byte	0xa
+ 1498 0163 9E       		.byte	0x9e
+ 1499 0164 08       		.uleb128 0x8
+ 1500 0165 80000000 		.8byte	0x80
+ 1500      00000000 
+ 1501 016d 98000000 		.4byte	.LVL25
+ 1502 0171 E0000000 		.4byte	.LVL35
+ 1503 0175 0600     		.2byte	0x6
+ 1504 0177 56       		.byte	0x56
+ 1505 0178 93       		.byte	0x93
+ 1506 0179 04       		.uleb128 0x4
+ 1507 017a 59       		.byte	0x59
+ 1508 017b 93       		.byte	0x93
+ 1509 017c 04       		.uleb128 0x4
+ 1510 017d EA000000 		.4byte	.LVL36
+ 1511 0181 EC000000 		.4byte	.LVL37
+ 1512 0185 0600     		.2byte	0x6
+ 1513 0187 56       		.byte	0x56
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 31
+
+
+ 1514 0188 93       		.byte	0x93
+ 1515 0189 04       		.uleb128 0x4
+ 1516 018a 53       		.byte	0x53
+ 1517 018b 93       		.byte	0x93
+ 1518 018c 04       		.uleb128 0x4
+ 1519 018d EC000000 		.4byte	.LVL37
+ 1520 0191 2A010000 		.4byte	.LVL44
+ 1521 0195 0600     		.2byte	0x6
+ 1522 0197 56       		.byte	0x56
+ 1523 0198 93       		.byte	0x93
+ 1524 0199 04       		.uleb128 0x4
+ 1525 019a 59       		.byte	0x59
+ 1526 019b 93       		.byte	0x93
+ 1527 019c 04       		.uleb128 0x4
+ 1528 019d 42010000 		.4byte	.LVL47
+ 1529 01a1 C0010000 		.4byte	.LFE64
+ 1530 01a5 0600     		.2byte	0x6
+ 1531 01a7 56       		.byte	0x56
+ 1532 01a8 93       		.byte	0x93
+ 1533 01a9 04       		.uleb128 0x4
+ 1534 01aa 59       		.byte	0x59
+ 1535 01ab 93       		.byte	0x93
+ 1536 01ac 04       		.uleb128 0x4
+ 1537 01ad 00000000 		.4byte	0
+ 1538 01b1 00000000 		.4byte	0
+ 1539              	.LLST7:
+ 1540 01b5 56010000 		.4byte	.LVL49
+ 1541 01b9 58010000 		.4byte	.LVL50
+ 1542 01bd 0E00     		.2byte	0xe
+ 1543 01bf 72       		.byte	0x72
+ 1544 01c0 00       		.sleb128 0
+ 1545 01c1 08       		.byte	0x8
+ 1546 01c2 FF       		.byte	0xff
+ 1547 01c3 1A       		.byte	0x1a
+ 1548 01c4 38       		.byte	0x38
+ 1549 01c5 24       		.byte	0x24
+ 1550 01c6 70       		.byte	0x70
+ 1551 01c7 00       		.sleb128 0
+ 1552 01c8 08       		.byte	0x8
+ 1553 01c9 FF       		.byte	0xff
+ 1554 01ca 1A       		.byte	0x1a
+ 1555 01cb 21       		.byte	0x21
+ 1556 01cc 9F       		.byte	0x9f
+ 1557 01cd 58010000 		.4byte	.LVL50
+ 1558 01d1 5A010000 		.4byte	.LVL51
+ 1559 01d5 1000     		.2byte	0x10
+ 1560 01d7 91       		.byte	0x91
+ 1561 01d8 50       		.sleb128 -48
+ 1562 01d9 94       		.byte	0x94
+ 1563 01da 01       		.byte	0x1
+ 1564 01db 08       		.byte	0x8
+ 1565 01dc FF       		.byte	0xff
+ 1566 01dd 1A       		.byte	0x1a
+ 1567 01de 38       		.byte	0x38
+ 1568 01df 24       		.byte	0x24
+ 1569 01e0 70       		.byte	0x70
+ 1570 01e1 00       		.sleb128 0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 32
+
+
+ 1571 01e2 08       		.byte	0x8
+ 1572 01e3 FF       		.byte	0xff
+ 1573 01e4 1A       		.byte	0x1a
+ 1574 01e5 21       		.byte	0x21
+ 1575 01e6 9F       		.byte	0x9f
+ 1576 01e7 5A010000 		.4byte	.LVL51
+ 1577 01eb 5F010000 		.4byte	.LVL52-1
+ 1578 01ef 1200     		.2byte	0x12
+ 1579 01f1 91       		.byte	0x91
+ 1580 01f2 50       		.sleb128 -48
+ 1581 01f3 94       		.byte	0x94
+ 1582 01f4 01       		.byte	0x1
+ 1583 01f5 08       		.byte	0x8
+ 1584 01f6 FF       		.byte	0xff
+ 1585 01f7 1A       		.byte	0x1a
+ 1586 01f8 38       		.byte	0x38
+ 1587 01f9 24       		.byte	0x24
+ 1588 01fa 91       		.byte	0x91
+ 1589 01fb 51       		.sleb128 -47
+ 1590 01fc 94       		.byte	0x94
+ 1591 01fd 01       		.byte	0x1
+ 1592 01fe 08       		.byte	0x8
+ 1593 01ff FF       		.byte	0xff
+ 1594 0200 1A       		.byte	0x1a
+ 1595 0201 21       		.byte	0x21
+ 1596 0202 9F       		.byte	0x9f
+ 1597 0203 00000000 		.4byte	0
+ 1598 0207 00000000 		.4byte	0
+ 1599              	.LLST8:
+ 1600 020b 0E010000 		.4byte	.LVL42
+ 1601 020f 22010000 		.4byte	.LVL43
+ 1602 0213 1B00     		.2byte	0x1b
+ 1603 0215 70       		.byte	0x70
+ 1604 0216 00       		.sleb128 0
+ 1605 0217 08       		.byte	0x8
+ 1606 0218 FF       		.byte	0xff
+ 1607 0219 1A       		.byte	0x1a
+ 1608 021a 72       		.byte	0x72
+ 1609 021b 00       		.sleb128 0
+ 1610 021c 08       		.byte	0x8
+ 1611 021d FF       		.byte	0xff
+ 1612 021e 1A       		.byte	0x1a
+ 1613 021f 22       		.byte	0x22
+ 1614 0220 74       		.byte	0x74
+ 1615 0221 00       		.sleb128 0
+ 1616 0222 08       		.byte	0x8
+ 1617 0223 FF       		.byte	0xff
+ 1618 0224 1A       		.byte	0x1a
+ 1619 0225 22       		.byte	0x22
+ 1620 0226 75       		.byte	0x75
+ 1621 0227 00       		.sleb128 0
+ 1622 0228 08       		.byte	0x8
+ 1623 0229 FF       		.byte	0xff
+ 1624 022a 1A       		.byte	0x1a
+ 1625 022b 22       		.byte	0x22
+ 1626 022c 08       		.byte	0x8
+ 1627 022d FF       		.byte	0xff
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 33
+
+
+ 1628 022e 1A       		.byte	0x1a
+ 1629 022f 9F       		.byte	0x9f
+ 1630 0230 22010000 		.4byte	.LVL43
+ 1631 0234 2A010000 		.4byte	.LVL44
+ 1632 0238 1D00     		.2byte	0x1d
+ 1633 023a 70       		.byte	0x70
+ 1634 023b 00       		.sleb128 0
+ 1635 023c 08       		.byte	0x8
+ 1636 023d FF       		.byte	0xff
+ 1637 023e 1A       		.byte	0x1a
+ 1638 023f 91       		.byte	0x91
+ 1639 0240 50       		.sleb128 -48
+ 1640 0241 94       		.byte	0x94
+ 1641 0242 01       		.byte	0x1
+ 1642 0243 08       		.byte	0x8
+ 1643 0244 FF       		.byte	0xff
+ 1644 0245 1A       		.byte	0x1a
+ 1645 0246 22       		.byte	0x22
+ 1646 0247 74       		.byte	0x74
+ 1647 0248 00       		.sleb128 0
+ 1648 0249 08       		.byte	0x8
+ 1649 024a FF       		.byte	0xff
+ 1650 024b 1A       		.byte	0x1a
+ 1651 024c 22       		.byte	0x22
+ 1652 024d 75       		.byte	0x75
+ 1653 024e 00       		.sleb128 0
+ 1654 024f 08       		.byte	0x8
+ 1655 0250 FF       		.byte	0xff
+ 1656 0251 1A       		.byte	0x1a
+ 1657 0252 22       		.byte	0x22
+ 1658 0253 08       		.byte	0x8
+ 1659 0254 FF       		.byte	0xff
+ 1660 0255 1A       		.byte	0x1a
+ 1661 0256 9F       		.byte	0x9f
+ 1662 0257 56010000 		.4byte	.LVL49
+ 1663 025b 58010000 		.4byte	.LVL50
+ 1664 025f 1B00     		.2byte	0x1b
+ 1665 0261 70       		.byte	0x70
+ 1666 0262 00       		.sleb128 0
+ 1667 0263 08       		.byte	0x8
+ 1668 0264 FF       		.byte	0xff
+ 1669 0265 1A       		.byte	0x1a
+ 1670 0266 72       		.byte	0x72
+ 1671 0267 00       		.sleb128 0
+ 1672 0268 08       		.byte	0x8
+ 1673 0269 FF       		.byte	0xff
+ 1674 026a 1A       		.byte	0x1a
+ 1675 026b 22       		.byte	0x22
+ 1676 026c 74       		.byte	0x74
+ 1677 026d 00       		.sleb128 0
+ 1678 026e 08       		.byte	0x8
+ 1679 026f FF       		.byte	0xff
+ 1680 0270 1A       		.byte	0x1a
+ 1681 0271 22       		.byte	0x22
+ 1682 0272 75       		.byte	0x75
+ 1683 0273 00       		.sleb128 0
+ 1684 0274 08       		.byte	0x8
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 34
+
+
+ 1685 0275 FF       		.byte	0xff
+ 1686 0276 1A       		.byte	0x1a
+ 1687 0277 22       		.byte	0x22
+ 1688 0278 08       		.byte	0x8
+ 1689 0279 FF       		.byte	0xff
+ 1690 027a 1A       		.byte	0x1a
+ 1691 027b 9F       		.byte	0x9f
+ 1692 027c 58010000 		.4byte	.LVL50
+ 1693 0280 5A010000 		.4byte	.LVL51
+ 1694 0284 1D00     		.2byte	0x1d
+ 1695 0286 70       		.byte	0x70
+ 1696 0287 00       		.sleb128 0
+ 1697 0288 08       		.byte	0x8
+ 1698 0289 FF       		.byte	0xff
+ 1699 028a 1A       		.byte	0x1a
+ 1700 028b 91       		.byte	0x91
+ 1701 028c 50       		.sleb128 -48
+ 1702 028d 94       		.byte	0x94
+ 1703 028e 01       		.byte	0x1
+ 1704 028f 08       		.byte	0x8
+ 1705 0290 FF       		.byte	0xff
+ 1706 0291 1A       		.byte	0x1a
+ 1707 0292 22       		.byte	0x22
+ 1708 0293 74       		.byte	0x74
+ 1709 0294 00       		.sleb128 0
+ 1710 0295 08       		.byte	0x8
+ 1711 0296 FF       		.byte	0xff
+ 1712 0297 1A       		.byte	0x1a
+ 1713 0298 22       		.byte	0x22
+ 1714 0299 75       		.byte	0x75
+ 1715 029a 00       		.sleb128 0
+ 1716 029b 08       		.byte	0x8
+ 1717 029c FF       		.byte	0xff
+ 1718 029d 1A       		.byte	0x1a
+ 1719 029e 22       		.byte	0x22
+ 1720 029f 08       		.byte	0x8
+ 1721 02a0 FF       		.byte	0xff
+ 1722 02a1 1A       		.byte	0x1a
+ 1723 02a2 9F       		.byte	0x9f
+ 1724 02a3 5A010000 		.4byte	.LVL51
+ 1725 02a7 5F010000 		.4byte	.LVL52-1
+ 1726 02ab 1F00     		.2byte	0x1f
+ 1727 02ad 91       		.byte	0x91
+ 1728 02ae 51       		.sleb128 -47
+ 1729 02af 94       		.byte	0x94
+ 1730 02b0 01       		.byte	0x1
+ 1731 02b1 08       		.byte	0x8
+ 1732 02b2 FF       		.byte	0xff
+ 1733 02b3 1A       		.byte	0x1a
+ 1734 02b4 91       		.byte	0x91
+ 1735 02b5 50       		.sleb128 -48
+ 1736 02b6 94       		.byte	0x94
+ 1737 02b7 01       		.byte	0x1
+ 1738 02b8 08       		.byte	0x8
+ 1739 02b9 FF       		.byte	0xff
+ 1740 02ba 1A       		.byte	0x1a
+ 1741 02bb 22       		.byte	0x22
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 35
+
+
+ 1742 02bc 74       		.byte	0x74
+ 1743 02bd 00       		.sleb128 0
+ 1744 02be 08       		.byte	0x8
+ 1745 02bf FF       		.byte	0xff
+ 1746 02c0 1A       		.byte	0x1a
+ 1747 02c1 22       		.byte	0x22
+ 1748 02c2 75       		.byte	0x75
+ 1749 02c3 00       		.sleb128 0
+ 1750 02c4 08       		.byte	0x8
+ 1751 02c5 FF       		.byte	0xff
+ 1752 02c6 1A       		.byte	0x1a
+ 1753 02c7 22       		.byte	0x22
+ 1754 02c8 08       		.byte	0x8
+ 1755 02c9 FF       		.byte	0xff
+ 1756 02ca 1A       		.byte	0x1a
+ 1757 02cb 9F       		.byte	0x9f
+ 1758 02cc 00000000 		.4byte	0
+ 1759 02d0 00000000 		.4byte	0
+ 1760              	.LLST9:
+ 1761 02d4 2E000000 		.4byte	.LVL5
+ 1762 02d8 0E010000 		.4byte	.LVL42
+ 1763 02dc 0100     		.2byte	0x1
+ 1764 02de 55       		.byte	0x55
+ 1765 02df 0E010000 		.4byte	.LVL42
+ 1766 02e3 2A010000 		.4byte	.LVL44
+ 1767 02e7 0400     		.2byte	0x4
+ 1768 02e9 F3       		.byte	0xf3
+ 1769 02ea 01       		.uleb128 0x1
+ 1770 02eb 50       		.byte	0x50
+ 1771 02ec 9F       		.byte	0x9f
+ 1772 02ed 2A010000 		.4byte	.LVL44
+ 1773 02f1 34010000 		.4byte	.LVL45
+ 1774 02f5 0100     		.2byte	0x1
+ 1775 02f7 55       		.byte	0x55
+ 1776 02f8 34010000 		.4byte	.LVL45
+ 1777 02fc 42010000 		.4byte	.LVL47
+ 1778 0300 0400     		.2byte	0x4
+ 1779 0302 F3       		.byte	0xf3
+ 1780 0303 01       		.uleb128 0x1
+ 1781 0304 50       		.byte	0x50
+ 1782 0305 9F       		.byte	0x9f
+ 1783 0306 42010000 		.4byte	.LVL47
+ 1784 030a 56010000 		.4byte	.LVL49
+ 1785 030e 0100     		.2byte	0x1
+ 1786 0310 55       		.byte	0x55
+ 1787 0311 56010000 		.4byte	.LVL49
+ 1788 0315 C0010000 		.4byte	.LFE64
+ 1789 0319 0400     		.2byte	0x4
+ 1790 031b F3       		.byte	0xf3
+ 1791 031c 01       		.uleb128 0x1
+ 1792 031d 50       		.byte	0x50
+ 1793 031e 9F       		.byte	0x9f
+ 1794 031f 00000000 		.4byte	0
+ 1795 0323 00000000 		.4byte	0
+ 1796              	.LLST10:
+ 1797 0327 2E000000 		.4byte	.LVL5
+ 1798 032b 32000000 		.4byte	.LVL6
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 36
+
+
+ 1799 032f 0200     		.2byte	0x2
+ 1800 0331 30       		.byte	0x30
+ 1801 0332 9F       		.byte	0x9f
+ 1802 0333 32000000 		.4byte	.LVL6
+ 1803 0337 36000000 		.4byte	.LVL7
+ 1804 033b 0100     		.2byte	0x1
+ 1805 033d 54       		.byte	0x54
+ 1806 033e 36000000 		.4byte	.LVL7
+ 1807 0342 3A000000 		.4byte	.LVL8
+ 1808 0346 0300     		.2byte	0x3
+ 1809 0348 74       		.byte	0x74
+ 1810 0349 7F       		.sleb128 -1
+ 1811 034a 9F       		.byte	0x9f
+ 1812 034b 3A000000 		.4byte	.LVL8
+ 1813 034f 4C000000 		.4byte	.LVL11
+ 1814 0353 0100     		.2byte	0x1
+ 1815 0355 54       		.byte	0x54
+ 1816 0356 4E000000 		.4byte	.LVL12
+ 1817 035a 52000000 		.4byte	.LVL13
+ 1818 035e 0100     		.2byte	0x1
+ 1819 0360 54       		.byte	0x54
+ 1820 0361 52000000 		.4byte	.LVL13
+ 1821 0365 56000000 		.4byte	.LVL14
+ 1822 0369 0300     		.2byte	0x3
+ 1823 036b 74       		.byte	0x74
+ 1824 036c 7F       		.sleb128 -1
+ 1825 036d 9F       		.byte	0x9f
+ 1826 036e 56000000 		.4byte	.LVL14
+ 1827 0372 68000000 		.4byte	.LVL17
+ 1828 0376 0100     		.2byte	0x1
+ 1829 0378 54       		.byte	0x54
+ 1830 0379 6A000000 		.4byte	.LVL18
+ 1831 037d 6E000000 		.4byte	.LVL19
+ 1832 0381 0100     		.2byte	0x1
+ 1833 0383 54       		.byte	0x54
+ 1834 0384 6E000000 		.4byte	.LVL19
+ 1835 0388 72000000 		.4byte	.LVL20
+ 1836 038c 0300     		.2byte	0x3
+ 1837 038e 74       		.byte	0x74
+ 1838 038f 7F       		.sleb128 -1
+ 1839 0390 9F       		.byte	0x9f
+ 1840 0391 72000000 		.4byte	.LVL20
+ 1841 0395 84000000 		.4byte	.LVL23
+ 1842 0399 0100     		.2byte	0x1
+ 1843 039b 54       		.byte	0x54
+ 1844 039c 2A010000 		.4byte	.LVL44
+ 1845 03a0 34010000 		.4byte	.LVL45
+ 1846 03a4 0100     		.2byte	0x1
+ 1847 03a6 54       		.byte	0x54
+ 1848 03a7 00000000 		.4byte	0
+ 1849 03ab 00000000 		.4byte	0
+ 1850              	.LLST11:
+ 1851 03af 98000000 		.4byte	.LVL25
+ 1852 03b3 0E010000 		.4byte	.LVL42
+ 1853 03b7 0100     		.2byte	0x1
+ 1854 03b9 55       		.byte	0x55
+ 1855 03ba 0E010000 		.4byte	.LVL42
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 37
+
+
+ 1856 03be 2A010000 		.4byte	.LVL44
+ 1857 03c2 0400     		.2byte	0x4
+ 1858 03c4 F3       		.byte	0xf3
+ 1859 03c5 01       		.uleb128 0x1
+ 1860 03c6 50       		.byte	0x50
+ 1861 03c7 9F       		.byte	0x9f
+ 1862 03c8 42010000 		.4byte	.LVL47
+ 1863 03cc 56010000 		.4byte	.LVL49
+ 1864 03d0 0100     		.2byte	0x1
+ 1865 03d2 55       		.byte	0x55
+ 1866 03d3 56010000 		.4byte	.LVL49
+ 1867 03d7 C0010000 		.4byte	.LFE64
+ 1868 03db 0400     		.2byte	0x4
+ 1869 03dd F3       		.byte	0xf3
+ 1870 03de 01       		.uleb128 0x1
+ 1871 03df 50       		.byte	0x50
+ 1872 03e0 9F       		.byte	0x9f
+ 1873 03e1 00000000 		.4byte	0
+ 1874 03e5 00000000 		.4byte	0
+ 1875              	.LLST12:
+ 1876 03e9 98000000 		.4byte	.LVL25
+ 1877 03ed 2A010000 		.4byte	.LVL44
+ 1878 03f1 0100     		.2byte	0x1
+ 1879 03f3 58       		.byte	0x58
+ 1880 03f4 42010000 		.4byte	.LVL47
+ 1881 03f8 C0010000 		.4byte	.LFE64
+ 1882 03fc 0100     		.2byte	0x1
+ 1883 03fe 58       		.byte	0x58
+ 1884 03ff 00000000 		.4byte	0
+ 1885 0403 00000000 		.4byte	0
+ 1886              	.LLST13:
+ 1887 0407 A0000000 		.4byte	.LVL26
+ 1888 040b AC000000 		.4byte	.LVL28
+ 1889 040f 0500     		.2byte	0x5
+ 1890 0411 3C       		.byte	0x3c
+ 1891 0412 74       		.byte	0x74
+ 1892 0413 00       		.sleb128 0
+ 1893 0414 1C       		.byte	0x1c
+ 1894 0415 9F       		.byte	0x9f
+ 1895 0416 AC000000 		.4byte	.LVL28
+ 1896 041a B0000000 		.4byte	.LVL29
+ 1897 041e 0500     		.2byte	0x5
+ 1898 0420 3B       		.byte	0x3b
+ 1899 0421 74       		.byte	0x74
+ 1900 0422 00       		.sleb128 0
+ 1901 0423 1C       		.byte	0x1c
+ 1902 0424 9F       		.byte	0x9f
+ 1903 0425 B4000000 		.4byte	.LVL30
+ 1904 0429 B6000000 		.4byte	.LVL31
+ 1905 042d 0200     		.2byte	0x2
+ 1906 042f 30       		.byte	0x30
+ 1907 0430 9F       		.byte	0x9f
+ 1908 0431 B6000000 		.4byte	.LVL31
+ 1909 0435 C2000000 		.4byte	.LVL33
+ 1910 0439 0100     		.2byte	0x1
+ 1911 043b 54       		.byte	0x54
+ 1912 043c C2000000 		.4byte	.LVL33
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 38
+
+
+ 1913 0440 C6000000 		.4byte	.LVL34
+ 1914 0444 0300     		.2byte	0x3
+ 1915 0446 74       		.byte	0x74
+ 1916 0447 7F       		.sleb128 -1
+ 1917 0448 9F       		.byte	0x9f
+ 1918 0449 C6000000 		.4byte	.LVL34
+ 1919 044d 0C010000 		.4byte	.LVL41
+ 1920 0451 0100     		.2byte	0x1
+ 1921 0453 54       		.byte	0x54
+ 1922 0454 42010000 		.4byte	.LVL47
+ 1923 0458 56010000 		.4byte	.LVL49
+ 1924 045c 0100     		.2byte	0x1
+ 1925 045e 54       		.byte	0x54
+ 1926 045f 00000000 		.4byte	0
+ 1927 0463 00000000 		.4byte	0
+ 1928              		.section	.debug_aranges,"",%progbits
+ 1929 0000 1C000000 		.4byte	0x1c
+ 1930 0004 0200     		.2byte	0x2
+ 1931 0006 00000000 		.4byte	.Ldebug_info0
+ 1932 000a 04       		.byte	0x4
+ 1933 000b 00       		.byte	0
+ 1934 000c 0000     		.2byte	0
+ 1935 000e 0000     		.2byte	0
+ 1936 0010 00000000 		.4byte	.LFB64
+ 1937 0014 C0010000 		.4byte	.LFE64-.LFB64
+ 1938 0018 00000000 		.4byte	0
+ 1939 001c 00000000 		.4byte	0
+ 1940              		.section	.debug_ranges,"",%progbits
+ 1941              	.Ldebug_ranges0:
+ 1942 0000 92000000 		.4byte	.LBB8
+ 1943 0004 94000000 		.4byte	.LBE8
+ 1944 0008 96000000 		.4byte	.LBB12
+ 1945 000c CA000000 		.4byte	.LBE12
+ 1946 0010 42010000 		.4byte	.LBB13
+ 1947 0014 46010000 		.4byte	.LBE13
+ 1948 0018 00000000 		.4byte	0
+ 1949 001c 00000000 		.4byte	0
+ 1950 0020 00000000 		.4byte	.LFB64
+ 1951 0024 C0010000 		.4byte	.LFE64
+ 1952 0028 00000000 		.4byte	0
+ 1953 002c 00000000 		.4byte	0
+ 1954              		.section	.debug_line,"",%progbits
+ 1955              	.Ldebug_line0:
+ 1956 0000 02010000 		.section	.debug_str,"MS",%progbits,1
+ 1956      02006800 
+ 1956      00000201 
+ 1956      FB0E0D00 
+ 1956      01010101 
+ 1957              	.LASF29:
+ 1958 0000 68756D69 		.ascii	"humidity\000"
+ 1958      64697479 
+ 1958      00
+ 1959              	.LASF13:
+ 1960 0009 666C6F61 		.ascii	"float\000"
+ 1960      7400
+ 1961              	.LASF15:
+ 1962 000f 75696E74 		.ascii	"uint64\000"
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 39
+
+
+ 1962      363400
+ 1963              	.LASF3:
+ 1964 0016 73686F72 		.ascii	"short unsigned int\000"
+ 1964      7420756E 
+ 1964      7369676E 
+ 1964      65642069 
+ 1964      6E7400
+ 1965              	.LASF28:
+ 1966 0029 74656D70 		.ascii	"temperature\000"
+ 1966      65726174 
+ 1966      75726500 
+ 1967              	.LASF30:
+ 1968 0035 64617461 		.ascii	"data\000"
+ 1968      00
+ 1969              	.LASF34:
+ 1970 003a 63686563 		.ascii	"checksum\000"
+ 1970      6B73756D 
+ 1970      00
+ 1971              	.LASF36:
+ 1972 0043 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1972      4320342E 
+ 1972      392E3320 
+ 1972      32303135 
+ 1972      30333033 
+ 1973 0076 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 1973      20726576 
+ 1973      6973696F 
+ 1973      6E203232 
+ 1973      31323230 
+ 1974 00a9 32202D66 		.ascii	"2 -ffunction-sections -finline-functions -ffat-lto-"
+ 1974      66756E63 
+ 1974      74696F6E 
+ 1974      2D736563 
+ 1974      74696F6E 
+ 1975 00dc 6F626A65 		.ascii	"objects\000"
+ 1975      63747300 
+ 1976              	.LASF26:
+ 1977 00e4 73746174 		.ascii	"status_flag\000"
+ 1977      75735F66 
+ 1977      6C616700 
+ 1978              	.LASF1:
+ 1979 00f0 756E7369 		.ascii	"unsigned char\000"
+ 1979      676E6564 
+ 1979      20636861 
+ 1979      7200
+ 1980              	.LASF12:
+ 1981 00fe 696E7431 		.ascii	"int16\000"
+ 1981      3600
+ 1982              	.LASF5:
+ 1983 0104 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1983      20756E73 
+ 1983      69676E65 
+ 1983      6420696E 
+ 1983      7400
+ 1984              	.LASF25:
+ 1985 0116 64687432 		.ascii	"dht22_sensor\000"
+ 1985      325F7365 
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 40
+
+
+ 1985      6E736F72 
+ 1985      00
+ 1986              	.LASF9:
+ 1987 0123 75696E74 		.ascii	"uint8\000"
+ 1987      3800
+ 1988              	.LASF24:
+ 1989 0129 72656164 		.ascii	"read_bit\000"
+ 1989      5F626974 
+ 1989      00
+ 1990              	.LASF14:
+ 1991 0132 646F7562 		.ascii	"double\000"
+ 1991      6C6500
+ 1992              	.LASF10:
+ 1993 0139 75696E74 		.ascii	"uint16\000"
+ 1993      313600
+ 1994              	.LASF11:
+ 1995 0140 75696E74 		.ascii	"uint32\000"
+ 1995      333200
+ 1996              	.LASF41:
+ 1997 0147 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 1997      74657243 
+ 1997      72697469 
+ 1997      63616C53 
+ 1997      65637469 
+ 1998              	.LASF8:
+ 1999 015e 756E7369 		.ascii	"unsigned int\000"
+ 1999      676E6564 
+ 1999      20696E74 
+ 1999      00
+ 2000              	.LASF22:
+ 2001 016b 44485432 		.ascii	"DHT22_SENSOR\000"
+ 2001      325F5345 
+ 2001      4E534F52 
+ 2001      00
+ 2002              	.LASF42:
+ 2003 0178 43794578 		.ascii	"CyExitCriticalSection\000"
+ 2003      69744372 
+ 2003      69746963 
+ 2003      616C5365 
+ 2003      6374696F 
+ 2004              	.LASF21:
+ 2005 018e 70696E5F 		.ascii	"pin_write\000"
+ 2005      77726974 
+ 2005      6500
+ 2006              	.LASF27:
+ 2007 0198 73746570 		.ascii	"step_number\000"
+ 2007      5F6E756D 
+ 2007      62657200 
+ 2008              	.LASF17:
+ 2009 01a4 73697A65 		.ascii	"sizetype\000"
+ 2009      74797065 
+ 2009      00
+ 2010              	.LASF19:
+ 2011 01ad 50494E5F 		.ascii	"PIN_WRITE\000"
+ 2011      57524954 
+ 2011      4500
+ 2012              	.LASF6:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 41
+
+
+ 2013 01b7 6C6F6E67 		.ascii	"long long int\000"
+ 2013      206C6F6E 
+ 2013      6720696E 
+ 2013      7400
+ 2014              	.LASF20:
+ 2015 01c5 70696E5F 		.ascii	"pin_read\000"
+ 2015      72656164 
+ 2015      00
+ 2016              	.LASF40:
+ 2017 01ce 43794465 		.ascii	"CyDelayUs\000"
+ 2017      6C617955 
+ 2017      7300
+ 2018              	.LASF31:
+ 2019 01d8 6D61736B 		.ascii	"mask\000"
+ 2019      00
+ 2020              	.LASF23:
+ 2021 01dd 6C6F6F6B 		.ascii	"look_for_dht22_response\000"
+ 2021      5F666F72 
+ 2021      5F646874 
+ 2021      32325F72 
+ 2021      6573706F 
+ 2022              	.LASF2:
+ 2023 01f5 73686F72 		.ascii	"short int\000"
+ 2023      7420696E 
+ 2023      7400
+ 2024              	.LASF39:
+ 2025 01ff 44485432 		.ascii	"DHT22_get_data\000"
+ 2025      325F6765 
+ 2025      745F6461 
+ 2025      746100
+ 2026              	.LASF37:
+ 2027 020e 68756D69 		.ascii	"humidity_sensor\\dht22.c\000"
+ 2027      64697479 
+ 2027      5F73656E 
+ 2027      736F725C 
+ 2027      64687432 
+ 2028              	.LASF4:
+ 2029 0226 6C6F6E67 		.ascii	"long int\000"
+ 2029      20696E74 
+ 2029      00
+ 2030              	.LASF16:
+ 2031 022f 63686172 		.ascii	"char\000"
+ 2031      00
+ 2032              	.LASF18:
+ 2033 0234 50494E5F 		.ascii	"PIN_READ\000"
+ 2033      52454144 
+ 2033      00
+ 2034              	.LASF38:
+ 2035 023d 433A5C55 		.ascii	"C:\\Users\\glenn\\OneDrive\\PSOC\\moisture_sensor_4"
+ 2035      73657273 
+ 2035      5C676C65 
+ 2035      6E6E5C4F 
+ 2035      6E654472 
+ 2036 026b 6D5C4D6F 		.ascii	"m\\Moisture_Sensor\\Moisture_Sensor.cydsn\000"
+ 2036      69737475 
+ 2036      72655F53 
+ 2036      656E736F 
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc9aD5V2.s 			page 42
+
+
+ 2036      725C4D6F 
+ 2037              	.LASF0:
+ 2038 0293 7369676E 		.ascii	"signed char\000"
+ 2038      65642063 
+ 2038      68617200 
+ 2039              	.LASF35:
+ 2040 029f 63726974 		.ascii	"criticalState\000"
+ 2040      6963616C 
+ 2040      53746174 
+ 2040      6500
+ 2041              	.LASF32:
+ 2042 02ad 74656D70 		.ascii	"temp_1\000"
+ 2042      5F3100
+ 2043              	.LASF33:
+ 2044 02b4 74656D70 		.ascii	"temp_2\000"
+ 2044      5F3200
+ 2045              	.LASF7:
+ 2046 02bb 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2046      206C6F6E 
+ 2046      6720756E 
+ 2046      7369676E 
+ 2046      65642069 
+ 2047              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

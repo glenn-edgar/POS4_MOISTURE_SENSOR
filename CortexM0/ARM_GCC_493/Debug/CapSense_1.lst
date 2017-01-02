@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
   52 0010 08060440 		.word	1074005512
   53 0014 08060440 		.word	1074005512
   54 0018 08060440 		.word	1074005512
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 2
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 2
 
 
   55 001c 08060440 		.word	1074005512
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  109 0037 50       		.byte	80
  110              		.global	CapSense_1_compensationIDAC
  111              		.align	2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 3
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 3
 
 
  112              		.type	CapSense_1_compensationIDAC, %object
@@ -150,7 +150,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  138              		.type	CapSense_1_senseClkDividerVal, %object
  139              		.size	CapSense_1_senseClkDividerVal, 8
  140              	CapSense_1_senseClkDividerVal:
- 141 0060 0A       		.byte	10
+ 141 0060 02       		.byte	2
  142 0061 0A       		.byte	10
  143 0062 0A       		.byte	10
  144 0063 0A       		.byte	10
@@ -163,7 +163,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  151              		.type	CapSense_1_sampleClkDividerVal, %object
  152              		.size	CapSense_1_sampleClkDividerVal, 8
  153              	CapSense_1_sampleClkDividerVal:
- 154 0068 0A       		.byte	10
+ 154 0068 02       		.byte	2
  155 0069 0A       		.byte	10
  156 006a 0A       		.byte	10
  157 006b 0A       		.byte	10
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  166              	CapSense_1_widgetNumber:
  167 0070 00       		.byte	0
  168 0071 01       		.byte	1
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 4
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 4
 
 
  169 0072 02       		.byte	2
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
    1:Generated_Source\PSoC4/CapSense_1.c **** /*******************************************************************************
    2:Generated_Source\PSoC4/CapSense_1.c **** * File Name: CapSense_1.c
    3:Generated_Source\PSoC4/CapSense_1.c **** * Version 2.50
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 5
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 5
 
 
    4:Generated_Source\PSoC4/CapSense_1.c **** *
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
   58:Generated_Source\PSoC4/CapSense_1.c **** /* Global array of un-scanned sensors state */
   59:Generated_Source\PSoC4/CapSense_1.c **** uint8 CapSense_1_unscannedSnsDriveMode[CapSense_1_PORT_PIN_CONFIG_TBL_ZISE];
   60:Generated_Source\PSoC4/CapSense_1.c **** 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 6
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 6
 
 
   61:Generated_Source\PSoC4/CapSense_1.c **** /* Backup array for CapSense_1_sensorEnableMask */
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  115:Generated_Source\PSoC4/CapSense_1.c **** const uint8 CapSense_1_compensationIDAC[CapSense_1_TOTAL_SENSOR_COUNT] = {
  116:Generated_Source\PSoC4/CapSense_1.c ****     80u, 80u, 80u, 80u, 80u, 80u, 80u, 80u, 
  117:Generated_Source\PSoC4/CapSense_1.c **** };
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 7
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 7
 
 
  118:Generated_Source\PSoC4/CapSense_1.c **** 
@@ -374,10 +374,10 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  128:Generated_Source\PSoC4/CapSense_1.c **** };
  129:Generated_Source\PSoC4/CapSense_1.c **** 
  130:Generated_Source\PSoC4/CapSense_1.c **** const uint8 CapSense_1_senseClkDividerVal[CapSense_1_TOTAL_SCANSLOT_COUNT] = {
- 131:Generated_Source\PSoC4/CapSense_1.c ****     10u, 10u, 10u, 10u, 10u, 10u, 10u, 10u, 
+ 131:Generated_Source\PSoC4/CapSense_1.c ****     2u, 10u, 10u, 10u, 10u, 10u, 10u, 10u, 
  132:Generated_Source\PSoC4/CapSense_1.c **** };
  133:Generated_Source\PSoC4/CapSense_1.c **** const uint8 CapSense_1_sampleClkDividerVal[CapSense_1_TOTAL_SCANSLOT_COUNT] = {
- 134:Generated_Source\PSoC4/CapSense_1.c ****     10u, 10u, 10u, 10u, 10u, 10u, 10u, 10u, 
+ 134:Generated_Source\PSoC4/CapSense_1.c ****     2u, 10u, 10u, 10u, 10u, 10u, 10u, 10u, 
  135:Generated_Source\PSoC4/CapSense_1.c **** };
  136:Generated_Source\PSoC4/CapSense_1.c **** 
  137:Generated_Source\PSoC4/CapSense_1.c **** 
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  172:Generated_Source\PSoC4/CapSense_1.c ****     ((reg32 *) CYREG_GPIO_PRT0_DR),
  173:Generated_Source\PSoC4/CapSense_1.c ****     ((reg32 *) CYREG_GPIO_PRT1_DR),
  174:Generated_Source\PSoC4/CapSense_1.c ****     ((reg32 *) CYREG_GPIO_PRT2_DR),
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 8
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 8
 
 
  175:Generated_Source\PSoC4/CapSense_1.c ****     ((reg32 *) CYREG_GPIO_PRT3_DR),
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  219:Generated_Source\PSoC4/CapSense_1.c ****             #if(CapSense_1_CSH_TANK_PREGARGE_OPTION == CapSense_1__CAPPRIOBUF)
  220:Generated_Source\PSoC4/CapSense_1.c ****                 newRegValue = CapSense_1_CTANK_PORT_PC_REG;
  221:Generated_Source\PSoC4/CapSense_1.c ****                 newRegValue &= ~(CapSense_1_CSD_CTANK_PC_MASK);
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 9
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 9
 
 
  222:Generated_Source\PSoC4/CapSense_1.c ****                 newRegValue |= CapSense_1_CTANK_PC_STRONG_MODE;
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  259              		.loc 1 247 0
  260 0030 BD46     		mov	sp, r7
  261 0032 02B0     		add	sp, sp, #8
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 10
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 10
 
 
  262              		@ sp needed
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  279:Generated_Source\PSoC4/CapSense_1.c ****         newRegValue &= CapSense_1_CSD_IDAC1_TRIM_MASK;
  280:Generated_Source\PSoC4/CapSense_1.c ****         newRegValue |= (uint32)((uint32)CapSense_1_SFLASH_CSD_TRIM2_REG & (uint32)CapSense_1_CSFLAS
  281:Generated_Source\PSoC4/CapSense_1.c **** 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 11
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 11
 
 
  282:Generated_Source\PSoC4/CapSense_1.c ****         #if (CapSense_1_IDAC_CNT == 2u)
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  323 0046 1343     		orr	r3, r2
  324 0048 7B60     		str	r3, [r7, #4]
  298:Generated_Source\PSoC4/CapSense_1.c ****         #endif
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 12
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 12
 
 
  299:Generated_Source\PSoC4/CapSense_1.c ****         CapSense_1_CSD_TRIM1_REG = newRegValue;
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  322:Generated_Source\PSoC4/CapSense_1.c ****     #if(CapSense_1_CSD_4B_PWM_MODE != CapSense_1__PWM_OFF)
  323:Generated_Source\PSoC4/CapSense_1.c ****         CapSense_1_CSD_4B_PWM_REG = CapSense_1_DEFAULT_CSD_4B_PWM_CONFIG;
  324:Generated_Source\PSoC4/CapSense_1.c ****     #endif /* (CapSense_1_CSD_4B_PWM_MODE != CapSense_1__PWM_OFF) */
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 13
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 13
 
 
  325:Generated_Source\PSoC4/CapSense_1.c **** 
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  338:Generated_Source\PSoC4/CapSense_1.c **** *
  339:Generated_Source\PSoC4/CapSense_1.c **** * Summary:
  340:Generated_Source\PSoC4/CapSense_1.c **** *  Enables the CSD block and related resources to an active mode.
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 14
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 14
 
 
  341:Generated_Source\PSoC4/CapSense_1.c **** *
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  421 0020 FFF7FEFF 		bl	CapSense_1_SampleClk_StartEx
  371:Generated_Source\PSoC4/CapSense_1.c ****         CapSense_1_SenseClk_StartEx(CapSense_1_SampleClk__DIV_ID);
  422              		.loc 1 371 0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 15
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 15
 
 
  423 0024 4020     		mov	r0, #64
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  387:Generated_Source\PSoC4/CapSense_1.c **** ********************************************************************************
  388:Generated_Source\PSoC4/CapSense_1.c **** *
  389:Generated_Source\PSoC4/CapSense_1.c **** * Summary:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 16
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 16
 
 
  390:Generated_Source\PSoC4/CapSense_1.c **** *  This is the preferred method to begin the component operation. CapSense_Start()
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  477              		.loc 1 428 0
  478 0010 064B     		ldr	r3, .L12
  479 0012 0122     		mov	r2, #1
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 17
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 17
 
 
  480 0014 1A70     		strb	r2, [r3]
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  479:Generated_Source\PSoC4/CapSense_1.c ****     CapSense_1_CSD_CFG_REG |= CapSense_1_CSD_CFG_SENSE_INSEL;
  484              		.loc 1 479 0
  485 001a 054B     		ldr	r3, .L12+4
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 18
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 18
 
 
  486 001c 044A     		ldr	r2, .L12+4
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  512              		.loc 1 507 0
  513              		.cfi_startproc
  514 0000 80B5     		push	{r7, lr}
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 19
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 19
 
 
  515              		.cfi_def_cfa_offset 8
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  556              		.code	16
  557              		.thumb_func
  558              		.type	CapSense_1_FindNextSensor, %function
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 20
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 20
 
 
  559              	CapSense_1_FindNextSensor:
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  553:Generated_Source\PSoC4/CapSense_1.c ****         if(snsIndex == CapSense_1_TOTAL_SENSOR_COUNT)
  581              		.loc 1 553 0
  582 0016 FB1D     		add	r3, r7, #7
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 21
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 21
 
 
  583 0018 1B78     		ldrb	r3, [r3]
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  564:Generated_Source\PSoC4/CapSense_1.c **** 
  565:Generated_Source\PSoC4/CapSense_1.c **** /*******************************************************************************
  566:Generated_Source\PSoC4/CapSense_1.c **** * Function Name: CapSense_1_ScanSensor
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 22
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 22
 
 
  567:Generated_Source\PSoC4/CapSense_1.c **** ********************************************************************************
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  648 0016 054B     		ldr	r3, .L25
  649 0018 8122     		mov	r2, #129
  650 001a 1A70     		strb	r2, [r3]
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 23
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 23
 
 
  600:Generated_Source\PSoC4/CapSense_1.c ****     CapSense_1_PreScan(sensor);
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  629:Generated_Source\PSoC4/CapSense_1.c **** *
  630:Generated_Source\PSoC4/CapSense_1.c **** *******************************************************************************/
  631:Generated_Source\PSoC4/CapSense_1.c **** void CapSense_1_ScanWidget(uint32 widget)
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 24
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 24
 
 
  632:Generated_Source\PSoC4/CapSense_1.c **** {
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  686:Generated_Source\PSoC4/CapSense_1.c **** 
  687:Generated_Source\PSoC4/CapSense_1.c **** /*******************************************************************************
  688:Generated_Source\PSoC4/CapSense_1.c **** * Function Name: CapSense_1_ScanEnableWidgets
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 25
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 25
 
 
  689:Generated_Source\PSoC4/CapSense_1.c **** ********************************************************************************
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  695 0014 DBB2     		uxtb	r3, r3
  696 0016 181C     		mov	r0, r3
  697 0018 FFF7FEFF 		bl	CapSense_1_FindNextSensor
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 26
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 26
 
 
  698 001c 031C     		mov	r3, r0
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  732:Generated_Source\PSoC4/CapSense_1.c **** 
  733:Generated_Source\PSoC4/CapSense_1.c **** 
  734:Generated_Source\PSoC4/CapSense_1.c **** /*******************************************************************************
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 27
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 27
 
 
  735:Generated_Source\PSoC4/CapSense_1.c **** * Function Name: CapSense_1_IsBusy
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  772              		.align	2
  773              		.global	CapSense_1_ReadSensorRaw
  774              		.code	16
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 28
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 28
 
 
  775              		.thumb_func
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  799              		@ sp needed
  800 0016 80BD     		pop	{r7, pc}
  801              	.L38:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 29
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 29
 
 
  802              		.align	2
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  830              		.loc 1 816 0
  831 000e 044B     		ldr	r3, .L40
  832 0010 7A68     		ldr	r2, [r7, #4]
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 30
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 30
 
 
  833 0012 5200     		lsl	r2, r2, #1
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  847:Generated_Source\PSoC4/CapSense_1.c ****     *  None
  848:Generated_Source\PSoC4/CapSense_1.c ****     *
  849:Generated_Source\PSoC4/CapSense_1.c ****     * Global Variables:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 31
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 31
 
 
  850:Generated_Source\PSoC4/CapSense_1.c ****     *  CapSense_1_widgetResolution[] - used to store scan resolution of each widget.
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  862              		.cfi_offset 14, -4
  863 0002 82B0     		sub	sp, sp, #8
  864              		.cfi_def_cfa_offset 16
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 32
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 32
 
 
  865 0004 00AF     		add	r7, sp, #0
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  924:Generated_Source\PSoC4/CapSense_1.c **** void CapSense_1_ClearSensors(void)
  925:Generated_Source\PSoC4/CapSense_1.c **** {
  894              		.loc 1 925 0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 33
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 33
 
 
  895              		.cfi_startproc
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  935:Generated_Source\PSoC4/CapSense_1.c **** #if (CapSense_1_IS_COMPLEX_SCANSLOTS)
  936:Generated_Source\PSoC4/CapSense_1.c ****     /*******************************************************************************
  937:Generated_Source\PSoC4/CapSense_1.c ****     * Function Name: CapSense_1_EnableScanSlot
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 34
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 34
 
 
  938:Generated_Source\PSoC4/CapSense_1.c ****     ********************************************************************************
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  992:Generated_Source\PSoC4/CapSense_1.c **** 
  993:Generated_Source\PSoC4/CapSense_1.c **** 
  994:Generated_Source\PSoC4/CapSense_1.c ****     /*******************************************************************************
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 35
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 35
 
 
  995:Generated_Source\PSoC4/CapSense_1.c ****     * Function Name: CapSense_1_DisableScanSlot
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
 1049:Generated_Source\PSoC4/CapSense_1.c ****     }
 1050:Generated_Source\PSoC4/CapSense_1.c **** #endif  /* CapSense_1_IS_COMPLEX_SCANSLOTS */
 1051:Generated_Source\PSoC4/CapSense_1.c **** 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 36
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 36
 
 
 1052:Generated_Source\PSoC4/CapSense_1.c **** 
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  953 000c D318     		add	r3, r2, r3
  954 000e 1B78     		ldrb	r3, [r3]
  955 0010 7B61     		str	r3, [r7, #20]
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 37
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 37
 
 
 1091:Generated_Source\PSoC4/CapSense_1.c ****     pinModeShift = CapSense_1_pinShiftTbl[sensor]  * CapSense_1_PC_PIN_CFG_SIZE;
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  1002 0064 1223     		mov	r3, #18
  1003 0066 FB18     		add	r3, r7, r3
  1004 0068 1B78     		ldrb	r3, [r3]
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 38
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 38
 
 
  1005 006a 0422     		mov	r2, #4
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  1053 00c0 00000000 		.word	CapSense_1_prtSelTbl
  1054 00c4 00000000 		.word	CapSense_1_prtCfgTbl
  1055              		.cfi_endproc
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 39
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 39
 
 
  1056              	.LFE48:
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
 1137:Generated_Source\PSoC4/CapSense_1.c ****     uint8 interruptState;
 1138:Generated_Source\PSoC4/CapSense_1.c ****     uint32 newRegisterValue;
 1139:Generated_Source\PSoC4/CapSense_1.c **** 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 40
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 40
 
 
 1140:Generated_Source\PSoC4/CapSense_1.c ****     uint32 port = (uint32) CapSense_1_portTable[sensor];
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  1124 0058 1321     		mov	r1, #19
  1125 005a 7918     		add	r1, r7, r1
  1126 005c 0978     		ldrb	r1, [r1]
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 41
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 41
 
 
  1127 005e 0F20     		mov	r0, #15
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  1160 0092 1B68     		ldr	r3, [r3]
  1161 0094 FB60     		str	r3, [r7, #12]
 1169:Generated_Source\PSoC4/CapSense_1.c ****         newRegisterValue &= ~(CapSense_1_CSD_PIN_MODE_MASK << pinModeShift);
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 42
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 42
 
 
  1162              		.loc 1 1169 0
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  1210 00ee 081C     		mov	r0, r1
  1211 00f0 0121     		mov	r1, #1
  1212 00f2 8140     		lsl	r1, r1, r0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 43
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 43
 
 
  1213 00f4 C943     		mvn	r1, r1
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
 1202:Generated_Source\PSoC4/CapSense_1.c **** * Global Variables:
 1203:Generated_Source\PSoC4/CapSense_1.c **** *  CapSense_1_portTable[] - used to store the port number that pin
 1204:Generated_Source\PSoC4/CapSense_1.c **** *  belongs to for each sensor.
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 44
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 44
 
 
 1205:Generated_Source\PSoC4/CapSense_1.c **** *  CapSense_1_pinShiftTbl[] - used to store position of pin that
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
 1241:Generated_Source\PSoC4/CapSense_1.c ****             prtNumberTmp = CapSense_1_portTable[snsNumber];
 1242:Generated_Source\PSoC4/CapSense_1.c ****             pinNumberTmp = CapSense_1_pinShiftTbl[snsNumber];
 1243:Generated_Source\PSoC4/CapSense_1.c ****         #else
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 45
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 45
 
 
 1244:Generated_Source\PSoC4/CapSense_1.c ****             prtNumberTmp = CapSense_1_portTable[curSensor];
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
 1253:Generated_Source\PSoC4/CapSense_1.c ****     #if(0u != CapSense_1_CSH_TANK_ENABLE)
 1254:Generated_Source\PSoC4/CapSense_1.c ****         CapSense_1_SetPinDriveMode(driveMode, (uint32)CapSense_1_CTANK_PIN_NUMBER, (uint32)CapSense
 1255:Generated_Source\PSoC4/CapSense_1.c ****     #endif /* (0u != CapSense_1_CSH_TANK_ENABLE) */
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 46
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 46
 
 
 1256:Generated_Source\PSoC4/CapSense_1.c **** 
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  1325 0000 80B5     		push	{r7, lr}
  1326              		.cfi_def_cfa_offset 8
  1327              		.cfi_offset 7, -8
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 47
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 47
 
 
  1328              		.cfi_offset 14, -4
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  1359 002e 80BD     		pop	{r7, pc}
  1360              	.L64:
  1361              		.align	2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 48
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 48
 
 
  1362              	.L63:
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  1387 0008 B960     		str	r1, [r7, #8]
  1388 000a 7A60     		str	r2, [r7, #4]
 1339:Generated_Source\PSoC4/CapSense_1.c ****     uint32  pinModeShift;
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 49
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 49
 
 
 1340:Generated_Source\PSoC4/CapSense_1.c ****     uint32 newRegisterValue;
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  1434 0054 00000000 		.word	CapSense_1_prtCfgTbl
  1435              		.cfi_endproc
  1436              	.LFE52:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 50
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 50
 
 
  1437              		.size	CapSense_1_SetPinDriveMode, .-CapSense_1_SetPinDriveMode
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
 1382:Generated_Source\PSoC4/CapSense_1.c ****         uint8 sampleClkDivMath;
 1383:Generated_Source\PSoC4/CapSense_1.c ****     #endif /* (CapSense_1_PRS_OPTIONS == CapSense_1__PRS_AUTO) */
 1384:Generated_Source\PSoC4/CapSense_1.c **** 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 51
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 51
 
 
 1385:Generated_Source\PSoC4/CapSense_1.c ****     #if ((CapSense_1_TUNING_METHOD == CapSense_1__TUNING_AUTO) &&\
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  1481 0030 D318     		add	r3, r2, r3
  1482 0032 1B78     		ldrb	r3, [r3]
  1483 0034 9BB2     		uxth	r3, r3
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 52
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 52
 
 
  1484 0036 013B     		sub	r3, r3, #1
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
 1431:Generated_Source\PSoC4/CapSense_1.c ****             /* Wait until scanning is complete */
 1432:Generated_Source\PSoC4/CapSense_1.c ****             }
 1433:Generated_Source\PSoC4/CapSense_1.c ****             CapSense_1_CSD_INTR_REG = 1u;
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 53
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 53
 
 
  1523              		.loc 1 1433 0 is_stmt 1
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
 1478:Generated_Source\PSoC4/CapSense_1.c ****     #if(CapSense_1_TUNING_METHOD == CapSense_1__TUNING_AUTO)
 1479:Generated_Source\PSoC4/CapSense_1.c ****         }
 1480:Generated_Source\PSoC4/CapSense_1.c ****     #endif /* (CapSense_1_PRS_OPTIONS != CapSense_1__PRS_NONE) */
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 54
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 54
 
 
 1481:Generated_Source\PSoC4/CapSense_1.c **** 
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
 1501:Generated_Source\PSoC4/CapSense_1.c ****     newRegValue = CapSense_1_CMOD_CONNECTION_REG;
 1502:Generated_Source\PSoC4/CapSense_1.c ****     newRegValue &= ~(CapSense_1_CSD_CMOD_CONNECTION_MASK);
 1503:Generated_Source\PSoC4/CapSense_1.c ****     newRegValue |= CapSense_1_CSD_CMOD_TO_AMUXBUS_A;
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 55
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 55
 
 
 1504:Generated_Source\PSoC4/CapSense_1.c ****     CapSense_1_CMOD_CONNECTION_REG = newRegValue;
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
 1527:Generated_Source\PSoC4/CapSense_1.c ****     /* `#END` */
 1528:Generated_Source\PSoC4/CapSense_1.c **** 
 1529:Generated_Source\PSoC4/CapSense_1.c **** #ifdef CapSense_1_PRE_SCAN_PRE_SETTLING_DELAY_DEBUG_CALLBACK
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 56
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 56
 
 
 1530:Generated_Source\PSoC4/CapSense_1.c ****     CapSense_1_PreScan_Pre_SettlingDelay_Debug_Callback();
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  1635              		.align	2
  1636              		.global	CapSense_1_PostScan
  1637              		.code	16
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 57
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 57
 
 
  1638              		.thumb_func
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
 1585:Generated_Source\PSoC4/CapSense_1.c ****     CapSense_1_PostScan_Debug_Callback();
 1586:Generated_Source\PSoC4/CapSense_1.c **** #endif /* CapSense_1_POST_SCAN_DEBUG_Callback */
 1587:Generated_Source\PSoC4/CapSense_1.c **** 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 58
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 58
 
 
 1588:Generated_Source\PSoC4/CapSense_1.c ****     /* Read SlotResult from Raw Counter */
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  1669 0024 0F4B     		ldr	r3, .L73+8
  1670 0026 1B68     		ldr	r3, [r3]
  1671 0028 FB60     		str	r3, [r7, #12]
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 59
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 59
 
 
 1626:Generated_Source\PSoC4/CapSense_1.c ****     newRegValue &= ~(CapSense_1_PRECHARGE_CONFIG_MASK);
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  1713              		.size	CapSense_1_PostScan, .-CapSense_1_PostScan
  1714              		.section	.text.CapSense_1_EnableShieldElectrode,"ax",%progbits
  1715              		.align	2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 60
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 60
 
 
  1716              		.global	CapSense_1_EnableShieldElectrode
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  1741 0016 8900     		lsl	r1, r1, #2
  1742 0018 CB58     		ldr	r3, [r1, r3]
  1743 001a 1868     		ldr	r0, [r3]
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 61
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 61
 
 
  1744 001c 7968     		ldr	r1, [r7, #4]
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  1793              		.align	2
  1794              	.L76:
  1795 0070 00000000 		.word	CapSense_1_prtCfgTbl
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 62
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 62
 
 
  1796 0074 00000000 		.word	CapSense_1_prtSelTbl
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  1820 0008 7B68     		ldr	r3, [r7, #4]
  1821 000a 0322     		mov	r2, #3
  1822 000c 1340     		and	r3, r2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 63
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 63
 
 
  1823 000e 7B60     		str	r3, [r7, #4]
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
 1722:Generated_Source\PSoC4/CapSense_1.c **** *
 1723:Generated_Source\PSoC4/CapSense_1.c **** * Return:
 1724:Generated_Source\PSoC4/CapSense_1.c **** *  Returns Sensor number if sensor is being scanned and
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 64
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 64
 
 
 1725:Generated_Source\PSoC4/CapSense_1.c **** *  $INSTANCE_NAME`_NOT_SENSOR (0xFFFFFFFF) if scanning is complete.
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  1898              		.align	2
  1899              		.global	CapSense_1_GetBitValue
  1900              		.code	16
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 65
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 65
 
 
  1901              		.thumb_func
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
 1773:Generated_Source\PSoC4/CapSense_1.c ****     /* The enMask calculation for the appropriate sensor. Operation (position & 0x07u)
 1774:Generated_Source\PSoC4/CapSense_1.c ****        intends to calculate the enable bit offset for the 8-bit element of the
 1775:Generated_Source\PSoC4/CapSense_1.c ****        table[] array.
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 66
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 66
 
 
 1776:Generated_Source\PSoC4/CapSense_1.c ****     */
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
 1785:Generated_Source\PSoC4/CapSense_1.c **** ********************************************************************************
 1786:Generated_Source\PSoC4/CapSense_1.c **** *
 1787:Generated_Source\PSoC4/CapSense_1.c **** * Summary:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 67
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 67
 
 
 1788:Generated_Source\PSoC4/CapSense_1.c **** *  The API sets a bit status of the bit in the table array which contains masks.
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  1987 0018 0122     		mov	r2, #1
  1988 001a 9A40     		lsl	r2, r2, r3
  1989 001c 1323     		mov	r3, #19
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 68
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 68
 
 
  1990 001e FB18     		add	r3, r7, r3
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  2034              		.cfi_endproc
  2035              	.LFE59:
  2036              		.size	CapSense_1_SetBitValue, .-CapSense_1_SetBitValue
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 69
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 69
 
 
  2037              		.section	.text.CapSense_1_GetSenseClkDivider,"ax",%progbits
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
 1861:Generated_Source\PSoC4/CapSense_1.c ****     #endif /* (0u != CapSense_1_MULTIPLE_FREQUENCY_SET) */
 1862:Generated_Source\PSoC4/CapSense_1.c **** }
  2061              		.loc 1 1862 0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 70
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 70
 
 
  2062 0010 181C     		mov	r0, r3
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
 1897:Generated_Source\PSoC4/CapSense_1.c **** /*******************************************************************************
 1898:Generated_Source\PSoC4/CapSense_1.c **** * Function Name: CapSense_1_GetModulatorClkDivider
 1899:Generated_Source\PSoC4/CapSense_1.c **** ********************************************************************************
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 71
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 71
 
 
 1900:Generated_Source\PSoC4/CapSense_1.c **** *
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  2110              		.size	CapSense_1_GetModulatorClkDivider, .-CapSense_1_GetModulatorClkDivider
  2111              		.section	.text.CapSense_1_GetModulationIDAC,"ax",%progbits
  2112              		.align	2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 72
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 72
 
 
  2113              		.global	CapSense_1_GetModulationIDAC
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
 1974:Generated_Source\PSoC4/CapSense_1.c **** *  CapSense_1_modulationIDAC[] - stores modulation IDAC values.
 1975:Generated_Source\PSoC4/CapSense_1.c **** *
 1976:Generated_Source\PSoC4/CapSense_1.c **** * Side Effects:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 73
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 73
 
 
 1977:Generated_Source\PSoC4/CapSense_1.c **** *  None
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
 1994:Generated_Source\PSoC4/CapSense_1.c ****     *  sensor:  Sensor index.
 1995:Generated_Source\PSoC4/CapSense_1.c ****     *  compIdacValue: represents the modulation IDAC data register value.
 1996:Generated_Source\PSoC4/CapSense_1.c ****     *
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 74
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 74
 
 
 1997:Generated_Source\PSoC4/CapSense_1.c ****     * Return:
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  2168 0008 034A     		ldr	r2, .L108
  2169 000a 7B68     		ldr	r3, [r7, #4]
  2170 000c D318     		add	r3, r2, r3
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 75
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 75
 
 
  2171 000e 1B78     		ldrb	r3, [r3]
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
 2071:Generated_Source\PSoC4/CapSense_1.c **** /*******************************************************************************
 2072:Generated_Source\PSoC4/CapSense_1.c **** * Function Name: CapSense_1_GetIDACRange
 2073:Generated_Source\PSoC4/CapSense_1.c **** ********************************************************************************
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 76
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 76
 
 
 2074:Generated_Source\PSoC4/CapSense_1.c **** *
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  2223 001c 08002840 		.word	1076363272
  2224              		.cfi_endproc
  2225              	.LFE64:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 77
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 77
 
 
  2226              		.size	CapSense_1_GetIDACRange, .-CapSense_1_GetIDACRange
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
 2143:Generated_Source\PSoC4/CapSense_1.c **** #if((0u != CapSense_1_AUTOCALIBRATION_ENABLE) || (CapSense_1_TUNING_METHOD == CapSense_1__TUNING_AU
 2144:Generated_Source\PSoC4/CapSense_1.c ****     /*******************************************************************************
 2145:Generated_Source\PSoC4/CapSense_1.c ****     * Function Name: CapSense_1_GetSensorRaw
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 78
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 78
 
 
 2146:Generated_Source\PSoC4/CapSense_1.c ****     ********************************************************************************
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
 2200:Generated_Source\PSoC4/CapSense_1.c ****     *  idacLevelsTbl - Pointer to the modulatorIdac data register configuration table.
 2201:Generated_Source\PSoC4/CapSense_1.c ****     *
 2202:Generated_Source\PSoC4/CapSense_1.c ****     * Return:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 79
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 79
 
 
 2203:Generated_Source\PSoC4/CapSense_1.c ****     *  None
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
 2257:Generated_Source\PSoC4/CapSense_1.c **** *     CapSense_1__SHIELD 2
 2258:Generated_Source\PSoC4/CapSense_1.c **** *
 2259:Generated_Source\PSoC4/CapSense_1.c **** * Return:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 80
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 80
 
 
 2260:Generated_Source\PSoC4/CapSense_1.c **** *  None.
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  2251 0010 7B68     		ldr	r3, [r7, #4]
  2252 0012 D318     		add	r3, r2, r3
  2253 0014 0A1C     		add	r2, r1, #0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 81
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 81
 
 
  2254 0016 1A70     		strb	r2, [r3]
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  2306 0044 75010000 		.4byte	.LASF4
  2307 0048 02       		.uleb128 0x2
  2308 0049 04       		.byte	0x4
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 82
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 82
 
 
  2309 004a 07       		.byte	0x7
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  2363 00ba 02       		.byte	0x2
  2364 00bb 4402     		.2byte	0x244
  2365 00bd C1000000 		.4byte	0xc1
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 83
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 83
 
 
  2366 00c1 05       		.uleb128 0x5
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  2420 0130 00000000 		.4byte	.LFB37
  2421 0134 54000000 		.4byte	.LFE37-.LFB37
  2422 0138 01       		.uleb128 0x1
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 84
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 84
 
 
  2423 0139 9C       		.byte	0x9c
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  2477 01b1 6F       		.sleb128 -17
  2478 01b2 0B       		.uleb128 0xb
  2479 01b3 F5050000 		.4byte	.LASF25
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 85
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 85
 
 
  2480 01b7 01       		.byte	0x1
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  2534 022f 01       		.byte	0x1
  2535 0230 1303     		.2byte	0x313
  2536 0232 83000000 		.4byte	0x83
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 86
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 86
 
 
  2537 0236 02       		.uleb128 0x2
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  2591 02a5 26000000 		.4byte	.LFE47-.LFB47
  2592 02a9 01       		.uleb128 0x1
  2593 02aa 9C       		.byte	0x9c
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 87
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 87
 
 
  2594 02ab BF020000 		.4byte	0x2bf
@@ -5218,7 +5218,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  2648 0317 3F04     		.2byte	0x43f
  2649 0319 83000000 		.4byte	0x83
  2650 031d 02       		.uleb128 0x2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 88
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 88
 
 
  2651 031e 91       		.byte	0x91
@@ -5278,7 +5278,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  2705 0387 01       		.byte	0x1
  2706 0388 7504     		.2byte	0x475
  2707 038a 6B000000 		.4byte	0x6b
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 89
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 89
 
 
  2708 038e 02       		.uleb128 0x2
@@ -5338,7 +5338,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  2762 03f4 5E020000 		.4byte	.LASF49
  2763 03f8 01       		.byte	0x1
  2764 03f9 C304     		.2byte	0x4c3
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 90
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 90
 
 
  2765 03fb 83000000 		.4byte	0x83
@@ -5398,7 +5398,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  2819 046a 91       		.byte	0x91
  2820 046b 68       		.sleb128 -24
  2821 046c 0E       		.uleb128 0xe
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 91
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 91
 
 
  2822 046d 59030000 		.4byte	.LASF54
@@ -5458,7 +5458,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  2876 04da 02       		.uleb128 0x2
  2877 04db 91       		.byte	0x91
  2878 04dc 63       		.sleb128 -29
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 92
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 92
 
 
  2879 04dd 0B       		.uleb128 0xb
@@ -5518,7 +5518,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  2933 054c 01       		.byte	0x1
  2934 054d 7F06     		.2byte	0x67f
  2935 054f 83000000 		.4byte	0x83
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 93
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 93
 
 
  2936 0553 02       		.uleb128 0x2
@@ -5578,7 +5578,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  2990 05bf 9C       		.byte	0x9c
  2991 05c0 10       		.uleb128 0x10
  2992 05c1 28030000 		.4byte	.LASF63
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 94
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 94
 
 
  2993 05c5 01       		.byte	0x1
@@ -5638,7 +5638,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  3047 0635 CD000000 		.4byte	0xcd
  3048 0639 02       		.uleb128 0x2
  3049 063a 91       		.byte	0x91
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 95
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 95
 
 
  3050 063b 6C       		.sleb128 -20
@@ -5698,7 +5698,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  3104 06a4 B2050000 		.4byte	.LASF70
  3105 06a8 01       		.byte	0x1
  3106 06a9 7E07     		.2byte	0x77e
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 96
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 96
 
 
  3107 06ab 83000000 		.4byte	0x83
@@ -5758,7 +5758,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  3161 0722 11000000 		.4byte	.LASF73
  3162 0726 01       		.byte	0x1
  3163 0727 2E08     		.2byte	0x82e
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 97
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 97
 
 
  3164 0729 83000000 		.4byte	0x83
@@ -5818,7 +5818,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  3218 079e 12       		.uleb128 0x12
  3219 079f 5B040000 		.4byte	.LASF77
  3220 07a3 01       		.byte	0x1
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 98
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 98
 
 
  3221 07a4 31       		.byte	0x31
@@ -5878,7 +5878,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  3275 0819 A9000000 		.4byte	.LASF82
  3276 081d 01       		.byte	0x1
  3277 081e 73       		.byte	0x73
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 99
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 99
 
 
  3278 081f 29080000 		.4byte	0x829
@@ -5938,7 +5938,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  3332 0897 A6080000 		.4byte	0x8a6
  3333 089b A6080000 		.4byte	0x8a6
  3334 089f 14       		.uleb128 0x14
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 100
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 100
 
 
  3335 08a0 C6000000 		.4byte	0xc6
@@ -5998,7 +5998,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  3389 0915 07       		.uleb128 0x7
  3390 0916 AF070000 		.4byte	0x7af
  3391 091a 12       		.uleb128 0x12
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 101
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 101
 
 
  3392 091b FB030000 		.4byte	.LASF92
@@ -6058,7 +6058,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  3446 0018 3E       		.uleb128 0x3e
  3447 0019 0B       		.uleb128 0xb
  3448 001a 03       		.uleb128 0x3
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 102
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 102
 
 
  3449 001b 0E       		.uleb128 0xe
@@ -6118,7 +6118,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  3503 0051 19       		.uleb128 0x19
  3504 0052 03       		.uleb128 0x3
  3505 0053 0E       		.uleb128 0xe
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 103
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 103
 
 
  3506 0054 3A       		.uleb128 0x3a
@@ -6178,7 +6178,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  3560 008c 01       		.uleb128 0x1
  3561 008d 13       		.uleb128 0x13
  3562 008e 00       		.byte	0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 104
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 104
 
 
  3563 008f 00       		.byte	0
@@ -6238,7 +6238,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  3617 00c6 11       		.uleb128 0x11
  3618 00c7 01       		.uleb128 0x1
  3619 00c8 12       		.uleb128 0x12
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 105
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 105
 
 
  3620 00c9 06       		.uleb128 0x6
@@ -6298,7 +6298,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  3674 0101 03       		.uleb128 0x3
  3675 0102 0E       		.uleb128 0xe
  3676 0103 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 106
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 106
 
 
  3677 0104 0B       		.uleb128 0xb
@@ -6358,7 +6358,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  3731 013c 13       		.uleb128 0x13
  3732 013d 3F       		.uleb128 0x3f
  3733 013e 19       		.uleb128 0x19
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 107
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 107
 
 
  3734 013f 02       		.uleb128 0x2
@@ -6418,7 +6418,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  3788 006c 1C000000 		.4byte	.LFE46-.LFB46
  3789 0070 00000000 		.4byte	.LFB47
  3790 0074 26000000 		.4byte	.LFE47-.LFB47
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 108
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 108
 
 
  3791 0078 00000000 		.4byte	.LFB48
@@ -6478,7 +6478,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  3845 0038 00000000 		.4byte	.LFB42
  3846 003c 58000000 		.4byte	.LFE42
  3847 0040 00000000 		.4byte	.LFB43
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 109
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 109
 
 
  3848 0044 1C000000 		.4byte	.LFE43
@@ -6538,7 +6538,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  3898              	.LASF20:
  3899 0000 63757253 		.ascii	"curSensor\000"
  3899      656E736F 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 110
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 110
 
 
  3899      7200
@@ -6598,7 +6598,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  3921 00c5 43617053 		.ascii	"CapSense_1_sampleClkDividerVal\000"
  3921      656E7365 
  3921      5F315F73 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 111
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 111
 
 
  3921      616D706C 
@@ -6658,7 +6658,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  3943      656E7365 
  3943      5F315F47 
  3943      6574436F 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 112
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 112
 
 
  3943      6D70656E 
@@ -6718,7 +6718,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  3968              	.LASF49:
  3969 025e 7072744E 		.ascii	"prtNumberTmp\000"
  3969      756D6265 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 113
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 113
 
 
  3969      72546D70 
@@ -6778,7 +6778,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  3989 0321 73656E73 		.ascii	"sensor\000"
  3989      6F7200
  3990              	.LASF63:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 114
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 114
 
 
  3991 0328 43617053 		.ascii	"CapSense_1_GetBitValue\000"
@@ -6838,7 +6838,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  4011      656E7365 
  4011      5F315F6D 
  4011      61736B54 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 115
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 115
 
 
  4011      61626C65 
@@ -6898,7 +6898,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  4034              	.LASF94:
  4035 04ca 43617053 		.ascii	"CapSense_1_csdTrim1\000"
  4035      656E7365 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 116
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 116
 
 
  4035      5F315F63 
@@ -6958,7 +6958,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  4056      656E7365 
  4056      5F315F47 
  4056      65744D6F 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 117
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 117
 
 
  4056      64756C61 
@@ -7018,7 +7018,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  4078      656E7365 
  4078      5F315F75 
  4078      6E736361 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 118
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 118
 
 
  4078      6E6E6564 
@@ -7078,7 +7078,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 1
  4096 07d7 43617053 		.ascii	"CapSense_1_DisableSensor\000"
  4096      656E7365 
  4096      5F315F44 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc8ystec.s 			page 119
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccLMLVdK.s 			page 119
 
 
  4096      69736162 

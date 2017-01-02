@@ -128,7 +128,7 @@ static uint16 set_controller_watch_dog_flags( uint8 * buffer )
     uint16 temp;
     
     temp =  1;
-    store_modbus_data_registers( MOD_RTU_WATCH_DOG_FLAG, 1 , &temp);
+    store_modbus_data_registers( MOD_CONTROLLER_WATCH_DOG_FLAG, 1 , &temp);
 
     return 1;
 }
@@ -170,18 +170,7 @@ static uint16 update_moisture_sensor_configuration( uint8 *buffer )
 
 }
 
-static uint16 change_capacitance_sensor_mask ( uint8 *buffer )
-{
 
-   
-    CONFIGURATION_DATA *ptr;
-    
-    ptr = get_configuration_data();
-    memcpy( &ptr->capacitance_mask, buffer, sizeof(ptr->capacitance_mask));
-    store_modbus_data_registers( CAPACITANCE_SENSOR_MASK, 1, (uint16*)&ptr->capacitance_mask);
-    return 1;
-
-}
 
 static uint16 force_moisture_reading( uint8 *buffer )
 {
@@ -219,7 +208,16 @@ static uint16 change_modbus_address( uint8 *buffer )
     return return_value;
 }
 
-#define TABLE_LENGTH 13
+static uint16  clear_moisture_flag( uint8 *buffer )
+{
+    uint16 new_moisture_data_flag;
+    
+    new_moisture_data_flag = 0;
+    store_modbus_data_registers( NEW_MOISTURE_DATA_FLAG, 1, &new_moisture_data_flag );
+    return 1;
+}    
+
+#define TABLE_LENGTH 14
 static const TYPE_16_STRUCT type_16_access_functions[TABLE_LENGTH] = 
 {
     // System Level Writes
@@ -235,8 +233,9 @@ static const TYPE_16_STRUCT type_16_access_functions[TABLE_LENGTH] =
 
     { 30,    1,                                                 SWAP_16, force_moisture_reading       },
     { 31,    RESISTIVE_SENSOR_NUMBER,                           SWAP_16,  update_moisture_sensor_configuration          },
-    { 32,    1,                                                 SWAP_16,  change_capacitance_sensor_mask                },
-    { 33,    1,                                                 SWAP_16,  update_flash   }
+    
+    { 33,    1,                                                 SWAP_16,  update_flash   },
+    { 34,    1,                                                 SWAP_16,  clear_moisture_flag }
    
     
    

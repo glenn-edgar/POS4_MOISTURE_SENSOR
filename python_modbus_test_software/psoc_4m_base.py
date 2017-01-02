@@ -182,7 +182,10 @@ if __name__ == "__main__":
        print psoc_4m.update_current_time(40)
        print psoc_4m.read_time( 40 )
        print psoc_4m.clear_watch_dog_flag(40)
+       print  psoc_4m.read_system_variables(40)
+       
        print psoc_4m.set_controller_watch_dog_flag(40)
+       print  psoc_4m.read_system_variables(40)
 
        print psoc_4m.clear_power_on_reset(40)
        print psoc_4m.clear_minute_rollover(40)

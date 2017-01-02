@@ -16,14 +16,6 @@
   <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\cydisabledsheets.h" value="HEADER;;;;;" />
   <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\WdtIsr.c" value="SOURCE_C;CortexM0;;;;WdtIsr" />
   <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\WdtIsr.h" value="HEADER;;;;;WdtIsr" />
-  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\CapSense_1.c" value="SOURCE_C;CortexM0;;;;CapSense_1" />
-  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\CapSense_1.h" value="HEADER;;;;;CapSense_1" />
-  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\CapSense_1_PM.c" value="SOURCE_C;CortexM0;;;;CapSense_1" />
-  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\CapSense_1_INT.c" value="SOURCE_C;CortexM0;;;;CapSense_1" />
-  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\CapSense_1_TunerHelper.c" value="SOURCE_C;CortexM0;;;;CapSense_1" />
-  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\CapSense_1_TunerHelper.h" value="HEADER;;;;;CapSense_1" />
-  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\CapSense_1_PVT.h" value="HEADER;;;;;CapSense_1" />
-  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\CapSense_1_IP.h" value="HEADER;;;;;CapSense_1" />
   <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\temp_humidity_pin.c" value="SOURCE_C;CortexM0;;;;temp_humidity_pin" />
   <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\temp_humidity_pin.h" value="HEADER;;;;;temp_humidity_pin" />
   <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\temp_humidity_pin_aliases.h" value="HEADER;;;;;temp_humidity_pin" />
@@ -75,16 +67,14 @@
   <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\modbus_tx_interrupt.h" value="HEADER;;;;;modbus_tx_interrupt" />
   <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\modbus_rx_interrupt.c" value="SOURCE_C;CortexM0;;;;modbus_rx_interrupt" />
   <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\modbus_rx_interrupt.h" value="HEADER;;;;;modbus_rx_interrupt" />
-  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\DieTemp_1.h" value="HEADER;;;;;DieTemp_1" />
-  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\DieTemp_1.c" value="SOURCE_C;CortexM0;;;;DieTemp_1" />
-  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Source_Pin.c" value="SOURCE_C;CortexM0;;;;Source_Pin" />
-  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Source_Pin.h" value="HEADER;;;;;Source_Pin" />
-  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Source_Pin_aliases.h" value="HEADER;;;;;Source_Pin" />
-  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Source_Pin_PM.c" value="SOURCE_C;CortexM0;;;;Source_Pin" />
-  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Sink_Pin.c" value="SOURCE_C;CortexM0;;;;Sink_Pin" />
-  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Sink_Pin.h" value="HEADER;;;;;Sink_Pin" />
-  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Sink_Pin_aliases.h" value="HEADER;;;;;Sink_Pin" />
-  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Sink_Pin_PM.c" value="SOURCE_C;CortexM0;;;;Sink_Pin" />
+  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Source_Pin_1.c" value="SOURCE_C;CortexM0;;;;Source_Pin_1" />
+  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Source_Pin_1.h" value="HEADER;;;;;Source_Pin_1" />
+  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Source_Pin_1_aliases.h" value="HEADER;;;;;Source_Pin_1" />
+  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Source_Pin_1_PM.c" value="SOURCE_C;CortexM0;;;;Source_Pin_1" />
+  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Sink_Pin_1.c" value="SOURCE_C;CortexM0;;;;Sink_Pin_1" />
+  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Sink_Pin_1.h" value="HEADER;;;;;Sink_Pin_1" />
+  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Sink_Pin_1_aliases.h" value="HEADER;;;;;Sink_Pin_1" />
+  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Sink_Pin_1_PM.c" value="SOURCE_C;CortexM0;;;;Sink_Pin_1" />
   <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Input_Pin_1.c" value="SOURCE_C;CortexM0;;;;Input_Pin_1" />
   <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Input_Pin_1.h" value="HEADER;;;;;Input_Pin_1" />
   <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Input_Pin_1_aliases.h" value="HEADER;;;;;Input_Pin_1" />
@@ -97,11 +87,20 @@
   <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\input_Pin_3.h" value="HEADER;;;;;input_Pin_3" />
   <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\input_Pin_3_aliases.h" value="HEADER;;;;;input_Pin_3" />
   <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\input_Pin_3_PM.c" value="SOURCE_C;CortexM0;;;;input_Pin_3" />
-  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\CapSense_1_SampleClk.c" value="SOURCE_C;CortexM0;;;;CapSense_1_SampleClk" />
-  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\CapSense_1_SampleClk.h" value="HEADER;;;;;CapSense_1_SampleClk" />
-  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\CapSense_1_Sns_aliases.h" value="HEADER;;;;;CapSense_1_Sns" />
-  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\CapSense_1_SenseClk.c" value="SOURCE_C;CortexM0;;;;CapSense_1_SenseClk" />
-  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\CapSense_1_SenseClk.h" value="HEADER;;;;;CapSense_1_SenseClk" />
+  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Source_Pin_2.c" value="SOURCE_C;CortexM0;;;;Source_Pin_2" />
+  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Source_Pin_2.h" value="HEADER;;;;;Source_Pin_2" />
+  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Source_Pin_2_aliases.h" value="HEADER;;;;;Source_Pin_2" />
+  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Source_Pin_2_PM.c" value="SOURCE_C;CortexM0;;;;Source_Pin_2" />
+  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Sink_Pin_2.c" value="SOURCE_C;CortexM0;;;;Sink_Pin_2" />
+  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Sink_Pin_2.h" value="HEADER;;;;;Sink_Pin_2" />
+  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Sink_Pin_2_aliases.h" value="HEADER;;;;;Sink_Pin_2" />
+  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Sink_Pin_2_PM.c" value="SOURCE_C;CortexM0;;;;Sink_Pin_2" />
+  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Sink_Control.h" value="HEADER;;;;;Sink_Control" />
+  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Sink_Control.c" value="SOURCE_C;CortexM0;;;;Sink_Control" />
+  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Sink_Control_PM.c" value="SOURCE_C;CortexM0;;;;Sink_Control" />
+  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Source_Control.h" value="HEADER;;;;;Source_Control" />
+  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Source_Control.c" value="SOURCE_C;CortexM0;;;;Source_Control" />
+  <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\Source_Control_PM.c" value="SOURCE_C;CortexM0;;;;Source_Control" />
   <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\I2C_1_SCBCLK.c" value="SOURCE_C;CortexM0;;;;I2C_1_SCBCLK" />
   <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\I2C_1_SCBCLK.h" value="HEADER;;;;;I2C_1_SCBCLK" />
   <file name="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\codegentemp\I2C_1_sda.c" value="SOURCE_C;CortexM0;;;;I2C_1_sda" />

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccgvFA6S.s 			page 1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccI8q5ia.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -9,7 +9,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccgvFA6S.s 			page 1
    6              		.eabi_attribute 24, 1
    7              		.eabi_attribute 25, 1
    8              		.eabi_attribute 26, 1
-   9              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 30, 2
   10              		.eabi_attribute 34, 0
   11              		.eabi_attribute 18, 4
   12              		.code	16
@@ -17,22 +17,15 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccgvFA6S.s 			page 1
   14              		.text
   15              	.Ltext0:
   16              		.cfi_sections	.debug_frame
-  17              		.global	I2C_1_backup
-  18              		.bss
-  19              		.align	2
-  20              		.type	I2C_1_backup, %object
-  21              		.size	I2C_1_backup, 1
-  22              	I2C_1_backup:
-  23 0000 00       		.space	1
-  24 0001 000000   		.section	.text.I2C_1_Sleep,"ax",%progbits
-  25              		.align	2
-  26              		.global	I2C_1_Sleep
-  27              		.code	16
-  28              		.thumb_func
-  29              		.type	I2C_1_Sleep, %function
-  30              	I2C_1_Sleep:
-  31              	.LFB1:
-  32              		.file 1 "Generated_Source\\PSoC4\\I2C_1_PM.c"
+  17              		.section	.text.I2C_1_Sleep,"ax",%progbits
+  18              		.align	2
+  19              		.global	I2C_1_Sleep
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	I2C_1_Sleep, %function
+  23              	I2C_1_Sleep:
+  24              	.LFB1:
+  25              		.file 1 "Generated_Source\\PSoC4\\I2C_1_PM.c"
    1:Generated_Source\PSoC4/I2C_1_PM.c **** /***************************************************************************//**
    2:Generated_Source\PSoC4/I2C_1_PM.c **** * \file I2C_1_PM.c
    3:Generated_Source\PSoC4/I2C_1_PM.c **** * \version 3.20
@@ -58,9 +51,6 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccgvFA6S.s 			page 1
   23:Generated_Source\PSoC4/I2C_1_PM.c ****     #include "I2C_1_I2C_PVT.h"
   24:Generated_Source\PSoC4/I2C_1_PM.c **** #endif /* (I2C_1_SCB_MODE_I2C_INC) */
   25:Generated_Source\PSoC4/I2C_1_PM.c **** 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccgvFA6S.s 			page 2
-
-
   26:Generated_Source\PSoC4/I2C_1_PM.c **** #if(I2C_1_SCB_MODE_EZI2C_INC)
   27:Generated_Source\PSoC4/I2C_1_PM.c ****     #include "I2C_1_EZI2C_PVT.h"
   28:Generated_Source\PSoC4/I2C_1_PM.c **** #endif /* (I2C_1_SCB_MODE_EZI2C_INC) */
@@ -68,6 +58,9 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccgvFA6S.s 			page 1
   30:Generated_Source\PSoC4/I2C_1_PM.c **** #if(I2C_1_SCB_MODE_SPI_INC || I2C_1_SCB_MODE_UART_INC)
   31:Generated_Source\PSoC4/I2C_1_PM.c ****     #include "I2C_1_SPI_UART_PVT.h"
   32:Generated_Source\PSoC4/I2C_1_PM.c **** #endif /* (I2C_1_SCB_MODE_SPI_INC || I2C_1_SCB_MODE_UART_INC) */
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccI8q5ia.s 			page 2
+
+
   33:Generated_Source\PSoC4/I2C_1_PM.c **** 
   34:Generated_Source\PSoC4/I2C_1_PM.c **** 
   35:Generated_Source\PSoC4/I2C_1_PM.c **** /***************************************
@@ -110,17 +103,12 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccgvFA6S.s 			page 1
   72:Generated_Source\PSoC4/I2C_1_PM.c **** *******************************************************************************/
   73:Generated_Source\PSoC4/I2C_1_PM.c **** void I2C_1_Sleep(void)
   74:Generated_Source\PSoC4/I2C_1_PM.c **** {
-  33              		.loc 1 74 0
-  34              		.cfi_startproc
-  35 0000 80B5     		push	{r7, lr}
-  36              		.cfi_def_cfa_offset 8
-  37              		.cfi_offset 7, -8
-  38              		.cfi_offset 14, -4
-  39 0002 00AF     		add	r7, sp, #0
-  40              		.cfi_def_cfa_register 7
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccgvFA6S.s 			page 3
-
-
+  26              		.loc 1 74 0
+  27              		.cfi_startproc
+  28 0000 08B5     		push	{r3, lr}
+  29              		.cfi_def_cfa_offset 8
+  30              		.cfi_offset 3, -8
+  31              		.cfi_offset 14, -4
   75:Generated_Source\PSoC4/I2C_1_PM.c **** #if(I2C_1_SCB_MODE_UNCONFIG_CONST_CFG)
   76:Generated_Source\PSoC4/I2C_1_PM.c **** 
   77:Generated_Source\PSoC4/I2C_1_PM.c ****     if(I2C_1_SCB_WAKE_ENABLE_CHECK)
@@ -130,6 +118,9 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccgvFA6S.s 			page 1
   81:Generated_Source\PSoC4/I2C_1_PM.c ****             I2C_1_I2CSaveConfig();
   82:Generated_Source\PSoC4/I2C_1_PM.c ****         }
   83:Generated_Source\PSoC4/I2C_1_PM.c ****         else if(I2C_1_SCB_MODE_EZI2C_RUNTM_CFG)
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccI8q5ia.s 			page 3
+
+
   84:Generated_Source\PSoC4/I2C_1_PM.c ****         {
   85:Generated_Source\PSoC4/I2C_1_PM.c ****             I2C_1_EzI2CSaveConfig();
   86:Generated_Source\PSoC4/I2C_1_PM.c ****         }
@@ -175,55 +166,50 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccgvFA6S.s 			page 1
  126:Generated_Source\PSoC4/I2C_1_PM.c ****     #else
  127:Generated_Source\PSoC4/I2C_1_PM.c **** 
  128:Generated_Source\PSoC4/I2C_1_PM.c ****         I2C_1_backup.enableState = (uint8) I2C_1_GET_CTRL_ENABLED;
-  41              		.loc 1 128 0
-  42 0004 074B     		ldr	r3, .L3
-  43 0006 1B68     		ldr	r3, [r3]
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccgvFA6S.s 			page 4
-
-
-  44 0008 DB0F     		lsr	r3, r3, #31
-  45 000a DBB2     		uxtb	r3, r3
-  46 000c 1A1C     		mov	r2, r3
-  47 000e 064B     		ldr	r3, .L3+4
-  48 0010 1A70     		strb	r2, [r3]
+  32              		.loc 1 128 0
+  33 0002 044B     		ldr	r3, .L7
+  34 0004 044A     		ldr	r2, .L7+4
+  35 0006 1B68     		ldr	r3, [r3]
+  36 0008 DB0F     		lsr	r3, r3, #31
+  37 000a 1370     		strb	r3, [r2]
  129:Generated_Source\PSoC4/I2C_1_PM.c **** 
  130:Generated_Source\PSoC4/I2C_1_PM.c ****         if(0u != I2C_1_backup.enableState)
-  49              		.loc 1 130 0
-  50 0012 054B     		ldr	r3, .L3+4
-  51 0014 1B78     		ldrb	r3, [r3]
-  52 0016 002B     		cmp	r3, #0
-  53 0018 01D0     		beq	.L1
+  38              		.loc 1 130 0
+  39 000c 01D0     		beq	.L1
  131:Generated_Source\PSoC4/I2C_1_PM.c ****         {
  132:Generated_Source\PSoC4/I2C_1_PM.c ****             I2C_1_Stop();
-  54              		.loc 1 132 0
-  55 001a FFF7FEFF 		bl	I2C_1_Stop
-  56              	.L1:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccI8q5ia.s 			page 4
+
+
+  40              		.loc 1 132 0
+  41 000e FFF7FEFF 		bl	I2C_1_Stop
+  42              	.LVL0:
+  43              	.L1:
  133:Generated_Source\PSoC4/I2C_1_PM.c ****         }
  134:Generated_Source\PSoC4/I2C_1_PM.c **** 
  135:Generated_Source\PSoC4/I2C_1_PM.c ****     #endif /* defined (I2C_1_SCB_MODE_I2C_CONST_CFG) && (I2C_1_I2C_WAKE_ENABLE_CONST) */
  136:Generated_Source\PSoC4/I2C_1_PM.c **** 
  137:Generated_Source\PSoC4/I2C_1_PM.c **** #endif /* (I2C_1_SCB_MODE_UNCONFIG_CONST_CFG) */
  138:Generated_Source\PSoC4/I2C_1_PM.c **** }
-  57              		.loc 1 138 0
-  58 001e BD46     		mov	sp, r7
-  59              		@ sp needed
-  60 0020 80BD     		pop	{r7, pc}
-  61              	.L4:
-  62 0022 C046     		.align	2
-  63              	.L3:
-  64 0024 00002440 		.word	1076101120
-  65 0028 00000000 		.word	I2C_1_backup
-  66              		.cfi_endproc
-  67              	.LFE1:
-  68              		.size	I2C_1_Sleep, .-I2C_1_Sleep
-  69              		.section	.text.I2C_1_Wakeup,"ax",%progbits
-  70              		.align	2
-  71              		.global	I2C_1_Wakeup
-  72              		.code	16
-  73              		.thumb_func
-  74              		.type	I2C_1_Wakeup, %function
-  75              	I2C_1_Wakeup:
-  76              	.LFB2:
+  44              		.loc 1 138 0
+  45              		@ sp needed
+  46 0012 08BD     		pop	{r3, pc}
+  47              	.L8:
+  48              		.align	2
+  49              	.L7:
+  50 0014 00002440 		.word	1076101120
+  51 0018 00000000 		.word	.LANCHOR0
+  52              		.cfi_endproc
+  53              	.LFE1:
+  54              		.size	I2C_1_Sleep, .-I2C_1_Sleep
+  55              		.section	.text.I2C_1_Wakeup,"ax",%progbits
+  56              		.align	2
+  57              		.global	I2C_1_Wakeup
+  58              		.code	16
+  59              		.thumb_func
+  60              		.type	I2C_1_Wakeup, %function
+  61              	I2C_1_Wakeup:
+  62              	.LFB2:
  139:Generated_Source\PSoC4/I2C_1_PM.c **** 
  140:Generated_Source\PSoC4/I2C_1_PM.c **** 
  141:Generated_Source\PSoC4/I2C_1_PM.c **** /*******************************************************************************
@@ -238,9 +224,6 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccgvFA6S.s 			page 1
  150:Generated_Source\PSoC4/I2C_1_PM.c **** *  - Unchecked: enables the component if it was enabled before enter Deep Sleep.
  151:Generated_Source\PSoC4/I2C_1_PM.c **** *
  152:Generated_Source\PSoC4/I2C_1_PM.c **** *  This function should not be called after exiting Sleep.
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccgvFA6S.s 			page 5
-
-
  153:Generated_Source\PSoC4/I2C_1_PM.c **** *
  154:Generated_Source\PSoC4/I2C_1_PM.c **** *  \sideeffect
  155:Generated_Source\PSoC4/I2C_1_PM.c **** *   Calling the I2C_1_Wakeup() function without first calling the 
@@ -249,14 +232,15 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccgvFA6S.s 			page 1
  158:Generated_Source\PSoC4/I2C_1_PM.c **** *******************************************************************************/
  159:Generated_Source\PSoC4/I2C_1_PM.c **** void I2C_1_Wakeup(void)
  160:Generated_Source\PSoC4/I2C_1_PM.c **** {
-  77              		.loc 1 160 0
-  78              		.cfi_startproc
-  79 0000 80B5     		push	{r7, lr}
-  80              		.cfi_def_cfa_offset 8
-  81              		.cfi_offset 7, -8
-  82              		.cfi_offset 14, -4
-  83 0002 00AF     		add	r7, sp, #0
-  84              		.cfi_def_cfa_register 7
+  63              		.loc 1 160 0
+  64              		.cfi_startproc
+  65 0000 08B5     		push	{r3, lr}
+  66              		.cfi_def_cfa_offset 8
+  67              		.cfi_offset 3, -8
+  68              		.cfi_offset 14, -4
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccI8q5ia.s 			page 5
+
+
  161:Generated_Source\PSoC4/I2C_1_PM.c **** #if(I2C_1_SCB_MODE_UNCONFIG_CONST_CFG)
  162:Generated_Source\PSoC4/I2C_1_PM.c **** 
  163:Generated_Source\PSoC4/I2C_1_PM.c ****     if(I2C_1_SCB_WAKE_ENABLE_CHECK)
@@ -298,9 +282,6 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccgvFA6S.s 			page 1
  199:Generated_Source\PSoC4/I2C_1_PM.c ****         I2C_1_I2CRestoreConfig();
  200:Generated_Source\PSoC4/I2C_1_PM.c **** 
  201:Generated_Source\PSoC4/I2C_1_PM.c ****     #elif (I2C_1_SCB_MODE_EZI2C_CONST_CFG && I2C_1_EZI2C_WAKE_ENABLE_CONST)
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccgvFA6S.s 			page 6
-
-
  202:Generated_Source\PSoC4/I2C_1_PM.c ****         I2C_1_EzI2CRestoreConfig();
  203:Generated_Source\PSoC4/I2C_1_PM.c **** 
  204:Generated_Source\PSoC4/I2C_1_PM.c ****     #elif (I2C_1_SCB_MODE_SPI_CONST_CFG && I2C_1_SPI_WAKE_ENABLE_CONST)
@@ -312,486 +293,557 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccgvFA6S.s 			page 1
  210:Generated_Source\PSoC4/I2C_1_PM.c ****     #else
  211:Generated_Source\PSoC4/I2C_1_PM.c **** 
  212:Generated_Source\PSoC4/I2C_1_PM.c ****         if(0u != I2C_1_backup.enableState)
-  85              		.loc 1 212 0
-  86 0004 034B     		ldr	r3, .L7
-  87 0006 1B78     		ldrb	r3, [r3]
-  88 0008 002B     		cmp	r3, #0
-  89 000a 01D0     		beq	.L5
+  69              		.loc 1 212 0
+  70 0002 034B     		ldr	r3, .L14
+  71 0004 1B78     		ldrb	r3, [r3]
+  72 0006 002B     		cmp	r3, #0
+  73 0008 01D0     		beq	.L9
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccI8q5ia.s 			page 6
+
+
  213:Generated_Source\PSoC4/I2C_1_PM.c ****         {
  214:Generated_Source\PSoC4/I2C_1_PM.c ****             I2C_1_Enable();
-  90              		.loc 1 214 0
-  91 000c FFF7FEFF 		bl	I2C_1_Enable
-  92              	.L5:
+  74              		.loc 1 214 0
+  75 000a FFF7FEFF 		bl	I2C_1_Enable
+  76              	.LVL1:
+  77              	.L9:
  215:Generated_Source\PSoC4/I2C_1_PM.c ****         }
  216:Generated_Source\PSoC4/I2C_1_PM.c **** 
  217:Generated_Source\PSoC4/I2C_1_PM.c ****     #endif /* (I2C_1_I2C_WAKE_ENABLE_CONST) */
  218:Generated_Source\PSoC4/I2C_1_PM.c **** 
  219:Generated_Source\PSoC4/I2C_1_PM.c **** #endif /* (I2C_1_SCB_MODE_UNCONFIG_CONST_CFG) */
  220:Generated_Source\PSoC4/I2C_1_PM.c **** }
-  93              		.loc 1 220 0
-  94 0010 BD46     		mov	sp, r7
-  95              		@ sp needed
-  96 0012 80BD     		pop	{r7, pc}
-  97              	.L8:
-  98              		.align	2
-  99              	.L7:
- 100 0014 00000000 		.word	I2C_1_backup
- 101              		.cfi_endproc
- 102              	.LFE2:
- 103              		.size	I2C_1_Wakeup, .-I2C_1_Wakeup
- 104              		.text
- 105              	.Letext0:
- 106              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
- 107              		.file 3 "Generated_Source\\PSoC4\\I2C_1.h"
- 108              		.section	.debug_info,"",%progbits
- 109              	.Ldebug_info0:
- 110 0000 00010000 		.4byte	0x100
- 111 0004 0400     		.2byte	0x4
- 112 0006 00000000 		.4byte	.Ldebug_abbrev0
- 113 000a 04       		.byte	0x4
- 114 000b 01       		.uleb128 0x1
- 115 000c E0000000 		.4byte	.LASF19
- 116 0010 01       		.byte	0x1
- 117 0011 D3010000 		.4byte	.LASF20
- 118 0015 8A000000 		.4byte	.LASF21
- 119 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 120 001d 00000000 		.4byte	0
- 121 0021 00000000 		.4byte	.Ldebug_line0
- 122 0025 02       		.uleb128 0x2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccgvFA6S.s 			page 7
+  78              		.loc 1 220 0
+  79              		@ sp needed
+  80 000e 08BD     		pop	{r3, pc}
+  81              	.L15:
+  82              		.align	2
+  83              	.L14:
+  84 0010 00000000 		.word	.LANCHOR0
+  85              		.cfi_endproc
+  86              	.LFE2:
+  87              		.size	I2C_1_Wakeup, .-I2C_1_Wakeup
+  88              		.global	I2C_1_backup
+  89              		.bss
+  90              		.align	2
+  91              		.set	.LANCHOR0,. + 0
+  92              		.type	I2C_1_backup, %object
+  93              		.size	I2C_1_backup, 1
+  94              	I2C_1_backup:
+  95 0000 00       		.space	1
+  96 0001 000000   		.text
+  97              	.Letext0:
+  98              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+  99              		.file 3 "Generated_Source\\PSoC4\\I2C_1.h"
+ 100              		.section	.debug_info,"",%progbits
+ 101              	.Ldebug_info0:
+ 102 0000 2A010000 		.4byte	0x12a
+ 103 0004 0400     		.2byte	0x4
+ 104 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 105 000a 04       		.byte	0x4
+ 106 000b 01       		.uleb128 0x1
+ 107 000c 88010000 		.4byte	.LASF21
+ 108 0010 01       		.byte	0x1
+ 109 0011 5D010000 		.4byte	.LASF22
+ 110 0015 A2000000 		.4byte	.LASF23
+ 111 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 112 001d 00000000 		.4byte	0
+ 113 0021 00000000 		.4byte	.Ldebug_line0
+ 114 0025 02       		.uleb128 0x2
+ 115 0026 01       		.byte	0x1
+ 116 0027 06       		.byte	0x6
+ 117 0028 34010000 		.4byte	.LASF0
+ 118 002c 02       		.uleb128 0x2
+ 119 002d 01       		.byte	0x1
+ 120 002e 08       		.byte	0x8
+ 121 002f F8000000 		.4byte	.LASF1
+ 122 0033 02       		.uleb128 0x2
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccI8q5ia.s 			page 7
 
 
- 123 0026 01       		.byte	0x1
- 124 0027 06       		.byte	0x6
- 125 0028 AA010000 		.4byte	.LASF0
- 126 002c 02       		.uleb128 0x2
- 127 002d 01       		.byte	0x1
- 128 002e 08       		.byte	0x8
- 129 002f 6E010000 		.4byte	.LASF1
- 130 0033 02       		.uleb128 0x2
- 131 0034 02       		.byte	0x2
- 132 0035 05       		.byte	0x5
- 133 0036 C9010000 		.4byte	.LASF2
- 134 003a 02       		.uleb128 0x2
- 135 003b 02       		.byte	0x2
- 136 003c 07       		.byte	0x7
- 137 003d 97010000 		.4byte	.LASF3
- 138 0041 02       		.uleb128 0x2
- 139 0042 04       		.byte	0x4
- 140 0043 05       		.byte	0x5
- 141 0044 81010000 		.4byte	.LASF4
- 142 0048 02       		.uleb128 0x2
- 143 0049 04       		.byte	0x4
- 144 004a 07       		.byte	0x7
- 145 004b 61000000 		.4byte	.LASF5
- 146 004f 02       		.uleb128 0x2
- 147 0050 08       		.byte	0x8
- 148 0051 05       		.byte	0x5
- 149 0052 00000000 		.4byte	.LASF6
- 150 0056 02       		.uleb128 0x2
- 151 0057 08       		.byte	0x8
- 152 0058 07       		.byte	0x7
- 153 0059 73000000 		.4byte	.LASF7
- 154 005d 03       		.uleb128 0x3
- 155 005e 04       		.byte	0x4
- 156 005f 05       		.byte	0x5
- 157 0060 696E7400 		.ascii	"int\000"
- 158 0064 02       		.uleb128 0x2
- 159 0065 04       		.byte	0x4
- 160 0066 07       		.byte	0x7
- 161 0067 21000000 		.4byte	.LASF8
- 162 006b 04       		.uleb128 0x4
- 163 006c 5B000000 		.4byte	.LASF9
- 164 0070 02       		.byte	0x2
- 165 0071 9801     		.2byte	0x198
- 166 0073 2C000000 		.4byte	0x2c
- 167 0077 04       		.uleb128 0x4
- 168 0078 0E000000 		.4byte	.LASF10
- 169 007c 02       		.byte	0x2
- 170 007d 9A01     		.2byte	0x19a
- 171 007f 48000000 		.4byte	0x48
- 172 0083 02       		.uleb128 0x2
- 173 0084 04       		.byte	0x4
- 174 0085 04       		.byte	0x4
- 175 0086 C3010000 		.4byte	.LASF11
- 176 008a 02       		.uleb128 0x2
- 177 008b 08       		.byte	0x8
- 178 008c 04       		.byte	0x4
- 179 008d 8A010000 		.4byte	.LASF12
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccgvFA6S.s 			page 8
+ 123 0034 02       		.byte	0x2
+ 124 0035 05       		.byte	0x5
+ 125 0036 53010000 		.4byte	.LASF2
+ 126 003a 02       		.uleb128 0x2
+ 127 003b 02       		.byte	0x2
+ 128 003c 07       		.byte	0x7
+ 129 003d 21010000 		.4byte	.LASF3
+ 130 0041 02       		.uleb128 0x2
+ 131 0042 04       		.byte	0x4
+ 132 0043 05       		.byte	0x5
+ 133 0044 0B010000 		.4byte	.LASF4
+ 134 0048 02       		.uleb128 0x2
+ 135 0049 04       		.byte	0x4
+ 136 004a 07       		.byte	0x7
+ 137 004b 79000000 		.4byte	.LASF5
+ 138 004f 02       		.uleb128 0x2
+ 139 0050 08       		.byte	0x8
+ 140 0051 05       		.byte	0x5
+ 141 0052 00000000 		.4byte	.LASF6
+ 142 0056 02       		.uleb128 0x2
+ 143 0057 08       		.byte	0x8
+ 144 0058 07       		.byte	0x7
+ 145 0059 8B000000 		.4byte	.LASF7
+ 146 005d 03       		.uleb128 0x3
+ 147 005e 04       		.byte	0x4
+ 148 005f 05       		.byte	0x5
+ 149 0060 696E7400 		.ascii	"int\000"
+ 150 0064 02       		.uleb128 0x2
+ 151 0065 04       		.byte	0x4
+ 152 0066 07       		.byte	0x7
+ 153 0067 21000000 		.4byte	.LASF8
+ 154 006b 04       		.uleb128 0x4
+ 155 006c 73000000 		.4byte	.LASF9
+ 156 0070 02       		.byte	0x2
+ 157 0071 9801     		.2byte	0x198
+ 158 0073 2C000000 		.4byte	0x2c
+ 159 0077 04       		.uleb128 0x4
+ 160 0078 0E000000 		.4byte	.LASF10
+ 161 007c 02       		.byte	0x2
+ 162 007d 9A01     		.2byte	0x19a
+ 163 007f 48000000 		.4byte	0x48
+ 164 0083 02       		.uleb128 0x2
+ 165 0084 04       		.byte	0x4
+ 166 0085 04       		.byte	0x4
+ 167 0086 4D010000 		.4byte	.LASF11
+ 168 008a 02       		.uleb128 0x2
+ 169 008b 08       		.byte	0x8
+ 170 008c 04       		.byte	0x4
+ 171 008d 14010000 		.4byte	.LASF12
+ 172 0091 02       		.uleb128 0x2
+ 173 0092 01       		.byte	0x1
+ 174 0093 08       		.byte	0x8
+ 175 0094 06010000 		.4byte	.LASF13
+ 176 0098 04       		.uleb128 0x4
+ 177 0099 1B010000 		.4byte	.LASF14
+ 178 009d 02       		.byte	0x2
+ 179 009e 4402     		.2byte	0x244
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccI8q5ia.s 			page 8
 
 
- 180 0091 02       		.uleb128 0x2
- 181 0092 01       		.byte	0x1
- 182 0093 08       		.byte	0x8
- 183 0094 7C010000 		.4byte	.LASF13
- 184 0098 04       		.uleb128 0x4
- 185 0099 91010000 		.4byte	.LASF14
- 186 009d 02       		.byte	0x2
- 187 009e 4402     		.2byte	0x244
- 188 00a0 A4000000 		.4byte	0xa4
- 189 00a4 05       		.uleb128 0x5
- 190 00a5 77000000 		.4byte	0x77
- 191 00a9 02       		.uleb128 0x2
- 192 00aa 04       		.byte	0x4
- 193 00ab 07       		.byte	0x7
- 194 00ac F5010000 		.4byte	.LASF15
- 195 00b0 06       		.uleb128 0x6
- 196 00b1 01       		.byte	0x1
- 197 00b2 03       		.byte	0x3
- 198 00b3 5C       		.byte	0x5c
- 199 00b4 C5000000 		.4byte	0xc5
- 200 00b8 07       		.uleb128 0x7
- 201 00b9 15000000 		.4byte	.LASF22
- 202 00bd 03       		.byte	0x3
- 203 00be 5E       		.byte	0x5e
- 204 00bf 6B000000 		.4byte	0x6b
- 205 00c3 00       		.byte	0
- 206 00c4 00       		.byte	0
- 207 00c5 08       		.uleb128 0x8
- 208 00c6 47000000 		.4byte	.LASF16
- 209 00ca 03       		.byte	0x3
- 210 00cb 5F       		.byte	0x5f
- 211 00cc B0000000 		.4byte	0xb0
- 212 00d0 09       		.uleb128 0x9
- 213 00d1 2E000000 		.4byte	.LASF17
- 214 00d5 01       		.byte	0x1
- 215 00d6 49       		.byte	0x49
- 216 00d7 00000000 		.4byte	.LFB1
- 217 00db 2C000000 		.4byte	.LFE1-.LFB1
- 218 00df 01       		.uleb128 0x1
- 219 00e0 9C       		.byte	0x9c
- 220 00e1 09       		.uleb128 0x9
- 221 00e2 3A000000 		.4byte	.LASF18
- 222 00e6 01       		.byte	0x1
- 223 00e7 9F       		.byte	0x9f
- 224 00e8 00000000 		.4byte	.LFB2
- 225 00ec 18000000 		.4byte	.LFE2-.LFB2
- 226 00f0 01       		.uleb128 0x1
- 227 00f1 9C       		.byte	0x9c
- 228 00f2 0A       		.uleb128 0xa
- 229 00f3 B6010000 		.4byte	.LASF23
- 230 00f7 01       		.byte	0x1
- 231 00f8 2D       		.byte	0x2d
- 232 00f9 C5000000 		.4byte	0xc5
- 233 00fd 05       		.uleb128 0x5
- 234 00fe 03       		.byte	0x3
- 235 00ff 00000000 		.4byte	I2C_1_backup
- 236 0103 00       		.byte	0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccgvFA6S.s 			page 9
+ 180 00a0 A4000000 		.4byte	0xa4
+ 181 00a4 05       		.uleb128 0x5
+ 182 00a5 77000000 		.4byte	0x77
+ 183 00a9 02       		.uleb128 0x2
+ 184 00aa 04       		.byte	0x4
+ 185 00ab 07       		.byte	0x7
+ 186 00ac 7F010000 		.4byte	.LASF15
+ 187 00b0 06       		.uleb128 0x6
+ 188 00b1 01       		.byte	0x1
+ 189 00b2 03       		.byte	0x3
+ 190 00b3 5C       		.byte	0x5c
+ 191 00b4 C5000000 		.4byte	0xc5
+ 192 00b8 07       		.uleb128 0x7
+ 193 00b9 15000000 		.4byte	.LASF24
+ 194 00bd 03       		.byte	0x3
+ 195 00be 5E       		.byte	0x5e
+ 196 00bf 6B000000 		.4byte	0x6b
+ 197 00c3 00       		.byte	0
+ 198 00c4 00       		.byte	0
+ 199 00c5 08       		.uleb128 0x8
+ 200 00c6 52000000 		.4byte	.LASF16
+ 201 00ca 03       		.byte	0x3
+ 202 00cb 5F       		.byte	0x5f
+ 203 00cc B0000000 		.4byte	0xb0
+ 204 00d0 09       		.uleb128 0x9
+ 205 00d1 39000000 		.4byte	.LASF17
+ 206 00d5 01       		.byte	0x1
+ 207 00d6 49       		.byte	0x49
+ 208 00d7 00000000 		.4byte	.LFB1
+ 209 00db 1C000000 		.4byte	.LFE1-.LFB1
+ 210 00df 01       		.uleb128 0x1
+ 211 00e0 9C       		.byte	0x9c
+ 212 00e1 EF000000 		.4byte	0xef
+ 213 00e5 0A       		.uleb128 0xa
+ 214 00e6 12000000 		.4byte	.LVL0
+ 215 00ea 1F010000 		.4byte	0x11f
+ 216 00ee 00       		.byte	0
+ 217 00ef 09       		.uleb128 0x9
+ 218 00f0 66000000 		.4byte	.LASF18
+ 219 00f4 01       		.byte	0x1
+ 220 00f5 9F       		.byte	0x9f
+ 221 00f6 00000000 		.4byte	.LFB2
+ 222 00fa 14000000 		.4byte	.LFE2-.LFB2
+ 223 00fe 01       		.uleb128 0x1
+ 224 00ff 9C       		.byte	0x9c
+ 225 0100 0E010000 		.4byte	0x10e
+ 226 0104 0A       		.uleb128 0xa
+ 227 0105 0E000000 		.4byte	.LVL1
+ 228 0109 26010000 		.4byte	0x126
+ 229 010d 00       		.byte	0
+ 230 010e 0B       		.uleb128 0xb
+ 231 010f 40010000 		.4byte	.LASF25
+ 232 0113 01       		.byte	0x1
+ 233 0114 2D       		.byte	0x2d
+ 234 0115 C5000000 		.4byte	0xc5
+ 235 0119 05       		.uleb128 0x5
+ 236 011a 03       		.byte	0x3
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccI8q5ia.s 			page 9
 
 
- 237              		.section	.debug_abbrev,"",%progbits
- 238              	.Ldebug_abbrev0:
- 239 0000 01       		.uleb128 0x1
- 240 0001 11       		.uleb128 0x11
- 241 0002 01       		.byte	0x1
- 242 0003 25       		.uleb128 0x25
- 243 0004 0E       		.uleb128 0xe
- 244 0005 13       		.uleb128 0x13
- 245 0006 0B       		.uleb128 0xb
- 246 0007 03       		.uleb128 0x3
- 247 0008 0E       		.uleb128 0xe
- 248 0009 1B       		.uleb128 0x1b
- 249 000a 0E       		.uleb128 0xe
- 250 000b 55       		.uleb128 0x55
- 251 000c 17       		.uleb128 0x17
- 252 000d 11       		.uleb128 0x11
- 253 000e 01       		.uleb128 0x1
- 254 000f 10       		.uleb128 0x10
- 255 0010 17       		.uleb128 0x17
- 256 0011 00       		.byte	0
- 257 0012 00       		.byte	0
- 258 0013 02       		.uleb128 0x2
- 259 0014 24       		.uleb128 0x24
- 260 0015 00       		.byte	0
- 261 0016 0B       		.uleb128 0xb
- 262 0017 0B       		.uleb128 0xb
- 263 0018 3E       		.uleb128 0x3e
- 264 0019 0B       		.uleb128 0xb
- 265 001a 03       		.uleb128 0x3
- 266 001b 0E       		.uleb128 0xe
- 267 001c 00       		.byte	0
- 268 001d 00       		.byte	0
- 269 001e 03       		.uleb128 0x3
- 270 001f 24       		.uleb128 0x24
- 271 0020 00       		.byte	0
- 272 0021 0B       		.uleb128 0xb
- 273 0022 0B       		.uleb128 0xb
- 274 0023 3E       		.uleb128 0x3e
- 275 0024 0B       		.uleb128 0xb
- 276 0025 03       		.uleb128 0x3
- 277 0026 08       		.uleb128 0x8
- 278 0027 00       		.byte	0
- 279 0028 00       		.byte	0
- 280 0029 04       		.uleb128 0x4
- 281 002a 16       		.uleb128 0x16
- 282 002b 00       		.byte	0
- 283 002c 03       		.uleb128 0x3
- 284 002d 0E       		.uleb128 0xe
- 285 002e 3A       		.uleb128 0x3a
- 286 002f 0B       		.uleb128 0xb
- 287 0030 3B       		.uleb128 0x3b
- 288 0031 05       		.uleb128 0x5
- 289 0032 49       		.uleb128 0x49
- 290 0033 13       		.uleb128 0x13
- 291 0034 00       		.byte	0
- 292 0035 00       		.byte	0
- 293 0036 05       		.uleb128 0x5
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccgvFA6S.s 			page 10
+ 237 011b 00000000 		.4byte	I2C_1_backup
+ 238 011f 0C       		.uleb128 0xc
+ 239 0120 2E000000 		.4byte	.LASF19
+ 240 0124 03       		.byte	0x3
+ 241 0125 6F       		.byte	0x6f
+ 242 0126 0C       		.uleb128 0xc
+ 243 0127 45000000 		.4byte	.LASF20
+ 244 012b 03       		.byte	0x3
+ 245 012c 6D       		.byte	0x6d
+ 246 012d 00       		.byte	0
+ 247              		.section	.debug_abbrev,"",%progbits
+ 248              	.Ldebug_abbrev0:
+ 249 0000 01       		.uleb128 0x1
+ 250 0001 11       		.uleb128 0x11
+ 251 0002 01       		.byte	0x1
+ 252 0003 25       		.uleb128 0x25
+ 253 0004 0E       		.uleb128 0xe
+ 254 0005 13       		.uleb128 0x13
+ 255 0006 0B       		.uleb128 0xb
+ 256 0007 03       		.uleb128 0x3
+ 257 0008 0E       		.uleb128 0xe
+ 258 0009 1B       		.uleb128 0x1b
+ 259 000a 0E       		.uleb128 0xe
+ 260 000b 55       		.uleb128 0x55
+ 261 000c 17       		.uleb128 0x17
+ 262 000d 11       		.uleb128 0x11
+ 263 000e 01       		.uleb128 0x1
+ 264 000f 10       		.uleb128 0x10
+ 265 0010 17       		.uleb128 0x17
+ 266 0011 00       		.byte	0
+ 267 0012 00       		.byte	0
+ 268 0013 02       		.uleb128 0x2
+ 269 0014 24       		.uleb128 0x24
+ 270 0015 00       		.byte	0
+ 271 0016 0B       		.uleb128 0xb
+ 272 0017 0B       		.uleb128 0xb
+ 273 0018 3E       		.uleb128 0x3e
+ 274 0019 0B       		.uleb128 0xb
+ 275 001a 03       		.uleb128 0x3
+ 276 001b 0E       		.uleb128 0xe
+ 277 001c 00       		.byte	0
+ 278 001d 00       		.byte	0
+ 279 001e 03       		.uleb128 0x3
+ 280 001f 24       		.uleb128 0x24
+ 281 0020 00       		.byte	0
+ 282 0021 0B       		.uleb128 0xb
+ 283 0022 0B       		.uleb128 0xb
+ 284 0023 3E       		.uleb128 0x3e
+ 285 0024 0B       		.uleb128 0xb
+ 286 0025 03       		.uleb128 0x3
+ 287 0026 08       		.uleb128 0x8
+ 288 0027 00       		.byte	0
+ 289 0028 00       		.byte	0
+ 290 0029 04       		.uleb128 0x4
+ 291 002a 16       		.uleb128 0x16
+ 292 002b 00       		.byte	0
+ 293 002c 03       		.uleb128 0x3
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccI8q5ia.s 			page 10
 
 
- 294 0037 35       		.uleb128 0x35
- 295 0038 00       		.byte	0
- 296 0039 49       		.uleb128 0x49
- 297 003a 13       		.uleb128 0x13
- 298 003b 00       		.byte	0
- 299 003c 00       		.byte	0
- 300 003d 06       		.uleb128 0x6
- 301 003e 13       		.uleb128 0x13
- 302 003f 01       		.byte	0x1
- 303 0040 0B       		.uleb128 0xb
- 304 0041 0B       		.uleb128 0xb
- 305 0042 3A       		.uleb128 0x3a
- 306 0043 0B       		.uleb128 0xb
- 307 0044 3B       		.uleb128 0x3b
- 308 0045 0B       		.uleb128 0xb
- 309 0046 01       		.uleb128 0x1
- 310 0047 13       		.uleb128 0x13
- 311 0048 00       		.byte	0
- 312 0049 00       		.byte	0
- 313 004a 07       		.uleb128 0x7
- 314 004b 0D       		.uleb128 0xd
- 315 004c 00       		.byte	0
- 316 004d 03       		.uleb128 0x3
- 317 004e 0E       		.uleb128 0xe
- 318 004f 3A       		.uleb128 0x3a
- 319 0050 0B       		.uleb128 0xb
- 320 0051 3B       		.uleb128 0x3b
- 321 0052 0B       		.uleb128 0xb
- 322 0053 49       		.uleb128 0x49
- 323 0054 13       		.uleb128 0x13
- 324 0055 38       		.uleb128 0x38
- 325 0056 0B       		.uleb128 0xb
- 326 0057 00       		.byte	0
- 327 0058 00       		.byte	0
- 328 0059 08       		.uleb128 0x8
- 329 005a 16       		.uleb128 0x16
- 330 005b 00       		.byte	0
- 331 005c 03       		.uleb128 0x3
- 332 005d 0E       		.uleb128 0xe
- 333 005e 3A       		.uleb128 0x3a
- 334 005f 0B       		.uleb128 0xb
- 335 0060 3B       		.uleb128 0x3b
- 336 0061 0B       		.uleb128 0xb
- 337 0062 49       		.uleb128 0x49
- 338 0063 13       		.uleb128 0x13
- 339 0064 00       		.byte	0
- 340 0065 00       		.byte	0
- 341 0066 09       		.uleb128 0x9
- 342 0067 2E       		.uleb128 0x2e
- 343 0068 00       		.byte	0
- 344 0069 3F       		.uleb128 0x3f
- 345 006a 19       		.uleb128 0x19
- 346 006b 03       		.uleb128 0x3
- 347 006c 0E       		.uleb128 0xe
- 348 006d 3A       		.uleb128 0x3a
- 349 006e 0B       		.uleb128 0xb
- 350 006f 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccgvFA6S.s 			page 11
+ 294 002d 0E       		.uleb128 0xe
+ 295 002e 3A       		.uleb128 0x3a
+ 296 002f 0B       		.uleb128 0xb
+ 297 0030 3B       		.uleb128 0x3b
+ 298 0031 05       		.uleb128 0x5
+ 299 0032 49       		.uleb128 0x49
+ 300 0033 13       		.uleb128 0x13
+ 301 0034 00       		.byte	0
+ 302 0035 00       		.byte	0
+ 303 0036 05       		.uleb128 0x5
+ 304 0037 35       		.uleb128 0x35
+ 305 0038 00       		.byte	0
+ 306 0039 49       		.uleb128 0x49
+ 307 003a 13       		.uleb128 0x13
+ 308 003b 00       		.byte	0
+ 309 003c 00       		.byte	0
+ 310 003d 06       		.uleb128 0x6
+ 311 003e 13       		.uleb128 0x13
+ 312 003f 01       		.byte	0x1
+ 313 0040 0B       		.uleb128 0xb
+ 314 0041 0B       		.uleb128 0xb
+ 315 0042 3A       		.uleb128 0x3a
+ 316 0043 0B       		.uleb128 0xb
+ 317 0044 3B       		.uleb128 0x3b
+ 318 0045 0B       		.uleb128 0xb
+ 319 0046 01       		.uleb128 0x1
+ 320 0047 13       		.uleb128 0x13
+ 321 0048 00       		.byte	0
+ 322 0049 00       		.byte	0
+ 323 004a 07       		.uleb128 0x7
+ 324 004b 0D       		.uleb128 0xd
+ 325 004c 00       		.byte	0
+ 326 004d 03       		.uleb128 0x3
+ 327 004e 0E       		.uleb128 0xe
+ 328 004f 3A       		.uleb128 0x3a
+ 329 0050 0B       		.uleb128 0xb
+ 330 0051 3B       		.uleb128 0x3b
+ 331 0052 0B       		.uleb128 0xb
+ 332 0053 49       		.uleb128 0x49
+ 333 0054 13       		.uleb128 0x13
+ 334 0055 38       		.uleb128 0x38
+ 335 0056 0B       		.uleb128 0xb
+ 336 0057 00       		.byte	0
+ 337 0058 00       		.byte	0
+ 338 0059 08       		.uleb128 0x8
+ 339 005a 16       		.uleb128 0x16
+ 340 005b 00       		.byte	0
+ 341 005c 03       		.uleb128 0x3
+ 342 005d 0E       		.uleb128 0xe
+ 343 005e 3A       		.uleb128 0x3a
+ 344 005f 0B       		.uleb128 0xb
+ 345 0060 3B       		.uleb128 0x3b
+ 346 0061 0B       		.uleb128 0xb
+ 347 0062 49       		.uleb128 0x49
+ 348 0063 13       		.uleb128 0x13
+ 349 0064 00       		.byte	0
+ 350 0065 00       		.byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccI8q5ia.s 			page 11
 
 
- 351 0070 0B       		.uleb128 0xb
- 352 0071 27       		.uleb128 0x27
- 353 0072 19       		.uleb128 0x19
- 354 0073 11       		.uleb128 0x11
- 355 0074 01       		.uleb128 0x1
- 356 0075 12       		.uleb128 0x12
- 357 0076 06       		.uleb128 0x6
- 358 0077 40       		.uleb128 0x40
- 359 0078 18       		.uleb128 0x18
- 360 0079 9642     		.uleb128 0x2116
- 361 007b 19       		.uleb128 0x19
- 362 007c 00       		.byte	0
- 363 007d 00       		.byte	0
- 364 007e 0A       		.uleb128 0xa
- 365 007f 34       		.uleb128 0x34
- 366 0080 00       		.byte	0
- 367 0081 03       		.uleb128 0x3
- 368 0082 0E       		.uleb128 0xe
- 369 0083 3A       		.uleb128 0x3a
- 370 0084 0B       		.uleb128 0xb
- 371 0085 3B       		.uleb128 0x3b
- 372 0086 0B       		.uleb128 0xb
- 373 0087 49       		.uleb128 0x49
- 374 0088 13       		.uleb128 0x13
- 375 0089 3F       		.uleb128 0x3f
- 376 008a 19       		.uleb128 0x19
- 377 008b 02       		.uleb128 0x2
- 378 008c 18       		.uleb128 0x18
- 379 008d 00       		.byte	0
- 380 008e 00       		.byte	0
- 381 008f 00       		.byte	0
- 382              		.section	.debug_aranges,"",%progbits
- 383 0000 24000000 		.4byte	0x24
- 384 0004 0200     		.2byte	0x2
- 385 0006 00000000 		.4byte	.Ldebug_info0
- 386 000a 04       		.byte	0x4
- 387 000b 00       		.byte	0
- 388 000c 0000     		.2byte	0
- 389 000e 0000     		.2byte	0
- 390 0010 00000000 		.4byte	.LFB1
- 391 0014 2C000000 		.4byte	.LFE1-.LFB1
- 392 0018 00000000 		.4byte	.LFB2
- 393 001c 18000000 		.4byte	.LFE2-.LFB2
- 394 0020 00000000 		.4byte	0
- 395 0024 00000000 		.4byte	0
- 396              		.section	.debug_ranges,"",%progbits
- 397              	.Ldebug_ranges0:
- 398 0000 00000000 		.4byte	.LFB1
- 399 0004 2C000000 		.4byte	.LFE1
- 400 0008 00000000 		.4byte	.LFB2
- 401 000c 18000000 		.4byte	.LFE2
- 402 0010 00000000 		.4byte	0
- 403 0014 00000000 		.4byte	0
- 404              		.section	.debug_line,"",%progbits
- 405              	.Ldebug_line0:
- 406 0000 81000000 		.section	.debug_str,"MS",%progbits,1
- 406      02005000 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccgvFA6S.s 			page 12
+ 351 0066 09       		.uleb128 0x9
+ 352 0067 2E       		.uleb128 0x2e
+ 353 0068 01       		.byte	0x1
+ 354 0069 3F       		.uleb128 0x3f
+ 355 006a 19       		.uleb128 0x19
+ 356 006b 03       		.uleb128 0x3
+ 357 006c 0E       		.uleb128 0xe
+ 358 006d 3A       		.uleb128 0x3a
+ 359 006e 0B       		.uleb128 0xb
+ 360 006f 3B       		.uleb128 0x3b
+ 361 0070 0B       		.uleb128 0xb
+ 362 0071 27       		.uleb128 0x27
+ 363 0072 19       		.uleb128 0x19
+ 364 0073 11       		.uleb128 0x11
+ 365 0074 01       		.uleb128 0x1
+ 366 0075 12       		.uleb128 0x12
+ 367 0076 06       		.uleb128 0x6
+ 368 0077 40       		.uleb128 0x40
+ 369 0078 18       		.uleb128 0x18
+ 370 0079 9742     		.uleb128 0x2117
+ 371 007b 19       		.uleb128 0x19
+ 372 007c 01       		.uleb128 0x1
+ 373 007d 13       		.uleb128 0x13
+ 374 007e 00       		.byte	0
+ 375 007f 00       		.byte	0
+ 376 0080 0A       		.uleb128 0xa
+ 377 0081 898201   		.uleb128 0x4109
+ 378 0084 00       		.byte	0
+ 379 0085 11       		.uleb128 0x11
+ 380 0086 01       		.uleb128 0x1
+ 381 0087 31       		.uleb128 0x31
+ 382 0088 13       		.uleb128 0x13
+ 383 0089 00       		.byte	0
+ 384 008a 00       		.byte	0
+ 385 008b 0B       		.uleb128 0xb
+ 386 008c 34       		.uleb128 0x34
+ 387 008d 00       		.byte	0
+ 388 008e 03       		.uleb128 0x3
+ 389 008f 0E       		.uleb128 0xe
+ 390 0090 3A       		.uleb128 0x3a
+ 391 0091 0B       		.uleb128 0xb
+ 392 0092 3B       		.uleb128 0x3b
+ 393 0093 0B       		.uleb128 0xb
+ 394 0094 49       		.uleb128 0x49
+ 395 0095 13       		.uleb128 0x13
+ 396 0096 3F       		.uleb128 0x3f
+ 397 0097 19       		.uleb128 0x19
+ 398 0098 02       		.uleb128 0x2
+ 399 0099 18       		.uleb128 0x18
+ 400 009a 00       		.byte	0
+ 401 009b 00       		.byte	0
+ 402 009c 0C       		.uleb128 0xc
+ 403 009d 2E       		.uleb128 0x2e
+ 404 009e 00       		.byte	0
+ 405 009f 3F       		.uleb128 0x3f
+ 406 00a0 19       		.uleb128 0x19
+ 407 00a1 03       		.uleb128 0x3
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccI8q5ia.s 			page 12
 
 
- 406      00000201 
- 406      FB0E0D00 
- 406      01010101 
- 407              	.LASF6:
- 408 0000 6C6F6E67 		.ascii	"long long int\000"
- 408      206C6F6E 
- 408      6720696E 
- 408      7400
- 409              	.LASF10:
- 410 000e 75696E74 		.ascii	"uint32\000"
- 410      333200
- 411              	.LASF22:
- 412 0015 656E6162 		.ascii	"enableState\000"
- 412      6C655374 
- 412      61746500 
- 413              	.LASF8:
- 414 0021 756E7369 		.ascii	"unsigned int\000"
- 414      676E6564 
- 414      20696E74 
- 414      00
- 415              	.LASF17:
- 416 002e 4932435F 		.ascii	"I2C_1_Sleep\000"
- 416      315F536C 
- 416      65657000 
- 417              	.LASF18:
- 418 003a 4932435F 		.ascii	"I2C_1_Wakeup\000"
- 418      315F5761 
- 418      6B657570 
- 418      00
- 419              	.LASF16:
- 420 0047 4932435F 		.ascii	"I2C_1_BACKUP_STRUCT\000"
- 420      315F4241 
- 420      434B5550 
- 420      5F535452 
- 420      55435400 
- 421              	.LASF9:
- 422 005b 75696E74 		.ascii	"uint8\000"
- 422      3800
- 423              	.LASF5:
- 424 0061 6C6F6E67 		.ascii	"long unsigned int\000"
- 424      20756E73 
- 424      69676E65 
- 424      6420696E 
- 424      7400
- 425              	.LASF7:
- 426 0073 6C6F6E67 		.ascii	"long long unsigned int\000"
- 426      206C6F6E 
- 426      6720756E 
- 426      7369676E 
- 426      65642069 
- 427              	.LASF21:
- 428 008a 433A5C55 		.ascii	"C:\\Users\\glenn\\OneDrive\\PSOC\\moisture_sensor_4"
- 428      73657273 
- 428      5C676C65 
- 428      6E6E5C4F 
- 428      6E654472 
- 429 00b8 6D5C4D6F 		.ascii	"m\\Moisture_Sensor\\Moisture_Sensor.cydsn\000"
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccgvFA6S.s 			page 13
+ 408 00a2 0E       		.uleb128 0xe
+ 409 00a3 3A       		.uleb128 0x3a
+ 410 00a4 0B       		.uleb128 0xb
+ 411 00a5 3B       		.uleb128 0x3b
+ 412 00a6 0B       		.uleb128 0xb
+ 413 00a7 27       		.uleb128 0x27
+ 414 00a8 19       		.uleb128 0x19
+ 415 00a9 3C       		.uleb128 0x3c
+ 416 00aa 19       		.uleb128 0x19
+ 417 00ab 00       		.byte	0
+ 418 00ac 00       		.byte	0
+ 419 00ad 00       		.byte	0
+ 420              		.section	.debug_aranges,"",%progbits
+ 421 0000 24000000 		.4byte	0x24
+ 422 0004 0200     		.2byte	0x2
+ 423 0006 00000000 		.4byte	.Ldebug_info0
+ 424 000a 04       		.byte	0x4
+ 425 000b 00       		.byte	0
+ 426 000c 0000     		.2byte	0
+ 427 000e 0000     		.2byte	0
+ 428 0010 00000000 		.4byte	.LFB1
+ 429 0014 1C000000 		.4byte	.LFE1-.LFB1
+ 430 0018 00000000 		.4byte	.LFB2
+ 431 001c 14000000 		.4byte	.LFE2-.LFB2
+ 432 0020 00000000 		.4byte	0
+ 433 0024 00000000 		.4byte	0
+ 434              		.section	.debug_ranges,"",%progbits
+ 435              	.Ldebug_ranges0:
+ 436 0000 00000000 		.4byte	.LFB1
+ 437 0004 1C000000 		.4byte	.LFE1
+ 438 0008 00000000 		.4byte	.LFB2
+ 439 000c 14000000 		.4byte	.LFE2
+ 440 0010 00000000 		.4byte	0
+ 441 0014 00000000 		.4byte	0
+ 442              		.section	.debug_line,"",%progbits
+ 443              	.Ldebug_line0:
+ 444 0000 81000000 		.section	.debug_str,"MS",%progbits,1
+ 444      02005000 
+ 444      00000201 
+ 444      FB0E0D00 
+ 444      01010101 
+ 445              	.LASF6:
+ 446 0000 6C6F6E67 		.ascii	"long long int\000"
+ 446      206C6F6E 
+ 446      6720696E 
+ 446      7400
+ 447              	.LASF10:
+ 448 000e 75696E74 		.ascii	"uint32\000"
+ 448      333200
+ 449              	.LASF24:
+ 450 0015 656E6162 		.ascii	"enableState\000"
+ 450      6C655374 
+ 450      61746500 
+ 451              	.LASF8:
+ 452 0021 756E7369 		.ascii	"unsigned int\000"
+ 452      676E6564 
+ 452      20696E74 
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccI8q5ia.s 			page 13
 
 
- 429      69737475 
- 429      72655F53 
- 429      656E736F 
- 429      725C4D6F 
- 430              	.LASF19:
- 431 00e0 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 431      4320342E 
- 431      392E3320 
- 431      32303135 
- 431      30333033 
- 432 0113 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
- 432      20726576 
- 432      6973696F 
- 432      6E203232 
- 432      31323230 
- 433 0146 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
- 433      66756E63 
- 433      74696F6E 
- 433      2D736563 
- 433      74696F6E 
- 434              	.LASF1:
- 435 016e 756E7369 		.ascii	"unsigned char\000"
- 435      676E6564 
- 435      20636861 
- 435      7200
- 436              	.LASF13:
- 437 017c 63686172 		.ascii	"char\000"
- 437      00
- 438              	.LASF4:
- 439 0181 6C6F6E67 		.ascii	"long int\000"
- 439      20696E74 
- 439      00
- 440              	.LASF12:
- 441 018a 646F7562 		.ascii	"double\000"
- 441      6C6500
- 442              	.LASF14:
- 443 0191 72656733 		.ascii	"reg32\000"
- 443      3200
- 444              	.LASF3:
- 445 0197 73686F72 		.ascii	"short unsigned int\000"
- 445      7420756E 
- 445      7369676E 
- 445      65642069 
- 445      6E7400
- 446              	.LASF0:
- 447 01aa 7369676E 		.ascii	"signed char\000"
- 447      65642063 
- 447      68617200 
- 448              	.LASF23:
- 449 01b6 4932435F 		.ascii	"I2C_1_backup\000"
- 449      315F6261 
- 449      636B7570 
- 449      00
- 450              	.LASF11:
- 451 01c3 666C6F61 		.ascii	"float\000"
- 451      7400
- 452              	.LASF2:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccgvFA6S.s 			page 14
+ 452      00
+ 453              	.LASF19:
+ 454 002e 4932435F 		.ascii	"I2C_1_Stop\000"
+ 454      315F5374 
+ 454      6F7000
+ 455              	.LASF17:
+ 456 0039 4932435F 		.ascii	"I2C_1_Sleep\000"
+ 456      315F536C 
+ 456      65657000 
+ 457              	.LASF20:
+ 458 0045 4932435F 		.ascii	"I2C_1_Enable\000"
+ 458      315F456E 
+ 458      61626C65 
+ 458      00
+ 459              	.LASF16:
+ 460 0052 4932435F 		.ascii	"I2C_1_BACKUP_STRUCT\000"
+ 460      315F4241 
+ 460      434B5550 
+ 460      5F535452 
+ 460      55435400 
+ 461              	.LASF18:
+ 462 0066 4932435F 		.ascii	"I2C_1_Wakeup\000"
+ 462      315F5761 
+ 462      6B657570 
+ 462      00
+ 463              	.LASF9:
+ 464 0073 75696E74 		.ascii	"uint8\000"
+ 464      3800
+ 465              	.LASF5:
+ 466 0079 6C6F6E67 		.ascii	"long unsigned int\000"
+ 466      20756E73 
+ 466      69676E65 
+ 466      6420696E 
+ 466      7400
+ 467              	.LASF7:
+ 468 008b 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 468      206C6F6E 
+ 468      6720756E 
+ 468      7369676E 
+ 468      65642069 
+ 469              	.LASF23:
+ 470 00a2 433A5C55 		.ascii	"C:\\Users\\glenn\\OneDrive\\PSOC\\moisture_sensor_4"
+ 470      73657273 
+ 470      5C676C65 
+ 470      6E6E5C4F 
+ 470      6E654472 
+ 471 00d0 6D5C4D6F 		.ascii	"m\\Moisture_Sensor\\Moisture_Sensor.cydsn\000"
+ 471      69737475 
+ 471      72655F53 
+ 471      656E736F 
+ 471      725C4D6F 
+ 472              	.LASF1:
+ 473 00f8 756E7369 		.ascii	"unsigned char\000"
+ 473      676E6564 
+ 473      20636861 
+ 473      7200
+ 474              	.LASF13:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccI8q5ia.s 			page 14
 
 
- 453 01c9 73686F72 		.ascii	"short int\000"
- 453      7420696E 
- 453      7400
- 454              	.LASF20:
- 455 01d3 47656E65 		.ascii	"Generated_Source\\PSoC4\\I2C_1_PM.c\000"
- 455      72617465 
- 455      645F536F 
- 455      75726365 
- 455      5C50536F 
- 456              	.LASF15:
- 457 01f5 73697A65 		.ascii	"sizetype\000"
- 457      74797065 
- 457      00
- 458              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ 475 0106 63686172 		.ascii	"char\000"
+ 475      00
+ 476              	.LASF4:
+ 477 010b 6C6F6E67 		.ascii	"long int\000"
+ 477      20696E74 
+ 477      00
+ 478              	.LASF12:
+ 479 0114 646F7562 		.ascii	"double\000"
+ 479      6C6500
+ 480              	.LASF14:
+ 481 011b 72656733 		.ascii	"reg32\000"
+ 481      3200
+ 482              	.LASF3:
+ 483 0121 73686F72 		.ascii	"short unsigned int\000"
+ 483      7420756E 
+ 483      7369676E 
+ 483      65642069 
+ 483      6E7400
+ 484              	.LASF0:
+ 485 0134 7369676E 		.ascii	"signed char\000"
+ 485      65642063 
+ 485      68617200 
+ 486              	.LASF25:
+ 487 0140 4932435F 		.ascii	"I2C_1_backup\000"
+ 487      315F6261 
+ 487      636B7570 
+ 487      00
+ 488              	.LASF11:
+ 489 014d 666C6F61 		.ascii	"float\000"
+ 489      7400
+ 490              	.LASF2:
+ 491 0153 73686F72 		.ascii	"short int\000"
+ 491      7420696E 
+ 491      7400
+ 492              	.LASF22:
+ 493 015d 47656E65 		.ascii	"Generated_Source\\PSoC4\\I2C_1_PM.c\000"
+ 493      72617465 
+ 493      645F536F 
+ 493      75726365 
+ 493      5C50536F 
+ 494              	.LASF15:
+ 495 017f 73697A65 		.ascii	"sizetype\000"
+ 495      74797065 
+ 495      00
+ 496              	.LASF21:
+ 497 0188 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 497      4320342E 
+ 497      392E3320 
+ 497      32303135 
+ 497      30333033 
+ 498 01bb 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 498      20726576 
+ 498      6973696F 
+ 498      6E203232 
+ 498      31323230 
+ 499 01ee 32202D66 		.ascii	"2 -ffunction-sections -finline-functions -ffat-lto-"
+ 499      66756E63 
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccI8q5ia.s 			page 15
+
+
+ 499      74696F6E 
+ 499      2D736563 
+ 499      74696F6E 
+ 500 0221 6F626A65 		.ascii	"objects\000"
+ 500      63747300 
+ 501              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

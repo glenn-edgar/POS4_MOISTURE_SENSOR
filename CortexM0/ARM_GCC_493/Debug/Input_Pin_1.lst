@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJaswno.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -9,7 +9,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 1
    6              		.eabi_attribute 24, 1
    7              		.eabi_attribute 25, 1
    8              		.eabi_attribute 26, 1
-   9              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 30, 2
   10              		.eabi_attribute 34, 0
   11              		.eabi_attribute 18, 4
   12              		.code	16
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 1
   30:Generated_Source\PSoC4/Input_Pin_1.c ****         #define Input_Pin_1_SetP4PinDriveMode(shift, mode)  \
   31:Generated_Source\PSoC4/Input_Pin_1.c ****         do { \
   32:Generated_Source\PSoC4/Input_Pin_1.c ****             Input_Pin_1_USBIO_CTRL_REG = (Input_Pin_1_USBIO_CTRL_REG & \
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 2
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJaswno.s 			page 2
 
 
   33:Generated_Source\PSoC4/Input_Pin_1.c ****                                     (uint32)(~(uint32)(Input_Pin_1_DRIVE_MODE_IND_MASK << \
@@ -104,54 +104,40 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 1
   73:Generated_Source\PSoC4/Input_Pin_1.c ****     {
   26              		.loc 1 73 0
   27              		.cfi_startproc
-  28 0000 80B5     		push	{r7, lr}
-  29              		.cfi_def_cfa_offset 8
-  30              		.cfi_offset 7, -8
-  31              		.cfi_offset 14, -4
-  32 0002 82B0     		sub	sp, sp, #8
-  33              		.cfi_def_cfa_offset 16
-  34 0004 00AF     		add	r7, sp, #0
-  35              		.cfi_def_cfa_register 7
-  36 0006 021C     		mov	r2, r0
-  37 0008 FB1D     		add	r3, r7, #7
-  38 000a 1A70     		strb	r2, [r3]
+  28              	.LVL0:
   74:Generated_Source\PSoC4/Input_Pin_1.c **** 		Input_Pin_1_SetP4PinDriveMode(Input_Pin_1__0__SHIFT, mode);
-  39              		.loc 1 74 0
-  40 000c 064B     		ldr	r3, .L2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 3
-
-
-  41 000e 064A     		ldr	r2, .L2
-  42 0010 1268     		ldr	r2, [r2]
-  43 0012 0649     		ldr	r1, .L2+4
-  44 0014 1140     		and	r1, r2
-  45 0016 FA1D     		add	r2, r7, #7
-  46 0018 1278     		ldrb	r2, [r2]
-  47 001a 9204     		lsl	r2, r2, #18
-  48 001c 0A43     		orr	r2, r1
-  49 001e 1A60     		str	r2, [r3]
+  29              		.loc 1 74 0
+  30 0000 034A     		ldr	r2, .L2
+  31 0002 044B     		ldr	r3, .L2+4
+  32 0004 1168     		ldr	r1, [r2]
+  33 0006 8004     		lsl	r0, r0, #18
+  34              	.LVL1:
+  35 0008 0B40     		and	r3, r1
+  36 000a 1843     		orr	r0, r3
+  37 000c 1060     		str	r0, [r2]
   75:Generated_Source\PSoC4/Input_Pin_1.c ****     }
-  50              		.loc 1 75 0
-  51 0020 BD46     		mov	sp, r7
-  52 0022 02B0     		add	sp, sp, #8
-  53              		@ sp needed
-  54 0024 80BD     		pop	{r7, pc}
-  55              	.L3:
-  56 0026 C046     		.align	2
-  57              	.L2:
-  58 0028 08040440 		.word	1074005000
-  59 002c FFFFE3FF 		.word	-1835009
-  60              		.cfi_endproc
-  61              	.LFE0:
-  62              		.size	Input_Pin_1_SetDriveMode, .-Input_Pin_1_SetDriveMode
-  63              		.section	.text.Input_Pin_1_Write,"ax",%progbits
-  64              		.align	2
-  65              		.global	Input_Pin_1_Write
-  66              		.code	16
-  67              		.thumb_func
-  68              		.type	Input_Pin_1_Write, %function
-  69              	Input_Pin_1_Write:
-  70              	.LFB1:
+  38              		.loc 1 75 0
+  39              		@ sp needed
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJaswno.s 			page 3
+
+
+  40 000e 7047     		bx	lr
+  41              	.L3:
+  42              		.align	2
+  43              	.L2:
+  44 0010 08040440 		.word	1074005000
+  45 0014 FFFFE3FF 		.word	-1835009
+  46              		.cfi_endproc
+  47              	.LFE0:
+  48              		.size	Input_Pin_1_SetDriveMode, .-Input_Pin_1_SetDriveMode
+  49              		.section	.text.Input_Pin_1_Write,"ax",%progbits
+  50              		.align	2
+  51              		.global	Input_Pin_1_Write
+  52              		.code	16
+  53              		.thumb_func
+  54              		.type	Input_Pin_1_Write, %function
+  55              	Input_Pin_1_Write:
+  56              	.LFB1:
   76:Generated_Source\PSoC4/Input_Pin_1.c **** #endif
   77:Generated_Source\PSoC4/Input_Pin_1.c **** 
   78:Generated_Source\PSoC4/Input_Pin_1.c **** 
@@ -178,9 +164,6 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 1
   99:Generated_Source\PSoC4/Input_Pin_1.c **** *
  100:Generated_Source\PSoC4/Input_Pin_1.c **** * \sideeffect
  101:Generated_Source\PSoC4/Input_Pin_1.c **** *  If you use read-modify-write operations that are not atomic; the Interrupt 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 4
-
-
  102:Generated_Source\PSoC4/Input_Pin_1.c **** *  Service Routines (ISR) can cause corruption of this function. An ISR that 
  103:Generated_Source\PSoC4/Input_Pin_1.c **** *  interrupts this function and performs writes to the Pins component data 
  104:Generated_Source\PSoC4/Input_Pin_1.c **** *  register can cause corrupted port data. To avoid this issue, you should 
@@ -192,76 +175,57 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 1
  110:Generated_Source\PSoC4/Input_Pin_1.c **** *******************************************************************************/
  111:Generated_Source\PSoC4/Input_Pin_1.c **** void Input_Pin_1_Write(uint8 value)
  112:Generated_Source\PSoC4/Input_Pin_1.c **** {
-  71              		.loc 1 112 0
-  72              		.cfi_startproc
-  73 0000 80B5     		push	{r7, lr}
-  74              		.cfi_def_cfa_offset 8
-  75              		.cfi_offset 7, -8
-  76              		.cfi_offset 14, -4
-  77 0002 84B0     		sub	sp, sp, #16
-  78              		.cfi_def_cfa_offset 24
-  79 0004 00AF     		add	r7, sp, #0
-  80              		.cfi_def_cfa_register 7
-  81 0006 021C     		mov	r2, r0
-  82 0008 FB1D     		add	r3, r7, #7
-  83 000a 1A70     		strb	r2, [r3]
+  57              		.loc 1 112 0
+  58              		.cfi_startproc
+  59              	.LVL2:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJaswno.s 			page 4
+
+
+  60              		.loc 1 112 0
+  61 0000 031C     		mov	r3, r0
  113:Generated_Source\PSoC4/Input_Pin_1.c ****     uint8 drVal = (uint8)(Input_Pin_1_DR & (uint8)(~Input_Pin_1_MASK));
-  84              		.loc 1 113 0
-  85 000c 0E4B     		ldr	r3, .L5
-  86 000e 1B68     		ldr	r3, [r3]
-  87 0010 DAB2     		uxtb	r2, r3
-  88 0012 0F23     		mov	r3, #15
-  89 0014 FB18     		add	r3, r7, r3
-  90 0016 4021     		mov	r1, #64
-  91 0018 8A43     		bic	r2, r1
-  92 001a 1A70     		strb	r2, [r3]
+  62              		.loc 1 113 0
+  63 0002 4020     		mov	r0, #64
+  64              	.LVL3:
+  65 0004 0449     		ldr	r1, .L5
  114:Generated_Source\PSoC4/Input_Pin_1.c ****     drVal = (drVal | ((uint8)(value << Input_Pin_1_SHIFT) & Input_Pin_1_MASK));
-  93              		.loc 1 114 0
-  94 001c FB1D     		add	r3, r7, #7
-  95 001e 1B78     		ldrb	r3, [r3]
-  96 0020 9B01     		lsl	r3, r3, #6
-  97 0022 DBB2     		uxtb	r3, r3
-  98 0024 4022     		mov	r2, #64
-  99 0026 1340     		and	r3, r2
- 100 0028 D9B2     		uxtb	r1, r3
- 101 002a 0F23     		mov	r3, #15
- 102 002c FB18     		add	r3, r7, r3
- 103 002e 0F22     		mov	r2, #15
- 104 0030 BA18     		add	r2, r7, r2
- 105 0032 1278     		ldrb	r2, [r2]
- 106 0034 0A43     		orr	r2, r1
- 107 0036 1A70     		strb	r2, [r3]
+  66              		.loc 1 114 0
+  67 0006 9B01     		lsl	r3, r3, #6
+ 113:Generated_Source\PSoC4/Input_Pin_1.c ****     uint8 drVal = (uint8)(Input_Pin_1_DR & (uint8)(~Input_Pin_1_MASK));
+  68              		.loc 1 113 0
+  69 0008 0A68     		ldr	r2, [r1]
  115:Generated_Source\PSoC4/Input_Pin_1.c ****     Input_Pin_1_DR = (uint32)drVal;
- 108              		.loc 1 115 0
- 109 0038 034B     		ldr	r3, .L5
- 110 003a 0F22     		mov	r2, #15
- 111 003c BA18     		add	r2, r7, r2
- 112 003e 1278     		ldrb	r2, [r2]
- 113 0040 1A60     		str	r2, [r3]
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 5
-
-
  116:Generated_Source\PSoC4/Input_Pin_1.c **** }
- 114              		.loc 1 116 0
- 115 0042 BD46     		mov	sp, r7
- 116 0044 04B0     		add	sp, sp, #16
- 117              		@ sp needed
- 118 0046 80BD     		pop	{r7, pc}
- 119              	.L6:
- 120              		.align	2
- 121              	.L5:
- 122 0048 00040440 		.word	1074004992
- 123              		.cfi_endproc
- 124              	.LFE1:
- 125              		.size	Input_Pin_1_Write, .-Input_Pin_1_Write
- 126              		.section	.text.Input_Pin_1_Read,"ax",%progbits
- 127              		.align	2
- 128              		.global	Input_Pin_1_Read
- 129              		.code	16
- 130              		.thumb_func
- 131              		.type	Input_Pin_1_Read, %function
- 132              	Input_Pin_1_Read:
- 133              	.LFB2:
+  70              		.loc 1 116 0
+  71              		@ sp needed
+ 113:Generated_Source\PSoC4/Input_Pin_1.c ****     drVal = (drVal | ((uint8)(value << Input_Pin_1_SHIFT) & Input_Pin_1_MASK));
+  72              		.loc 1 113 0
+  73 000a 8243     		bic	r2, r0
+  74 000c D2B2     		uxtb	r2, r2
+ 114:Generated_Source\PSoC4/Input_Pin_1.c ****     drVal = (drVal | ((uint8)(value << Input_Pin_1_SHIFT) & Input_Pin_1_MASK));
+  75              		.loc 1 114 0
+  76 000e 1840     		and	r0, r3
+ 115:Generated_Source\PSoC4/Input_Pin_1.c ****     Input_Pin_1_DR = (uint32)drVal;
+  77              		.loc 1 115 0
+  78 0010 1043     		orr	r0, r2
+  79 0012 0860     		str	r0, [r1]
+  80              		.loc 1 116 0
+  81 0014 7047     		bx	lr
+  82              	.L6:
+  83 0016 C046     		.align	2
+  84              	.L5:
+  85 0018 00040440 		.word	1074004992
+  86              		.cfi_endproc
+  87              	.LFE1:
+  88              		.size	Input_Pin_1_Write, .-Input_Pin_1_Write
+  89              		.section	.text.Input_Pin_1_Read,"ax",%progbits
+  90              		.align	2
+  91              		.global	Input_Pin_1_Read
+  92              		.code	16
+  93              		.thumb_func
+  94              		.type	Input_Pin_1_Read, %function
+  95              	Input_Pin_1_Read:
+  96              	.LFB2:
  117:Generated_Source\PSoC4/Input_Pin_1.c **** 
  118:Generated_Source\PSoC4/Input_Pin_1.c **** 
  119:Generated_Source\PSoC4/Input_Pin_1.c **** /*******************************************************************************
@@ -274,6 +238,9 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 1
  126:Generated_Source\PSoC4/Input_Pin_1.c **** *
  127:Generated_Source\PSoC4/Input_Pin_1.c **** * The pin's status register returns the current logic level present on the 
  128:Generated_Source\PSoC4/Input_Pin_1.c **** * physical pin.
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJaswno.s 			page 5
+
+
  129:Generated_Source\PSoC4/Input_Pin_1.c **** *
  130:Generated_Source\PSoC4/Input_Pin_1.c **** * \return 
  131:Generated_Source\PSoC4/Input_Pin_1.c **** *  The current value for the pins in the component as a right justified number.
@@ -283,46 +250,36 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 1
  135:Generated_Source\PSoC4/Input_Pin_1.c **** *******************************************************************************/
  136:Generated_Source\PSoC4/Input_Pin_1.c **** uint8 Input_Pin_1_Read(void)
  137:Generated_Source\PSoC4/Input_Pin_1.c **** {
- 134              		.loc 1 137 0
- 135              		.cfi_startproc
- 136 0000 80B5     		push	{r7, lr}
- 137              		.cfi_def_cfa_offset 8
- 138              		.cfi_offset 7, -8
- 139              		.cfi_offset 14, -4
- 140 0002 00AF     		add	r7, sp, #0
- 141              		.cfi_def_cfa_register 7
+  97              		.loc 1 137 0
+  98              		.cfi_startproc
  138:Generated_Source\PSoC4/Input_Pin_1.c ****     return (uint8)((Input_Pin_1_PS & Input_Pin_1_MASK) >> Input_Pin_1_SHIFT);
- 142              		.loc 1 138 0
- 143 0004 044B     		ldr	r3, .L9
- 144 0006 1B68     		ldr	r3, [r3]
- 145 0008 4022     		mov	r2, #64
- 146 000a 1340     		and	r3, r2
- 147 000c 9B09     		lsr	r3, r3, #6
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 6
-
-
- 148 000e DBB2     		uxtb	r3, r3
+  99              		.loc 1 138 0
+ 100 0000 024B     		ldr	r3, .L8
  139:Generated_Source\PSoC4/Input_Pin_1.c **** }
- 149              		.loc 1 139 0
- 150 0010 181C     		mov	r0, r3
- 151 0012 BD46     		mov	sp, r7
- 152              		@ sp needed
- 153 0014 80BD     		pop	{r7, pc}
- 154              	.L10:
- 155 0016 C046     		.align	2
- 156              	.L9:
- 157 0018 04040440 		.word	1074004996
- 158              		.cfi_endproc
- 159              	.LFE2:
- 160              		.size	Input_Pin_1_Read, .-Input_Pin_1_Read
- 161              		.section	.text.Input_Pin_1_ReadDataReg,"ax",%progbits
- 162              		.align	2
- 163              		.global	Input_Pin_1_ReadDataReg
- 164              		.code	16
- 165              		.thumb_func
- 166              		.type	Input_Pin_1_ReadDataReg, %function
- 167              	Input_Pin_1_ReadDataReg:
- 168              	.LFB3:
+ 101              		.loc 1 139 0
+ 102              		@ sp needed
+ 138:Generated_Source\PSoC4/Input_Pin_1.c ****     return (uint8)((Input_Pin_1_PS & Input_Pin_1_MASK) >> Input_Pin_1_SHIFT);
+ 103              		.loc 1 138 0
+ 104 0002 1868     		ldr	r0, [r3]
+ 105 0004 4006     		lsl	r0, r0, #25
+ 106 0006 C00F     		lsr	r0, r0, #31
+ 107              		.loc 1 139 0
+ 108 0008 7047     		bx	lr
+ 109              	.L9:
+ 110 000a C046     		.align	2
+ 111              	.L8:
+ 112 000c 04040440 		.word	1074004996
+ 113              		.cfi_endproc
+ 114              	.LFE2:
+ 115              		.size	Input_Pin_1_Read, .-Input_Pin_1_Read
+ 116              		.section	.text.Input_Pin_1_ReadDataReg,"ax",%progbits
+ 117              		.align	2
+ 118              		.global	Input_Pin_1_ReadDataReg
+ 119              		.code	16
+ 120              		.thumb_func
+ 121              		.type	Input_Pin_1_ReadDataReg, %function
+ 122              	Input_Pin_1_ReadDataReg:
+ 123              	.LFB3:
  140:Generated_Source\PSoC4/Input_Pin_1.c **** 
  141:Generated_Source\PSoC4/Input_Pin_1.c **** 
  142:Generated_Source\PSoC4/Input_Pin_1.c **** /*******************************************************************************
@@ -341,6 +298,9 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 1
  155:Generated_Source\PSoC4/Input_Pin_1.c **** * just written to the pin.
  156:Generated_Source\PSoC4/Input_Pin_1.c **** *
  157:Generated_Source\PSoC4/Input_Pin_1.c **** * \return 
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJaswno.s 			page 6
+
+
  158:Generated_Source\PSoC4/Input_Pin_1.c **** *  The current value of the data register masked and shifted into a right 
  159:Generated_Source\PSoC4/Input_Pin_1.c **** *  justified number for the component instance.
  160:Generated_Source\PSoC4/Input_Pin_1.c **** *
@@ -349,46 +309,36 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 1
  163:Generated_Source\PSoC4/Input_Pin_1.c **** *******************************************************************************/
  164:Generated_Source\PSoC4/Input_Pin_1.c **** uint8 Input_Pin_1_ReadDataReg(void)
  165:Generated_Source\PSoC4/Input_Pin_1.c **** {
- 169              		.loc 1 165 0
- 170              		.cfi_startproc
- 171 0000 80B5     		push	{r7, lr}
- 172              		.cfi_def_cfa_offset 8
- 173              		.cfi_offset 7, -8
- 174              		.cfi_offset 14, -4
- 175 0002 00AF     		add	r7, sp, #0
- 176              		.cfi_def_cfa_register 7
+ 124              		.loc 1 165 0
+ 125              		.cfi_startproc
  166:Generated_Source\PSoC4/Input_Pin_1.c ****     return (uint8)((Input_Pin_1_DR & Input_Pin_1_MASK) >> Input_Pin_1_SHIFT);
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 7
-
-
- 177              		.loc 1 166 0
- 178 0004 044B     		ldr	r3, .L13
- 179 0006 1B68     		ldr	r3, [r3]
- 180 0008 4022     		mov	r2, #64
- 181 000a 1340     		and	r3, r2
- 182 000c 9B09     		lsr	r3, r3, #6
- 183 000e DBB2     		uxtb	r3, r3
+ 126              		.loc 1 166 0
+ 127 0000 024B     		ldr	r3, .L11
  167:Generated_Source\PSoC4/Input_Pin_1.c **** }
- 184              		.loc 1 167 0
- 185 0010 181C     		mov	r0, r3
- 186 0012 BD46     		mov	sp, r7
- 187              		@ sp needed
- 188 0014 80BD     		pop	{r7, pc}
- 189              	.L14:
- 190 0016 C046     		.align	2
- 191              	.L13:
- 192 0018 00040440 		.word	1074004992
- 193              		.cfi_endproc
- 194              	.LFE3:
- 195              		.size	Input_Pin_1_ReadDataReg, .-Input_Pin_1_ReadDataReg
- 196              		.section	.text.Input_Pin_1_SetInterruptMode,"ax",%progbits
- 197              		.align	2
- 198              		.global	Input_Pin_1_SetInterruptMode
- 199              		.code	16
- 200              		.thumb_func
- 201              		.type	Input_Pin_1_SetInterruptMode, %function
- 202              	Input_Pin_1_SetInterruptMode:
- 203              	.LFB4:
+ 128              		.loc 1 167 0
+ 129              		@ sp needed
+ 166:Generated_Source\PSoC4/Input_Pin_1.c ****     return (uint8)((Input_Pin_1_DR & Input_Pin_1_MASK) >> Input_Pin_1_SHIFT);
+ 130              		.loc 1 166 0
+ 131 0002 1868     		ldr	r0, [r3]
+ 132 0004 4006     		lsl	r0, r0, #25
+ 133 0006 C00F     		lsr	r0, r0, #31
+ 134              		.loc 1 167 0
+ 135 0008 7047     		bx	lr
+ 136              	.L12:
+ 137 000a C046     		.align	2
+ 138              	.L11:
+ 139 000c 00040440 		.word	1074004992
+ 140              		.cfi_endproc
+ 141              	.LFE3:
+ 142              		.size	Input_Pin_1_ReadDataReg, .-Input_Pin_1_ReadDataReg
+ 143              		.section	.text.Input_Pin_1_SetInterruptMode,"ax",%progbits
+ 144              		.align	2
+ 145              		.global	Input_Pin_1_SetInterruptMode
+ 146              		.code	16
+ 147              		.thumb_func
+ 148              		.type	Input_Pin_1_SetInterruptMode, %function
+ 149              	Input_Pin_1_SetInterruptMode:
+ 150              	.LFB4:
  168:Generated_Source\PSoC4/Input_Pin_1.c **** 
  169:Generated_Source\PSoC4/Input_Pin_1.c **** 
  170:Generated_Source\PSoC4/Input_Pin_1.c **** /*******************************************************************************
@@ -408,6 +358,9 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 1
  184:Generated_Source\PSoC4/Input_Pin_1.c **** *  component. Or you may use Input_Pin_1_INTR_ALL to configure the
  185:Generated_Source\PSoC4/Input_Pin_1.c **** *  interrupt mode of all the pins in the Pins component.       
  186:Generated_Source\PSoC4/Input_Pin_1.c **** *  - Input_Pin_1_0_INTR       (First pin in the list)
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJaswno.s 			page 7
+
+
  187:Generated_Source\PSoC4/Input_Pin_1.c **** *  - Input_Pin_1_1_INTR       (Second pin in the list)
  188:Generated_Source\PSoC4/Input_Pin_1.c **** *  - ...
  189:Generated_Source\PSoC4/Input_Pin_1.c **** *  - Input_Pin_1_INTR_ALL     (All pins in Pins component)
@@ -418,9 +371,6 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 1
  194:Generated_Source\PSoC4/Input_Pin_1.c **** *
  195:Generated_Source\PSoC4/Input_Pin_1.c **** * \return 
  196:Generated_Source\PSoC4/Input_Pin_1.c **** *  None
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 8
-
-
  197:Generated_Source\PSoC4/Input_Pin_1.c **** *  
  198:Generated_Source\PSoC4/Input_Pin_1.c **** * \sideeffect
  199:Generated_Source\PSoC4/Input_Pin_1.c **** *  It is recommended that the interrupt be disabled before calling this 
@@ -433,70 +383,50 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 1
  206:Generated_Source\PSoC4/Input_Pin_1.c **** *******************************************************************************/
  207:Generated_Source\PSoC4/Input_Pin_1.c **** void Input_Pin_1_SetInterruptMode(uint16 position, uint16 mode)
  208:Generated_Source\PSoC4/Input_Pin_1.c **** {
- 204              		.loc 1 208 0
- 205              		.cfi_startproc
- 206 0000 80B5     		push	{r7, lr}
- 207              		.cfi_def_cfa_offset 8
- 208              		.cfi_offset 7, -8
- 209              		.cfi_offset 14, -4
- 210 0002 84B0     		sub	sp, sp, #16
- 211              		.cfi_def_cfa_offset 24
- 212 0004 00AF     		add	r7, sp, #0
- 213              		.cfi_def_cfa_register 7
- 214 0006 021C     		mov	r2, r0
- 215 0008 BB1D     		add	r3, r7, #6
- 216 000a 1A80     		strh	r2, [r3]
- 217 000c 3B1D     		add	r3, r7, #4
- 218 000e 0A1C     		add	r2, r1, #0
- 219 0010 1A80     		strh	r2, [r3]
+ 151              		.loc 1 208 0
+ 152              		.cfi_startproc
+ 153              	.LVL4:
  209:Generated_Source\PSoC4/Input_Pin_1.c ****     uint32 intrCfg;
  210:Generated_Source\PSoC4/Input_Pin_1.c ****     
  211:Generated_Source\PSoC4/Input_Pin_1.c ****     intrCfg =  Input_Pin_1_INTCFG & (uint32)(~(uint32)position);
- 220              		.loc 1 211 0
- 221 0012 0A4B     		ldr	r3, .L16
- 222 0014 1B68     		ldr	r3, [r3]
- 223 0016 BA1D     		add	r2, r7, #6
- 224 0018 1288     		ldrh	r2, [r2]
- 225 001a D243     		mvn	r2, r2
- 226 001c 1340     		and	r3, r2
- 227 001e FB60     		str	r3, [r7, #12]
+ 154              		.loc 1 211 0
+ 155 0000 034A     		ldr	r2, .L14
  212:Generated_Source\PSoC4/Input_Pin_1.c ****     Input_Pin_1_INTCFG = intrCfg | ((uint32)position & (uint32)mode);
- 228              		.loc 1 212 0
- 229 0020 064B     		ldr	r3, .L16
- 230 0022 BA1D     		add	r2, r7, #6
- 231 0024 391D     		add	r1, r7, #4
- 232 0026 1288     		ldrh	r2, [r2]
- 233 0028 0988     		ldrh	r1, [r1]
- 234 002a 0A40     		and	r2, r1
- 235 002c 92B2     		uxth	r2, r2
- 236 002e 111C     		mov	r1, r2
- 237 0030 FA68     		ldr	r2, [r7, #12]
- 238 0032 0A43     		orr	r2, r1
- 239 0034 1A60     		str	r2, [r3]
  213:Generated_Source\PSoC4/Input_Pin_1.c **** }
- 240              		.loc 1 213 0
- 241 0036 BD46     		mov	sp, r7
- 242 0038 04B0     		add	sp, sp, #16
- 243              		@ sp needed
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 9
+ 156              		.loc 1 213 0
+ 157              		@ sp needed
+ 211:Generated_Source\PSoC4/Input_Pin_1.c ****     Input_Pin_1_INTCFG = intrCfg | ((uint32)position & (uint32)mode);
+ 158              		.loc 1 211 0
+ 159 0002 1368     		ldr	r3, [r2]
+ 160              	.LVL5:
+ 161 0004 8343     		bic	r3, r0
+ 162              	.LVL6:
+ 212:Generated_Source\PSoC4/Input_Pin_1.c ****     Input_Pin_1_INTCFG = intrCfg | ((uint32)position & (uint32)mode);
+ 163              		.loc 1 212 0
+ 164 0006 0840     		and	r0, r1
+ 165              	.LVL7:
+ 166 0008 1843     		orr	r0, r3
+ 167 000a 1060     		str	r0, [r2]
+ 168              		.loc 1 213 0
+ 169 000c 7047     		bx	lr
+ 170              	.L15:
+ 171 000e C046     		.align	2
+ 172              	.L14:
+ 173 0010 0C040440 		.word	1074005004
+ 174              		.cfi_endproc
+ 175              	.LFE4:
+ 176              		.size	Input_Pin_1_SetInterruptMode, .-Input_Pin_1_SetInterruptMode
+ 177              		.section	.text.Input_Pin_1_ClearInterrupt,"ax",%progbits
+ 178              		.align	2
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJaswno.s 			page 8
 
 
- 244 003a 80BD     		pop	{r7, pc}
- 245              	.L17:
- 246              		.align	2
- 247              	.L16:
- 248 003c 0C040440 		.word	1074005004
- 249              		.cfi_endproc
- 250              	.LFE4:
- 251              		.size	Input_Pin_1_SetInterruptMode, .-Input_Pin_1_SetInterruptMode
- 252              		.section	.text.Input_Pin_1_ClearInterrupt,"ax",%progbits
- 253              		.align	2
- 254              		.global	Input_Pin_1_ClearInterrupt
- 255              		.code	16
- 256              		.thumb_func
- 257              		.type	Input_Pin_1_ClearInterrupt, %function
- 258              	Input_Pin_1_ClearInterrupt:
- 259              	.LFB5:
+ 179              		.global	Input_Pin_1_ClearInterrupt
+ 180              		.code	16
+ 181              		.thumb_func
+ 182              		.type	Input_Pin_1_ClearInterrupt, %function
+ 183              	Input_Pin_1_ClearInterrupt:
+ 184              	.LFB5:
  214:Generated_Source\PSoC4/Input_Pin_1.c **** 
  215:Generated_Source\PSoC4/Input_Pin_1.c **** 
  216:Generated_Source\PSoC4/Input_Pin_1.c **** /*******************************************************************************
@@ -521,658 +451,739 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 1
  235:Generated_Source\PSoC4/Input_Pin_1.c **** *******************************************************************************/
  236:Generated_Source\PSoC4/Input_Pin_1.c **** uint8 Input_Pin_1_ClearInterrupt(void)
  237:Generated_Source\PSoC4/Input_Pin_1.c **** {
- 260              		.loc 1 237 0
- 261              		.cfi_startproc
- 262 0000 80B5     		push	{r7, lr}
- 263              		.cfi_def_cfa_offset 8
- 264              		.cfi_offset 7, -8
- 265              		.cfi_offset 14, -4
- 266 0002 82B0     		sub	sp, sp, #8
- 267              		.cfi_def_cfa_offset 16
- 268 0004 00AF     		add	r7, sp, #0
- 269              		.cfi_def_cfa_register 7
+ 185              		.loc 1 237 0
+ 186              		.cfi_startproc
  238:Generated_Source\PSoC4/Input_Pin_1.c **** 	uint8 maskedStatus = (uint8)(Input_Pin_1_INTSTAT & Input_Pin_1_MASK);
- 270              		.loc 1 238 0
- 271 0006 094B     		ldr	r3, .L20
- 272 0008 1B68     		ldr	r3, [r3]
- 273 000a DAB2     		uxtb	r2, r3
- 274 000c FB1D     		add	r3, r7, #7
- 275 000e 4021     		mov	r1, #64
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 10
-
-
- 276 0010 0A40     		and	r2, r1
- 277 0012 1A70     		strb	r2, [r3]
+ 187              		.loc 1 238 0
+ 188 0000 4020     		mov	r0, #64
+ 189 0002 034A     		ldr	r2, .L17
  239:Generated_Source\PSoC4/Input_Pin_1.c **** 	Input_Pin_1_INTSTAT = maskedStatus;
- 278              		.loc 1 239 0
- 279 0014 054B     		ldr	r3, .L20
- 280 0016 FA1D     		add	r2, r7, #7
- 281 0018 1278     		ldrb	r2, [r2]
- 282 001a 1A60     		str	r2, [r3]
  240:Generated_Source\PSoC4/Input_Pin_1.c ****     return maskedStatus >> Input_Pin_1_SHIFT;
- 283              		.loc 1 240 0
- 284 001c FB1D     		add	r3, r7, #7
- 285 001e 1B78     		ldrb	r3, [r3]
- 286 0020 9B09     		lsr	r3, r3, #6
- 287 0022 DBB2     		uxtb	r3, r3
  241:Generated_Source\PSoC4/Input_Pin_1.c **** }
- 288              		.loc 1 241 0
- 289 0024 181C     		mov	r0, r3
- 290 0026 BD46     		mov	sp, r7
- 291 0028 02B0     		add	sp, sp, #8
- 292              		@ sp needed
- 293 002a 80BD     		pop	{r7, pc}
- 294              	.L21:
- 295              		.align	2
- 296              	.L20:
- 297 002c 10040440 		.word	1074005008
- 298              		.cfi_endproc
- 299              	.LFE5:
- 300              		.size	Input_Pin_1_ClearInterrupt, .-Input_Pin_1_ClearInterrupt
- 301              		.text
- 302              	.Letext0:
- 303              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
- 304              		.section	.debug_info,"",%progbits
- 305              	.Ldebug_info0:
- 306 0000 96010000 		.4byte	0x196
- 307 0004 0400     		.2byte	0x4
- 308 0006 00000000 		.4byte	.Ldebug_abbrev0
- 309 000a 04       		.byte	0x4
- 310 000b 01       		.uleb128 0x1
- 311 000c A1000000 		.4byte	.LASF28
- 312 0010 01       		.byte	0x1
- 313 0011 7C000000 		.4byte	.LASF29
- 314 0015 B0010000 		.4byte	.LASF30
- 315 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 316 001d 00000000 		.4byte	0
- 317 0021 00000000 		.4byte	.Ldebug_line0
- 318 0025 02       		.uleb128 0x2
- 319 0026 01       		.byte	0x1
- 320 0027 06       		.byte	0x6
- 321 0028 06020000 		.4byte	.LASF0
- 322 002c 02       		.uleb128 0x2
- 323 002d 01       		.byte	0x1
- 324 002e 08       		.byte	0x8
- 325 002f 32000000 		.4byte	.LASF1
- 326 0033 02       		.uleb128 0x2
- 327 0034 02       		.byte	0x2
- 328 0035 05       		.byte	0x5
- 329 0036 97010000 		.4byte	.LASF2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 11
+ 190              		.loc 1 241 0
+ 191              		@ sp needed
+ 238:Generated_Source\PSoC4/Input_Pin_1.c **** 	uint8 maskedStatus = (uint8)(Input_Pin_1_INTSTAT & Input_Pin_1_MASK);
+ 192              		.loc 1 238 0
+ 193 0004 1368     		ldr	r3, [r2]
+ 194 0006 1840     		and	r0, r3
+ 195              	.LVL8:
+ 239:Generated_Source\PSoC4/Input_Pin_1.c **** 	Input_Pin_1_INTSTAT = maskedStatus;
+ 196              		.loc 1 239 0
+ 197 0008 1060     		str	r0, [r2]
+ 240:Generated_Source\PSoC4/Input_Pin_1.c **** }
+ 198              		.loc 1 240 0
+ 199 000a 8009     		lsr	r0, r0, #6
+ 200              	.LVL9:
+ 201 000c C0B2     		uxtb	r0, r0
+ 202              		.loc 1 241 0
+ 203 000e 7047     		bx	lr
+ 204              	.L18:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJaswno.s 			page 9
 
 
- 330 003a 02       		.uleb128 0x2
- 331 003b 02       		.byte	0x2
- 332 003c 07       		.byte	0x7
- 333 003d 69000000 		.4byte	.LASF3
- 334 0041 02       		.uleb128 0x2
- 335 0042 04       		.byte	0x4
- 336 0043 05       		.byte	0x5
- 337 0044 A7010000 		.4byte	.LASF4
- 338 0048 02       		.uleb128 0x2
- 339 0049 04       		.byte	0x4
- 340 004a 07       		.byte	0x7
- 341 004b 46000000 		.4byte	.LASF5
- 342 004f 02       		.uleb128 0x2
- 343 0050 08       		.byte	0x8
- 344 0051 05       		.byte	0x5
- 345 0052 77010000 		.4byte	.LASF6
- 346 0056 02       		.uleb128 0x2
- 347 0057 08       		.byte	0x8
- 348 0058 07       		.byte	0x7
- 349 0059 5B010000 		.4byte	.LASF7
- 350 005d 03       		.uleb128 0x3
- 351 005e 04       		.byte	0x4
- 352 005f 05       		.byte	0x5
- 353 0060 696E7400 		.ascii	"int\000"
- 354 0064 02       		.uleb128 0x2
- 355 0065 04       		.byte	0x4
- 356 0066 07       		.byte	0x7
- 357 0067 4E010000 		.4byte	.LASF8
- 358 006b 04       		.uleb128 0x4
- 359 006c A1010000 		.4byte	.LASF9
- 360 0070 02       		.byte	0x2
- 361 0071 9801     		.2byte	0x198
- 362 0073 2C000000 		.4byte	0x2c
- 363 0077 04       		.uleb128 0x4
- 364 0078 2F010000 		.4byte	.LASF10
- 365 007c 02       		.byte	0x2
- 366 007d 9901     		.2byte	0x199
- 367 007f 3A000000 		.4byte	0x3a
- 368 0083 04       		.uleb128 0x4
- 369 0084 3F010000 		.4byte	.LASF11
- 370 0088 02       		.byte	0x2
- 371 0089 9A01     		.2byte	0x19a
- 372 008b 48000000 		.4byte	0x48
- 373 008f 02       		.uleb128 0x2
- 374 0090 04       		.byte	0x4
- 375 0091 04       		.byte	0x4
- 376 0092 2C000000 		.4byte	.LASF12
- 377 0096 02       		.uleb128 0x2
- 378 0097 08       		.byte	0x8
- 379 0098 04       		.byte	0x4
- 380 0099 25000000 		.4byte	.LASF13
- 381 009d 02       		.uleb128 0x2
- 382 009e 01       		.byte	0x1
- 383 009f 08       		.byte	0x8
- 384 00a0 92010000 		.4byte	.LASF14
- 385 00a4 04       		.uleb128 0x4
- 386 00a5 00000000 		.4byte	.LASF15
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 12
+ 205              		.align	2
+ 206              	.L17:
+ 207 0010 10040440 		.word	1074005008
+ 208              		.cfi_endproc
+ 209              	.LFE5:
+ 210              		.size	Input_Pin_1_ClearInterrupt, .-Input_Pin_1_ClearInterrupt
+ 211              		.text
+ 212              	.Letext0:
+ 213              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 214              		.section	.debug_info,"",%progbits
+ 215              	.Ldebug_info0:
+ 216 0000 97010000 		.4byte	0x197
+ 217 0004 0400     		.2byte	0x4
+ 218 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 219 000a 04       		.byte	0x4
+ 220 000b 01       		.uleb128 0x1
+ 221 000c 32000000 		.4byte	.LASF27
+ 222 0010 01       		.byte	0x1
+ 223 0011 1D010000 		.4byte	.LASF28
+ 224 0015 C3010000 		.4byte	.LASF29
+ 225 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 226 001d 00000000 		.4byte	0
+ 227 0021 00000000 		.4byte	.Ldebug_line0
+ 228 0025 02       		.uleb128 0x2
+ 229 0026 01       		.byte	0x1
+ 230 0027 06       		.byte	0x6
+ 231 0028 19020000 		.4byte	.LASF0
+ 232 002c 02       		.uleb128 0x2
+ 233 002d 01       		.byte	0x1
+ 234 002e 08       		.byte	0x8
+ 235 002f D3000000 		.4byte	.LASF1
+ 236 0033 02       		.uleb128 0x2
+ 237 0034 02       		.byte	0x2
+ 238 0035 05       		.byte	0x5
+ 239 0036 AA010000 		.4byte	.LASF2
+ 240 003a 02       		.uleb128 0x2
+ 241 003b 02       		.byte	0x2
+ 242 003c 07       		.byte	0x7
+ 243 003d 0A010000 		.4byte	.LASF3
+ 244 0041 02       		.uleb128 0x2
+ 245 0042 04       		.byte	0x4
+ 246 0043 05       		.byte	0x5
+ 247 0044 BA010000 		.4byte	.LASF4
+ 248 0048 02       		.uleb128 0x2
+ 249 0049 04       		.byte	0x4
+ 250 004a 07       		.byte	0x7
+ 251 004b E7000000 		.4byte	.LASF5
+ 252 004f 02       		.uleb128 0x2
+ 253 0050 08       		.byte	0x8
+ 254 0051 05       		.byte	0x5
+ 255 0052 8A010000 		.4byte	.LASF6
+ 256 0056 02       		.uleb128 0x2
+ 257 0057 08       		.byte	0x8
+ 258 0058 07       		.byte	0x7
+ 259 0059 6E010000 		.4byte	.LASF7
+ 260 005d 03       		.uleb128 0x3
+ 261 005e 04       		.byte	0x4
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJaswno.s 			page 10
 
 
- 387 00a9 02       		.byte	0x2
- 388 00aa 4402     		.2byte	0x244
- 389 00ac B0000000 		.4byte	0xb0
- 390 00b0 05       		.uleb128 0x5
- 391 00b1 83000000 		.4byte	0x83
- 392 00b5 06       		.uleb128 0x6
- 393 00b6 0C000000 		.4byte	.LASF16
- 394 00ba 01       		.byte	0x1
- 395 00bb 48       		.byte	0x48
- 396 00bc 00000000 		.4byte	.LFB0
- 397 00c0 30000000 		.4byte	.LFE0-.LFB0
- 398 00c4 01       		.uleb128 0x1
- 399 00c5 9C       		.byte	0x9c
- 400 00c6 D9000000 		.4byte	0xd9
- 401 00ca 07       		.uleb128 0x7
- 402 00cb 72010000 		.4byte	.LASF18
- 403 00cf 01       		.byte	0x1
- 404 00d0 48       		.byte	0x48
- 405 00d1 6B000000 		.4byte	0x6b
- 406 00d5 02       		.uleb128 0x2
- 407 00d6 91       		.byte	0x91
- 408 00d7 77       		.sleb128 -9
- 409 00d8 00       		.byte	0
- 410 00d9 06       		.uleb128 0x6
- 411 00da 62020000 		.4byte	.LASF17
- 412 00de 01       		.byte	0x1
- 413 00df 6F       		.byte	0x6f
- 414 00e0 00000000 		.4byte	.LFB1
- 415 00e4 4C000000 		.4byte	.LFE1-.LFB1
- 416 00e8 01       		.uleb128 0x1
- 417 00e9 9C       		.byte	0x9c
- 418 00ea 0B010000 		.4byte	0x10b
- 419 00ee 07       		.uleb128 0x7
- 420 00ef 06000000 		.4byte	.LASF19
- 421 00f3 01       		.byte	0x1
- 422 00f4 6F       		.byte	0x6f
- 423 00f5 6B000000 		.4byte	0x6b
- 424 00f9 02       		.uleb128 0x2
- 425 00fa 91       		.byte	0x91
- 426 00fb 6F       		.sleb128 -17
- 427 00fc 08       		.uleb128 0x8
- 428 00fd 40000000 		.4byte	.LASF24
- 429 0101 01       		.byte	0x1
- 430 0102 71       		.byte	0x71
- 431 0103 6B000000 		.4byte	0x6b
- 432 0107 02       		.uleb128 0x2
- 433 0108 91       		.byte	0x91
- 434 0109 77       		.sleb128 -9
- 435 010a 00       		.byte	0
- 436 010b 09       		.uleb128 0x9
- 437 010c 58000000 		.4byte	.LASF20
- 438 0110 01       		.byte	0x1
- 439 0111 88       		.byte	0x88
- 440 0112 6B000000 		.4byte	0x6b
- 441 0116 00000000 		.4byte	.LFB2
- 442 011a 1C000000 		.4byte	.LFE2-.LFB2
- 443 011e 01       		.uleb128 0x1
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 13
+ 262 005f 05       		.byte	0x5
+ 263 0060 696E7400 		.ascii	"int\000"
+ 264 0064 02       		.uleb128 0x2
+ 265 0065 04       		.byte	0x4
+ 266 0066 07       		.byte	0x7
+ 267 0067 61010000 		.4byte	.LASF8
+ 268 006b 04       		.uleb128 0x4
+ 269 006c B4010000 		.4byte	.LASF9
+ 270 0070 02       		.byte	0x2
+ 271 0071 9801     		.2byte	0x198
+ 272 0073 2C000000 		.4byte	0x2c
+ 273 0077 04       		.uleb128 0x4
+ 274 0078 42010000 		.4byte	.LASF10
+ 275 007c 02       		.byte	0x2
+ 276 007d 9901     		.2byte	0x199
+ 277 007f 3A000000 		.4byte	0x3a
+ 278 0083 04       		.uleb128 0x4
+ 279 0084 52010000 		.4byte	.LASF11
+ 280 0088 02       		.byte	0x2
+ 281 0089 9A01     		.2byte	0x19a
+ 282 008b 48000000 		.4byte	0x48
+ 283 008f 02       		.uleb128 0x2
+ 284 0090 04       		.byte	0x4
+ 285 0091 04       		.byte	0x4
+ 286 0092 2C000000 		.4byte	.LASF12
+ 287 0096 02       		.uleb128 0x2
+ 288 0097 08       		.byte	0x8
+ 289 0098 04       		.byte	0x4
+ 290 0099 25000000 		.4byte	.LASF13
+ 291 009d 02       		.uleb128 0x2
+ 292 009e 01       		.byte	0x1
+ 293 009f 08       		.byte	0x8
+ 294 00a0 A5010000 		.4byte	.LASF14
+ 295 00a4 04       		.uleb128 0x4
+ 296 00a5 00000000 		.4byte	.LASF15
+ 297 00a9 02       		.byte	0x2
+ 298 00aa 4402     		.2byte	0x244
+ 299 00ac B0000000 		.4byte	0xb0
+ 300 00b0 05       		.uleb128 0x5
+ 301 00b1 83000000 		.4byte	0x83
+ 302 00b5 06       		.uleb128 0x6
+ 303 00b6 0C000000 		.4byte	.LASF16
+ 304 00ba 01       		.byte	0x1
+ 305 00bb 48       		.byte	0x48
+ 306 00bc 00000000 		.4byte	.LFB0
+ 307 00c0 18000000 		.4byte	.LFE0-.LFB0
+ 308 00c4 01       		.uleb128 0x1
+ 309 00c5 9C       		.byte	0x9c
+ 310 00c6 DA000000 		.4byte	0xda
+ 311 00ca 07       		.uleb128 0x7
+ 312 00cb 85010000 		.4byte	.LASF18
+ 313 00cf 01       		.byte	0x1
+ 314 00d0 48       		.byte	0x48
+ 315 00d1 6B000000 		.4byte	0x6b
+ 316 00d5 00000000 		.4byte	.LLST0
+ 317 00d9 00       		.byte	0
+ 318 00da 06       		.uleb128 0x6
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJaswno.s 			page 11
 
 
- 444 011f 9C       		.byte	0x9c
- 445 0120 09       		.uleb128 0x9
- 446 0121 2D020000 		.4byte	.LASF21
- 447 0125 01       		.byte	0x1
- 448 0126 A4       		.byte	0xa4
- 449 0127 6B000000 		.4byte	0x6b
- 450 012b 00000000 		.4byte	.LFB3
- 451 012f 1C000000 		.4byte	.LFE3-.LFB3
- 452 0133 01       		.uleb128 0x1
- 453 0134 9C       		.byte	0x9c
- 454 0135 06       		.uleb128 0x6
- 455 0136 45020000 		.4byte	.LASF22
- 456 013a 01       		.byte	0x1
- 457 013b CF       		.byte	0xcf
- 458 013c 00000000 		.4byte	.LFB4
- 459 0140 40000000 		.4byte	.LFE4-.LFB4
- 460 0144 01       		.uleb128 0x1
- 461 0145 9C       		.byte	0x9c
- 462 0146 75010000 		.4byte	0x175
- 463 014a 07       		.uleb128 0x7
- 464 014b 36010000 		.4byte	.LASF23
- 465 014f 01       		.byte	0x1
- 466 0150 CF       		.byte	0xcf
- 467 0151 77000000 		.4byte	0x77
- 468 0155 02       		.uleb128 0x2
- 469 0156 91       		.byte	0x91
- 470 0157 6E       		.sleb128 -18
- 471 0158 07       		.uleb128 0x7
- 472 0159 72010000 		.4byte	.LASF18
- 473 015d 01       		.byte	0x1
- 474 015e CF       		.byte	0xcf
- 475 015f 77000000 		.4byte	0x77
- 476 0163 02       		.uleb128 0x2
- 477 0164 91       		.byte	0x91
- 478 0165 6C       		.sleb128 -20
- 479 0166 08       		.uleb128 0x8
- 480 0167 46010000 		.4byte	.LASF25
- 481 016b 01       		.byte	0x1
- 482 016c D1       		.byte	0xd1
- 483 016d 83000000 		.4byte	0x83
- 484 0171 02       		.uleb128 0x2
- 485 0172 91       		.byte	0x91
- 486 0173 74       		.sleb128 -12
- 487 0174 00       		.byte	0
- 488 0175 0A       		.uleb128 0xa
- 489 0176 12020000 		.4byte	.LASF26
- 490 017a 01       		.byte	0x1
- 491 017b EC       		.byte	0xec
- 492 017c 6B000000 		.4byte	0x6b
- 493 0180 00000000 		.4byte	.LFB5
- 494 0184 30000000 		.4byte	.LFE5-.LFB5
- 495 0188 01       		.uleb128 0x1
- 496 0189 9C       		.byte	0x9c
- 497 018a 08       		.uleb128 0x8
- 498 018b 85010000 		.4byte	.LASF27
- 499 018f 01       		.byte	0x1
- 500 0190 EE       		.byte	0xee
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 14
+ 319 00db 75020000 		.4byte	.LASF17
+ 320 00df 01       		.byte	0x1
+ 321 00e0 6F       		.byte	0x6f
+ 322 00e1 00000000 		.4byte	.LFB1
+ 323 00e5 1C000000 		.4byte	.LFE1-.LFB1
+ 324 00e9 01       		.uleb128 0x1
+ 325 00ea 9C       		.byte	0x9c
+ 326 00eb 0A010000 		.4byte	0x10a
+ 327 00ef 07       		.uleb128 0x7
+ 328 00f0 06000000 		.4byte	.LASF19
+ 329 00f4 01       		.byte	0x1
+ 330 00f5 6F       		.byte	0x6f
+ 331 00f6 6B000000 		.4byte	0x6b
+ 332 00fa 21000000 		.4byte	.LLST1
+ 333 00fe 08       		.uleb128 0x8
+ 334 00ff E1000000 		.4byte	.LASF30
+ 335 0103 01       		.byte	0x1
+ 336 0104 71       		.byte	0x71
+ 337 0105 6B000000 		.4byte	0x6b
+ 338 0109 00       		.byte	0
+ 339 010a 09       		.uleb128 0x9
+ 340 010b F9000000 		.4byte	.LASF20
+ 341 010f 01       		.byte	0x1
+ 342 0110 88       		.byte	0x88
+ 343 0111 6B000000 		.4byte	0x6b
+ 344 0115 00000000 		.4byte	.LFB2
+ 345 0119 10000000 		.4byte	.LFE2-.LFB2
+ 346 011d 01       		.uleb128 0x1
+ 347 011e 9C       		.byte	0x9c
+ 348 011f 09       		.uleb128 0x9
+ 349 0120 40020000 		.4byte	.LASF21
+ 350 0124 01       		.byte	0x1
+ 351 0125 A4       		.byte	0xa4
+ 352 0126 6B000000 		.4byte	0x6b
+ 353 012a 00000000 		.4byte	.LFB3
+ 354 012e 10000000 		.4byte	.LFE3-.LFB3
+ 355 0132 01       		.uleb128 0x1
+ 356 0133 9C       		.byte	0x9c
+ 357 0134 06       		.uleb128 0x6
+ 358 0135 58020000 		.4byte	.LASF22
+ 359 0139 01       		.byte	0x1
+ 360 013a CF       		.byte	0xcf
+ 361 013b 00000000 		.4byte	.LFB4
+ 362 013f 14000000 		.4byte	.LFE4-.LFB4
+ 363 0143 01       		.uleb128 0x1
+ 364 0144 9C       		.byte	0x9c
+ 365 0145 75010000 		.4byte	0x175
+ 366 0149 07       		.uleb128 0x7
+ 367 014a 49010000 		.4byte	.LASF23
+ 368 014e 01       		.byte	0x1
+ 369 014f CF       		.byte	0xcf
+ 370 0150 77000000 		.4byte	0x77
+ 371 0154 42000000 		.4byte	.LLST2
+ 372 0158 0A       		.uleb128 0xa
+ 373 0159 85010000 		.4byte	.LASF18
+ 374 015d 01       		.byte	0x1
+ 375 015e CF       		.byte	0xcf
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJaswno.s 			page 12
 
 
- 501 0191 6B000000 		.4byte	0x6b
- 502 0195 02       		.uleb128 0x2
- 503 0196 91       		.byte	0x91
- 504 0197 77       		.sleb128 -9
- 505 0198 00       		.byte	0
- 506 0199 00       		.byte	0
- 507              		.section	.debug_abbrev,"",%progbits
- 508              	.Ldebug_abbrev0:
- 509 0000 01       		.uleb128 0x1
- 510 0001 11       		.uleb128 0x11
- 511 0002 01       		.byte	0x1
- 512 0003 25       		.uleb128 0x25
- 513 0004 0E       		.uleb128 0xe
- 514 0005 13       		.uleb128 0x13
- 515 0006 0B       		.uleb128 0xb
- 516 0007 03       		.uleb128 0x3
- 517 0008 0E       		.uleb128 0xe
- 518 0009 1B       		.uleb128 0x1b
- 519 000a 0E       		.uleb128 0xe
- 520 000b 55       		.uleb128 0x55
- 521 000c 17       		.uleb128 0x17
- 522 000d 11       		.uleb128 0x11
- 523 000e 01       		.uleb128 0x1
- 524 000f 10       		.uleb128 0x10
- 525 0010 17       		.uleb128 0x17
- 526 0011 00       		.byte	0
- 527 0012 00       		.byte	0
- 528 0013 02       		.uleb128 0x2
- 529 0014 24       		.uleb128 0x24
- 530 0015 00       		.byte	0
- 531 0016 0B       		.uleb128 0xb
- 532 0017 0B       		.uleb128 0xb
- 533 0018 3E       		.uleb128 0x3e
- 534 0019 0B       		.uleb128 0xb
- 535 001a 03       		.uleb128 0x3
- 536 001b 0E       		.uleb128 0xe
- 537 001c 00       		.byte	0
- 538 001d 00       		.byte	0
- 539 001e 03       		.uleb128 0x3
- 540 001f 24       		.uleb128 0x24
- 541 0020 00       		.byte	0
- 542 0021 0B       		.uleb128 0xb
- 543 0022 0B       		.uleb128 0xb
- 544 0023 3E       		.uleb128 0x3e
- 545 0024 0B       		.uleb128 0xb
- 546 0025 03       		.uleb128 0x3
- 547 0026 08       		.uleb128 0x8
- 548 0027 00       		.byte	0
- 549 0028 00       		.byte	0
- 550 0029 04       		.uleb128 0x4
- 551 002a 16       		.uleb128 0x16
- 552 002b 00       		.byte	0
- 553 002c 03       		.uleb128 0x3
- 554 002d 0E       		.uleb128 0xe
- 555 002e 3A       		.uleb128 0x3a
- 556 002f 0B       		.uleb128 0xb
- 557 0030 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 15
+ 376 015f 77000000 		.4byte	0x77
+ 377 0163 01       		.uleb128 0x1
+ 378 0164 51       		.byte	0x51
+ 379 0165 0B       		.uleb128 0xb
+ 380 0166 59010000 		.4byte	.LASF25
+ 381 016a 01       		.byte	0x1
+ 382 016b D1       		.byte	0xd1
+ 383 016c 83000000 		.4byte	0x83
+ 384 0170 63000000 		.4byte	.LLST3
+ 385 0174 00       		.byte	0
+ 386 0175 0C       		.uleb128 0xc
+ 387 0176 25020000 		.4byte	.LASF24
+ 388 017a 01       		.byte	0x1
+ 389 017b EC       		.byte	0xec
+ 390 017c 6B000000 		.4byte	0x6b
+ 391 0180 00000000 		.4byte	.LFB5
+ 392 0184 14000000 		.4byte	.LFE5-.LFB5
+ 393 0188 01       		.uleb128 0x1
+ 394 0189 9C       		.byte	0x9c
+ 395 018a 0B       		.uleb128 0xb
+ 396 018b 98010000 		.4byte	.LASF26
+ 397 018f 01       		.byte	0x1
+ 398 0190 EE       		.byte	0xee
+ 399 0191 6B000000 		.4byte	0x6b
+ 400 0195 80000000 		.4byte	.LLST4
+ 401 0199 00       		.byte	0
+ 402 019a 00       		.byte	0
+ 403              		.section	.debug_abbrev,"",%progbits
+ 404              	.Ldebug_abbrev0:
+ 405 0000 01       		.uleb128 0x1
+ 406 0001 11       		.uleb128 0x11
+ 407 0002 01       		.byte	0x1
+ 408 0003 25       		.uleb128 0x25
+ 409 0004 0E       		.uleb128 0xe
+ 410 0005 13       		.uleb128 0x13
+ 411 0006 0B       		.uleb128 0xb
+ 412 0007 03       		.uleb128 0x3
+ 413 0008 0E       		.uleb128 0xe
+ 414 0009 1B       		.uleb128 0x1b
+ 415 000a 0E       		.uleb128 0xe
+ 416 000b 55       		.uleb128 0x55
+ 417 000c 17       		.uleb128 0x17
+ 418 000d 11       		.uleb128 0x11
+ 419 000e 01       		.uleb128 0x1
+ 420 000f 10       		.uleb128 0x10
+ 421 0010 17       		.uleb128 0x17
+ 422 0011 00       		.byte	0
+ 423 0012 00       		.byte	0
+ 424 0013 02       		.uleb128 0x2
+ 425 0014 24       		.uleb128 0x24
+ 426 0015 00       		.byte	0
+ 427 0016 0B       		.uleb128 0xb
+ 428 0017 0B       		.uleb128 0xb
+ 429 0018 3E       		.uleb128 0x3e
+ 430 0019 0B       		.uleb128 0xb
+ 431 001a 03       		.uleb128 0x3
+ 432 001b 0E       		.uleb128 0xe
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJaswno.s 			page 13
 
 
- 558 0031 05       		.uleb128 0x5
- 559 0032 49       		.uleb128 0x49
- 560 0033 13       		.uleb128 0x13
- 561 0034 00       		.byte	0
- 562 0035 00       		.byte	0
- 563 0036 05       		.uleb128 0x5
- 564 0037 35       		.uleb128 0x35
- 565 0038 00       		.byte	0
- 566 0039 49       		.uleb128 0x49
- 567 003a 13       		.uleb128 0x13
- 568 003b 00       		.byte	0
- 569 003c 00       		.byte	0
- 570 003d 06       		.uleb128 0x6
- 571 003e 2E       		.uleb128 0x2e
- 572 003f 01       		.byte	0x1
- 573 0040 3F       		.uleb128 0x3f
- 574 0041 19       		.uleb128 0x19
- 575 0042 03       		.uleb128 0x3
- 576 0043 0E       		.uleb128 0xe
- 577 0044 3A       		.uleb128 0x3a
- 578 0045 0B       		.uleb128 0xb
- 579 0046 3B       		.uleb128 0x3b
- 580 0047 0B       		.uleb128 0xb
- 581 0048 27       		.uleb128 0x27
- 582 0049 19       		.uleb128 0x19
- 583 004a 11       		.uleb128 0x11
- 584 004b 01       		.uleb128 0x1
- 585 004c 12       		.uleb128 0x12
- 586 004d 06       		.uleb128 0x6
- 587 004e 40       		.uleb128 0x40
- 588 004f 18       		.uleb128 0x18
- 589 0050 9742     		.uleb128 0x2117
- 590 0052 19       		.uleb128 0x19
- 591 0053 01       		.uleb128 0x1
- 592 0054 13       		.uleb128 0x13
- 593 0055 00       		.byte	0
- 594 0056 00       		.byte	0
- 595 0057 07       		.uleb128 0x7
- 596 0058 05       		.uleb128 0x5
- 597 0059 00       		.byte	0
- 598 005a 03       		.uleb128 0x3
- 599 005b 0E       		.uleb128 0xe
- 600 005c 3A       		.uleb128 0x3a
- 601 005d 0B       		.uleb128 0xb
- 602 005e 3B       		.uleb128 0x3b
- 603 005f 0B       		.uleb128 0xb
- 604 0060 49       		.uleb128 0x49
- 605 0061 13       		.uleb128 0x13
- 606 0062 02       		.uleb128 0x2
- 607 0063 18       		.uleb128 0x18
- 608 0064 00       		.byte	0
- 609 0065 00       		.byte	0
- 610 0066 08       		.uleb128 0x8
- 611 0067 34       		.uleb128 0x34
- 612 0068 00       		.byte	0
- 613 0069 03       		.uleb128 0x3
- 614 006a 0E       		.uleb128 0xe
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 16
+ 433 001c 00       		.byte	0
+ 434 001d 00       		.byte	0
+ 435 001e 03       		.uleb128 0x3
+ 436 001f 24       		.uleb128 0x24
+ 437 0020 00       		.byte	0
+ 438 0021 0B       		.uleb128 0xb
+ 439 0022 0B       		.uleb128 0xb
+ 440 0023 3E       		.uleb128 0x3e
+ 441 0024 0B       		.uleb128 0xb
+ 442 0025 03       		.uleb128 0x3
+ 443 0026 08       		.uleb128 0x8
+ 444 0027 00       		.byte	0
+ 445 0028 00       		.byte	0
+ 446 0029 04       		.uleb128 0x4
+ 447 002a 16       		.uleb128 0x16
+ 448 002b 00       		.byte	0
+ 449 002c 03       		.uleb128 0x3
+ 450 002d 0E       		.uleb128 0xe
+ 451 002e 3A       		.uleb128 0x3a
+ 452 002f 0B       		.uleb128 0xb
+ 453 0030 3B       		.uleb128 0x3b
+ 454 0031 05       		.uleb128 0x5
+ 455 0032 49       		.uleb128 0x49
+ 456 0033 13       		.uleb128 0x13
+ 457 0034 00       		.byte	0
+ 458 0035 00       		.byte	0
+ 459 0036 05       		.uleb128 0x5
+ 460 0037 35       		.uleb128 0x35
+ 461 0038 00       		.byte	0
+ 462 0039 49       		.uleb128 0x49
+ 463 003a 13       		.uleb128 0x13
+ 464 003b 00       		.byte	0
+ 465 003c 00       		.byte	0
+ 466 003d 06       		.uleb128 0x6
+ 467 003e 2E       		.uleb128 0x2e
+ 468 003f 01       		.byte	0x1
+ 469 0040 3F       		.uleb128 0x3f
+ 470 0041 19       		.uleb128 0x19
+ 471 0042 03       		.uleb128 0x3
+ 472 0043 0E       		.uleb128 0xe
+ 473 0044 3A       		.uleb128 0x3a
+ 474 0045 0B       		.uleb128 0xb
+ 475 0046 3B       		.uleb128 0x3b
+ 476 0047 0B       		.uleb128 0xb
+ 477 0048 27       		.uleb128 0x27
+ 478 0049 19       		.uleb128 0x19
+ 479 004a 11       		.uleb128 0x11
+ 480 004b 01       		.uleb128 0x1
+ 481 004c 12       		.uleb128 0x12
+ 482 004d 06       		.uleb128 0x6
+ 483 004e 40       		.uleb128 0x40
+ 484 004f 18       		.uleb128 0x18
+ 485 0050 9742     		.uleb128 0x2117
+ 486 0052 19       		.uleb128 0x19
+ 487 0053 01       		.uleb128 0x1
+ 488 0054 13       		.uleb128 0x13
+ 489 0055 00       		.byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJaswno.s 			page 14
 
 
- 615 006b 3A       		.uleb128 0x3a
- 616 006c 0B       		.uleb128 0xb
- 617 006d 3B       		.uleb128 0x3b
- 618 006e 0B       		.uleb128 0xb
- 619 006f 49       		.uleb128 0x49
- 620 0070 13       		.uleb128 0x13
- 621 0071 02       		.uleb128 0x2
- 622 0072 18       		.uleb128 0x18
- 623 0073 00       		.byte	0
- 624 0074 00       		.byte	0
- 625 0075 09       		.uleb128 0x9
- 626 0076 2E       		.uleb128 0x2e
- 627 0077 00       		.byte	0
- 628 0078 3F       		.uleb128 0x3f
- 629 0079 19       		.uleb128 0x19
- 630 007a 03       		.uleb128 0x3
- 631 007b 0E       		.uleb128 0xe
- 632 007c 3A       		.uleb128 0x3a
- 633 007d 0B       		.uleb128 0xb
- 634 007e 3B       		.uleb128 0x3b
- 635 007f 0B       		.uleb128 0xb
- 636 0080 27       		.uleb128 0x27
- 637 0081 19       		.uleb128 0x19
- 638 0082 49       		.uleb128 0x49
- 639 0083 13       		.uleb128 0x13
- 640 0084 11       		.uleb128 0x11
- 641 0085 01       		.uleb128 0x1
- 642 0086 12       		.uleb128 0x12
- 643 0087 06       		.uleb128 0x6
- 644 0088 40       		.uleb128 0x40
- 645 0089 18       		.uleb128 0x18
- 646 008a 9742     		.uleb128 0x2117
- 647 008c 19       		.uleb128 0x19
- 648 008d 00       		.byte	0
- 649 008e 00       		.byte	0
- 650 008f 0A       		.uleb128 0xa
- 651 0090 2E       		.uleb128 0x2e
- 652 0091 01       		.byte	0x1
- 653 0092 3F       		.uleb128 0x3f
- 654 0093 19       		.uleb128 0x19
- 655 0094 03       		.uleb128 0x3
- 656 0095 0E       		.uleb128 0xe
- 657 0096 3A       		.uleb128 0x3a
- 658 0097 0B       		.uleb128 0xb
- 659 0098 3B       		.uleb128 0x3b
- 660 0099 0B       		.uleb128 0xb
- 661 009a 27       		.uleb128 0x27
- 662 009b 19       		.uleb128 0x19
- 663 009c 49       		.uleb128 0x49
- 664 009d 13       		.uleb128 0x13
- 665 009e 11       		.uleb128 0x11
- 666 009f 01       		.uleb128 0x1
- 667 00a0 12       		.uleb128 0x12
- 668 00a1 06       		.uleb128 0x6
- 669 00a2 40       		.uleb128 0x40
- 670 00a3 18       		.uleb128 0x18
- 671 00a4 9742     		.uleb128 0x2117
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 17
+ 490 0056 00       		.byte	0
+ 491 0057 07       		.uleb128 0x7
+ 492 0058 05       		.uleb128 0x5
+ 493 0059 00       		.byte	0
+ 494 005a 03       		.uleb128 0x3
+ 495 005b 0E       		.uleb128 0xe
+ 496 005c 3A       		.uleb128 0x3a
+ 497 005d 0B       		.uleb128 0xb
+ 498 005e 3B       		.uleb128 0x3b
+ 499 005f 0B       		.uleb128 0xb
+ 500 0060 49       		.uleb128 0x49
+ 501 0061 13       		.uleb128 0x13
+ 502 0062 02       		.uleb128 0x2
+ 503 0063 17       		.uleb128 0x17
+ 504 0064 00       		.byte	0
+ 505 0065 00       		.byte	0
+ 506 0066 08       		.uleb128 0x8
+ 507 0067 34       		.uleb128 0x34
+ 508 0068 00       		.byte	0
+ 509 0069 03       		.uleb128 0x3
+ 510 006a 0E       		.uleb128 0xe
+ 511 006b 3A       		.uleb128 0x3a
+ 512 006c 0B       		.uleb128 0xb
+ 513 006d 3B       		.uleb128 0x3b
+ 514 006e 0B       		.uleb128 0xb
+ 515 006f 49       		.uleb128 0x49
+ 516 0070 13       		.uleb128 0x13
+ 517 0071 00       		.byte	0
+ 518 0072 00       		.byte	0
+ 519 0073 09       		.uleb128 0x9
+ 520 0074 2E       		.uleb128 0x2e
+ 521 0075 00       		.byte	0
+ 522 0076 3F       		.uleb128 0x3f
+ 523 0077 19       		.uleb128 0x19
+ 524 0078 03       		.uleb128 0x3
+ 525 0079 0E       		.uleb128 0xe
+ 526 007a 3A       		.uleb128 0x3a
+ 527 007b 0B       		.uleb128 0xb
+ 528 007c 3B       		.uleb128 0x3b
+ 529 007d 0B       		.uleb128 0xb
+ 530 007e 27       		.uleb128 0x27
+ 531 007f 19       		.uleb128 0x19
+ 532 0080 49       		.uleb128 0x49
+ 533 0081 13       		.uleb128 0x13
+ 534 0082 11       		.uleb128 0x11
+ 535 0083 01       		.uleb128 0x1
+ 536 0084 12       		.uleb128 0x12
+ 537 0085 06       		.uleb128 0x6
+ 538 0086 40       		.uleb128 0x40
+ 539 0087 18       		.uleb128 0x18
+ 540 0088 9742     		.uleb128 0x2117
+ 541 008a 19       		.uleb128 0x19
+ 542 008b 00       		.byte	0
+ 543 008c 00       		.byte	0
+ 544 008d 0A       		.uleb128 0xa
+ 545 008e 05       		.uleb128 0x5
+ 546 008f 00       		.byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJaswno.s 			page 15
 
 
- 672 00a6 19       		.uleb128 0x19
- 673 00a7 00       		.byte	0
- 674 00a8 00       		.byte	0
- 675 00a9 00       		.byte	0
- 676              		.section	.debug_aranges,"",%progbits
- 677 0000 44000000 		.4byte	0x44
- 678 0004 0200     		.2byte	0x2
- 679 0006 00000000 		.4byte	.Ldebug_info0
- 680 000a 04       		.byte	0x4
- 681 000b 00       		.byte	0
- 682 000c 0000     		.2byte	0
- 683 000e 0000     		.2byte	0
- 684 0010 00000000 		.4byte	.LFB0
- 685 0014 30000000 		.4byte	.LFE0-.LFB0
- 686 0018 00000000 		.4byte	.LFB1
- 687 001c 4C000000 		.4byte	.LFE1-.LFB1
- 688 0020 00000000 		.4byte	.LFB2
- 689 0024 1C000000 		.4byte	.LFE2-.LFB2
- 690 0028 00000000 		.4byte	.LFB3
- 691 002c 1C000000 		.4byte	.LFE3-.LFB3
- 692 0030 00000000 		.4byte	.LFB4
- 693 0034 40000000 		.4byte	.LFE4-.LFB4
- 694 0038 00000000 		.4byte	.LFB5
- 695 003c 30000000 		.4byte	.LFE5-.LFB5
- 696 0040 00000000 		.4byte	0
- 697 0044 00000000 		.4byte	0
- 698              		.section	.debug_ranges,"",%progbits
- 699              	.Ldebug_ranges0:
- 700 0000 00000000 		.4byte	.LFB0
- 701 0004 30000000 		.4byte	.LFE0
- 702 0008 00000000 		.4byte	.LFB1
- 703 000c 4C000000 		.4byte	.LFE1
- 704 0010 00000000 		.4byte	.LFB2
- 705 0014 1C000000 		.4byte	.LFE2
- 706 0018 00000000 		.4byte	.LFB3
- 707 001c 1C000000 		.4byte	.LFE3
- 708 0020 00000000 		.4byte	.LFB4
- 709 0024 40000000 		.4byte	.LFE4
- 710 0028 00000000 		.4byte	.LFB5
- 711 002c 30000000 		.4byte	.LFE5
- 712 0030 00000000 		.4byte	0
- 713 0034 00000000 		.4byte	0
- 714              		.section	.debug_line,"",%progbits
- 715              	.Ldebug_line0:
- 716 0000 BF000000 		.section	.debug_str,"MS",%progbits,1
- 716      02004800 
- 716      00000201 
- 716      FB0E0D00 
- 716      01010101 
- 717              	.LASF15:
- 718 0000 72656733 		.ascii	"reg32\000"
- 718      3200
- 719              	.LASF19:
- 720 0006 76616C75 		.ascii	"value\000"
- 720      6500
- 721              	.LASF16:
- 722 000c 496E7075 		.ascii	"Input_Pin_1_SetDriveMode\000"
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 18
+ 547 0090 03       		.uleb128 0x3
+ 548 0091 0E       		.uleb128 0xe
+ 549 0092 3A       		.uleb128 0x3a
+ 550 0093 0B       		.uleb128 0xb
+ 551 0094 3B       		.uleb128 0x3b
+ 552 0095 0B       		.uleb128 0xb
+ 553 0096 49       		.uleb128 0x49
+ 554 0097 13       		.uleb128 0x13
+ 555 0098 02       		.uleb128 0x2
+ 556 0099 18       		.uleb128 0x18
+ 557 009a 00       		.byte	0
+ 558 009b 00       		.byte	0
+ 559 009c 0B       		.uleb128 0xb
+ 560 009d 34       		.uleb128 0x34
+ 561 009e 00       		.byte	0
+ 562 009f 03       		.uleb128 0x3
+ 563 00a0 0E       		.uleb128 0xe
+ 564 00a1 3A       		.uleb128 0x3a
+ 565 00a2 0B       		.uleb128 0xb
+ 566 00a3 3B       		.uleb128 0x3b
+ 567 00a4 0B       		.uleb128 0xb
+ 568 00a5 49       		.uleb128 0x49
+ 569 00a6 13       		.uleb128 0x13
+ 570 00a7 02       		.uleb128 0x2
+ 571 00a8 17       		.uleb128 0x17
+ 572 00a9 00       		.byte	0
+ 573 00aa 00       		.byte	0
+ 574 00ab 0C       		.uleb128 0xc
+ 575 00ac 2E       		.uleb128 0x2e
+ 576 00ad 01       		.byte	0x1
+ 577 00ae 3F       		.uleb128 0x3f
+ 578 00af 19       		.uleb128 0x19
+ 579 00b0 03       		.uleb128 0x3
+ 580 00b1 0E       		.uleb128 0xe
+ 581 00b2 3A       		.uleb128 0x3a
+ 582 00b3 0B       		.uleb128 0xb
+ 583 00b4 3B       		.uleb128 0x3b
+ 584 00b5 0B       		.uleb128 0xb
+ 585 00b6 27       		.uleb128 0x27
+ 586 00b7 19       		.uleb128 0x19
+ 587 00b8 49       		.uleb128 0x49
+ 588 00b9 13       		.uleb128 0x13
+ 589 00ba 11       		.uleb128 0x11
+ 590 00bb 01       		.uleb128 0x1
+ 591 00bc 12       		.uleb128 0x12
+ 592 00bd 06       		.uleb128 0x6
+ 593 00be 40       		.uleb128 0x40
+ 594 00bf 18       		.uleb128 0x18
+ 595 00c0 9742     		.uleb128 0x2117
+ 596 00c2 19       		.uleb128 0x19
+ 597 00c3 00       		.byte	0
+ 598 00c4 00       		.byte	0
+ 599 00c5 00       		.byte	0
+ 600              		.section	.debug_loc,"",%progbits
+ 601              	.Ldebug_loc0:
+ 602              	.LLST0:
+ 603 0000 00000000 		.4byte	.LVL0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJaswno.s 			page 16
 
 
- 722      745F5069 
- 722      6E5F315F 
- 722      53657444 
- 722      72697665 
- 723              	.LASF13:
- 724 0025 646F7562 		.ascii	"double\000"
- 724      6C6500
- 725              	.LASF12:
- 726 002c 666C6F61 		.ascii	"float\000"
- 726      7400
- 727              	.LASF1:
- 728 0032 756E7369 		.ascii	"unsigned char\000"
- 728      676E6564 
- 728      20636861 
- 728      7200
- 729              	.LASF24:
- 730 0040 64725661 		.ascii	"drVal\000"
- 730      6C00
- 731              	.LASF5:
- 732 0046 6C6F6E67 		.ascii	"long unsigned int\000"
- 732      20756E73 
- 732      69676E65 
- 732      6420696E 
- 732      7400
- 733              	.LASF20:
- 734 0058 496E7075 		.ascii	"Input_Pin_1_Read\000"
- 734      745F5069 
- 734      6E5F315F 
- 734      52656164 
- 734      00
- 735              	.LASF3:
- 736 0069 73686F72 		.ascii	"short unsigned int\000"
- 736      7420756E 
- 736      7369676E 
- 736      65642069 
- 736      6E7400
- 737              	.LASF29:
- 738 007c 47656E65 		.ascii	"Generated_Source\\PSoC4\\Input_Pin_1.c\000"
- 738      72617465 
- 738      645F536F 
- 738      75726365 
- 738      5C50536F 
- 739              	.LASF28:
- 740 00a1 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 740      4320342E 
- 740      392E3320 
- 740      32303135 
- 740      30333033 
- 741 00d4 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
- 741      20726576 
- 741      6973696F 
- 741      6E203232 
- 741      31323230 
- 742 0107 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
- 742      66756E63 
- 742      74696F6E 
- 742      2D736563 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 19
+ 604 0004 08000000 		.4byte	.LVL1
+ 605 0008 0100     		.2byte	0x1
+ 606 000a 50       		.byte	0x50
+ 607 000b 08000000 		.4byte	.LVL1
+ 608 000f 18000000 		.4byte	.LFE0
+ 609 0013 0400     		.2byte	0x4
+ 610 0015 F3       		.byte	0xf3
+ 611 0016 01       		.uleb128 0x1
+ 612 0017 50       		.byte	0x50
+ 613 0018 9F       		.byte	0x9f
+ 614 0019 00000000 		.4byte	0
+ 615 001d 00000000 		.4byte	0
+ 616              	.LLST1:
+ 617 0021 00000000 		.4byte	.LVL2
+ 618 0025 04000000 		.4byte	.LVL3
+ 619 0029 0100     		.2byte	0x1
+ 620 002b 50       		.byte	0x50
+ 621 002c 04000000 		.4byte	.LVL3
+ 622 0030 1C000000 		.4byte	.LFE1
+ 623 0034 0400     		.2byte	0x4
+ 624 0036 F3       		.byte	0xf3
+ 625 0037 01       		.uleb128 0x1
+ 626 0038 50       		.byte	0x50
+ 627 0039 9F       		.byte	0x9f
+ 628 003a 00000000 		.4byte	0
+ 629 003e 00000000 		.4byte	0
+ 630              	.LLST2:
+ 631 0042 00000000 		.4byte	.LVL4
+ 632 0046 08000000 		.4byte	.LVL7
+ 633 004a 0100     		.2byte	0x1
+ 634 004c 50       		.byte	0x50
+ 635 004d 08000000 		.4byte	.LVL7
+ 636 0051 14000000 		.4byte	.LFE4
+ 637 0055 0400     		.2byte	0x4
+ 638 0057 F3       		.byte	0xf3
+ 639 0058 01       		.uleb128 0x1
+ 640 0059 50       		.byte	0x50
+ 641 005a 9F       		.byte	0x9f
+ 642 005b 00000000 		.4byte	0
+ 643 005f 00000000 		.4byte	0
+ 644              	.LLST3:
+ 645 0063 04000000 		.4byte	.LVL5
+ 646 0067 06000000 		.4byte	.LVL6
+ 647 006b 0B00     		.2byte	0xb
+ 648 006d 70       		.byte	0x70
+ 649 006e 00       		.sleb128 0
+ 650 006f 0A       		.byte	0xa
+ 651 0070 FFFF     		.2byte	0xffff
+ 652 0072 1A       		.byte	0x1a
+ 653 0073 20       		.byte	0x20
+ 654 0074 73       		.byte	0x73
+ 655 0075 00       		.sleb128 0
+ 656 0076 1A       		.byte	0x1a
+ 657 0077 9F       		.byte	0x9f
+ 658 0078 00000000 		.4byte	0
+ 659 007c 00000000 		.4byte	0
+ 660              	.LLST4:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJaswno.s 			page 17
 
 
- 742      74696F6E 
- 743              	.LASF10:
- 744 012f 75696E74 		.ascii	"uint16\000"
- 744      313600
- 745              	.LASF23:
- 746 0136 706F7369 		.ascii	"position\000"
- 746      74696F6E 
- 746      00
- 747              	.LASF11:
- 748 013f 75696E74 		.ascii	"uint32\000"
- 748      333200
- 749              	.LASF25:
- 750 0146 696E7472 		.ascii	"intrCfg\000"
- 750      43666700 
- 751              	.LASF8:
- 752 014e 756E7369 		.ascii	"unsigned int\000"
- 752      676E6564 
- 752      20696E74 
- 752      00
- 753              	.LASF7:
- 754 015b 6C6F6E67 		.ascii	"long long unsigned int\000"
- 754      206C6F6E 
- 754      6720756E 
- 754      7369676E 
- 754      65642069 
- 755              	.LASF18:
- 756 0172 6D6F6465 		.ascii	"mode\000"
- 756      00
- 757              	.LASF6:
- 758 0177 6C6F6E67 		.ascii	"long long int\000"
- 758      206C6F6E 
- 758      6720696E 
- 758      7400
- 759              	.LASF27:
- 760 0185 6D61736B 		.ascii	"maskedStatus\000"
- 760      65645374 
- 760      61747573 
- 760      00
- 761              	.LASF14:
- 762 0192 63686172 		.ascii	"char\000"
- 762      00
- 763              	.LASF2:
- 764 0197 73686F72 		.ascii	"short int\000"
- 764      7420696E 
- 764      7400
- 765              	.LASF9:
- 766 01a1 75696E74 		.ascii	"uint8\000"
- 766      3800
- 767              	.LASF4:
- 768 01a7 6C6F6E67 		.ascii	"long int\000"
- 768      20696E74 
- 768      00
- 769              	.LASF30:
- 770 01b0 433A5C55 		.ascii	"C:\\Users\\glenn\\OneDrive\\PSOC\\moisture_sensor_4"
- 770      73657273 
- 770      5C676C65 
- 770      6E6E5C4F 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccfIB7pZ.s 			page 20
+ 661 0080 08000000 		.4byte	.LVL8
+ 662 0084 0C000000 		.4byte	.LVL9
+ 663 0088 0100     		.2byte	0x1
+ 664 008a 50       		.byte	0x50
+ 665 008b 0C000000 		.4byte	.LVL9
+ 666 008f 14000000 		.4byte	.LFE5
+ 667 0093 0400     		.2byte	0x4
+ 668 0095 72       		.byte	0x72
+ 669 0096 00       		.sleb128 0
+ 670 0097 06       		.byte	0x6
+ 671 0098 9F       		.byte	0x9f
+ 672 0099 00000000 		.4byte	0
+ 673 009d 00000000 		.4byte	0
+ 674              		.section	.debug_aranges,"",%progbits
+ 675 0000 44000000 		.4byte	0x44
+ 676 0004 0200     		.2byte	0x2
+ 677 0006 00000000 		.4byte	.Ldebug_info0
+ 678 000a 04       		.byte	0x4
+ 679 000b 00       		.byte	0
+ 680 000c 0000     		.2byte	0
+ 681 000e 0000     		.2byte	0
+ 682 0010 00000000 		.4byte	.LFB0
+ 683 0014 18000000 		.4byte	.LFE0-.LFB0
+ 684 0018 00000000 		.4byte	.LFB1
+ 685 001c 1C000000 		.4byte	.LFE1-.LFB1
+ 686 0020 00000000 		.4byte	.LFB2
+ 687 0024 10000000 		.4byte	.LFE2-.LFB2
+ 688 0028 00000000 		.4byte	.LFB3
+ 689 002c 10000000 		.4byte	.LFE3-.LFB3
+ 690 0030 00000000 		.4byte	.LFB4
+ 691 0034 14000000 		.4byte	.LFE4-.LFB4
+ 692 0038 00000000 		.4byte	.LFB5
+ 693 003c 14000000 		.4byte	.LFE5-.LFB5
+ 694 0040 00000000 		.4byte	0
+ 695 0044 00000000 		.4byte	0
+ 696              		.section	.debug_ranges,"",%progbits
+ 697              	.Ldebug_ranges0:
+ 698 0000 00000000 		.4byte	.LFB0
+ 699 0004 18000000 		.4byte	.LFE0
+ 700 0008 00000000 		.4byte	.LFB1
+ 701 000c 1C000000 		.4byte	.LFE1
+ 702 0010 00000000 		.4byte	.LFB2
+ 703 0014 10000000 		.4byte	.LFE2
+ 704 0018 00000000 		.4byte	.LFB3
+ 705 001c 10000000 		.4byte	.LFE3
+ 706 0020 00000000 		.4byte	.LFB4
+ 707 0024 14000000 		.4byte	.LFE4
+ 708 0028 00000000 		.4byte	.LFB5
+ 709 002c 14000000 		.4byte	.LFE5
+ 710 0030 00000000 		.4byte	0
+ 711 0034 00000000 		.4byte	0
+ 712              		.section	.debug_line,"",%progbits
+ 713              	.Ldebug_line0:
+ 714 0000 CC000000 		.section	.debug_str,"MS",%progbits,1
+ 714      02004800 
+ 714      00000201 
+ 714      FB0E0D00 
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJaswno.s 			page 18
 
 
- 770      6E654472 
- 771 01de 6D5C4D6F 		.ascii	"m\\Moisture_Sensor\\Moisture_Sensor.cydsn\000"
- 771      69737475 
- 771      72655F53 
- 771      656E736F 
- 771      725C4D6F 
- 772              	.LASF0:
- 773 0206 7369676E 		.ascii	"signed char\000"
- 773      65642063 
- 773      68617200 
- 774              	.LASF26:
- 775 0212 496E7075 		.ascii	"Input_Pin_1_ClearInterrupt\000"
- 775      745F5069 
- 775      6E5F315F 
- 775      436C6561 
- 775      72496E74 
- 776              	.LASF21:
- 777 022d 496E7075 		.ascii	"Input_Pin_1_ReadDataReg\000"
- 777      745F5069 
- 777      6E5F315F 
- 777      52656164 
- 777      44617461 
- 778              	.LASF22:
- 779 0245 496E7075 		.ascii	"Input_Pin_1_SetInterruptMode\000"
- 779      745F5069 
- 779      6E5F315F 
- 779      53657449 
- 779      6E746572 
- 780              	.LASF17:
- 781 0262 496E7075 		.ascii	"Input_Pin_1_Write\000"
- 781      745F5069 
- 781      6E5F315F 
- 781      57726974 
- 781      6500
- 782              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ 714      01010101 
+ 715              	.LASF15:
+ 716 0000 72656733 		.ascii	"reg32\000"
+ 716      3200
+ 717              	.LASF19:
+ 718 0006 76616C75 		.ascii	"value\000"
+ 718      6500
+ 719              	.LASF16:
+ 720 000c 496E7075 		.ascii	"Input_Pin_1_SetDriveMode\000"
+ 720      745F5069 
+ 720      6E5F315F 
+ 720      53657444 
+ 720      72697665 
+ 721              	.LASF13:
+ 722 0025 646F7562 		.ascii	"double\000"
+ 722      6C6500
+ 723              	.LASF12:
+ 724 002c 666C6F61 		.ascii	"float\000"
+ 724      7400
+ 725              	.LASF27:
+ 726 0032 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 726      4320342E 
+ 726      392E3320 
+ 726      32303135 
+ 726      30333033 
+ 727 0065 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 727      20726576 
+ 727      6973696F 
+ 727      6E203232 
+ 727      31323230 
+ 728 0098 32202D66 		.ascii	"2 -ffunction-sections -finline-functions -ffat-lto-"
+ 728      66756E63 
+ 728      74696F6E 
+ 728      2D736563 
+ 728      74696F6E 
+ 729 00cb 6F626A65 		.ascii	"objects\000"
+ 729      63747300 
+ 730              	.LASF1:
+ 731 00d3 756E7369 		.ascii	"unsigned char\000"
+ 731      676E6564 
+ 731      20636861 
+ 731      7200
+ 732              	.LASF30:
+ 733 00e1 64725661 		.ascii	"drVal\000"
+ 733      6C00
+ 734              	.LASF5:
+ 735 00e7 6C6F6E67 		.ascii	"long unsigned int\000"
+ 735      20756E73 
+ 735      69676E65 
+ 735      6420696E 
+ 735      7400
+ 736              	.LASF20:
+ 737 00f9 496E7075 		.ascii	"Input_Pin_1_Read\000"
+ 737      745F5069 
+ 737      6E5F315F 
+ 737      52656164 
+ 737      00
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJaswno.s 			page 19
+
+
+ 738              	.LASF3:
+ 739 010a 73686F72 		.ascii	"short unsigned int\000"
+ 739      7420756E 
+ 739      7369676E 
+ 739      65642069 
+ 739      6E7400
+ 740              	.LASF28:
+ 741 011d 47656E65 		.ascii	"Generated_Source\\PSoC4\\Input_Pin_1.c\000"
+ 741      72617465 
+ 741      645F536F 
+ 741      75726365 
+ 741      5C50536F 
+ 742              	.LASF10:
+ 743 0142 75696E74 		.ascii	"uint16\000"
+ 743      313600
+ 744              	.LASF23:
+ 745 0149 706F7369 		.ascii	"position\000"
+ 745      74696F6E 
+ 745      00
+ 746              	.LASF11:
+ 747 0152 75696E74 		.ascii	"uint32\000"
+ 747      333200
+ 748              	.LASF25:
+ 749 0159 696E7472 		.ascii	"intrCfg\000"
+ 749      43666700 
+ 750              	.LASF8:
+ 751 0161 756E7369 		.ascii	"unsigned int\000"
+ 751      676E6564 
+ 751      20696E74 
+ 751      00
+ 752              	.LASF7:
+ 753 016e 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 753      206C6F6E 
+ 753      6720756E 
+ 753      7369676E 
+ 753      65642069 
+ 754              	.LASF18:
+ 755 0185 6D6F6465 		.ascii	"mode\000"
+ 755      00
+ 756              	.LASF6:
+ 757 018a 6C6F6E67 		.ascii	"long long int\000"
+ 757      206C6F6E 
+ 757      6720696E 
+ 757      7400
+ 758              	.LASF26:
+ 759 0198 6D61736B 		.ascii	"maskedStatus\000"
+ 759      65645374 
+ 759      61747573 
+ 759      00
+ 760              	.LASF14:
+ 761 01a5 63686172 		.ascii	"char\000"
+ 761      00
+ 762              	.LASF2:
+ 763 01aa 73686F72 		.ascii	"short int\000"
+ 763      7420696E 
+ 763      7400
+ 764              	.LASF9:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccJaswno.s 			page 20
+
+
+ 765 01b4 75696E74 		.ascii	"uint8\000"
+ 765      3800
+ 766              	.LASF4:
+ 767 01ba 6C6F6E67 		.ascii	"long int\000"
+ 767      20696E74 
+ 767      00
+ 768              	.LASF29:
+ 769 01c3 433A5C55 		.ascii	"C:\\Users\\glenn\\OneDrive\\PSOC\\moisture_sensor_4"
+ 769      73657273 
+ 769      5C676C65 
+ 769      6E6E5C4F 
+ 769      6E654472 
+ 770 01f1 6D5C4D6F 		.ascii	"m\\Moisture_Sensor\\Moisture_Sensor.cydsn\000"
+ 770      69737475 
+ 770      72655F53 
+ 770      656E736F 
+ 770      725C4D6F 
+ 771              	.LASF0:
+ 772 0219 7369676E 		.ascii	"signed char\000"
+ 772      65642063 
+ 772      68617200 
+ 773              	.LASF24:
+ 774 0225 496E7075 		.ascii	"Input_Pin_1_ClearInterrupt\000"
+ 774      745F5069 
+ 774      6E5F315F 
+ 774      436C6561 
+ 774      72496E74 
+ 775              	.LASF21:
+ 776 0240 496E7075 		.ascii	"Input_Pin_1_ReadDataReg\000"
+ 776      745F5069 
+ 776      6E5F315F 
+ 776      52656164 
+ 776      44617461 
+ 777              	.LASF22:
+ 778 0258 496E7075 		.ascii	"Input_Pin_1_SetInterruptMode\000"
+ 778      745F5069 
+ 778      6E5F315F 
+ 778      53657449 
+ 778      6E746572 
+ 779              	.LASF17:
+ 780 0275 496E7075 		.ascii	"Input_Pin_1_Write\000"
+ 780      745F5069 
+ 780      6E5F315F 
+ 780      57726974 
+ 780      6500
+ 781              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cck94qxy.s 			page 1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccrkUR8N.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -9,7 +9,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cck94qxy.s 			page 1
    6              		.eabi_attribute 24, 1
    7              		.eabi_attribute 25, 1
    8              		.eabi_attribute 26, 1
-   9              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 30, 2
   10              		.eabi_attribute 34, 0
   11              		.eabi_attribute 18, 4
   12              		.code	16
@@ -25,46 +25,46 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cck94qxy.s 			page 1
   22 0006 00000000 		.4byte	.Ldebug_abbrev0
   23 000a 04       		.byte	0x4
   24 000b 01       		.uleb128 0x1
-  25 000c 0E000000 		.4byte	.LASF13
+  25 000c 1D010000 		.4byte	.LASF13
   26 0010 01       		.byte	0x1
-  27 0011 6A010000 		.4byte	.LASF14
-  28 0015 D2000000 		.4byte	.LASF15
+  27 0011 DC000000 		.4byte	.LASF14
+  28 0015 44000000 		.4byte	.LASF15
   29 0019 00000000 		.4byte	.Ldebug_line0
   30 001d 02       		.uleb128 0x2
   31 001e 01       		.byte	0x1
   32 001f 06       		.byte	0x6
-  33 0020 5E010000 		.4byte	.LASF0
+  33 0020 D0000000 		.4byte	.LASF0
   34 0024 02       		.uleb128 0x2
   35 0025 01       		.byte	0x1
   36 0026 08       		.byte	0x8
-  37 0027 28010000 		.4byte	.LASF1
+  37 0027 9A000000 		.4byte	.LASF1
   38 002b 02       		.uleb128 0x2
   39 002c 02       		.byte	0x2
   40 002d 05       		.byte	0x5
-  41 002e 98010000 		.4byte	.LASF2
+  41 002e 0A010000 		.4byte	.LASF2
   42 0032 02       		.uleb128 0x2
   43 0033 02       		.byte	0x2
   44 0034 07       		.byte	0x7
-  45 0035 4B010000 		.4byte	.LASF3
+  45 0035 BD000000 		.4byte	.LASF3
   46 0039 02       		.uleb128 0x2
   47 003a 04       		.byte	0x4
   48 003b 05       		.byte	0x5
-  49 003c 3B010000 		.4byte	.LASF4
+  49 003c AD000000 		.4byte	.LASF4
   50 0040 02       		.uleb128 0x2
   51 0041 04       		.byte	0x4
   52 0042 07       		.byte	0x7
-  53 0043 A9000000 		.4byte	.LASF5
+  53 0043 1B000000 		.4byte	.LASF5
   54 0047 02       		.uleb128 0x2
   55 0048 08       		.byte	0x8
   56 0049 05       		.byte	0x5
   57 004a 00000000 		.4byte	.LASF6
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cck94qxy.s 			page 2
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccrkUR8N.s 			page 2
 
 
   58 004e 02       		.uleb128 0x2
   59 004f 08       		.byte	0x8
   60 0050 07       		.byte	0x7
-  61 0051 BB000000 		.4byte	.LASF7
+  61 0051 2D000000 		.4byte	.LASF7
   62 0055 03       		.uleb128 0x3
   63 0056 04       		.byte	0x4
   64 0057 05       		.byte	0x5
@@ -72,23 +72,23 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cck94qxy.s 			page 1
   66 005c 02       		.uleb128 0x2
   67 005d 04       		.byte	0x4
   68 005e 07       		.byte	0x7
-  69 005f 9C000000 		.4byte	.LASF8
+  69 005f 0E000000 		.4byte	.LASF8
   70 0063 02       		.uleb128 0x2
   71 0064 04       		.byte	0x4
   72 0065 04       		.byte	0x4
-  73 0066 92010000 		.4byte	.LASF9
+  73 0066 04010000 		.4byte	.LASF9
   74 006a 02       		.uleb128 0x2
   75 006b 08       		.byte	0x8
   76 006c 04       		.byte	0x4
-  77 006d 44010000 		.4byte	.LASF10
+  77 006d B6000000 		.4byte	.LASF10
   78 0071 02       		.uleb128 0x2
   79 0072 01       		.byte	0x1
   80 0073 08       		.byte	0x8
-  81 0074 36010000 		.4byte	.LASF11
+  81 0074 A8000000 		.4byte	.LASF11
   82 0078 02       		.uleb128 0x2
   83 0079 04       		.byte	0x4
   84 007a 07       		.byte	0x7
-  85 007b A2010000 		.4byte	.LASF12
+  85 007b 14010000 		.4byte	.LASF12
   86 007f 00       		.byte	0
   87              		.section	.debug_abbrev,"",%progbits
   88              	.Ldebug_abbrev0:
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cck94qxy.s 			page 1
  112 0017 0E       		.uleb128 0xe
  113 0018 00       		.byte	0
  114 0019 00       		.byte	0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cck94qxy.s 			page 3
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccrkUR8N.s 			page 3
 
 
  115 001a 03       		.uleb128 0x3
@@ -155,96 +155,98 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cck94qxy.s 			page 1
  141      206C6F6E 
  141      6720696E 
  141      7400
- 142              	.LASF13:
- 143 000e 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 143      4320342E 
- 143      392E3320 
- 143      32303135 
- 143      30333033 
- 144 0041 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
- 144      20726576 
- 144      6973696F 
- 144      6E203232 
- 144      31323230 
- 145 0074 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
- 145      66756E63 
- 145      74696F6E 
- 145      2D736563 
- 145      74696F6E 
- 146              	.LASF8:
- 147 009c 756E7369 		.ascii	"unsigned int\000"
- 147      676E6564 
- 147      20696E74 
- 147      00
- 148              	.LASF5:
- 149 00a9 6C6F6E67 		.ascii	"long unsigned int\000"
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cck94qxy.s 			page 4
+ 142              	.LASF8:
+ 143 000e 756E7369 		.ascii	"unsigned int\000"
+ 143      676E6564 
+ 143      20696E74 
+ 143      00
+ 144              	.LASF5:
+ 145 001b 6C6F6E67 		.ascii	"long unsigned int\000"
+ 145      20756E73 
+ 145      69676E65 
+ 145      6420696E 
+ 145      7400
+ 146              	.LASF7:
+ 147 002d 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 147      206C6F6E 
+ 147      6720756E 
+ 147      7369676E 
+ 147      65642069 
+ 148              	.LASF15:
+ 149 0044 433A5C55 		.ascii	"C:\\Users\\glenn\\OneDrive\\PSOC\\moisture_sensor_4"
+ 149      73657273 
+ 149      5C676C65 
+ 149      6E6E5C4F 
+ 149      6E654472 
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccrkUR8N.s 			page 4
 
 
- 149      20756E73 
- 149      69676E65 
- 149      6420696E 
- 149      7400
- 150              	.LASF7:
- 151 00bb 6C6F6E67 		.ascii	"long long unsigned int\000"
- 151      206C6F6E 
- 151      6720756E 
- 151      7369676E 
- 151      65642069 
- 152              	.LASF15:
- 153 00d2 433A5C55 		.ascii	"C:\\Users\\glenn\\OneDrive\\PSOC\\moisture_sensor_4"
- 153      73657273 
- 153      5C676C65 
- 153      6E6E5C4F 
- 153      6E654472 
- 154 0100 6D5C4D6F 		.ascii	"m\\Moisture_Sensor\\Moisture_Sensor.cydsn\000"
- 154      69737475 
- 154      72655F53 
- 154      656E736F 
- 154      725C4D6F 
- 155              	.LASF1:
- 156 0128 756E7369 		.ascii	"unsigned char\000"
- 156      676E6564 
- 156      20636861 
- 156      7200
- 157              	.LASF11:
- 158 0136 63686172 		.ascii	"char\000"
- 158      00
- 159              	.LASF4:
- 160 013b 6C6F6E67 		.ascii	"long int\000"
- 160      20696E74 
- 160      00
- 161              	.LASF10:
- 162 0144 646F7562 		.ascii	"double\000"
- 162      6C6500
- 163              	.LASF3:
- 164 014b 73686F72 		.ascii	"short unsigned int\000"
- 164      7420756E 
- 164      7369676E 
- 164      65642069 
- 164      6E7400
- 165              	.LASF0:
- 166 015e 7369676E 		.ascii	"signed char\000"
- 166      65642063 
- 166      68617200 
- 167              	.LASF14:
- 168 016a 47656E65 		.ascii	"Generated_Source\\PSoC4\\I2C_1_I2C_BOOT.c\000"
- 168      72617465 
- 168      645F536F 
- 168      75726365 
- 168      5C50536F 
- 169              	.LASF9:
- 170 0192 666C6F61 		.ascii	"float\000"
- 170      7400
- 171              	.LASF2:
- 172 0198 73686F72 		.ascii	"short int\000"
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cck94qxy.s 			page 5
+ 150 0072 6D5C4D6F 		.ascii	"m\\Moisture_Sensor\\Moisture_Sensor.cydsn\000"
+ 150      69737475 
+ 150      72655F53 
+ 150      656E736F 
+ 150      725C4D6F 
+ 151              	.LASF1:
+ 152 009a 756E7369 		.ascii	"unsigned char\000"
+ 152      676E6564 
+ 152      20636861 
+ 152      7200
+ 153              	.LASF11:
+ 154 00a8 63686172 		.ascii	"char\000"
+ 154      00
+ 155              	.LASF4:
+ 156 00ad 6C6F6E67 		.ascii	"long int\000"
+ 156      20696E74 
+ 156      00
+ 157              	.LASF10:
+ 158 00b6 646F7562 		.ascii	"double\000"
+ 158      6C6500
+ 159              	.LASF3:
+ 160 00bd 73686F72 		.ascii	"short unsigned int\000"
+ 160      7420756E 
+ 160      7369676E 
+ 160      65642069 
+ 160      6E7400
+ 161              	.LASF0:
+ 162 00d0 7369676E 		.ascii	"signed char\000"
+ 162      65642063 
+ 162      68617200 
+ 163              	.LASF14:
+ 164 00dc 47656E65 		.ascii	"Generated_Source\\PSoC4\\I2C_1_I2C_BOOT.c\000"
+ 164      72617465 
+ 164      645F536F 
+ 164      75726365 
+ 164      5C50536F 
+ 165              	.LASF9:
+ 166 0104 666C6F61 		.ascii	"float\000"
+ 166      7400
+ 167              	.LASF2:
+ 168 010a 73686F72 		.ascii	"short int\000"
+ 168      7420696E 
+ 168      7400
+ 169              	.LASF12:
+ 170 0114 73697A65 		.ascii	"sizetype\000"
+ 170      74797065 
+ 170      00
+ 171              	.LASF13:
+ 172 011d 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 172      4320342E 
+ 172      392E3320 
+ 172      32303135 
+ 172      30333033 
+ 173 0150 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 173      20726576 
+ 173      6973696F 
+ 173      6E203232 
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccrkUR8N.s 			page 5
 
 
- 172      7420696E 
- 172      7400
- 173              	.LASF12:
- 174 01a2 73697A65 		.ascii	"sizetype\000"
- 174      74797065 
- 174      00
- 175              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ 173      31323230 
+ 174 0183 32202D66 		.ascii	"2 -ffunction-sections -finline-functions -ffat-lto-"
+ 174      66756E63 
+ 174      74696F6E 
+ 174      2D736563 
+ 174      74696F6E 
+ 175 01b6 6F626A65 		.ascii	"objects\000"
+ 175      63747300 
+ 176              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

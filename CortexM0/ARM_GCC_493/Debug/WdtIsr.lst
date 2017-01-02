@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -9,7 +9,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
    6              		.eabi_attribute 24, 1
    7              		.eabi_attribute 25, 1
    8              		.eabi_attribute 26, 1
-   9              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 30, 2
   10              		.eabi_attribute 34, 0
   11              		.eabi_attribute 18, 4
   12              		.code	16
@@ -17,14 +17,14 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
   14              		.text
   15              	.Ltext0:
   16              		.cfi_sections	.debug_frame
-  17              		.section	.text.WdtIsr_Start,"ax",%progbits
+  17              		.section	.text.WdtIsr_Interrupt,"ax",%progbits
   18              		.align	2
-  19              		.global	WdtIsr_Start
+  19              		.global	WdtIsr_Interrupt
   20              		.code	16
   21              		.thumb_func
-  22              		.type	WdtIsr_Start, %function
-  23              	WdtIsr_Start:
-  24              	.LFB1:
+  22              		.type	WdtIsr_Interrupt, %function
+  23              	WdtIsr_Interrupt:
+  24              	.LFB4:
   25              		.file 1 "Generated_Source\\PSoC4\\WdtIsr.c"
    1:Generated_Source\PSoC4/WdtIsr.c **** /*******************************************************************************
    2:Generated_Source\PSoC4/WdtIsr.c **** * File Name: WdtIsr.c  
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
   30:Generated_Source\PSoC4/WdtIsr.c **** 
   31:Generated_Source\PSoC4/WdtIsr.c **** /* `#END` */
   32:Generated_Source\PSoC4/WdtIsr.c **** 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 2
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 2
 
 
   33:Generated_Source\PSoC4/WdtIsr.c **** extern cyisraddress CyRamVectors[CYINT_IRQ_BASE + CY_NUM_INTERRUPTS];
@@ -86,59 +86,18 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
   55:Generated_Source\PSoC4/WdtIsr.c **** *******************************************************************************/
   56:Generated_Source\PSoC4/WdtIsr.c **** void WdtIsr_Start(void)
   57:Generated_Source\PSoC4/WdtIsr.c **** {
-  26              		.loc 1 57 0
-  27              		.cfi_startproc
-  28 0000 80B5     		push	{r7, lr}
-  29              		.cfi_def_cfa_offset 8
-  30              		.cfi_offset 7, -8
-  31              		.cfi_offset 14, -4
-  32 0002 00AF     		add	r7, sp, #0
-  33              		.cfi_def_cfa_register 7
   58:Generated_Source\PSoC4/WdtIsr.c ****     /* For all we know the interrupt is active. */
   59:Generated_Source\PSoC4/WdtIsr.c ****     WdtIsr_Disable();
-  34              		.loc 1 59 0
-  35 0004 FFF7FEFF 		bl	WdtIsr_Disable
   60:Generated_Source\PSoC4/WdtIsr.c **** 
   61:Generated_Source\PSoC4/WdtIsr.c ****     /* Set the ISR to point to the WdtIsr Interrupt. */
   62:Generated_Source\PSoC4/WdtIsr.c ****     WdtIsr_SetVector(&WdtIsr_Interrupt);
-  36              		.loc 1 62 0
-  37 0008 054B     		ldr	r3, .L2
-  38 000a 181C     		mov	r0, r3
-  39 000c FFF7FEFF 		bl	WdtIsr_SetVector
   63:Generated_Source\PSoC4/WdtIsr.c **** 
   64:Generated_Source\PSoC4/WdtIsr.c ****     /* Set the priority. */
   65:Generated_Source\PSoC4/WdtIsr.c ****     WdtIsr_SetPriority((uint8)WdtIsr_INTC_PRIOR_NUMBER);
-  40              		.loc 1 65 0
-  41 0010 0320     		mov	r0, #3
-  42 0012 FFF7FEFF 		bl	WdtIsr_SetPriority
   66:Generated_Source\PSoC4/WdtIsr.c **** 
   67:Generated_Source\PSoC4/WdtIsr.c ****     /* Enable it. */
   68:Generated_Source\PSoC4/WdtIsr.c ****     WdtIsr_Enable();
-  43              		.loc 1 68 0
-  44 0016 FFF7FEFF 		bl	WdtIsr_Enable
   69:Generated_Source\PSoC4/WdtIsr.c **** }
-  45              		.loc 1 69 0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 3
-
-
-  46 001a BD46     		mov	sp, r7
-  47              		@ sp needed
-  48 001c 80BD     		pop	{r7, pc}
-  49              	.L3:
-  50 001e C046     		.align	2
-  51              	.L2:
-  52 0020 00000000 		.word	WdtIsr_Interrupt
-  53              		.cfi_endproc
-  54              	.LFE1:
-  55              		.size	WdtIsr_Start, .-WdtIsr_Start
-  56              		.section	.text.WdtIsr_StartEx,"ax",%progbits
-  57              		.align	2
-  58              		.global	WdtIsr_StartEx
-  59              		.code	16
-  60              		.thumb_func
-  61              		.type	WdtIsr_StartEx, %function
-  62              	WdtIsr_StartEx:
-  63              	.LFB2:
   70:Generated_Source\PSoC4/WdtIsr.c **** 
   71:Generated_Source\PSoC4/WdtIsr.c **** 
   72:Generated_Source\PSoC4/WdtIsr.c **** /*******************************************************************************
@@ -159,6 +118,9 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
   87:Generated_Source\PSoC4/WdtIsr.c **** *   {
   88:Generated_Source\PSoC4/WdtIsr.c **** *   }
   89:Generated_Source\PSoC4/WdtIsr.c **** *   Function prototype example:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 3
+
+
   90:Generated_Source\PSoC4/WdtIsr.c **** *   CY_ISR_PROTO(MyISR);
   91:Generated_Source\PSoC4/WdtIsr.c **** *
   92:Generated_Source\PSoC4/WdtIsr.c **** * Parameters:  
@@ -170,59 +132,18 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
   98:Generated_Source\PSoC4/WdtIsr.c **** *******************************************************************************/
   99:Generated_Source\PSoC4/WdtIsr.c **** void WdtIsr_StartEx(cyisraddress address)
  100:Generated_Source\PSoC4/WdtIsr.c **** {
-  64              		.loc 1 100 0
-  65              		.cfi_startproc
-  66 0000 80B5     		push	{r7, lr}
-  67              		.cfi_def_cfa_offset 8
-  68              		.cfi_offset 7, -8
-  69              		.cfi_offset 14, -4
-  70 0002 82B0     		sub	sp, sp, #8
-  71              		.cfi_def_cfa_offset 16
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 4
-
-
-  72 0004 00AF     		add	r7, sp, #0
-  73              		.cfi_def_cfa_register 7
-  74 0006 7860     		str	r0, [r7, #4]
  101:Generated_Source\PSoC4/WdtIsr.c ****     /* For all we know the interrupt is active. */
  102:Generated_Source\PSoC4/WdtIsr.c ****     WdtIsr_Disable();
-  75              		.loc 1 102 0
-  76 0008 FFF7FEFF 		bl	WdtIsr_Disable
  103:Generated_Source\PSoC4/WdtIsr.c **** 
  104:Generated_Source\PSoC4/WdtIsr.c ****     /* Set the ISR to point to the WdtIsr Interrupt. */
  105:Generated_Source\PSoC4/WdtIsr.c ****     WdtIsr_SetVector(address);
-  77              		.loc 1 105 0
-  78 000c 7B68     		ldr	r3, [r7, #4]
-  79 000e 181C     		mov	r0, r3
-  80 0010 FFF7FEFF 		bl	WdtIsr_SetVector
  106:Generated_Source\PSoC4/WdtIsr.c **** 
  107:Generated_Source\PSoC4/WdtIsr.c ****     /* Set the priority. */
  108:Generated_Source\PSoC4/WdtIsr.c ****     WdtIsr_SetPriority((uint8)WdtIsr_INTC_PRIOR_NUMBER);
-  81              		.loc 1 108 0
-  82 0014 0320     		mov	r0, #3
-  83 0016 FFF7FEFF 		bl	WdtIsr_SetPriority
  109:Generated_Source\PSoC4/WdtIsr.c **** 
  110:Generated_Source\PSoC4/WdtIsr.c ****     /* Enable it. */
  111:Generated_Source\PSoC4/WdtIsr.c ****     WdtIsr_Enable();
-  84              		.loc 1 111 0
-  85 001a FFF7FEFF 		bl	WdtIsr_Enable
  112:Generated_Source\PSoC4/WdtIsr.c **** }
-  86              		.loc 1 112 0
-  87 001e BD46     		mov	sp, r7
-  88 0020 02B0     		add	sp, sp, #8
-  89              		@ sp needed
-  90 0022 80BD     		pop	{r7, pc}
-  91              		.cfi_endproc
-  92              	.LFE2:
-  93              		.size	WdtIsr_StartEx, .-WdtIsr_StartEx
-  94              		.section	.text.WdtIsr_Stop,"ax",%progbits
-  95              		.align	2
-  96              		.global	WdtIsr_Stop
-  97              		.code	16
-  98              		.thumb_func
-  99              		.type	WdtIsr_Stop, %function
- 100              	WdtIsr_Stop:
- 101              	.LFB3:
  113:Generated_Source\PSoC4/WdtIsr.c **** 
  114:Generated_Source\PSoC4/WdtIsr.c **** 
  115:Generated_Source\PSoC4/WdtIsr.c **** /*******************************************************************************
@@ -238,51 +159,15 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
  125:Generated_Source\PSoC4/WdtIsr.c **** * Return:
  126:Generated_Source\PSoC4/WdtIsr.c **** *   None
  127:Generated_Source\PSoC4/WdtIsr.c **** *
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 5
-
-
  128:Generated_Source\PSoC4/WdtIsr.c **** *******************************************************************************/
  129:Generated_Source\PSoC4/WdtIsr.c **** void WdtIsr_Stop(void)
  130:Generated_Source\PSoC4/WdtIsr.c **** {
- 102              		.loc 1 130 0
- 103              		.cfi_startproc
- 104 0000 80B5     		push	{r7, lr}
- 105              		.cfi_def_cfa_offset 8
- 106              		.cfi_offset 7, -8
- 107              		.cfi_offset 14, -4
- 108 0002 00AF     		add	r7, sp, #0
- 109              		.cfi_def_cfa_register 7
  131:Generated_Source\PSoC4/WdtIsr.c ****     /* Disable this interrupt. */
  132:Generated_Source\PSoC4/WdtIsr.c ****     WdtIsr_Disable();
- 110              		.loc 1 132 0
- 111 0004 FFF7FEFF 		bl	WdtIsr_Disable
  133:Generated_Source\PSoC4/WdtIsr.c **** 
  134:Generated_Source\PSoC4/WdtIsr.c ****     /* Set the ISR to point to the passive one. */
  135:Generated_Source\PSoC4/WdtIsr.c ****     WdtIsr_SetVector(&IntDefaultHandler);
- 112              		.loc 1 135 0
- 113 0008 024B     		ldr	r3, .L6
- 114 000a 181C     		mov	r0, r3
- 115 000c FFF7FEFF 		bl	WdtIsr_SetVector
  136:Generated_Source\PSoC4/WdtIsr.c **** }
- 116              		.loc 1 136 0
- 117 0010 BD46     		mov	sp, r7
- 118              		@ sp needed
- 119 0012 80BD     		pop	{r7, pc}
- 120              	.L7:
- 121              		.align	2
- 122              	.L6:
- 123 0014 00000000 		.word	IntDefaultHandler
- 124              		.cfi_endproc
- 125              	.LFE3:
- 126              		.size	WdtIsr_Stop, .-WdtIsr_Stop
- 127              		.section	.text.WdtIsr_Interrupt,"ax",%progbits
- 128              		.align	2
- 129              		.global	WdtIsr_Interrupt
- 130              		.code	16
- 131              		.thumb_func
- 132              		.type	WdtIsr_Interrupt, %function
- 133              	WdtIsr_Interrupt:
- 134              	.LFB4:
  137:Generated_Source\PSoC4/WdtIsr.c **** 
  138:Generated_Source\PSoC4/WdtIsr.c **** 
  139:Generated_Source\PSoC4/WdtIsr.c **** /*******************************************************************************
@@ -293,14 +178,14 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
  144:Generated_Source\PSoC4/WdtIsr.c **** *   The default Interrupt Service Routine for WdtIsr.
  145:Generated_Source\PSoC4/WdtIsr.c **** *
  146:Generated_Source\PSoC4/WdtIsr.c **** *   Add custom code between the START and END comments to keep the next version
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 4
+
+
  147:Generated_Source\PSoC4/WdtIsr.c **** *   of this file from over-writing your code.
  148:Generated_Source\PSoC4/WdtIsr.c **** *
  149:Generated_Source\PSoC4/WdtIsr.c **** *   Note You may use either the default ISR by using this API, or you may define
  150:Generated_Source\PSoC4/WdtIsr.c **** *   your own separate ISR through ISR_StartEx().
  151:Generated_Source\PSoC4/WdtIsr.c **** *
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 6
-
-
  152:Generated_Source\PSoC4/WdtIsr.c **** * Parameters:  
  153:Generated_Source\PSoC4/WdtIsr.c **** *   None
  154:Generated_Source\PSoC4/WdtIsr.c **** *
@@ -310,14 +195,8 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
  158:Generated_Source\PSoC4/WdtIsr.c **** *******************************************************************************/
  159:Generated_Source\PSoC4/WdtIsr.c **** CY_ISR(WdtIsr_Interrupt)
  160:Generated_Source\PSoC4/WdtIsr.c **** {
- 135              		.loc 1 160 0
- 136              		.cfi_startproc
- 137 0000 80B5     		push	{r7, lr}
- 138              		.cfi_def_cfa_offset 8
- 139              		.cfi_offset 7, -8
- 140              		.cfi_offset 14, -4
- 141 0002 00AF     		add	r7, sp, #0
- 142              		.cfi_def_cfa_register 7
+  26              		.loc 1 160 0
+  27              		.cfi_startproc
  161:Generated_Source\PSoC4/WdtIsr.c ****     #ifdef WdtIsr_INTERRUPT_INTERRUPT_CALLBACK
  162:Generated_Source\PSoC4/WdtIsr.c ****         WdtIsr_Interrupt_InterruptCallback();
  163:Generated_Source\PSoC4/WdtIsr.c ****     #endif /* WdtIsr_INTERRUPT_INTERRUPT_CALLBACK */ 
@@ -327,21 +206,29 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
  167:Generated_Source\PSoC4/WdtIsr.c **** 
  168:Generated_Source\PSoC4/WdtIsr.c ****     /* `#END` */
  169:Generated_Source\PSoC4/WdtIsr.c **** }
- 143              		.loc 1 169 0
- 144 0004 BD46     		mov	sp, r7
- 145              		@ sp needed
- 146 0006 80BD     		pop	{r7, pc}
- 147              		.cfi_endproc
- 148              	.LFE4:
- 149              		.size	WdtIsr_Interrupt, .-WdtIsr_Interrupt
- 150              		.section	.text.WdtIsr_SetVector,"ax",%progbits
- 151              		.align	2
- 152              		.global	WdtIsr_SetVector
- 153              		.code	16
- 154              		.thumb_func
- 155              		.type	WdtIsr_SetVector, %function
- 156              	WdtIsr_SetVector:
- 157              	.LFB5:
+  28              		.loc 1 169 0
+  29              		@ sp needed
+  30 0000 7047     		bx	lr
+  31              		.cfi_endproc
+  32              	.LFE4:
+  33              		.size	WdtIsr_Interrupt, .-WdtIsr_Interrupt
+  34 0002 C046     		.section	.text.WdtIsr_Start,"ax",%progbits
+  35              		.align	2
+  36              		.global	WdtIsr_Start
+  37              		.code	16
+  38              		.thumb_func
+  39              		.type	WdtIsr_Start, %function
+  40              	WdtIsr_Start:
+  41              	.LFB1:
+  57:Generated_Source\PSoC4/WdtIsr.c ****     /* For all we know the interrupt is active. */
+  42              		.loc 1 57 0
+  43              		.cfi_startproc
+  44 0000 10B5     		push	{r4, lr}
+  45              		.cfi_def_cfa_offset 8
+  46              		.cfi_offset 4, -8
+  47              		.cfi_offset 14, -4
+  48              	.LBB26:
+  49              	.LBB27:
  170:Generated_Source\PSoC4/WdtIsr.c **** 
  171:Generated_Source\PSoC4/WdtIsr.c **** 
  172:Generated_Source\PSoC4/WdtIsr.c **** /*******************************************************************************
@@ -351,6 +238,9 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
  176:Generated_Source\PSoC4/WdtIsr.c **** * Summary:
  177:Generated_Source\PSoC4/WdtIsr.c **** *   Change the ISR vector for the Interrupt. Note calling WdtIsr_Start
  178:Generated_Source\PSoC4/WdtIsr.c **** *   will override any effect this method would have had. To set the vector 
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 5
+
+
  179:Generated_Source\PSoC4/WdtIsr.c **** *   before the component has been started use WdtIsr_StartEx instead.
  180:Generated_Source\PSoC4/WdtIsr.c **** * 
  181:Generated_Source\PSoC4/WdtIsr.c **** *   When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
@@ -358,9 +248,6 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
  183:Generated_Source\PSoC4/WdtIsr.c **** *
  184:Generated_Source\PSoC4/WdtIsr.c **** *   Function definition example:
  185:Generated_Source\PSoC4/WdtIsr.c **** *   CY_ISR(MyISR)
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 7
-
-
  186:Generated_Source\PSoC4/WdtIsr.c **** *   {
  187:Generated_Source\PSoC4/WdtIsr.c **** *   }
  188:Generated_Source\PSoC4/WdtIsr.c **** *
@@ -376,51 +263,13 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
  198:Generated_Source\PSoC4/WdtIsr.c **** *******************************************************************************/
  199:Generated_Source\PSoC4/WdtIsr.c **** void WdtIsr_SetVector(cyisraddress address)
  200:Generated_Source\PSoC4/WdtIsr.c **** {
- 158              		.loc 1 200 0
- 159              		.cfi_startproc
- 160 0000 80B5     		push	{r7, lr}
- 161              		.cfi_def_cfa_offset 8
- 162              		.cfi_offset 7, -8
- 163              		.cfi_offset 14, -4
- 164 0002 82B0     		sub	sp, sp, #8
- 165              		.cfi_def_cfa_offset 16
- 166 0004 00AF     		add	r7, sp, #0
- 167              		.cfi_def_cfa_register 7
- 168 0006 7860     		str	r0, [r7, #4]
  201:Generated_Source\PSoC4/WdtIsr.c ****     CyRamVectors[CYINT_IRQ_BASE + WdtIsr__INTC_NUMBER] = address;
- 169              		.loc 1 201 0
- 170 0008 024B     		ldr	r3, .L10
- 171 000a 7A68     		ldr	r2, [r7, #4]
- 172 000c DA65     		str	r2, [r3, #92]
  202:Generated_Source\PSoC4/WdtIsr.c **** }
- 173              		.loc 1 202 0
- 174 000e BD46     		mov	sp, r7
- 175 0010 02B0     		add	sp, sp, #8
- 176              		@ sp needed
- 177 0012 80BD     		pop	{r7, pc}
- 178              	.L11:
- 179              		.align	2
- 180              	.L10:
- 181 0014 00000000 		.word	CyRamVectors
- 182              		.cfi_endproc
- 183              	.LFE5:
- 184              		.size	WdtIsr_SetVector, .-WdtIsr_SetVector
- 185              		.section	.text.WdtIsr_GetVector,"ax",%progbits
- 186              		.align	2
- 187              		.global	WdtIsr_GetVector
- 188              		.code	16
- 189              		.thumb_func
- 190              		.type	WdtIsr_GetVector, %function
- 191              	WdtIsr_GetVector:
- 192              	.LFB6:
  203:Generated_Source\PSoC4/WdtIsr.c **** 
  204:Generated_Source\PSoC4/WdtIsr.c **** 
  205:Generated_Source\PSoC4/WdtIsr.c **** /*******************************************************************************
  206:Generated_Source\PSoC4/WdtIsr.c **** * Function Name: WdtIsr_GetVector
  207:Generated_Source\PSoC4/WdtIsr.c **** ********************************************************************************
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 8
-
-
  208:Generated_Source\PSoC4/WdtIsr.c **** *
  209:Generated_Source\PSoC4/WdtIsr.c **** * Summary:
  210:Generated_Source\PSoC4/WdtIsr.c **** *   Gets the "address" of the current ISR vector for the Interrupt.
@@ -434,39 +283,8 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
  218:Generated_Source\PSoC4/WdtIsr.c **** *******************************************************************************/
  219:Generated_Source\PSoC4/WdtIsr.c **** cyisraddress WdtIsr_GetVector(void)
  220:Generated_Source\PSoC4/WdtIsr.c **** {
- 193              		.loc 1 220 0
- 194              		.cfi_startproc
- 195 0000 80B5     		push	{r7, lr}
- 196              		.cfi_def_cfa_offset 8
- 197              		.cfi_offset 7, -8
- 198              		.cfi_offset 14, -4
- 199 0002 00AF     		add	r7, sp, #0
- 200              		.cfi_def_cfa_register 7
  221:Generated_Source\PSoC4/WdtIsr.c ****     return CyRamVectors[CYINT_IRQ_BASE + WdtIsr__INTC_NUMBER];
- 201              		.loc 1 221 0
- 202 0004 024B     		ldr	r3, .L14
- 203 0006 DB6D     		ldr	r3, [r3, #92]
  222:Generated_Source\PSoC4/WdtIsr.c **** }
- 204              		.loc 1 222 0
- 205 0008 181C     		mov	r0, r3
- 206 000a BD46     		mov	sp, r7
- 207              		@ sp needed
- 208 000c 80BD     		pop	{r7, pc}
- 209              	.L15:
- 210 000e C046     		.align	2
- 211              	.L14:
- 212 0010 00000000 		.word	CyRamVectors
- 213              		.cfi_endproc
- 214              	.LFE6:
- 215              		.size	WdtIsr_GetVector, .-WdtIsr_GetVector
- 216              		.section	.text.WdtIsr_SetPriority,"ax",%progbits
- 217              		.align	2
- 218              		.global	WdtIsr_SetPriority
- 219              		.code	16
- 220              		.thumb_func
- 221              		.type	WdtIsr_SetPriority, %function
- 222              	WdtIsr_SetPriority:
- 223              	.LFB7:
  223:Generated_Source\PSoC4/WdtIsr.c **** 
  224:Generated_Source\PSoC4/WdtIsr.c **** 
  225:Generated_Source\PSoC4/WdtIsr.c **** /*******************************************************************************
@@ -478,11 +296,11 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
  231:Generated_Source\PSoC4/WdtIsr.c **** *
  232:Generated_Source\PSoC4/WdtIsr.c **** *   Note calling WdtIsr_Start or WdtIsr_StartEx will 
  233:Generated_Source\PSoC4/WdtIsr.c **** *   override any effect this API would have had. This API should only be called
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 9
-
-
  234:Generated_Source\PSoC4/WdtIsr.c **** *   after WdtIsr_Start or WdtIsr_StartEx has been called. 
  235:Generated_Source\PSoC4/WdtIsr.c **** *   To set the initial priority for the component, use the Design-Wide Resources
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 6
+
+
  236:Generated_Source\PSoC4/WdtIsr.c **** *   Interrupt Editor.
  237:Generated_Source\PSoC4/WdtIsr.c **** *
  238:Generated_Source\PSoC4/WdtIsr.c **** *   Note This API has no effect on Non-maskable interrupt NMI).
@@ -498,82 +316,14 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
  248:Generated_Source\PSoC4/WdtIsr.c **** *******************************************************************************/
  249:Generated_Source\PSoC4/WdtIsr.c **** void WdtIsr_SetPriority(uint8 priority)
  250:Generated_Source\PSoC4/WdtIsr.c **** {
- 224              		.loc 1 250 0
- 225              		.cfi_startproc
- 226 0000 90B5     		push	{r4, r7, lr}
- 227              		.cfi_def_cfa_offset 12
- 228              		.cfi_offset 4, -12
- 229              		.cfi_offset 7, -8
- 230              		.cfi_offset 14, -4
- 231 0002 85B0     		sub	sp, sp, #20
- 232              		.cfi_def_cfa_offset 32
- 233 0004 00AF     		add	r7, sp, #0
- 234              		.cfi_def_cfa_register 7
- 235 0006 021C     		mov	r2, r0
- 236 0008 FB1D     		add	r3, r7, #7
- 237 000a 1A70     		strb	r2, [r3]
  251:Generated_Source\PSoC4/WdtIsr.c **** 	uint8 interruptState;
  252:Generated_Source\PSoC4/WdtIsr.c ****     uint32 priorityOffset = ((WdtIsr__INTC_NUMBER % 4u) * 8u) + 6u;
- 238              		.loc 1 252 0
- 239 000c 1E23     		mov	r3, #30
- 240 000e FB60     		str	r3, [r7, #12]
  253:Generated_Source\PSoC4/WdtIsr.c ****     
  254:Generated_Source\PSoC4/WdtIsr.c **** 	interruptState = CyEnterCriticalSection();
- 241              		.loc 1 254 0
- 242 0010 0B23     		mov	r3, #11
- 243 0012 FC18     		add	r4, r7, r3
- 244 0014 FFF7FEFF 		bl	CyEnterCriticalSection
- 245 0018 031C     		mov	r3, r0
- 246 001a 2370     		strb	r3, [r4]
  255:Generated_Source\PSoC4/WdtIsr.c ****     *WdtIsr_INTC_PRIOR = (*WdtIsr_INTC_PRIOR & (uint32)(~WdtIsr__INTC_PRIOR_MASK)) |
- 247              		.loc 1 255 0
- 248 001c 0A4B     		ldr	r3, .L17
- 249 001e 0A4A     		ldr	r2, .L17
- 250 0020 1268     		ldr	r2, [r2]
- 251 0022 9200     		lsl	r2, r2, #2
- 252 0024 9108     		lsr	r1, r2, #2
  256:Generated_Source\PSoC4/WdtIsr.c ****                                     ((uint32)priority << priorityOffset);
- 253              		.loc 1 256 0
- 254 0026 FA1D     		add	r2, r7, #7
- 255 0028 1078     		ldrb	r0, [r2]
- 256 002a FA68     		ldr	r2, [r7, #12]
- 257 002c 9040     		lsl	r0, r0, r2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 10
-
-
- 258 002e 021C     		mov	r2, r0
- 255:Generated_Source\PSoC4/WdtIsr.c ****     *WdtIsr_INTC_PRIOR = (*WdtIsr_INTC_PRIOR & (uint32)(~WdtIsr__INTC_PRIOR_MASK)) |
- 259              		.loc 1 255 0
- 260 0030 0A43     		orr	r2, r1
- 261 0032 1A60     		str	r2, [r3]
  257:Generated_Source\PSoC4/WdtIsr.c **** 	CyExitCriticalSection(interruptState);
- 262              		.loc 1 257 0
- 263 0034 0B23     		mov	r3, #11
- 264 0036 FB18     		add	r3, r7, r3
- 265 0038 1B78     		ldrb	r3, [r3]
- 266 003a 181C     		mov	r0, r3
- 267 003c FFF7FEFF 		bl	CyExitCriticalSection
  258:Generated_Source\PSoC4/WdtIsr.c **** }
- 268              		.loc 1 258 0
- 269 0040 BD46     		mov	sp, r7
- 270 0042 05B0     		add	sp, sp, #20
- 271              		@ sp needed
- 272 0044 90BD     		pop	{r4, r7, pc}
- 273              	.L18:
- 274 0046 C046     		.align	2
- 275              	.L17:
- 276 0048 04E400E0 		.word	-536812540
- 277              		.cfi_endproc
- 278              	.LFE7:
- 279              		.size	WdtIsr_SetPriority, .-WdtIsr_SetPriority
- 280              		.section	.text.WdtIsr_GetPriority,"ax",%progbits
- 281              		.align	2
- 282              		.global	WdtIsr_GetPriority
- 283              		.code	16
- 284              		.thumb_func
- 285              		.type	WdtIsr_GetPriority, %function
- 286              	WdtIsr_GetPriority:
- 287              	.LFB8:
  259:Generated_Source\PSoC4/WdtIsr.c **** 
  260:Generated_Source\PSoC4/WdtIsr.c **** 
  261:Generated_Source\PSoC4/WdtIsr.c **** /*******************************************************************************
@@ -594,62 +344,13 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
  276:Generated_Source\PSoC4/WdtIsr.c **** *******************************************************************************/
  277:Generated_Source\PSoC4/WdtIsr.c **** uint8 WdtIsr_GetPriority(void)
  278:Generated_Source\PSoC4/WdtIsr.c **** {
- 288              		.loc 1 278 0
- 289              		.cfi_startproc
- 290 0000 80B5     		push	{r7, lr}
- 291              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 11
-
-
- 292              		.cfi_offset 7, -8
- 293              		.cfi_offset 14, -4
- 294 0002 82B0     		sub	sp, sp, #8
- 295              		.cfi_def_cfa_offset 16
- 296 0004 00AF     		add	r7, sp, #0
- 297              		.cfi_def_cfa_register 7
  279:Generated_Source\PSoC4/WdtIsr.c ****     uint32 priority;
  280:Generated_Source\PSoC4/WdtIsr.c **** 	uint32 priorityOffset = ((WdtIsr__INTC_NUMBER % 4u) * 8u) + 6u;
- 298              		.loc 1 280 0
- 299 0006 1E23     		mov	r3, #30
- 300 0008 7B60     		str	r3, [r7, #4]
  281:Generated_Source\PSoC4/WdtIsr.c **** 
  282:Generated_Source\PSoC4/WdtIsr.c ****     priority = (*WdtIsr_INTC_PRIOR & WdtIsr__INTC_PRIOR_MASK) >> priorityOffset;
- 301              		.loc 1 282 0
- 302 000a 074B     		ldr	r3, .L21
- 303 000c 1B68     		ldr	r3, [r3]
- 304 000e 9B0F     		lsr	r3, r3, #30
- 305 0010 9A07     		lsl	r2, r3, #30
- 306 0012 7B68     		ldr	r3, [r7, #4]
- 307 0014 DA40     		lsr	r2, r2, r3
- 308 0016 131C     		mov	r3, r2
- 309 0018 3B60     		str	r3, [r7]
  283:Generated_Source\PSoC4/WdtIsr.c **** 
  284:Generated_Source\PSoC4/WdtIsr.c ****     return (uint8)priority;
- 310              		.loc 1 284 0
- 311 001a 3B68     		ldr	r3, [r7]
- 312 001c DBB2     		uxtb	r3, r3
  285:Generated_Source\PSoC4/WdtIsr.c **** }
- 313              		.loc 1 285 0
- 314 001e 181C     		mov	r0, r3
- 315 0020 BD46     		mov	sp, r7
- 316 0022 02B0     		add	sp, sp, #8
- 317              		@ sp needed
- 318 0024 80BD     		pop	{r7, pc}
- 319              	.L22:
- 320 0026 C046     		.align	2
- 321              	.L21:
- 322 0028 04E400E0 		.word	-536812540
- 323              		.cfi_endproc
- 324              	.LFE8:
- 325              		.size	WdtIsr_GetPriority, .-WdtIsr_GetPriority
- 326              		.section	.text.WdtIsr_Enable,"ax",%progbits
- 327              		.align	2
- 328              		.global	WdtIsr_Enable
- 329              		.code	16
- 330              		.thumb_func
- 331              		.type	WdtIsr_Enable, %function
- 332              	WdtIsr_Enable:
- 333              	.LFB9:
  286:Generated_Source\PSoC4/WdtIsr.c **** 
  287:Generated_Source\PSoC4/WdtIsr.c **** 
  288:Generated_Source\PSoC4/WdtIsr.c **** /*******************************************************************************
@@ -657,10 +358,10 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
  290:Generated_Source\PSoC4/WdtIsr.c **** ********************************************************************************
  291:Generated_Source\PSoC4/WdtIsr.c **** *
  292:Generated_Source\PSoC4/WdtIsr.c **** * Summary:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 7
+
+
  293:Generated_Source\PSoC4/WdtIsr.c **** *   Enables the interrupt to the interrupt controller. Do not call this function
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 12
-
-
  294:Generated_Source\PSoC4/WdtIsr.c **** *   unless ISR_Start() has been called or the functionality of the ISR_Start() 
  295:Generated_Source\PSoC4/WdtIsr.c **** *   function, which sets the vector and the priority, has been called.
  296:Generated_Source\PSoC4/WdtIsr.c **** *
@@ -673,40 +374,9 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
  303:Generated_Source\PSoC4/WdtIsr.c **** *******************************************************************************/
  304:Generated_Source\PSoC4/WdtIsr.c **** void WdtIsr_Enable(void)
  305:Generated_Source\PSoC4/WdtIsr.c **** {
- 334              		.loc 1 305 0
- 335              		.cfi_startproc
- 336 0000 80B5     		push	{r7, lr}
- 337              		.cfi_def_cfa_offset 8
- 338              		.cfi_offset 7, -8
- 339              		.cfi_offset 14, -4
- 340 0002 00AF     		add	r7, sp, #0
- 341              		.cfi_def_cfa_register 7
  306:Generated_Source\PSoC4/WdtIsr.c ****     /* Enable the general interrupt. */
  307:Generated_Source\PSoC4/WdtIsr.c ****     *WdtIsr_INTC_SET_EN = WdtIsr__INTC_MASK;
- 342              		.loc 1 307 0
- 343 0004 024B     		ldr	r3, .L24
- 344 0006 8022     		mov	r2, #128
- 345 0008 1A60     		str	r2, [r3]
  308:Generated_Source\PSoC4/WdtIsr.c **** }
- 346              		.loc 1 308 0
- 347 000a BD46     		mov	sp, r7
- 348              		@ sp needed
- 349 000c 80BD     		pop	{r7, pc}
- 350              	.L25:
- 351 000e C046     		.align	2
- 352              	.L24:
- 353 0010 00E100E0 		.word	-536813312
- 354              		.cfi_endproc
- 355              	.LFE9:
- 356              		.size	WdtIsr_Enable, .-WdtIsr_Enable
- 357              		.section	.text.WdtIsr_GetState,"ax",%progbits
- 358              		.align	2
- 359              		.global	WdtIsr_GetState
- 360              		.code	16
- 361              		.thumb_func
- 362              		.type	WdtIsr_GetState, %function
- 363              	WdtIsr_GetState:
- 364              	.LFB10:
  309:Generated_Source\PSoC4/WdtIsr.c **** 
  310:Generated_Source\PSoC4/WdtIsr.c **** 
  311:Generated_Source\PSoC4/WdtIsr.c **** /*******************************************************************************
@@ -718,9 +388,6 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
  317:Generated_Source\PSoC4/WdtIsr.c **** *
  318:Generated_Source\PSoC4/WdtIsr.c **** * Parameters:
  319:Generated_Source\PSoC4/WdtIsr.c **** *   None
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 13
-
-
  320:Generated_Source\PSoC4/WdtIsr.c **** *
  321:Generated_Source\PSoC4/WdtIsr.c **** * Return:
  322:Generated_Source\PSoC4/WdtIsr.c **** *   1 if enabled, 0 if disabled.
@@ -728,59 +395,15 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
  324:Generated_Source\PSoC4/WdtIsr.c **** *******************************************************************************/
  325:Generated_Source\PSoC4/WdtIsr.c **** uint8 WdtIsr_GetState(void)
  326:Generated_Source\PSoC4/WdtIsr.c **** {
- 365              		.loc 1 326 0
- 366              		.cfi_startproc
- 367 0000 80B5     		push	{r7, lr}
- 368              		.cfi_def_cfa_offset 8
- 369              		.cfi_offset 7, -8
- 370              		.cfi_offset 14, -4
- 371 0002 00AF     		add	r7, sp, #0
- 372              		.cfi_def_cfa_register 7
  327:Generated_Source\PSoC4/WdtIsr.c ****     /* Get the state of the general interrupt. */
  328:Generated_Source\PSoC4/WdtIsr.c ****     return ((*WdtIsr_INTC_SET_EN & (uint32)WdtIsr__INTC_MASK) != 0u) ? 1u:0u;
- 373              		.loc 1 328 0
- 374 0004 054B     		ldr	r3, .L30
- 375 0006 1B68     		ldr	r3, [r3]
- 376 0008 8022     		mov	r2, #128
- 377 000a 1340     		and	r3, r2
- 378 000c 01D0     		beq	.L27
- 379              		.loc 1 328 0 is_stmt 0 discriminator 1
- 380 000e 0123     		mov	r3, #1
- 381 0010 00E0     		b	.L28
- 382              	.L27:
- 383              		.loc 1 328 0 discriminator 2
- 384 0012 0023     		mov	r3, #0
- 385              	.L28:
  329:Generated_Source\PSoC4/WdtIsr.c **** }
- 386              		.loc 1 329 0 is_stmt 1 discriminator 4
- 387 0014 181C     		mov	r0, r3
- 388 0016 BD46     		mov	sp, r7
- 389              		@ sp needed
- 390 0018 80BD     		pop	{r7, pc}
- 391              	.L31:
- 392 001a C046     		.align	2
- 393              	.L30:
- 394 001c 00E100E0 		.word	-536813312
- 395              		.cfi_endproc
- 396              	.LFE10:
- 397              		.size	WdtIsr_GetState, .-WdtIsr_GetState
- 398              		.section	.text.WdtIsr_Disable,"ax",%progbits
- 399              		.align	2
- 400              		.global	WdtIsr_Disable
- 401              		.code	16
- 402              		.thumb_func
- 403              		.type	WdtIsr_Disable, %function
- 404              	WdtIsr_Disable:
- 405              	.LFB11:
  330:Generated_Source\PSoC4/WdtIsr.c **** 
  331:Generated_Source\PSoC4/WdtIsr.c **** 
  332:Generated_Source\PSoC4/WdtIsr.c **** /*******************************************************************************
  333:Generated_Source\PSoC4/WdtIsr.c **** * Function Name: WdtIsr_Disable
  334:Generated_Source\PSoC4/WdtIsr.c **** ********************************************************************************
  335:Generated_Source\PSoC4/WdtIsr.c **** *
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 14
-
-
  336:Generated_Source\PSoC4/WdtIsr.c **** * Summary:
  337:Generated_Source\PSoC4/WdtIsr.c **** *   Disables the Interrupt in the interrupt controller.
  338:Generated_Source\PSoC4/WdtIsr.c **** *
@@ -793,40 +416,498 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
  345:Generated_Source\PSoC4/WdtIsr.c **** *******************************************************************************/
  346:Generated_Source\PSoC4/WdtIsr.c **** void WdtIsr_Disable(void)
  347:Generated_Source\PSoC4/WdtIsr.c **** {
- 406              		.loc 1 347 0
- 407              		.cfi_startproc
- 408 0000 80B5     		push	{r7, lr}
- 409              		.cfi_def_cfa_offset 8
- 410              		.cfi_offset 7, -8
- 411              		.cfi_offset 14, -4
- 412 0002 00AF     		add	r7, sp, #0
- 413              		.cfi_def_cfa_register 7
  348:Generated_Source\PSoC4/WdtIsr.c ****     /* Disable the general interrupt. */
  349:Generated_Source\PSoC4/WdtIsr.c ****     *WdtIsr_INTC_CLR_EN = WdtIsr__INTC_MASK;
- 414              		.loc 1 349 0
- 415 0004 024B     		ldr	r3, .L33
- 416 0006 8022     		mov	r2, #128
- 417 0008 1A60     		str	r2, [r3]
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 8
+
+
+  50              		.loc 1 349 0
+  51 0002 8024     		mov	r4, #128
+  52 0004 084B     		ldr	r3, .L3
+  53              	.LBE27:
+  54              	.LBE26:
+  55              	.LBB29:
+  56              	.LBB30:
+ 201:Generated_Source\PSoC4/WdtIsr.c **** }
+  57              		.loc 1 201 0
+  58 0006 094A     		ldr	r2, .L3+4
+  59              	.LBE30:
+  60              	.LBE29:
+  61              	.LBB33:
+  62              	.LBB28:
+  63              		.loc 1 349 0
+  64 0008 1C60     		str	r4, [r3]
+  65              	.LVL0:
+  66              	.LBE28:
+  67              	.LBE33:
+  68              	.LBB34:
+  69              	.LBB31:
+ 201:Generated_Source\PSoC4/WdtIsr.c **** }
+  70              		.loc 1 201 0
+  71 000a 094B     		ldr	r3, .L3+8
+  72              	.LBE31:
+  73              	.LBE34:
+  69:Generated_Source\PSoC4/WdtIsr.c **** 
+  74              		.loc 1 69 0
+  75              		@ sp needed
+  76              	.LBB35:
+  77              	.LBB32:
+ 201:Generated_Source\PSoC4/WdtIsr.c **** }
+  78              		.loc 1 201 0
+  79 000c DA65     		str	r2, [r3, #92]
+  80              	.LVL1:
+  81              	.LBE32:
+  82              	.LBE35:
+  83              	.LBB36:
+  84              	.LBB37:
+ 254:Generated_Source\PSoC4/WdtIsr.c ****     *WdtIsr_INTC_PRIOR = (*WdtIsr_INTC_PRIOR & (uint32)(~WdtIsr__INTC_PRIOR_MASK)) |
+  85              		.loc 1 254 0
+  86 000e FFF7FEFF 		bl	CyEnterCriticalSection
+  87              	.LVL2:
+ 255:Generated_Source\PSoC4/WdtIsr.c ****                                     ((uint32)priority << priorityOffset);
+  88              		.loc 1 255 0
+  89 0012 C023     		mov	r3, #192
+  90 0014 074A     		ldr	r2, .L3+12
+  91 0016 1B06     		lsl	r3, r3, #24
+  92 0018 1168     		ldr	r1, [r2]
+  93 001a 0B43     		orr	r3, r1
+  94 001c 1360     		str	r3, [r2]
+ 257:Generated_Source\PSoC4/WdtIsr.c **** }
+  95              		.loc 1 257 0
+  96 001e FFF7FEFF 		bl	CyExitCriticalSection
+  97              	.LVL3:
+  98              	.LBE37:
+  99              	.LBE36:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 9
+
+
+ 100              	.LBB38:
+ 101              	.LBB39:
+ 307:Generated_Source\PSoC4/WdtIsr.c **** }
+ 102              		.loc 1 307 0
+ 103 0022 054B     		ldr	r3, .L3+16
+ 104 0024 1C60     		str	r4, [r3]
+ 105              	.LBE39:
+ 106              	.LBE38:
+  69:Generated_Source\PSoC4/WdtIsr.c **** 
+ 107              		.loc 1 69 0
+ 108 0026 10BD     		pop	{r4, pc}
+ 109              	.L4:
+ 110              		.align	2
+ 111              	.L3:
+ 112 0028 80E100E0 		.word	-536813184
+ 113 002c 00000000 		.word	WdtIsr_Interrupt
+ 114 0030 00000000 		.word	CyRamVectors
+ 115 0034 04E400E0 		.word	-536812540
+ 116 0038 00E100E0 		.word	-536813312
+ 117              		.cfi_endproc
+ 118              	.LFE1:
+ 119              		.size	WdtIsr_Start, .-WdtIsr_Start
+ 120              		.section	.text.WdtIsr_StartEx,"ax",%progbits
+ 121              		.align	2
+ 122              		.global	WdtIsr_StartEx
+ 123              		.code	16
+ 124              		.thumb_func
+ 125              		.type	WdtIsr_StartEx, %function
+ 126              	WdtIsr_StartEx:
+ 127              	.LFB2:
+ 100:Generated_Source\PSoC4/WdtIsr.c ****     /* For all we know the interrupt is active. */
+ 128              		.loc 1 100 0
+ 129              		.cfi_startproc
+ 130              	.LVL4:
+ 131 0000 10B5     		push	{r4, lr}
+ 132              		.cfi_def_cfa_offset 8
+ 133              		.cfi_offset 4, -8
+ 134              		.cfi_offset 14, -4
+ 135              	.LBB48:
+ 136              	.LBB49:
+ 137              		.loc 1 349 0
+ 138 0002 8024     		mov	r4, #128
+ 139 0004 084B     		ldr	r3, .L6
+ 140              	.LBE49:
+ 141              	.LBE48:
+ 112:Generated_Source\PSoC4/WdtIsr.c **** 
+ 142              		.loc 1 112 0
+ 143              		@ sp needed
+ 144              	.LBB51:
+ 145              	.LBB50:
+ 146              		.loc 1 349 0
+ 147 0006 1C60     		str	r4, [r3]
+ 148              	.LVL5:
+ 149              	.LBE50:
+ 150              	.LBE51:
+ 151              	.LBB52:
+ 152              	.LBB53:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 10
+
+
+ 201:Generated_Source\PSoC4/WdtIsr.c **** }
+ 153              		.loc 1 201 0
+ 154 0008 084B     		ldr	r3, .L6+4
+ 155 000a D865     		str	r0, [r3, #92]
+ 156              	.LVL6:
+ 157              	.LBE53:
+ 158              	.LBE52:
+ 159              	.LBB54:
+ 160              	.LBB55:
+ 254:Generated_Source\PSoC4/WdtIsr.c ****     *WdtIsr_INTC_PRIOR = (*WdtIsr_INTC_PRIOR & (uint32)(~WdtIsr__INTC_PRIOR_MASK)) |
+ 161              		.loc 1 254 0
+ 162 000c FFF7FEFF 		bl	CyEnterCriticalSection
+ 163              	.LVL7:
+ 255:Generated_Source\PSoC4/WdtIsr.c ****                                     ((uint32)priority << priorityOffset);
+ 164              		.loc 1 255 0
+ 165 0010 C023     		mov	r3, #192
+ 166 0012 074A     		ldr	r2, .L6+8
+ 167 0014 1B06     		lsl	r3, r3, #24
+ 168 0016 1168     		ldr	r1, [r2]
+ 169 0018 0B43     		orr	r3, r1
+ 170 001a 1360     		str	r3, [r2]
+ 257:Generated_Source\PSoC4/WdtIsr.c **** }
+ 171              		.loc 1 257 0
+ 172 001c FFF7FEFF 		bl	CyExitCriticalSection
+ 173              	.LVL8:
+ 174              	.LBE55:
+ 175              	.LBE54:
+ 176              	.LBB56:
+ 177              	.LBB57:
+ 307:Generated_Source\PSoC4/WdtIsr.c **** }
+ 178              		.loc 1 307 0
+ 179 0020 044B     		ldr	r3, .L6+12
+ 180 0022 1C60     		str	r4, [r3]
+ 181              	.LBE57:
+ 182              	.LBE56:
+ 112:Generated_Source\PSoC4/WdtIsr.c **** 
+ 183              		.loc 1 112 0
+ 184 0024 10BD     		pop	{r4, pc}
+ 185              	.L7:
+ 186 0026 C046     		.align	2
+ 187              	.L6:
+ 188 0028 80E100E0 		.word	-536813184
+ 189 002c 00000000 		.word	CyRamVectors
+ 190 0030 04E400E0 		.word	-536812540
+ 191 0034 00E100E0 		.word	-536813312
+ 192              		.cfi_endproc
+ 193              	.LFE2:
+ 194              		.size	WdtIsr_StartEx, .-WdtIsr_StartEx
+ 195              		.section	.text.WdtIsr_Stop,"ax",%progbits
+ 196              		.align	2
+ 197              		.global	WdtIsr_Stop
+ 198              		.code	16
+ 199              		.thumb_func
+ 200              		.type	WdtIsr_Stop, %function
+ 201              	WdtIsr_Stop:
+ 202              	.LFB3:
+ 130:Generated_Source\PSoC4/WdtIsr.c ****     /* Disable this interrupt. */
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 11
+
+
+ 203              		.loc 1 130 0
+ 204              		.cfi_startproc
+ 205              	.LBB58:
+ 206              	.LBB59:
+ 207              		.loc 1 349 0
+ 208 0000 8022     		mov	r2, #128
+ 209 0002 034B     		ldr	r3, .L9
+ 210              	.LBE59:
+ 211              	.LBE58:
+ 136:Generated_Source\PSoC4/WdtIsr.c **** 
+ 212              		.loc 1 136 0
+ 213              		@ sp needed
+ 214              	.LBB61:
+ 215              	.LBB60:
+ 216              		.loc 1 349 0
+ 217 0004 1A60     		str	r2, [r3]
+ 218              	.LVL9:
+ 219              	.LBE60:
+ 220              	.LBE61:
+ 221              	.LBB62:
+ 222              	.LBB63:
+ 201:Generated_Source\PSoC4/WdtIsr.c **** }
+ 223              		.loc 1 201 0
+ 224 0006 034A     		ldr	r2, .L9+4
+ 225 0008 034B     		ldr	r3, .L9+8
+ 226 000a DA65     		str	r2, [r3, #92]
+ 227              	.LBE63:
+ 228              	.LBE62:
+ 136:Generated_Source\PSoC4/WdtIsr.c **** 
+ 229              		.loc 1 136 0
+ 230 000c 7047     		bx	lr
+ 231              	.L10:
+ 232 000e C046     		.align	2
+ 233              	.L9:
+ 234 0010 80E100E0 		.word	-536813184
+ 235 0014 00000000 		.word	IntDefaultHandler
+ 236 0018 00000000 		.word	CyRamVectors
+ 237              		.cfi_endproc
+ 238              	.LFE3:
+ 239              		.size	WdtIsr_Stop, .-WdtIsr_Stop
+ 240              		.section	.text.WdtIsr_SetVector,"ax",%progbits
+ 241              		.align	2
+ 242              		.global	WdtIsr_SetVector
+ 243              		.code	16
+ 244              		.thumb_func
+ 245              		.type	WdtIsr_SetVector, %function
+ 246              	WdtIsr_SetVector:
+ 247              	.LFB5:
+ 200:Generated_Source\PSoC4/WdtIsr.c ****     CyRamVectors[CYINT_IRQ_BASE + WdtIsr__INTC_NUMBER] = address;
+ 248              		.loc 1 200 0
+ 249              		.cfi_startproc
+ 250              	.LVL10:
+ 201:Generated_Source\PSoC4/WdtIsr.c **** }
+ 251              		.loc 1 201 0
+ 252 0000 014B     		ldr	r3, .L12
+ 202:Generated_Source\PSoC4/WdtIsr.c **** 
+ 253              		.loc 1 202 0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 12
+
+
+ 254              		@ sp needed
+ 201:Generated_Source\PSoC4/WdtIsr.c **** }
+ 255              		.loc 1 201 0
+ 256 0002 D865     		str	r0, [r3, #92]
+ 202:Generated_Source\PSoC4/WdtIsr.c **** 
+ 257              		.loc 1 202 0
+ 258 0004 7047     		bx	lr
+ 259              	.L13:
+ 260 0006 C046     		.align	2
+ 261              	.L12:
+ 262 0008 00000000 		.word	CyRamVectors
+ 263              		.cfi_endproc
+ 264              	.LFE5:
+ 265              		.size	WdtIsr_SetVector, .-WdtIsr_SetVector
+ 266              		.section	.text.WdtIsr_GetVector,"ax",%progbits
+ 267              		.align	2
+ 268              		.global	WdtIsr_GetVector
+ 269              		.code	16
+ 270              		.thumb_func
+ 271              		.type	WdtIsr_GetVector, %function
+ 272              	WdtIsr_GetVector:
+ 273              	.LFB6:
+ 220:Generated_Source\PSoC4/WdtIsr.c ****     return CyRamVectors[CYINT_IRQ_BASE + WdtIsr__INTC_NUMBER];
+ 274              		.loc 1 220 0
+ 275              		.cfi_startproc
+ 221:Generated_Source\PSoC4/WdtIsr.c **** }
+ 276              		.loc 1 221 0
+ 277 0000 014B     		ldr	r3, .L15
+ 222:Generated_Source\PSoC4/WdtIsr.c **** 
+ 278              		.loc 1 222 0
+ 279              		@ sp needed
+ 221:Generated_Source\PSoC4/WdtIsr.c **** }
+ 280              		.loc 1 221 0
+ 281 0002 D86D     		ldr	r0, [r3, #92]
+ 222:Generated_Source\PSoC4/WdtIsr.c **** 
+ 282              		.loc 1 222 0
+ 283 0004 7047     		bx	lr
+ 284              	.L16:
+ 285 0006 C046     		.align	2
+ 286              	.L15:
+ 287 0008 00000000 		.word	CyRamVectors
+ 288              		.cfi_endproc
+ 289              	.LFE6:
+ 290              		.size	WdtIsr_GetVector, .-WdtIsr_GetVector
+ 291              		.section	.text.WdtIsr_SetPriority,"ax",%progbits
+ 292              		.align	2
+ 293              		.global	WdtIsr_SetPriority
+ 294              		.code	16
+ 295              		.thumb_func
+ 296              		.type	WdtIsr_SetPriority, %function
+ 297              	WdtIsr_SetPriority:
+ 298              	.LFB7:
+ 250:Generated_Source\PSoC4/WdtIsr.c **** 	uint8 interruptState;
+ 299              		.loc 1 250 0
+ 300              		.cfi_startproc
+ 301              	.LVL11:
+ 302 0000 10B5     		push	{r4, lr}
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 13
+
+
+ 303              		.cfi_def_cfa_offset 8
+ 304              		.cfi_offset 4, -8
+ 305              		.cfi_offset 14, -4
+ 250:Generated_Source\PSoC4/WdtIsr.c **** 	uint8 interruptState;
+ 306              		.loc 1 250 0
+ 307 0002 041C     		mov	r4, r0
+ 254:Generated_Source\PSoC4/WdtIsr.c ****     *WdtIsr_INTC_PRIOR = (*WdtIsr_INTC_PRIOR & (uint32)(~WdtIsr__INTC_PRIOR_MASK)) |
+ 308              		.loc 1 254 0
+ 309 0004 FFF7FEFF 		bl	CyEnterCriticalSection
+ 310              	.LVL12:
+ 255:Generated_Source\PSoC4/WdtIsr.c ****                                     ((uint32)priority << priorityOffset);
+ 311              		.loc 1 255 0
+ 312 0008 044A     		ldr	r2, .L18
+ 256:Generated_Source\PSoC4/WdtIsr.c **** 	CyExitCriticalSection(interruptState);
+ 313              		.loc 1 256 0
+ 314 000a A407     		lsl	r4, r4, #30
+ 255:Generated_Source\PSoC4/WdtIsr.c ****                                     ((uint32)priority << priorityOffset);
+ 315              		.loc 1 255 0
+ 316 000c 1368     		ldr	r3, [r2]
+ 258:Generated_Source\PSoC4/WdtIsr.c **** 
+ 317              		.loc 1 258 0
+ 318              		@ sp needed
+ 255:Generated_Source\PSoC4/WdtIsr.c ****                                     ((uint32)priority << priorityOffset);
+ 319              		.loc 1 255 0
+ 320 000e 9B00     		lsl	r3, r3, #2
+ 321 0010 9B08     		lsr	r3, r3, #2
+ 322 0012 2343     		orr	r3, r4
+ 323 0014 1360     		str	r3, [r2]
+ 257:Generated_Source\PSoC4/WdtIsr.c **** }
+ 324              		.loc 1 257 0
+ 325 0016 FFF7FEFF 		bl	CyExitCriticalSection
+ 326              	.LVL13:
+ 258:Generated_Source\PSoC4/WdtIsr.c **** 
+ 327              		.loc 1 258 0
+ 328 001a 10BD     		pop	{r4, pc}
+ 329              	.L19:
+ 330              		.align	2
+ 331              	.L18:
+ 332 001c 04E400E0 		.word	-536812540
+ 333              		.cfi_endproc
+ 334              	.LFE7:
+ 335              		.size	WdtIsr_SetPriority, .-WdtIsr_SetPriority
+ 336              		.section	.text.WdtIsr_GetPriority,"ax",%progbits
+ 337              		.align	2
+ 338              		.global	WdtIsr_GetPriority
+ 339              		.code	16
+ 340              		.thumb_func
+ 341              		.type	WdtIsr_GetPriority, %function
+ 342              	WdtIsr_GetPriority:
+ 343              	.LFB8:
+ 278:Generated_Source\PSoC4/WdtIsr.c ****     uint32 priority;
+ 344              		.loc 1 278 0
+ 345              		.cfi_startproc
+ 346              	.LVL14:
+ 282:Generated_Source\PSoC4/WdtIsr.c **** 
+ 347              		.loc 1 282 0
+ 348 0000 014B     		ldr	r3, .L21
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 14
+
+
+ 285:Generated_Source\PSoC4/WdtIsr.c **** 
+ 349              		.loc 1 285 0
+ 350              		@ sp needed
+ 282:Generated_Source\PSoC4/WdtIsr.c **** 
+ 351              		.loc 1 282 0
+ 352 0002 1868     		ldr	r0, [r3]
+ 353              	.LVL15:
+ 284:Generated_Source\PSoC4/WdtIsr.c **** }
+ 354              		.loc 1 284 0
+ 355 0004 800F     		lsr	r0, r0, #30
+ 356              	.LVL16:
+ 285:Generated_Source\PSoC4/WdtIsr.c **** 
+ 357              		.loc 1 285 0
+ 358 0006 7047     		bx	lr
+ 359              	.L22:
+ 360              		.align	2
+ 361              	.L21:
+ 362 0008 04E400E0 		.word	-536812540
+ 363              		.cfi_endproc
+ 364              	.LFE8:
+ 365              		.size	WdtIsr_GetPriority, .-WdtIsr_GetPriority
+ 366              		.section	.text.WdtIsr_Enable,"ax",%progbits
+ 367              		.align	2
+ 368              		.global	WdtIsr_Enable
+ 369              		.code	16
+ 370              		.thumb_func
+ 371              		.type	WdtIsr_Enable, %function
+ 372              	WdtIsr_Enable:
+ 373              	.LFB9:
+ 305:Generated_Source\PSoC4/WdtIsr.c ****     /* Enable the general interrupt. */
+ 374              		.loc 1 305 0
+ 375              		.cfi_startproc
+ 307:Generated_Source\PSoC4/WdtIsr.c **** }
+ 376              		.loc 1 307 0
+ 377 0000 8022     		mov	r2, #128
+ 378 0002 014B     		ldr	r3, .L24
+ 308:Generated_Source\PSoC4/WdtIsr.c **** 
+ 379              		.loc 1 308 0
+ 380              		@ sp needed
+ 307:Generated_Source\PSoC4/WdtIsr.c **** }
+ 381              		.loc 1 307 0
+ 382 0004 1A60     		str	r2, [r3]
+ 308:Generated_Source\PSoC4/WdtIsr.c **** 
+ 383              		.loc 1 308 0
+ 384 0006 7047     		bx	lr
+ 385              	.L25:
+ 386              		.align	2
+ 387              	.L24:
+ 388 0008 00E100E0 		.word	-536813312
+ 389              		.cfi_endproc
+ 390              	.LFE9:
+ 391              		.size	WdtIsr_Enable, .-WdtIsr_Enable
+ 392              		.section	.text.WdtIsr_GetState,"ax",%progbits
+ 393              		.align	2
+ 394              		.global	WdtIsr_GetState
+ 395              		.code	16
+ 396              		.thumb_func
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 15
+
+
+ 397              		.type	WdtIsr_GetState, %function
+ 398              	WdtIsr_GetState:
+ 399              	.LFB10:
+ 326:Generated_Source\PSoC4/WdtIsr.c ****     /* Get the state of the general interrupt. */
+ 400              		.loc 1 326 0
+ 401              		.cfi_startproc
+ 328:Generated_Source\PSoC4/WdtIsr.c **** }
+ 402              		.loc 1 328 0
+ 403 0000 024B     		ldr	r3, .L27
+ 329:Generated_Source\PSoC4/WdtIsr.c **** 
+ 404              		.loc 1 329 0
+ 405              		@ sp needed
+ 328:Generated_Source\PSoC4/WdtIsr.c **** }
+ 406              		.loc 1 328 0
+ 407 0002 1868     		ldr	r0, [r3]
+ 408 0004 0006     		lsl	r0, r0, #24
+ 409 0006 C00F     		lsr	r0, r0, #31
+ 329:Generated_Source\PSoC4/WdtIsr.c **** 
+ 410              		.loc 1 329 0
+ 411 0008 7047     		bx	lr
+ 412              	.L28:
+ 413 000a C046     		.align	2
+ 414              	.L27:
+ 415 000c 00E100E0 		.word	-536813312
+ 416              		.cfi_endproc
+ 417              	.LFE10:
+ 418              		.size	WdtIsr_GetState, .-WdtIsr_GetState
+ 419              		.section	.text.WdtIsr_Disable,"ax",%progbits
+ 420              		.align	2
+ 421              		.global	WdtIsr_Disable
+ 422              		.code	16
+ 423              		.thumb_func
+ 424              		.type	WdtIsr_Disable, %function
+ 425              	WdtIsr_Disable:
+ 426              	.LFB11:
+ 347:Generated_Source\PSoC4/WdtIsr.c ****     /* Disable the general interrupt. */
+ 427              		.loc 1 347 0
+ 428              		.cfi_startproc
+ 429              		.loc 1 349 0
+ 430 0000 8022     		mov	r2, #128
+ 431 0002 014B     		ldr	r3, .L30
  350:Generated_Source\PSoC4/WdtIsr.c **** }
- 418              		.loc 1 350 0
- 419 000a BD46     		mov	sp, r7
- 420              		@ sp needed
- 421 000c 80BD     		pop	{r7, pc}
- 422              	.L34:
- 423 000e C046     		.align	2
- 424              	.L33:
- 425 0010 80E100E0 		.word	-536813184
- 426              		.cfi_endproc
- 427              	.LFE11:
- 428              		.size	WdtIsr_Disable, .-WdtIsr_Disable
- 429              		.section	.text.WdtIsr_SetPending,"ax",%progbits
- 430              		.align	2
- 431              		.global	WdtIsr_SetPending
- 432              		.code	16
- 433              		.thumb_func
- 434              		.type	WdtIsr_SetPending, %function
- 435              	WdtIsr_SetPending:
- 436              	.LFB12:
+ 432              		.loc 1 350 0
+ 433              		@ sp needed
+ 349:Generated_Source\PSoC4/WdtIsr.c **** }
+ 434              		.loc 1 349 0
+ 435 0004 1A60     		str	r2, [r3]
+ 436              		.loc 1 350 0
+ 437 0006 7047     		bx	lr
+ 438              	.L31:
+ 439              		.align	2
+ 440              	.L30:
+ 441 0008 80E100E0 		.word	-536813184
+ 442              		.cfi_endproc
+ 443              	.LFE11:
+ 444              		.size	WdtIsr_Disable, .-WdtIsr_Disable
+ 445              		.section	.text.WdtIsr_SetPending,"ax",%progbits
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 16
+
+
+ 446              		.align	2
+ 447              		.global	WdtIsr_SetPending
+ 448              		.code	16
+ 449              		.thumb_func
+ 450              		.type	WdtIsr_SetPending, %function
+ 451              	WdtIsr_SetPending:
+ 452              	.LFB12:
  351:Generated_Source\PSoC4/WdtIsr.c **** 
  352:Generated_Source\PSoC4/WdtIsr.c **** 
  353:Generated_Source\PSoC4/WdtIsr.c **** /*******************************************************************************
@@ -838,9 +919,6 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
  359:Generated_Source\PSoC4/WdtIsr.c **** *   generating the interrupt.
  360:Generated_Source\PSoC4/WdtIsr.c **** *
  361:Generated_Source\PSoC4/WdtIsr.c **** * Parameters:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 15
-
-
  362:Generated_Source\PSoC4/WdtIsr.c **** *   None
  363:Generated_Source\PSoC4/WdtIsr.c **** *
  364:Generated_Source\PSoC4/WdtIsr.c **** * Return:
@@ -854,39 +932,38 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
  372:Generated_Source\PSoC4/WdtIsr.c **** *******************************************************************************/
  373:Generated_Source\PSoC4/WdtIsr.c **** void WdtIsr_SetPending(void)
  374:Generated_Source\PSoC4/WdtIsr.c **** {
- 437              		.loc 1 374 0
- 438              		.cfi_startproc
- 439 0000 80B5     		push	{r7, lr}
- 440              		.cfi_def_cfa_offset 8
- 441              		.cfi_offset 7, -8
- 442              		.cfi_offset 14, -4
- 443 0002 00AF     		add	r7, sp, #0
- 444              		.cfi_def_cfa_register 7
+ 453              		.loc 1 374 0
+ 454              		.cfi_startproc
  375:Generated_Source\PSoC4/WdtIsr.c ****     *WdtIsr_INTC_SET_PD = WdtIsr__INTC_MASK;
- 445              		.loc 1 375 0
- 446 0004 024B     		ldr	r3, .L36
- 447 0006 8022     		mov	r2, #128
- 448 0008 1A60     		str	r2, [r3]
+ 455              		.loc 1 375 0
+ 456 0000 8022     		mov	r2, #128
+ 457 0002 014B     		ldr	r3, .L33
  376:Generated_Source\PSoC4/WdtIsr.c **** }
- 449              		.loc 1 376 0
- 450 000a BD46     		mov	sp, r7
- 451              		@ sp needed
- 452 000c 80BD     		pop	{r7, pc}
- 453              	.L37:
- 454 000e C046     		.align	2
- 455              	.L36:
- 456 0010 00E200E0 		.word	-536813056
- 457              		.cfi_endproc
- 458              	.LFE12:
- 459              		.size	WdtIsr_SetPending, .-WdtIsr_SetPending
- 460              		.section	.text.WdtIsr_ClearPending,"ax",%progbits
- 461              		.align	2
- 462              		.global	WdtIsr_ClearPending
- 463              		.code	16
- 464              		.thumb_func
- 465              		.type	WdtIsr_ClearPending, %function
- 466              	WdtIsr_ClearPending:
- 467              	.LFB13:
+ 458              		.loc 1 376 0
+ 459              		@ sp needed
+ 375:Generated_Source\PSoC4/WdtIsr.c ****     *WdtIsr_INTC_SET_PD = WdtIsr__INTC_MASK;
+ 460              		.loc 1 375 0
+ 461 0004 1A60     		str	r2, [r3]
+ 462              		.loc 1 376 0
+ 463 0006 7047     		bx	lr
+ 464              	.L34:
+ 465              		.align	2
+ 466              	.L33:
+ 467 0008 00E200E0 		.word	-536813056
+ 468              		.cfi_endproc
+ 469              	.LFE12:
+ 470              		.size	WdtIsr_SetPending, .-WdtIsr_SetPending
+ 471              		.section	.text.WdtIsr_ClearPending,"ax",%progbits
+ 472              		.align	2
+ 473              		.global	WdtIsr_ClearPending
+ 474              		.code	16
+ 475              		.thumb_func
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 17
+
+
+ 476              		.type	WdtIsr_ClearPending, %function
+ 477              	WdtIsr_ClearPending:
+ 478              	.LFB13:
  377:Generated_Source\PSoC4/WdtIsr.c **** 
  378:Generated_Source\PSoC4/WdtIsr.c **** 
  379:Generated_Source\PSoC4/WdtIsr.c **** /*******************************************************************************
@@ -898,9 +975,6 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
  385:Generated_Source\PSoC4/WdtIsr.c **** *
  386:Generated_Source\PSoC4/WdtIsr.c **** *   Note Some interrupt sources are clear-on-read and require the block 
  387:Generated_Source\PSoC4/WdtIsr.c **** *   interrupt/status register to be read/cleared with the appropriate block API 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 16
-
-
  388:Generated_Source\PSoC4/WdtIsr.c **** *   (GPIO, UART, and so on). Otherwise the ISR will continue to remain in 
  389:Generated_Source\PSoC4/WdtIsr.c **** *   pending state even though the interrupt itself is cleared using this API.
  390:Generated_Source\PSoC4/WdtIsr.c **** *
@@ -913,987 +987,1521 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 1
  397:Generated_Source\PSoC4/WdtIsr.c **** *******************************************************************************/
  398:Generated_Source\PSoC4/WdtIsr.c **** void WdtIsr_ClearPending(void)
  399:Generated_Source\PSoC4/WdtIsr.c **** {
- 468              		.loc 1 399 0
- 469              		.cfi_startproc
- 470 0000 80B5     		push	{r7, lr}
- 471              		.cfi_def_cfa_offset 8
- 472              		.cfi_offset 7, -8
- 473              		.cfi_offset 14, -4
- 474 0002 00AF     		add	r7, sp, #0
- 475              		.cfi_def_cfa_register 7
+ 479              		.loc 1 399 0
+ 480              		.cfi_startproc
  400:Generated_Source\PSoC4/WdtIsr.c ****     *WdtIsr_INTC_CLR_PD = WdtIsr__INTC_MASK;
- 476              		.loc 1 400 0
- 477 0004 024B     		ldr	r3, .L39
- 478 0006 8022     		mov	r2, #128
- 479 0008 1A60     		str	r2, [r3]
+ 481              		.loc 1 400 0
+ 482 0000 8022     		mov	r2, #128
+ 483 0002 014B     		ldr	r3, .L36
  401:Generated_Source\PSoC4/WdtIsr.c **** }
- 480              		.loc 1 401 0
- 481 000a BD46     		mov	sp, r7
- 482              		@ sp needed
- 483 000c 80BD     		pop	{r7, pc}
- 484              	.L40:
- 485 000e C046     		.align	2
- 486              	.L39:
- 487 0010 80E200E0 		.word	-536812928
- 488              		.cfi_endproc
- 489              	.LFE13:
- 490              		.size	WdtIsr_ClearPending, .-WdtIsr_ClearPending
- 491              		.text
- 492              	.Letext0:
- 493              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
- 494              		.section	.debug_info,"",%progbits
- 495              	.Ldebug_info0:
- 496 0000 42020000 		.4byte	0x242
- 497 0004 0400     		.2byte	0x4
- 498 0006 00000000 		.4byte	.Ldebug_abbrev0
- 499 000a 04       		.byte	0x4
- 500 000b 01       		.uleb128 0x1
- 501 000c 03010000 		.4byte	.LASF33
- 502 0010 01       		.byte	0x1
- 503 0011 26000000 		.4byte	.LASF34
- 504 0015 71020000 		.4byte	.LASF35
- 505 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 506 001d 00000000 		.4byte	0
- 507 0021 00000000 		.4byte	.Ldebug_line0
- 508 0025 02       		.uleb128 0x2
- 509 0026 01       		.byte	0x1
- 510 0027 06       		.byte	0x6
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 17
+ 484              		.loc 1 401 0
+ 485              		@ sp needed
+ 400:Generated_Source\PSoC4/WdtIsr.c ****     *WdtIsr_INTC_CLR_PD = WdtIsr__INTC_MASK;
+ 486              		.loc 1 400 0
+ 487 0004 1A60     		str	r2, [r3]
+ 488              		.loc 1 401 0
+ 489 0006 7047     		bx	lr
+ 490              	.L37:
+ 491              		.align	2
+ 492              	.L36:
+ 493 0008 80E200E0 		.word	-536812928
+ 494              		.cfi_endproc
+ 495              	.LFE13:
+ 496              		.size	WdtIsr_ClearPending, .-WdtIsr_ClearPending
+ 497              		.text
+ 498              	.Letext0:
+ 499              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 500              		.file 3 "Generated_Source\\PSoC4/CyLib.h"
+ 501              		.section	.debug_info,"",%progbits
+ 502              	.Ldebug_info0:
+ 503 0000 D2030000 		.4byte	0x3d2
+ 504 0004 0400     		.2byte	0x4
+ 505 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 506 000a 04       		.byte	0x4
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 18
 
 
- 511 0028 C7020000 		.4byte	.LASF0
- 512 002c 02       		.uleb128 0x2
- 513 002d 01       		.byte	0x1
- 514 002e 08       		.byte	0x8
- 515 002f 9F000000 		.4byte	.LASF1
- 516 0033 02       		.uleb128 0x2
- 517 0034 02       		.byte	0x2
- 518 0035 05       		.byte	0x5
- 519 0036 22020000 		.4byte	.LASF2
- 520 003a 02       		.uleb128 0x2
- 521 003b 02       		.byte	0x2
- 522 003c 07       		.byte	0x7
- 523 003d 7A000000 		.4byte	.LASF3
- 524 0041 02       		.uleb128 0x2
- 525 0042 04       		.byte	0x4
- 526 0043 05       		.byte	0x5
- 527 0044 71000000 		.4byte	.LASF4
- 528 0048 02       		.uleb128 0x2
- 529 0049 04       		.byte	0x4
- 530 004a 07       		.byte	0x7
- 531 004b BC000000 		.4byte	.LASF5
- 532 004f 02       		.uleb128 0x2
- 533 0050 08       		.byte	0x8
- 534 0051 05       		.byte	0x5
- 535 0052 FF010000 		.4byte	.LASF6
- 536 0056 02       		.uleb128 0x2
- 537 0057 08       		.byte	0x8
- 538 0058 07       		.byte	0x7
- 539 0059 D2010000 		.4byte	.LASF7
- 540 005d 03       		.uleb128 0x3
- 541 005e 04       		.byte	0x4
- 542 005f 05       		.byte	0x5
- 543 0060 696E7400 		.ascii	"int\000"
- 544 0064 02       		.uleb128 0x2
- 545 0065 04       		.byte	0x4
- 546 0066 07       		.byte	0x7
- 547 0067 AB010000 		.4byte	.LASF8
- 548 006b 04       		.uleb128 0x4
- 549 006c CE000000 		.4byte	.LASF9
- 550 0070 02       		.byte	0x2
- 551 0071 9801     		.2byte	0x198
- 552 0073 2C000000 		.4byte	0x2c
- 553 0077 04       		.uleb128 0x4
- 554 0078 91010000 		.4byte	.LASF10
- 555 007c 02       		.byte	0x2
- 556 007d 9A01     		.2byte	0x19a
- 557 007f 48000000 		.4byte	0x48
- 558 0083 02       		.uleb128 0x2
- 559 0084 04       		.byte	0x4
- 560 0085 04       		.byte	0x4
- 561 0086 99000000 		.4byte	.LASF11
- 562 008a 02       		.uleb128 0x2
- 563 008b 08       		.byte	0x8
- 564 008c 04       		.byte	0x4
- 565 008d FC000000 		.4byte	.LASF12
- 566 0091 02       		.uleb128 0x2
- 567 0092 01       		.byte	0x1
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 18
+ 507 000b 01       		.uleb128 0x1
+ 508 000c B6000000 		.4byte	.LASF33
+ 509 0010 01       		.byte	0x1
+ 510 0011 26000000 		.4byte	.LASF34
+ 511 0015 B1020000 		.4byte	.LASF35
+ 512 0019 68000000 		.4byte	.Ldebug_ranges0+0x68
+ 513 001d 00000000 		.4byte	0
+ 514 0021 00000000 		.4byte	.Ldebug_line0
+ 515 0025 02       		.uleb128 0x2
+ 516 0026 01       		.byte	0x1
+ 517 0027 06       		.byte	0x6
+ 518 0028 07030000 		.4byte	.LASF0
+ 519 002c 02       		.uleb128 0x2
+ 520 002d 01       		.byte	0x1
+ 521 002e 08       		.byte	0x8
+ 522 002f 57010000 		.4byte	.LASF1
+ 523 0033 02       		.uleb128 0x2
+ 524 0034 02       		.byte	0x2
+ 525 0035 05       		.byte	0x5
+ 526 0036 62020000 		.4byte	.LASF2
+ 527 003a 02       		.uleb128 0x2
+ 528 003b 02       		.byte	0x2
+ 529 003c 07       		.byte	0x7
+ 530 003d 7A000000 		.4byte	.LASF3
+ 531 0041 02       		.uleb128 0x2
+ 532 0042 04       		.byte	0x4
+ 533 0043 05       		.byte	0x5
+ 534 0044 71000000 		.4byte	.LASF4
+ 535 0048 02       		.uleb128 0x2
+ 536 0049 04       		.byte	0x4
+ 537 004a 07       		.byte	0x7
+ 538 004b 74010000 		.4byte	.LASF5
+ 539 004f 02       		.uleb128 0x2
+ 540 0050 08       		.byte	0x8
+ 541 0051 05       		.byte	0x5
+ 542 0052 3F020000 		.4byte	.LASF6
+ 543 0056 02       		.uleb128 0x2
+ 544 0057 08       		.byte	0x8
+ 545 0058 07       		.byte	0x7
+ 546 0059 9F000000 		.4byte	.LASF7
+ 547 005d 03       		.uleb128 0x3
+ 548 005e 04       		.byte	0x4
+ 549 005f 05       		.byte	0x5
+ 550 0060 696E7400 		.ascii	"int\000"
+ 551 0064 02       		.uleb128 0x2
+ 552 0065 04       		.byte	0x4
+ 553 0066 07       		.byte	0x7
+ 554 0067 EC010000 		.4byte	.LASF8
+ 555 006b 04       		.uleb128 0x4
+ 556 006c 86010000 		.4byte	.LASF9
+ 557 0070 02       		.byte	0x2
+ 558 0071 9801     		.2byte	0x198
+ 559 0073 2C000000 		.4byte	0x2c
+ 560 0077 04       		.uleb128 0x4
+ 561 0078 CE010000 		.4byte	.LASF10
+ 562 007c 02       		.byte	0x2
+ 563 007d 9A01     		.2byte	0x19a
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 19
 
 
- 568 0093 08       		.byte	0x8
- 569 0094 1D020000 		.4byte	.LASF13
- 570 0098 04       		.uleb128 0x4
- 571 0099 11000000 		.4byte	.LASF14
- 572 009d 02       		.byte	0x2
- 573 009e 4402     		.2byte	0x244
- 574 00a0 A4000000 		.4byte	0xa4
- 575 00a4 05       		.uleb128 0x5
- 576 00a5 77000000 		.4byte	0x77
- 577 00a9 04       		.uleb128 0x4
- 578 00aa E9010000 		.4byte	.LASF15
- 579 00ae 02       		.byte	0x2
- 580 00af 5402     		.2byte	0x254
- 581 00b1 B5000000 		.4byte	0xb5
- 582 00b5 06       		.uleb128 0x6
- 583 00b6 04       		.byte	0x4
- 584 00b7 BB000000 		.4byte	0xbb
- 585 00bb 07       		.uleb128 0x7
- 586 00bc 02       		.uleb128 0x2
- 587 00bd 04       		.byte	0x4
- 588 00be 07       		.byte	0x7
- 589 00bf F6010000 		.4byte	.LASF16
- 590 00c3 08       		.uleb128 0x8
- 591 00c4 46000000 		.4byte	.LASF17
- 592 00c8 01       		.byte	0x1
- 593 00c9 38       		.byte	0x38
- 594 00ca 00000000 		.4byte	.LFB1
- 595 00ce 24000000 		.4byte	.LFE1-.LFB1
- 596 00d2 01       		.uleb128 0x1
- 597 00d3 9C       		.byte	0x9c
- 598 00d4 09       		.uleb128 0x9
- 599 00d5 4E020000 		.4byte	.LASF20
- 600 00d9 01       		.byte	0x1
- 601 00da 63       		.byte	0x63
- 602 00db 00000000 		.4byte	.LFB2
- 603 00df 24000000 		.4byte	.LFE2-.LFB2
- 604 00e3 01       		.uleb128 0x1
- 605 00e4 9C       		.byte	0x9c
- 606 00e5 F8000000 		.4byte	0xf8
- 607 00e9 0A       		.uleb128 0xa
- 608 00ea CA010000 		.4byte	.LASF22
- 609 00ee 01       		.byte	0x1
- 610 00ef 63       		.byte	0x63
- 611 00f0 A9000000 		.4byte	0xa9
- 612 00f4 02       		.uleb128 0x2
- 613 00f5 91       		.byte	0x91
- 614 00f6 74       		.sleb128 -12
- 615 00f7 00       		.byte	0
- 616 00f8 08       		.uleb128 0x8
- 617 00f9 8D000000 		.4byte	.LASF18
- 618 00fd 01       		.byte	0x1
- 619 00fe 81       		.byte	0x81
- 620 00ff 00000000 		.4byte	.LFB3
- 621 0103 18000000 		.4byte	.LFE3-.LFB3
- 622 0107 01       		.uleb128 0x1
- 623 0108 9C       		.byte	0x9c
- 624 0109 0B       		.uleb128 0xb
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 19
+ 564 007f 48000000 		.4byte	0x48
+ 565 0083 02       		.uleb128 0x2
+ 566 0084 04       		.byte	0x4
+ 567 0085 04       		.byte	0x4
+ 568 0086 99000000 		.4byte	.LASF11
+ 569 008a 02       		.uleb128 0x2
+ 570 008b 08       		.byte	0x8
+ 571 008c 04       		.byte	0x4
+ 572 008d B4010000 		.4byte	.LASF12
+ 573 0091 02       		.uleb128 0x2
+ 574 0092 01       		.byte	0x1
+ 575 0093 08       		.byte	0x8
+ 576 0094 5D020000 		.4byte	.LASF13
+ 577 0098 04       		.uleb128 0x4
+ 578 0099 11000000 		.4byte	.LASF14
+ 579 009d 02       		.byte	0x2
+ 580 009e 4402     		.2byte	0x244
+ 581 00a0 A4000000 		.4byte	0xa4
+ 582 00a4 05       		.uleb128 0x5
+ 583 00a5 77000000 		.4byte	0x77
+ 584 00a9 04       		.uleb128 0x4
+ 585 00aa 29020000 		.4byte	.LASF15
+ 586 00ae 02       		.byte	0x2
+ 587 00af 5402     		.2byte	0x254
+ 588 00b1 B5000000 		.4byte	0xb5
+ 589 00b5 06       		.uleb128 0x6
+ 590 00b6 04       		.byte	0x4
+ 591 00b7 BB000000 		.4byte	0xbb
+ 592 00bb 07       		.uleb128 0x7
+ 593 00bc 02       		.uleb128 0x2
+ 594 00bd 04       		.byte	0x4
+ 595 00be 07       		.byte	0x7
+ 596 00bf 36020000 		.4byte	.LASF16
+ 597 00c3 08       		.uleb128 0x8
+ 598 00c4 17000000 		.4byte	.LASF17
+ 599 00c8 01       		.byte	0x1
+ 600 00c9 5A01     		.2byte	0x15a
+ 601 00cb 01       		.byte	0x1
+ 602 00cc 09       		.uleb128 0x9
+ 603 00cd 00000000 		.4byte	.LASF19
+ 604 00d1 01       		.byte	0x1
+ 605 00d2 C7       		.byte	0xc7
+ 606 00d3 01       		.byte	0x1
+ 607 00d4 E4000000 		.4byte	0xe4
+ 608 00d8 0A       		.uleb128 0xa
+ 609 00d9 0B020000 		.4byte	.LASF21
+ 610 00dd 01       		.byte	0x1
+ 611 00de C7       		.byte	0xc7
+ 612 00df A9000000 		.4byte	0xa9
+ 613 00e3 00       		.byte	0
+ 614 00e4 08       		.uleb128 0x8
+ 615 00e5 A6010000 		.4byte	.LASF18
+ 616 00e9 01       		.byte	0x1
+ 617 00ea 3001     		.2byte	0x130
+ 618 00ec 01       		.byte	0x1
+ 619 00ed 0B       		.uleb128 0xb
+ 620 00ee 8C010000 		.4byte	.LASF30
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 20
 
 
- 625 010a D4000000 		.4byte	.LASF19
- 626 010e 01       		.byte	0x1
- 627 010f 9F       		.byte	0x9f
- 628 0110 00000000 		.4byte	.LFB4
- 629 0114 08000000 		.4byte	.LFE4-.LFB4
- 630 0118 01       		.uleb128 0x1
- 631 0119 9C       		.byte	0x9c
- 632 011a 0C       		.uleb128 0xc
- 633 011b 00000000 		.4byte	.LASF21
- 634 011f 01       		.byte	0x1
- 635 0120 C7       		.byte	0xc7
- 636 0121 00000000 		.4byte	.LFB5
- 637 0125 18000000 		.4byte	.LFE5-.LFB5
- 638 0129 01       		.uleb128 0x1
- 639 012a 9C       		.byte	0x9c
- 640 012b 3E010000 		.4byte	0x13e
- 641 012f 0A       		.uleb128 0xa
- 642 0130 CA010000 		.4byte	.LASF22
- 643 0134 01       		.byte	0x1
- 644 0135 C7       		.byte	0xc7
- 645 0136 A9000000 		.4byte	0xa9
- 646 013a 02       		.uleb128 0x2
- 647 013b 91       		.byte	0x91
- 648 013c 74       		.sleb128 -12
- 649 013d 00       		.byte	0
- 650 013e 0D       		.uleb128 0xd
- 651 013f 60000000 		.4byte	.LASF28
- 652 0143 01       		.byte	0x1
- 653 0144 DB       		.byte	0xdb
- 654 0145 A9000000 		.4byte	0xa9
- 655 0149 00000000 		.4byte	.LFB6
- 656 014d 14000000 		.4byte	.LFE6-.LFB6
- 657 0151 01       		.uleb128 0x1
- 658 0152 9C       		.byte	0x9c
- 659 0153 09       		.uleb128 0x9
- 660 0154 2C020000 		.4byte	.LASF23
- 661 0158 01       		.byte	0x1
- 662 0159 F9       		.byte	0xf9
- 663 015a 00000000 		.4byte	.LFB7
- 664 015e 4C000000 		.4byte	.LFE7-.LFB7
- 665 0162 01       		.uleb128 0x1
- 666 0163 9C       		.byte	0x9c
- 667 0164 93010000 		.4byte	0x193
- 668 0168 0A       		.uleb128 0xa
- 669 0169 E5000000 		.4byte	.LASF24
- 670 016d 01       		.byte	0x1
- 671 016e F9       		.byte	0xf9
- 672 016f 6B000000 		.4byte	0x6b
- 673 0173 02       		.uleb128 0x2
- 674 0174 91       		.byte	0x91
- 675 0175 67       		.sleb128 -25
- 676 0176 0E       		.uleb128 0xe
- 677 0177 AD000000 		.4byte	.LASF25
- 678 017b 01       		.byte	0x1
- 679 017c FB       		.byte	0xfb
- 680 017d 6B000000 		.4byte	0x6b
- 681 0181 02       		.uleb128 0x2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 20
+ 621 00f2 01       		.byte	0x1
+ 622 00f3 9F       		.byte	0x9f
+ 623 00f4 00000000 		.4byte	.LFB4
+ 624 00f8 02000000 		.4byte	.LFE4-.LFB4
+ 625 00fc 01       		.uleb128 0x1
+ 626 00fd 9C       		.byte	0x9c
+ 627 00fe 09       		.uleb128 0x9
+ 628 00ff 6C020000 		.4byte	.LASF20
+ 629 0103 01       		.byte	0x1
+ 630 0104 F9       		.byte	0xf9
+ 631 0105 01       		.byte	0x1
+ 632 0106 2C010000 		.4byte	0x12c
+ 633 010a 0A       		.uleb128 0xa
+ 634 010b 9D010000 		.4byte	.LASF22
+ 635 010f 01       		.byte	0x1
+ 636 0110 F9       		.byte	0xf9
+ 637 0111 6B000000 		.4byte	0x6b
+ 638 0115 0C       		.uleb128 0xc
+ 639 0116 65010000 		.4byte	.LASF23
+ 640 011a 01       		.byte	0x1
+ 641 011b FB       		.byte	0xfb
+ 642 011c 6B000000 		.4byte	0x6b
+ 643 0120 0C       		.uleb128 0xc
+ 644 0121 7F020000 		.4byte	.LASF24
+ 645 0125 01       		.byte	0x1
+ 646 0126 FC       		.byte	0xfc
+ 647 0127 77000000 		.4byte	0x77
+ 648 012b 00       		.byte	0
+ 649 012c 0D       		.uleb128 0xd
+ 650 012d 46000000 		.4byte	.LASF25
+ 651 0131 01       		.byte	0x1
+ 652 0132 38       		.byte	0x38
+ 653 0133 00000000 		.4byte	.LFB1
+ 654 0137 3C000000 		.4byte	.LFE1-.LFB1
+ 655 013b 01       		.uleb128 0x1
+ 656 013c 9C       		.byte	0x9c
+ 657 013d C5010000 		.4byte	0x1c5
+ 658 0141 0E       		.uleb128 0xe
+ 659 0142 C3000000 		.4byte	0xc3
+ 660 0146 02000000 		.4byte	.LBB26
+ 661 014a 00000000 		.4byte	.Ldebug_ranges0+0
+ 662 014e 01       		.byte	0x1
+ 663 014f 3B       		.byte	0x3b
+ 664 0150 0F       		.uleb128 0xf
+ 665 0151 CC000000 		.4byte	0xcc
+ 666 0155 06000000 		.4byte	.LBB29
+ 667 0159 18000000 		.4byte	.Ldebug_ranges0+0x18
+ 668 015d 01       		.byte	0x1
+ 669 015e 3E       		.byte	0x3e
+ 670 015f 70010000 		.4byte	0x170
+ 671 0163 10       		.uleb128 0x10
+ 672 0164 D8000000 		.4byte	0xd8
+ 673 0168 06       		.uleb128 0x6
+ 674 0169 03       		.byte	0x3
+ 675 016a 00000000 		.4byte	WdtIsr_Interrupt
+ 676 016e 9F       		.byte	0x9f
+ 677 016f 00       		.byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 21
 
 
- 682 0182 91       		.byte	0x91
- 683 0183 6B       		.sleb128 -21
- 684 0184 0E       		.uleb128 0xe
- 685 0185 3F020000 		.4byte	.LASF26
- 686 0189 01       		.byte	0x1
- 687 018a FC       		.byte	0xfc
- 688 018b 77000000 		.4byte	0x77
- 689 018f 02       		.uleb128 0x2
- 690 0190 91       		.byte	0x91
- 691 0191 6C       		.sleb128 -20
- 692 0192 00       		.byte	0
- 693 0193 0F       		.uleb128 0xf
- 694 0194 98010000 		.4byte	.LASF36
- 695 0198 01       		.byte	0x1
- 696 0199 1501     		.2byte	0x115
- 697 019b 6B000000 		.4byte	0x6b
- 698 019f 00000000 		.4byte	.LFB8
- 699 01a3 2C000000 		.4byte	.LFE8-.LFB8
- 700 01a7 01       		.uleb128 0x1
- 701 01a8 9C       		.byte	0x9c
- 702 01a9 CC010000 		.4byte	0x1cc
- 703 01ad 10       		.uleb128 0x10
- 704 01ae E5000000 		.4byte	.LASF24
- 705 01b2 01       		.byte	0x1
- 706 01b3 1701     		.2byte	0x117
- 707 01b5 77000000 		.4byte	0x77
- 708 01b9 02       		.uleb128 0x2
- 709 01ba 91       		.byte	0x91
- 710 01bb 70       		.sleb128 -16
- 711 01bc 10       		.uleb128 0x10
- 712 01bd 3F020000 		.4byte	.LASF26
- 713 01c1 01       		.byte	0x1
- 714 01c2 1801     		.2byte	0x118
- 715 01c4 77000000 		.4byte	0x77
- 716 01c8 02       		.uleb128 0x2
- 717 01c9 91       		.byte	0x91
- 718 01ca 74       		.sleb128 -12
- 719 01cb 00       		.byte	0
- 720 01cc 11       		.uleb128 0x11
- 721 01cd EE000000 		.4byte	.LASF27
- 722 01d1 01       		.byte	0x1
- 723 01d2 3001     		.2byte	0x130
- 724 01d4 00000000 		.4byte	.LFB9
- 725 01d8 14000000 		.4byte	.LFE9-.LFB9
- 726 01dc 01       		.uleb128 0x1
- 727 01dd 9C       		.byte	0x9c
- 728 01de 12       		.uleb128 0x12
- 729 01df 0D020000 		.4byte	.LASF29
- 730 01e3 01       		.byte	0x1
- 731 01e4 4501     		.2byte	0x145
- 732 01e6 6B000000 		.4byte	0x6b
- 733 01ea 00000000 		.4byte	.LFB10
- 734 01ee 20000000 		.4byte	.LFE10-.LFB10
- 735 01f2 01       		.uleb128 0x1
- 736 01f3 9C       		.byte	0x9c
- 737 01f4 11       		.uleb128 0x11
- 738 01f5 17000000 		.4byte	.LASF30
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 21
+ 678 0170 11       		.uleb128 0x11
+ 679 0171 FE000000 		.4byte	0xfe
+ 680 0175 0E000000 		.4byte	.LBB36
+ 681 0179 14000000 		.4byte	.LBE36-.LBB36
+ 682 017d 01       		.byte	0x1
+ 683 017e 41       		.byte	0x41
+ 684 017f B5010000 		.4byte	0x1b5
+ 685 0183 12       		.uleb128 0x12
+ 686 0184 0A010000 		.4byte	0x10a
+ 687 0188 03       		.byte	0x3
+ 688 0189 13       		.uleb128 0x13
+ 689 018a 0E000000 		.4byte	.LBB37
+ 690 018e 14000000 		.4byte	.LBE37-.LBB37
+ 691 0192 14       		.uleb128 0x14
+ 692 0193 15010000 		.4byte	0x115
+ 693 0197 00000000 		.4byte	.LLST0
+ 694 019b 15       		.uleb128 0x15
+ 695 019c 20010000 		.4byte	0x120
+ 696 01a0 1E       		.byte	0x1e
+ 697 01a1 16       		.uleb128 0x16
+ 698 01a2 12000000 		.4byte	.LVL2
+ 699 01a6 BD030000 		.4byte	0x3bd
+ 700 01aa 16       		.uleb128 0x16
+ 701 01ab 22000000 		.4byte	.LVL3
+ 702 01af C8030000 		.4byte	0x3c8
+ 703 01b3 00       		.byte	0
+ 704 01b4 00       		.byte	0
+ 705 01b5 17       		.uleb128 0x17
+ 706 01b6 E4000000 		.4byte	0xe4
+ 707 01ba 22000000 		.4byte	.LBB38
+ 708 01be 04000000 		.4byte	.LBE38-.LBB38
+ 709 01c2 01       		.byte	0x1
+ 710 01c3 44       		.byte	0x44
+ 711 01c4 00       		.byte	0
+ 712 01c5 0D       		.uleb128 0xd
+ 713 01c6 8E020000 		.4byte	.LASF26
+ 714 01ca 01       		.byte	0x1
+ 715 01cb 63       		.byte	0x63
+ 716 01cc 00000000 		.4byte	.LFB2
+ 717 01d0 38000000 		.4byte	.LFE2-.LFB2
+ 718 01d4 01       		.uleb128 0x1
+ 719 01d5 9C       		.byte	0x9c
+ 720 01d6 6A020000 		.4byte	0x26a
+ 721 01da 18       		.uleb128 0x18
+ 722 01db 0B020000 		.4byte	.LASF21
+ 723 01df 01       		.byte	0x1
+ 724 01e0 63       		.byte	0x63
+ 725 01e1 A9000000 		.4byte	0xa9
+ 726 01e5 13000000 		.4byte	.LLST1
+ 727 01e9 0E       		.uleb128 0xe
+ 728 01ea C3000000 		.4byte	0xc3
+ 729 01ee 02000000 		.4byte	.LBB48
+ 730 01f2 38000000 		.4byte	.Ldebug_ranges0+0x38
+ 731 01f6 01       		.byte	0x1
+ 732 01f7 66       		.byte	0x66
+ 733 01f8 11       		.uleb128 0x11
+ 734 01f9 CC000000 		.4byte	0xcc
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 22
 
 
- 739 01f9 01       		.byte	0x1
- 740 01fa 5A01     		.2byte	0x15a
- 741 01fc 00000000 		.4byte	.LFB11
- 742 0200 14000000 		.4byte	.LFE11-.LFB11
- 743 0204 01       		.uleb128 0x1
- 744 0205 9C       		.byte	0x9c
- 745 0206 11       		.uleb128 0x11
- 746 0207 B8010000 		.4byte	.LASF31
- 747 020b 01       		.byte	0x1
- 748 020c 7501     		.2byte	0x175
- 749 020e 00000000 		.4byte	.LFB12
- 750 0212 14000000 		.4byte	.LFE12-.LFB12
- 751 0216 01       		.uleb128 0x1
- 752 0217 9C       		.byte	0x9c
- 753 0218 11       		.uleb128 0x11
- 754 0219 5D020000 		.4byte	.LASF32
- 755 021d 01       		.byte	0x1
- 756 021e 8E01     		.2byte	0x18e
- 757 0220 00000000 		.4byte	.LFB13
- 758 0224 14000000 		.4byte	.LFE13-.LFB13
- 759 0228 01       		.uleb128 0x1
- 760 0229 9C       		.byte	0x9c
- 761 022a 13       		.uleb128 0x13
- 762 022b A9000000 		.4byte	0xa9
- 763 022f 3A020000 		.4byte	0x23a
- 764 0233 14       		.uleb128 0x14
- 765 0234 BC000000 		.4byte	0xbc
- 766 0238 2F       		.byte	0x2f
- 767 0239 00       		.byte	0
- 768 023a 15       		.uleb128 0x15
- 769 023b 53000000 		.4byte	.LASF37
- 770 023f 01       		.byte	0x1
- 771 0240 21       		.byte	0x21
- 772 0241 2A020000 		.4byte	0x22a
- 773 0245 00       		.byte	0
- 774              		.section	.debug_abbrev,"",%progbits
- 775              	.Ldebug_abbrev0:
- 776 0000 01       		.uleb128 0x1
- 777 0001 11       		.uleb128 0x11
- 778 0002 01       		.byte	0x1
- 779 0003 25       		.uleb128 0x25
- 780 0004 0E       		.uleb128 0xe
- 781 0005 13       		.uleb128 0x13
- 782 0006 0B       		.uleb128 0xb
- 783 0007 03       		.uleb128 0x3
- 784 0008 0E       		.uleb128 0xe
- 785 0009 1B       		.uleb128 0x1b
- 786 000a 0E       		.uleb128 0xe
- 787 000b 55       		.uleb128 0x55
- 788 000c 17       		.uleb128 0x17
- 789 000d 11       		.uleb128 0x11
- 790 000e 01       		.uleb128 0x1
- 791 000f 10       		.uleb128 0x10
- 792 0010 17       		.uleb128 0x17
- 793 0011 00       		.byte	0
- 794 0012 00       		.byte	0
- 795 0013 02       		.uleb128 0x2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 22
+ 735 01fd 08000000 		.4byte	.LBB52
+ 736 0201 04000000 		.4byte	.LBE52-.LBB52
+ 737 0205 01       		.byte	0x1
+ 738 0206 69       		.byte	0x69
+ 739 0207 15020000 		.4byte	0x215
+ 740 020b 19       		.uleb128 0x19
+ 741 020c D8000000 		.4byte	0xd8
+ 742 0210 34000000 		.4byte	.LLST2
+ 743 0214 00       		.byte	0
+ 744 0215 11       		.uleb128 0x11
+ 745 0216 FE000000 		.4byte	0xfe
+ 746 021a 0C000000 		.4byte	.LBB54
+ 747 021e 14000000 		.4byte	.LBE54-.LBB54
+ 748 0222 01       		.byte	0x1
+ 749 0223 6C       		.byte	0x6c
+ 750 0224 5A020000 		.4byte	0x25a
+ 751 0228 12       		.uleb128 0x12
+ 752 0229 0A010000 		.4byte	0x10a
+ 753 022d 03       		.byte	0x3
+ 754 022e 13       		.uleb128 0x13
+ 755 022f 0C000000 		.4byte	.LBB55
+ 756 0233 14000000 		.4byte	.LBE55-.LBB55
+ 757 0237 14       		.uleb128 0x14
+ 758 0238 15010000 		.4byte	0x115
+ 759 023c 55000000 		.4byte	.LLST3
+ 760 0240 15       		.uleb128 0x15
+ 761 0241 20010000 		.4byte	0x120
+ 762 0245 1E       		.byte	0x1e
+ 763 0246 16       		.uleb128 0x16
+ 764 0247 10000000 		.4byte	.LVL7
+ 765 024b BD030000 		.4byte	0x3bd
+ 766 024f 16       		.uleb128 0x16
+ 767 0250 20000000 		.4byte	.LVL8
+ 768 0254 C8030000 		.4byte	0x3c8
+ 769 0258 00       		.byte	0
+ 770 0259 00       		.byte	0
+ 771 025a 17       		.uleb128 0x17
+ 772 025b E4000000 		.4byte	0xe4
+ 773 025f 20000000 		.4byte	.LBB56
+ 774 0263 04000000 		.4byte	.LBE56-.LBB56
+ 775 0267 01       		.byte	0x1
+ 776 0268 6F       		.byte	0x6f
+ 777 0269 00       		.byte	0
+ 778 026a 0D       		.uleb128 0xd
+ 779 026b 8D000000 		.4byte	.LASF27
+ 780 026f 01       		.byte	0x1
+ 781 0270 81       		.byte	0x81
+ 782 0271 00000000 		.4byte	.LFB3
+ 783 0275 1C000000 		.4byte	.LFE3-.LFB3
+ 784 0279 01       		.uleb128 0x1
+ 785 027a 9C       		.byte	0x9c
+ 786 027b A4020000 		.4byte	0x2a4
+ 787 027f 0E       		.uleb128 0xe
+ 788 0280 C3000000 		.4byte	0xc3
+ 789 0284 00000000 		.4byte	.LBB58
+ 790 0288 50000000 		.4byte	.Ldebug_ranges0+0x50
+ 791 028c 01       		.byte	0x1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 23
 
 
- 796 0014 24       		.uleb128 0x24
- 797 0015 00       		.byte	0
- 798 0016 0B       		.uleb128 0xb
- 799 0017 0B       		.uleb128 0xb
- 800 0018 3E       		.uleb128 0x3e
- 801 0019 0B       		.uleb128 0xb
- 802 001a 03       		.uleb128 0x3
- 803 001b 0E       		.uleb128 0xe
- 804 001c 00       		.byte	0
- 805 001d 00       		.byte	0
- 806 001e 03       		.uleb128 0x3
- 807 001f 24       		.uleb128 0x24
- 808 0020 00       		.byte	0
- 809 0021 0B       		.uleb128 0xb
- 810 0022 0B       		.uleb128 0xb
- 811 0023 3E       		.uleb128 0x3e
- 812 0024 0B       		.uleb128 0xb
- 813 0025 03       		.uleb128 0x3
- 814 0026 08       		.uleb128 0x8
- 815 0027 00       		.byte	0
- 816 0028 00       		.byte	0
- 817 0029 04       		.uleb128 0x4
- 818 002a 16       		.uleb128 0x16
- 819 002b 00       		.byte	0
- 820 002c 03       		.uleb128 0x3
- 821 002d 0E       		.uleb128 0xe
- 822 002e 3A       		.uleb128 0x3a
- 823 002f 0B       		.uleb128 0xb
- 824 0030 3B       		.uleb128 0x3b
- 825 0031 05       		.uleb128 0x5
- 826 0032 49       		.uleb128 0x49
- 827 0033 13       		.uleb128 0x13
- 828 0034 00       		.byte	0
- 829 0035 00       		.byte	0
- 830 0036 05       		.uleb128 0x5
- 831 0037 35       		.uleb128 0x35
- 832 0038 00       		.byte	0
- 833 0039 49       		.uleb128 0x49
- 834 003a 13       		.uleb128 0x13
- 835 003b 00       		.byte	0
- 836 003c 00       		.byte	0
- 837 003d 06       		.uleb128 0x6
- 838 003e 0F       		.uleb128 0xf
- 839 003f 00       		.byte	0
- 840 0040 0B       		.uleb128 0xb
- 841 0041 0B       		.uleb128 0xb
- 842 0042 49       		.uleb128 0x49
- 843 0043 13       		.uleb128 0x13
- 844 0044 00       		.byte	0
- 845 0045 00       		.byte	0
- 846 0046 07       		.uleb128 0x7
- 847 0047 15       		.uleb128 0x15
- 848 0048 00       		.byte	0
- 849 0049 27       		.uleb128 0x27
- 850 004a 19       		.uleb128 0x19
- 851 004b 00       		.byte	0
- 852 004c 00       		.byte	0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 23
+ 792 028d 84       		.byte	0x84
+ 793 028e 1A       		.uleb128 0x1a
+ 794 028f CC000000 		.4byte	0xcc
+ 795 0293 06000000 		.4byte	.LBB62
+ 796 0297 06000000 		.4byte	.LBE62-.LBB62
+ 797 029b 01       		.byte	0x1
+ 798 029c 87       		.byte	0x87
+ 799 029d 1B       		.uleb128 0x1b
+ 800 029e D8000000 		.4byte	0xd8
+ 801 02a2 00       		.byte	0
+ 802 02a3 00       		.byte	0
+ 803 02a4 1C       		.uleb128 0x1c
+ 804 02a5 CC000000 		.4byte	0xcc
+ 805 02a9 00000000 		.4byte	.LFB5
+ 806 02ad 0C000000 		.4byte	.LFE5-.LFB5
+ 807 02b1 01       		.uleb128 0x1
+ 808 02b2 9C       		.byte	0x9c
+ 809 02b3 BF020000 		.4byte	0x2bf
+ 810 02b7 10       		.uleb128 0x10
+ 811 02b8 D8000000 		.4byte	0xd8
+ 812 02bc 01       		.uleb128 0x1
+ 813 02bd 50       		.byte	0x50
+ 814 02be 00       		.byte	0
+ 815 02bf 1D       		.uleb128 0x1d
+ 816 02c0 60000000 		.4byte	.LASF28
+ 817 02c4 01       		.byte	0x1
+ 818 02c5 DB       		.byte	0xdb
+ 819 02c6 A9000000 		.4byte	0xa9
+ 820 02ca 00000000 		.4byte	.LFB6
+ 821 02ce 0C000000 		.4byte	.LFE6-.LFB6
+ 822 02d2 01       		.uleb128 0x1
+ 823 02d3 9C       		.byte	0x9c
+ 824 02d4 1C       		.uleb128 0x1c
+ 825 02d5 FE000000 		.4byte	0xfe
+ 826 02d9 00000000 		.4byte	.LFB7
+ 827 02dd 20000000 		.4byte	.LFE7-.LFB7
+ 828 02e1 01       		.uleb128 0x1
+ 829 02e2 9C       		.byte	0x9c
+ 830 02e3 12030000 		.4byte	0x312
+ 831 02e7 19       		.uleb128 0x19
+ 832 02e8 0A010000 		.4byte	0x10a
+ 833 02ec 68000000 		.4byte	.LLST4
+ 834 02f0 14       		.uleb128 0x14
+ 835 02f1 15010000 		.4byte	0x115
+ 836 02f5 89000000 		.4byte	.LLST5
+ 837 02f9 15       		.uleb128 0x15
+ 838 02fa 20010000 		.4byte	0x120
+ 839 02fe 1E       		.byte	0x1e
+ 840 02ff 16       		.uleb128 0x16
+ 841 0300 08000000 		.4byte	.LVL12
+ 842 0304 BD030000 		.4byte	0x3bd
+ 843 0308 16       		.uleb128 0x16
+ 844 0309 1A000000 		.4byte	.LVL13
+ 845 030d C8030000 		.4byte	0x3c8
+ 846 0311 00       		.byte	0
+ 847 0312 1E       		.uleb128 0x1e
+ 848 0313 BB010000 		.4byte	.LASF36
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 24
 
 
- 853 004d 08       		.uleb128 0x8
- 854 004e 2E       		.uleb128 0x2e
- 855 004f 00       		.byte	0
- 856 0050 3F       		.uleb128 0x3f
- 857 0051 19       		.uleb128 0x19
- 858 0052 03       		.uleb128 0x3
- 859 0053 0E       		.uleb128 0xe
- 860 0054 3A       		.uleb128 0x3a
- 861 0055 0B       		.uleb128 0xb
- 862 0056 3B       		.uleb128 0x3b
- 863 0057 0B       		.uleb128 0xb
- 864 0058 27       		.uleb128 0x27
- 865 0059 19       		.uleb128 0x19
- 866 005a 11       		.uleb128 0x11
- 867 005b 01       		.uleb128 0x1
- 868 005c 12       		.uleb128 0x12
- 869 005d 06       		.uleb128 0x6
- 870 005e 40       		.uleb128 0x40
- 871 005f 18       		.uleb128 0x18
- 872 0060 9642     		.uleb128 0x2116
- 873 0062 19       		.uleb128 0x19
- 874 0063 00       		.byte	0
- 875 0064 00       		.byte	0
- 876 0065 09       		.uleb128 0x9
- 877 0066 2E       		.uleb128 0x2e
- 878 0067 01       		.byte	0x1
- 879 0068 3F       		.uleb128 0x3f
- 880 0069 19       		.uleb128 0x19
- 881 006a 03       		.uleb128 0x3
- 882 006b 0E       		.uleb128 0xe
- 883 006c 3A       		.uleb128 0x3a
- 884 006d 0B       		.uleb128 0xb
- 885 006e 3B       		.uleb128 0x3b
- 886 006f 0B       		.uleb128 0xb
- 887 0070 27       		.uleb128 0x27
- 888 0071 19       		.uleb128 0x19
- 889 0072 11       		.uleb128 0x11
- 890 0073 01       		.uleb128 0x1
- 891 0074 12       		.uleb128 0x12
- 892 0075 06       		.uleb128 0x6
- 893 0076 40       		.uleb128 0x40
- 894 0077 18       		.uleb128 0x18
- 895 0078 9642     		.uleb128 0x2116
- 896 007a 19       		.uleb128 0x19
- 897 007b 01       		.uleb128 0x1
- 898 007c 13       		.uleb128 0x13
- 899 007d 00       		.byte	0
- 900 007e 00       		.byte	0
- 901 007f 0A       		.uleb128 0xa
- 902 0080 05       		.uleb128 0x5
- 903 0081 00       		.byte	0
- 904 0082 03       		.uleb128 0x3
- 905 0083 0E       		.uleb128 0xe
- 906 0084 3A       		.uleb128 0x3a
- 907 0085 0B       		.uleb128 0xb
- 908 0086 3B       		.uleb128 0x3b
- 909 0087 0B       		.uleb128 0xb
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 24
+ 849 0317 01       		.byte	0x1
+ 850 0318 1501     		.2byte	0x115
+ 851 031a 6B000000 		.4byte	0x6b
+ 852 031e 00000000 		.4byte	.LFB8
+ 853 0322 0C000000 		.4byte	.LFE8-.LFB8
+ 854 0326 01       		.uleb128 0x1
+ 855 0327 9C       		.byte	0x9c
+ 856 0328 4A030000 		.4byte	0x34a
+ 857 032c 1F       		.uleb128 0x1f
+ 858 032d 9D010000 		.4byte	.LASF22
+ 859 0331 01       		.byte	0x1
+ 860 0332 1701     		.2byte	0x117
+ 861 0334 77000000 		.4byte	0x77
+ 862 0338 9C000000 		.4byte	.LLST6
+ 863 033c 20       		.uleb128 0x20
+ 864 033d 7F020000 		.4byte	.LASF24
+ 865 0341 01       		.byte	0x1
+ 866 0342 1801     		.2byte	0x118
+ 867 0344 77000000 		.4byte	0x77
+ 868 0348 1E       		.byte	0x1e
+ 869 0349 00       		.byte	0
+ 870 034a 21       		.uleb128 0x21
+ 871 034b E4000000 		.4byte	0xe4
+ 872 034f 00000000 		.4byte	.LFB9
+ 873 0353 0C000000 		.4byte	.LFE9-.LFB9
+ 874 0357 01       		.uleb128 0x1
+ 875 0358 9C       		.byte	0x9c
+ 876 0359 22       		.uleb128 0x22
+ 877 035a 4D020000 		.4byte	.LASF29
+ 878 035e 01       		.byte	0x1
+ 879 035f 4501     		.2byte	0x145
+ 880 0361 6B000000 		.4byte	0x6b
+ 881 0365 00000000 		.4byte	.LFB10
+ 882 0369 10000000 		.4byte	.LFE10-.LFB10
+ 883 036d 01       		.uleb128 0x1
+ 884 036e 9C       		.byte	0x9c
+ 885 036f 21       		.uleb128 0x21
+ 886 0370 C3000000 		.4byte	0xc3
+ 887 0374 00000000 		.4byte	.LFB11
+ 888 0378 0C000000 		.4byte	.LFE11-.LFB11
+ 889 037c 01       		.uleb128 0x1
+ 890 037d 9C       		.byte	0x9c
+ 891 037e 23       		.uleb128 0x23
+ 892 037f F9010000 		.4byte	.LASF31
+ 893 0383 01       		.byte	0x1
+ 894 0384 7501     		.2byte	0x175
+ 895 0386 00000000 		.4byte	.LFB12
+ 896 038a 0C000000 		.4byte	.LFE12-.LFB12
+ 897 038e 01       		.uleb128 0x1
+ 898 038f 9C       		.byte	0x9c
+ 899 0390 23       		.uleb128 0x23
+ 900 0391 9D020000 		.4byte	.LASF32
+ 901 0395 01       		.byte	0x1
+ 902 0396 8E01     		.2byte	0x18e
+ 903 0398 00000000 		.4byte	.LFB13
+ 904 039c 0C000000 		.4byte	.LFE13-.LFB13
+ 905 03a0 01       		.uleb128 0x1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 25
 
 
- 910 0088 49       		.uleb128 0x49
- 911 0089 13       		.uleb128 0x13
- 912 008a 02       		.uleb128 0x2
- 913 008b 18       		.uleb128 0x18
- 914 008c 00       		.byte	0
- 915 008d 00       		.byte	0
- 916 008e 0B       		.uleb128 0xb
- 917 008f 2E       		.uleb128 0x2e
- 918 0090 00       		.byte	0
- 919 0091 3F       		.uleb128 0x3f
- 920 0092 19       		.uleb128 0x19
- 921 0093 03       		.uleb128 0x3
- 922 0094 0E       		.uleb128 0xe
- 923 0095 3A       		.uleb128 0x3a
- 924 0096 0B       		.uleb128 0xb
- 925 0097 3B       		.uleb128 0x3b
- 926 0098 0B       		.uleb128 0xb
- 927 0099 27       		.uleb128 0x27
- 928 009a 19       		.uleb128 0x19
- 929 009b 11       		.uleb128 0x11
- 930 009c 01       		.uleb128 0x1
- 931 009d 12       		.uleb128 0x12
- 932 009e 06       		.uleb128 0x6
- 933 009f 40       		.uleb128 0x40
- 934 00a0 18       		.uleb128 0x18
- 935 00a1 9742     		.uleb128 0x2117
- 936 00a3 19       		.uleb128 0x19
- 937 00a4 00       		.byte	0
- 938 00a5 00       		.byte	0
- 939 00a6 0C       		.uleb128 0xc
- 940 00a7 2E       		.uleb128 0x2e
- 941 00a8 01       		.byte	0x1
- 942 00a9 3F       		.uleb128 0x3f
- 943 00aa 19       		.uleb128 0x19
- 944 00ab 03       		.uleb128 0x3
- 945 00ac 0E       		.uleb128 0xe
- 946 00ad 3A       		.uleb128 0x3a
- 947 00ae 0B       		.uleb128 0xb
- 948 00af 3B       		.uleb128 0x3b
- 949 00b0 0B       		.uleb128 0xb
- 950 00b1 27       		.uleb128 0x27
- 951 00b2 19       		.uleb128 0x19
- 952 00b3 11       		.uleb128 0x11
- 953 00b4 01       		.uleb128 0x1
- 954 00b5 12       		.uleb128 0x12
- 955 00b6 06       		.uleb128 0x6
- 956 00b7 40       		.uleb128 0x40
- 957 00b8 18       		.uleb128 0x18
- 958 00b9 9742     		.uleb128 0x2117
- 959 00bb 19       		.uleb128 0x19
- 960 00bc 01       		.uleb128 0x1
- 961 00bd 13       		.uleb128 0x13
- 962 00be 00       		.byte	0
- 963 00bf 00       		.byte	0
- 964 00c0 0D       		.uleb128 0xd
- 965 00c1 2E       		.uleb128 0x2e
- 966 00c2 00       		.byte	0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 25
+ 906 03a1 9C       		.byte	0x9c
+ 907 03a2 24       		.uleb128 0x24
+ 908 03a3 A9000000 		.4byte	0xa9
+ 909 03a7 B2030000 		.4byte	0x3b2
+ 910 03ab 25       		.uleb128 0x25
+ 911 03ac BC000000 		.4byte	0xbc
+ 912 03b0 2F       		.byte	0x2f
+ 913 03b1 00       		.byte	0
+ 914 03b2 26       		.uleb128 0x26
+ 915 03b3 53000000 		.4byte	.LASF37
+ 916 03b7 01       		.byte	0x1
+ 917 03b8 21       		.byte	0x21
+ 918 03b9 A2030000 		.4byte	0x3a2
+ 919 03bd 27       		.uleb128 0x27
+ 920 03be D5010000 		.4byte	.LASF38
+ 921 03c2 03       		.byte	0x3
+ 922 03c3 E3       		.byte	0xe3
+ 923 03c4 6B000000 		.4byte	0x6b
+ 924 03c8 28       		.uleb128 0x28
+ 925 03c9 13020000 		.4byte	.LASF39
+ 926 03cd 03       		.byte	0x3
+ 927 03ce E4       		.byte	0xe4
+ 928 03cf 29       		.uleb128 0x29
+ 929 03d0 6B000000 		.4byte	0x6b
+ 930 03d4 00       		.byte	0
+ 931 03d5 00       		.byte	0
+ 932              		.section	.debug_abbrev,"",%progbits
+ 933              	.Ldebug_abbrev0:
+ 934 0000 01       		.uleb128 0x1
+ 935 0001 11       		.uleb128 0x11
+ 936 0002 01       		.byte	0x1
+ 937 0003 25       		.uleb128 0x25
+ 938 0004 0E       		.uleb128 0xe
+ 939 0005 13       		.uleb128 0x13
+ 940 0006 0B       		.uleb128 0xb
+ 941 0007 03       		.uleb128 0x3
+ 942 0008 0E       		.uleb128 0xe
+ 943 0009 1B       		.uleb128 0x1b
+ 944 000a 0E       		.uleb128 0xe
+ 945 000b 55       		.uleb128 0x55
+ 946 000c 17       		.uleb128 0x17
+ 947 000d 11       		.uleb128 0x11
+ 948 000e 01       		.uleb128 0x1
+ 949 000f 10       		.uleb128 0x10
+ 950 0010 17       		.uleb128 0x17
+ 951 0011 00       		.byte	0
+ 952 0012 00       		.byte	0
+ 953 0013 02       		.uleb128 0x2
+ 954 0014 24       		.uleb128 0x24
+ 955 0015 00       		.byte	0
+ 956 0016 0B       		.uleb128 0xb
+ 957 0017 0B       		.uleb128 0xb
+ 958 0018 3E       		.uleb128 0x3e
+ 959 0019 0B       		.uleb128 0xb
+ 960 001a 03       		.uleb128 0x3
+ 961 001b 0E       		.uleb128 0xe
+ 962 001c 00       		.byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 26
 
 
- 967 00c3 3F       		.uleb128 0x3f
- 968 00c4 19       		.uleb128 0x19
- 969 00c5 03       		.uleb128 0x3
- 970 00c6 0E       		.uleb128 0xe
- 971 00c7 3A       		.uleb128 0x3a
- 972 00c8 0B       		.uleb128 0xb
- 973 00c9 3B       		.uleb128 0x3b
- 974 00ca 0B       		.uleb128 0xb
- 975 00cb 27       		.uleb128 0x27
- 976 00cc 19       		.uleb128 0x19
- 977 00cd 49       		.uleb128 0x49
- 978 00ce 13       		.uleb128 0x13
- 979 00cf 11       		.uleb128 0x11
- 980 00d0 01       		.uleb128 0x1
- 981 00d1 12       		.uleb128 0x12
- 982 00d2 06       		.uleb128 0x6
- 983 00d3 40       		.uleb128 0x40
- 984 00d4 18       		.uleb128 0x18
- 985 00d5 9742     		.uleb128 0x2117
- 986 00d7 19       		.uleb128 0x19
- 987 00d8 00       		.byte	0
- 988 00d9 00       		.byte	0
- 989 00da 0E       		.uleb128 0xe
- 990 00db 34       		.uleb128 0x34
- 991 00dc 00       		.byte	0
- 992 00dd 03       		.uleb128 0x3
- 993 00de 0E       		.uleb128 0xe
- 994 00df 3A       		.uleb128 0x3a
- 995 00e0 0B       		.uleb128 0xb
- 996 00e1 3B       		.uleb128 0x3b
- 997 00e2 0B       		.uleb128 0xb
- 998 00e3 49       		.uleb128 0x49
- 999 00e4 13       		.uleb128 0x13
- 1000 00e5 02       		.uleb128 0x2
- 1001 00e6 18       		.uleb128 0x18
- 1002 00e7 00       		.byte	0
- 1003 00e8 00       		.byte	0
- 1004 00e9 0F       		.uleb128 0xf
- 1005 00ea 2E       		.uleb128 0x2e
- 1006 00eb 01       		.byte	0x1
- 1007 00ec 3F       		.uleb128 0x3f
- 1008 00ed 19       		.uleb128 0x19
- 1009 00ee 03       		.uleb128 0x3
- 1010 00ef 0E       		.uleb128 0xe
- 1011 00f0 3A       		.uleb128 0x3a
- 1012 00f1 0B       		.uleb128 0xb
- 1013 00f2 3B       		.uleb128 0x3b
- 1014 00f3 05       		.uleb128 0x5
- 1015 00f4 27       		.uleb128 0x27
- 1016 00f5 19       		.uleb128 0x19
- 1017 00f6 49       		.uleb128 0x49
- 1018 00f7 13       		.uleb128 0x13
- 1019 00f8 11       		.uleb128 0x11
- 1020 00f9 01       		.uleb128 0x1
- 1021 00fa 12       		.uleb128 0x12
- 1022 00fb 06       		.uleb128 0x6
- 1023 00fc 40       		.uleb128 0x40
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 26
+ 963 001d 00       		.byte	0
+ 964 001e 03       		.uleb128 0x3
+ 965 001f 24       		.uleb128 0x24
+ 966 0020 00       		.byte	0
+ 967 0021 0B       		.uleb128 0xb
+ 968 0022 0B       		.uleb128 0xb
+ 969 0023 3E       		.uleb128 0x3e
+ 970 0024 0B       		.uleb128 0xb
+ 971 0025 03       		.uleb128 0x3
+ 972 0026 08       		.uleb128 0x8
+ 973 0027 00       		.byte	0
+ 974 0028 00       		.byte	0
+ 975 0029 04       		.uleb128 0x4
+ 976 002a 16       		.uleb128 0x16
+ 977 002b 00       		.byte	0
+ 978 002c 03       		.uleb128 0x3
+ 979 002d 0E       		.uleb128 0xe
+ 980 002e 3A       		.uleb128 0x3a
+ 981 002f 0B       		.uleb128 0xb
+ 982 0030 3B       		.uleb128 0x3b
+ 983 0031 05       		.uleb128 0x5
+ 984 0032 49       		.uleb128 0x49
+ 985 0033 13       		.uleb128 0x13
+ 986 0034 00       		.byte	0
+ 987 0035 00       		.byte	0
+ 988 0036 05       		.uleb128 0x5
+ 989 0037 35       		.uleb128 0x35
+ 990 0038 00       		.byte	0
+ 991 0039 49       		.uleb128 0x49
+ 992 003a 13       		.uleb128 0x13
+ 993 003b 00       		.byte	0
+ 994 003c 00       		.byte	0
+ 995 003d 06       		.uleb128 0x6
+ 996 003e 0F       		.uleb128 0xf
+ 997 003f 00       		.byte	0
+ 998 0040 0B       		.uleb128 0xb
+ 999 0041 0B       		.uleb128 0xb
+ 1000 0042 49       		.uleb128 0x49
+ 1001 0043 13       		.uleb128 0x13
+ 1002 0044 00       		.byte	0
+ 1003 0045 00       		.byte	0
+ 1004 0046 07       		.uleb128 0x7
+ 1005 0047 15       		.uleb128 0x15
+ 1006 0048 00       		.byte	0
+ 1007 0049 27       		.uleb128 0x27
+ 1008 004a 19       		.uleb128 0x19
+ 1009 004b 00       		.byte	0
+ 1010 004c 00       		.byte	0
+ 1011 004d 08       		.uleb128 0x8
+ 1012 004e 2E       		.uleb128 0x2e
+ 1013 004f 00       		.byte	0
+ 1014 0050 3F       		.uleb128 0x3f
+ 1015 0051 19       		.uleb128 0x19
+ 1016 0052 03       		.uleb128 0x3
+ 1017 0053 0E       		.uleb128 0xe
+ 1018 0054 3A       		.uleb128 0x3a
+ 1019 0055 0B       		.uleb128 0xb
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 27
 
 
- 1024 00fd 18       		.uleb128 0x18
- 1025 00fe 9742     		.uleb128 0x2117
- 1026 0100 19       		.uleb128 0x19
- 1027 0101 01       		.uleb128 0x1
- 1028 0102 13       		.uleb128 0x13
- 1029 0103 00       		.byte	0
- 1030 0104 00       		.byte	0
- 1031 0105 10       		.uleb128 0x10
- 1032 0106 34       		.uleb128 0x34
- 1033 0107 00       		.byte	0
- 1034 0108 03       		.uleb128 0x3
- 1035 0109 0E       		.uleb128 0xe
- 1036 010a 3A       		.uleb128 0x3a
- 1037 010b 0B       		.uleb128 0xb
- 1038 010c 3B       		.uleb128 0x3b
- 1039 010d 05       		.uleb128 0x5
- 1040 010e 49       		.uleb128 0x49
- 1041 010f 13       		.uleb128 0x13
- 1042 0110 02       		.uleb128 0x2
- 1043 0111 18       		.uleb128 0x18
- 1044 0112 00       		.byte	0
- 1045 0113 00       		.byte	0
- 1046 0114 11       		.uleb128 0x11
- 1047 0115 2E       		.uleb128 0x2e
- 1048 0116 00       		.byte	0
- 1049 0117 3F       		.uleb128 0x3f
- 1050 0118 19       		.uleb128 0x19
- 1051 0119 03       		.uleb128 0x3
- 1052 011a 0E       		.uleb128 0xe
- 1053 011b 3A       		.uleb128 0x3a
- 1054 011c 0B       		.uleb128 0xb
- 1055 011d 3B       		.uleb128 0x3b
- 1056 011e 05       		.uleb128 0x5
- 1057 011f 27       		.uleb128 0x27
- 1058 0120 19       		.uleb128 0x19
- 1059 0121 11       		.uleb128 0x11
- 1060 0122 01       		.uleb128 0x1
- 1061 0123 12       		.uleb128 0x12
- 1062 0124 06       		.uleb128 0x6
- 1063 0125 40       		.uleb128 0x40
- 1064 0126 18       		.uleb128 0x18
- 1065 0127 9742     		.uleb128 0x2117
- 1066 0129 19       		.uleb128 0x19
- 1067 012a 00       		.byte	0
- 1068 012b 00       		.byte	0
- 1069 012c 12       		.uleb128 0x12
- 1070 012d 2E       		.uleb128 0x2e
- 1071 012e 00       		.byte	0
- 1072 012f 3F       		.uleb128 0x3f
- 1073 0130 19       		.uleb128 0x19
- 1074 0131 03       		.uleb128 0x3
- 1075 0132 0E       		.uleb128 0xe
- 1076 0133 3A       		.uleb128 0x3a
- 1077 0134 0B       		.uleb128 0xb
- 1078 0135 3B       		.uleb128 0x3b
- 1079 0136 05       		.uleb128 0x5
- 1080 0137 27       		.uleb128 0x27
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 27
+ 1020 0056 3B       		.uleb128 0x3b
+ 1021 0057 05       		.uleb128 0x5
+ 1022 0058 27       		.uleb128 0x27
+ 1023 0059 19       		.uleb128 0x19
+ 1024 005a 20       		.uleb128 0x20
+ 1025 005b 0B       		.uleb128 0xb
+ 1026 005c 00       		.byte	0
+ 1027 005d 00       		.byte	0
+ 1028 005e 09       		.uleb128 0x9
+ 1029 005f 2E       		.uleb128 0x2e
+ 1030 0060 01       		.byte	0x1
+ 1031 0061 3F       		.uleb128 0x3f
+ 1032 0062 19       		.uleb128 0x19
+ 1033 0063 03       		.uleb128 0x3
+ 1034 0064 0E       		.uleb128 0xe
+ 1035 0065 3A       		.uleb128 0x3a
+ 1036 0066 0B       		.uleb128 0xb
+ 1037 0067 3B       		.uleb128 0x3b
+ 1038 0068 0B       		.uleb128 0xb
+ 1039 0069 27       		.uleb128 0x27
+ 1040 006a 19       		.uleb128 0x19
+ 1041 006b 20       		.uleb128 0x20
+ 1042 006c 0B       		.uleb128 0xb
+ 1043 006d 01       		.uleb128 0x1
+ 1044 006e 13       		.uleb128 0x13
+ 1045 006f 00       		.byte	0
+ 1046 0070 00       		.byte	0
+ 1047 0071 0A       		.uleb128 0xa
+ 1048 0072 05       		.uleb128 0x5
+ 1049 0073 00       		.byte	0
+ 1050 0074 03       		.uleb128 0x3
+ 1051 0075 0E       		.uleb128 0xe
+ 1052 0076 3A       		.uleb128 0x3a
+ 1053 0077 0B       		.uleb128 0xb
+ 1054 0078 3B       		.uleb128 0x3b
+ 1055 0079 0B       		.uleb128 0xb
+ 1056 007a 49       		.uleb128 0x49
+ 1057 007b 13       		.uleb128 0x13
+ 1058 007c 00       		.byte	0
+ 1059 007d 00       		.byte	0
+ 1060 007e 0B       		.uleb128 0xb
+ 1061 007f 2E       		.uleb128 0x2e
+ 1062 0080 00       		.byte	0
+ 1063 0081 3F       		.uleb128 0x3f
+ 1064 0082 19       		.uleb128 0x19
+ 1065 0083 03       		.uleb128 0x3
+ 1066 0084 0E       		.uleb128 0xe
+ 1067 0085 3A       		.uleb128 0x3a
+ 1068 0086 0B       		.uleb128 0xb
+ 1069 0087 3B       		.uleb128 0x3b
+ 1070 0088 0B       		.uleb128 0xb
+ 1071 0089 27       		.uleb128 0x27
+ 1072 008a 19       		.uleb128 0x19
+ 1073 008b 11       		.uleb128 0x11
+ 1074 008c 01       		.uleb128 0x1
+ 1075 008d 12       		.uleb128 0x12
+ 1076 008e 06       		.uleb128 0x6
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 28
 
 
- 1081 0138 19       		.uleb128 0x19
- 1082 0139 49       		.uleb128 0x49
- 1083 013a 13       		.uleb128 0x13
- 1084 013b 11       		.uleb128 0x11
- 1085 013c 01       		.uleb128 0x1
- 1086 013d 12       		.uleb128 0x12
- 1087 013e 06       		.uleb128 0x6
- 1088 013f 40       		.uleb128 0x40
- 1089 0140 18       		.uleb128 0x18
- 1090 0141 9742     		.uleb128 0x2117
- 1091 0143 19       		.uleb128 0x19
- 1092 0144 00       		.byte	0
- 1093 0145 00       		.byte	0
- 1094 0146 13       		.uleb128 0x13
- 1095 0147 01       		.uleb128 0x1
- 1096 0148 01       		.byte	0x1
- 1097 0149 49       		.uleb128 0x49
- 1098 014a 13       		.uleb128 0x13
- 1099 014b 01       		.uleb128 0x1
- 1100 014c 13       		.uleb128 0x13
- 1101 014d 00       		.byte	0
- 1102 014e 00       		.byte	0
- 1103 014f 14       		.uleb128 0x14
- 1104 0150 21       		.uleb128 0x21
- 1105 0151 00       		.byte	0
- 1106 0152 49       		.uleb128 0x49
- 1107 0153 13       		.uleb128 0x13
- 1108 0154 2F       		.uleb128 0x2f
- 1109 0155 0B       		.uleb128 0xb
- 1110 0156 00       		.byte	0
- 1111 0157 00       		.byte	0
- 1112 0158 15       		.uleb128 0x15
- 1113 0159 34       		.uleb128 0x34
- 1114 015a 00       		.byte	0
- 1115 015b 03       		.uleb128 0x3
- 1116 015c 0E       		.uleb128 0xe
- 1117 015d 3A       		.uleb128 0x3a
- 1118 015e 0B       		.uleb128 0xb
- 1119 015f 3B       		.uleb128 0x3b
- 1120 0160 0B       		.uleb128 0xb
- 1121 0161 49       		.uleb128 0x49
- 1122 0162 13       		.uleb128 0x13
- 1123 0163 3F       		.uleb128 0x3f
- 1124 0164 19       		.uleb128 0x19
- 1125 0165 3C       		.uleb128 0x3c
- 1126 0166 19       		.uleb128 0x19
- 1127 0167 00       		.byte	0
- 1128 0168 00       		.byte	0
- 1129 0169 00       		.byte	0
- 1130              		.section	.debug_aranges,"",%progbits
- 1131 0000 7C000000 		.4byte	0x7c
- 1132 0004 0200     		.2byte	0x2
- 1133 0006 00000000 		.4byte	.Ldebug_info0
- 1134 000a 04       		.byte	0x4
- 1135 000b 00       		.byte	0
- 1136 000c 0000     		.2byte	0
- 1137 000e 0000     		.2byte	0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 28
+ 1077 008f 40       		.uleb128 0x40
+ 1078 0090 18       		.uleb128 0x18
+ 1079 0091 9742     		.uleb128 0x2117
+ 1080 0093 19       		.uleb128 0x19
+ 1081 0094 00       		.byte	0
+ 1082 0095 00       		.byte	0
+ 1083 0096 0C       		.uleb128 0xc
+ 1084 0097 34       		.uleb128 0x34
+ 1085 0098 00       		.byte	0
+ 1086 0099 03       		.uleb128 0x3
+ 1087 009a 0E       		.uleb128 0xe
+ 1088 009b 3A       		.uleb128 0x3a
+ 1089 009c 0B       		.uleb128 0xb
+ 1090 009d 3B       		.uleb128 0x3b
+ 1091 009e 0B       		.uleb128 0xb
+ 1092 009f 49       		.uleb128 0x49
+ 1093 00a0 13       		.uleb128 0x13
+ 1094 00a1 00       		.byte	0
+ 1095 00a2 00       		.byte	0
+ 1096 00a3 0D       		.uleb128 0xd
+ 1097 00a4 2E       		.uleb128 0x2e
+ 1098 00a5 01       		.byte	0x1
+ 1099 00a6 3F       		.uleb128 0x3f
+ 1100 00a7 19       		.uleb128 0x19
+ 1101 00a8 03       		.uleb128 0x3
+ 1102 00a9 0E       		.uleb128 0xe
+ 1103 00aa 3A       		.uleb128 0x3a
+ 1104 00ab 0B       		.uleb128 0xb
+ 1105 00ac 3B       		.uleb128 0x3b
+ 1106 00ad 0B       		.uleb128 0xb
+ 1107 00ae 27       		.uleb128 0x27
+ 1108 00af 19       		.uleb128 0x19
+ 1109 00b0 11       		.uleb128 0x11
+ 1110 00b1 01       		.uleb128 0x1
+ 1111 00b2 12       		.uleb128 0x12
+ 1112 00b3 06       		.uleb128 0x6
+ 1113 00b4 40       		.uleb128 0x40
+ 1114 00b5 18       		.uleb128 0x18
+ 1115 00b6 9742     		.uleb128 0x2117
+ 1116 00b8 19       		.uleb128 0x19
+ 1117 00b9 01       		.uleb128 0x1
+ 1118 00ba 13       		.uleb128 0x13
+ 1119 00bb 00       		.byte	0
+ 1120 00bc 00       		.byte	0
+ 1121 00bd 0E       		.uleb128 0xe
+ 1122 00be 1D       		.uleb128 0x1d
+ 1123 00bf 00       		.byte	0
+ 1124 00c0 31       		.uleb128 0x31
+ 1125 00c1 13       		.uleb128 0x13
+ 1126 00c2 52       		.uleb128 0x52
+ 1127 00c3 01       		.uleb128 0x1
+ 1128 00c4 55       		.uleb128 0x55
+ 1129 00c5 17       		.uleb128 0x17
+ 1130 00c6 58       		.uleb128 0x58
+ 1131 00c7 0B       		.uleb128 0xb
+ 1132 00c8 59       		.uleb128 0x59
+ 1133 00c9 0B       		.uleb128 0xb
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 29
 
 
- 1138 0010 00000000 		.4byte	.LFB1
- 1139 0014 24000000 		.4byte	.LFE1-.LFB1
- 1140 0018 00000000 		.4byte	.LFB2
- 1141 001c 24000000 		.4byte	.LFE2-.LFB2
- 1142 0020 00000000 		.4byte	.LFB3
- 1143 0024 18000000 		.4byte	.LFE3-.LFB3
- 1144 0028 00000000 		.4byte	.LFB4
- 1145 002c 08000000 		.4byte	.LFE4-.LFB4
- 1146 0030 00000000 		.4byte	.LFB5
- 1147 0034 18000000 		.4byte	.LFE5-.LFB5
- 1148 0038 00000000 		.4byte	.LFB6
- 1149 003c 14000000 		.4byte	.LFE6-.LFB6
- 1150 0040 00000000 		.4byte	.LFB7
- 1151 0044 4C000000 		.4byte	.LFE7-.LFB7
- 1152 0048 00000000 		.4byte	.LFB8
- 1153 004c 2C000000 		.4byte	.LFE8-.LFB8
- 1154 0050 00000000 		.4byte	.LFB9
- 1155 0054 14000000 		.4byte	.LFE9-.LFB9
- 1156 0058 00000000 		.4byte	.LFB10
- 1157 005c 20000000 		.4byte	.LFE10-.LFB10
- 1158 0060 00000000 		.4byte	.LFB11
- 1159 0064 14000000 		.4byte	.LFE11-.LFB11
- 1160 0068 00000000 		.4byte	.LFB12
- 1161 006c 14000000 		.4byte	.LFE12-.LFB12
- 1162 0070 00000000 		.4byte	.LFB13
- 1163 0074 14000000 		.4byte	.LFE13-.LFB13
- 1164 0078 00000000 		.4byte	0
- 1165 007c 00000000 		.4byte	0
- 1166              		.section	.debug_ranges,"",%progbits
- 1167              	.Ldebug_ranges0:
- 1168 0000 00000000 		.4byte	.LFB1
- 1169 0004 24000000 		.4byte	.LFE1
- 1170 0008 00000000 		.4byte	.LFB2
- 1171 000c 24000000 		.4byte	.LFE2
- 1172 0010 00000000 		.4byte	.LFB3
- 1173 0014 18000000 		.4byte	.LFE3
- 1174 0018 00000000 		.4byte	.LFB4
- 1175 001c 08000000 		.4byte	.LFE4
- 1176 0020 00000000 		.4byte	.LFB5
- 1177 0024 18000000 		.4byte	.LFE5
- 1178 0028 00000000 		.4byte	.LFB6
- 1179 002c 14000000 		.4byte	.LFE6
- 1180 0030 00000000 		.4byte	.LFB7
- 1181 0034 4C000000 		.4byte	.LFE7
- 1182 0038 00000000 		.4byte	.LFB8
- 1183 003c 2C000000 		.4byte	.LFE8
- 1184 0040 00000000 		.4byte	.LFB9
- 1185 0044 14000000 		.4byte	.LFE9
- 1186 0048 00000000 		.4byte	.LFB10
- 1187 004c 20000000 		.4byte	.LFE10
- 1188 0050 00000000 		.4byte	.LFB11
- 1189 0054 14000000 		.4byte	.LFE11
- 1190 0058 00000000 		.4byte	.LFB12
- 1191 005c 14000000 		.4byte	.LFE12
- 1192 0060 00000000 		.4byte	.LFB13
- 1193 0064 14000000 		.4byte	.LFE13
- 1194 0068 00000000 		.4byte	0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 29
+ 1134 00ca 00       		.byte	0
+ 1135 00cb 00       		.byte	0
+ 1136 00cc 0F       		.uleb128 0xf
+ 1137 00cd 1D       		.uleb128 0x1d
+ 1138 00ce 01       		.byte	0x1
+ 1139 00cf 31       		.uleb128 0x31
+ 1140 00d0 13       		.uleb128 0x13
+ 1141 00d1 52       		.uleb128 0x52
+ 1142 00d2 01       		.uleb128 0x1
+ 1143 00d3 55       		.uleb128 0x55
+ 1144 00d4 17       		.uleb128 0x17
+ 1145 00d5 58       		.uleb128 0x58
+ 1146 00d6 0B       		.uleb128 0xb
+ 1147 00d7 59       		.uleb128 0x59
+ 1148 00d8 0B       		.uleb128 0xb
+ 1149 00d9 01       		.uleb128 0x1
+ 1150 00da 13       		.uleb128 0x13
+ 1151 00db 00       		.byte	0
+ 1152 00dc 00       		.byte	0
+ 1153 00dd 10       		.uleb128 0x10
+ 1154 00de 05       		.uleb128 0x5
+ 1155 00df 00       		.byte	0
+ 1156 00e0 31       		.uleb128 0x31
+ 1157 00e1 13       		.uleb128 0x13
+ 1158 00e2 02       		.uleb128 0x2
+ 1159 00e3 18       		.uleb128 0x18
+ 1160 00e4 00       		.byte	0
+ 1161 00e5 00       		.byte	0
+ 1162 00e6 11       		.uleb128 0x11
+ 1163 00e7 1D       		.uleb128 0x1d
+ 1164 00e8 01       		.byte	0x1
+ 1165 00e9 31       		.uleb128 0x31
+ 1166 00ea 13       		.uleb128 0x13
+ 1167 00eb 11       		.uleb128 0x11
+ 1168 00ec 01       		.uleb128 0x1
+ 1169 00ed 12       		.uleb128 0x12
+ 1170 00ee 06       		.uleb128 0x6
+ 1171 00ef 58       		.uleb128 0x58
+ 1172 00f0 0B       		.uleb128 0xb
+ 1173 00f1 59       		.uleb128 0x59
+ 1174 00f2 0B       		.uleb128 0xb
+ 1175 00f3 01       		.uleb128 0x1
+ 1176 00f4 13       		.uleb128 0x13
+ 1177 00f5 00       		.byte	0
+ 1178 00f6 00       		.byte	0
+ 1179 00f7 12       		.uleb128 0x12
+ 1180 00f8 05       		.uleb128 0x5
+ 1181 00f9 00       		.byte	0
+ 1182 00fa 31       		.uleb128 0x31
+ 1183 00fb 13       		.uleb128 0x13
+ 1184 00fc 1C       		.uleb128 0x1c
+ 1185 00fd 0B       		.uleb128 0xb
+ 1186 00fe 00       		.byte	0
+ 1187 00ff 00       		.byte	0
+ 1188 0100 13       		.uleb128 0x13
+ 1189 0101 0B       		.uleb128 0xb
+ 1190 0102 01       		.byte	0x1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 30
 
 
- 1195 006c 00000000 		.4byte	0
- 1196              		.section	.debug_line,"",%progbits
- 1197              	.Ldebug_line0:
- 1198 0000 51010000 		.section	.debug_str,"MS",%progbits,1
- 1198      02004300 
- 1198      00000201 
- 1198      FB0E0D00 
- 1198      01010101 
- 1199              	.LASF21:
- 1200 0000 57647449 		.ascii	"WdtIsr_SetVector\000"
- 1200      73725F53 
- 1200      65745665 
- 1200      63746F72 
- 1200      00
- 1201              	.LASF14:
- 1202 0011 72656733 		.ascii	"reg32\000"
- 1202      3200
- 1203              	.LASF30:
- 1204 0017 57647449 		.ascii	"WdtIsr_Disable\000"
- 1204      73725F44 
- 1204      69736162 
- 1204      6C6500
- 1205              	.LASF34:
- 1206 0026 47656E65 		.ascii	"Generated_Source\\PSoC4\\WdtIsr.c\000"
- 1206      72617465 
- 1206      645F536F 
- 1206      75726365 
- 1206      5C50536F 
- 1207              	.LASF17:
- 1208 0046 57647449 		.ascii	"WdtIsr_Start\000"
- 1208      73725F53 
- 1208      74617274 
- 1208      00
- 1209              	.LASF37:
- 1210 0053 43795261 		.ascii	"CyRamVectors\000"
- 1210      6D566563 
- 1210      746F7273 
- 1210      00
- 1211              	.LASF28:
- 1212 0060 57647449 		.ascii	"WdtIsr_GetVector\000"
- 1212      73725F47 
- 1212      65745665 
- 1212      63746F72 
- 1212      00
- 1213              	.LASF4:
- 1214 0071 6C6F6E67 		.ascii	"long int\000"
- 1214      20696E74 
- 1214      00
- 1215              	.LASF3:
- 1216 007a 73686F72 		.ascii	"short unsigned int\000"
- 1216      7420756E 
- 1216      7369676E 
- 1216      65642069 
- 1216      6E7400
- 1217              	.LASF18:
- 1218 008d 57647449 		.ascii	"WdtIsr_Stop\000"
- 1218      73725F53 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 30
+ 1191 0103 11       		.uleb128 0x11
+ 1192 0104 01       		.uleb128 0x1
+ 1193 0105 12       		.uleb128 0x12
+ 1194 0106 06       		.uleb128 0x6
+ 1195 0107 00       		.byte	0
+ 1196 0108 00       		.byte	0
+ 1197 0109 14       		.uleb128 0x14
+ 1198 010a 34       		.uleb128 0x34
+ 1199 010b 00       		.byte	0
+ 1200 010c 31       		.uleb128 0x31
+ 1201 010d 13       		.uleb128 0x13
+ 1202 010e 02       		.uleb128 0x2
+ 1203 010f 17       		.uleb128 0x17
+ 1204 0110 00       		.byte	0
+ 1205 0111 00       		.byte	0
+ 1206 0112 15       		.uleb128 0x15
+ 1207 0113 34       		.uleb128 0x34
+ 1208 0114 00       		.byte	0
+ 1209 0115 31       		.uleb128 0x31
+ 1210 0116 13       		.uleb128 0x13
+ 1211 0117 1C       		.uleb128 0x1c
+ 1212 0118 0B       		.uleb128 0xb
+ 1213 0119 00       		.byte	0
+ 1214 011a 00       		.byte	0
+ 1215 011b 16       		.uleb128 0x16
+ 1216 011c 898201   		.uleb128 0x4109
+ 1217 011f 00       		.byte	0
+ 1218 0120 11       		.uleb128 0x11
+ 1219 0121 01       		.uleb128 0x1
+ 1220 0122 31       		.uleb128 0x31
+ 1221 0123 13       		.uleb128 0x13
+ 1222 0124 00       		.byte	0
+ 1223 0125 00       		.byte	0
+ 1224 0126 17       		.uleb128 0x17
+ 1225 0127 1D       		.uleb128 0x1d
+ 1226 0128 00       		.byte	0
+ 1227 0129 31       		.uleb128 0x31
+ 1228 012a 13       		.uleb128 0x13
+ 1229 012b 11       		.uleb128 0x11
+ 1230 012c 01       		.uleb128 0x1
+ 1231 012d 12       		.uleb128 0x12
+ 1232 012e 06       		.uleb128 0x6
+ 1233 012f 58       		.uleb128 0x58
+ 1234 0130 0B       		.uleb128 0xb
+ 1235 0131 59       		.uleb128 0x59
+ 1236 0132 0B       		.uleb128 0xb
+ 1237 0133 00       		.byte	0
+ 1238 0134 00       		.byte	0
+ 1239 0135 18       		.uleb128 0x18
+ 1240 0136 05       		.uleb128 0x5
+ 1241 0137 00       		.byte	0
+ 1242 0138 03       		.uleb128 0x3
+ 1243 0139 0E       		.uleb128 0xe
+ 1244 013a 3A       		.uleb128 0x3a
+ 1245 013b 0B       		.uleb128 0xb
+ 1246 013c 3B       		.uleb128 0x3b
+ 1247 013d 0B       		.uleb128 0xb
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 31
 
 
- 1218      746F7000 
- 1219              	.LASF11:
- 1220 0099 666C6F61 		.ascii	"float\000"
- 1220      7400
- 1221              	.LASF1:
- 1222 009f 756E7369 		.ascii	"unsigned char\000"
- 1222      676E6564 
- 1222      20636861 
- 1222      7200
- 1223              	.LASF25:
- 1224 00ad 696E7465 		.ascii	"interruptState\000"
- 1224      72727570 
- 1224      74537461 
- 1224      746500
- 1225              	.LASF5:
- 1226 00bc 6C6F6E67 		.ascii	"long unsigned int\000"
- 1226      20756E73 
- 1226      69676E65 
- 1226      6420696E 
- 1226      7400
- 1227              	.LASF9:
- 1228 00ce 75696E74 		.ascii	"uint8\000"
- 1228      3800
- 1229              	.LASF19:
- 1230 00d4 57647449 		.ascii	"WdtIsr_Interrupt\000"
- 1230      73725F49 
- 1230      6E746572 
- 1230      72757074 
- 1230      00
- 1231              	.LASF24:
- 1232 00e5 7072696F 		.ascii	"priority\000"
- 1232      72697479 
- 1232      00
- 1233              	.LASF27:
- 1234 00ee 57647449 		.ascii	"WdtIsr_Enable\000"
- 1234      73725F45 
- 1234      6E61626C 
- 1234      6500
- 1235              	.LASF12:
- 1236 00fc 646F7562 		.ascii	"double\000"
- 1236      6C6500
- 1237              	.LASF33:
- 1238 0103 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 1238      4320342E 
- 1238      392E3320 
- 1238      32303135 
- 1238      30333033 
- 1239 0136 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
- 1239      20726576 
- 1239      6973696F 
- 1239      6E203232 
- 1239      31323230 
- 1240 0169 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
- 1240      66756E63 
- 1240      74696F6E 
- 1240      2D736563 
- 1240      74696F6E 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 31
+ 1248 013e 49       		.uleb128 0x49
+ 1249 013f 13       		.uleb128 0x13
+ 1250 0140 02       		.uleb128 0x2
+ 1251 0141 17       		.uleb128 0x17
+ 1252 0142 00       		.byte	0
+ 1253 0143 00       		.byte	0
+ 1254 0144 19       		.uleb128 0x19
+ 1255 0145 05       		.uleb128 0x5
+ 1256 0146 00       		.byte	0
+ 1257 0147 31       		.uleb128 0x31
+ 1258 0148 13       		.uleb128 0x13
+ 1259 0149 02       		.uleb128 0x2
+ 1260 014a 17       		.uleb128 0x17
+ 1261 014b 00       		.byte	0
+ 1262 014c 00       		.byte	0
+ 1263 014d 1A       		.uleb128 0x1a
+ 1264 014e 1D       		.uleb128 0x1d
+ 1265 014f 01       		.byte	0x1
+ 1266 0150 31       		.uleb128 0x31
+ 1267 0151 13       		.uleb128 0x13
+ 1268 0152 11       		.uleb128 0x11
+ 1269 0153 01       		.uleb128 0x1
+ 1270 0154 12       		.uleb128 0x12
+ 1271 0155 06       		.uleb128 0x6
+ 1272 0156 58       		.uleb128 0x58
+ 1273 0157 0B       		.uleb128 0xb
+ 1274 0158 59       		.uleb128 0x59
+ 1275 0159 0B       		.uleb128 0xb
+ 1276 015a 00       		.byte	0
+ 1277 015b 00       		.byte	0
+ 1278 015c 1B       		.uleb128 0x1b
+ 1279 015d 05       		.uleb128 0x5
+ 1280 015e 00       		.byte	0
+ 1281 015f 31       		.uleb128 0x31
+ 1282 0160 13       		.uleb128 0x13
+ 1283 0161 00       		.byte	0
+ 1284 0162 00       		.byte	0
+ 1285 0163 1C       		.uleb128 0x1c
+ 1286 0164 2E       		.uleb128 0x2e
+ 1287 0165 01       		.byte	0x1
+ 1288 0166 31       		.uleb128 0x31
+ 1289 0167 13       		.uleb128 0x13
+ 1290 0168 11       		.uleb128 0x11
+ 1291 0169 01       		.uleb128 0x1
+ 1292 016a 12       		.uleb128 0x12
+ 1293 016b 06       		.uleb128 0x6
+ 1294 016c 40       		.uleb128 0x40
+ 1295 016d 18       		.uleb128 0x18
+ 1296 016e 9742     		.uleb128 0x2117
+ 1297 0170 19       		.uleb128 0x19
+ 1298 0171 01       		.uleb128 0x1
+ 1299 0172 13       		.uleb128 0x13
+ 1300 0173 00       		.byte	0
+ 1301 0174 00       		.byte	0
+ 1302 0175 1D       		.uleb128 0x1d
+ 1303 0176 2E       		.uleb128 0x2e
+ 1304 0177 00       		.byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 32
 
 
- 1241              	.LASF10:
- 1242 0191 75696E74 		.ascii	"uint32\000"
- 1242      333200
- 1243              	.LASF36:
- 1244 0198 57647449 		.ascii	"WdtIsr_GetPriority\000"
- 1244      73725F47 
- 1244      65745072 
- 1244      696F7269 
- 1244      747900
- 1245              	.LASF8:
- 1246 01ab 756E7369 		.ascii	"unsigned int\000"
- 1246      676E6564 
- 1246      20696E74 
- 1246      00
- 1247              	.LASF31:
- 1248 01b8 57647449 		.ascii	"WdtIsr_SetPending\000"
- 1248      73725F53 
- 1248      65745065 
- 1248      6E64696E 
- 1248      6700
- 1249              	.LASF22:
- 1250 01ca 61646472 		.ascii	"address\000"
- 1250      65737300 
- 1251              	.LASF7:
- 1252 01d2 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1252      206C6F6E 
- 1252      6720756E 
- 1252      7369676E 
- 1252      65642069 
- 1253              	.LASF15:
- 1254 01e9 63796973 		.ascii	"cyisraddress\000"
- 1254      72616464 
- 1254      72657373 
- 1254      00
- 1255              	.LASF16:
- 1256 01f6 73697A65 		.ascii	"sizetype\000"
- 1256      74797065 
- 1256      00
- 1257              	.LASF6:
- 1258 01ff 6C6F6E67 		.ascii	"long long int\000"
- 1258      206C6F6E 
- 1258      6720696E 
- 1258      7400
- 1259              	.LASF29:
- 1260 020d 57647449 		.ascii	"WdtIsr_GetState\000"
- 1260      73725F47 
- 1260      65745374 
- 1260      61746500 
- 1261              	.LASF13:
- 1262 021d 63686172 		.ascii	"char\000"
- 1262      00
- 1263              	.LASF2:
- 1264 0222 73686F72 		.ascii	"short int\000"
- 1264      7420696E 
- 1264      7400
- 1265              	.LASF23:
- 1266 022c 57647449 		.ascii	"WdtIsr_SetPriority\000"
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccpG2L6c.s 			page 32
+ 1305 0178 3F       		.uleb128 0x3f
+ 1306 0179 19       		.uleb128 0x19
+ 1307 017a 03       		.uleb128 0x3
+ 1308 017b 0E       		.uleb128 0xe
+ 1309 017c 3A       		.uleb128 0x3a
+ 1310 017d 0B       		.uleb128 0xb
+ 1311 017e 3B       		.uleb128 0x3b
+ 1312 017f 0B       		.uleb128 0xb
+ 1313 0180 27       		.uleb128 0x27
+ 1314 0181 19       		.uleb128 0x19
+ 1315 0182 49       		.uleb128 0x49
+ 1316 0183 13       		.uleb128 0x13
+ 1317 0184 11       		.uleb128 0x11
+ 1318 0185 01       		.uleb128 0x1
+ 1319 0186 12       		.uleb128 0x12
+ 1320 0187 06       		.uleb128 0x6
+ 1321 0188 40       		.uleb128 0x40
+ 1322 0189 18       		.uleb128 0x18
+ 1323 018a 9742     		.uleb128 0x2117
+ 1324 018c 19       		.uleb128 0x19
+ 1325 018d 00       		.byte	0
+ 1326 018e 00       		.byte	0
+ 1327 018f 1E       		.uleb128 0x1e
+ 1328 0190 2E       		.uleb128 0x2e
+ 1329 0191 01       		.byte	0x1
+ 1330 0192 3F       		.uleb128 0x3f
+ 1331 0193 19       		.uleb128 0x19
+ 1332 0194 03       		.uleb128 0x3
+ 1333 0195 0E       		.uleb128 0xe
+ 1334 0196 3A       		.uleb128 0x3a
+ 1335 0197 0B       		.uleb128 0xb
+ 1336 0198 3B       		.uleb128 0x3b
+ 1337 0199 05       		.uleb128 0x5
+ 1338 019a 27       		.uleb128 0x27
+ 1339 019b 19       		.uleb128 0x19
+ 1340 019c 49       		.uleb128 0x49
+ 1341 019d 13       		.uleb128 0x13
+ 1342 019e 11       		.uleb128 0x11
+ 1343 019f 01       		.uleb128 0x1
+ 1344 01a0 12       		.uleb128 0x12
+ 1345 01a1 06       		.uleb128 0x6
+ 1346 01a2 40       		.uleb128 0x40
+ 1347 01a3 18       		.uleb128 0x18
+ 1348 01a4 9742     		.uleb128 0x2117
+ 1349 01a6 19       		.uleb128 0x19
+ 1350 01a7 01       		.uleb128 0x1
+ 1351 01a8 13       		.uleb128 0x13
+ 1352 01a9 00       		.byte	0
+ 1353 01aa 00       		.byte	0
+ 1354 01ab 1F       		.uleb128 0x1f
+ 1355 01ac 34       		.uleb128 0x34
+ 1356 01ad 00       		.byte	0
+ 1357 01ae 03       		.uleb128 0x3
+ 1358 01af 0E       		.uleb128 0xe
+ 1359 01b0 3A       		.uleb128 0x3a
+ 1360 01b1 0B       		.uleb128 0xb
+ 1361 01b2 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 33
 
 
- 1266      73725F53 
- 1266      65745072 
- 1266      696F7269 
- 1266      747900
- 1267              	.LASF26:
- 1268 023f 7072696F 		.ascii	"priorityOffset\000"
- 1268      72697479 
- 1268      4F666673 
- 1268      657400
- 1269              	.LASF20:
- 1270 024e 57647449 		.ascii	"WdtIsr_StartEx\000"
- 1270      73725F53 
- 1270      74617274 
- 1270      457800
- 1271              	.LASF32:
- 1272 025d 57647449 		.ascii	"WdtIsr_ClearPending\000"
- 1272      73725F43 
- 1272      6C656172 
- 1272      50656E64 
- 1272      696E6700 
- 1273              	.LASF35:
- 1274 0271 433A5C55 		.ascii	"C:\\Users\\glenn\\OneDrive\\PSOC\\moisture_sensor_4"
- 1274      73657273 
- 1274      5C676C65 
- 1274      6E6E5C4F 
- 1274      6E654472 
- 1275 029f 6D5C4D6F 		.ascii	"m\\Moisture_Sensor\\Moisture_Sensor.cydsn\000"
- 1275      69737475 
- 1275      72655F53 
- 1275      656E736F 
- 1275      725C4D6F 
- 1276              	.LASF0:
- 1277 02c7 7369676E 		.ascii	"signed char\000"
- 1277      65642063 
- 1277      68617200 
- 1278              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ 1362 01b3 05       		.uleb128 0x5
+ 1363 01b4 49       		.uleb128 0x49
+ 1364 01b5 13       		.uleb128 0x13
+ 1365 01b6 02       		.uleb128 0x2
+ 1366 01b7 17       		.uleb128 0x17
+ 1367 01b8 00       		.byte	0
+ 1368 01b9 00       		.byte	0
+ 1369 01ba 20       		.uleb128 0x20
+ 1370 01bb 34       		.uleb128 0x34
+ 1371 01bc 00       		.byte	0
+ 1372 01bd 03       		.uleb128 0x3
+ 1373 01be 0E       		.uleb128 0xe
+ 1374 01bf 3A       		.uleb128 0x3a
+ 1375 01c0 0B       		.uleb128 0xb
+ 1376 01c1 3B       		.uleb128 0x3b
+ 1377 01c2 05       		.uleb128 0x5
+ 1378 01c3 49       		.uleb128 0x49
+ 1379 01c4 13       		.uleb128 0x13
+ 1380 01c5 1C       		.uleb128 0x1c
+ 1381 01c6 0B       		.uleb128 0xb
+ 1382 01c7 00       		.byte	0
+ 1383 01c8 00       		.byte	0
+ 1384 01c9 21       		.uleb128 0x21
+ 1385 01ca 2E       		.uleb128 0x2e
+ 1386 01cb 00       		.byte	0
+ 1387 01cc 31       		.uleb128 0x31
+ 1388 01cd 13       		.uleb128 0x13
+ 1389 01ce 11       		.uleb128 0x11
+ 1390 01cf 01       		.uleb128 0x1
+ 1391 01d0 12       		.uleb128 0x12
+ 1392 01d1 06       		.uleb128 0x6
+ 1393 01d2 40       		.uleb128 0x40
+ 1394 01d3 18       		.uleb128 0x18
+ 1395 01d4 9742     		.uleb128 0x2117
+ 1396 01d6 19       		.uleb128 0x19
+ 1397 01d7 00       		.byte	0
+ 1398 01d8 00       		.byte	0
+ 1399 01d9 22       		.uleb128 0x22
+ 1400 01da 2E       		.uleb128 0x2e
+ 1401 01db 00       		.byte	0
+ 1402 01dc 3F       		.uleb128 0x3f
+ 1403 01dd 19       		.uleb128 0x19
+ 1404 01de 03       		.uleb128 0x3
+ 1405 01df 0E       		.uleb128 0xe
+ 1406 01e0 3A       		.uleb128 0x3a
+ 1407 01e1 0B       		.uleb128 0xb
+ 1408 01e2 3B       		.uleb128 0x3b
+ 1409 01e3 05       		.uleb128 0x5
+ 1410 01e4 27       		.uleb128 0x27
+ 1411 01e5 19       		.uleb128 0x19
+ 1412 01e6 49       		.uleb128 0x49
+ 1413 01e7 13       		.uleb128 0x13
+ 1414 01e8 11       		.uleb128 0x11
+ 1415 01e9 01       		.uleb128 0x1
+ 1416 01ea 12       		.uleb128 0x12
+ 1417 01eb 06       		.uleb128 0x6
+ 1418 01ec 40       		.uleb128 0x40
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 34
+
+
+ 1419 01ed 18       		.uleb128 0x18
+ 1420 01ee 9742     		.uleb128 0x2117
+ 1421 01f0 19       		.uleb128 0x19
+ 1422 01f1 00       		.byte	0
+ 1423 01f2 00       		.byte	0
+ 1424 01f3 23       		.uleb128 0x23
+ 1425 01f4 2E       		.uleb128 0x2e
+ 1426 01f5 00       		.byte	0
+ 1427 01f6 3F       		.uleb128 0x3f
+ 1428 01f7 19       		.uleb128 0x19
+ 1429 01f8 03       		.uleb128 0x3
+ 1430 01f9 0E       		.uleb128 0xe
+ 1431 01fa 3A       		.uleb128 0x3a
+ 1432 01fb 0B       		.uleb128 0xb
+ 1433 01fc 3B       		.uleb128 0x3b
+ 1434 01fd 05       		.uleb128 0x5
+ 1435 01fe 27       		.uleb128 0x27
+ 1436 01ff 19       		.uleb128 0x19
+ 1437 0200 11       		.uleb128 0x11
+ 1438 0201 01       		.uleb128 0x1
+ 1439 0202 12       		.uleb128 0x12
+ 1440 0203 06       		.uleb128 0x6
+ 1441 0204 40       		.uleb128 0x40
+ 1442 0205 18       		.uleb128 0x18
+ 1443 0206 9742     		.uleb128 0x2117
+ 1444 0208 19       		.uleb128 0x19
+ 1445 0209 00       		.byte	0
+ 1446 020a 00       		.byte	0
+ 1447 020b 24       		.uleb128 0x24
+ 1448 020c 01       		.uleb128 0x1
+ 1449 020d 01       		.byte	0x1
+ 1450 020e 49       		.uleb128 0x49
+ 1451 020f 13       		.uleb128 0x13
+ 1452 0210 01       		.uleb128 0x1
+ 1453 0211 13       		.uleb128 0x13
+ 1454 0212 00       		.byte	0
+ 1455 0213 00       		.byte	0
+ 1456 0214 25       		.uleb128 0x25
+ 1457 0215 21       		.uleb128 0x21
+ 1458 0216 00       		.byte	0
+ 1459 0217 49       		.uleb128 0x49
+ 1460 0218 13       		.uleb128 0x13
+ 1461 0219 2F       		.uleb128 0x2f
+ 1462 021a 0B       		.uleb128 0xb
+ 1463 021b 00       		.byte	0
+ 1464 021c 00       		.byte	0
+ 1465 021d 26       		.uleb128 0x26
+ 1466 021e 34       		.uleb128 0x34
+ 1467 021f 00       		.byte	0
+ 1468 0220 03       		.uleb128 0x3
+ 1469 0221 0E       		.uleb128 0xe
+ 1470 0222 3A       		.uleb128 0x3a
+ 1471 0223 0B       		.uleb128 0xb
+ 1472 0224 3B       		.uleb128 0x3b
+ 1473 0225 0B       		.uleb128 0xb
+ 1474 0226 49       		.uleb128 0x49
+ 1475 0227 13       		.uleb128 0x13
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 35
+
+
+ 1476 0228 3F       		.uleb128 0x3f
+ 1477 0229 19       		.uleb128 0x19
+ 1478 022a 3C       		.uleb128 0x3c
+ 1479 022b 19       		.uleb128 0x19
+ 1480 022c 00       		.byte	0
+ 1481 022d 00       		.byte	0
+ 1482 022e 27       		.uleb128 0x27
+ 1483 022f 2E       		.uleb128 0x2e
+ 1484 0230 00       		.byte	0
+ 1485 0231 3F       		.uleb128 0x3f
+ 1486 0232 19       		.uleb128 0x19
+ 1487 0233 03       		.uleb128 0x3
+ 1488 0234 0E       		.uleb128 0xe
+ 1489 0235 3A       		.uleb128 0x3a
+ 1490 0236 0B       		.uleb128 0xb
+ 1491 0237 3B       		.uleb128 0x3b
+ 1492 0238 0B       		.uleb128 0xb
+ 1493 0239 27       		.uleb128 0x27
+ 1494 023a 19       		.uleb128 0x19
+ 1495 023b 49       		.uleb128 0x49
+ 1496 023c 13       		.uleb128 0x13
+ 1497 023d 3C       		.uleb128 0x3c
+ 1498 023e 19       		.uleb128 0x19
+ 1499 023f 00       		.byte	0
+ 1500 0240 00       		.byte	0
+ 1501 0241 28       		.uleb128 0x28
+ 1502 0242 2E       		.uleb128 0x2e
+ 1503 0243 01       		.byte	0x1
+ 1504 0244 3F       		.uleb128 0x3f
+ 1505 0245 19       		.uleb128 0x19
+ 1506 0246 03       		.uleb128 0x3
+ 1507 0247 0E       		.uleb128 0xe
+ 1508 0248 3A       		.uleb128 0x3a
+ 1509 0249 0B       		.uleb128 0xb
+ 1510 024a 3B       		.uleb128 0x3b
+ 1511 024b 0B       		.uleb128 0xb
+ 1512 024c 27       		.uleb128 0x27
+ 1513 024d 19       		.uleb128 0x19
+ 1514 024e 3C       		.uleb128 0x3c
+ 1515 024f 19       		.uleb128 0x19
+ 1516 0250 00       		.byte	0
+ 1517 0251 00       		.byte	0
+ 1518 0252 29       		.uleb128 0x29
+ 1519 0253 05       		.uleb128 0x5
+ 1520 0254 00       		.byte	0
+ 1521 0255 49       		.uleb128 0x49
+ 1522 0256 13       		.uleb128 0x13
+ 1523 0257 00       		.byte	0
+ 1524 0258 00       		.byte	0
+ 1525 0259 00       		.byte	0
+ 1526              		.section	.debug_loc,"",%progbits
+ 1527              	.Ldebug_loc0:
+ 1528              	.LLST0:
+ 1529 0000 12000000 		.4byte	.LVL2
+ 1530 0004 21000000 		.4byte	.LVL3-1
+ 1531 0008 0100     		.2byte	0x1
+ 1532 000a 50       		.byte	0x50
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 36
+
+
+ 1533 000b 00000000 		.4byte	0
+ 1534 000f 00000000 		.4byte	0
+ 1535              	.LLST1:
+ 1536 0013 00000000 		.4byte	.LVL4
+ 1537 0017 0F000000 		.4byte	.LVL7-1
+ 1538 001b 0100     		.2byte	0x1
+ 1539 001d 50       		.byte	0x50
+ 1540 001e 0F000000 		.4byte	.LVL7-1
+ 1541 0022 38000000 		.4byte	.LFE2
+ 1542 0026 0400     		.2byte	0x4
+ 1543 0028 F3       		.byte	0xf3
+ 1544 0029 01       		.uleb128 0x1
+ 1545 002a 50       		.byte	0x50
+ 1546 002b 9F       		.byte	0x9f
+ 1547 002c 00000000 		.4byte	0
+ 1548 0030 00000000 		.4byte	0
+ 1549              	.LLST2:
+ 1550 0034 08000000 		.4byte	.LVL5
+ 1551 0038 0F000000 		.4byte	.LVL7-1
+ 1552 003c 0100     		.2byte	0x1
+ 1553 003e 50       		.byte	0x50
+ 1554 003f 0F000000 		.4byte	.LVL7-1
+ 1555 0043 38000000 		.4byte	.LFE2
+ 1556 0047 0400     		.2byte	0x4
+ 1557 0049 F3       		.byte	0xf3
+ 1558 004a 01       		.uleb128 0x1
+ 1559 004b 50       		.byte	0x50
+ 1560 004c 9F       		.byte	0x9f
+ 1561 004d 00000000 		.4byte	0
+ 1562 0051 00000000 		.4byte	0
+ 1563              	.LLST3:
+ 1564 0055 10000000 		.4byte	.LVL7
+ 1565 0059 1F000000 		.4byte	.LVL8-1
+ 1566 005d 0100     		.2byte	0x1
+ 1567 005f 50       		.byte	0x50
+ 1568 0060 00000000 		.4byte	0
+ 1569 0064 00000000 		.4byte	0
+ 1570              	.LLST4:
+ 1571 0068 00000000 		.4byte	.LVL11
+ 1572 006c 07000000 		.4byte	.LVL12-1
+ 1573 0070 0100     		.2byte	0x1
+ 1574 0072 50       		.byte	0x50
+ 1575 0073 07000000 		.4byte	.LVL12-1
+ 1576 0077 20000000 		.4byte	.LFE7
+ 1577 007b 0400     		.2byte	0x4
+ 1578 007d F3       		.byte	0xf3
+ 1579 007e 01       		.uleb128 0x1
+ 1580 007f 50       		.byte	0x50
+ 1581 0080 9F       		.byte	0x9f
+ 1582 0081 00000000 		.4byte	0
+ 1583 0085 00000000 		.4byte	0
+ 1584              	.LLST5:
+ 1585 0089 08000000 		.4byte	.LVL12
+ 1586 008d 19000000 		.4byte	.LVL13-1
+ 1587 0091 0100     		.2byte	0x1
+ 1588 0093 50       		.byte	0x50
+ 1589 0094 00000000 		.4byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 37
+
+
+ 1590 0098 00000000 		.4byte	0
+ 1591              	.LLST6:
+ 1592 009c 04000000 		.4byte	.LVL15
+ 1593 00a0 06000000 		.4byte	.LVL16
+ 1594 00a4 0A00     		.2byte	0xa
+ 1595 00a6 70       		.byte	0x70
+ 1596 00a7 00       		.sleb128 0
+ 1597 00a8 40       		.byte	0x40
+ 1598 00a9 4A       		.byte	0x4a
+ 1599 00aa 24       		.byte	0x24
+ 1600 00ab 1F       		.byte	0x1f
+ 1601 00ac 1A       		.byte	0x1a
+ 1602 00ad 4E       		.byte	0x4e
+ 1603 00ae 25       		.byte	0x25
+ 1604 00af 9F       		.byte	0x9f
+ 1605 00b0 00000000 		.4byte	0
+ 1606 00b4 00000000 		.4byte	0
+ 1607              		.section	.debug_aranges,"",%progbits
+ 1608 0000 7C000000 		.4byte	0x7c
+ 1609 0004 0200     		.2byte	0x2
+ 1610 0006 00000000 		.4byte	.Ldebug_info0
+ 1611 000a 04       		.byte	0x4
+ 1612 000b 00       		.byte	0
+ 1613 000c 0000     		.2byte	0
+ 1614 000e 0000     		.2byte	0
+ 1615 0010 00000000 		.4byte	.LFB4
+ 1616 0014 02000000 		.4byte	.LFE4-.LFB4
+ 1617 0018 00000000 		.4byte	.LFB1
+ 1618 001c 3C000000 		.4byte	.LFE1-.LFB1
+ 1619 0020 00000000 		.4byte	.LFB2
+ 1620 0024 38000000 		.4byte	.LFE2-.LFB2
+ 1621 0028 00000000 		.4byte	.LFB3
+ 1622 002c 1C000000 		.4byte	.LFE3-.LFB3
+ 1623 0030 00000000 		.4byte	.LFB5
+ 1624 0034 0C000000 		.4byte	.LFE5-.LFB5
+ 1625 0038 00000000 		.4byte	.LFB6
+ 1626 003c 0C000000 		.4byte	.LFE6-.LFB6
+ 1627 0040 00000000 		.4byte	.LFB7
+ 1628 0044 20000000 		.4byte	.LFE7-.LFB7
+ 1629 0048 00000000 		.4byte	.LFB8
+ 1630 004c 0C000000 		.4byte	.LFE8-.LFB8
+ 1631 0050 00000000 		.4byte	.LFB9
+ 1632 0054 0C000000 		.4byte	.LFE9-.LFB9
+ 1633 0058 00000000 		.4byte	.LFB10
+ 1634 005c 10000000 		.4byte	.LFE10-.LFB10
+ 1635 0060 00000000 		.4byte	.LFB11
+ 1636 0064 0C000000 		.4byte	.LFE11-.LFB11
+ 1637 0068 00000000 		.4byte	.LFB12
+ 1638 006c 0C000000 		.4byte	.LFE12-.LFB12
+ 1639 0070 00000000 		.4byte	.LFB13
+ 1640 0074 0C000000 		.4byte	.LFE13-.LFB13
+ 1641 0078 00000000 		.4byte	0
+ 1642 007c 00000000 		.4byte	0
+ 1643              		.section	.debug_ranges,"",%progbits
+ 1644              	.Ldebug_ranges0:
+ 1645 0000 02000000 		.4byte	.LBB26
+ 1646 0004 06000000 		.4byte	.LBE26
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 38
+
+
+ 1647 0008 08000000 		.4byte	.LBB33
+ 1648 000c 0A000000 		.4byte	.LBE33
+ 1649 0010 00000000 		.4byte	0
+ 1650 0014 00000000 		.4byte	0
+ 1651 0018 06000000 		.4byte	.LBB29
+ 1652 001c 08000000 		.4byte	.LBE29
+ 1653 0020 0A000000 		.4byte	.LBB34
+ 1654 0024 0C000000 		.4byte	.LBE34
+ 1655 0028 0C000000 		.4byte	.LBB35
+ 1656 002c 0E000000 		.4byte	.LBE35
+ 1657 0030 00000000 		.4byte	0
+ 1658 0034 00000000 		.4byte	0
+ 1659 0038 02000000 		.4byte	.LBB48
+ 1660 003c 06000000 		.4byte	.LBE48
+ 1661 0040 06000000 		.4byte	.LBB51
+ 1662 0044 08000000 		.4byte	.LBE51
+ 1663 0048 00000000 		.4byte	0
+ 1664 004c 00000000 		.4byte	0
+ 1665 0050 00000000 		.4byte	.LBB58
+ 1666 0054 04000000 		.4byte	.LBE58
+ 1667 0058 04000000 		.4byte	.LBB61
+ 1668 005c 06000000 		.4byte	.LBE61
+ 1669 0060 00000000 		.4byte	0
+ 1670 0064 00000000 		.4byte	0
+ 1671 0068 00000000 		.4byte	.LFB4
+ 1672 006c 02000000 		.4byte	.LFE4
+ 1673 0070 00000000 		.4byte	.LFB1
+ 1674 0074 3C000000 		.4byte	.LFE1
+ 1675 0078 00000000 		.4byte	.LFB2
+ 1676 007c 38000000 		.4byte	.LFE2
+ 1677 0080 00000000 		.4byte	.LFB3
+ 1678 0084 1C000000 		.4byte	.LFE3
+ 1679 0088 00000000 		.4byte	.LFB5
+ 1680 008c 0C000000 		.4byte	.LFE5
+ 1681 0090 00000000 		.4byte	.LFB6
+ 1682 0094 0C000000 		.4byte	.LFE6
+ 1683 0098 00000000 		.4byte	.LFB7
+ 1684 009c 20000000 		.4byte	.LFE7
+ 1685 00a0 00000000 		.4byte	.LFB8
+ 1686 00a4 0C000000 		.4byte	.LFE8
+ 1687 00a8 00000000 		.4byte	.LFB9
+ 1688 00ac 0C000000 		.4byte	.LFE9
+ 1689 00b0 00000000 		.4byte	.LFB10
+ 1690 00b4 10000000 		.4byte	.LFE10
+ 1691 00b8 00000000 		.4byte	.LFB11
+ 1692 00bc 0C000000 		.4byte	.LFE11
+ 1693 00c0 00000000 		.4byte	.LFB12
+ 1694 00c4 0C000000 		.4byte	.LFE12
+ 1695 00c8 00000000 		.4byte	.LFB13
+ 1696 00cc 0C000000 		.4byte	.LFE13
+ 1697 00d0 00000000 		.4byte	0
+ 1698 00d4 00000000 		.4byte	0
+ 1699              		.section	.debug_line,"",%progbits
+ 1700              	.Ldebug_line0:
+ 1701 0000 A4010000 		.section	.debug_str,"MS",%progbits,1
+ 1701      02004E00 
+ 1701      00000201 
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 39
+
+
+ 1701      FB0E0D00 
+ 1701      01010101 
+ 1702              	.LASF19:
+ 1703 0000 57647449 		.ascii	"WdtIsr_SetVector\000"
+ 1703      73725F53 
+ 1703      65745665 
+ 1703      63746F72 
+ 1703      00
+ 1704              	.LASF14:
+ 1705 0011 72656733 		.ascii	"reg32\000"
+ 1705      3200
+ 1706              	.LASF17:
+ 1707 0017 57647449 		.ascii	"WdtIsr_Disable\000"
+ 1707      73725F44 
+ 1707      69736162 
+ 1707      6C6500
+ 1708              	.LASF34:
+ 1709 0026 47656E65 		.ascii	"Generated_Source\\PSoC4\\WdtIsr.c\000"
+ 1709      72617465 
+ 1709      645F536F 
+ 1709      75726365 
+ 1709      5C50536F 
+ 1710              	.LASF25:
+ 1711 0046 57647449 		.ascii	"WdtIsr_Start\000"
+ 1711      73725F53 
+ 1711      74617274 
+ 1711      00
+ 1712              	.LASF37:
+ 1713 0053 43795261 		.ascii	"CyRamVectors\000"
+ 1713      6D566563 
+ 1713      746F7273 
+ 1713      00
+ 1714              	.LASF28:
+ 1715 0060 57647449 		.ascii	"WdtIsr_GetVector\000"
+ 1715      73725F47 
+ 1715      65745665 
+ 1715      63746F72 
+ 1715      00
+ 1716              	.LASF4:
+ 1717 0071 6C6F6E67 		.ascii	"long int\000"
+ 1717      20696E74 
+ 1717      00
+ 1718              	.LASF3:
+ 1719 007a 73686F72 		.ascii	"short unsigned int\000"
+ 1719      7420756E 
+ 1719      7369676E 
+ 1719      65642069 
+ 1719      6E7400
+ 1720              	.LASF27:
+ 1721 008d 57647449 		.ascii	"WdtIsr_Stop\000"
+ 1721      73725F53 
+ 1721      746F7000 
+ 1722              	.LASF11:
+ 1723 0099 666C6F61 		.ascii	"float\000"
+ 1723      7400
+ 1724              	.LASF7:
+ 1725 009f 6C6F6E67 		.ascii	"long long unsigned int\000"
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 40
+
+
+ 1725      206C6F6E 
+ 1725      6720756E 
+ 1725      7369676E 
+ 1725      65642069 
+ 1726              	.LASF33:
+ 1727 00b6 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1727      4320342E 
+ 1727      392E3320 
+ 1727      32303135 
+ 1727      30333033 
+ 1728 00e9 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 1728      20726576 
+ 1728      6973696F 
+ 1728      6E203232 
+ 1728      31323230 
+ 1729 011c 32202D66 		.ascii	"2 -ffunction-sections -finline-functions -ffat-lto-"
+ 1729      66756E63 
+ 1729      74696F6E 
+ 1729      2D736563 
+ 1729      74696F6E 
+ 1730 014f 6F626A65 		.ascii	"objects\000"
+ 1730      63747300 
+ 1731              	.LASF1:
+ 1732 0157 756E7369 		.ascii	"unsigned char\000"
+ 1732      676E6564 
+ 1732      20636861 
+ 1732      7200
+ 1733              	.LASF23:
+ 1734 0165 696E7465 		.ascii	"interruptState\000"
+ 1734      72727570 
+ 1734      74537461 
+ 1734      746500
+ 1735              	.LASF5:
+ 1736 0174 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1736      20756E73 
+ 1736      69676E65 
+ 1736      6420696E 
+ 1736      7400
+ 1737              	.LASF9:
+ 1738 0186 75696E74 		.ascii	"uint8\000"
+ 1738      3800
+ 1739              	.LASF30:
+ 1740 018c 57647449 		.ascii	"WdtIsr_Interrupt\000"
+ 1740      73725F49 
+ 1740      6E746572 
+ 1740      72757074 
+ 1740      00
+ 1741              	.LASF22:
+ 1742 019d 7072696F 		.ascii	"priority\000"
+ 1742      72697479 
+ 1742      00
+ 1743              	.LASF18:
+ 1744 01a6 57647449 		.ascii	"WdtIsr_Enable\000"
+ 1744      73725F45 
+ 1744      6E61626C 
+ 1744      6500
+ 1745              	.LASF12:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 41
+
+
+ 1746 01b4 646F7562 		.ascii	"double\000"
+ 1746      6C6500
+ 1747              	.LASF36:
+ 1748 01bb 57647449 		.ascii	"WdtIsr_GetPriority\000"
+ 1748      73725F47 
+ 1748      65745072 
+ 1748      696F7269 
+ 1748      747900
+ 1749              	.LASF10:
+ 1750 01ce 75696E74 		.ascii	"uint32\000"
+ 1750      333200
+ 1751              	.LASF38:
+ 1752 01d5 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 1752      74657243 
+ 1752      72697469 
+ 1752      63616C53 
+ 1752      65637469 
+ 1753              	.LASF8:
+ 1754 01ec 756E7369 		.ascii	"unsigned int\000"
+ 1754      676E6564 
+ 1754      20696E74 
+ 1754      00
+ 1755              	.LASF31:
+ 1756 01f9 57647449 		.ascii	"WdtIsr_SetPending\000"
+ 1756      73725F53 
+ 1756      65745065 
+ 1756      6E64696E 
+ 1756      6700
+ 1757              	.LASF21:
+ 1758 020b 61646472 		.ascii	"address\000"
+ 1758      65737300 
+ 1759              	.LASF39:
+ 1760 0213 43794578 		.ascii	"CyExitCriticalSection\000"
+ 1760      69744372 
+ 1760      69746963 
+ 1760      616C5365 
+ 1760      6374696F 
+ 1761              	.LASF15:
+ 1762 0229 63796973 		.ascii	"cyisraddress\000"
+ 1762      72616464 
+ 1762      72657373 
+ 1762      00
+ 1763              	.LASF16:
+ 1764 0236 73697A65 		.ascii	"sizetype\000"
+ 1764      74797065 
+ 1764      00
+ 1765              	.LASF6:
+ 1766 023f 6C6F6E67 		.ascii	"long long int\000"
+ 1766      206C6F6E 
+ 1766      6720696E 
+ 1766      7400
+ 1767              	.LASF29:
+ 1768 024d 57647449 		.ascii	"WdtIsr_GetState\000"
+ 1768      73725F47 
+ 1768      65745374 
+ 1768      61746500 
+ 1769              	.LASF13:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccETVveP.s 			page 42
+
+
+ 1770 025d 63686172 		.ascii	"char\000"
+ 1770      00
+ 1771              	.LASF2:
+ 1772 0262 73686F72 		.ascii	"short int\000"
+ 1772      7420696E 
+ 1772      7400
+ 1773              	.LASF20:
+ 1774 026c 57647449 		.ascii	"WdtIsr_SetPriority\000"
+ 1774      73725F53 
+ 1774      65745072 
+ 1774      696F7269 
+ 1774      747900
+ 1775              	.LASF24:
+ 1776 027f 7072696F 		.ascii	"priorityOffset\000"
+ 1776      72697479 
+ 1776      4F666673 
+ 1776      657400
+ 1777              	.LASF26:
+ 1778 028e 57647449 		.ascii	"WdtIsr_StartEx\000"
+ 1778      73725F53 
+ 1778      74617274 
+ 1778      457800
+ 1779              	.LASF32:
+ 1780 029d 57647449 		.ascii	"WdtIsr_ClearPending\000"
+ 1780      73725F43 
+ 1780      6C656172 
+ 1780      50656E64 
+ 1780      696E6700 
+ 1781              	.LASF35:
+ 1782 02b1 433A5C55 		.ascii	"C:\\Users\\glenn\\OneDrive\\PSOC\\moisture_sensor_4"
+ 1782      73657273 
+ 1782      5C676C65 
+ 1782      6E6E5C4F 
+ 1782      6E654472 
+ 1783 02df 6D5C4D6F 		.ascii	"m\\Moisture_Sensor\\Moisture_Sensor.cydsn\000"
+ 1783      69737475 
+ 1783      72655F53 
+ 1783      656E736F 
+ 1783      725C4D6F 
+ 1784              	.LASF0:
+ 1785 0307 7369676E 		.ascii	"signed char\000"
+ 1785      65642063 
+ 1785      68617200 
+ 1786              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

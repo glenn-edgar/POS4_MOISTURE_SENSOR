@@ -12,12 +12,12 @@
 #include "process_modbus_message.h"
 #include "configuration_data.h"
 #include "process_modbus_message.h"
-#include "capsense_moisture.h"
 
-#define DIE_CHANNEL      AMux_2_CHANNELS - 1
-#define SOIL_CHANNEL     AMux_2_CHANNELS - 2
-#define SOURCE_CHANNEL   AMux_2_CHANNELS - 4
-#define SINK_CHANNEL     AMux_2_CHANNELS - 3
+
+
+
+#define SOURCE_CHANNEL   AMux_2_CHANNELS - 2
+#define SINK_CHANNEL     AMux_2_CHANNELS - 1
 #define DELTA_LIMIT      5
 #define COMPARISON_OP    >
 
@@ -47,7 +47,7 @@ static float make_measurement( uint32 channel )
     AMux_2_FastSelect( channel );
     
     ADC_SAR_Seq_1_StartConvert();
-    CyDelay(1);
+    CyDelay(2);
     
     return (float )ADC_SAR_Seq_1_GetResult16(0);
 }
@@ -58,7 +58,7 @@ int init_moisture_processing(unsigned link_id, unsigned param_1,
 {
    remove_power(link_id, param_1,param_2,param_3,event,data);
    clear_new_moisture_measurement_flag(link_id, param_1,param_2,param_3,event,data);
-   initialize_capacitance_measurements(link_id, param_1,param_2,param_3,event,data);
+  
    return CF_DISABLE;
 }
 
@@ -87,8 +87,8 @@ int set_source_channel(unsigned link_id, unsigned param_1,
   unsigned param_2, unsigned param_3, unsigned event, unsigned data)
 {
 
-   Source_Pin_Write(1);
-   Sink_Pin_Write(0);
+   Source_Control_Write(3);
+   Sink_Control_Write(0);
 
    return CF_DISABLE;
 }
@@ -123,8 +123,8 @@ int make_source_measurement(unsigned link_id, unsigned param_1,
 int set_sink_channel(unsigned link_id, unsigned param_1,
   unsigned param_2, unsigned param_3, unsigned event, unsigned data)
 {
-   Source_Pin_Write(0);
-   Sink_Pin_Write(1);
+   Source_Control_Write(0);
+   Sink_Control_Write(3);
 
 
    return CF_DISABLE;
@@ -162,8 +162,8 @@ int make_dummy_measurement(unsigned link_id, unsigned param_1,
 int remove_power(unsigned link_id, unsigned param_1,
   unsigned param_2, unsigned param_3, unsigned event, unsigned data)
 {
-   Source_Pin_Write(0);
-   Sink_Pin_Write(0);
+   Source_Control_Write(0);
+   Sink_Control_Write(0);
 
 
    return CF_DISABLE;
@@ -190,7 +190,13 @@ int update_new_measurement_available(unsigned link_id, unsigned param_1,
          resistor_current = calculate_resistor_current(i, ptr );
          resistance_array[i] =  ( voltage_measurements[i] - sink_measurement )/ resistor_current; 
         
+  
       }
+      else
+      {
+        resistance_array[i] = 0.;
+      }
+       store_modbus_data_registers( RESISTIVE_VALUE_1_FLOAT +(2*i), 2, (uint16 *) &resistance_array[i]);
       resistor_ptr++;
 
    }
@@ -207,12 +213,18 @@ int update_new_measurement_available(unsigned link_id, unsigned param_1,
              break;
          case WATERMARK:
             get_modbus_data_registers( MOISTURE_SOIL_TEMP_FLOAT , 2, (uint16*) &soil_temperature );
+            soil_temperature = ( soil_temperature-32)*5./9.;
             temp_value = resistance_array[i]/1000.;
+            if( temp_value > 75. )
+            {
+                temp_value = 75.;  // formula not accurate for large values of R  around 102 term results in divide by zero
+            }
             //kPa=(4.093+3.213*R)/(1-0.009733*R-0.01205*T)
             temp_value = ( 4.093 + 3.213* temp_value  )/( 1. - .009733*temp_value - .01205* soil_temperature );
             break;
       }
       store_modbus_data_registers( RESISTIVE_SENSOR_1_FLOAT +(2*i), 2, (uint16 *) &temp_value);
+      resistor_ptr++;
   }
 
    // compute high level functions

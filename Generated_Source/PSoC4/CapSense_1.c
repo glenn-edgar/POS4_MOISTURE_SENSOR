@@ -128,10 +128,10 @@ const uint32 CapSense_1_widgetResolution[CapSense_1_RESOLUTIONS_TBL_SIZE] = {
 };
 
 const uint8 CapSense_1_senseClkDividerVal[CapSense_1_TOTAL_SCANSLOT_COUNT] = {
-    10u, 10u, 10u, 10u, 10u, 10u, 10u, 10u, 
+    2u, 10u, 10u, 10u, 10u, 10u, 10u, 10u, 
 };
 const uint8 CapSense_1_sampleClkDividerVal[CapSense_1_TOTAL_SCANSLOT_COUNT] = {
-    10u, 10u, 10u, 10u, 10u, 10u, 10u, 10u, 
+    2u, 10u, 10u, 10u, 10u, 10u, 10u, 10u, 
 };
 
 

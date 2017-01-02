@@ -1,5 +1,5 @@
 /*
-** Build Time: 2016-12-01 16:43:04.708000  
+** Build Time: 2016-12-18 13:16:39.598000  
 */
 #ifndef _CF_ASSEMBLER_H_
 #define _CF_ASSEMBLER_H_
@@ -7,7 +7,7 @@
 
 
 #define CHAIN_NUM   12
-#define LINK_NUM    83
+#define LINK_NUM    82
 
 
 
@@ -17,8 +17,8 @@
 #include "cf_runtime_functions.h" 
 #include "cf_external_functions.h" 
 char  chain_state[12];
-char  link_state[83];
-unsigned link_data[83];
+char  link_state[82];
+unsigned link_data[82];
 const unsigned start_state[]={1,1,1,1,1,1,1,1,1,1,0,1};
 
 
@@ -79,7 +79,6 @@ const LINK_CELL CHAIN_measure_channel_LINKS[]=
 { one_step_fn,(CF_FUN_AUX)make_dummy_measurement,(unsigned)0,(unsigned)0,(unsigned)0},
 { one_step_fn,(CF_FUN_AUX)remove_power,(unsigned)0,(unsigned)0,(unsigned)0},
 { one_step_fn,(CF_FUN_AUX)update_new_measurement_available,(unsigned)0,(unsigned)0,(unsigned)0},
-{ one_step_fn,(CF_FUN_AUX)make_capacitance_measurements,(unsigned)0,(unsigned)0,(unsigned)0},
 { one_step_fn,(CF_FUN_AUX)set_new_moisture_measurement_flag,(unsigned)0,(unsigned)0,(unsigned)0},
 { reset_fn,(CF_FUN_AUX)NULL,(unsigned)0,(unsigned)0,(unsigned)0},
 };
@@ -151,13 +150,13 @@ const CHAIN_LINK chain_control[] =
 { 16,1,5,CHAIN_second_tick_chain_LINKS},
 { 21,2,4,CHAIN_minute_tick_chain_LINKS},
 { 25,3,8,CHAIN_hour_tick_chain_LINKS},
-{ 33,4,12,CHAIN_measure_channel_LINKS},
-{ 45,5,3,CHAIN_one_wire_presence_LINKS},
-{ 48,6,8,CHAIN_make_soil_measurement_LINKS},
-{ 56,7,3,CHAIN_make_air_temperature_LINKS},
-{ 59,8,4,CHAIN_flash_update_LINKS},
-{ 63,9,4,CHAIN_heart_beat_LINKS},
-{ 67,10,4,CHAIN_commissioning_heart_beat_LINKS},
-{ 71,11,12,CHAIN_handle_commissioning_LINKS},
+{ 33,4,11,CHAIN_measure_channel_LINKS},
+{ 44,5,3,CHAIN_one_wire_presence_LINKS},
+{ 47,6,8,CHAIN_make_soil_measurement_LINKS},
+{ 55,7,3,CHAIN_make_air_temperature_LINKS},
+{ 58,8,4,CHAIN_flash_update_LINKS},
+{ 62,9,4,CHAIN_heart_beat_LINKS},
+{ 66,10,4,CHAIN_commissioning_heart_beat_LINKS},
+{ 70,11,12,CHAIN_handle_commissioning_LINKS},
 };
 #endif

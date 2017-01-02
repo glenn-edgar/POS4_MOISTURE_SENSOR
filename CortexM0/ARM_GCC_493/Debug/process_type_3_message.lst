@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMDT9U0.s 			page 1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccKdEZg8.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -9,7 +9,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMDT9U0.s 			page 1
    6              		.eabi_attribute 24, 1
    7              		.eabi_attribute 25, 1
    8              		.eabi_attribute 26, 1
-   9              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 30, 2
   10              		.eabi_attribute 34, 0
   11              		.eabi_attribute 18, 4
   12              		.code	16
@@ -17,96 +17,15 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMDT9U0.s 			page 1
   14              		.text
   15              	.Ltext0:
   16              		.cfi_sections	.debug_frame
-  17              		.section	.text.swap_16,"ax",%progbits
+  17              		.section	.text.process_type_3_message,"ax",%progbits
   18              		.align	2
-  19              		.code	16
-  20              		.thumb_func
-  21              		.type	swap_16, %function
-  22              	swap_16:
-  23              	.LFB62:
-  24              		.file 1 "rtu_modbus\\modbus_utilities.h"
-   1:rtu_modbus/modbus_utilities.h **** /*
-   2:rtu_modbus/modbus_utilities.h **** **
-   3:rtu_modbus/modbus_utilities.h **** ** File: modbus_utilities.h
-   4:rtu_modbus/modbus_utilities.h **** ** File for shuffling bytes for network ordering
-   5:rtu_modbus/modbus_utilities.h **** **
-   6:rtu_modbus/modbus_utilities.h **** **
-   7:rtu_modbus/modbus_utilities.h **** **
-   8:rtu_modbus/modbus_utilities.h **** */
-   9:rtu_modbus/modbus_utilities.h **** 
-  10:rtu_modbus/modbus_utilities.h **** #ifndef _MODBUS_UTILITES_H_
-  11:rtu_modbus/modbus_utilities.h **** #define _MODBUS_UTILITES_H_
-  12:rtu_modbus/modbus_utilities.h **** 
-  13:rtu_modbus/modbus_utilities.h **** #include <project.h>
-  14:rtu_modbus/modbus_utilities.h ****   
-  15:rtu_modbus/modbus_utilities.h **** 
-  16:rtu_modbus/modbus_utilities.h **** 
-  17:rtu_modbus/modbus_utilities.h ****     
-  18:rtu_modbus/modbus_utilities.h **** static inline void swap_16( uint8 *input )
-  19:rtu_modbus/modbus_utilities.h **** {
-  25              		.loc 1 19 0
-  26              		.cfi_startproc
-  27 0000 80B5     		push	{r7, lr}
-  28              		.cfi_def_cfa_offset 8
-  29              		.cfi_offset 7, -8
-  30              		.cfi_offset 14, -4
-  31 0002 84B0     		sub	sp, sp, #16
-  32              		.cfi_def_cfa_offset 24
-  33 0004 00AF     		add	r7, sp, #0
-  34              		.cfi_def_cfa_register 7
-  35 0006 7860     		str	r0, [r7, #4]
-  20:rtu_modbus/modbus_utilities.h ****     uint8 temp;
-  21:rtu_modbus/modbus_utilities.h ****     uint8 *swap_ptr;
-  22:rtu_modbus/modbus_utilities.h ****     
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMDT9U0.s 			page 2
-
-
-  23:rtu_modbus/modbus_utilities.h ****     swap_ptr = input+1;
-  36              		.loc 1 23 0
-  37 0008 7B68     		ldr	r3, [r7, #4]
-  38 000a 0133     		add	r3, r3, #1
-  39 000c FB60     		str	r3, [r7, #12]
-  24:rtu_modbus/modbus_utilities.h ****     temp     = *input;
-  40              		.loc 1 24 0
-  41 000e 0B23     		mov	r3, #11
-  42 0010 FB18     		add	r3, r7, r3
-  43 0012 7A68     		ldr	r2, [r7, #4]
-  44 0014 1278     		ldrb	r2, [r2]
-  45 0016 1A70     		strb	r2, [r3]
-  25:rtu_modbus/modbus_utilities.h ****     *input   = *swap_ptr;
-  46              		.loc 1 25 0
-  47 0018 FB68     		ldr	r3, [r7, #12]
-  48 001a 1A78     		ldrb	r2, [r3]
-  49 001c 7B68     		ldr	r3, [r7, #4]
-  50 001e 1A70     		strb	r2, [r3]
-  26:rtu_modbus/modbus_utilities.h ****     *swap_ptr = temp;
-  51              		.loc 1 26 0
-  52 0020 FB68     		ldr	r3, [r7, #12]
-  53 0022 0B22     		mov	r2, #11
-  54 0024 BA18     		add	r2, r7, r2
-  55 0026 1278     		ldrb	r2, [r2]
-  56 0028 1A70     		strb	r2, [r3]
-  27:rtu_modbus/modbus_utilities.h **** 
-  28:rtu_modbus/modbus_utilities.h ****       
-  29:rtu_modbus/modbus_utilities.h ****    
-  30:rtu_modbus/modbus_utilities.h **** }
-  57              		.loc 1 30 0
-  58 002a BD46     		mov	sp, r7
-  59 002c 04B0     		add	sp, sp, #16
-  60              		@ sp needed
-  61 002e 80BD     		pop	{r7, pc}
-  62              		.cfi_endproc
-  63              	.LFE62:
-  64              		.size	swap_16, .-swap_16
-  65              		.section	.text.process_type_3_message,"ax",%progbits
-  66              		.align	2
-  67              		.global	process_type_3_message
-  68              		.code	16
-  69              		.thumb_func
-  70              		.type	process_type_3_message, %function
-  71              	process_type_3_message:
-  72              	.LFB66:
-  73              		.file 2 "rtu_modbus\\process_type_3_message.c"
+  19              		.global	process_type_3_message
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	process_type_3_message, %function
+  23              	process_type_3_message:
+  24              	.LFB66:
+  25              		.file 1 "rtu_modbus\\process_type_3_message.c"
    1:rtu_modbus/process_type_3_message.c **** /*
    2:rtu_modbus/process_type_3_message.c **** **
    3:rtu_modbus/process_type_3_message.c **** ** File: process_type_3_message.c
@@ -118,9 +37,6 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMDT9U0.s 			page 1
    9:rtu_modbus/process_type_3_message.c **** Function 03
   10:rtu_modbus/process_type_3_message.c **** Starting Address Hi 00
   11:rtu_modbus/process_type_3_message.c **** Starting Address Lo 6B
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMDT9U0.s 			page 3
-
-
   12:rtu_modbus/process_type_3_message.c **** No. of Points Hi 00
   13:rtu_modbus/process_type_3_message.c **** No. of Points Lo 03
   14:rtu_modbus/process_type_3_message.c **** Error Check (LRC or CRC) ––
@@ -142,6 +58,9 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMDT9U0.s 			page 1
   30:rtu_modbus/process_type_3_message.c **** **
   31:rtu_modbus/process_type_3_message.c **** */
   32:rtu_modbus/process_type_3_message.c ****  
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccKdEZg8.s 			page 2
+
+
   33:rtu_modbus/process_type_3_message.c **** #include <project.h>
   34:rtu_modbus/process_type_3_message.c **** #include "process_type_3_message.h" 
   35:rtu_modbus/process_type_3_message.c **** 
@@ -152,20 +71,17 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMDT9U0.s 			page 1
   40:rtu_modbus/process_type_3_message.c **** 
   41:rtu_modbus/process_type_3_message.c **** int process_type_3_message( int in_length, uint8 *in, int out_length, uint8 *out )
   42:rtu_modbus/process_type_3_message.c **** {
-  74              		.loc 2 42 0
-  75              		.cfi_startproc
-  76 0000 80B5     		push	{r7, lr}
-  77              		.cfi_def_cfa_offset 8
-  78              		.cfi_offset 7, -8
-  79              		.cfi_offset 14, -4
-  80 0002 88B0     		sub	sp, sp, #32
-  81              		.cfi_def_cfa_offset 40
-  82 0004 00AF     		add	r7, sp, #0
-  83              		.cfi_def_cfa_register 7
-  84 0006 F860     		str	r0, [r7, #12]
-  85 0008 B960     		str	r1, [r7, #8]
-  86 000a 7A60     		str	r2, [r7, #4]
-  87 000c 3B60     		str	r3, [r7]
+  26              		.loc 1 42 0
+  27              		.cfi_startproc
+  28              	.LVL0:
+  29 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  30              		.cfi_def_cfa_offset 24
+  31              		.cfi_offset 3, -24
+  32              		.cfi_offset 4, -20
+  33              		.cfi_offset 5, -16
+  34              		.cfi_offset 6, -12
+  35              		.cfi_offset 7, -8
+  36              		.cfi_offset 14, -4
   43:rtu_modbus/process_type_3_message.c **** 
   44:rtu_modbus/process_type_3_message.c ****     unsigned starting_register;
   45:rtu_modbus/process_type_3_message.c ****     int number;
@@ -176,749 +92,1131 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMDT9U0.s 			page 1
   50:rtu_modbus/process_type_3_message.c ****     
   51:rtu_modbus/process_type_3_message.c ****     
   52:rtu_modbus/process_type_3_message.c ****     starting_register = (*in++)*256;
-  88              		.loc 2 52 0
-  89 000e BB68     		ldr	r3, [r7, #8]
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMDT9U0.s 			page 4
-
-
-  90 0010 5A1C     		add	r2, r3, #1
-  91 0012 BA60     		str	r2, [r7, #8]
-  92 0014 1B78     		ldrb	r3, [r3]
-  93 0016 1B02     		lsl	r3, r3, #8
-  94 0018 BB61     		str	r3, [r7, #24]
+  37              		.loc 1 52 0
+  38 0002 0878     		ldrb	r0, [r1]
+  39              	.LVL1:
   53:rtu_modbus/process_type_3_message.c ****     starting_register += (*in++);
-  95              		.loc 2 53 0
-  96 001a BB68     		ldr	r3, [r7, #8]
-  97 001c 5A1C     		add	r2, r3, #1
-  98 001e BA60     		str	r2, [r7, #8]
-  99 0020 1B78     		ldrb	r3, [r3]
- 100 0022 1A1C     		mov	r2, r3
- 101 0024 BB69     		ldr	r3, [r7, #24]
- 102 0026 9B18     		add	r3, r3, r2
- 103 0028 BB61     		str	r3, [r7, #24]
   54:rtu_modbus/process_type_3_message.c ****     number = (*in++)*256;
- 104              		.loc 2 54 0
- 105 002a BB68     		ldr	r3, [r7, #8]
- 106 002c 5A1C     		add	r2, r3, #1
- 107 002e BA60     		str	r2, [r7, #8]
- 108 0030 1B78     		ldrb	r3, [r3]
- 109 0032 1B02     		lsl	r3, r3, #8
- 110 0034 7B61     		str	r3, [r7, #20]
+  40              		.loc 1 54 0
+  41 0004 8D78     		ldrb	r5, [r1, #2]
+  52:rtu_modbus/process_type_3_message.c ****     starting_register += (*in++);
+  42              		.loc 1 52 0
+  43 0006 8446     		mov	ip, r0
+  44              	.LVL2:
+  53:rtu_modbus/process_type_3_message.c ****     starting_register += (*in++);
+  45              		.loc 1 53 0
+  46 0008 4878     		ldrb	r0, [r1, #1]
+  47              	.LVL3:
   55:rtu_modbus/process_type_3_message.c ****     number += (*in++);
- 111              		.loc 2 55 0
- 112 0036 BB68     		ldr	r3, [r7, #8]
- 113 0038 5A1C     		add	r2, r3, #1
- 114 003a BA60     		str	r2, [r7, #8]
- 115 003c 1B78     		ldrb	r3, [r3]
- 116 003e 1A1C     		mov	r2, r3
- 117 0040 7B69     		ldr	r3, [r7, #20]
- 118 0042 9B18     		add	r3, r3, r2
- 119 0044 7B61     		str	r3, [r7, #20]
+  48              		.loc 1 55 0
+  49 000a C978     		ldrb	r1, [r1, #3]
+  50              	.LVL4:
+  54:rtu_modbus/process_type_3_message.c ****     number += (*in++);
+  51              		.loc 1 54 0
+  52 000c 2D02     		lsl	r5, r5, #8
+  53              	.LVL5:
+  54              		.loc 1 55 0
+  55 000e 4D19     		add	r5, r1, r5
+  56              	.LVL6:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccKdEZg8.s 			page 3
+
+
   56:rtu_modbus/process_type_3_message.c ****     // check for storeage
   57:rtu_modbus/process_type_3_message.c ****     if( out_length < (int)(number *2))
- 120              		.loc 2 57 0
- 121 0046 7B69     		ldr	r3, [r7, #20]
- 122 0048 5A00     		lsl	r2, r3, #1
- 123 004a 7B68     		ldr	r3, [r7, #4]
- 124 004c 9A42     		cmp	r2, r3
- 125 004e 01DD     		ble	.L3
+  57              		.loc 1 57 0
+  58 0010 6E00     		lsl	r6, r5, #1
+  59 0012 9642     		cmp	r6, r2
+  60 0014 01DD     		ble	.L2
+  61              	.LVL7:
+  62              	.L4:
   58:rtu_modbus/process_type_3_message.c ****     {
   59:rtu_modbus/process_type_3_message.c ****         return 0;
- 126              		.loc 2 59 0
- 127 0050 0023     		mov	r3, #0
- 128 0052 27E0     		b	.L4
- 129              	.L3:
+  63              		.loc 1 59 0
+  64 0016 0020     		mov	r0, #0
+  65              	.L3:
   60:rtu_modbus/process_type_3_message.c ****     }
   61:rtu_modbus/process_type_3_message.c ****     *out++ = number*2;
- 130              		.loc 2 61 0
- 131 0054 3B68     		ldr	r3, [r7]
- 132 0056 5A1C     		add	r2, r3, #1
- 133 0058 3A60     		str	r2, [r7]
- 134 005a 7A69     		ldr	r2, [r7, #20]
- 135 005c D2B2     		uxtb	r2, r2
- 136 005e 9218     		add	r2, r2, r2
- 137 0060 D2B2     		uxtb	r2, r2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMDT9U0.s 			page 5
-
-
- 138 0062 1A70     		strb	r2, [r3]
   62:rtu_modbus/process_type_3_message.c ****     if( get_modbus_data_registers( starting_register, number, (uint16 *) out ) == 0 )
- 139              		.loc 2 62 0
- 140 0064 7A69     		ldr	r2, [r7, #20]
- 141 0066 B969     		ldr	r1, [r7, #24]
- 142 0068 3B68     		ldr	r3, [r7]
- 143 006a 081C     		mov	r0, r1
- 144 006c 111C     		mov	r1, r2
- 145 006e 1A1C     		mov	r2, r3
- 146 0070 FFF7FEFF 		bl	get_modbus_data_registers
- 147 0074 031E     		sub	r3, r0, #0
- 148 0076 01D1     		bne	.L5
   63:rtu_modbus/process_type_3_message.c ****     {
   64:rtu_modbus/process_type_3_message.c ****         return 0;
- 149              		.loc 2 64 0
- 150 0078 0023     		mov	r3, #0
- 151 007a 13E0     		b	.L4
- 152              	.L5:
   65:rtu_modbus/process_type_3_message.c ****     }
   66:rtu_modbus/process_type_3_message.c ****     // now swap bytes
   67:rtu_modbus/process_type_3_message.c ****     for( i = 0; i< number; i++)
- 153              		.loc 2 67 0
- 154 007c 0023     		mov	r3, #0
- 155 007e FB61     		str	r3, [r7, #28]
- 156 0080 09E0     		b	.L6
- 157              	.L7:
   68:rtu_modbus/process_type_3_message.c ****     {
   69:rtu_modbus/process_type_3_message.c ****         swap_16(out);
- 158              		.loc 2 69 0 discriminator 3
- 159 0082 3B68     		ldr	r3, [r7]
- 160 0084 181C     		mov	r0, r3
- 161 0086 FFF7FEFF 		bl	swap_16
   70:rtu_modbus/process_type_3_message.c ****         out += 2;
- 162              		.loc 2 70 0 discriminator 3
- 163 008a 3B68     		ldr	r3, [r7]
- 164 008c 0233     		add	r3, r3, #2
- 165 008e 3B60     		str	r3, [r7]
-  67:rtu_modbus/process_type_3_message.c ****     {
- 166              		.loc 2 67 0 discriminator 3
- 167 0090 FB69     		ldr	r3, [r7, #28]
- 168 0092 0133     		add	r3, r3, #1
- 169 0094 FB61     		str	r3, [r7, #28]
- 170              	.L6:
-  67:rtu_modbus/process_type_3_message.c ****     {
- 171              		.loc 2 67 0 is_stmt 0 discriminator 1
- 172 0096 FA69     		ldr	r2, [r7, #28]
- 173 0098 7B69     		ldr	r3, [r7, #20]
- 174 009a 9A42     		cmp	r2, r3
- 175 009c F1DB     		blt	.L7
   71:rtu_modbus/process_type_3_message.c ****     }
   72:rtu_modbus/process_type_3_message.c ****     return   (number*2) +1;  
- 176              		.loc 2 72 0 is_stmt 1
- 177 009e 7B69     		ldr	r3, [r7, #20]
- 178 00a0 5B00     		lsl	r3, r3, #1
- 179 00a2 0133     		add	r3, r3, #1
- 180              	.L4:
   73:rtu_modbus/process_type_3_message.c ****     
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMDT9U0.s 			page 6
-
-
   74:rtu_modbus/process_type_3_message.c **** }
- 181              		.loc 2 74 0
- 182 00a4 181C     		mov	r0, r3
- 183 00a6 BD46     		mov	sp, r7
- 184 00a8 08B0     		add	sp, sp, #32
- 185              		@ sp needed
- 186 00aa 80BD     		pop	{r7, pc}
- 187              		.cfi_endproc
- 188              	.LFE66:
- 189              		.size	process_type_3_message, .-process_type_3_message
- 190              		.text
- 191              	.Letext0:
- 192              		.file 3 "Generated_Source\\PSoC4/cytypes.h"
- 193              		.file 4 "rtu_modbus\\process_modbus_message.h"
- 194              		.section	.debug_info,"",%progbits
- 195              	.Ldebug_info0:
- 196 0000 76010000 		.4byte	0x176
- 197 0004 0400     		.2byte	0x4
- 198 0006 00000000 		.4byte	.Ldebug_abbrev0
- 199 000a 04       		.byte	0x4
- 200 000b 01       		.uleb128 0x1
- 201 000c 9E000000 		.4byte	.LASF22
- 202 0010 01       		.byte	0x1
- 203 0011 42000000 		.4byte	.LASF23
- 204 0015 BD010000 		.4byte	.LASF24
- 205 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 206 001d 00000000 		.4byte	0
- 207 0021 00000000 		.4byte	.Ldebug_line0
- 208 0025 02       		.uleb128 0x2
- 209 0026 01       		.byte	0x1
- 210 0027 06       		.byte	0x6
- 211 0028 13020000 		.4byte	.LASF0
- 212 002c 02       		.uleb128 0x2
- 213 002d 01       		.byte	0x1
- 214 002e 08       		.byte	0x8
- 215 002f 66000000 		.4byte	.LASF1
- 216 0033 02       		.uleb128 0x2
- 217 0034 02       		.byte	0x2
- 218 0035 05       		.byte	0x5
- 219 0036 AA010000 		.4byte	.LASF2
- 220 003a 02       		.uleb128 0x2
- 221 003b 02       		.byte	0x2
- 222 003c 07       		.byte	0x7
- 223 003d 06000000 		.4byte	.LASF3
- 224 0041 02       		.uleb128 0x2
- 225 0042 04       		.byte	0x4
- 226 0043 05       		.byte	0x5
- 227 0044 B4010000 		.4byte	.LASF4
- 228 0048 02       		.uleb128 0x2
- 229 0049 04       		.byte	0x4
- 230 004a 07       		.byte	0x7
- 231 004b 7A000000 		.4byte	.LASF5
- 232 004f 02       		.uleb128 0x2
- 233 0050 08       		.byte	0x8
- 234 0051 05       		.byte	0x5
- 235 0052 8E010000 		.4byte	.LASF6
- 236 0056 02       		.uleb128 0x2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMDT9U0.s 			page 7
+  66              		.loc 1 74 0
+  67              		@ sp needed
+  68              	.LVL8:
+  69 0018 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+  70              	.LVL9:
+  71              	.L2:
+  61:rtu_modbus/process_type_3_message.c ****     if( get_modbus_data_registers( starting_register, number, (uint16 *) out ) == 0 )
+  72              		.loc 1 61 0
+  73 001a 5C1C     		add	r4, r3, #1
+  74              	.LVL10:
+  75 001c 1F1C     		mov	r7, r3
+  76 001e 1E70     		strb	r6, [r3]
+  52:rtu_modbus/process_type_3_message.c ****     starting_register += (*in++);
+  77              		.loc 1 52 0
+  78 0020 6346     		mov	r3, ip
+  79 0022 1B02     		lsl	r3, r3, #8
+  53:rtu_modbus/process_type_3_message.c ****     number = (*in++)*256;
+  80              		.loc 1 53 0
+  81 0024 1818     		add	r0, r3, r0
+  82              	.LVL11:
+  62:rtu_modbus/process_type_3_message.c ****     {
+  83              		.loc 1 62 0
+  84 0026 291C     		mov	r1, r5
+  85 0028 221C     		mov	r2, r4
+  86              	.LVL12:
+  87 002a FFF7FEFF 		bl	get_modbus_data_registers
+  88              	.LVL13:
+  89 002e 0028     		cmp	r0, #0
+  90 0030 F1D0     		beq	.L4
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccKdEZg8.s 			page 4
 
 
- 237 0057 08       		.byte	0x8
- 238 0058 07       		.byte	0x7
- 239 0059 40010000 		.4byte	.LASF7
- 240 005d 03       		.uleb128 0x3
- 241 005e 04       		.byte	0x4
- 242 005f 05       		.byte	0x5
- 243 0060 696E7400 		.ascii	"int\000"
- 244 0064 02       		.uleb128 0x2
- 245 0065 04       		.byte	0x4
- 246 0066 07       		.byte	0x7
- 247 0067 33010000 		.4byte	.LASF8
- 248 006b 04       		.uleb128 0x4
- 249 006c 91000000 		.4byte	.LASF9
- 250 0070 03       		.byte	0x3
- 251 0071 9801     		.2byte	0x198
- 252 0073 2C000000 		.4byte	0x2c
- 253 0077 04       		.uleb128 0x4
- 254 0078 2C010000 		.4byte	.LASF10
- 255 007c 03       		.byte	0x3
- 256 007d 9901     		.2byte	0x199
- 257 007f 3A000000 		.4byte	0x3a
- 258 0083 02       		.uleb128 0x2
- 259 0084 04       		.byte	0x4
- 260 0085 04       		.byte	0x4
- 261 0086 00000000 		.4byte	.LASF11
- 262 008a 02       		.uleb128 0x2
- 263 008b 08       		.byte	0x8
- 264 008c 04       		.byte	0x4
- 265 008d 97000000 		.4byte	.LASF12
- 266 0091 02       		.uleb128 0x2
- 267 0092 01       		.byte	0x1
- 268 0093 08       		.byte	0x8
- 269 0094 9C010000 		.4byte	.LASF13
- 270 0098 02       		.uleb128 0x2
- 271 0099 04       		.byte	0x4
- 272 009a 07       		.byte	0x7
- 273 009b 7A010000 		.4byte	.LASF14
- 274 009f 05       		.uleb128 0x5
- 275 00a0 04       		.byte	0x4
- 276 00a1 6B000000 		.4byte	0x6b
- 277 00a5 06       		.uleb128 0x6
- 278 00a6 57010000 		.4byte	.LASF25
- 279 00aa 01       		.byte	0x1
- 280 00ab 12       		.byte	0x12
- 281 00ac 00000000 		.4byte	.LFB62
- 282 00b0 30000000 		.4byte	.LFE62-.LFB62
- 283 00b4 01       		.uleb128 0x1
- 284 00b5 9C       		.byte	0x9c
- 285 00b6 E5000000 		.4byte	0xe5
- 286 00ba 07       		.uleb128 0x7
- 287 00bb 74000000 		.4byte	.LASF17
- 288 00bf 01       		.byte	0x1
- 289 00c0 12       		.byte	0x12
- 290 00c1 9F000000 		.4byte	0x9f
- 291 00c5 02       		.uleb128 0x2
- 292 00c6 91       		.byte	0x91
- 293 00c7 6C       		.sleb128 -20
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMDT9U0.s 			page 8
+  91              	.LVL14:
+  92 0032 701C     		add	r0, r6, #1
+  93 0034 3B18     		add	r3, r7, r0
+  67:rtu_modbus/process_type_3_message.c ****     {
+  94              		.loc 1 67 0 discriminator 1
+  95 0036 002D     		cmp	r5, #0
+  96 0038 EED0     		beq	.L3
+  97              	.LVL15:
+  98              	.L10:
+  99              	.LBB4:
+ 100              	.LBB5:
+ 101              		.file 2 "rtu_modbus\\modbus_utilities.h"
+   1:rtu_modbus/modbus_utilities.h **** /*
+   2:rtu_modbus/modbus_utilities.h **** **
+   3:rtu_modbus/modbus_utilities.h **** ** File: modbus_utilities.h
+   4:rtu_modbus/modbus_utilities.h **** ** File for shuffling bytes for network ordering
+   5:rtu_modbus/modbus_utilities.h **** **
+   6:rtu_modbus/modbus_utilities.h **** **
+   7:rtu_modbus/modbus_utilities.h **** **
+   8:rtu_modbus/modbus_utilities.h **** */
+   9:rtu_modbus/modbus_utilities.h **** 
+  10:rtu_modbus/modbus_utilities.h **** #ifndef _MODBUS_UTILITES_H_
+  11:rtu_modbus/modbus_utilities.h **** #define _MODBUS_UTILITES_H_
+  12:rtu_modbus/modbus_utilities.h **** 
+  13:rtu_modbus/modbus_utilities.h **** #include <project.h>
+  14:rtu_modbus/modbus_utilities.h ****   
+  15:rtu_modbus/modbus_utilities.h **** 
+  16:rtu_modbus/modbus_utilities.h **** 
+  17:rtu_modbus/modbus_utilities.h ****     
+  18:rtu_modbus/modbus_utilities.h **** static inline void swap_16( uint8 *input )
+  19:rtu_modbus/modbus_utilities.h **** {
+  20:rtu_modbus/modbus_utilities.h ****     uint8 temp;
+  21:rtu_modbus/modbus_utilities.h ****     uint8 *swap_ptr;
+  22:rtu_modbus/modbus_utilities.h ****     
+  23:rtu_modbus/modbus_utilities.h ****     swap_ptr = input+1;
+  24:rtu_modbus/modbus_utilities.h ****     temp     = *input;
+ 102              		.loc 2 24 0
+ 103 003a 2278     		ldrb	r2, [r4]
+ 104              	.LVL16:
+  25:rtu_modbus/modbus_utilities.h ****     *input   = *swap_ptr;
+ 105              		.loc 2 25 0
+ 106 003c 6178     		ldrb	r1, [r4, #1]
+  26:rtu_modbus/modbus_utilities.h ****     *swap_ptr = temp;
+ 107              		.loc 2 26 0
+ 108 003e 6270     		strb	r2, [r4, #1]
+  25:rtu_modbus/modbus_utilities.h ****     *input   = *swap_ptr;
+ 109              		.loc 2 25 0
+ 110 0040 2170     		strb	r1, [r4]
+ 111              	.LBE5:
+ 112              	.LBE4:
+  70:rtu_modbus/process_type_3_message.c ****     }
+ 113              		.loc 1 70 0
+ 114 0042 0234     		add	r4, r4, #2
+ 115              	.LVL17:
+  67:rtu_modbus/process_type_3_message.c ****     {
+ 116              		.loc 1 67 0
+ 117 0044 9C42     		cmp	r4, r3
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccKdEZg8.s 			page 5
 
 
- 294 00c8 08       		.uleb128 0x8
- 295 00c9 8C000000 		.4byte	.LASF15
- 296 00cd 01       		.byte	0x1
- 297 00ce 14       		.byte	0x14
- 298 00cf 6B000000 		.4byte	0x6b
- 299 00d3 02       		.uleb128 0x2
- 300 00d4 91       		.byte	0x91
- 301 00d5 73       		.sleb128 -13
- 302 00d6 08       		.uleb128 0x8
- 303 00d7 A1010000 		.4byte	.LASF16
- 304 00db 01       		.byte	0x1
- 305 00dc 15       		.byte	0x15
- 306 00dd 9F000000 		.4byte	0x9f
- 307 00e1 02       		.uleb128 0x2
- 308 00e2 91       		.byte	0x91
- 309 00e3 74       		.sleb128 -12
- 310 00e4 00       		.byte	0
- 311 00e5 09       		.uleb128 0x9
- 312 00e6 19000000 		.4byte	.LASF26
- 313 00ea 02       		.byte	0x2
- 314 00eb 29       		.byte	0x29
- 315 00ec 5D000000 		.4byte	0x5d
- 316 00f0 00000000 		.4byte	.LFB66
- 317 00f4 AC000000 		.4byte	.LFE66-.LFB66
- 318 00f8 01       		.uleb128 0x1
- 319 00f9 9C       		.byte	0x9c
- 320 00fa 5E010000 		.4byte	0x15e
- 321 00fe 07       		.uleb128 0x7
- 322 00ff 1F020000 		.4byte	.LASF18
- 323 0103 02       		.byte	0x2
- 324 0104 29       		.byte	0x29
- 325 0105 5D000000 		.4byte	0x5d
- 326 0109 02       		.uleb128 0x2
- 327 010a 91       		.byte	0x91
- 328 010b 64       		.sleb128 -28
- 329 010c 0A       		.uleb128 0xa
- 330 010d 696E00   		.ascii	"in\000"
- 331 0110 02       		.byte	0x2
- 332 0111 29       		.byte	0x29
- 333 0112 9F000000 		.4byte	0x9f
- 334 0116 02       		.uleb128 0x2
- 335 0117 91       		.byte	0x91
- 336 0118 60       		.sleb128 -32
- 337 0119 07       		.uleb128 0x7
- 338 011a 83010000 		.4byte	.LASF19
- 339 011e 02       		.byte	0x2
- 340 011f 29       		.byte	0x29
- 341 0120 5D000000 		.4byte	0x5d
- 342 0124 02       		.uleb128 0x2
- 343 0125 91       		.byte	0x91
- 344 0126 5C       		.sleb128 -36
- 345 0127 0A       		.uleb128 0xa
- 346 0128 6F757400 		.ascii	"out\000"
- 347 012c 02       		.byte	0x2
- 348 012d 29       		.byte	0x29
- 349 012e 9F000000 		.4byte	0x9f
- 350 0132 02       		.uleb128 0x2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMDT9U0.s 			page 9
+ 118 0046 F8D1     		bne	.L10
+ 119 0048 E6E7     		b	.L3
+ 120              		.cfi_endproc
+ 121              	.LFE66:
+ 122              		.size	process_type_3_message, .-process_type_3_message
+ 123 004a C046     		.text
+ 124              	.Letext0:
+ 125              		.file 3 "Generated_Source\\PSoC4/cytypes.h"
+ 126              		.file 4 "rtu_modbus\\process_modbus_message.h"
+ 127              		.section	.debug_info,"",%progbits
+ 128              	.Ldebug_info0:
+ 129 0000 DD010000 		.4byte	0x1dd
+ 130 0004 0400     		.2byte	0x4
+ 131 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 132 000a 04       		.byte	0x4
+ 133 000b 01       		.uleb128 0x1
+ 134 000c 80000000 		.4byte	.LASF21
+ 135 0010 01       		.byte	0x1
+ 136 0011 5C000000 		.4byte	.LASF22
+ 137 0015 EA010000 		.4byte	.LASF23
+ 138 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 139 001d 00000000 		.4byte	0
+ 140 0021 00000000 		.4byte	.Ldebug_line0
+ 141 0025 02       		.uleb128 0x2
+ 142 0026 01       		.byte	0x1
+ 143 0027 06       		.byte	0x6
+ 144 0028 40020000 		.4byte	.LASF0
+ 145 002c 02       		.uleb128 0x2
+ 146 002d 01       		.byte	0x1
+ 147 002e 08       		.byte	0x8
+ 148 002f 21010000 		.4byte	.LASF1
+ 149 0033 02       		.uleb128 0x2
+ 150 0034 02       		.byte	0x2
+ 151 0035 05       		.byte	0x5
+ 152 0036 D7010000 		.4byte	.LASF2
+ 153 003a 02       		.uleb128 0x2
+ 154 003b 02       		.byte	0x2
+ 155 003c 07       		.byte	0x7
+ 156 003d 20000000 		.4byte	.LASF3
+ 157 0041 02       		.uleb128 0x2
+ 158 0042 04       		.byte	0x4
+ 159 0043 05       		.byte	0x5
+ 160 0044 E1010000 		.4byte	.LASF4
+ 161 0048 02       		.uleb128 0x2
+ 162 0049 04       		.byte	0x4
+ 163 004a 07       		.byte	0x7
+ 164 004b 35010000 		.4byte	.LASF5
+ 165 004f 02       		.uleb128 0x2
+ 166 0050 08       		.byte	0x8
+ 167 0051 05       		.byte	0x5
+ 168 0052 BB010000 		.4byte	.LASF6
+ 169 0056 02       		.uleb128 0x2
+ 170 0057 08       		.byte	0x8
+ 171 0058 07       		.byte	0x7
+ 172 0059 6D010000 		.4byte	.LASF7
+ 173 005d 03       		.uleb128 0x3
+ 174 005e 04       		.byte	0x4
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccKdEZg8.s 			page 6
 
 
- 351 0133 91       		.byte	0x91
- 352 0134 58       		.sleb128 -40
- 353 0135 08       		.uleb128 0x8
- 354 0136 30000000 		.4byte	.LASF20
- 355 013a 02       		.byte	0x2
- 356 013b 2C       		.byte	0x2c
- 357 013c 64000000 		.4byte	0x64
- 358 0140 02       		.uleb128 0x2
- 359 0141 91       		.byte	0x91
- 360 0142 70       		.sleb128 -16
- 361 0143 08       		.uleb128 0x8
- 362 0144 5F010000 		.4byte	.LASF21
- 363 0148 02       		.byte	0x2
- 364 0149 2D       		.byte	0x2d
- 365 014a 5D000000 		.4byte	0x5d
- 366 014e 02       		.uleb128 0x2
- 367 014f 91       		.byte	0x91
- 368 0150 6C       		.sleb128 -20
- 369 0151 0B       		.uleb128 0xb
- 370 0152 6900     		.ascii	"i\000"
- 371 0154 02       		.byte	0x2
- 372 0155 2E       		.byte	0x2e
- 373 0156 5D000000 		.4byte	0x5d
- 374 015a 02       		.uleb128 0x2
- 375 015b 91       		.byte	0x91
- 376 015c 74       		.sleb128 -12
- 377 015d 00       		.byte	0
- 378 015e 0C       		.uleb128 0xc
- 379 015f 77000000 		.4byte	0x77
- 380 0163 6E010000 		.4byte	0x16e
- 381 0167 0D       		.uleb128 0xd
- 382 0168 98000000 		.4byte	0x98
- 383 016c 01       		.byte	0x1
- 384 016d 00       		.byte	0
- 385 016e 0E       		.uleb128 0xe
- 386 016f 66010000 		.4byte	.LASF27
- 387 0173 04       		.byte	0x4
- 388 0174 58       		.byte	0x58
- 389 0175 5E010000 		.4byte	0x15e
- 390 0179 00       		.byte	0
- 391              		.section	.debug_abbrev,"",%progbits
- 392              	.Ldebug_abbrev0:
- 393 0000 01       		.uleb128 0x1
- 394 0001 11       		.uleb128 0x11
- 395 0002 01       		.byte	0x1
- 396 0003 25       		.uleb128 0x25
- 397 0004 0E       		.uleb128 0xe
- 398 0005 13       		.uleb128 0x13
- 399 0006 0B       		.uleb128 0xb
- 400 0007 03       		.uleb128 0x3
- 401 0008 0E       		.uleb128 0xe
- 402 0009 1B       		.uleb128 0x1b
- 403 000a 0E       		.uleb128 0xe
- 404 000b 55       		.uleb128 0x55
- 405 000c 17       		.uleb128 0x17
- 406 000d 11       		.uleb128 0x11
- 407 000e 01       		.uleb128 0x1
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMDT9U0.s 			page 10
+ 175 005f 05       		.byte	0x5
+ 176 0060 696E7400 		.ascii	"int\000"
+ 177 0064 02       		.uleb128 0x2
+ 178 0065 04       		.byte	0x4
+ 179 0066 07       		.byte	0x7
+ 180 0067 60010000 		.4byte	.LASF8
+ 181 006b 04       		.uleb128 0x4
+ 182 006c 4C010000 		.4byte	.LASF9
+ 183 0070 03       		.byte	0x3
+ 184 0071 9801     		.2byte	0x198
+ 185 0073 2C000000 		.4byte	0x2c
+ 186 0077 04       		.uleb128 0x4
+ 187 0078 59010000 		.4byte	.LASF10
+ 188 007c 03       		.byte	0x3
+ 189 007d 9901     		.2byte	0x199
+ 190 007f 3A000000 		.4byte	0x3a
+ 191 0083 02       		.uleb128 0x2
+ 192 0084 04       		.byte	0x4
+ 193 0085 04       		.byte	0x4
+ 194 0086 00000000 		.4byte	.LASF11
+ 195 008a 02       		.uleb128 0x2
+ 196 008b 08       		.byte	0x8
+ 197 008c 04       		.byte	0x4
+ 198 008d 52010000 		.4byte	.LASF12
+ 199 0091 02       		.uleb128 0x2
+ 200 0092 01       		.byte	0x1
+ 201 0093 08       		.byte	0x8
+ 202 0094 C9010000 		.4byte	.LASF13
+ 203 0098 02       		.uleb128 0x2
+ 204 0099 04       		.byte	0x4
+ 205 009a 07       		.byte	0x7
+ 206 009b A7010000 		.4byte	.LASF14
+ 207 009f 05       		.uleb128 0x5
+ 208 00a0 84010000 		.4byte	.LASF24
+ 209 00a4 02       		.byte	0x2
+ 210 00a5 12       		.byte	0x12
+ 211 00a6 03       		.byte	0x3
+ 212 00a7 CD000000 		.4byte	0xcd
+ 213 00ab 06       		.uleb128 0x6
+ 214 00ac 2F010000 		.4byte	.LASF25
+ 215 00b0 02       		.byte	0x2
+ 216 00b1 12       		.byte	0x12
+ 217 00b2 CD000000 		.4byte	0xcd
+ 218 00b6 07       		.uleb128 0x7
+ 219 00b7 47010000 		.4byte	.LASF15
+ 220 00bb 02       		.byte	0x2
+ 221 00bc 14       		.byte	0x14
+ 222 00bd 6B000000 		.4byte	0x6b
+ 223 00c1 07       		.uleb128 0x7
+ 224 00c2 CE010000 		.4byte	.LASF16
+ 225 00c6 02       		.byte	0x2
+ 226 00c7 15       		.byte	0x15
+ 227 00c8 CD000000 		.4byte	0xcd
+ 228 00cc 00       		.byte	0
+ 229 00cd 08       		.uleb128 0x8
+ 230 00ce 04       		.byte	0x4
+ 231 00cf 6B000000 		.4byte	0x6b
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccKdEZg8.s 			page 7
 
 
- 408 000f 10       		.uleb128 0x10
- 409 0010 17       		.uleb128 0x17
- 410 0011 00       		.byte	0
- 411 0012 00       		.byte	0
- 412 0013 02       		.uleb128 0x2
- 413 0014 24       		.uleb128 0x24
- 414 0015 00       		.byte	0
- 415 0016 0B       		.uleb128 0xb
- 416 0017 0B       		.uleb128 0xb
- 417 0018 3E       		.uleb128 0x3e
- 418 0019 0B       		.uleb128 0xb
- 419 001a 03       		.uleb128 0x3
- 420 001b 0E       		.uleb128 0xe
- 421 001c 00       		.byte	0
- 422 001d 00       		.byte	0
- 423 001e 03       		.uleb128 0x3
- 424 001f 24       		.uleb128 0x24
- 425 0020 00       		.byte	0
- 426 0021 0B       		.uleb128 0xb
- 427 0022 0B       		.uleb128 0xb
- 428 0023 3E       		.uleb128 0x3e
- 429 0024 0B       		.uleb128 0xb
- 430 0025 03       		.uleb128 0x3
- 431 0026 08       		.uleb128 0x8
- 432 0027 00       		.byte	0
- 433 0028 00       		.byte	0
- 434 0029 04       		.uleb128 0x4
- 435 002a 16       		.uleb128 0x16
- 436 002b 00       		.byte	0
- 437 002c 03       		.uleb128 0x3
- 438 002d 0E       		.uleb128 0xe
- 439 002e 3A       		.uleb128 0x3a
- 440 002f 0B       		.uleb128 0xb
- 441 0030 3B       		.uleb128 0x3b
- 442 0031 05       		.uleb128 0x5
- 443 0032 49       		.uleb128 0x49
- 444 0033 13       		.uleb128 0x13
- 445 0034 00       		.byte	0
- 446 0035 00       		.byte	0
- 447 0036 05       		.uleb128 0x5
- 448 0037 0F       		.uleb128 0xf
- 449 0038 00       		.byte	0
- 450 0039 0B       		.uleb128 0xb
- 451 003a 0B       		.uleb128 0xb
- 452 003b 49       		.uleb128 0x49
- 453 003c 13       		.uleb128 0x13
- 454 003d 00       		.byte	0
- 455 003e 00       		.byte	0
- 456 003f 06       		.uleb128 0x6
- 457 0040 2E       		.uleb128 0x2e
- 458 0041 01       		.byte	0x1
- 459 0042 03       		.uleb128 0x3
- 460 0043 0E       		.uleb128 0xe
- 461 0044 3A       		.uleb128 0x3a
- 462 0045 0B       		.uleb128 0xb
- 463 0046 3B       		.uleb128 0x3b
- 464 0047 0B       		.uleb128 0xb
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMDT9U0.s 			page 11
+ 232 00d3 09       		.uleb128 0x9
+ 233 00d4 33000000 		.4byte	.LASF26
+ 234 00d8 01       		.byte	0x1
+ 235 00d9 29       		.byte	0x29
+ 236 00da 5D000000 		.4byte	0x5d
+ 237 00de 00000000 		.4byte	.LFB66
+ 238 00e2 4A000000 		.4byte	.LFE66-.LFB66
+ 239 00e6 01       		.uleb128 0x1
+ 240 00e7 9C       		.byte	0x9c
+ 241 00e8 A0010000 		.4byte	0x1a0
+ 242 00ec 0A       		.uleb128 0xa
+ 243 00ed 4C020000 		.4byte	.LASF17
+ 244 00f1 01       		.byte	0x1
+ 245 00f2 29       		.byte	0x29
+ 246 00f3 5D000000 		.4byte	0x5d
+ 247 00f7 00000000 		.4byte	.LLST0
+ 248 00fb 0B       		.uleb128 0xb
+ 249 00fc 696E00   		.ascii	"in\000"
+ 250 00ff 01       		.byte	0x1
+ 251 0100 29       		.byte	0x29
+ 252 0101 CD000000 		.4byte	0xcd
+ 253 0105 21000000 		.4byte	.LLST1
+ 254 0109 0A       		.uleb128 0xa
+ 255 010a B0010000 		.4byte	.LASF18
+ 256 010e 01       		.byte	0x1
+ 257 010f 29       		.byte	0x29
+ 258 0110 5D000000 		.4byte	0x5d
+ 259 0114 7B000000 		.4byte	.LLST2
+ 260 0118 0B       		.uleb128 0xb
+ 261 0119 6F757400 		.ascii	"out\000"
+ 262 011d 01       		.byte	0x1
+ 263 011e 29       		.byte	0x29
+ 264 011f CD000000 		.4byte	0xcd
+ 265 0123 B5000000 		.4byte	.LLST3
+ 266 0127 0C       		.uleb128 0xc
+ 267 0128 4A000000 		.4byte	.LASF19
+ 268 012c 01       		.byte	0x1
+ 269 012d 2C       		.byte	0x2c
+ 270 012e 64000000 		.4byte	0x64
+ 271 0132 DE000000 		.4byte	.LLST4
+ 272 0136 0C       		.uleb128 0xc
+ 273 0137 8C010000 		.4byte	.LASF20
+ 274 013b 01       		.byte	0x1
+ 275 013c 2D       		.byte	0x2d
+ 276 013d 5D000000 		.4byte	0x5d
+ 277 0141 28010000 		.4byte	.LLST5
+ 278 0145 0D       		.uleb128 0xd
+ 279 0146 6900     		.ascii	"i\000"
+ 280 0148 01       		.byte	0x1
+ 281 0149 2E       		.byte	0x2e
+ 282 014a 5D000000 		.4byte	0x5d
+ 283 014e 46010000 		.4byte	.LLST6
+ 284 0152 0E       		.uleb128 0xe
+ 285 0153 9F000000 		.4byte	0x9f
+ 286 0157 3A000000 		.4byte	.LBB4
+ 287 015b 08000000 		.4byte	.LBE4-.LBB4
+ 288 015f 01       		.byte	0x1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccKdEZg8.s 			page 8
 
 
- 465 0048 27       		.uleb128 0x27
- 466 0049 19       		.uleb128 0x19
- 467 004a 11       		.uleb128 0x11
- 468 004b 01       		.uleb128 0x1
- 469 004c 12       		.uleb128 0x12
- 470 004d 06       		.uleb128 0x6
- 471 004e 40       		.uleb128 0x40
- 472 004f 18       		.uleb128 0x18
- 473 0050 9742     		.uleb128 0x2117
- 474 0052 19       		.uleb128 0x19
- 475 0053 01       		.uleb128 0x1
- 476 0054 13       		.uleb128 0x13
- 477 0055 00       		.byte	0
- 478 0056 00       		.byte	0
- 479 0057 07       		.uleb128 0x7
- 480 0058 05       		.uleb128 0x5
- 481 0059 00       		.byte	0
- 482 005a 03       		.uleb128 0x3
- 483 005b 0E       		.uleb128 0xe
- 484 005c 3A       		.uleb128 0x3a
- 485 005d 0B       		.uleb128 0xb
- 486 005e 3B       		.uleb128 0x3b
- 487 005f 0B       		.uleb128 0xb
- 488 0060 49       		.uleb128 0x49
- 489 0061 13       		.uleb128 0x13
- 490 0062 02       		.uleb128 0x2
- 491 0063 18       		.uleb128 0x18
- 492 0064 00       		.byte	0
- 493 0065 00       		.byte	0
- 494 0066 08       		.uleb128 0x8
- 495 0067 34       		.uleb128 0x34
- 496 0068 00       		.byte	0
- 497 0069 03       		.uleb128 0x3
- 498 006a 0E       		.uleb128 0xe
- 499 006b 3A       		.uleb128 0x3a
- 500 006c 0B       		.uleb128 0xb
- 501 006d 3B       		.uleb128 0x3b
- 502 006e 0B       		.uleb128 0xb
- 503 006f 49       		.uleb128 0x49
- 504 0070 13       		.uleb128 0x13
- 505 0071 02       		.uleb128 0x2
- 506 0072 18       		.uleb128 0x18
- 507 0073 00       		.byte	0
- 508 0074 00       		.byte	0
- 509 0075 09       		.uleb128 0x9
- 510 0076 2E       		.uleb128 0x2e
- 511 0077 01       		.byte	0x1
- 512 0078 3F       		.uleb128 0x3f
- 513 0079 19       		.uleb128 0x19
- 514 007a 03       		.uleb128 0x3
- 515 007b 0E       		.uleb128 0xe
- 516 007c 3A       		.uleb128 0x3a
- 517 007d 0B       		.uleb128 0xb
- 518 007e 3B       		.uleb128 0x3b
- 519 007f 0B       		.uleb128 0xb
- 520 0080 27       		.uleb128 0x27
- 521 0081 19       		.uleb128 0x19
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMDT9U0.s 			page 12
+ 289 0160 45       		.byte	0x45
+ 290 0161 89010000 		.4byte	0x189
+ 291 0165 0F       		.uleb128 0xf
+ 292 0166 AB000000 		.4byte	0xab
+ 293 016a 5A010000 		.4byte	.LLST7
+ 294 016e 10       		.uleb128 0x10
+ 295 016f 3A000000 		.4byte	.LBB5
+ 296 0173 08000000 		.4byte	.LBE5-.LBB5
+ 297 0177 11       		.uleb128 0x11
+ 298 0178 B6000000 		.4byte	0xb6
+ 299 017c 01       		.uleb128 0x1
+ 300 017d 52       		.byte	0x52
+ 301 017e 12       		.uleb128 0x12
+ 302 017f C1000000 		.4byte	0xc1
+ 303 0183 7A010000 		.4byte	.LLST8
+ 304 0187 00       		.byte	0
+ 305 0188 00       		.byte	0
+ 306 0189 13       		.uleb128 0x13
+ 307 018a 2E000000 		.4byte	.LVL13
+ 308 018e BB010000 		.4byte	0x1bb
+ 309 0192 14       		.uleb128 0x14
+ 310 0193 01       		.uleb128 0x1
+ 311 0194 52       		.byte	0x52
+ 312 0195 02       		.uleb128 0x2
+ 313 0196 74       		.byte	0x74
+ 314 0197 00       		.sleb128 0
+ 315 0198 14       		.uleb128 0x14
+ 316 0199 01       		.uleb128 0x1
+ 317 019a 51       		.byte	0x51
+ 318 019b 02       		.uleb128 0x2
+ 319 019c 75       		.byte	0x75
+ 320 019d 00       		.sleb128 0
+ 321 019e 00       		.byte	0
+ 322 019f 00       		.byte	0
+ 323 01a0 15       		.uleb128 0x15
+ 324 01a1 77000000 		.4byte	0x77
+ 325 01a5 B0010000 		.4byte	0x1b0
+ 326 01a9 16       		.uleb128 0x16
+ 327 01aa 98000000 		.4byte	0x98
+ 328 01ae 01       		.byte	0x1
+ 329 01af 00       		.byte	0
+ 330 01b0 17       		.uleb128 0x17
+ 331 01b1 93010000 		.4byte	.LASF27
+ 332 01b5 04       		.byte	0x4
+ 333 01b6 70       		.byte	0x70
+ 334 01b7 A0010000 		.4byte	0x1a0
+ 335 01bb 18       		.uleb128 0x18
+ 336 01bc 06000000 		.4byte	.LASF28
+ 337 01c0 04       		.byte	0x4
+ 338 01c1 83       		.byte	0x83
+ 339 01c2 5D000000 		.4byte	0x5d
+ 340 01c6 DA010000 		.4byte	0x1da
+ 341 01ca 19       		.uleb128 0x19
+ 342 01cb 64000000 		.4byte	0x64
+ 343 01cf 19       		.uleb128 0x19
+ 344 01d0 64000000 		.4byte	0x64
+ 345 01d4 19       		.uleb128 0x19
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccKdEZg8.s 			page 9
 
 
- 522 0082 49       		.uleb128 0x49
- 523 0083 13       		.uleb128 0x13
- 524 0084 11       		.uleb128 0x11
- 525 0085 01       		.uleb128 0x1
- 526 0086 12       		.uleb128 0x12
- 527 0087 06       		.uleb128 0x6
- 528 0088 40       		.uleb128 0x40
- 529 0089 18       		.uleb128 0x18
- 530 008a 9642     		.uleb128 0x2116
- 531 008c 19       		.uleb128 0x19
- 532 008d 01       		.uleb128 0x1
- 533 008e 13       		.uleb128 0x13
- 534 008f 00       		.byte	0
- 535 0090 00       		.byte	0
- 536 0091 0A       		.uleb128 0xa
- 537 0092 05       		.uleb128 0x5
- 538 0093 00       		.byte	0
- 539 0094 03       		.uleb128 0x3
- 540 0095 08       		.uleb128 0x8
- 541 0096 3A       		.uleb128 0x3a
- 542 0097 0B       		.uleb128 0xb
- 543 0098 3B       		.uleb128 0x3b
- 544 0099 0B       		.uleb128 0xb
- 545 009a 49       		.uleb128 0x49
- 546 009b 13       		.uleb128 0x13
- 547 009c 02       		.uleb128 0x2
- 548 009d 18       		.uleb128 0x18
- 549 009e 00       		.byte	0
- 550 009f 00       		.byte	0
- 551 00a0 0B       		.uleb128 0xb
- 552 00a1 34       		.uleb128 0x34
- 553 00a2 00       		.byte	0
- 554 00a3 03       		.uleb128 0x3
- 555 00a4 08       		.uleb128 0x8
- 556 00a5 3A       		.uleb128 0x3a
- 557 00a6 0B       		.uleb128 0xb
- 558 00a7 3B       		.uleb128 0x3b
- 559 00a8 0B       		.uleb128 0xb
- 560 00a9 49       		.uleb128 0x49
- 561 00aa 13       		.uleb128 0x13
- 562 00ab 02       		.uleb128 0x2
- 563 00ac 18       		.uleb128 0x18
- 564 00ad 00       		.byte	0
- 565 00ae 00       		.byte	0
- 566 00af 0C       		.uleb128 0xc
- 567 00b0 01       		.uleb128 0x1
- 568 00b1 01       		.byte	0x1
- 569 00b2 49       		.uleb128 0x49
- 570 00b3 13       		.uleb128 0x13
- 571 00b4 01       		.uleb128 0x1
- 572 00b5 13       		.uleb128 0x13
- 573 00b6 00       		.byte	0
- 574 00b7 00       		.byte	0
- 575 00b8 0D       		.uleb128 0xd
- 576 00b9 21       		.uleb128 0x21
- 577 00ba 00       		.byte	0
- 578 00bb 49       		.uleb128 0x49
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMDT9U0.s 			page 13
+ 346 01d5 DA010000 		.4byte	0x1da
+ 347 01d9 00       		.byte	0
+ 348 01da 08       		.uleb128 0x8
+ 349 01db 04       		.byte	0x4
+ 350 01dc 77000000 		.4byte	0x77
+ 351 01e0 00       		.byte	0
+ 352              		.section	.debug_abbrev,"",%progbits
+ 353              	.Ldebug_abbrev0:
+ 354 0000 01       		.uleb128 0x1
+ 355 0001 11       		.uleb128 0x11
+ 356 0002 01       		.byte	0x1
+ 357 0003 25       		.uleb128 0x25
+ 358 0004 0E       		.uleb128 0xe
+ 359 0005 13       		.uleb128 0x13
+ 360 0006 0B       		.uleb128 0xb
+ 361 0007 03       		.uleb128 0x3
+ 362 0008 0E       		.uleb128 0xe
+ 363 0009 1B       		.uleb128 0x1b
+ 364 000a 0E       		.uleb128 0xe
+ 365 000b 55       		.uleb128 0x55
+ 366 000c 17       		.uleb128 0x17
+ 367 000d 11       		.uleb128 0x11
+ 368 000e 01       		.uleb128 0x1
+ 369 000f 10       		.uleb128 0x10
+ 370 0010 17       		.uleb128 0x17
+ 371 0011 00       		.byte	0
+ 372 0012 00       		.byte	0
+ 373 0013 02       		.uleb128 0x2
+ 374 0014 24       		.uleb128 0x24
+ 375 0015 00       		.byte	0
+ 376 0016 0B       		.uleb128 0xb
+ 377 0017 0B       		.uleb128 0xb
+ 378 0018 3E       		.uleb128 0x3e
+ 379 0019 0B       		.uleb128 0xb
+ 380 001a 03       		.uleb128 0x3
+ 381 001b 0E       		.uleb128 0xe
+ 382 001c 00       		.byte	0
+ 383 001d 00       		.byte	0
+ 384 001e 03       		.uleb128 0x3
+ 385 001f 24       		.uleb128 0x24
+ 386 0020 00       		.byte	0
+ 387 0021 0B       		.uleb128 0xb
+ 388 0022 0B       		.uleb128 0xb
+ 389 0023 3E       		.uleb128 0x3e
+ 390 0024 0B       		.uleb128 0xb
+ 391 0025 03       		.uleb128 0x3
+ 392 0026 08       		.uleb128 0x8
+ 393 0027 00       		.byte	0
+ 394 0028 00       		.byte	0
+ 395 0029 04       		.uleb128 0x4
+ 396 002a 16       		.uleb128 0x16
+ 397 002b 00       		.byte	0
+ 398 002c 03       		.uleb128 0x3
+ 399 002d 0E       		.uleb128 0xe
+ 400 002e 3A       		.uleb128 0x3a
+ 401 002f 0B       		.uleb128 0xb
+ 402 0030 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccKdEZg8.s 			page 10
 
 
- 579 00bc 13       		.uleb128 0x13
- 580 00bd 2F       		.uleb128 0x2f
- 581 00be 0B       		.uleb128 0xb
- 582 00bf 00       		.byte	0
- 583 00c0 00       		.byte	0
- 584 00c1 0E       		.uleb128 0xe
- 585 00c2 34       		.uleb128 0x34
- 586 00c3 00       		.byte	0
- 587 00c4 03       		.uleb128 0x3
- 588 00c5 0E       		.uleb128 0xe
- 589 00c6 3A       		.uleb128 0x3a
- 590 00c7 0B       		.uleb128 0xb
- 591 00c8 3B       		.uleb128 0x3b
- 592 00c9 0B       		.uleb128 0xb
- 593 00ca 49       		.uleb128 0x49
- 594 00cb 13       		.uleb128 0x13
- 595 00cc 3F       		.uleb128 0x3f
- 596 00cd 19       		.uleb128 0x19
- 597 00ce 3C       		.uleb128 0x3c
- 598 00cf 19       		.uleb128 0x19
- 599 00d0 00       		.byte	0
- 600 00d1 00       		.byte	0
- 601 00d2 00       		.byte	0
- 602              		.section	.debug_aranges,"",%progbits
- 603 0000 24000000 		.4byte	0x24
- 604 0004 0200     		.2byte	0x2
- 605 0006 00000000 		.4byte	.Ldebug_info0
- 606 000a 04       		.byte	0x4
- 607 000b 00       		.byte	0
- 608 000c 0000     		.2byte	0
- 609 000e 0000     		.2byte	0
- 610 0010 00000000 		.4byte	.LFB62
- 611 0014 30000000 		.4byte	.LFE62-.LFB62
- 612 0018 00000000 		.4byte	.LFB66
- 613 001c AC000000 		.4byte	.LFE66-.LFB66
- 614 0020 00000000 		.4byte	0
- 615 0024 00000000 		.4byte	0
- 616              		.section	.debug_ranges,"",%progbits
- 617              	.Ldebug_ranges0:
- 618 0000 00000000 		.4byte	.LFB62
- 619 0004 30000000 		.4byte	.LFE62
- 620 0008 00000000 		.4byte	.LFB66
- 621 000c AC000000 		.4byte	.LFE66
- 622 0010 00000000 		.4byte	0
- 623 0014 00000000 		.4byte	0
- 624              		.section	.debug_line,"",%progbits
- 625              	.Ldebug_line0:
- 626 0000 DF000000 		.section	.debug_str,"MS",%progbits,1
- 626      02009000 
- 626      00000201 
- 626      FB0E0D00 
- 626      01010101 
- 627              	.LASF11:
- 628 0000 666C6F61 		.ascii	"float\000"
- 628      7400
- 629              	.LASF3:
- 630 0006 73686F72 		.ascii	"short unsigned int\000"
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMDT9U0.s 			page 14
+ 403 0031 05       		.uleb128 0x5
+ 404 0032 49       		.uleb128 0x49
+ 405 0033 13       		.uleb128 0x13
+ 406 0034 00       		.byte	0
+ 407 0035 00       		.byte	0
+ 408 0036 05       		.uleb128 0x5
+ 409 0037 2E       		.uleb128 0x2e
+ 410 0038 01       		.byte	0x1
+ 411 0039 03       		.uleb128 0x3
+ 412 003a 0E       		.uleb128 0xe
+ 413 003b 3A       		.uleb128 0x3a
+ 414 003c 0B       		.uleb128 0xb
+ 415 003d 3B       		.uleb128 0x3b
+ 416 003e 0B       		.uleb128 0xb
+ 417 003f 27       		.uleb128 0x27
+ 418 0040 19       		.uleb128 0x19
+ 419 0041 20       		.uleb128 0x20
+ 420 0042 0B       		.uleb128 0xb
+ 421 0043 01       		.uleb128 0x1
+ 422 0044 13       		.uleb128 0x13
+ 423 0045 00       		.byte	0
+ 424 0046 00       		.byte	0
+ 425 0047 06       		.uleb128 0x6
+ 426 0048 05       		.uleb128 0x5
+ 427 0049 00       		.byte	0
+ 428 004a 03       		.uleb128 0x3
+ 429 004b 0E       		.uleb128 0xe
+ 430 004c 3A       		.uleb128 0x3a
+ 431 004d 0B       		.uleb128 0xb
+ 432 004e 3B       		.uleb128 0x3b
+ 433 004f 0B       		.uleb128 0xb
+ 434 0050 49       		.uleb128 0x49
+ 435 0051 13       		.uleb128 0x13
+ 436 0052 00       		.byte	0
+ 437 0053 00       		.byte	0
+ 438 0054 07       		.uleb128 0x7
+ 439 0055 34       		.uleb128 0x34
+ 440 0056 00       		.byte	0
+ 441 0057 03       		.uleb128 0x3
+ 442 0058 0E       		.uleb128 0xe
+ 443 0059 3A       		.uleb128 0x3a
+ 444 005a 0B       		.uleb128 0xb
+ 445 005b 3B       		.uleb128 0x3b
+ 446 005c 0B       		.uleb128 0xb
+ 447 005d 49       		.uleb128 0x49
+ 448 005e 13       		.uleb128 0x13
+ 449 005f 00       		.byte	0
+ 450 0060 00       		.byte	0
+ 451 0061 08       		.uleb128 0x8
+ 452 0062 0F       		.uleb128 0xf
+ 453 0063 00       		.byte	0
+ 454 0064 0B       		.uleb128 0xb
+ 455 0065 0B       		.uleb128 0xb
+ 456 0066 49       		.uleb128 0x49
+ 457 0067 13       		.uleb128 0x13
+ 458 0068 00       		.byte	0
+ 459 0069 00       		.byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccKdEZg8.s 			page 11
 
 
- 630      7420756E 
- 630      7369676E 
- 630      65642069 
- 630      6E7400
- 631              	.LASF26:
- 632 0019 70726F63 		.ascii	"process_type_3_message\000"
- 632      6573735F 
- 632      74797065 
- 632      5F335F6D 
- 632      65737361 
- 633              	.LASF20:
- 634 0030 73746172 		.ascii	"starting_register\000"
- 634      74696E67 
- 634      5F726567 
- 634      69737465 
- 634      7200
- 635              	.LASF23:
- 636 0042 7274755F 		.ascii	"rtu_modbus\\process_type_3_message.c\000"
- 636      6D6F6462 
- 636      75735C70 
- 636      726F6365 
- 636      73735F74 
- 637              	.LASF1:
- 638 0066 756E7369 		.ascii	"unsigned char\000"
- 638      676E6564 
- 638      20636861 
- 638      7200
- 639              	.LASF17:
- 640 0074 696E7075 		.ascii	"input\000"
- 640      7400
- 641              	.LASF5:
- 642 007a 6C6F6E67 		.ascii	"long unsigned int\000"
- 642      20756E73 
- 642      69676E65 
- 642      6420696E 
- 642      7400
- 643              	.LASF15:
- 644 008c 74656D70 		.ascii	"temp\000"
- 644      00
- 645              	.LASF9:
- 646 0091 75696E74 		.ascii	"uint8\000"
- 646      3800
- 647              	.LASF12:
- 648 0097 646F7562 		.ascii	"double\000"
- 648      6C6500
- 649              	.LASF22:
- 650 009e 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 650      4320342E 
- 650      392E3320 
- 650      32303135 
- 650      30333033 
- 651 00d1 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
- 651      20726576 
- 651      6973696F 
- 651      6E203232 
- 651      31323230 
- 652 0104 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMDT9U0.s 			page 15
+ 460 006a 09       		.uleb128 0x9
+ 461 006b 2E       		.uleb128 0x2e
+ 462 006c 01       		.byte	0x1
+ 463 006d 3F       		.uleb128 0x3f
+ 464 006e 19       		.uleb128 0x19
+ 465 006f 03       		.uleb128 0x3
+ 466 0070 0E       		.uleb128 0xe
+ 467 0071 3A       		.uleb128 0x3a
+ 468 0072 0B       		.uleb128 0xb
+ 469 0073 3B       		.uleb128 0x3b
+ 470 0074 0B       		.uleb128 0xb
+ 471 0075 27       		.uleb128 0x27
+ 472 0076 19       		.uleb128 0x19
+ 473 0077 49       		.uleb128 0x49
+ 474 0078 13       		.uleb128 0x13
+ 475 0079 11       		.uleb128 0x11
+ 476 007a 01       		.uleb128 0x1
+ 477 007b 12       		.uleb128 0x12
+ 478 007c 06       		.uleb128 0x6
+ 479 007d 40       		.uleb128 0x40
+ 480 007e 18       		.uleb128 0x18
+ 481 007f 9742     		.uleb128 0x2117
+ 482 0081 19       		.uleb128 0x19
+ 483 0082 01       		.uleb128 0x1
+ 484 0083 13       		.uleb128 0x13
+ 485 0084 00       		.byte	0
+ 486 0085 00       		.byte	0
+ 487 0086 0A       		.uleb128 0xa
+ 488 0087 05       		.uleb128 0x5
+ 489 0088 00       		.byte	0
+ 490 0089 03       		.uleb128 0x3
+ 491 008a 0E       		.uleb128 0xe
+ 492 008b 3A       		.uleb128 0x3a
+ 493 008c 0B       		.uleb128 0xb
+ 494 008d 3B       		.uleb128 0x3b
+ 495 008e 0B       		.uleb128 0xb
+ 496 008f 49       		.uleb128 0x49
+ 497 0090 13       		.uleb128 0x13
+ 498 0091 02       		.uleb128 0x2
+ 499 0092 17       		.uleb128 0x17
+ 500 0093 00       		.byte	0
+ 501 0094 00       		.byte	0
+ 502 0095 0B       		.uleb128 0xb
+ 503 0096 05       		.uleb128 0x5
+ 504 0097 00       		.byte	0
+ 505 0098 03       		.uleb128 0x3
+ 506 0099 08       		.uleb128 0x8
+ 507 009a 3A       		.uleb128 0x3a
+ 508 009b 0B       		.uleb128 0xb
+ 509 009c 3B       		.uleb128 0x3b
+ 510 009d 0B       		.uleb128 0xb
+ 511 009e 49       		.uleb128 0x49
+ 512 009f 13       		.uleb128 0x13
+ 513 00a0 02       		.uleb128 0x2
+ 514 00a1 17       		.uleb128 0x17
+ 515 00a2 00       		.byte	0
+ 516 00a3 00       		.byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccKdEZg8.s 			page 12
 
 
- 652      66756E63 
- 652      74696F6E 
- 652      2D736563 
- 652      74696F6E 
- 653              	.LASF10:
- 654 012c 75696E74 		.ascii	"uint16\000"
- 654      313600
- 655              	.LASF8:
- 656 0133 756E7369 		.ascii	"unsigned int\000"
- 656      676E6564 
- 656      20696E74 
- 656      00
- 657              	.LASF7:
- 658 0140 6C6F6E67 		.ascii	"long long unsigned int\000"
- 658      206C6F6E 
- 658      6720756E 
- 658      7369676E 
- 658      65642069 
- 659              	.LASF25:
- 660 0157 73776170 		.ascii	"swap_16\000"
- 660      5F313600 
- 661              	.LASF21:
- 662 015f 6E756D62 		.ascii	"number\000"
- 662      657200
- 663              	.LASF27:
- 664 0166 6D6F6462 		.ascii	"modbus_address_data\000"
- 664      75735F61 
- 664      64647265 
- 664      73735F64 
- 664      61746100 
- 665              	.LASF14:
- 666 017a 73697A65 		.ascii	"sizetype\000"
- 666      74797065 
- 666      00
- 667              	.LASF19:
- 668 0183 6F75745F 		.ascii	"out_length\000"
- 668      6C656E67 
- 668      746800
- 669              	.LASF6:
- 670 018e 6C6F6E67 		.ascii	"long long int\000"
- 670      206C6F6E 
- 670      6720696E 
- 670      7400
- 671              	.LASF13:
- 672 019c 63686172 		.ascii	"char\000"
- 672      00
- 673              	.LASF16:
- 674 01a1 73776170 		.ascii	"swap_ptr\000"
- 674      5F707472 
- 674      00
- 675              	.LASF2:
- 676 01aa 73686F72 		.ascii	"short int\000"
- 676      7420696E 
- 676      7400
- 677              	.LASF4:
- 678 01b4 6C6F6E67 		.ascii	"long int\000"
- 678      20696E74 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMDT9U0.s 			page 16
+ 517 00a4 0C       		.uleb128 0xc
+ 518 00a5 34       		.uleb128 0x34
+ 519 00a6 00       		.byte	0
+ 520 00a7 03       		.uleb128 0x3
+ 521 00a8 0E       		.uleb128 0xe
+ 522 00a9 3A       		.uleb128 0x3a
+ 523 00aa 0B       		.uleb128 0xb
+ 524 00ab 3B       		.uleb128 0x3b
+ 525 00ac 0B       		.uleb128 0xb
+ 526 00ad 49       		.uleb128 0x49
+ 527 00ae 13       		.uleb128 0x13
+ 528 00af 02       		.uleb128 0x2
+ 529 00b0 17       		.uleb128 0x17
+ 530 00b1 00       		.byte	0
+ 531 00b2 00       		.byte	0
+ 532 00b3 0D       		.uleb128 0xd
+ 533 00b4 34       		.uleb128 0x34
+ 534 00b5 00       		.byte	0
+ 535 00b6 03       		.uleb128 0x3
+ 536 00b7 08       		.uleb128 0x8
+ 537 00b8 3A       		.uleb128 0x3a
+ 538 00b9 0B       		.uleb128 0xb
+ 539 00ba 3B       		.uleb128 0x3b
+ 540 00bb 0B       		.uleb128 0xb
+ 541 00bc 49       		.uleb128 0x49
+ 542 00bd 13       		.uleb128 0x13
+ 543 00be 02       		.uleb128 0x2
+ 544 00bf 17       		.uleb128 0x17
+ 545 00c0 00       		.byte	0
+ 546 00c1 00       		.byte	0
+ 547 00c2 0E       		.uleb128 0xe
+ 548 00c3 1D       		.uleb128 0x1d
+ 549 00c4 01       		.byte	0x1
+ 550 00c5 31       		.uleb128 0x31
+ 551 00c6 13       		.uleb128 0x13
+ 552 00c7 11       		.uleb128 0x11
+ 553 00c8 01       		.uleb128 0x1
+ 554 00c9 12       		.uleb128 0x12
+ 555 00ca 06       		.uleb128 0x6
+ 556 00cb 58       		.uleb128 0x58
+ 557 00cc 0B       		.uleb128 0xb
+ 558 00cd 59       		.uleb128 0x59
+ 559 00ce 0B       		.uleb128 0xb
+ 560 00cf 01       		.uleb128 0x1
+ 561 00d0 13       		.uleb128 0x13
+ 562 00d1 00       		.byte	0
+ 563 00d2 00       		.byte	0
+ 564 00d3 0F       		.uleb128 0xf
+ 565 00d4 05       		.uleb128 0x5
+ 566 00d5 00       		.byte	0
+ 567 00d6 31       		.uleb128 0x31
+ 568 00d7 13       		.uleb128 0x13
+ 569 00d8 02       		.uleb128 0x2
+ 570 00d9 17       		.uleb128 0x17
+ 571 00da 00       		.byte	0
+ 572 00db 00       		.byte	0
+ 573 00dc 10       		.uleb128 0x10
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccKdEZg8.s 			page 13
 
 
- 678      00
- 679              	.LASF24:
- 680 01bd 433A5C55 		.ascii	"C:\\Users\\glenn\\OneDrive\\PSOC\\moisture_sensor_4"
- 680      73657273 
- 680      5C676C65 
- 680      6E6E5C4F 
- 680      6E654472 
- 681 01eb 6D5C4D6F 		.ascii	"m\\Moisture_Sensor\\Moisture_Sensor.cydsn\000"
- 681      69737475 
- 681      72655F53 
- 681      656E736F 
- 681      725C4D6F 
- 682              	.LASF0:
- 683 0213 7369676E 		.ascii	"signed char\000"
- 683      65642063 
- 683      68617200 
- 684              	.LASF18:
- 685 021f 696E5F6C 		.ascii	"in_length\000"
- 685      656E6774 
- 685      6800
- 686              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ 574 00dd 0B       		.uleb128 0xb
+ 575 00de 01       		.byte	0x1
+ 576 00df 11       		.uleb128 0x11
+ 577 00e0 01       		.uleb128 0x1
+ 578 00e1 12       		.uleb128 0x12
+ 579 00e2 06       		.uleb128 0x6
+ 580 00e3 00       		.byte	0
+ 581 00e4 00       		.byte	0
+ 582 00e5 11       		.uleb128 0x11
+ 583 00e6 34       		.uleb128 0x34
+ 584 00e7 00       		.byte	0
+ 585 00e8 31       		.uleb128 0x31
+ 586 00e9 13       		.uleb128 0x13
+ 587 00ea 02       		.uleb128 0x2
+ 588 00eb 18       		.uleb128 0x18
+ 589 00ec 00       		.byte	0
+ 590 00ed 00       		.byte	0
+ 591 00ee 12       		.uleb128 0x12
+ 592 00ef 34       		.uleb128 0x34
+ 593 00f0 00       		.byte	0
+ 594 00f1 31       		.uleb128 0x31
+ 595 00f2 13       		.uleb128 0x13
+ 596 00f3 02       		.uleb128 0x2
+ 597 00f4 17       		.uleb128 0x17
+ 598 00f5 00       		.byte	0
+ 599 00f6 00       		.byte	0
+ 600 00f7 13       		.uleb128 0x13
+ 601 00f8 898201   		.uleb128 0x4109
+ 602 00fb 01       		.byte	0x1
+ 603 00fc 11       		.uleb128 0x11
+ 604 00fd 01       		.uleb128 0x1
+ 605 00fe 31       		.uleb128 0x31
+ 606 00ff 13       		.uleb128 0x13
+ 607 0100 00       		.byte	0
+ 608 0101 00       		.byte	0
+ 609 0102 14       		.uleb128 0x14
+ 610 0103 8A8201   		.uleb128 0x410a
+ 611 0106 00       		.byte	0
+ 612 0107 02       		.uleb128 0x2
+ 613 0108 18       		.uleb128 0x18
+ 614 0109 9142     		.uleb128 0x2111
+ 615 010b 18       		.uleb128 0x18
+ 616 010c 00       		.byte	0
+ 617 010d 00       		.byte	0
+ 618 010e 15       		.uleb128 0x15
+ 619 010f 01       		.uleb128 0x1
+ 620 0110 01       		.byte	0x1
+ 621 0111 49       		.uleb128 0x49
+ 622 0112 13       		.uleb128 0x13
+ 623 0113 01       		.uleb128 0x1
+ 624 0114 13       		.uleb128 0x13
+ 625 0115 00       		.byte	0
+ 626 0116 00       		.byte	0
+ 627 0117 16       		.uleb128 0x16
+ 628 0118 21       		.uleb128 0x21
+ 629 0119 00       		.byte	0
+ 630 011a 49       		.uleb128 0x49
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccKdEZg8.s 			page 14
+
+
+ 631 011b 13       		.uleb128 0x13
+ 632 011c 2F       		.uleb128 0x2f
+ 633 011d 0B       		.uleb128 0xb
+ 634 011e 00       		.byte	0
+ 635 011f 00       		.byte	0
+ 636 0120 17       		.uleb128 0x17
+ 637 0121 34       		.uleb128 0x34
+ 638 0122 00       		.byte	0
+ 639 0123 03       		.uleb128 0x3
+ 640 0124 0E       		.uleb128 0xe
+ 641 0125 3A       		.uleb128 0x3a
+ 642 0126 0B       		.uleb128 0xb
+ 643 0127 3B       		.uleb128 0x3b
+ 644 0128 0B       		.uleb128 0xb
+ 645 0129 49       		.uleb128 0x49
+ 646 012a 13       		.uleb128 0x13
+ 647 012b 3F       		.uleb128 0x3f
+ 648 012c 19       		.uleb128 0x19
+ 649 012d 3C       		.uleb128 0x3c
+ 650 012e 19       		.uleb128 0x19
+ 651 012f 00       		.byte	0
+ 652 0130 00       		.byte	0
+ 653 0131 18       		.uleb128 0x18
+ 654 0132 2E       		.uleb128 0x2e
+ 655 0133 01       		.byte	0x1
+ 656 0134 3F       		.uleb128 0x3f
+ 657 0135 19       		.uleb128 0x19
+ 658 0136 03       		.uleb128 0x3
+ 659 0137 0E       		.uleb128 0xe
+ 660 0138 3A       		.uleb128 0x3a
+ 661 0139 0B       		.uleb128 0xb
+ 662 013a 3B       		.uleb128 0x3b
+ 663 013b 0B       		.uleb128 0xb
+ 664 013c 27       		.uleb128 0x27
+ 665 013d 19       		.uleb128 0x19
+ 666 013e 49       		.uleb128 0x49
+ 667 013f 13       		.uleb128 0x13
+ 668 0140 3C       		.uleb128 0x3c
+ 669 0141 19       		.uleb128 0x19
+ 670 0142 01       		.uleb128 0x1
+ 671 0143 13       		.uleb128 0x13
+ 672 0144 00       		.byte	0
+ 673 0145 00       		.byte	0
+ 674 0146 19       		.uleb128 0x19
+ 675 0147 05       		.uleb128 0x5
+ 676 0148 00       		.byte	0
+ 677 0149 49       		.uleb128 0x49
+ 678 014a 13       		.uleb128 0x13
+ 679 014b 00       		.byte	0
+ 680 014c 00       		.byte	0
+ 681 014d 00       		.byte	0
+ 682              		.section	.debug_loc,"",%progbits
+ 683              	.Ldebug_loc0:
+ 684              	.LLST0:
+ 685 0000 00000000 		.4byte	.LVL0
+ 686 0004 04000000 		.4byte	.LVL1
+ 687 0008 0100     		.2byte	0x1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccKdEZg8.s 			page 15
+
+
+ 688 000a 50       		.byte	0x50
+ 689 000b 04000000 		.4byte	.LVL1
+ 690 000f 4A000000 		.4byte	.LFE66
+ 691 0013 0400     		.2byte	0x4
+ 692 0015 F3       		.byte	0xf3
+ 693 0016 01       		.uleb128 0x1
+ 694 0017 50       		.byte	0x50
+ 695 0018 9F       		.byte	0x9f
+ 696 0019 00000000 		.4byte	0
+ 697 001d 00000000 		.4byte	0
+ 698              	.LLST1:
+ 699 0021 00000000 		.4byte	.LVL0
+ 700 0025 00000000 		.4byte	.LVL0
+ 701 0029 0100     		.2byte	0x1
+ 702 002b 51       		.byte	0x51
+ 703 002c 00000000 		.4byte	.LVL0
+ 704 0030 08000000 		.4byte	.LVL2
+ 705 0034 0300     		.2byte	0x3
+ 706 0036 71       		.byte	0x71
+ 707 0037 01       		.sleb128 1
+ 708 0038 9F       		.byte	0x9f
+ 709 0039 08000000 		.4byte	.LVL2
+ 710 003d 0A000000 		.4byte	.LVL3
+ 711 0041 0300     		.2byte	0x3
+ 712 0043 71       		.byte	0x71
+ 713 0044 02       		.sleb128 2
+ 714 0045 9F       		.byte	0x9f
+ 715 0046 0A000000 		.4byte	.LVL3
+ 716 004a 0C000000 		.4byte	.LVL4
+ 717 004e 0300     		.2byte	0x3
+ 718 0050 71       		.byte	0x71
+ 719 0051 03       		.sleb128 3
+ 720 0052 9F       		.byte	0x9f
+ 721 0053 0C000000 		.4byte	.LVL4
+ 722 0057 0E000000 		.4byte	.LVL5
+ 723 005b 0600     		.2byte	0x6
+ 724 005d F3       		.byte	0xf3
+ 725 005e 01       		.uleb128 0x1
+ 726 005f 51       		.byte	0x51
+ 727 0060 23       		.byte	0x23
+ 728 0061 03       		.uleb128 0x3
+ 729 0062 9F       		.byte	0x9f
+ 730 0063 0E000000 		.4byte	.LVL5
+ 731 0067 4A000000 		.4byte	.LFE66
+ 732 006b 0600     		.2byte	0x6
+ 733 006d F3       		.byte	0xf3
+ 734 006e 01       		.uleb128 0x1
+ 735 006f 51       		.byte	0x51
+ 736 0070 23       		.byte	0x23
+ 737 0071 04       		.uleb128 0x4
+ 738 0072 9F       		.byte	0x9f
+ 739 0073 00000000 		.4byte	0
+ 740 0077 00000000 		.4byte	0
+ 741              	.LLST2:
+ 742 007b 00000000 		.4byte	.LVL0
+ 743 007f 16000000 		.4byte	.LVL7
+ 744 0083 0100     		.2byte	0x1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccKdEZg8.s 			page 16
+
+
+ 745 0085 52       		.byte	0x52
+ 746 0086 16000000 		.4byte	.LVL7
+ 747 008a 1A000000 		.4byte	.LVL9
+ 748 008e 0400     		.2byte	0x4
+ 749 0090 F3       		.byte	0xf3
+ 750 0091 01       		.uleb128 0x1
+ 751 0092 52       		.byte	0x52
+ 752 0093 9F       		.byte	0x9f
+ 753 0094 1A000000 		.4byte	.LVL9
+ 754 0098 2A000000 		.4byte	.LVL12
+ 755 009c 0100     		.2byte	0x1
+ 756 009e 52       		.byte	0x52
+ 757 009f 2A000000 		.4byte	.LVL12
+ 758 00a3 4A000000 		.4byte	.LFE66
+ 759 00a7 0400     		.2byte	0x4
+ 760 00a9 F3       		.byte	0xf3
+ 761 00aa 01       		.uleb128 0x1
+ 762 00ab 52       		.byte	0x52
+ 763 00ac 9F       		.byte	0x9f
+ 764 00ad 00000000 		.4byte	0
+ 765 00b1 00000000 		.4byte	0
+ 766              	.LLST3:
+ 767 00b5 00000000 		.4byte	.LVL0
+ 768 00b9 16000000 		.4byte	.LVL7
+ 769 00bd 0100     		.2byte	0x1
+ 770 00bf 53       		.byte	0x53
+ 771 00c0 1A000000 		.4byte	.LVL9
+ 772 00c4 1C000000 		.4byte	.LVL10
+ 773 00c8 0100     		.2byte	0x1
+ 774 00ca 53       		.byte	0x53
+ 775 00cb 1C000000 		.4byte	.LVL10
+ 776 00cf 4A000000 		.4byte	.LFE66
+ 777 00d3 0100     		.2byte	0x1
+ 778 00d5 54       		.byte	0x54
+ 779 00d6 00000000 		.4byte	0
+ 780 00da 00000000 		.4byte	0
+ 781              	.LLST4:
+ 782 00de 08000000 		.4byte	.LVL2
+ 783 00e2 0A000000 		.4byte	.LVL3
+ 784 00e6 0800     		.2byte	0x8
+ 785 00e8 7C       		.byte	0x7c
+ 786 00e9 00       		.sleb128 0
+ 787 00ea 08       		.byte	0x8
+ 788 00eb FF       		.byte	0xff
+ 789 00ec 1A       		.byte	0x1a
+ 790 00ed 38       		.byte	0x38
+ 791 00ee 24       		.byte	0x24
+ 792 00ef 9F       		.byte	0x9f
+ 793 00f0 0A000000 		.4byte	.LVL3
+ 794 00f4 16000000 		.4byte	.LVL7
+ 795 00f8 0E00     		.2byte	0xe
+ 796 00fa 7C       		.byte	0x7c
+ 797 00fb 00       		.sleb128 0
+ 798 00fc 08       		.byte	0x8
+ 799 00fd FF       		.byte	0xff
+ 800 00fe 1A       		.byte	0x1a
+ 801 00ff 38       		.byte	0x38
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccKdEZg8.s 			page 17
+
+
+ 802 0100 24       		.byte	0x24
+ 803 0101 70       		.byte	0x70
+ 804 0102 00       		.sleb128 0
+ 805 0103 08       		.byte	0x8
+ 806 0104 FF       		.byte	0xff
+ 807 0105 1A       		.byte	0x1a
+ 808 0106 22       		.byte	0x22
+ 809 0107 9F       		.byte	0x9f
+ 810 0108 1A000000 		.4byte	.LVL9
+ 811 010c 26000000 		.4byte	.LVL11
+ 812 0110 0E00     		.2byte	0xe
+ 813 0112 7C       		.byte	0x7c
+ 814 0113 00       		.sleb128 0
+ 815 0114 08       		.byte	0x8
+ 816 0115 FF       		.byte	0xff
+ 817 0116 1A       		.byte	0x1a
+ 818 0117 38       		.byte	0x38
+ 819 0118 24       		.byte	0x24
+ 820 0119 70       		.byte	0x70
+ 821 011a 00       		.sleb128 0
+ 822 011b 08       		.byte	0x8
+ 823 011c FF       		.byte	0xff
+ 824 011d 1A       		.byte	0x1a
+ 825 011e 22       		.byte	0x22
+ 826 011f 9F       		.byte	0x9f
+ 827 0120 00000000 		.4byte	0
+ 828 0124 00000000 		.4byte	0
+ 829              	.LLST5:
+ 830 0128 0E000000 		.4byte	.LVL5
+ 831 012c 18000000 		.4byte	.LVL8
+ 832 0130 0100     		.2byte	0x1
+ 833 0132 55       		.byte	0x55
+ 834 0133 1A000000 		.4byte	.LVL9
+ 835 0137 4A000000 		.4byte	.LFE66
+ 836 013b 0100     		.2byte	0x1
+ 837 013d 55       		.byte	0x55
+ 838 013e 00000000 		.4byte	0
+ 839 0142 00000000 		.4byte	0
+ 840              	.LLST6:
+ 841 0146 32000000 		.4byte	.LVL14
+ 842 014a 3A000000 		.4byte	.LVL15
+ 843 014e 0200     		.2byte	0x2
+ 844 0150 30       		.byte	0x30
+ 845 0151 9F       		.byte	0x9f
+ 846 0152 00000000 		.4byte	0
+ 847 0156 00000000 		.4byte	0
+ 848              	.LLST7:
+ 849 015a 3A000000 		.4byte	.LVL15
+ 850 015e 44000000 		.4byte	.LVL17
+ 851 0162 0100     		.2byte	0x1
+ 852 0164 54       		.byte	0x54
+ 853 0165 44000000 		.4byte	.LVL17
+ 854 0169 4A000000 		.4byte	.LFE66
+ 855 016d 0300     		.2byte	0x3
+ 856 016f 74       		.byte	0x74
+ 857 0170 7E       		.sleb128 -2
+ 858 0171 9F       		.byte	0x9f
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccKdEZg8.s 			page 18
+
+
+ 859 0172 00000000 		.4byte	0
+ 860 0176 00000000 		.4byte	0
+ 861              	.LLST8:
+ 862 017a 3A000000 		.4byte	.LVL15
+ 863 017e 44000000 		.4byte	.LVL17
+ 864 0182 0300     		.2byte	0x3
+ 865 0184 74       		.byte	0x74
+ 866 0185 01       		.sleb128 1
+ 867 0186 9F       		.byte	0x9f
+ 868 0187 44000000 		.4byte	.LVL17
+ 869 018b 4A000000 		.4byte	.LFE66
+ 870 018f 0300     		.2byte	0x3
+ 871 0191 74       		.byte	0x74
+ 872 0192 7F       		.sleb128 -1
+ 873 0193 9F       		.byte	0x9f
+ 874 0194 00000000 		.4byte	0
+ 875 0198 00000000 		.4byte	0
+ 876              		.section	.debug_aranges,"",%progbits
+ 877 0000 1C000000 		.4byte	0x1c
+ 878 0004 0200     		.2byte	0x2
+ 879 0006 00000000 		.4byte	.Ldebug_info0
+ 880 000a 04       		.byte	0x4
+ 881 000b 00       		.byte	0
+ 882 000c 0000     		.2byte	0
+ 883 000e 0000     		.2byte	0
+ 884 0010 00000000 		.4byte	.LFB66
+ 885 0014 4A000000 		.4byte	.LFE66-.LFB66
+ 886 0018 00000000 		.4byte	0
+ 887 001c 00000000 		.4byte	0
+ 888              		.section	.debug_ranges,"",%progbits
+ 889              	.Ldebug_ranges0:
+ 890 0000 00000000 		.4byte	.LFB66
+ 891 0004 4A000000 		.4byte	.LFE66
+ 892 0008 00000000 		.4byte	0
+ 893 000c 00000000 		.4byte	0
+ 894              		.section	.debug_line,"",%progbits
+ 895              	.Ldebug_line0:
+ 896 0000 D0000000 		.section	.debug_str,"MS",%progbits,1
+ 896      02009000 
+ 896      00000201 
+ 896      FB0E0D00 
+ 896      01010101 
+ 897              	.LASF11:
+ 898 0000 666C6F61 		.ascii	"float\000"
+ 898      7400
+ 899              	.LASF28:
+ 900 0006 6765745F 		.ascii	"get_modbus_data_registers\000"
+ 900      6D6F6462 
+ 900      75735F64 
+ 900      6174615F 
+ 900      72656769 
+ 901              	.LASF3:
+ 902 0020 73686F72 		.ascii	"short unsigned int\000"
+ 902      7420756E 
+ 902      7369676E 
+ 902      65642069 
+ 902      6E7400
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccKdEZg8.s 			page 19
+
+
+ 903              	.LASF26:
+ 904 0033 70726F63 		.ascii	"process_type_3_message\000"
+ 904      6573735F 
+ 904      74797065 
+ 904      5F335F6D 
+ 904      65737361 
+ 905              	.LASF19:
+ 906 004a 73746172 		.ascii	"starting_register\000"
+ 906      74696E67 
+ 906      5F726567 
+ 906      69737465 
+ 906      7200
+ 907              	.LASF22:
+ 908 005c 7274755F 		.ascii	"rtu_modbus\\process_type_3_message.c\000"
+ 908      6D6F6462 
+ 908      75735C70 
+ 908      726F6365 
+ 908      73735F74 
+ 909              	.LASF21:
+ 910 0080 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 910      4320342E 
+ 910      392E3320 
+ 910      32303135 
+ 910      30333033 
+ 911 00b3 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 911      20726576 
+ 911      6973696F 
+ 911      6E203232 
+ 911      31323230 
+ 912 00e6 32202D66 		.ascii	"2 -ffunction-sections -finline-functions -ffat-lto-"
+ 912      66756E63 
+ 912      74696F6E 
+ 912      2D736563 
+ 912      74696F6E 
+ 913 0119 6F626A65 		.ascii	"objects\000"
+ 913      63747300 
+ 914              	.LASF1:
+ 915 0121 756E7369 		.ascii	"unsigned char\000"
+ 915      676E6564 
+ 915      20636861 
+ 915      7200
+ 916              	.LASF25:
+ 917 012f 696E7075 		.ascii	"input\000"
+ 917      7400
+ 918              	.LASF5:
+ 919 0135 6C6F6E67 		.ascii	"long unsigned int\000"
+ 919      20756E73 
+ 919      69676E65 
+ 919      6420696E 
+ 919      7400
+ 920              	.LASF15:
+ 921 0147 74656D70 		.ascii	"temp\000"
+ 921      00
+ 922              	.LASF9:
+ 923 014c 75696E74 		.ascii	"uint8\000"
+ 923      3800
+ 924              	.LASF12:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccKdEZg8.s 			page 20
+
+
+ 925 0152 646F7562 		.ascii	"double\000"
+ 925      6C6500
+ 926              	.LASF10:
+ 927 0159 75696E74 		.ascii	"uint16\000"
+ 927      313600
+ 928              	.LASF8:
+ 929 0160 756E7369 		.ascii	"unsigned int\000"
+ 929      676E6564 
+ 929      20696E74 
+ 929      00
+ 930              	.LASF7:
+ 931 016d 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 931      206C6F6E 
+ 931      6720756E 
+ 931      7369676E 
+ 931      65642069 
+ 932              	.LASF24:
+ 933 0184 73776170 		.ascii	"swap_16\000"
+ 933      5F313600 
+ 934              	.LASF20:
+ 935 018c 6E756D62 		.ascii	"number\000"
+ 935      657200
+ 936              	.LASF27:
+ 937 0193 6D6F6462 		.ascii	"modbus_address_data\000"
+ 937      75735F61 
+ 937      64647265 
+ 937      73735F64 
+ 937      61746100 
+ 938              	.LASF14:
+ 939 01a7 73697A65 		.ascii	"sizetype\000"
+ 939      74797065 
+ 939      00
+ 940              	.LASF18:
+ 941 01b0 6F75745F 		.ascii	"out_length\000"
+ 941      6C656E67 
+ 941      746800
+ 942              	.LASF6:
+ 943 01bb 6C6F6E67 		.ascii	"long long int\000"
+ 943      206C6F6E 
+ 943      6720696E 
+ 943      7400
+ 944              	.LASF13:
+ 945 01c9 63686172 		.ascii	"char\000"
+ 945      00
+ 946              	.LASF16:
+ 947 01ce 73776170 		.ascii	"swap_ptr\000"
+ 947      5F707472 
+ 947      00
+ 948              	.LASF2:
+ 949 01d7 73686F72 		.ascii	"short int\000"
+ 949      7420696E 
+ 949      7400
+ 950              	.LASF4:
+ 951 01e1 6C6F6E67 		.ascii	"long int\000"
+ 951      20696E74 
+ 951      00
+ 952              	.LASF23:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccKdEZg8.s 			page 21
+
+
+ 953 01ea 433A5C55 		.ascii	"C:\\Users\\glenn\\OneDrive\\PSOC\\moisture_sensor_4"
+ 953      73657273 
+ 953      5C676C65 
+ 953      6E6E5C4F 
+ 953      6E654472 
+ 954 0218 6D5C4D6F 		.ascii	"m\\Moisture_Sensor\\Moisture_Sensor.cydsn\000"
+ 954      69737475 
+ 954      72655F53 
+ 954      656E736F 
+ 954      725C4D6F 
+ 955              	.LASF0:
+ 956 0240 7369676E 		.ascii	"signed char\000"
+ 956      65642063 
+ 956      68617200 
+ 957              	.LASF17:
+ 958 024c 696E5F6C 		.ascii	"in_length\000"
+ 958      656E6774 
+ 958      6800
+ 959              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

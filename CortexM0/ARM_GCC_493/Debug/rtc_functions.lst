@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -9,7 +9,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 1
    6              		.eabi_attribute 24, 1
    7              		.eabi_attribute 25, 1
    8              		.eabi_attribute 26, 1
-   9              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 30, 2
   10              		.eabi_attribute 34, 0
   11              		.eabi_attribute 18, 4
   12              		.code	16
@@ -17,14 +17,71 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 1
   14              		.text
   15              	.Ltext0:
   16              		.cfi_sections	.debug_frame
-  17              		.section	.text.RTC_1_GetMinutes,"ax",%progbits
+  17              		.section	.text.rtc_check_time,"ax",%progbits
   18              		.align	2
-  19              		.code	16
-  20              		.thumb_func
-  21              		.type	RTC_1_GetMinutes, %function
-  22              	RTC_1_GetMinutes:
-  23              	.LFB38:
-  24              		.file 1 "Generated_Source\\PSoC4/RTC_1.h"
+  19              		.global	rtc_check_time
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	rtc_check_time, %function
+  23              	rtc_check_time:
+  24              	.LFB62:
+  25              		.file 1 "rtc_functions\\rtc_functions.c"
+   1:rtc_functions/rtc_functions.c **** /*
+   2:rtc_functions/rtc_functions.c **** **
+   3:rtc_functions/rtc_functions.c **** **
+   4:rtc_functions/rtc_functions.c **** ** File Name: rtc_functions.c
+   5:rtc_functions/rtc_functions.c **** **
+   6:rtc_functions/rtc_functions.c **** **
+   7:rtc_functions/rtc_functions.c **** */
+   8:rtc_functions/rtc_functions.c **** 
+   9:rtc_functions/rtc_functions.c **** #include <project.h>
+  10:rtc_functions/rtc_functions.c **** #include "rtc_functions.h"
+  11:rtc_functions/rtc_functions.c **** #include "cf_external_functions.h"
+  12:rtc_functions/rtc_functions.c **** #include "cf_chain_flow_support.h"
+  13:rtc_functions/rtc_functions.c **** #include "cf_events.h"
+  14:rtc_functions/rtc_functions.c **** #define CF_HOUR_TICK           7
+  15:rtc_functions/rtc_functions.c **** 
+  16:rtc_functions/rtc_functions.c **** 
+  17:rtc_functions/rtc_functions.c **** static uint32 current_time;
+  18:rtc_functions/rtc_functions.c **** static uint32 ref_time;
+  19:rtc_functions/rtc_functions.c **** 
+  20:rtc_functions/rtc_functions.c **** void rtc_check_time( void )
+  21:rtc_functions/rtc_functions.c **** {
+  26              		.loc 1 21 0
+  27              		.cfi_startproc
+  28 0000 70B5     		push	{r4, r5, r6, lr}
+  29              		.cfi_def_cfa_offset 16
+  30              		.cfi_offset 4, -16
+  31              		.cfi_offset 5, -12
+  32              		.cfi_offset 6, -8
+  33              		.cfi_offset 14, -4
+  22:rtc_functions/rtc_functions.c ****     
+  23:rtc_functions/rtc_functions.c ****     current_time = RTC_1_GetTime();
+  34              		.loc 1 23 0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 2
+
+
+  35 0002 FFF7FEFF 		bl	RTC_1_GetTime
+  36              	.LVL0:
+  37 0006 224C     		ldr	r4, .L5
+  24:rtc_functions/rtc_functions.c ****     cf_send_interrupt_event( CF_SECOND_TICK, 1);
+  38              		.loc 1 24 0
+  39 0008 0121     		mov	r1, #1
+  23:rtc_functions/rtc_functions.c ****     cf_send_interrupt_event( CF_SECOND_TICK, 1);
+  40              		.loc 1 23 0
+  41 000a 2060     		str	r0, [r4]
+  42              		.loc 1 24 0
+  43 000c 0520     		mov	r0, #5
+  44 000e FFF7FEFF 		bl	cf_send_interrupt_event
+  45              	.LVL1:
+  25:rtc_functions/rtc_functions.c **** 
+  26:rtc_functions/rtc_functions.c ****     if( RTC_1_GetMinutes( current_time) != RTC_1_GetMinutes(ref_time ) )
+  46              		.loc 1 26 0
+  47 0012 2168     		ldr	r1, [r4]
+  48              	.LVL2:
+  49              	.LBB10:
+  50              	.LBB11:
+  51              		.file 2 "Generated_Source\\PSoC4/RTC_1.h"
    1:Generated_Source\PSoC4/RTC_1.h **** /***************************************************************************//**
    2:Generated_Source\PSoC4/RTC_1.h **** * \file Name: RTC_1.h
    3:Generated_Source\PSoC4/RTC_1.h **** * \version 1.10
@@ -58,12 +115,12 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 1
   31:Generated_Source\PSoC4/RTC_1.h **** 
   32:Generated_Source\PSoC4/RTC_1.h **** /**
   33:Generated_Source\PSoC4/RTC_1.h **** * \addtogroup group_structures
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 2
-
-
   34:Generated_Source\PSoC4/RTC_1.h **** * @{
   35:Generated_Source\PSoC4/RTC_1.h **** */
   36:Generated_Source\PSoC4/RTC_1.h **** 
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 3
+
+
   37:Generated_Source\PSoC4/RTC_1.h **** /**
   38:Generated_Source\PSoC4/RTC_1.h **** * This is the data structure that is used to save the current time and date 
   39:Generated_Source\PSoC4/RTC_1.h **** * (RTC_currentTimeDate), and Alarm time and date (RTC_alarmCfgTimeDate).
@@ -118,12 +175,12 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 1
   88:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H0500 5
   89:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H0600 6
   90:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H0700 7
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 3
-
-
   91:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H0800 8
   92:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H0900 9
   93:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H1000 10
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 4
+
+
   94:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H1100 11
   95:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H1200 12
   96:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1__H1300 13
@@ -178,12 +235,12 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 1
  145:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_HOUR            (0u)
  146:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_DAY             (1u)
  147:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_MONTH           (1u)
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 4
-
-
  148:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_YEAR            (1970u)
  149:Generated_Source\PSoC4/RTC_1.h **** 
  150:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_ALARM_STATUS    (1u)
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 5
+
+
  151:Generated_Source\PSoC4/RTC_1.h **** 
  152:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_DST_STATUS      (1u)
  153:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_INITIAL_DST_DATE_TYPE   (0u)
@@ -238,12 +295,12 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 1
  202:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_DAYS_IN_APRIL       (30u)
  203:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_DAYS_IN_MAY         (31u)
  204:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_DAYS_IN_JUNE        (30u)
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 5
-
-
  205:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_DAYS_IN_JULY        (31u)
  206:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_DAYS_IN_AUGUST      (31u)
  207:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_DAYS_IN_SEPTEMBER   (30u)
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 6
+
+
  208:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_DAYS_IN_OCTOBER     (31u)
  209:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_DAYS_IN_NOVEMBER    (30u)
  210:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_DAYS_IN_DECEMBER    (31u)
@@ -298,12 +355,12 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 1
  259:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_10_DAY_OFFSET     (4u)
  260:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_DAY_OFFSET        (0u)
  261:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_1000_YEAR_OFFSET  (28u)
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 6
-
-
  262:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_100_YEAR_OFFSET   (24u)
  263:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_10_YEAR_OFFSET    (20u)
  264:Generated_Source\PSoC4/RTC_1.h ****     #define RTC_1_YEAR_OFFSET       (16u)
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 7
+
+
  265:Generated_Source\PSoC4/RTC_1.h **** #endif /* (RTC_1_INITIAL_DATA_FORMAT == RTC_1__MM_DD_YYYY) */
  266:Generated_Source\PSoC4/RTC_1.h **** 
  267:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_10_MONTH_MASK          (0x00000001uL << RTC_1_10_MONTH_OFFSET)
@@ -358,12 +415,12 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 1
  316:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_STATUS_AM_PM_OFFSET    (4u)
  317:Generated_Source\PSoC4/RTC_1.h **** 
  318:Generated_Source\PSoC4/RTC_1.h **** /* Definition of the RTC status values. */
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 7
-
-
  319:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_STATUS_DST             (1uL << RTC_1_STATUS_DST_OFFSET)
  320:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_STATUS_LY              (1uL << RTC_1_STATUS_LY_OFFSET)
  321:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_STATUS_AM_PM           (1uL << RTC_1_STATUS_AM_PM_OFFSET)
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 8
+
+
  322:Generated_Source\PSoC4/RTC_1.h **** 
  323:Generated_Source\PSoC4/RTC_1.h **** /* Number of bits per one BCD digit. */
  324:Generated_Source\PSoC4/RTC_1.h **** #define RTC_1_BCD_NUMBER_SIZE        (4u)
@@ -418,12 +475,12 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 1
  373:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_LeapYear(uint32 year);
  374:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_IsBitSet(uint32 var, uint32 mask);
  375:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_GetSecond(uint32 inputTime);
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 8
-
-
  376:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_GetMinutes(uint32 inputTime);
  377:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_GetHours(uint32 inputTime);
  378:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_GetAmPm(uint32 inputTime);
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 9
+
+
  379:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_GetDay(uint32 date);
  380:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_GetMonth(uint32 date);
  381:Generated_Source\PSoC4/RTC_1.h **** static uint32 RTC_1_GetYear(uint32 date);
@@ -478,12 +535,12 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 1
  430:Generated_Source\PSoC4/RTC_1.h **** *
  431:Generated_Source\PSoC4/RTC_1.h **** * \param
  432:Generated_Source\PSoC4/RTC_1.h **** *  var The variable to be checked.
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 9
-
-
  433:Generated_Source\PSoC4/RTC_1.h **** * \param
  434:Generated_Source\PSoC4/RTC_1.h **** *  mask The mask for a bit to be checked.
  435:Generated_Source\PSoC4/RTC_1.h **** *
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 10
+
+
  436:Generated_Source\PSoC4/RTC_1.h **** * \return
  437:Generated_Source\PSoC4/RTC_1.h **** *  0u - Bit is not set.
  438:Generated_Source\PSoC4/RTC_1.h **** * \return
@@ -538,12 +595,12 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 1
  487:Generated_Source\PSoC4/RTC_1.h **** * \brief
  488:Generated_Source\PSoC4/RTC_1.h **** *  Returns the seconds value from the time value that is passed as a/the parameter.
  489:Generated_Source\PSoC4/RTC_1.h **** *
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 10
-
-
  490:Generated_Source\PSoC4/RTC_1.h **** * \param
  491:Generated_Source\PSoC4/RTC_1.h **** *  time The time value.
  492:Generated_Source\PSoC4/RTC_1.h **** *
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 11
+
+
  493:Generated_Source\PSoC4/RTC_1.h **** * \return
  494:Generated_Source\PSoC4/RTC_1.h **** *  The seconds value.
  495:Generated_Source\PSoC4/RTC_1.h **** *
@@ -576,65 +633,129 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 1
  522:Generated_Source\PSoC4/RTC_1.h **** *******************************************************************************/
  523:Generated_Source\PSoC4/RTC_1.h **** static CY_INLINE uint32 RTC_1_GetMinutes(uint32 inputTime)
  524:Generated_Source\PSoC4/RTC_1.h **** {
-  25              		.loc 1 524 0
-  26              		.cfi_startproc
-  27 0000 80B5     		push	{r7, lr}
-  28              		.cfi_def_cfa_offset 8
-  29              		.cfi_offset 7, -8
-  30              		.cfi_offset 14, -4
-  31 0002 84B0     		sub	sp, sp, #16
-  32              		.cfi_def_cfa_offset 24
-  33 0004 00AF     		add	r7, sp, #0
-  34              		.cfi_def_cfa_register 7
-  35 0006 7860     		str	r0, [r7, #4]
  525:Generated_Source\PSoC4/RTC_1.h ****     uint32 retVal;
  526:Generated_Source\PSoC4/RTC_1.h **** 
  527:Generated_Source\PSoC4/RTC_1.h ****     retVal  = ((inputTime & RTC_1_10_MINUTES_MASK) >> RTC_1_10_MINUTES_OFFSET) * 10u;
-  36              		.loc 1 527 0
-  37 0008 7A68     		ldr	r2, [r7, #4]
-  38 000a E023     		mov	r3, #224
-  39 000c DB01     		lsl	r3, r3, #7
-  40 000e 1340     		and	r3, r2
-  41 0010 1A0B     		lsr	r2, r3, #12
-  42 0012 131C     		mov	r3, r2
-  43 0014 9B00     		lsl	r3, r3, #2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 11
+  52              		.loc 2 527 0
+  53 0014 E022     		mov	r2, #224
+  54 0016 0B1C     		mov	r3, r1
+  55 0018 D201     		lsl	r2, r2, #7
+  56              	.LBE11:
+  57              	.LBE10:
+  58              		.loc 1 26 0
+  59 001a 6068     		ldr	r0, [r4, #4]
+  60              	.LBB19:
+  61              	.LBB12:
+  62              		.loc 2 527 0
+  63 001c 1340     		and	r3, r2
+  64 001e 1B0B     		lsr	r3, r3, #12
+  65              	.LBE12:
+  66              	.LBE19:
+  67              	.LBB20:
+  68              	.LBB21:
+  69 0020 0240     		and	r2, r0
+  70              	.LBE21:
+  71              	.LBE20:
+  72              	.LBB28:
+  73              	.LBB13:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 12
 
 
-  44 0016 9B18     		add	r3, r3, r2
-  45 0018 5B00     		lsl	r3, r3, #1
-  46 001a FB60     		str	r3, [r7, #12]
+  74 0022 9D00     		lsl	r5, r3, #2
+  75              	.LBE13:
+  76              	.LBE28:
+  77              	.LBB29:
+  78              	.LBB22:
+  79 0024 120B     		lsr	r2, r2, #12
+  80              	.LBE22:
+  81              	.LBE29:
+  82              	.LBB30:
+  83              	.LBB14:
+  84 0026 ED18     		add	r5, r5, r3
+  85              	.LBE14:
+  86              	.LBE30:
+  87              	.LBB31:
+  88              	.LBB23:
+  89 0028 9300     		lsl	r3, r2, #2
+  90 002a 9A18     		add	r2, r3, r2
+  91              	.LBE23:
+  92              	.LBE31:
+  93              	.LBB32:
+  94              	.LBB15:
  528:Generated_Source\PSoC4/RTC_1.h ****     retVal += (inputTime & RTC_1_MINUTES_MASK) >> RTC_1_MINUTES_OFFSET;
-  47              		.loc 1 528 0
-  48 001c 7A68     		ldr	r2, [r7, #4]
-  49 001e F023     		mov	r3, #240
-  50 0020 1B01     		lsl	r3, r3, #4
-  51 0022 1340     		and	r3, r2
-  52 0024 1B0A     		lsr	r3, r3, #8
-  53 0026 FA68     		ldr	r2, [r7, #12]
-  54 0028 D318     		add	r3, r2, r3
-  55 002a FB60     		str	r3, [r7, #12]
+  95              		.loc 2 528 0
+  96 002c F023     		mov	r3, #240
+  97 002e 0E1C     		mov	r6, r1
+  98 0030 1B01     		lsl	r3, r3, #4
+  99 0032 1E40     		and	r6, r3
+ 100              	.LBE15:
+ 101              	.LBE32:
+ 102              	.LBB33:
+ 103              	.LBB24:
+ 104 0034 0340     		and	r3, r0
+ 105              	.LBE24:
+ 106              	.LBE33:
+ 107              	.LBB34:
+ 108              	.LBB16:
+ 527:Generated_Source\PSoC4/RTC_1.h ****     retVal += (inputTime & RTC_1_MINUTES_MASK) >> RTC_1_MINUTES_OFFSET;
+ 109              		.loc 2 527 0
+ 110 0036 6D00     		lsl	r5, r5, #1
+ 111              	.LVL3:
+ 112              	.LBE16:
+ 113              	.LBE34:
+ 114              	.LBB35:
+ 115              	.LBB25:
+ 116 0038 5200     		lsl	r2, r2, #1
+ 117              	.LVL4:
+ 118              	.LBE25:
+ 119              	.LBE35:
+ 120              	.LBB36:
+ 121              	.LBB17:
+ 122              		.loc 2 528 0
+ 123 003a 360A     		lsr	r6, r6, #8
+ 124              	.LBE17:
+ 125              	.LBE36:
+ 126              	.LBB37:
+ 127              	.LBB26:
+ 128 003c 1B0A     		lsr	r3, r3, #8
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 13
+
+
+ 129              	.LBE26:
+ 130              	.LBE37:
+ 131              	.LBB38:
+ 132              	.LBB18:
+ 133 003e AD19     		add	r5, r5, r6
+ 134              	.LVL5:
+ 135              	.LBE18:
+ 136              	.LBE38:
+ 137              	.LBB39:
+ 138              	.LBB27:
+ 139 0040 D218     		add	r2, r2, r3
+ 140              	.LVL6:
+ 141              	.LBE27:
+ 142              	.LBE39:
+ 143              		.loc 1 26 0
+ 144 0042 9542     		cmp	r5, r2
+ 145 0044 05D0     		beq	.L2
+  27:rtc_functions/rtc_functions.c ****     {
+  28:rtc_functions/rtc_functions.c ****         cf_send_interrupt_event( CF_MINUTE_TICK, 1);
+ 146              		.loc 1 28 0
+ 147 0046 0620     		mov	r0, #6
+ 148              	.LVL7:
+ 149 0048 0121     		mov	r1, #1
+ 150              	.LVL8:
+ 151 004a FFF7FEFF 		bl	cf_send_interrupt_event
+ 152              	.LVL9:
+ 153 004e 2168     		ldr	r1, [r4]
+ 154 0050 6068     		ldr	r0, [r4, #4]
+ 155              	.L2:
+ 156              	.LVL10:
+ 157              	.LBB40:
+ 158              	.LBB41:
  529:Generated_Source\PSoC4/RTC_1.h **** 
  530:Generated_Source\PSoC4/RTC_1.h ****     return (retVal);
-  56              		.loc 1 530 0
-  57 002c FB68     		ldr	r3, [r7, #12]
  531:Generated_Source\PSoC4/RTC_1.h **** }
-  58              		.loc 1 531 0
-  59 002e 181C     		mov	r0, r3
-  60 0030 BD46     		mov	sp, r7
-  61 0032 04B0     		add	sp, sp, #16
-  62              		@ sp needed
-  63 0034 80BD     		pop	{r7, pc}
-  64              		.cfi_endproc
-  65              	.LFE38:
-  66              		.size	RTC_1_GetMinutes, .-RTC_1_GetMinutes
-  67 0036 C046     		.section	.text.RTC_1_GetHours,"ax",%progbits
-  68              		.align	2
-  69              		.code	16
-  70              		.thumb_func
-  71              		.type	RTC_1_GetHours, %function
-  72              	RTC_1_GetHours:
-  73              	.LFB39:
  532:Generated_Source\PSoC4/RTC_1.h **** 
  533:Generated_Source\PSoC4/RTC_1.h **** 
  534:Generated_Source\PSoC4/RTC_1.h **** /*******************************************************************************
@@ -653,174 +774,118 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 1
  547:Generated_Source\PSoC4/RTC_1.h **** *******************************************************************************/
  548:Generated_Source\PSoC4/RTC_1.h **** static CY_INLINE uint32 RTC_1_GetHours(uint32 inputTime)
  549:Generated_Source\PSoC4/RTC_1.h **** {
-  74              		.loc 1 549 0
-  75              		.cfi_startproc
-  76 0000 80B5     		push	{r7, lr}
-  77              		.cfi_def_cfa_offset 8
-  78              		.cfi_offset 7, -8
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 12
-
-
-  79              		.cfi_offset 14, -4
-  80 0002 84B0     		sub	sp, sp, #16
-  81              		.cfi_def_cfa_offset 24
-  82 0004 00AF     		add	r7, sp, #0
-  83              		.cfi_def_cfa_register 7
-  84 0006 7860     		str	r0, [r7, #4]
  550:Generated_Source\PSoC4/RTC_1.h ****     uint32 retVal;
  551:Generated_Source\PSoC4/RTC_1.h **** 
  552:Generated_Source\PSoC4/RTC_1.h ****     retVal  = ((inputTime & RTC_1_10_HOURS_MASK) >> RTC_1_10_HOURS_OFFSET) * 10u;
-  85              		.loc 1 552 0
-  86 0008 7A68     		ldr	r2, [r7, #4]
-  87 000a C023     		mov	r3, #192
-  88 000c 9B03     		lsl	r3, r3, #14
-  89 000e 1340     		and	r3, r2
-  90 0010 1A0D     		lsr	r2, r3, #20
-  91 0012 131C     		mov	r3, r2
-  92 0014 9B00     		lsl	r3, r3, #2
-  93 0016 9B18     		add	r3, r3, r2
-  94 0018 5B00     		lsl	r3, r3, #1
-  95 001a FB60     		str	r3, [r7, #12]
+ 159              		.loc 2 552 0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 14
+
+
+ 160 0052 C023     		mov	r3, #192
+ 161 0054 0A1C     		mov	r2, r1
+ 162 0056 9B03     		lsl	r3, r3, #14
+ 163 0058 1A40     		and	r2, r3
+ 164 005a 120D     		lsr	r2, r2, #20
+ 165              	.LBE41:
+ 166              	.LBE40:
+ 167              	.LBB48:
+ 168              	.LBB49:
+ 169 005c 0340     		and	r3, r0
+ 170              	.LBE49:
+ 171              	.LBE48:
+ 172              	.LBB56:
+ 173              	.LBB42:
+ 174 005e 9500     		lsl	r5, r2, #2
+ 175              	.LBE42:
+ 176              	.LBE56:
+ 177              	.LBB57:
+ 178              	.LBB50:
+ 179 0060 1B0D     		lsr	r3, r3, #20
+ 180              	.LBE50:
+ 181              	.LBE57:
+ 182              	.LBB58:
+ 183              	.LBB43:
+ 184 0062 AD18     		add	r5, r5, r2
+ 185              	.LBE43:
+ 186              	.LBE58:
+ 187              	.LBB59:
+ 188              	.LBB51:
+ 189 0064 9A00     		lsl	r2, r3, #2
+ 190 0066 D318     		add	r3, r2, r3
+ 191              	.LBE51:
+ 192              	.LBE59:
+ 193              	.LBB60:
+ 194              	.LBB44:
  553:Generated_Source\PSoC4/RTC_1.h ****     retVal += (inputTime & RTC_1_HOURS_MASK) >> RTC_1_HOURS_OFFSET;
-  96              		.loc 1 553 0
-  97 001c 7A68     		ldr	r2, [r7, #4]
-  98 001e F023     		mov	r3, #240
-  99 0020 1B03     		lsl	r3, r3, #12
- 100 0022 1340     		and	r3, r2
- 101 0024 1B0C     		lsr	r3, r3, #16
- 102 0026 FA68     		ldr	r2, [r7, #12]
- 103 0028 D318     		add	r3, r2, r3
- 104 002a FB60     		str	r3, [r7, #12]
- 554:Generated_Source\PSoC4/RTC_1.h **** 
- 555:Generated_Source\PSoC4/RTC_1.h ****     return (retVal);
- 105              		.loc 1 555 0
- 106 002c FB68     		ldr	r3, [r7, #12]
- 556:Generated_Source\PSoC4/RTC_1.h **** }
- 107              		.loc 1 556 0
- 108 002e 181C     		mov	r0, r3
- 109 0030 BD46     		mov	sp, r7
- 110 0032 04B0     		add	sp, sp, #16
- 111              		@ sp needed
- 112 0034 80BD     		pop	{r7, pc}
- 113              		.cfi_endproc
- 114              	.LFE39:
- 115              		.size	RTC_1_GetHours, .-RTC_1_GetHours
- 116 0036 C046     		.bss
- 117              		.align	2
- 118              	current_time:
- 119 0000 00000000 		.space	4
- 120              		.align	2
- 121              	ref_time:
- 122 0004 00000000 		.space	4
- 123              		.section	.text.rtc_check_time,"ax",%progbits
- 124              		.align	2
- 125              		.global	rtc_check_time
- 126              		.code	16
- 127              		.thumb_func
- 128              		.type	rtc_check_time, %function
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 13
+ 195              		.loc 2 553 0
+ 196 0068 F022     		mov	r2, #240
+ 197 006a 0E1C     		mov	r6, r1
+ 198 006c 1203     		lsl	r2, r2, #12
+ 199 006e 1640     		and	r6, r2
+ 200              	.LBE44:
+ 201              	.LBE60:
+ 202              	.LBB61:
+ 203              	.LBB52:
+ 204 0070 1040     		and	r0, r2
+ 205              	.LBE52:
+ 206              	.LBE61:
+ 207              	.LBB62:
+ 208              	.LBB45:
+ 552:Generated_Source\PSoC4/RTC_1.h ****     retVal += (inputTime & RTC_1_HOURS_MASK) >> RTC_1_HOURS_OFFSET;
+ 209              		.loc 2 552 0
+ 210 0072 6D00     		lsl	r5, r5, #1
+ 211              	.LVL11:
+ 212              	.LBE45:
+ 213              	.LBE62:
+ 214              	.LBB63:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 15
 
 
- 129              	rtc_check_time:
- 130              	.LFB62:
- 131              		.file 2 "rtc_functions\\rtc_functions.c"
-   1:rtc_functions/rtc_functions.c **** /*
-   2:rtc_functions/rtc_functions.c **** **
-   3:rtc_functions/rtc_functions.c **** **
-   4:rtc_functions/rtc_functions.c **** ** File Name: rtc_functions.c
-   5:rtc_functions/rtc_functions.c **** **
-   6:rtc_functions/rtc_functions.c **** **
-   7:rtc_functions/rtc_functions.c **** */
-   8:rtc_functions/rtc_functions.c **** 
-   9:rtc_functions/rtc_functions.c **** #include <project.h>
-  10:rtc_functions/rtc_functions.c **** #include "rtc_functions.h"
-  11:rtc_functions/rtc_functions.c **** #include "cf_external_functions.h"
-  12:rtc_functions/rtc_functions.c **** #include "cf_chain_flow_support.h"
-  13:rtc_functions/rtc_functions.c **** #include "cf_events.h"
-  14:rtc_functions/rtc_functions.c **** #define CF_HOUR_TICK           7
-  15:rtc_functions/rtc_functions.c **** 
-  16:rtc_functions/rtc_functions.c **** 
-  17:rtc_functions/rtc_functions.c **** static uint32 current_time;
-  18:rtc_functions/rtc_functions.c **** static uint32 ref_time;
-  19:rtc_functions/rtc_functions.c **** 
-  20:rtc_functions/rtc_functions.c **** void rtc_check_time( void )
-  21:rtc_functions/rtc_functions.c **** {
- 132              		.loc 2 21 0
- 133              		.cfi_startproc
- 134 0000 98B5     		push	{r3, r4, r7, lr}
- 135              		.cfi_def_cfa_offset 16
- 136              		.cfi_offset 3, -16
- 137              		.cfi_offset 4, -12
- 138              		.cfi_offset 7, -8
- 139              		.cfi_offset 14, -4
- 140 0002 00AF     		add	r7, sp, #0
- 141              		.cfi_def_cfa_register 7
-  22:rtc_functions/rtc_functions.c ****     
-  23:rtc_functions/rtc_functions.c ****     current_time = RTC_1_GetTime();
- 142              		.loc 2 23 0
- 143 0004 FFF7FEFF 		bl	RTC_1_GetTime
- 144 0008 021C     		mov	r2, r0
- 145 000a 184B     		ldr	r3, .L8
- 146 000c 1A60     		str	r2, [r3]
-  24:rtc_functions/rtc_functions.c ****     cf_send_interrupt_event( CF_SECOND_TICK, 1);
- 147              		.loc 2 24 0
- 148 000e 0520     		mov	r0, #5
- 149 0010 0121     		mov	r1, #1
- 150 0012 FFF7FEFF 		bl	cf_send_interrupt_event
-  25:rtc_functions/rtc_functions.c **** 
-  26:rtc_functions/rtc_functions.c ****     if( RTC_1_GetMinutes( current_time) != RTC_1_GetMinutes(ref_time ) )
- 151              		.loc 2 26 0
- 152 0016 154B     		ldr	r3, .L8
- 153 0018 1B68     		ldr	r3, [r3]
- 154 001a 181C     		mov	r0, r3
- 155 001c FFF7FEFF 		bl	RTC_1_GetMinutes
- 156 0020 041C     		mov	r4, r0
- 157 0022 134B     		ldr	r3, .L8+4
- 158 0024 1B68     		ldr	r3, [r3]
- 159 0026 181C     		mov	r0, r3
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 14
-
-
- 160 0028 FFF7FEFF 		bl	RTC_1_GetMinutes
- 161 002c 031C     		mov	r3, r0
- 162 002e 9C42     		cmp	r4, r3
- 163 0030 03D0     		beq	.L6
-  27:rtc_functions/rtc_functions.c ****     {
-  28:rtc_functions/rtc_functions.c ****         cf_send_interrupt_event( CF_MINUTE_TICK, 1);
- 164              		.loc 2 28 0
- 165 0032 0620     		mov	r0, #6
- 166 0034 0121     		mov	r1, #1
- 167 0036 FFF7FEFF 		bl	cf_send_interrupt_event
- 168              	.L6:
+ 215              	.LBB53:
+ 216 0074 5B00     		lsl	r3, r3, #1
+ 217              	.LBE53:
+ 218              	.LBE63:
+ 219              	.LBB64:
+ 220              	.LBB46:
+ 221              		.loc 2 553 0
+ 222 0076 360C     		lsr	r6, r6, #16
+ 223              	.LBE46:
+ 224              	.LBE64:
+ 225              	.LBB65:
+ 226              	.LBB54:
+ 227 0078 000C     		lsr	r0, r0, #16
+ 228              	.LBE54:
+ 229              	.LBE65:
+ 230              	.LBB66:
+ 231              	.LBB47:
+ 232 007a AD19     		add	r5, r5, r6
+ 233              	.LVL12:
+ 234              	.LBE47:
+ 235              	.LBE66:
+ 236              	.LBB67:
+ 237              	.LBB55:
+ 238 007c 1B18     		add	r3, r3, r0
+ 239              	.LBE55:
+ 240              	.LBE67:
   29:rtc_functions/rtc_functions.c ****     }
   30:rtc_functions/rtc_functions.c ****     if( RTC_1_GetHours( current_time) != RTC_1_GetHours(ref_time ) )
- 169              		.loc 2 30 0
- 170 003a 0C4B     		ldr	r3, .L8
- 171 003c 1B68     		ldr	r3, [r3]
- 172 003e 181C     		mov	r0, r3
- 173 0040 FFF7FEFF 		bl	RTC_1_GetHours
- 174 0044 041C     		mov	r4, r0
- 175 0046 0A4B     		ldr	r3, .L8+4
- 176 0048 1B68     		ldr	r3, [r3]
- 177 004a 181C     		mov	r0, r3
- 178 004c FFF7FEFF 		bl	RTC_1_GetHours
- 179 0050 031C     		mov	r3, r0
- 180 0052 9C42     		cmp	r4, r3
- 181 0054 03D0     		beq	.L7
+ 241              		.loc 1 30 0
+ 242 007e 9D42     		cmp	r5, r3
+ 243 0080 04D0     		beq	.L3
   31:rtc_functions/rtc_functions.c ****     {
   32:rtc_functions/rtc_functions.c ****         cf_send_interrupt_event( CF_HOUR_TICK, 1);
- 182              		.loc 2 32 0
- 183 0056 0720     		mov	r0, #7
- 184 0058 0121     		mov	r1, #1
- 185 005a FFF7FEFF 		bl	cf_send_interrupt_event
- 186              	.L7:
+ 244              		.loc 1 32 0
+ 245 0082 0121     		mov	r1, #1
+ 246              	.LVL13:
+ 247 0084 0720     		mov	r0, #7
+ 248 0086 FFF7FEFF 		bl	cf_send_interrupt_event
+ 249              	.LVL14:
+ 250 008a 2168     		ldr	r1, [r4]
+ 251              	.L3:
   33:rtc_functions/rtc_functions.c ****     }
   34:rtc_functions/rtc_functions.c ****     ref_time = current_time;
- 187              		.loc 2 34 0
- 188 005e 034B     		ldr	r3, .L8
- 189 0060 1A68     		ldr	r2, [r3]
- 190 0062 034B     		ldr	r3, .L8+4
- 191 0064 1A60     		str	r2, [r3]
+ 252              		.loc 1 34 0
+ 253 008c 6160     		str	r1, [r4, #4]
   35:rtc_functions/rtc_functions.c ****       
   36:rtc_functions/rtc_functions.c ****     
   37:rtc_functions/rtc_functions.c ****     
@@ -828,604 +893,1294 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 1
   39:rtc_functions/rtc_functions.c ****     
   40:rtc_functions/rtc_functions.c ****     
   41:rtc_functions/rtc_functions.c **** }
- 192              		.loc 2 41 0
- 193 0066 BD46     		mov	sp, r7
- 194              		@ sp needed
- 195 0068 98BD     		pop	{r3, r4, r7, pc}
- 196              	.L9:
- 197 006a C046     		.align	2
- 198              	.L8:
- 199 006c 00000000 		.word	current_time
- 200 0070 04000000 		.word	ref_time
- 201              		.cfi_endproc
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 15
+ 254              		.loc 1 41 0
+ 255              		@ sp needed
+ 256 008e 70BD     		pop	{r4, r5, r6, pc}
+ 257              	.L6:
+ 258              		.align	2
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 16
 
 
- 202              	.LFE62:
- 203              		.size	rtc_check_time, .-rtc_check_time
- 204              		.section	.text.init_rtc,"ax",%progbits
- 205              		.align	2
- 206              		.global	init_rtc
- 207              		.code	16
- 208              		.thumb_func
- 209              		.type	init_rtc, %function
- 210              	init_rtc:
- 211              	.LFB63:
+ 259              	.L5:
+ 260 0090 00000000 		.word	.LANCHOR0
+ 261              		.cfi_endproc
+ 262              	.LFE62:
+ 263              		.size	rtc_check_time, .-rtc_check_time
+ 264              		.section	.text.init_rtc,"ax",%progbits
+ 265              		.align	2
+ 266              		.global	init_rtc
+ 267              		.code	16
+ 268              		.thumb_func
+ 269              		.type	init_rtc, %function
+ 270              	init_rtc:
+ 271              	.LFB63:
   42:rtc_functions/rtc_functions.c **** 
   43:rtc_functions/rtc_functions.c **** int init_rtc(void)
   44:rtc_functions/rtc_functions.c **** {
- 212              		.loc 2 44 0
- 213              		.cfi_startproc
- 214 0000 80B5     		push	{r7, lr}
- 215              		.cfi_def_cfa_offset 8
- 216              		.cfi_offset 7, -8
- 217              		.cfi_offset 14, -4
- 218 0002 00AF     		add	r7, sp, #0
- 219              		.cfi_def_cfa_register 7
+ 272              		.loc 1 44 0
+ 273              		.cfi_startproc
+ 274 0000 08B5     		push	{r3, lr}
+ 275              		.cfi_def_cfa_offset 8
+ 276              		.cfi_offset 3, -8
+ 277              		.cfi_offset 14, -4
   45:rtc_functions/rtc_functions.c ****     
   46:rtc_functions/rtc_functions.c ****     RTC_1_Start();
- 220              		.loc 2 46 0
- 221 0004 FFF7FEFF 		bl	RTC_1_Start
+ 278              		.loc 1 46 0
+ 279 0002 FFF7FEFF 		bl	RTC_1_Start
+ 280              	.LVL15:
   47:rtc_functions/rtc_functions.c ****     RTC_1_SetPeriod( 1, 1 );
- 222              		.loc 2 47 0
- 223 0008 0120     		mov	r0, #1
- 224 000a 0121     		mov	r1, #1
- 225 000c FFF7FEFF 		bl	RTC_1_SetPeriod
+ 281              		.loc 1 47 0
+ 282 0006 0120     		mov	r0, #1
+ 283 0008 0121     		mov	r1, #1
+ 284 000a FFF7FEFF 		bl	RTC_1_SetPeriod
+ 285              	.LVL16:
   48:rtc_functions/rtc_functions.c ****     ref_time = RTC_1_GetTime();
- 226              		.loc 2 48 0
- 227 0010 FFF7FEFF 		bl	RTC_1_GetTime
- 228 0014 021C     		mov	r2, r0
- 229 0016 034B     		ldr	r3, .L12
- 230 0018 1A60     		str	r2, [r3]
+ 286              		.loc 1 48 0
+ 287 000e FFF7FEFF 		bl	RTC_1_GetTime
+ 288              	.LVL17:
+ 289 0012 024B     		ldr	r3, .L8
   49:rtc_functions/rtc_functions.c ****     return CF_DISABLE;
- 231              		.loc 2 49 0
- 232 001a 0223     		mov	r3, #2
   50:rtc_functions/rtc_functions.c **** }
- 233              		.loc 2 50 0
- 234 001c 181C     		mov	r0, r3
- 235 001e BD46     		mov	sp, r7
- 236              		@ sp needed
- 237 0020 80BD     		pop	{r7, pc}
- 238              	.L13:
- 239 0022 C046     		.align	2
- 240              	.L12:
- 241 0024 04000000 		.word	ref_time
- 242              		.cfi_endproc
- 243              	.LFE63:
- 244              		.size	init_rtc, .-init_rtc
- 245              		.text
- 246              	.Letext0:
- 247              		.file 3 "Generated_Source\\PSoC4/cytypes.h"
- 248              		.section	.debug_info,"",%progbits
- 249              	.Ldebug_info0:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 16
+ 290              		.loc 1 50 0
+ 291              		@ sp needed
+  48:rtc_functions/rtc_functions.c ****     ref_time = RTC_1_GetTime();
+ 292              		.loc 1 48 0
+ 293 0014 5860     		str	r0, [r3, #4]
+ 294              		.loc 1 50 0
+ 295 0016 0220     		mov	r0, #2
+ 296 0018 08BD     		pop	{r3, pc}
+ 297              	.L9:
+ 298 001a C046     		.align	2
+ 299              	.L8:
+ 300 001c 00000000 		.word	.LANCHOR0
+ 301              		.cfi_endproc
+ 302              	.LFE63:
+ 303              		.size	init_rtc, .-init_rtc
+ 304              		.bss
+ 305              		.align	2
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 17
 
 
- 250 0000 4A010000 		.4byte	0x14a
- 251 0004 0400     		.2byte	0x4
- 252 0006 00000000 		.4byte	.Ldebug_abbrev0
- 253 000a 04       		.byte	0x4
- 254 000b 01       		.uleb128 0x1
- 255 000c 0E000000 		.4byte	.LASF19
- 256 0010 01       		.byte	0x1
- 257 0011 88010000 		.4byte	.LASF20
- 258 0015 EF000000 		.4byte	.LASF21
- 259 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 260 001d 00000000 		.4byte	0
- 261 0021 00000000 		.4byte	.Ldebug_line0
- 262 0025 02       		.uleb128 0x2
- 263 0026 01       		.byte	0x1
- 264 0027 06       		.byte	0x6
- 265 0028 C8010000 		.4byte	.LASF0
- 266 002c 02       		.uleb128 0x2
- 267 002d 01       		.byte	0x1
- 268 002e 08       		.byte	0x8
- 269 002f 45010000 		.4byte	.LASF1
- 270 0033 02       		.uleb128 0x2
- 271 0034 02       		.byte	0x2
- 272 0035 05       		.byte	0x5
- 273 0036 F4010000 		.4byte	.LASF2
- 274 003a 02       		.uleb128 0x2
- 275 003b 02       		.byte	0x2
- 276 003c 07       		.byte	0x7
- 277 003d B5010000 		.4byte	.LASF3
- 278 0041 02       		.uleb128 0x2
- 279 0042 04       		.byte	0x4
- 280 0043 05       		.byte	0x5
- 281 0044 58010000 		.4byte	.LASF4
- 282 0048 02       		.uleb128 0x2
- 283 0049 04       		.byte	0x4
- 284 004a 07       		.byte	0x7
- 285 004b C6000000 		.4byte	.LASF5
- 286 004f 02       		.uleb128 0x2
- 287 0050 08       		.byte	0x8
- 288 0051 05       		.byte	0x5
- 289 0052 00000000 		.4byte	.LASF6
- 290 0056 02       		.uleb128 0x2
- 291 0057 08       		.byte	0x8
- 292 0058 07       		.byte	0x7
- 293 0059 D8000000 		.4byte	.LASF7
- 294 005d 03       		.uleb128 0x3
- 295 005e 04       		.byte	0x4
- 296 005f 05       		.byte	0x5
- 297 0060 696E7400 		.ascii	"int\000"
- 298 0064 02       		.uleb128 0x2
- 299 0065 04       		.byte	0x4
- 300 0066 07       		.byte	0x7
- 301 0067 9C000000 		.4byte	.LASF8
- 302 006b 04       		.uleb128 0x4
- 303 006c A9000000 		.4byte	.LASF22
- 304 0070 03       		.byte	0x3
- 305 0071 9A01     		.2byte	0x19a
- 306 0073 48000000 		.4byte	0x48
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 17
+ 306              		.set	.LANCHOR0,. + 0
+ 307              		.type	current_time, %object
+ 308              		.size	current_time, 4
+ 309              	current_time:
+ 310 0000 00000000 		.space	4
+ 311              		.type	ref_time, %object
+ 312              		.size	ref_time, 4
+ 313              	ref_time:
+ 314 0004 00000000 		.space	4
+ 315              		.text
+ 316              	.Letext0:
+ 317              		.file 3 "Generated_Source\\PSoC4/cytypes.h"
+ 318              		.file 4 ".\\chain_flow/cf_events.h"
+ 319              		.section	.debug_info,"",%progbits
+ 320              	.Ldebug_info0:
+ 321 0000 92020000 		.4byte	0x292
+ 322 0004 0400     		.2byte	0x4
+ 323 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 324 000a 04       		.byte	0x4
+ 325 000b 01       		.uleb128 0x1
+ 326 000c BB010000 		.4byte	.LASF19
+ 327 0010 01       		.byte	0x1
+ 328 0011 3C010000 		.4byte	.LASF20
+ 329 0015 95000000 		.4byte	.LASF21
+ 330 0019 08010000 		.4byte	.Ldebug_ranges0+0x108
+ 331 001d 00000000 		.4byte	0
+ 332 0021 00000000 		.4byte	.Ldebug_line0
+ 333 0025 02       		.uleb128 0x2
+ 334 0026 01       		.byte	0x1
+ 335 0027 06       		.byte	0x6
+ 336 0028 7C010000 		.4byte	.LASF0
+ 337 002c 02       		.uleb128 0x2
+ 338 002d 01       		.byte	0x1
+ 339 002e 08       		.byte	0x8
+ 340 002f EB000000 		.4byte	.LASF1
+ 341 0033 02       		.uleb128 0x2
+ 342 0034 02       		.byte	0x2
+ 343 0035 05       		.byte	0x5
+ 344 0036 A8010000 		.4byte	.LASF2
+ 345 003a 02       		.uleb128 0x2
+ 346 003b 02       		.byte	0x2
+ 347 003c 07       		.byte	0x7
+ 348 003d 69010000 		.4byte	.LASF3
+ 349 0041 02       		.uleb128 0x2
+ 350 0042 04       		.byte	0x4
+ 351 0043 05       		.byte	0x5
+ 352 0044 0C010000 		.4byte	.LASF4
+ 353 0048 02       		.uleb128 0x2
+ 354 0049 04       		.byte	0x4
+ 355 004a 07       		.byte	0x7
+ 356 004b 48000000 		.4byte	.LASF5
+ 357 004f 02       		.uleb128 0x2
+ 358 0050 08       		.byte	0x8
+ 359 0051 05       		.byte	0x5
+ 360 0052 00000000 		.4byte	.LASF6
+ 361 0056 02       		.uleb128 0x2
+ 362 0057 08       		.byte	0x8
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 18
 
 
- 307 0077 02       		.uleb128 0x2
- 308 0078 04       		.byte	0x4
- 309 0079 04       		.byte	0x4
- 310 007a EE010000 		.4byte	.LASF9
- 311 007e 02       		.uleb128 0x2
- 312 007f 08       		.byte	0x8
- 313 0080 04       		.byte	0x4
- 314 0081 72010000 		.4byte	.LASF10
- 315 0085 02       		.uleb128 0x2
- 316 0086 01       		.byte	0x1
- 317 0087 08       		.byte	0x8
- 318 0088 53010000 		.4byte	.LASF11
- 319 008c 02       		.uleb128 0x2
- 320 008d 04       		.byte	0x4
- 321 008e 07       		.byte	0x7
- 322 008f FE010000 		.4byte	.LASF12
- 323 0093 05       		.uleb128 0x5
- 324 0094 D4010000 		.4byte	.LASF13
- 325 0098 01       		.byte	0x1
- 326 0099 0B02     		.2byte	0x20b
- 327 009b 6B000000 		.4byte	0x6b
- 328 009f 00000000 		.4byte	.LFB38
- 329 00a3 36000000 		.4byte	.LFE38-.LFB38
- 330 00a7 01       		.uleb128 0x1
- 331 00a8 9C       		.byte	0x9c
- 332 00a9 CC000000 		.4byte	0xcc
- 333 00ad 06       		.uleb128 0x6
- 334 00ae 68010000 		.4byte	.LASF15
- 335 00b2 01       		.byte	0x1
- 336 00b3 0B02     		.2byte	0x20b
- 337 00b5 6B000000 		.4byte	0x6b
- 338 00b9 02       		.uleb128 0x2
- 339 00ba 91       		.byte	0x91
- 340 00bb 6C       		.sleb128 -20
- 341 00bc 07       		.uleb128 0x7
- 342 00bd 61010000 		.4byte	.LASF16
- 343 00c1 01       		.byte	0x1
- 344 00c2 0D02     		.2byte	0x20d
- 345 00c4 6B000000 		.4byte	0x6b
- 346 00c8 02       		.uleb128 0x2
- 347 00c9 91       		.byte	0x91
- 348 00ca 74       		.sleb128 -12
- 349 00cb 00       		.byte	0
- 350 00cc 05       		.uleb128 0x5
- 351 00cd 79010000 		.4byte	.LASF14
- 352 00d1 01       		.byte	0x1
- 353 00d2 2402     		.2byte	0x224
- 354 00d4 6B000000 		.4byte	0x6b
- 355 00d8 00000000 		.4byte	.LFB39
- 356 00dc 36000000 		.4byte	.LFE39-.LFB39
- 357 00e0 01       		.uleb128 0x1
- 358 00e1 9C       		.byte	0x9c
- 359 00e2 05010000 		.4byte	0x105
- 360 00e6 06       		.uleb128 0x6
- 361 00e7 68010000 		.4byte	.LASF15
- 362 00eb 01       		.byte	0x1
- 363 00ec 2402     		.2byte	0x224
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 18
+ 363 0058 07       		.byte	0x7
+ 364 0059 5A000000 		.4byte	.LASF7
+ 365 005d 03       		.uleb128 0x3
+ 366 005e 04       		.byte	0x4
+ 367 005f 05       		.byte	0x5
+ 368 0060 696E7400 		.ascii	"int\000"
+ 369 0064 02       		.uleb128 0x2
+ 370 0065 04       		.byte	0x4
+ 371 0066 07       		.byte	0x7
+ 372 0067 15000000 		.4byte	.LASF8
+ 373 006b 04       		.uleb128 0x4
+ 374 006c 0E000000 		.4byte	.LASF22
+ 375 0070 03       		.byte	0x3
+ 376 0071 9A01     		.2byte	0x19a
+ 377 0073 48000000 		.4byte	0x48
+ 378 0077 02       		.uleb128 0x2
+ 379 0078 04       		.byte	0x4
+ 380 0079 04       		.byte	0x4
+ 381 007a A2010000 		.4byte	.LASF9
+ 382 007e 02       		.uleb128 0x2
+ 383 007f 08       		.byte	0x8
+ 384 0080 04       		.byte	0x4
+ 385 0081 26010000 		.4byte	.LASF10
+ 386 0085 02       		.uleb128 0x2
+ 387 0086 01       		.byte	0x1
+ 388 0087 08       		.byte	0x8
+ 389 0088 07010000 		.4byte	.LASF11
+ 390 008c 02       		.uleb128 0x2
+ 391 008d 04       		.byte	0x4
+ 392 008e 07       		.byte	0x7
+ 393 008f B2010000 		.4byte	.LASF12
+ 394 0093 05       		.uleb128 0x5
+ 395 0094 88010000 		.4byte	.LASF13
+ 396 0098 02       		.byte	0x2
+ 397 0099 0B02     		.2byte	0x20b
+ 398 009b 6B000000 		.4byte	0x6b
+ 399 009f 03       		.byte	0x3
+ 400 00a0 BD000000 		.4byte	0xbd
+ 401 00a4 06       		.uleb128 0x6
+ 402 00a5 1C010000 		.4byte	.LASF15
+ 403 00a9 02       		.byte	0x2
+ 404 00aa 0B02     		.2byte	0x20b
+ 405 00ac 6B000000 		.4byte	0x6b
+ 406 00b0 07       		.uleb128 0x7
+ 407 00b1 15010000 		.4byte	.LASF16
+ 408 00b5 02       		.byte	0x2
+ 409 00b6 0D02     		.2byte	0x20d
+ 410 00b8 6B000000 		.4byte	0x6b
+ 411 00bc 00       		.byte	0
+ 412 00bd 05       		.uleb128 0x5
+ 413 00be 2D010000 		.4byte	.LASF14
+ 414 00c2 02       		.byte	0x2
+ 415 00c3 2402     		.2byte	0x224
+ 416 00c5 6B000000 		.4byte	0x6b
+ 417 00c9 03       		.byte	0x3
+ 418 00ca E7000000 		.4byte	0xe7
+ 419 00ce 06       		.uleb128 0x6
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 19
 
 
- 364 00ee 6B000000 		.4byte	0x6b
- 365 00f2 02       		.uleb128 0x2
- 366 00f3 91       		.byte	0x91
- 367 00f4 6C       		.sleb128 -20
- 368 00f5 07       		.uleb128 0x7
- 369 00f6 61010000 		.4byte	.LASF16
- 370 00fa 01       		.byte	0x1
- 371 00fb 2602     		.2byte	0x226
- 372 00fd 6B000000 		.4byte	0x6b
- 373 0101 02       		.uleb128 0x2
- 374 0102 91       		.byte	0x91
- 375 0103 74       		.sleb128 -12
- 376 0104 00       		.byte	0
- 377 0105 08       		.uleb128 0x8
- 378 0106 A6010000 		.4byte	.LASF23
- 379 010a 02       		.byte	0x2
- 380 010b 14       		.byte	0x14
- 381 010c 00000000 		.4byte	.LFB62
- 382 0110 74000000 		.4byte	.LFE62-.LFB62
- 383 0114 01       		.uleb128 0x1
- 384 0115 9C       		.byte	0x9c
- 385 0116 09       		.uleb128 0x9
- 386 0117 E5010000 		.4byte	.LASF24
- 387 011b 02       		.byte	0x2
- 388 011c 2B       		.byte	0x2b
- 389 011d 5D000000 		.4byte	0x5d
- 390 0121 00000000 		.4byte	.LFB63
- 391 0125 28000000 		.4byte	.LFE63-.LFB63
- 392 0129 01       		.uleb128 0x1
- 393 012a 9C       		.byte	0x9c
- 394 012b 0A       		.uleb128 0xa
- 395 012c B0000000 		.4byte	.LASF17
- 396 0130 02       		.byte	0x2
- 397 0131 11       		.byte	0x11
- 398 0132 6B000000 		.4byte	0x6b
- 399 0136 05       		.uleb128 0x5
- 400 0137 03       		.byte	0x3
- 401 0138 00000000 		.4byte	current_time
- 402 013c 0A       		.uleb128 0xa
- 403 013d BD000000 		.4byte	.LASF18
- 404 0141 02       		.byte	0x2
- 405 0142 12       		.byte	0x12
- 406 0143 6B000000 		.4byte	0x6b
- 407 0147 05       		.uleb128 0x5
- 408 0148 03       		.byte	0x3
- 409 0149 04000000 		.4byte	ref_time
- 410 014d 00       		.byte	0
- 411              		.section	.debug_abbrev,"",%progbits
- 412              	.Ldebug_abbrev0:
- 413 0000 01       		.uleb128 0x1
- 414 0001 11       		.uleb128 0x11
- 415 0002 01       		.byte	0x1
- 416 0003 25       		.uleb128 0x25
- 417 0004 0E       		.uleb128 0xe
- 418 0005 13       		.uleb128 0x13
- 419 0006 0B       		.uleb128 0xb
- 420 0007 03       		.uleb128 0x3
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 19
+ 420 00cf 1C010000 		.4byte	.LASF15
+ 421 00d3 02       		.byte	0x2
+ 422 00d4 2402     		.2byte	0x224
+ 423 00d6 6B000000 		.4byte	0x6b
+ 424 00da 07       		.uleb128 0x7
+ 425 00db 15010000 		.4byte	.LASF16
+ 426 00df 02       		.byte	0x2
+ 427 00e0 2602     		.2byte	0x226
+ 428 00e2 6B000000 		.4byte	0x6b
+ 429 00e6 00       		.byte	0
+ 430 00e7 08       		.uleb128 0x8
+ 431 00e8 5A010000 		.4byte	.LASF23
+ 432 00ec 01       		.byte	0x1
+ 433 00ed 14       		.byte	0x14
+ 434 00ee 00000000 		.4byte	.LFB62
+ 435 00f2 94000000 		.4byte	.LFE62-.LFB62
+ 436 00f6 01       		.uleb128 0x1
+ 437 00f7 9C       		.byte	0x9c
+ 438 00f8 F2010000 		.4byte	0x1f2
+ 439 00fc 09       		.uleb128 0x9
+ 440 00fd 93000000 		.4byte	0x93
+ 441 0101 14000000 		.4byte	.LBB10
+ 442 0105 00000000 		.4byte	.Ldebug_ranges0+0
+ 443 0109 01       		.byte	0x1
+ 444 010a 1A       		.byte	0x1a
+ 445 010b 28010000 		.4byte	0x128
+ 446 010f 0A       		.uleb128 0xa
+ 447 0110 A4000000 		.4byte	0xa4
+ 448 0114 00000000 		.4byte	.LLST0
+ 449 0118 0B       		.uleb128 0xb
+ 450 0119 00000000 		.4byte	.Ldebug_ranges0+0
+ 451 011d 0C       		.uleb128 0xc
+ 452 011e B0000000 		.4byte	0xb0
+ 453 0122 22000000 		.4byte	.LLST1
+ 454 0126 00       		.byte	0
+ 455 0127 00       		.byte	0
+ 456 0128 09       		.uleb128 0x9
+ 457 0129 93000000 		.4byte	0x93
+ 458 012d 20000000 		.4byte	.LBB20
+ 459 0131 48000000 		.4byte	.Ldebug_ranges0+0x48
+ 460 0135 01       		.byte	0x1
+ 461 0136 1A       		.byte	0x1a
+ 462 0137 54010000 		.4byte	0x154
+ 463 013b 0A       		.uleb128 0xa
+ 464 013c A4000000 		.4byte	0xa4
+ 465 0140 9E000000 		.4byte	.LLST2
+ 466 0144 0B       		.uleb128 0xb
+ 467 0145 48000000 		.4byte	.Ldebug_ranges0+0x48
+ 468 0149 0C       		.uleb128 0xc
+ 469 014a B0000000 		.4byte	0xb0
+ 470 014e C0000000 		.4byte	.LLST3
+ 471 0152 00       		.byte	0
+ 472 0153 00       		.byte	0
+ 473 0154 09       		.uleb128 0x9
+ 474 0155 BD000000 		.4byte	0xbd
+ 475 0159 52000000 		.4byte	.LBB40
+ 476 015d 88000000 		.4byte	.Ldebug_ranges0+0x88
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 20
 
 
- 421 0008 0E       		.uleb128 0xe
- 422 0009 1B       		.uleb128 0x1b
- 423 000a 0E       		.uleb128 0xe
- 424 000b 55       		.uleb128 0x55
- 425 000c 17       		.uleb128 0x17
- 426 000d 11       		.uleb128 0x11
- 427 000e 01       		.uleb128 0x1
- 428 000f 10       		.uleb128 0x10
- 429 0010 17       		.uleb128 0x17
- 430 0011 00       		.byte	0
- 431 0012 00       		.byte	0
- 432 0013 02       		.uleb128 0x2
- 433 0014 24       		.uleb128 0x24
- 434 0015 00       		.byte	0
- 435 0016 0B       		.uleb128 0xb
- 436 0017 0B       		.uleb128 0xb
- 437 0018 3E       		.uleb128 0x3e
- 438 0019 0B       		.uleb128 0xb
- 439 001a 03       		.uleb128 0x3
- 440 001b 0E       		.uleb128 0xe
- 441 001c 00       		.byte	0
- 442 001d 00       		.byte	0
- 443 001e 03       		.uleb128 0x3
- 444 001f 24       		.uleb128 0x24
- 445 0020 00       		.byte	0
- 446 0021 0B       		.uleb128 0xb
- 447 0022 0B       		.uleb128 0xb
- 448 0023 3E       		.uleb128 0x3e
- 449 0024 0B       		.uleb128 0xb
- 450 0025 03       		.uleb128 0x3
- 451 0026 08       		.uleb128 0x8
- 452 0027 00       		.byte	0
- 453 0028 00       		.byte	0
- 454 0029 04       		.uleb128 0x4
- 455 002a 16       		.uleb128 0x16
- 456 002b 00       		.byte	0
- 457 002c 03       		.uleb128 0x3
- 458 002d 0E       		.uleb128 0xe
- 459 002e 3A       		.uleb128 0x3a
- 460 002f 0B       		.uleb128 0xb
- 461 0030 3B       		.uleb128 0x3b
- 462 0031 05       		.uleb128 0x5
- 463 0032 49       		.uleb128 0x49
- 464 0033 13       		.uleb128 0x13
- 465 0034 00       		.byte	0
- 466 0035 00       		.byte	0
- 467 0036 05       		.uleb128 0x5
- 468 0037 2E       		.uleb128 0x2e
- 469 0038 01       		.byte	0x1
- 470 0039 03       		.uleb128 0x3
- 471 003a 0E       		.uleb128 0xe
- 472 003b 3A       		.uleb128 0x3a
- 473 003c 0B       		.uleb128 0xb
- 474 003d 3B       		.uleb128 0x3b
- 475 003e 05       		.uleb128 0x5
- 476 003f 27       		.uleb128 0x27
- 477 0040 19       		.uleb128 0x19
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 20
+ 477 0161 01       		.byte	0x1
+ 478 0162 1E       		.byte	0x1e
+ 479 0163 80010000 		.4byte	0x180
+ 480 0167 0A       		.uleb128 0xa
+ 481 0168 CE000000 		.4byte	0xce
+ 482 016c 3C010000 		.4byte	.LLST4
+ 483 0170 0B       		.uleb128 0xb
+ 484 0171 88000000 		.4byte	.Ldebug_ranges0+0x88
+ 485 0175 0C       		.uleb128 0xc
+ 486 0176 DA000000 		.4byte	0xda
+ 487 017a 4F010000 		.4byte	.LLST5
+ 488 017e 00       		.byte	0
+ 489 017f 00       		.byte	0
+ 490 0180 09       		.uleb128 0x9
+ 491 0181 BD000000 		.4byte	0xbd
+ 492 0185 5C000000 		.4byte	.LBB48
+ 493 0189 C8000000 		.4byte	.Ldebug_ranges0+0xc8
+ 494 018d 01       		.byte	0x1
+ 495 018e 1E       		.byte	0x1e
+ 496 018f A4010000 		.4byte	0x1a4
+ 497 0193 0D       		.uleb128 0xd
+ 498 0194 CE000000 		.4byte	0xce
+ 499 0198 0B       		.uleb128 0xb
+ 500 0199 C8000000 		.4byte	.Ldebug_ranges0+0xc8
+ 501 019d 0E       		.uleb128 0xe
+ 502 019e DA000000 		.4byte	0xda
+ 503 01a2 00       		.byte	0
+ 504 01a3 00       		.byte	0
+ 505 01a4 0F       		.uleb128 0xf
+ 506 01a5 06000000 		.4byte	.LVL0
+ 507 01a9 58020000 		.4byte	0x258
+ 508 01ad 10       		.uleb128 0x10
+ 509 01ae 12000000 		.4byte	.LVL1
+ 510 01b2 64020000 		.4byte	0x264
+ 511 01b6 C5010000 		.4byte	0x1c5
+ 512 01ba 11       		.uleb128 0x11
+ 513 01bb 01       		.uleb128 0x1
+ 514 01bc 51       		.byte	0x51
+ 515 01bd 01       		.uleb128 0x1
+ 516 01be 31       		.byte	0x31
+ 517 01bf 11       		.uleb128 0x11
+ 518 01c0 01       		.uleb128 0x1
+ 519 01c1 50       		.byte	0x50
+ 520 01c2 01       		.uleb128 0x1
+ 521 01c3 35       		.byte	0x35
+ 522 01c4 00       		.byte	0
+ 523 01c5 10       		.uleb128 0x10
+ 524 01c6 4E000000 		.4byte	.LVL9
+ 525 01ca 64020000 		.4byte	0x264
+ 526 01ce DD010000 		.4byte	0x1dd
+ 527 01d2 11       		.uleb128 0x11
+ 528 01d3 01       		.uleb128 0x1
+ 529 01d4 51       		.byte	0x51
+ 530 01d5 01       		.uleb128 0x1
+ 531 01d6 31       		.byte	0x31
+ 532 01d7 11       		.uleb128 0x11
+ 533 01d8 01       		.uleb128 0x1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 21
 
 
- 478 0041 49       		.uleb128 0x49
- 479 0042 13       		.uleb128 0x13
- 480 0043 11       		.uleb128 0x11
- 481 0044 01       		.uleb128 0x1
- 482 0045 12       		.uleb128 0x12
- 483 0046 06       		.uleb128 0x6
- 484 0047 40       		.uleb128 0x40
- 485 0048 18       		.uleb128 0x18
- 486 0049 9742     		.uleb128 0x2117
- 487 004b 19       		.uleb128 0x19
- 488 004c 01       		.uleb128 0x1
- 489 004d 13       		.uleb128 0x13
- 490 004e 00       		.byte	0
- 491 004f 00       		.byte	0
- 492 0050 06       		.uleb128 0x6
- 493 0051 05       		.uleb128 0x5
- 494 0052 00       		.byte	0
- 495 0053 03       		.uleb128 0x3
- 496 0054 0E       		.uleb128 0xe
- 497 0055 3A       		.uleb128 0x3a
- 498 0056 0B       		.uleb128 0xb
- 499 0057 3B       		.uleb128 0x3b
- 500 0058 05       		.uleb128 0x5
- 501 0059 49       		.uleb128 0x49
- 502 005a 13       		.uleb128 0x13
- 503 005b 02       		.uleb128 0x2
- 504 005c 18       		.uleb128 0x18
- 505 005d 00       		.byte	0
- 506 005e 00       		.byte	0
- 507 005f 07       		.uleb128 0x7
- 508 0060 34       		.uleb128 0x34
- 509 0061 00       		.byte	0
- 510 0062 03       		.uleb128 0x3
- 511 0063 0E       		.uleb128 0xe
- 512 0064 3A       		.uleb128 0x3a
- 513 0065 0B       		.uleb128 0xb
- 514 0066 3B       		.uleb128 0x3b
- 515 0067 05       		.uleb128 0x5
- 516 0068 49       		.uleb128 0x49
- 517 0069 13       		.uleb128 0x13
- 518 006a 02       		.uleb128 0x2
- 519 006b 18       		.uleb128 0x18
- 520 006c 00       		.byte	0
- 521 006d 00       		.byte	0
- 522 006e 08       		.uleb128 0x8
- 523 006f 2E       		.uleb128 0x2e
- 524 0070 00       		.byte	0
- 525 0071 3F       		.uleb128 0x3f
- 526 0072 19       		.uleb128 0x19
- 527 0073 03       		.uleb128 0x3
- 528 0074 0E       		.uleb128 0xe
- 529 0075 3A       		.uleb128 0x3a
- 530 0076 0B       		.uleb128 0xb
- 531 0077 3B       		.uleb128 0x3b
- 532 0078 0B       		.uleb128 0xb
- 533 0079 27       		.uleb128 0x27
- 534 007a 19       		.uleb128 0x19
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 21
+ 534 01d9 50       		.byte	0x50
+ 535 01da 01       		.uleb128 0x1
+ 536 01db 36       		.byte	0x36
+ 537 01dc 00       		.byte	0
+ 538 01dd 12       		.uleb128 0x12
+ 539 01de 8A000000 		.4byte	.LVL14
+ 540 01e2 64020000 		.4byte	0x264
+ 541 01e6 11       		.uleb128 0x11
+ 542 01e7 01       		.uleb128 0x1
+ 543 01e8 51       		.byte	0x51
+ 544 01e9 01       		.uleb128 0x1
+ 545 01ea 31       		.byte	0x31
+ 546 01eb 11       		.uleb128 0x11
+ 547 01ec 01       		.uleb128 0x1
+ 548 01ed 50       		.byte	0x50
+ 549 01ee 01       		.uleb128 0x1
+ 550 01ef 37       		.byte	0x37
+ 551 01f0 00       		.byte	0
+ 552 01f1 00       		.byte	0
+ 553 01f2 13       		.uleb128 0x13
+ 554 01f3 99010000 		.4byte	.LASF24
+ 555 01f7 01       		.byte	0x1
+ 556 01f8 2B       		.byte	0x2b
+ 557 01f9 5D000000 		.4byte	0x5d
+ 558 01fd 00000000 		.4byte	.LFB63
+ 559 0201 20000000 		.4byte	.LFE63-.LFB63
+ 560 0205 01       		.uleb128 0x1
+ 561 0206 9C       		.byte	0x9c
+ 562 0207 36020000 		.4byte	0x236
+ 563 020b 0F       		.uleb128 0xf
+ 564 020c 06000000 		.4byte	.LVL15
+ 565 0210 7A020000 		.4byte	0x27a
+ 566 0214 10       		.uleb128 0x10
+ 567 0215 0E000000 		.4byte	.LVL16
+ 568 0219 82020000 		.4byte	0x282
+ 569 021d 2C020000 		.4byte	0x22c
+ 570 0221 11       		.uleb128 0x11
+ 571 0222 01       		.uleb128 0x1
+ 572 0223 51       		.byte	0x51
+ 573 0224 01       		.uleb128 0x1
+ 574 0225 31       		.byte	0x31
+ 575 0226 11       		.uleb128 0x11
+ 576 0227 01       		.uleb128 0x1
+ 577 0228 50       		.byte	0x50
+ 578 0229 01       		.uleb128 0x1
+ 579 022a 31       		.byte	0x31
+ 580 022b 00       		.byte	0
+ 581 022c 0F       		.uleb128 0xf
+ 582 022d 12000000 		.4byte	.LVL17
+ 583 0231 58020000 		.4byte	0x258
+ 584 0235 00       		.byte	0
+ 585 0236 14       		.uleb128 0x14
+ 586 0237 32000000 		.4byte	.LASF17
+ 587 023b 01       		.byte	0x1
+ 588 023c 11       		.byte	0x11
+ 589 023d 6B000000 		.4byte	0x6b
+ 590 0241 05       		.uleb128 0x5
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 22
 
 
- 535 007b 11       		.uleb128 0x11
- 536 007c 01       		.uleb128 0x1
- 537 007d 12       		.uleb128 0x12
- 538 007e 06       		.uleb128 0x6
- 539 007f 40       		.uleb128 0x40
- 540 0080 18       		.uleb128 0x18
- 541 0081 9642     		.uleb128 0x2116
- 542 0083 19       		.uleb128 0x19
- 543 0084 00       		.byte	0
- 544 0085 00       		.byte	0
- 545 0086 09       		.uleb128 0x9
- 546 0087 2E       		.uleb128 0x2e
- 547 0088 00       		.byte	0
- 548 0089 3F       		.uleb128 0x3f
- 549 008a 19       		.uleb128 0x19
- 550 008b 03       		.uleb128 0x3
- 551 008c 0E       		.uleb128 0xe
- 552 008d 3A       		.uleb128 0x3a
- 553 008e 0B       		.uleb128 0xb
- 554 008f 3B       		.uleb128 0x3b
- 555 0090 0B       		.uleb128 0xb
- 556 0091 27       		.uleb128 0x27
- 557 0092 19       		.uleb128 0x19
- 558 0093 49       		.uleb128 0x49
- 559 0094 13       		.uleb128 0x13
- 560 0095 11       		.uleb128 0x11
- 561 0096 01       		.uleb128 0x1
- 562 0097 12       		.uleb128 0x12
- 563 0098 06       		.uleb128 0x6
- 564 0099 40       		.uleb128 0x40
- 565 009a 18       		.uleb128 0x18
- 566 009b 9642     		.uleb128 0x2116
- 567 009d 19       		.uleb128 0x19
- 568 009e 00       		.byte	0
- 569 009f 00       		.byte	0
- 570 00a0 0A       		.uleb128 0xa
- 571 00a1 34       		.uleb128 0x34
- 572 00a2 00       		.byte	0
- 573 00a3 03       		.uleb128 0x3
- 574 00a4 0E       		.uleb128 0xe
- 575 00a5 3A       		.uleb128 0x3a
- 576 00a6 0B       		.uleb128 0xb
- 577 00a7 3B       		.uleb128 0x3b
- 578 00a8 0B       		.uleb128 0xb
- 579 00a9 49       		.uleb128 0x49
- 580 00aa 13       		.uleb128 0x13
- 581 00ab 02       		.uleb128 0x2
- 582 00ac 18       		.uleb128 0x18
- 583 00ad 00       		.byte	0
- 584 00ae 00       		.byte	0
- 585 00af 00       		.byte	0
- 586              		.section	.debug_aranges,"",%progbits
- 587 0000 34000000 		.4byte	0x34
- 588 0004 0200     		.2byte	0x2
- 589 0006 00000000 		.4byte	.Ldebug_info0
- 590 000a 04       		.byte	0x4
- 591 000b 00       		.byte	0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 22
+ 591 0242 03       		.byte	0x3
+ 592 0243 00000000 		.4byte	current_time
+ 593 0247 14       		.uleb128 0x14
+ 594 0248 3F000000 		.4byte	.LASF18
+ 595 024c 01       		.byte	0x1
+ 596 024d 12       		.byte	0x12
+ 597 024e 6B000000 		.4byte	0x6b
+ 598 0252 05       		.uleb128 0x5
+ 599 0253 03       		.byte	0x3
+ 600 0254 04000000 		.4byte	ref_time
+ 601 0258 15       		.uleb128 0x15
+ 602 0259 F9000000 		.4byte	.LASF25
+ 603 025d 02       		.byte	0x2
+ 604 025e 5801     		.2byte	0x158
+ 605 0260 6B000000 		.4byte	0x6b
+ 606 0264 16       		.uleb128 0x16
+ 607 0265 7D000000 		.4byte	.LASF26
+ 608 0269 04       		.byte	0x4
+ 609 026a 26       		.byte	0x26
+ 610 026b 7A020000 		.4byte	0x27a
+ 611 026f 17       		.uleb128 0x17
+ 612 0270 64000000 		.4byte	0x64
+ 613 0274 17       		.uleb128 0x17
+ 614 0275 64000000 		.4byte	0x64
+ 615 0279 00       		.byte	0
+ 616 027a 18       		.uleb128 0x18
+ 617 027b 71000000 		.4byte	.LASF27
+ 618 027f 02       		.byte	0x2
+ 619 0280 4E01     		.2byte	0x14e
+ 620 0282 19       		.uleb128 0x19
+ 621 0283 22000000 		.4byte	.LASF28
+ 622 0287 02       		.byte	0x2
+ 623 0288 5301     		.2byte	0x153
+ 624 028a 17       		.uleb128 0x17
+ 625 028b 6B000000 		.4byte	0x6b
+ 626 028f 17       		.uleb128 0x17
+ 627 0290 6B000000 		.4byte	0x6b
+ 628 0294 00       		.byte	0
+ 629 0295 00       		.byte	0
+ 630              		.section	.debug_abbrev,"",%progbits
+ 631              	.Ldebug_abbrev0:
+ 632 0000 01       		.uleb128 0x1
+ 633 0001 11       		.uleb128 0x11
+ 634 0002 01       		.byte	0x1
+ 635 0003 25       		.uleb128 0x25
+ 636 0004 0E       		.uleb128 0xe
+ 637 0005 13       		.uleb128 0x13
+ 638 0006 0B       		.uleb128 0xb
+ 639 0007 03       		.uleb128 0x3
+ 640 0008 0E       		.uleb128 0xe
+ 641 0009 1B       		.uleb128 0x1b
+ 642 000a 0E       		.uleb128 0xe
+ 643 000b 55       		.uleb128 0x55
+ 644 000c 17       		.uleb128 0x17
+ 645 000d 11       		.uleb128 0x11
+ 646 000e 01       		.uleb128 0x1
+ 647 000f 10       		.uleb128 0x10
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 23
 
 
- 592 000c 0000     		.2byte	0
- 593 000e 0000     		.2byte	0
- 594 0010 00000000 		.4byte	.LFB38
- 595 0014 36000000 		.4byte	.LFE38-.LFB38
- 596 0018 00000000 		.4byte	.LFB39
- 597 001c 36000000 		.4byte	.LFE39-.LFB39
- 598 0020 00000000 		.4byte	.LFB62
- 599 0024 74000000 		.4byte	.LFE62-.LFB62
- 600 0028 00000000 		.4byte	.LFB63
- 601 002c 28000000 		.4byte	.LFE63-.LFB63
- 602 0030 00000000 		.4byte	0
- 603 0034 00000000 		.4byte	0
- 604              		.section	.debug_ranges,"",%progbits
- 605              	.Ldebug_ranges0:
- 606 0000 00000000 		.4byte	.LFB38
- 607 0004 36000000 		.4byte	.LFE38
- 608 0008 00000000 		.4byte	.LFB39
- 609 000c 36000000 		.4byte	.LFE39
- 610 0010 00000000 		.4byte	.LFB62
- 611 0014 74000000 		.4byte	.LFE62
- 612 0018 00000000 		.4byte	.LFB63
- 613 001c 28000000 		.4byte	.LFE63
- 614 0020 00000000 		.4byte	0
- 615 0024 00000000 		.4byte	0
- 616              		.section	.debug_line,"",%progbits
- 617              	.Ldebug_line0:
- 618 0000 C0000000 		.section	.debug_str,"MS",%progbits,1
- 618      02006300 
- 618      00000201 
- 618      FB0E0D00 
- 618      01010101 
- 619              	.LASF6:
- 620 0000 6C6F6E67 		.ascii	"long long int\000"
- 620      206C6F6E 
- 620      6720696E 
- 620      7400
- 621              	.LASF19:
- 622 000e 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 622      4320342E 
- 622      392E3320 
- 622      32303135 
- 622      30333033 
- 623 0041 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
- 623      20726576 
- 623      6973696F 
- 623      6E203232 
- 623      31323230 
- 624 0074 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
- 624      66756E63 
- 624      74696F6E 
- 624      2D736563 
- 624      74696F6E 
- 625              	.LASF8:
- 626 009c 756E7369 		.ascii	"unsigned int\000"
- 626      676E6564 
- 626      20696E74 
- 626      00
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 23
+ 648 0010 17       		.uleb128 0x17
+ 649 0011 00       		.byte	0
+ 650 0012 00       		.byte	0
+ 651 0013 02       		.uleb128 0x2
+ 652 0014 24       		.uleb128 0x24
+ 653 0015 00       		.byte	0
+ 654 0016 0B       		.uleb128 0xb
+ 655 0017 0B       		.uleb128 0xb
+ 656 0018 3E       		.uleb128 0x3e
+ 657 0019 0B       		.uleb128 0xb
+ 658 001a 03       		.uleb128 0x3
+ 659 001b 0E       		.uleb128 0xe
+ 660 001c 00       		.byte	0
+ 661 001d 00       		.byte	0
+ 662 001e 03       		.uleb128 0x3
+ 663 001f 24       		.uleb128 0x24
+ 664 0020 00       		.byte	0
+ 665 0021 0B       		.uleb128 0xb
+ 666 0022 0B       		.uleb128 0xb
+ 667 0023 3E       		.uleb128 0x3e
+ 668 0024 0B       		.uleb128 0xb
+ 669 0025 03       		.uleb128 0x3
+ 670 0026 08       		.uleb128 0x8
+ 671 0027 00       		.byte	0
+ 672 0028 00       		.byte	0
+ 673 0029 04       		.uleb128 0x4
+ 674 002a 16       		.uleb128 0x16
+ 675 002b 00       		.byte	0
+ 676 002c 03       		.uleb128 0x3
+ 677 002d 0E       		.uleb128 0xe
+ 678 002e 3A       		.uleb128 0x3a
+ 679 002f 0B       		.uleb128 0xb
+ 680 0030 3B       		.uleb128 0x3b
+ 681 0031 05       		.uleb128 0x5
+ 682 0032 49       		.uleb128 0x49
+ 683 0033 13       		.uleb128 0x13
+ 684 0034 00       		.byte	0
+ 685 0035 00       		.byte	0
+ 686 0036 05       		.uleb128 0x5
+ 687 0037 2E       		.uleb128 0x2e
+ 688 0038 01       		.byte	0x1
+ 689 0039 03       		.uleb128 0x3
+ 690 003a 0E       		.uleb128 0xe
+ 691 003b 3A       		.uleb128 0x3a
+ 692 003c 0B       		.uleb128 0xb
+ 693 003d 3B       		.uleb128 0x3b
+ 694 003e 05       		.uleb128 0x5
+ 695 003f 27       		.uleb128 0x27
+ 696 0040 19       		.uleb128 0x19
+ 697 0041 49       		.uleb128 0x49
+ 698 0042 13       		.uleb128 0x13
+ 699 0043 20       		.uleb128 0x20
+ 700 0044 0B       		.uleb128 0xb
+ 701 0045 01       		.uleb128 0x1
+ 702 0046 13       		.uleb128 0x13
+ 703 0047 00       		.byte	0
+ 704 0048 00       		.byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 24
 
 
- 627              	.LASF22:
- 628 00a9 75696E74 		.ascii	"uint32\000"
- 628      333200
- 629              	.LASF17:
- 630 00b0 63757272 		.ascii	"current_time\000"
- 630      656E745F 
- 630      74696D65 
- 630      00
- 631              	.LASF18:
- 632 00bd 7265665F 		.ascii	"ref_time\000"
- 632      74696D65 
- 632      00
- 633              	.LASF5:
- 634 00c6 6C6F6E67 		.ascii	"long unsigned int\000"
- 634      20756E73 
- 634      69676E65 
- 634      6420696E 
- 634      7400
- 635              	.LASF7:
- 636 00d8 6C6F6E67 		.ascii	"long long unsigned int\000"
- 636      206C6F6E 
- 636      6720756E 
- 636      7369676E 
- 636      65642069 
- 637              	.LASF21:
- 638 00ef 433A5C55 		.ascii	"C:\\Users\\glenn\\OneDrive\\PSOC\\moisture_sensor_4"
- 638      73657273 
- 638      5C676C65 
- 638      6E6E5C4F 
- 638      6E654472 
- 639 011d 6D5C4D6F 		.ascii	"m\\Moisture_Sensor\\Moisture_Sensor.cydsn\000"
- 639      69737475 
- 639      72655F53 
- 639      656E736F 
- 639      725C4D6F 
- 640              	.LASF1:
- 641 0145 756E7369 		.ascii	"unsigned char\000"
- 641      676E6564 
- 641      20636861 
- 641      7200
- 642              	.LASF11:
- 643 0153 63686172 		.ascii	"char\000"
- 643      00
- 644              	.LASF4:
- 645 0158 6C6F6E67 		.ascii	"long int\000"
- 645      20696E74 
- 645      00
- 646              	.LASF16:
- 647 0161 72657456 		.ascii	"retVal\000"
- 647      616C00
- 648              	.LASF15:
- 649 0168 696E7075 		.ascii	"inputTime\000"
- 649      7454696D 
- 649      6500
- 650              	.LASF10:
- 651 0172 646F7562 		.ascii	"double\000"
- 651      6C6500
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1cLWKu.s 			page 24
+ 705 0049 06       		.uleb128 0x6
+ 706 004a 05       		.uleb128 0x5
+ 707 004b 00       		.byte	0
+ 708 004c 03       		.uleb128 0x3
+ 709 004d 0E       		.uleb128 0xe
+ 710 004e 3A       		.uleb128 0x3a
+ 711 004f 0B       		.uleb128 0xb
+ 712 0050 3B       		.uleb128 0x3b
+ 713 0051 05       		.uleb128 0x5
+ 714 0052 49       		.uleb128 0x49
+ 715 0053 13       		.uleb128 0x13
+ 716 0054 00       		.byte	0
+ 717 0055 00       		.byte	0
+ 718 0056 07       		.uleb128 0x7
+ 719 0057 34       		.uleb128 0x34
+ 720 0058 00       		.byte	0
+ 721 0059 03       		.uleb128 0x3
+ 722 005a 0E       		.uleb128 0xe
+ 723 005b 3A       		.uleb128 0x3a
+ 724 005c 0B       		.uleb128 0xb
+ 725 005d 3B       		.uleb128 0x3b
+ 726 005e 05       		.uleb128 0x5
+ 727 005f 49       		.uleb128 0x49
+ 728 0060 13       		.uleb128 0x13
+ 729 0061 00       		.byte	0
+ 730 0062 00       		.byte	0
+ 731 0063 08       		.uleb128 0x8
+ 732 0064 2E       		.uleb128 0x2e
+ 733 0065 01       		.byte	0x1
+ 734 0066 3F       		.uleb128 0x3f
+ 735 0067 19       		.uleb128 0x19
+ 736 0068 03       		.uleb128 0x3
+ 737 0069 0E       		.uleb128 0xe
+ 738 006a 3A       		.uleb128 0x3a
+ 739 006b 0B       		.uleb128 0xb
+ 740 006c 3B       		.uleb128 0x3b
+ 741 006d 0B       		.uleb128 0xb
+ 742 006e 27       		.uleb128 0x27
+ 743 006f 19       		.uleb128 0x19
+ 744 0070 11       		.uleb128 0x11
+ 745 0071 01       		.uleb128 0x1
+ 746 0072 12       		.uleb128 0x12
+ 747 0073 06       		.uleb128 0x6
+ 748 0074 40       		.uleb128 0x40
+ 749 0075 18       		.uleb128 0x18
+ 750 0076 9742     		.uleb128 0x2117
+ 751 0078 19       		.uleb128 0x19
+ 752 0079 01       		.uleb128 0x1
+ 753 007a 13       		.uleb128 0x13
+ 754 007b 00       		.byte	0
+ 755 007c 00       		.byte	0
+ 756 007d 09       		.uleb128 0x9
+ 757 007e 1D       		.uleb128 0x1d
+ 758 007f 01       		.byte	0x1
+ 759 0080 31       		.uleb128 0x31
+ 760 0081 13       		.uleb128 0x13
+ 761 0082 52       		.uleb128 0x52
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 25
 
 
- 652              	.LASF14:
- 653 0179 5254435F 		.ascii	"RTC_1_GetHours\000"
- 653      315F4765 
- 653      74486F75 
- 653      727300
- 654              	.LASF20:
- 655 0188 7274635F 		.ascii	"rtc_functions\\rtc_functions.c\000"
- 655      66756E63 
- 655      74696F6E 
- 655      735C7274 
- 655      635F6675 
- 656              	.LASF23:
- 657 01a6 7274635F 		.ascii	"rtc_check_time\000"
- 657      63686563 
- 657      6B5F7469 
- 657      6D6500
- 658              	.LASF3:
- 659 01b5 73686F72 		.ascii	"short unsigned int\000"
- 659      7420756E 
- 659      7369676E 
- 659      65642069 
- 659      6E7400
- 660              	.LASF0:
- 661 01c8 7369676E 		.ascii	"signed char\000"
- 661      65642063 
- 661      68617200 
- 662              	.LASF13:
- 663 01d4 5254435F 		.ascii	"RTC_1_GetMinutes\000"
- 663      315F4765 
- 663      744D696E 
- 663      75746573 
- 663      00
- 664              	.LASF24:
- 665 01e5 696E6974 		.ascii	"init_rtc\000"
- 665      5F727463 
- 665      00
- 666              	.LASF9:
- 667 01ee 666C6F61 		.ascii	"float\000"
- 667      7400
- 668              	.LASF2:
- 669 01f4 73686F72 		.ascii	"short int\000"
- 669      7420696E 
- 669      7400
- 670              	.LASF12:
- 671 01fe 73697A65 		.ascii	"sizetype\000"
- 671      74797065 
- 671      00
- 672              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ 762 0083 01       		.uleb128 0x1
+ 763 0084 55       		.uleb128 0x55
+ 764 0085 17       		.uleb128 0x17
+ 765 0086 58       		.uleb128 0x58
+ 766 0087 0B       		.uleb128 0xb
+ 767 0088 59       		.uleb128 0x59
+ 768 0089 0B       		.uleb128 0xb
+ 769 008a 01       		.uleb128 0x1
+ 770 008b 13       		.uleb128 0x13
+ 771 008c 00       		.byte	0
+ 772 008d 00       		.byte	0
+ 773 008e 0A       		.uleb128 0xa
+ 774 008f 05       		.uleb128 0x5
+ 775 0090 00       		.byte	0
+ 776 0091 31       		.uleb128 0x31
+ 777 0092 13       		.uleb128 0x13
+ 778 0093 02       		.uleb128 0x2
+ 779 0094 17       		.uleb128 0x17
+ 780 0095 00       		.byte	0
+ 781 0096 00       		.byte	0
+ 782 0097 0B       		.uleb128 0xb
+ 783 0098 0B       		.uleb128 0xb
+ 784 0099 01       		.byte	0x1
+ 785 009a 55       		.uleb128 0x55
+ 786 009b 17       		.uleb128 0x17
+ 787 009c 00       		.byte	0
+ 788 009d 00       		.byte	0
+ 789 009e 0C       		.uleb128 0xc
+ 790 009f 34       		.uleb128 0x34
+ 791 00a0 00       		.byte	0
+ 792 00a1 31       		.uleb128 0x31
+ 793 00a2 13       		.uleb128 0x13
+ 794 00a3 02       		.uleb128 0x2
+ 795 00a4 17       		.uleb128 0x17
+ 796 00a5 00       		.byte	0
+ 797 00a6 00       		.byte	0
+ 798 00a7 0D       		.uleb128 0xd
+ 799 00a8 05       		.uleb128 0x5
+ 800 00a9 00       		.byte	0
+ 801 00aa 31       		.uleb128 0x31
+ 802 00ab 13       		.uleb128 0x13
+ 803 00ac 00       		.byte	0
+ 804 00ad 00       		.byte	0
+ 805 00ae 0E       		.uleb128 0xe
+ 806 00af 34       		.uleb128 0x34
+ 807 00b0 00       		.byte	0
+ 808 00b1 31       		.uleb128 0x31
+ 809 00b2 13       		.uleb128 0x13
+ 810 00b3 00       		.byte	0
+ 811 00b4 00       		.byte	0
+ 812 00b5 0F       		.uleb128 0xf
+ 813 00b6 898201   		.uleb128 0x4109
+ 814 00b9 00       		.byte	0
+ 815 00ba 11       		.uleb128 0x11
+ 816 00bb 01       		.uleb128 0x1
+ 817 00bc 31       		.uleb128 0x31
+ 818 00bd 13       		.uleb128 0x13
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 26
+
+
+ 819 00be 00       		.byte	0
+ 820 00bf 00       		.byte	0
+ 821 00c0 10       		.uleb128 0x10
+ 822 00c1 898201   		.uleb128 0x4109
+ 823 00c4 01       		.byte	0x1
+ 824 00c5 11       		.uleb128 0x11
+ 825 00c6 01       		.uleb128 0x1
+ 826 00c7 31       		.uleb128 0x31
+ 827 00c8 13       		.uleb128 0x13
+ 828 00c9 01       		.uleb128 0x1
+ 829 00ca 13       		.uleb128 0x13
+ 830 00cb 00       		.byte	0
+ 831 00cc 00       		.byte	0
+ 832 00cd 11       		.uleb128 0x11
+ 833 00ce 8A8201   		.uleb128 0x410a
+ 834 00d1 00       		.byte	0
+ 835 00d2 02       		.uleb128 0x2
+ 836 00d3 18       		.uleb128 0x18
+ 837 00d4 9142     		.uleb128 0x2111
+ 838 00d6 18       		.uleb128 0x18
+ 839 00d7 00       		.byte	0
+ 840 00d8 00       		.byte	0
+ 841 00d9 12       		.uleb128 0x12
+ 842 00da 898201   		.uleb128 0x4109
+ 843 00dd 01       		.byte	0x1
+ 844 00de 11       		.uleb128 0x11
+ 845 00df 01       		.uleb128 0x1
+ 846 00e0 31       		.uleb128 0x31
+ 847 00e1 13       		.uleb128 0x13
+ 848 00e2 00       		.byte	0
+ 849 00e3 00       		.byte	0
+ 850 00e4 13       		.uleb128 0x13
+ 851 00e5 2E       		.uleb128 0x2e
+ 852 00e6 01       		.byte	0x1
+ 853 00e7 3F       		.uleb128 0x3f
+ 854 00e8 19       		.uleb128 0x19
+ 855 00e9 03       		.uleb128 0x3
+ 856 00ea 0E       		.uleb128 0xe
+ 857 00eb 3A       		.uleb128 0x3a
+ 858 00ec 0B       		.uleb128 0xb
+ 859 00ed 3B       		.uleb128 0x3b
+ 860 00ee 0B       		.uleb128 0xb
+ 861 00ef 27       		.uleb128 0x27
+ 862 00f0 19       		.uleb128 0x19
+ 863 00f1 49       		.uleb128 0x49
+ 864 00f2 13       		.uleb128 0x13
+ 865 00f3 11       		.uleb128 0x11
+ 866 00f4 01       		.uleb128 0x1
+ 867 00f5 12       		.uleb128 0x12
+ 868 00f6 06       		.uleb128 0x6
+ 869 00f7 40       		.uleb128 0x40
+ 870 00f8 18       		.uleb128 0x18
+ 871 00f9 9742     		.uleb128 0x2117
+ 872 00fb 19       		.uleb128 0x19
+ 873 00fc 01       		.uleb128 0x1
+ 874 00fd 13       		.uleb128 0x13
+ 875 00fe 00       		.byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 27
+
+
+ 876 00ff 00       		.byte	0
+ 877 0100 14       		.uleb128 0x14
+ 878 0101 34       		.uleb128 0x34
+ 879 0102 00       		.byte	0
+ 880 0103 03       		.uleb128 0x3
+ 881 0104 0E       		.uleb128 0xe
+ 882 0105 3A       		.uleb128 0x3a
+ 883 0106 0B       		.uleb128 0xb
+ 884 0107 3B       		.uleb128 0x3b
+ 885 0108 0B       		.uleb128 0xb
+ 886 0109 49       		.uleb128 0x49
+ 887 010a 13       		.uleb128 0x13
+ 888 010b 02       		.uleb128 0x2
+ 889 010c 18       		.uleb128 0x18
+ 890 010d 00       		.byte	0
+ 891 010e 00       		.byte	0
+ 892 010f 15       		.uleb128 0x15
+ 893 0110 2E       		.uleb128 0x2e
+ 894 0111 00       		.byte	0
+ 895 0112 3F       		.uleb128 0x3f
+ 896 0113 19       		.uleb128 0x19
+ 897 0114 03       		.uleb128 0x3
+ 898 0115 0E       		.uleb128 0xe
+ 899 0116 3A       		.uleb128 0x3a
+ 900 0117 0B       		.uleb128 0xb
+ 901 0118 3B       		.uleb128 0x3b
+ 902 0119 05       		.uleb128 0x5
+ 903 011a 27       		.uleb128 0x27
+ 904 011b 19       		.uleb128 0x19
+ 905 011c 49       		.uleb128 0x49
+ 906 011d 13       		.uleb128 0x13
+ 907 011e 3C       		.uleb128 0x3c
+ 908 011f 19       		.uleb128 0x19
+ 909 0120 00       		.byte	0
+ 910 0121 00       		.byte	0
+ 911 0122 16       		.uleb128 0x16
+ 912 0123 2E       		.uleb128 0x2e
+ 913 0124 01       		.byte	0x1
+ 914 0125 3F       		.uleb128 0x3f
+ 915 0126 19       		.uleb128 0x19
+ 916 0127 03       		.uleb128 0x3
+ 917 0128 0E       		.uleb128 0xe
+ 918 0129 3A       		.uleb128 0x3a
+ 919 012a 0B       		.uleb128 0xb
+ 920 012b 3B       		.uleb128 0x3b
+ 921 012c 0B       		.uleb128 0xb
+ 922 012d 27       		.uleb128 0x27
+ 923 012e 19       		.uleb128 0x19
+ 924 012f 3C       		.uleb128 0x3c
+ 925 0130 19       		.uleb128 0x19
+ 926 0131 01       		.uleb128 0x1
+ 927 0132 13       		.uleb128 0x13
+ 928 0133 00       		.byte	0
+ 929 0134 00       		.byte	0
+ 930 0135 17       		.uleb128 0x17
+ 931 0136 05       		.uleb128 0x5
+ 932 0137 00       		.byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 28
+
+
+ 933 0138 49       		.uleb128 0x49
+ 934 0139 13       		.uleb128 0x13
+ 935 013a 00       		.byte	0
+ 936 013b 00       		.byte	0
+ 937 013c 18       		.uleb128 0x18
+ 938 013d 2E       		.uleb128 0x2e
+ 939 013e 00       		.byte	0
+ 940 013f 3F       		.uleb128 0x3f
+ 941 0140 19       		.uleb128 0x19
+ 942 0141 03       		.uleb128 0x3
+ 943 0142 0E       		.uleb128 0xe
+ 944 0143 3A       		.uleb128 0x3a
+ 945 0144 0B       		.uleb128 0xb
+ 946 0145 3B       		.uleb128 0x3b
+ 947 0146 05       		.uleb128 0x5
+ 948 0147 27       		.uleb128 0x27
+ 949 0148 19       		.uleb128 0x19
+ 950 0149 3C       		.uleb128 0x3c
+ 951 014a 19       		.uleb128 0x19
+ 952 014b 00       		.byte	0
+ 953 014c 00       		.byte	0
+ 954 014d 19       		.uleb128 0x19
+ 955 014e 2E       		.uleb128 0x2e
+ 956 014f 01       		.byte	0x1
+ 957 0150 3F       		.uleb128 0x3f
+ 958 0151 19       		.uleb128 0x19
+ 959 0152 03       		.uleb128 0x3
+ 960 0153 0E       		.uleb128 0xe
+ 961 0154 3A       		.uleb128 0x3a
+ 962 0155 0B       		.uleb128 0xb
+ 963 0156 3B       		.uleb128 0x3b
+ 964 0157 05       		.uleb128 0x5
+ 965 0158 27       		.uleb128 0x27
+ 966 0159 19       		.uleb128 0x19
+ 967 015a 3C       		.uleb128 0x3c
+ 968 015b 19       		.uleb128 0x19
+ 969 015c 00       		.byte	0
+ 970 015d 00       		.byte	0
+ 971 015e 00       		.byte	0
+ 972              		.section	.debug_loc,"",%progbits
+ 973              	.Ldebug_loc0:
+ 974              	.LLST0:
+ 975 0000 14000000 		.4byte	.LVL2
+ 976 0004 4A000000 		.4byte	.LVL8
+ 977 0008 0100     		.2byte	0x1
+ 978 000a 51       		.byte	0x51
+ 979 000b 4A000000 		.4byte	.LVL8
+ 980 000f 4D000000 		.4byte	.LVL9-1
+ 981 0013 0500     		.2byte	0x5
+ 982 0015 03       		.byte	0x3
+ 983 0016 00000000 		.4byte	current_time
+ 984 001a 00000000 		.4byte	0
+ 985 001e 00000000 		.4byte	0
+ 986              	.LLST1:
+ 987 0022 38000000 		.4byte	.LVL3
+ 988 0026 40000000 		.4byte	.LVL5
+ 989 002a 0C00     		.2byte	0xc
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 29
+
+
+ 990 002c 71       		.byte	0x71
+ 991 002d 00       		.sleb128 0
+ 992 002e 0A       		.byte	0xa
+ 993 002f 000F     		.2byte	0xf00
+ 994 0031 1A       		.byte	0x1a
+ 995 0032 38       		.byte	0x38
+ 996 0033 25       		.byte	0x25
+ 997 0034 75       		.byte	0x75
+ 998 0035 00       		.sleb128 0
+ 999 0036 22       		.byte	0x22
+ 1000 0037 9F       		.byte	0x9f
+ 1001 0038 40000000 		.4byte	.LVL5
+ 1002 003c 4A000000 		.4byte	.LVL8
+ 1003 0040 1F00     		.2byte	0x1f
+ 1004 0042 71       		.byte	0x71
+ 1005 0043 00       		.sleb128 0
+ 1006 0044 0A       		.byte	0xa
+ 1007 0045 000F     		.2byte	0xf00
+ 1008 0047 1A       		.byte	0x1a
+ 1009 0048 38       		.byte	0x38
+ 1010 0049 25       		.byte	0x25
+ 1011 004a 71       		.byte	0x71
+ 1012 004b 00       		.sleb128 0
+ 1013 004c 0A       		.byte	0xa
+ 1014 004d 0070     		.2byte	0x7000
+ 1015 004f 1A       		.byte	0x1a
+ 1016 0050 3C       		.byte	0x3c
+ 1017 0051 25       		.byte	0x25
+ 1018 0052 32       		.byte	0x32
+ 1019 0053 24       		.byte	0x24
+ 1020 0054 71       		.byte	0x71
+ 1021 0055 00       		.sleb128 0
+ 1022 0056 0A       		.byte	0xa
+ 1023 0057 0070     		.2byte	0x7000
+ 1024 0059 1A       		.byte	0x1a
+ 1025 005a 3C       		.byte	0x3c
+ 1026 005b 25       		.byte	0x25
+ 1027 005c 22       		.byte	0x22
+ 1028 005d 31       		.byte	0x31
+ 1029 005e 24       		.byte	0x24
+ 1030 005f 22       		.byte	0x22
+ 1031 0060 9F       		.byte	0x9f
+ 1032 0061 4A000000 		.4byte	.LVL8
+ 1033 0065 4D000000 		.4byte	.LVL9-1
+ 1034 0069 2B00     		.2byte	0x2b
+ 1035 006b 03       		.byte	0x3
+ 1036 006c 00000000 		.4byte	current_time
+ 1037 0070 06       		.byte	0x6
+ 1038 0071 0A       		.byte	0xa
+ 1039 0072 000F     		.2byte	0xf00
+ 1040 0074 1A       		.byte	0x1a
+ 1041 0075 38       		.byte	0x38
+ 1042 0076 25       		.byte	0x25
+ 1043 0077 03       		.byte	0x3
+ 1044 0078 00000000 		.4byte	current_time
+ 1045 007c 06       		.byte	0x6
+ 1046 007d 0A       		.byte	0xa
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 30
+
+
+ 1047 007e 0070     		.2byte	0x7000
+ 1048 0080 1A       		.byte	0x1a
+ 1049 0081 3C       		.byte	0x3c
+ 1050 0082 25       		.byte	0x25
+ 1051 0083 32       		.byte	0x32
+ 1052 0084 24       		.byte	0x24
+ 1053 0085 03       		.byte	0x3
+ 1054 0086 00000000 		.4byte	current_time
+ 1055 008a 06       		.byte	0x6
+ 1056 008b 0A       		.byte	0xa
+ 1057 008c 0070     		.2byte	0x7000
+ 1058 008e 1A       		.byte	0x1a
+ 1059 008f 3C       		.byte	0x3c
+ 1060 0090 25       		.byte	0x25
+ 1061 0091 22       		.byte	0x22
+ 1062 0092 31       		.byte	0x31
+ 1063 0093 24       		.byte	0x24
+ 1064 0094 22       		.byte	0x22
+ 1065 0095 9F       		.byte	0x9f
+ 1066 0096 00000000 		.4byte	0
+ 1067 009a 00000000 		.4byte	0
+ 1068              	.LLST2:
+ 1069 009e 38000000 		.4byte	.LVL3
+ 1070 00a2 48000000 		.4byte	.LVL7
+ 1071 00a6 0100     		.2byte	0x1
+ 1072 00a8 50       		.byte	0x50
+ 1073 00a9 48000000 		.4byte	.LVL7
+ 1074 00ad 4D000000 		.4byte	.LVL9-1
+ 1075 00b1 0500     		.2byte	0x5
+ 1076 00b3 03       		.byte	0x3
+ 1077 00b4 04000000 		.4byte	ref_time
+ 1078 00b8 00000000 		.4byte	0
+ 1079 00bc 00000000 		.4byte	0
+ 1080              	.LLST3:
+ 1081 00c0 3A000000 		.4byte	.LVL4
+ 1082 00c4 42000000 		.4byte	.LVL6
+ 1083 00c8 0C00     		.2byte	0xc
+ 1084 00ca 70       		.byte	0x70
+ 1085 00cb 00       		.sleb128 0
+ 1086 00cc 0A       		.byte	0xa
+ 1087 00cd 000F     		.2byte	0xf00
+ 1088 00cf 1A       		.byte	0x1a
+ 1089 00d0 38       		.byte	0x38
+ 1090 00d1 25       		.byte	0x25
+ 1091 00d2 72       		.byte	0x72
+ 1092 00d3 00       		.sleb128 0
+ 1093 00d4 22       		.byte	0x22
+ 1094 00d5 9F       		.byte	0x9f
+ 1095 00d6 42000000 		.4byte	.LVL6
+ 1096 00da 48000000 		.4byte	.LVL7
+ 1097 00de 1F00     		.2byte	0x1f
+ 1098 00e0 70       		.byte	0x70
+ 1099 00e1 00       		.sleb128 0
+ 1100 00e2 0A       		.byte	0xa
+ 1101 00e3 000F     		.2byte	0xf00
+ 1102 00e5 1A       		.byte	0x1a
+ 1103 00e6 38       		.byte	0x38
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 31
+
+
+ 1104 00e7 25       		.byte	0x25
+ 1105 00e8 70       		.byte	0x70
+ 1106 00e9 00       		.sleb128 0
+ 1107 00ea 0A       		.byte	0xa
+ 1108 00eb 0070     		.2byte	0x7000
+ 1109 00ed 1A       		.byte	0x1a
+ 1110 00ee 3C       		.byte	0x3c
+ 1111 00ef 25       		.byte	0x25
+ 1112 00f0 32       		.byte	0x32
+ 1113 00f1 24       		.byte	0x24
+ 1114 00f2 70       		.byte	0x70
+ 1115 00f3 00       		.sleb128 0
+ 1116 00f4 0A       		.byte	0xa
+ 1117 00f5 0070     		.2byte	0x7000
+ 1118 00f7 1A       		.byte	0x1a
+ 1119 00f8 3C       		.byte	0x3c
+ 1120 00f9 25       		.byte	0x25
+ 1121 00fa 22       		.byte	0x22
+ 1122 00fb 31       		.byte	0x31
+ 1123 00fc 24       		.byte	0x24
+ 1124 00fd 22       		.byte	0x22
+ 1125 00fe 9F       		.byte	0x9f
+ 1126 00ff 48000000 		.4byte	.LVL7
+ 1127 0103 4D000000 		.4byte	.LVL9-1
+ 1128 0107 2B00     		.2byte	0x2b
+ 1129 0109 03       		.byte	0x3
+ 1130 010a 04000000 		.4byte	ref_time
+ 1131 010e 06       		.byte	0x6
+ 1132 010f 0A       		.byte	0xa
+ 1133 0110 000F     		.2byte	0xf00
+ 1134 0112 1A       		.byte	0x1a
+ 1135 0113 38       		.byte	0x38
+ 1136 0114 25       		.byte	0x25
+ 1137 0115 03       		.byte	0x3
+ 1138 0116 04000000 		.4byte	ref_time
+ 1139 011a 06       		.byte	0x6
+ 1140 011b 0A       		.byte	0xa
+ 1141 011c 0070     		.2byte	0x7000
+ 1142 011e 1A       		.byte	0x1a
+ 1143 011f 3C       		.byte	0x3c
+ 1144 0120 25       		.byte	0x25
+ 1145 0121 32       		.byte	0x32
+ 1146 0122 24       		.byte	0x24
+ 1147 0123 03       		.byte	0x3
+ 1148 0124 04000000 		.4byte	ref_time
+ 1149 0128 06       		.byte	0x6
+ 1150 0129 0A       		.byte	0xa
+ 1151 012a 0070     		.2byte	0x7000
+ 1152 012c 1A       		.byte	0x1a
+ 1153 012d 3C       		.byte	0x3c
+ 1154 012e 25       		.byte	0x25
+ 1155 012f 22       		.byte	0x22
+ 1156 0130 31       		.byte	0x31
+ 1157 0131 24       		.byte	0x24
+ 1158 0132 22       		.byte	0x22
+ 1159 0133 9F       		.byte	0x9f
+ 1160 0134 00000000 		.4byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 32
+
+
+ 1161 0138 00000000 		.4byte	0
+ 1162              	.LLST4:
+ 1163 013c 52000000 		.4byte	.LVL10
+ 1164 0140 84000000 		.4byte	.LVL13
+ 1165 0144 0100     		.2byte	0x1
+ 1166 0146 51       		.byte	0x51
+ 1167 0147 00000000 		.4byte	0
+ 1168 014b 00000000 		.4byte	0
+ 1169              	.LLST5:
+ 1170 014f 74000000 		.4byte	.LVL11
+ 1171 0153 7C000000 		.4byte	.LVL12
+ 1172 0157 0C00     		.2byte	0xc
+ 1173 0159 71       		.byte	0x71
+ 1174 015a 00       		.sleb128 0
+ 1175 015b 4E       		.byte	0x4e
+ 1176 015c 3F       		.byte	0x3f
+ 1177 015d 24       		.byte	0x24
+ 1178 015e 1A       		.byte	0x1a
+ 1179 015f 40       		.byte	0x40
+ 1180 0160 25       		.byte	0x25
+ 1181 0161 75       		.byte	0x75
+ 1182 0162 00       		.sleb128 0
+ 1183 0163 22       		.byte	0x22
+ 1184 0164 9F       		.byte	0x9f
+ 1185 0165 7C000000 		.4byte	.LVL12
+ 1186 0169 84000000 		.4byte	.LVL13
+ 1187 016d 1F00     		.2byte	0x1f
+ 1188 016f 71       		.byte	0x71
+ 1189 0170 00       		.sleb128 0
+ 1190 0171 4E       		.byte	0x4e
+ 1191 0172 3F       		.byte	0x3f
+ 1192 0173 24       		.byte	0x24
+ 1193 0174 1A       		.byte	0x1a
+ 1194 0175 40       		.byte	0x40
+ 1195 0176 25       		.byte	0x25
+ 1196 0177 71       		.byte	0x71
+ 1197 0178 00       		.sleb128 0
+ 1198 0179 48       		.byte	0x48
+ 1199 017a 41       		.byte	0x41
+ 1200 017b 24       		.byte	0x24
+ 1201 017c 1A       		.byte	0x1a
+ 1202 017d 44       		.byte	0x44
+ 1203 017e 25       		.byte	0x25
+ 1204 017f 32       		.byte	0x32
+ 1205 0180 24       		.byte	0x24
+ 1206 0181 71       		.byte	0x71
+ 1207 0182 00       		.sleb128 0
+ 1208 0183 48       		.byte	0x48
+ 1209 0184 41       		.byte	0x41
+ 1210 0185 24       		.byte	0x24
+ 1211 0186 1A       		.byte	0x1a
+ 1212 0187 44       		.byte	0x44
+ 1213 0188 25       		.byte	0x25
+ 1214 0189 22       		.byte	0x22
+ 1215 018a 31       		.byte	0x31
+ 1216 018b 24       		.byte	0x24
+ 1217 018c 22       		.byte	0x22
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 33
+
+
+ 1218 018d 9F       		.byte	0x9f
+ 1219 018e 00000000 		.4byte	0
+ 1220 0192 00000000 		.4byte	0
+ 1221              		.section	.debug_aranges,"",%progbits
+ 1222 0000 24000000 		.4byte	0x24
+ 1223 0004 0200     		.2byte	0x2
+ 1224 0006 00000000 		.4byte	.Ldebug_info0
+ 1225 000a 04       		.byte	0x4
+ 1226 000b 00       		.byte	0
+ 1227 000c 0000     		.2byte	0
+ 1228 000e 0000     		.2byte	0
+ 1229 0010 00000000 		.4byte	.LFB62
+ 1230 0014 94000000 		.4byte	.LFE62-.LFB62
+ 1231 0018 00000000 		.4byte	.LFB63
+ 1232 001c 20000000 		.4byte	.LFE63-.LFB63
+ 1233 0020 00000000 		.4byte	0
+ 1234 0024 00000000 		.4byte	0
+ 1235              		.section	.debug_ranges,"",%progbits
+ 1236              	.Ldebug_ranges0:
+ 1237 0000 14000000 		.4byte	.LBB10
+ 1238 0004 1A000000 		.4byte	.LBE10
+ 1239 0008 1C000000 		.4byte	.LBB19
+ 1240 000c 20000000 		.4byte	.LBE19
+ 1241 0010 22000000 		.4byte	.LBB28
+ 1242 0014 24000000 		.4byte	.LBE28
+ 1243 0018 26000000 		.4byte	.LBB30
+ 1244 001c 28000000 		.4byte	.LBE30
+ 1245 0020 2C000000 		.4byte	.LBB32
+ 1246 0024 34000000 		.4byte	.LBE32
+ 1247 0028 36000000 		.4byte	.LBB34
+ 1248 002c 38000000 		.4byte	.LBE34
+ 1249 0030 3A000000 		.4byte	.LBB36
+ 1250 0034 3C000000 		.4byte	.LBE36
+ 1251 0038 3E000000 		.4byte	.LBB38
+ 1252 003c 40000000 		.4byte	.LBE38
+ 1253 0040 00000000 		.4byte	0
+ 1254 0044 00000000 		.4byte	0
+ 1255 0048 20000000 		.4byte	.LBB20
+ 1256 004c 22000000 		.4byte	.LBE20
+ 1257 0050 24000000 		.4byte	.LBB29
+ 1258 0054 26000000 		.4byte	.LBE29
+ 1259 0058 28000000 		.4byte	.LBB31
+ 1260 005c 2C000000 		.4byte	.LBE31
+ 1261 0060 34000000 		.4byte	.LBB33
+ 1262 0064 36000000 		.4byte	.LBE33
+ 1263 0068 38000000 		.4byte	.LBB35
+ 1264 006c 3A000000 		.4byte	.LBE35
+ 1265 0070 3C000000 		.4byte	.LBB37
+ 1266 0074 3E000000 		.4byte	.LBE37
+ 1267 0078 40000000 		.4byte	.LBB39
+ 1268 007c 42000000 		.4byte	.LBE39
+ 1269 0080 00000000 		.4byte	0
+ 1270 0084 00000000 		.4byte	0
+ 1271 0088 52000000 		.4byte	.LBB40
+ 1272 008c 5C000000 		.4byte	.LBE40
+ 1273 0090 5E000000 		.4byte	.LBB56
+ 1274 0094 60000000 		.4byte	.LBE56
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 34
+
+
+ 1275 0098 62000000 		.4byte	.LBB58
+ 1276 009c 64000000 		.4byte	.LBE58
+ 1277 00a0 68000000 		.4byte	.LBB60
+ 1278 00a4 70000000 		.4byte	.LBE60
+ 1279 00a8 72000000 		.4byte	.LBB62
+ 1280 00ac 74000000 		.4byte	.LBE62
+ 1281 00b0 76000000 		.4byte	.LBB64
+ 1282 00b4 78000000 		.4byte	.LBE64
+ 1283 00b8 7A000000 		.4byte	.LBB66
+ 1284 00bc 7C000000 		.4byte	.LBE66
+ 1285 00c0 00000000 		.4byte	0
+ 1286 00c4 00000000 		.4byte	0
+ 1287 00c8 5C000000 		.4byte	.LBB48
+ 1288 00cc 5E000000 		.4byte	.LBE48
+ 1289 00d0 60000000 		.4byte	.LBB57
+ 1290 00d4 62000000 		.4byte	.LBE57
+ 1291 00d8 64000000 		.4byte	.LBB59
+ 1292 00dc 68000000 		.4byte	.LBE59
+ 1293 00e0 70000000 		.4byte	.LBB61
+ 1294 00e4 72000000 		.4byte	.LBE61
+ 1295 00e8 74000000 		.4byte	.LBB63
+ 1296 00ec 76000000 		.4byte	.LBE63
+ 1297 00f0 78000000 		.4byte	.LBB65
+ 1298 00f4 7A000000 		.4byte	.LBE65
+ 1299 00f8 7C000000 		.4byte	.LBB67
+ 1300 00fc 7E000000 		.4byte	.LBE67
+ 1301 0100 00000000 		.4byte	0
+ 1302 0104 00000000 		.4byte	0
+ 1303 0108 00000000 		.4byte	.LFB62
+ 1304 010c 94000000 		.4byte	.LFE62
+ 1305 0110 00000000 		.4byte	.LFB63
+ 1306 0114 20000000 		.4byte	.LFE63
+ 1307 0118 00000000 		.4byte	0
+ 1308 011c 00000000 		.4byte	0
+ 1309              		.section	.debug_line,"",%progbits
+ 1310              	.Ldebug_line0:
+ 1311 0000 DC000000 		.section	.debug_str,"MS",%progbits,1
+ 1311      02007F00 
+ 1311      00000201 
+ 1311      FB0E0D00 
+ 1311      01010101 
+ 1312              	.LASF6:
+ 1313 0000 6C6F6E67 		.ascii	"long long int\000"
+ 1313      206C6F6E 
+ 1313      6720696E 
+ 1313      7400
+ 1314              	.LASF22:
+ 1315 000e 75696E74 		.ascii	"uint32\000"
+ 1315      333200
+ 1316              	.LASF8:
+ 1317 0015 756E7369 		.ascii	"unsigned int\000"
+ 1317      676E6564 
+ 1317      20696E74 
+ 1317      00
+ 1318              	.LASF28:
+ 1319 0022 5254435F 		.ascii	"RTC_1_SetPeriod\000"
+ 1319      315F5365 
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 35
+
+
+ 1319      74506572 
+ 1319      696F6400 
+ 1320              	.LASF17:
+ 1321 0032 63757272 		.ascii	"current_time\000"
+ 1321      656E745F 
+ 1321      74696D65 
+ 1321      00
+ 1322              	.LASF18:
+ 1323 003f 7265665F 		.ascii	"ref_time\000"
+ 1323      74696D65 
+ 1323      00
+ 1324              	.LASF5:
+ 1325 0048 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1325      20756E73 
+ 1325      69676E65 
+ 1325      6420696E 
+ 1325      7400
+ 1326              	.LASF7:
+ 1327 005a 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1327      206C6F6E 
+ 1327      6720756E 
+ 1327      7369676E 
+ 1327      65642069 
+ 1328              	.LASF27:
+ 1329 0071 5254435F 		.ascii	"RTC_1_Start\000"
+ 1329      315F5374 
+ 1329      61727400 
+ 1330              	.LASF26:
+ 1331 007d 63665F73 		.ascii	"cf_send_interrupt_event\000"
+ 1331      656E645F 
+ 1331      696E7465 
+ 1331      72727570 
+ 1331      745F6576 
+ 1332              	.LASF21:
+ 1333 0095 433A5C55 		.ascii	"C:\\Users\\glenn\\OneDrive\\PSOC\\moisture_sensor_4"
+ 1333      73657273 
+ 1333      5C676C65 
+ 1333      6E6E5C4F 
+ 1333      6E654472 
+ 1334 00c3 6D5C4D6F 		.ascii	"m\\Moisture_Sensor\\Moisture_Sensor.cydsn\000"
+ 1334      69737475 
+ 1334      72655F53 
+ 1334      656E736F 
+ 1334      725C4D6F 
+ 1335              	.LASF1:
+ 1336 00eb 756E7369 		.ascii	"unsigned char\000"
+ 1336      676E6564 
+ 1336      20636861 
+ 1336      7200
+ 1337              	.LASF25:
+ 1338 00f9 5254435F 		.ascii	"RTC_1_GetTime\000"
+ 1338      315F4765 
+ 1338      7454696D 
+ 1338      6500
+ 1339              	.LASF11:
+ 1340 0107 63686172 		.ascii	"char\000"
+ 1340      00
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 36
+
+
+ 1341              	.LASF4:
+ 1342 010c 6C6F6E67 		.ascii	"long int\000"
+ 1342      20696E74 
+ 1342      00
+ 1343              	.LASF16:
+ 1344 0115 72657456 		.ascii	"retVal\000"
+ 1344      616C00
+ 1345              	.LASF15:
+ 1346 011c 696E7075 		.ascii	"inputTime\000"
+ 1346      7454696D 
+ 1346      6500
+ 1347              	.LASF10:
+ 1348 0126 646F7562 		.ascii	"double\000"
+ 1348      6C6500
+ 1349              	.LASF14:
+ 1350 012d 5254435F 		.ascii	"RTC_1_GetHours\000"
+ 1350      315F4765 
+ 1350      74486F75 
+ 1350      727300
+ 1351              	.LASF20:
+ 1352 013c 7274635F 		.ascii	"rtc_functions\\rtc_functions.c\000"
+ 1352      66756E63 
+ 1352      74696F6E 
+ 1352      735C7274 
+ 1352      635F6675 
+ 1353              	.LASF23:
+ 1354 015a 7274635F 		.ascii	"rtc_check_time\000"
+ 1354      63686563 
+ 1354      6B5F7469 
+ 1354      6D6500
+ 1355              	.LASF3:
+ 1356 0169 73686F72 		.ascii	"short unsigned int\000"
+ 1356      7420756E 
+ 1356      7369676E 
+ 1356      65642069 
+ 1356      6E7400
+ 1357              	.LASF0:
+ 1358 017c 7369676E 		.ascii	"signed char\000"
+ 1358      65642063 
+ 1358      68617200 
+ 1359              	.LASF13:
+ 1360 0188 5254435F 		.ascii	"RTC_1_GetMinutes\000"
+ 1360      315F4765 
+ 1360      744D696E 
+ 1360      75746573 
+ 1360      00
+ 1361              	.LASF24:
+ 1362 0199 696E6974 		.ascii	"init_rtc\000"
+ 1362      5F727463 
+ 1362      00
+ 1363              	.LASF9:
+ 1364 01a2 666C6F61 		.ascii	"float\000"
+ 1364      7400
+ 1365              	.LASF2:
+ 1366 01a8 73686F72 		.ascii	"short int\000"
+ 1366      7420696E 
+ 1366      7400
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccQg4iCW.s 			page 37
+
+
+ 1367              	.LASF12:
+ 1368 01b2 73697A65 		.ascii	"sizetype\000"
+ 1368      74797065 
+ 1368      00
+ 1369              	.LASF19:
+ 1370 01bb 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1370      4320342E 
+ 1370      392E3320 
+ 1370      32303135 
+ 1370      30333033 
+ 1371 01ee 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 1371      20726576 
+ 1371      6973696F 
+ 1371      6E203232 
+ 1371      31323230 
+ 1372 0221 32202D66 		.ascii	"2 -ffunction-sections -finline-functions -ffat-lto-"
+ 1372      66756E63 
+ 1372      74696F6E 
+ 1372      2D736563 
+ 1372      74696F6E 
+ 1373 0254 6F626A65 		.ascii	"objects\000"
+ 1373      63747300 
+ 1374              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

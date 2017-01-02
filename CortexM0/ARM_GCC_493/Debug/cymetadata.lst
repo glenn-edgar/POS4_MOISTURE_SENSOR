@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccE4vlnW.s 			page 1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccalS9SZ.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -9,7 +9,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccE4vlnW.s 			page 1
    6              		.eabi_attribute 24, 1
    7              		.eabi_attribute 25, 1
    8              		.eabi_attribute 26, 1
-   9              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 30, 2
   10              		.eabi_attribute 34, 0
   11              		.eabi_attribute 18, 4
   12              		.code	16
@@ -17,48 +17,48 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccE4vlnW.s 			page 1
   14              		.text
   15              	.Ltext0:
   16              		.cfi_sections	.debug_frame
-  17              		.global	cy_meta_flashprotect
-  18              		.section	.cyflashprotect,"a",%progbits
-  19              		.align	2
-  20              		.type	cy_meta_flashprotect, %object
-  21              		.size	cy_meta_flashprotect, 128
-  22              	cy_meta_flashprotect:
-  23 0000 00000000 		.space	128
-  23      00000000 
-  23      00000000 
-  23      00000000 
-  23      00000000 
-  24              		.global	cy_metadata
-  25              		.section	.cymeta,"a",%progbits
-  26              		.align	2
-  27              		.type	cy_metadata, %object
-  28              		.size	cy_metadata, 12
-  29              	cy_metadata:
-  30 0000 00       		.byte	0
-  31 0001 02       		.byte	2
-  32 0002 11       		.byte	17
-  33 0003 2D       		.byte	45
-  34 0004 11       		.byte	17
-  35 0005 A1       		.byte	-95
-  36 0006 00       		.byte	0
-  37 0007 01       		.byte	1
-  38 0008 00       		.byte	0
-  39 0009 00       		.byte	0
-  40 000a 00       		.byte	0
-  41 000b 00       		.byte	0
-  42              		.global	cy_meta_chipprotect
-  43              		.section	.cychipprotect,"a",%progbits
+  17              		.global	cy_meta_chipprotect
+  18              		.global	cy_metadata
+  19              		.global	cy_meta_flashprotect
+  20              		.section	.cychipprotect,"a",%progbits
+  21              		.align	2
+  22              		.type	cy_meta_chipprotect, %object
+  23              		.size	cy_meta_chipprotect, 1
+  24              	cy_meta_chipprotect:
+  25 0000 01       		.byte	1
+  26 0001 000000   		.section	.cymeta,"a",%progbits
+  27              		.align	2
+  28              		.type	cy_metadata, %object
+  29              		.size	cy_metadata, 12
+  30              	cy_metadata:
+  31 0000 00       		.byte	0
+  32 0001 02       		.byte	2
+  33 0002 11       		.byte	17
+  34 0003 2D       		.byte	45
+  35 0004 11       		.byte	17
+  36 0005 A1       		.byte	-95
+  37 0006 00       		.byte	0
+  38 0007 01       		.byte	1
+  39 0008 00       		.byte	0
+  40 0009 00       		.byte	0
+  41 000a 00       		.byte	0
+  42 000b 00       		.byte	0
+  43              		.section	.cyflashprotect,"a",%progbits
   44              		.align	2
-  45              		.type	cy_meta_chipprotect, %object
-  46              		.size	cy_meta_chipprotect, 1
-  47              	cy_meta_chipprotect:
-  48 0000 01       		.byte	1
-  49 0001 000000   		.text
+  45              		.type	cy_meta_flashprotect, %object
+  46              		.size	cy_meta_flashprotect, 128
+  47              	cy_meta_flashprotect:
+  48 0000 00000000 		.space	128
+  48      00000000 
+  48      00000000 
+  48      00000000 
+  48      00000000 
+  49              		.text
   50              	.Letext0:
   51              		.file 1 "Generated_Source\\PSoC4\\cymetadata.c"
   52              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
   53              		.section	.debug_info,"",%progbits
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccE4vlnW.s 			page 2
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccalS9SZ.s 			page 2
 
 
   54              	.Ldebug_info0:
@@ -67,43 +67,43 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccE4vlnW.s 			page 1
   57 0006 00000000 		.4byte	.Ldebug_abbrev0
   58 000a 04       		.byte	0x4
   59 000b 01       		.uleb128 0x1
-  60 000c 84000000 		.4byte	.LASF16
+  60 000c 26000000 		.4byte	.LASF16
   61 0010 01       		.byte	0x1
-  62 0011 34000000 		.4byte	.LASF17
-  63 0015 80010000 		.4byte	.LASF18
+  62 0011 D5000000 		.4byte	.LASF17
+  63 0015 93010000 		.4byte	.LASF18
   64 0019 00000000 		.4byte	.Ldebug_line0
   65 001d 02       		.uleb128 0x2
   66 001e 01       		.byte	0x1
   67 001f 06       		.byte	0x6
-  68 0020 D6010000 		.4byte	.LASF0
+  68 0020 E9010000 		.4byte	.LASF0
   69 0024 02       		.uleb128 0x2
   70 0025 01       		.byte	0x1
   71 0026 08       		.byte	0x8
-  72 0027 26000000 		.4byte	.LASF1
+  72 0027 C7000000 		.4byte	.LASF1
   73 002b 02       		.uleb128 0x2
   74 002c 02       		.byte	0x2
   75 002d 05       		.byte	0x5
-  76 002e 67010000 		.4byte	.LASF2
+  76 002e 7A010000 		.4byte	.LASF2
   77 0032 02       		.uleb128 0x2
   78 0033 02       		.byte	0x2
   79 0034 07       		.byte	0x7
-  80 0035 6A000000 		.4byte	.LASF3
+  80 0035 0B010000 		.4byte	.LASF3
   81 0039 02       		.uleb128 0x2
   82 003a 04       		.byte	0x4
   83 003b 05       		.byte	0x5
-  84 003c 77010000 		.4byte	.LASF4
+  84 003c 8A010000 		.4byte	.LASF4
   85 0040 02       		.uleb128 0x2
   86 0041 04       		.byte	0x4
   87 0042 07       		.byte	0x7
-  88 0043 58000000 		.4byte	.LASF5
+  88 0043 F9000000 		.4byte	.LASF5
   89 0047 02       		.uleb128 0x2
   90 0048 08       		.byte	0x8
   91 0049 05       		.byte	0x5
-  92 004a 54010000 		.4byte	.LASF6
+  92 004a 67010000 		.4byte	.LASF6
   93 004e 02       		.uleb128 0x2
   94 004f 08       		.byte	0x8
   95 0050 07       		.byte	0x7
-  96 0051 1F010000 		.4byte	.LASF7
+  96 0051 32010000 		.4byte	.LASF7
   97 0055 03       		.uleb128 0x3
   98 0056 04       		.byte	0x4
   99 0057 05       		.byte	0x5
@@ -111,14 +111,14 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccE4vlnW.s 			page 1
  101 005c 02       		.uleb128 0x2
  102 005d 04       		.byte	0x4
  103 005e 07       		.byte	0x7
- 104 005f 12010000 		.4byte	.LASF8
+ 104 005f 25010000 		.4byte	.LASF8
  105 0063 04       		.uleb128 0x4
- 106 0064 71010000 		.4byte	.LASF19
+ 106 0064 84010000 		.4byte	.LASF19
  107 0068 02       		.byte	0x2
  108 0069 9801     		.2byte	0x198
  109 006b 24000000 		.4byte	0x24
  110 006f 02       		.uleb128 0x2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccE4vlnW.s 			page 3
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccalS9SZ.s 			page 3
 
 
  111 0070 04       		.byte	0x4
@@ -127,11 +127,11 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccE4vlnW.s 			page 1
  114 0076 02       		.uleb128 0x2
  115 0077 08       		.byte	0x8
  116 0078 04       		.byte	0x4
- 117 0079 7D000000 		.4byte	.LASF10
+ 117 0079 1E010000 		.4byte	.LASF10
  118 007d 02       		.uleb128 0x2
  119 007e 01       		.byte	0x1
  120 007f 08       		.byte	0x8
- 121 0080 62010000 		.4byte	.LASF11
+ 121 0080 75010000 		.4byte	.LASF11
  122 0084 05       		.uleb128 0x5
  123 0085 63000000 		.4byte	0x63
  124 0089 94000000 		.4byte	0x94
@@ -142,9 +142,9 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccE4vlnW.s 			page 1
  129 0094 02       		.uleb128 0x2
  130 0095 04       		.byte	0x4
  131 0096 07       		.byte	0x7
- 132 0097 4B010000 		.4byte	.LASF12
+ 132 0097 5E010000 		.4byte	.LASF12
  133 009b 07       		.uleb128 0x7
- 134 009c 36010000 		.4byte	.LASF13
+ 134 009c 49010000 		.4byte	.LASF13
  135 00a0 01       		.byte	0x1
  136 00a1 1F       		.byte	0x1f
  137 00a2 AC000000 		.4byte	0xac
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccE4vlnW.s 			page 1
  165 00e5 00       		.byte	0
  166 00e6 00       		.byte	0
  167 00e7 07       		.uleb128 0x7
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccE4vlnW.s 			page 4
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccalS9SZ.s 			page 4
 
 
  168 00e8 00000000 		.4byte	.LASF15
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccE4vlnW.s 			page 1
  222 002a 3A       		.uleb128 0x3a
  223 002b 0B       		.uleb128 0xb
  224 002c 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccE4vlnW.s 			page 5
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccalS9SZ.s 			page 5
 
 
  225 002d 05       		.uleb128 0x5
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccE4vlnW.s 			page 1
  279 000c 0000     		.2byte	0
  280 000e 0000     		.2byte	0
  281 0010 00000000 		.4byte	0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccE4vlnW.s 			page 6
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccalS9SZ.s 			page 6
 
 
  282 0014 00000000 		.4byte	0
@@ -322,107 +322,109 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccE4vlnW.s 			page 1
  290              	.LASF9:
  291 0020 666C6F61 		.ascii	"float\000"
  291      7400
- 292              	.LASF1:
- 293 0026 756E7369 		.ascii	"unsigned char\000"
- 293      676E6564 
- 293      20636861 
- 293      7200
- 294              	.LASF17:
- 295 0034 47656E65 		.ascii	"Generated_Source\\PSoC4\\cymetadata.c\000"
- 295      72617465 
- 295      645F536F 
- 295      75726365 
- 295      5C50536F 
- 296              	.LASF5:
- 297 0058 6C6F6E67 		.ascii	"long unsigned int\000"
- 297      20756E73 
- 297      69676E65 
- 297      6420696E 
- 297      7400
- 298              	.LASF3:
- 299 006a 73686F72 		.ascii	"short unsigned int\000"
- 299      7420756E 
- 299      7369676E 
- 299      65642069 
- 299      6E7400
- 300              	.LASF10:
- 301 007d 646F7562 		.ascii	"double\000"
- 301      6C6500
- 302              	.LASF16:
- 303 0084 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 303      4320342E 
- 303      392E3320 
- 303      32303135 
- 303      30333033 
- 304 00b7 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
- 304      20726576 
- 304      6973696F 
- 304      6E203232 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccE4vlnW.s 			page 7
+ 292              	.LASF16:
+ 293 0026 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 293      4320342E 
+ 293      392E3320 
+ 293      32303135 
+ 293      30333033 
+ 294 0059 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 294      20726576 
+ 294      6973696F 
+ 294      6E203232 
+ 294      31323230 
+ 295 008c 32202D66 		.ascii	"2 -ffunction-sections -finline-functions -ffat-lto-"
+ 295      66756E63 
+ 295      74696F6E 
+ 295      2D736563 
+ 295      74696F6E 
+ 296 00bf 6F626A65 		.ascii	"objects\000"
+ 296      63747300 
+ 297              	.LASF1:
+ 298 00c7 756E7369 		.ascii	"unsigned char\000"
+ 298      676E6564 
+ 298      20636861 
+ 298      7200
+ 299              	.LASF17:
+ 300 00d5 47656E65 		.ascii	"Generated_Source\\PSoC4\\cymetadata.c\000"
+ 300      72617465 
+ 300      645F536F 
+ 300      75726365 
+ 300      5C50536F 
+ 301              	.LASF5:
+ 302 00f9 6C6F6E67 		.ascii	"long unsigned int\000"
+ 302      20756E73 
+ 302      69676E65 
+ 302      6420696E 
+ 302      7400
+ 303              	.LASF3:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccalS9SZ.s 			page 7
 
 
- 304      31323230 
- 305 00ea 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
- 305      66756E63 
- 305      74696F6E 
- 305      2D736563 
- 305      74696F6E 
- 306              	.LASF8:
- 307 0112 756E7369 		.ascii	"unsigned int\000"
- 307      676E6564 
- 307      20696E74 
- 307      00
- 308              	.LASF7:
- 309 011f 6C6F6E67 		.ascii	"long long unsigned int\000"
- 309      206C6F6E 
- 309      6720756E 
- 309      7369676E 
- 309      65642069 
- 310              	.LASF13:
- 311 0136 63795F6D 		.ascii	"cy_meta_flashprotect\000"
- 311      6574615F 
- 311      666C6173 
- 311      6870726F 
- 311      74656374 
- 312              	.LASF12:
- 313 014b 73697A65 		.ascii	"sizetype\000"
- 313      74797065 
- 313      00
- 314              	.LASF6:
- 315 0154 6C6F6E67 		.ascii	"long long int\000"
- 315      206C6F6E 
- 315      6720696E 
- 315      7400
- 316              	.LASF11:
- 317 0162 63686172 		.ascii	"char\000"
- 317      00
- 318              	.LASF2:
- 319 0167 73686F72 		.ascii	"short int\000"
- 319      7420696E 
- 319      7400
- 320              	.LASF19:
- 321 0171 75696E74 		.ascii	"uint8\000"
- 321      3800
- 322              	.LASF4:
- 323 0177 6C6F6E67 		.ascii	"long int\000"
- 323      20696E74 
- 323      00
- 324              	.LASF18:
- 325 0180 433A5C55 		.ascii	"C:\\Users\\glenn\\OneDrive\\PSOC\\moisture_sensor_4"
- 325      73657273 
- 325      5C676C65 
- 325      6E6E5C4F 
- 325      6E654472 
- 326 01ae 6D5C4D6F 		.ascii	"m\\Moisture_Sensor\\Moisture_Sensor.cydsn\000"
- 326      69737475 
- 326      72655F53 
- 326      656E736F 
- 326      725C4D6F 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccE4vlnW.s 			page 8
+ 304 010b 73686F72 		.ascii	"short unsigned int\000"
+ 304      7420756E 
+ 304      7369676E 
+ 304      65642069 
+ 304      6E7400
+ 305              	.LASF10:
+ 306 011e 646F7562 		.ascii	"double\000"
+ 306      6C6500
+ 307              	.LASF8:
+ 308 0125 756E7369 		.ascii	"unsigned int\000"
+ 308      676E6564 
+ 308      20696E74 
+ 308      00
+ 309              	.LASF7:
+ 310 0132 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 310      206C6F6E 
+ 310      6720756E 
+ 310      7369676E 
+ 310      65642069 
+ 311              	.LASF13:
+ 312 0149 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ 312      6574615F 
+ 312      666C6173 
+ 312      6870726F 
+ 312      74656374 
+ 313              	.LASF12:
+ 314 015e 73697A65 		.ascii	"sizetype\000"
+ 314      74797065 
+ 314      00
+ 315              	.LASF6:
+ 316 0167 6C6F6E67 		.ascii	"long long int\000"
+ 316      206C6F6E 
+ 316      6720696E 
+ 316      7400
+ 317              	.LASF11:
+ 318 0175 63686172 		.ascii	"char\000"
+ 318      00
+ 319              	.LASF2:
+ 320 017a 73686F72 		.ascii	"short int\000"
+ 320      7420696E 
+ 320      7400
+ 321              	.LASF19:
+ 322 0184 75696E74 		.ascii	"uint8\000"
+ 322      3800
+ 323              	.LASF4:
+ 324 018a 6C6F6E67 		.ascii	"long int\000"
+ 324      20696E74 
+ 324      00
+ 325              	.LASF18:
+ 326 0193 433A5C55 		.ascii	"C:\\Users\\glenn\\OneDrive\\PSOC\\moisture_sensor_4"
+ 326      73657273 
+ 326      5C676C65 
+ 326      6E6E5C4F 
+ 326      6E654472 
+ 327 01c1 6D5C4D6F 		.ascii	"m\\Moisture_Sensor\\Moisture_Sensor.cydsn\000"
+ 327      69737475 
+ 327      72655F53 
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccalS9SZ.s 			page 8
 
 
- 327              	.LASF0:
- 328 01d6 7369676E 		.ascii	"signed char\000"
- 328      65642063 
- 328      68617200 
- 329              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ 327      656E736F 
+ 327      725C4D6F 
+ 328              	.LASF0:
+ 329 01e9 7369676E 		.ascii	"signed char\000"
+ 329      65642063 
+ 329      68617200 
+ 330              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

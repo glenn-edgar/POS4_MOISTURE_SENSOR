@@ -162,7 +162,7 @@ int restore_system_parameters(unsigned link_id, unsigned param_1,
    memcpy( modbus_address_data, ptr->modbus_address, sizeof(modbus_address_data) );
    store_modbus_data_registers( RESISTOR_FLOAT, 2, (uint16*)&ptr->resistance_value);
 
-   store_modbus_data_registers( CAPACITANCE_SENSOR_MASK, 1, (uint16*)&ptr->capacitance_mask);
+   
    store_modbus_data_registers( RESISTIVE_SENSOR_1_CONFIGURATION, RESISTIVE_SENSOR_NUMBER, (uint16*)&ptr->resistance_type);
    store_modbus_data_registers( MOD_UNIT_ID, 1,(uint16 *) &ptr->uint_id ); 
     return 0;

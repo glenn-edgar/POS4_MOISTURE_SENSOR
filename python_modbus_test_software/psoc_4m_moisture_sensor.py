@@ -15,10 +15,11 @@ class PSOC_4M_MOISTURE_UNIT(PSOC_BASE_4M):
        self.make_air_temp_humidity_addr                      = 29
        self.force_moisture_reading_addr                      = 30  
        self.update_moisture_sensor_configuration_addr        = 31
-       self.change_capacitance_sensor_mask_addr              = 32    
+  
        self.update_flash_addr                                = 33
+       self.clear_moisture_flag_addr                         = 34
        
-       self.sensor_length                                    = 8
+       self.sensor_length                                    = 16
        
        self.new_measurement_flag_start = 20
        self.new_measurement_flag_list = [ "NEW_MOISTURE_DATA_FLAG"]
@@ -47,46 +48,16 @@ class PSOC_4M_MOISTURE_UNIT(PSOC_BASE_4M):
        self.capacitance_mask_list  = [ "CAPACITANCE_MASK"]
        
        # Moisture Data
-       self.moisture_data_start  =    30                   
-       self.moisture_data_list = [  
-                                      "MOISTURE_SENSOR_1",         
-                                     "MOISTURE_SENSOR_2",         
-                                     "MOISTURE_SENSOR_3",         
-                                     "MOISTRUE_SENSOR_4",         
-                                     "MOISTURE_SENSOR_5",         
-                                     "MOISTURE_SENSOR_6",         
-                                     "MOISTURE_SENSOR_7",        
-                                     "MOISTURE_SENSOR_8",           
-                                      
-                                  ]
-         # Moisture Data
-       self.capacitance_data_start  =    70                   
-       self.capacitance_data_list = [  
-                                      "CAPACITANCE_SENSOR_1",         
-                                     "CAPACITANCE_SENSOR_2",         
-                                     "CAPACITANCE_SENSOR_3",         
-                                     "CAPACITANCE_SENSOR_4",         
-                                     "CAPACITANCE_SENSOR_5",         
-                                     "CAPACITANCE_SENSOR_6",         
-                                     "CAPACITANCE_SENSOR_7",        
-                                     "CAPACITANCE_SENSOR_8",           
-                                      
-                                  ]
-   
+       self.moisture_data_start  =    30   
+       self.moisture_data_number =    16      
+       
+       self.moisture_data_resistive_start              = 70                
+       self.moisture_resistive_configuration_number    = 16                      
+    
      
        # Moisture Configuration Data
        self.moisture_configuration_start  =    110
-       self.moisture_configuration_list   =    [
-                                  "MOISTURE_SENSOR_1_CONFIGURATION",
-                                  "MOISTURE_SENSOR_2_CONFIGURATION",
-                                  "MOISTURE_SENSOR_3_CONFIGURATION", 
-                                  "MOISTURE_SENSOR_4_CONFIGURATION", 
-                                  "MOISTURE_SENSOR_5_CONFIGURATION",
-                                  "MOISTURE_SENSOR_6_CONFIGURATION",
-                                  "MOISTURE_SENSOR_7_CONFIGURATION",
-                                  "MOISTURE_SENSOR_8_CONFIGURATION"
-
-                                ]
+       self.moisture_configuration_number =     16
  
                                              
        
@@ -112,9 +83,6 @@ class PSOC_4M_MOISTURE_UNIT(PSOC_BASE_4M):
        return return_value
        
 
-   def read_capacitor_mask( self, address):
-       data = self.instrument.read_registers( address,self.capacitance_mask_start , 1, 3, False)
-       return data[0]
    
         
    def read_moisture_control(self, address ):
@@ -132,18 +100,15 @@ class PSOC_4M_MOISTURE_UNIT(PSOC_BASE_4M):
        
    def read_moisture_data( self ,address ):
         return_value = {}
-        data =  self.instrument.read_floats( address,  self.moisture_data_start ,len(self.moisture_data_list)  )
-        for i in range(0,len(self.moisture_data_list)):
-           return_value[ self.moisture_data_list[i] ]  = data[i]
-        return return_value
+        data =  self.instrument.read_floats( address,  self.moisture_data_start ,self.moisture_configuration_number  )
+        return data
         
-   def read_capacitance_data( self ,address ):
-        return_value = {}
-        data =  self.instrument.read_floats( address,  self.capacitance_data_start ,len(self.capacitance_data_list)  )
-        for i in range(0,len(self.capacitance_data_list)):
-           return_value[ self.capacitance_data_list[i] ]  = data[i]
-        return return_value
          
+   def read_moisture_resistive_data( self ,address ):
+        return_value = {}
+        data =  self.instrument.read_floats( address,  self.moisture_data_resistive_start ,self.moisture_resistive_configuration_number  )
+        return data
+        
         
       
       
@@ -153,11 +118,8 @@ class PSOC_4M_MOISTURE_UNIT(PSOC_BASE_4M):
    def read_moisture_configuration( self, address ):
        return_value = {}
      
-       data = self.instrument.read_registers( address,self.moisture_configuration_start,len(self.moisture_configuration_list) )
-      
-       for i in range( 0,len(self.moisture_configuration_list)):
-           return_value[ self.moisture_configuration_list[i] ] = data[i]
-       return return_value
+       data = self.instrument.read_registers( address,self.moisture_configuration_start,self.moisture_configuration_number )
+       return data
        
   
    def check_one_wire_presence ( self, address): #sampling rate is in minutes
@@ -170,15 +132,15 @@ class PSOC_4M_MOISTURE_UNIT(PSOC_BASE_4M):
          self.instrument.write_registers(address, self.make_air_temp_humidity_addr, [0] )
 
   
-
+   def clear_new_moisture_data_flag( self, address):
+       self.instrument.write_registers( address, self.clear_moisture_flag_addr, [0] )
+       
  
    
    def force_moisture_reading ( self, address): #sampling rate is in minutes
          self.instrument.write_registers(address, self.force_moisture_reading_addr, [0] )
          
-   def change_capacitance_sensor_mask( self, address, mask):
-         self.instrument.write_registers(address, self.change_capacitance_sensor_mask_addr, [int(mask)] )
-       
+        
    def  update_moisture_sensor_configuration ( self,address, sensor_data ): # sensor data consisting of 0,1,2
         if len( sensor_data) != self.sensor_length :
             raise
@@ -200,29 +162,43 @@ if __name__ == "__main__":
        
        psoc_moisture = PSOC_4M_MOISTURE_UNIT( new_instrument )
        #psoc_moisture.update_current_time( 40 )
+       print psoc_moisture.clear_new_moisture_data_flag(40)
+       print psoc_moisture.check_status(40)
+
+       print psoc_moisture.check_one_wire_presence(40)
+       time.sleep(.3)
+       print psoc_moisture.make_soil_temperature(40)
+       time.sleep(.3)
+       print psoc_moisture.make_air_temp_humidity(40)
+       time.sleep(.3)
+       print psoc_moisture.make_air_temp_humidity(40)
+       time.sleep(.3)
        # test read functions first
-       print "check_status", psoc_moisture.check_status(40)
-       print "read capacitor mask", psoc_moisture.read_capacitor_mask(40)
-       print "read control data", psoc_moisture.read_moisture_control(40)
-       print "read resistive configureation",psoc_moisture.read_moisture_configuration(40)
-       print "read resistive moisture",psoc_moisture.read_moisture_data(40)
-       print "read capacitance data", psoc_moisture.read_capacitance_data(40)
-       '''    
-       # no do configuration changes
-       psoc_moisture.change_capacitance_sensor_mask( 40,0)
-       psoc_moisture.update_moisture_sensor_configuration ( 40,[0,0,0,0,0,0,0,0] )
-       psoc_moisture.update_flash(40)
+ 
+       print psoc_moisture.check_status(40)
+       print psoc_moisture.read_moisture_control(40)
+       print psoc_moisture.read_moisture_configuration( 40 )
+       print psoc_moisture.force_moisture_reading(40)
        time.sleep(1.)
-       print "read capacitor mask", psoc_moisture.read_capacitor_mask(40)
-       print "read control data", psoc_moisture.read_moisture_control(40)
-       '''       
+       print psoc_moisture.read_moisture_data(40)
+       print psoc_moisture.read_moisture_resistive_data(40)
+       quit()
+       #print psoc_moisture.force_moisture_reading(40)
+       time.sleep(1)
+       print psoc_moisture.read_moisture_resistive_data( 40 )
+       print psoc_moisture.read_moisture_data(40)
+       print psoc_moisture.check_status(40)
+       
+       
+
+       '''             
        # test directed actions
   
        #psoc_moisture.check_one_wire_presence(40)
        #psoc_moisture.make_soil_temperature(40)
        psoc_moisture.force_moisture_reading(40)
-       
-'''
+       '''       
+       '''
        print "new_data_flag",psoc_moisture.check_new_data_flag( 40)
        print "capacitance_mask", psoc_moisture.read_capacitor_mask(40)
        print psoc_moisture.read_moisture_control( 40 )
@@ -237,7 +213,8 @@ if __name__ == "__main__":
        print "force moisture measurement", psoc_moisture.force_moisture_reading(40)
        quit()
        print psoc_moisture.read_moisture_data(40)
-'''
-     
+       '''
+       
+       
        
 

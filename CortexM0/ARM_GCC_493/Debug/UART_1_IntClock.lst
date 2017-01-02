@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cctWUApb.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -9,7 +9,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 1
    6              		.eabi_attribute 24, 1
    7              		.eabi_attribute 25, 1
    8              		.eabi_attribute 26, 1
-   9              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 30, 2
   10              		.eabi_attribute 34, 0
   11              		.eabi_attribute 18, 4
   12              		.code	16
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 1
   30:Generated_Source\PSoC4/UART_1_IntClock.c **** *
   31:Generated_Source\PSoC4/UART_1_IntClock.c **** * Parameters:
   32:Generated_Source\PSoC4/UART_1_IntClock.c **** *  alignClkDiv:  The divider to which phase alignment is performed when the
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 2
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cctWUApb.s 			page 2
 
 
   33:Generated_Source\PSoC4/UART_1_IntClock.c **** *    clock is started.
@@ -71,68 +71,59 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 1
   40:Generated_Source\PSoC4/UART_1_IntClock.c **** {
   26              		.loc 1 40 0
   27              		.cfi_startproc
-  28 0000 80B5     		push	{r7, lr}
-  29              		.cfi_def_cfa_offset 8
-  30              		.cfi_offset 7, -8
-  31              		.cfi_offset 14, -4
-  32 0002 82B0     		sub	sp, sp, #8
-  33              		.cfi_def_cfa_offset 16
-  34 0004 00AF     		add	r7, sp, #0
-  35              		.cfi_def_cfa_register 7
-  36 0006 7860     		str	r0, [r7, #4]
+  28              	.LVL0:
   41:Generated_Source\PSoC4/UART_1_IntClock.c ****     /* Make sure any previous start command has finished. */
   42:Generated_Source\PSoC4/UART_1_IntClock.c ****     while((UART_1_IntClock_CMD_REG & UART_1_IntClock_CMD_ENABLE_MASK) != 0u)
-  37              		.loc 1 42 0
-  38 0008 C046     		mov	r8, r8
-  39              	.L2:
-  40              		.loc 1 42 0 is_stmt 0 discriminator 1
-  41 000a 064B     		ldr	r3, .L3
-  42 000c 1B68     		ldr	r3, [r3]
-  43 000e 002B     		cmp	r3, #0
-  44 0010 FBDB     		blt	.L2
+  29              		.loc 1 42 0
+  30 0000 044A     		ldr	r2, .L5
+  31              	.L2:
+  32              		.loc 1 42 0 is_stmt 0 discriminator 1
+  33 0002 1368     		ldr	r3, [r2]
+  34 0004 002B     		cmp	r3, #0
+  35 0006 FCDB     		blt	.L2
   43:Generated_Source\PSoC4/UART_1_IntClock.c ****     {
   44:Generated_Source\PSoC4/UART_1_IntClock.c ****     }
   45:Generated_Source\PSoC4/UART_1_IntClock.c ****     
   46:Generated_Source\PSoC4/UART_1_IntClock.c ****     /* Specify the target divider and it's alignment divider, and enable. */
   47:Generated_Source\PSoC4/UART_1_IntClock.c ****     UART_1_IntClock_CMD_REG =
-  45              		.loc 1 47 0 is_stmt 1
-  46 0012 044B     		ldr	r3, .L3
   48:Generated_Source\PSoC4/UART_1_IntClock.c ****         ((uint32)UART_1_IntClock__DIV_ID << UART_1_IntClock_CMD_DIV_SHIFT)|
   49:Generated_Source\PSoC4/UART_1_IntClock.c ****         (alignClkDiv << UART_1_IntClock_CMD_PA_DIV_SHIFT) |
-  47              		.loc 1 49 0
-  48 0014 7A68     		ldr	r2, [r7, #4]
-  49 0016 1202     		lsl	r2, r2, #8
-  50 0018 0349     		ldr	r1, .L3+4
-  51 001a 0A43     		orr	r2, r1
+  36              		.loc 1 49 0 is_stmt 1
+  37 0008 034B     		ldr	r3, .L5+4
+  38 000a 0002     		lsl	r0, r0, #8
+  39              	.LVL1:
+  40 000c 1843     		orr	r0, r3
   47:Generated_Source\PSoC4/UART_1_IntClock.c ****         ((uint32)UART_1_IntClock__DIV_ID << UART_1_IntClock_CMD_DIV_SHIFT)|
-  52              		.loc 1 47 0
-  53 001c 1A60     		str	r2, [r3]
+  41              		.loc 1 47 0
+  42 000e 014B     		ldr	r3, .L5
   50:Generated_Source\PSoC4/UART_1_IntClock.c ****         (uint32)UART_1_IntClock_CMD_ENABLE_MASK;
   51:Generated_Source\PSoC4/UART_1_IntClock.c **** }
-  54              		.loc 1 51 0
-  55 001e BD46     		mov	sp, r7
-  56 0020 02B0     		add	sp, sp, #8
-  57              		@ sp needed
-  58 0022 80BD     		pop	{r7, pc}
-  59              	.L4:
-  60              		.align	2
-  61              	.L3:
-  62 0024 00000140 		.word	1073807360
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 3
+  43              		.loc 1 51 0
+  44              		@ sp needed
+  47:Generated_Source\PSoC4/UART_1_IntClock.c ****         ((uint32)UART_1_IntClock__DIV_ID << UART_1_IntClock_CMD_DIV_SHIFT)|
+  45              		.loc 1 47 0
+  46 0010 1860     		str	r0, [r3]
+  47              		.loc 1 51 0
+  48 0012 7047     		bx	lr
+  49              	.L6:
+  50              		.align	2
+  51              	.L5:
+  52 0014 00000140 		.word	1073807360
+  53 0018 42000080 		.word	-2147483582
+  54              		.cfi_endproc
+  55              	.LFE0:
+  56              		.size	UART_1_IntClock_StartEx, .-UART_1_IntClock_StartEx
+  57              		.section	.text.UART_1_IntClock_Stop,"ax",%progbits
+  58              		.align	2
+  59              		.global	UART_1_IntClock_Stop
+  60              		.code	16
+  61              		.thumb_func
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cctWUApb.s 			page 3
 
 
-  63 0028 44000080 		.word	-2147483580
-  64              		.cfi_endproc
-  65              	.LFE0:
-  66              		.size	UART_1_IntClock_StartEx, .-UART_1_IntClock_StartEx
-  67              		.section	.text.UART_1_IntClock_Stop,"ax",%progbits
-  68              		.align	2
-  69              		.global	UART_1_IntClock_Stop
-  70              		.code	16
-  71              		.thumb_func
-  72              		.type	UART_1_IntClock_Stop, %function
-  73              	UART_1_IntClock_Stop:
-  74              	.LFB1:
+  62              		.type	UART_1_IntClock_Stop, %function
+  63              	UART_1_IntClock_Stop:
+  64              	.LFB1:
   52:Generated_Source\PSoC4/UART_1_IntClock.c **** 
   53:Generated_Source\PSoC4/UART_1_IntClock.c **** #else
   54:Generated_Source\PSoC4/UART_1_IntClock.c **** 
@@ -178,38 +169,30 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 1
   94:Generated_Source\PSoC4/UART_1_IntClock.c **** *******************************************************************************/
   95:Generated_Source\PSoC4/UART_1_IntClock.c **** void UART_1_IntClock_Stop(void)
   96:Generated_Source\PSoC4/UART_1_IntClock.c **** {
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 4
-
-
-  75              		.loc 1 96 0
-  76              		.cfi_startproc
-  77 0000 80B5     		push	{r7, lr}
-  78              		.cfi_def_cfa_offset 8
-  79              		.cfi_offset 7, -8
-  80              		.cfi_offset 14, -4
-  81 0002 00AF     		add	r7, sp, #0
-  82              		.cfi_def_cfa_register 7
+  65              		.loc 1 96 0
+  66              		.cfi_startproc
   97:Generated_Source\PSoC4/UART_1_IntClock.c **** #if defined CYREG_PERI_DIV_CMD
   98:Generated_Source\PSoC4/UART_1_IntClock.c **** 
   99:Generated_Source\PSoC4/UART_1_IntClock.c ****     /* Make sure any previous start command has finished. */
  100:Generated_Source\PSoC4/UART_1_IntClock.c ****     while((UART_1_IntClock_CMD_REG & UART_1_IntClock_CMD_ENABLE_MASK) != 0u)
-  83              		.loc 1 100 0
-  84 0004 C046     		mov	r8, r8
-  85              	.L6:
-  86              		.loc 1 100 0 is_stmt 0 discriminator 1
-  87 0006 044B     		ldr	r3, .L7
-  88 0008 1B68     		ldr	r3, [r3]
-  89 000a 002B     		cmp	r3, #0
-  90 000c FBDB     		blt	.L6
+  67              		.loc 1 100 0
+  68 0000 034A     		ldr	r2, .L10
+  69              	.L8:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cctWUApb.s 			page 4
+
+
+  70              		.loc 1 100 0 is_stmt 0 discriminator 1
+  71 0002 1368     		ldr	r3, [r2]
+  72 0004 002B     		cmp	r3, #0
+  73 0006 FCDB     		blt	.L8
  101:Generated_Source\PSoC4/UART_1_IntClock.c ****     {
  102:Generated_Source\PSoC4/UART_1_IntClock.c ****     }
  103:Generated_Source\PSoC4/UART_1_IntClock.c ****     
  104:Generated_Source\PSoC4/UART_1_IntClock.c ****     /* Specify the target divider and it's alignment divider, and disable. */
  105:Generated_Source\PSoC4/UART_1_IntClock.c ****     UART_1_IntClock_CMD_REG =
-  91              		.loc 1 105 0 is_stmt 1
-  92 000e 024B     		ldr	r3, .L7
-  93 0010 024A     		ldr	r2, .L7+4
-  94 0012 1A60     		str	r2, [r3]
+  74              		.loc 1 105 0 is_stmt 1
+  75 0008 024A     		ldr	r2, .L10+4
+  76 000a 014B     		ldr	r3, .L10
  106:Generated_Source\PSoC4/UART_1_IntClock.c ****         ((uint32)UART_1_IntClock__DIV_ID << UART_1_IntClock_CMD_DIV_SHIFT)|
  107:Generated_Source\PSoC4/UART_1_IntClock.c ****         ((uint32)UART_1_IntClock_CMD_DISABLE_MASK);
  108:Generated_Source\PSoC4/UART_1_IntClock.c **** 
@@ -220,29 +203,29 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 1
  113:Generated_Source\PSoC4/UART_1_IntClock.c ****     
  114:Generated_Source\PSoC4/UART_1_IntClock.c **** #endif /* CYREG_PERI_DIV_CMD */
  115:Generated_Source\PSoC4/UART_1_IntClock.c **** }
-  95              		.loc 1 115 0
-  96 0014 BD46     		mov	sp, r7
-  97              		@ sp needed
-  98 0016 80BD     		pop	{r7, pc}
-  99              	.L8:
- 100              		.align	2
- 101              	.L7:
- 102 0018 00000140 		.word	1073807360
- 103 001c 44000040 		.word	1073741892
- 104              		.cfi_endproc
- 105              	.LFE1:
- 106              		.size	UART_1_IntClock_Stop, .-UART_1_IntClock_Stop
- 107              		.section	.text.UART_1_IntClock_SetFractionalDividerRegister,"ax",%progbits
- 108              		.align	2
- 109              		.global	UART_1_IntClock_SetFractionalDividerRegister
- 110              		.code	16
- 111              		.thumb_func
- 112              		.type	UART_1_IntClock_SetFractionalDividerRegister, %function
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 5
-
-
- 113              	UART_1_IntClock_SetFractionalDividerRegister:
- 114              	.LFB2:
+  77              		.loc 1 115 0
+  78              		@ sp needed
+ 105:Generated_Source\PSoC4/UART_1_IntClock.c ****         ((uint32)UART_1_IntClock__DIV_ID << UART_1_IntClock_CMD_DIV_SHIFT)|
+  79              		.loc 1 105 0
+  80 000c 1A60     		str	r2, [r3]
+  81              		.loc 1 115 0
+  82 000e 7047     		bx	lr
+  83              	.L11:
+  84              		.align	2
+  85              	.L10:
+  86 0010 00000140 		.word	1073807360
+  87 0014 42000040 		.word	1073741890
+  88              		.cfi_endproc
+  89              	.LFE1:
+  90              		.size	UART_1_IntClock_Stop, .-UART_1_IntClock_Stop
+  91              		.section	.text.UART_1_IntClock_SetFractionalDividerRegister,"ax",%progbits
+  92              		.align	2
+  93              		.global	UART_1_IntClock_SetFractionalDividerRegister
+  94              		.code	16
+  95              		.thumb_func
+  96              		.type	UART_1_IntClock_SetFractionalDividerRegister, %function
+  97              	UART_1_IntClock_SetFractionalDividerRegister:
+  98              	.LFB2:
  116:Generated_Source\PSoC4/UART_1_IntClock.c **** 
  117:Generated_Source\PSoC4/UART_1_IntClock.c **** 
  118:Generated_Source\PSoC4/UART_1_IntClock.c **** /*******************************************************************************
@@ -255,6 +238,9 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 1
  125:Generated_Source\PSoC4/UART_1_IntClock.c **** * Parameters:
  126:Generated_Source\PSoC4/UART_1_IntClock.c **** *  clkDivider:  Divider register value (0-65535). This value is NOT the
  127:Generated_Source\PSoC4/UART_1_IntClock.c **** *    divider; the clock hardware divides by clkDivider plus one. For example,
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cctWUApb.s 			page 5
+
+
  128:Generated_Source\PSoC4/UART_1_IntClock.c **** *    to divide the clock by 2, this parameter should be set to 1.
  129:Generated_Source\PSoC4/UART_1_IntClock.c **** *  fracDivider:  Fractional Divider register value (0-31).
  130:Generated_Source\PSoC4/UART_1_IntClock.c **** * Returns:
@@ -263,22 +249,13 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 1
  133:Generated_Source\PSoC4/UART_1_IntClock.c **** *******************************************************************************/
  134:Generated_Source\PSoC4/UART_1_IntClock.c **** void UART_1_IntClock_SetFractionalDividerRegister(uint16 clkDivider, uint8 clkFractional)
  135:Generated_Source\PSoC4/UART_1_IntClock.c **** {
- 115              		.loc 1 135 0
- 116              		.cfi_startproc
- 117 0000 80B5     		push	{r7, lr}
- 118              		.cfi_def_cfa_offset 8
- 119              		.cfi_offset 7, -8
- 120              		.cfi_offset 14, -4
- 121 0002 84B0     		sub	sp, sp, #16
- 122              		.cfi_def_cfa_offset 24
- 123 0004 00AF     		add	r7, sp, #0
- 124              		.cfi_def_cfa_register 7
- 125 0006 021C     		mov	r2, r0
- 126 0008 BB1D     		add	r3, r7, #6
- 127 000a 1A80     		strh	r2, [r3]
- 128 000c 7B1D     		add	r3, r7, #5
- 129 000e 0A1C     		add	r2, r1, #0
- 130 0010 1A70     		strb	r2, [r3]
+  99              		.loc 1 135 0
+ 100              		.cfi_startproc
+ 101              	.LVL2:
+ 102 0000 10B5     		push	{r4, lr}
+ 103              		.cfi_def_cfa_offset 8
+ 104              		.cfi_offset 4, -8
+ 105              		.cfi_offset 14, -4
  136:Generated_Source\PSoC4/UART_1_IntClock.c ****     uint32 maskVal;
  137:Generated_Source\PSoC4/UART_1_IntClock.c ****     uint32 regVal;
  138:Generated_Source\PSoC4/UART_1_IntClock.c ****     
@@ -286,38 +263,25 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 1
  140:Generated_Source\PSoC4/UART_1_IntClock.c ****     
  141:Generated_Source\PSoC4/UART_1_IntClock.c **** 	/* get all but divider bits */
  142:Generated_Source\PSoC4/UART_1_IntClock.c ****     maskVal = UART_1_IntClock_DIV_REG & 
- 131              		.loc 1 142 0
- 132 0012 0B4B     		ldr	r3, .L10
- 133 0014 1B68     		ldr	r3, [r3]
- 134 0016 0722     		mov	r2, #7
- 135 0018 1340     		and	r3, r2
- 136 001a FB60     		str	r3, [r7, #12]
  143:Generated_Source\PSoC4/UART_1_IntClock.c ****                     (uint32)(~(uint32)(UART_1_IntClock_DIV_INT_MASK | UART_1_IntClock_DIV_FRAC_MASK
  144:Generated_Source\PSoC4/UART_1_IntClock.c **** 	/* combine mask and new divider vals into 32-bit value */
  145:Generated_Source\PSoC4/UART_1_IntClock.c ****     regVal = maskVal |
  146:Generated_Source\PSoC4/UART_1_IntClock.c ****         ((uint32)((uint32)clkDivider <<  UART_1_IntClock_DIV_INT_SHIFT) & UART_1_IntClock_DIV_INT_M
- 137              		.loc 1 146 0
- 138 001c BB1D     		add	r3, r7, #6
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 6
-
-
- 139 001e 1B88     		ldrh	r3, [r3]
- 140 0020 1A02     		lsl	r2, r3, #8
- 145:Generated_Source\PSoC4/UART_1_IntClock.c ****         ((uint32)((uint32)clkDivider <<  UART_1_IntClock_DIV_INT_SHIFT) & UART_1_IntClock_DIV_INT_M
- 141              		.loc 1 145 0
- 142 0022 FB68     		ldr	r3, [r7, #12]
- 143 0024 1A43     		orr	r2, r3
  147:Generated_Source\PSoC4/UART_1_IntClock.c ****         ((uint32)((uint32)clkFractional << UART_1_IntClock_DIV_FRAC_SHIFT) & UART_1_IntClock_DIV_FR
- 144              		.loc 1 147 0
- 145 0026 7B1D     		add	r3, r7, #5
- 146 0028 1B78     		ldrb	r3, [r3]
- 147 002a DB00     		lsl	r3, r3, #3
- 148 002c FF21     		mov	r1, #255
- 149 002e 0B40     		and	r3, r1
- 145:Generated_Source\PSoC4/UART_1_IntClock.c ****         ((uint32)((uint32)clkDivider <<  UART_1_IntClock_DIV_INT_SHIFT) & UART_1_IntClock_DIV_INT_M
- 150              		.loc 1 145 0
- 151 0030 1343     		orr	r3, r2
- 152 0032 BB60     		str	r3, [r7, #8]
+ 106              		.loc 1 147 0
+ 107 0002 FF24     		mov	r4, #255
+ 108 0004 C900     		lsl	r1, r1, #3
+ 109              	.LVL3:
+ 110 0006 2140     		and	r1, r4
+ 146:Generated_Source\PSoC4/UART_1_IntClock.c ****         ((uint32)((uint32)clkFractional << UART_1_IntClock_DIV_FRAC_SHIFT) & UART_1_IntClock_DIV_FR
+ 111              		.loc 1 146 0
+ 112 0008 0002     		lsl	r0, r0, #8
+ 113              	.LVL4:
+ 114 000a 0843     		orr	r0, r1
+ 142:Generated_Source\PSoC4/UART_1_IntClock.c ****                     (uint32)(~(uint32)(UART_1_IntClock_DIV_INT_MASK | UART_1_IntClock_DIV_FRAC_MASK
+ 115              		.loc 1 142 0
+ 116 000c 0721     		mov	r1, #7
+ 117 000e 034A     		ldr	r2, .L13
  148:Generated_Source\PSoC4/UART_1_IntClock.c ****     
  149:Generated_Source\PSoC4/UART_1_IntClock.c **** #else
  150:Generated_Source\PSoC4/UART_1_IntClock.c ****     /* get all but integer divider bits */
@@ -328,39 +292,47 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 1
  155:Generated_Source\PSoC4/UART_1_IntClock.c **** #endif /* UART_1_IntClock__FRAC_MASK || CYREG_PERI_DIV_CMD */
  156:Generated_Source\PSoC4/UART_1_IntClock.c **** 
  157:Generated_Source\PSoC4/UART_1_IntClock.c ****     UART_1_IntClock_DIV_REG = regVal;
- 153              		.loc 1 157 0
- 154 0034 024B     		ldr	r3, .L10
- 155 0036 BA68     		ldr	r2, [r7, #8]
- 156 0038 1A60     		str	r2, [r3]
  158:Generated_Source\PSoC4/UART_1_IntClock.c **** }
- 157              		.loc 1 158 0
- 158 003a BD46     		mov	sp, r7
- 159 003c 04B0     		add	sp, sp, #16
- 160              		@ sp needed
- 161 003e 80BD     		pop	{r7, pc}
- 162              	.L11:
- 163              		.align	2
- 164              	.L10:
- 165 0040 10030140 		.word	1073808144
- 166              		.cfi_endproc
- 167              	.LFE2:
- 168              		.size	UART_1_IntClock_SetFractionalDividerRegister, .-UART_1_IntClock_SetFractionalDividerRegister
- 169              		.section	.text.UART_1_IntClock_GetDividerRegister,"ax",%progbits
- 170              		.align	2
- 171              		.global	UART_1_IntClock_GetDividerRegister
- 172              		.code	16
- 173              		.thumb_func
- 174              		.type	UART_1_IntClock_GetDividerRegister, %function
- 175              	UART_1_IntClock_GetDividerRegister:
- 176              	.LFB3:
+ 118              		.loc 1 158 0
+ 119              		@ sp needed
+ 142:Generated_Source\PSoC4/UART_1_IntClock.c ****                     (uint32)(~(uint32)(UART_1_IntClock_DIV_INT_MASK | UART_1_IntClock_DIV_FRAC_MASK
+ 120              		.loc 1 142 0
+ 121 0010 1368     		ldr	r3, [r2]
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cctWUApb.s 			page 6
+
+
+ 122              	.LVL5:
+ 123 0012 1940     		and	r1, r3
+ 124              	.LVL6:
+ 145:Generated_Source\PSoC4/UART_1_IntClock.c ****         ((uint32)((uint32)clkDivider <<  UART_1_IntClock_DIV_INT_SHIFT) & UART_1_IntClock_DIV_INT_M
+ 125              		.loc 1 145 0
+ 126 0014 0843     		orr	r0, r1
+ 127              	.LVL7:
+ 157:Generated_Source\PSoC4/UART_1_IntClock.c **** }
+ 128              		.loc 1 157 0
+ 129 0016 1060     		str	r0, [r2]
+ 130              		.loc 1 158 0
+ 131 0018 10BD     		pop	{r4, pc}
+ 132              	.L14:
+ 133 001a C046     		.align	2
+ 134              	.L13:
+ 135 001c 08030140 		.word	1073808136
+ 136              		.cfi_endproc
+ 137              	.LFE2:
+ 138              		.size	UART_1_IntClock_SetFractionalDividerRegister, .-UART_1_IntClock_SetFractionalDividerRegister
+ 139              		.section	.text.UART_1_IntClock_GetDividerRegister,"ax",%progbits
+ 140              		.align	2
+ 141              		.global	UART_1_IntClock_GetDividerRegister
+ 142              		.code	16
+ 143              		.thumb_func
+ 144              		.type	UART_1_IntClock_GetDividerRegister, %function
+ 145              	UART_1_IntClock_GetDividerRegister:
+ 146              	.LFB3:
  159:Generated_Source\PSoC4/UART_1_IntClock.c **** 
  160:Generated_Source\PSoC4/UART_1_IntClock.c **** 
  161:Generated_Source\PSoC4/UART_1_IntClock.c **** /*******************************************************************************
  162:Generated_Source\PSoC4/UART_1_IntClock.c **** * Function Name: UART_1_IntClock_GetDividerRegister
  163:Generated_Source\PSoC4/UART_1_IntClock.c **** ********************************************************************************
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 7
-
-
  164:Generated_Source\PSoC4/UART_1_IntClock.c **** *
  165:Generated_Source\PSoC4/UART_1_IntClock.c **** * Summary:
  166:Generated_Source\PSoC4/UART_1_IntClock.c **** *  Gets the clock divider register value.
@@ -375,52 +347,48 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 1
  175:Generated_Source\PSoC4/UART_1_IntClock.c **** *******************************************************************************/
  176:Generated_Source\PSoC4/UART_1_IntClock.c **** uint16 UART_1_IntClock_GetDividerRegister(void)
  177:Generated_Source\PSoC4/UART_1_IntClock.c **** {
- 177              		.loc 1 177 0
- 178              		.cfi_startproc
- 179 0000 80B5     		push	{r7, lr}
- 180              		.cfi_def_cfa_offset 8
- 181              		.cfi_offset 7, -8
- 182              		.cfi_offset 14, -4
- 183 0002 00AF     		add	r7, sp, #0
- 184              		.cfi_def_cfa_register 7
+ 147              		.loc 1 177 0
+ 148              		.cfi_startproc
  178:Generated_Source\PSoC4/UART_1_IntClock.c ****     return (uint16)((UART_1_IntClock_DIV_REG & UART_1_IntClock_DIV_INT_MASK)
- 185              		.loc 1 178 0
- 186 0004 034B     		ldr	r3, .L14
- 187 0006 1B68     		ldr	r3, [r3]
+ 149              		.loc 1 178 0
+ 150 0000 024B     		ldr	r3, .L16
  179:Generated_Source\PSoC4/UART_1_IntClock.c ****         >> UART_1_IntClock_DIV_INT_SHIFT);
- 188              		.loc 1 179 0
- 189 0008 1B0A     		lsr	r3, r3, #8
- 178:Generated_Source\PSoC4/UART_1_IntClock.c ****     return (uint16)((UART_1_IntClock_DIV_REG & UART_1_IntClock_DIV_INT_MASK)
- 190              		.loc 1 178 0
- 191 000a 9BB2     		uxth	r3, r3
  180:Generated_Source\PSoC4/UART_1_IntClock.c **** }
- 192              		.loc 1 180 0
- 193 000c 181C     		mov	r0, r3
- 194 000e BD46     		mov	sp, r7
- 195              		@ sp needed
- 196 0010 80BD     		pop	{r7, pc}
- 197              	.L15:
- 198 0012 C046     		.align	2
- 199              	.L14:
- 200 0014 10030140 		.word	1073808144
- 201              		.cfi_endproc
- 202              	.LFE3:
- 203              		.size	UART_1_IntClock_GetDividerRegister, .-UART_1_IntClock_GetDividerRegister
- 204              		.section	.text.UART_1_IntClock_GetFractionalDividerRegister,"ax",%progbits
- 205              		.align	2
- 206              		.global	UART_1_IntClock_GetFractionalDividerRegister
- 207              		.code	16
- 208              		.thumb_func
- 209              		.type	UART_1_IntClock_GetFractionalDividerRegister, %function
- 210              	UART_1_IntClock_GetFractionalDividerRegister:
- 211              	.LFB4:
+ 151              		.loc 1 180 0
+ 152              		@ sp needed
+ 178:Generated_Source\PSoC4/UART_1_IntClock.c ****     return (uint16)((UART_1_IntClock_DIV_REG & UART_1_IntClock_DIV_INT_MASK)
+ 153              		.loc 1 178 0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cctWUApb.s 			page 7
+
+
+ 154 0002 1868     		ldr	r0, [r3]
+ 179:Generated_Source\PSoC4/UART_1_IntClock.c ****         >> UART_1_IntClock_DIV_INT_SHIFT);
+ 155              		.loc 1 179 0
+ 156 0004 000A     		lsr	r0, r0, #8
+ 178:Generated_Source\PSoC4/UART_1_IntClock.c ****     return (uint16)((UART_1_IntClock_DIV_REG & UART_1_IntClock_DIV_INT_MASK)
+ 157              		.loc 1 178 0
+ 158 0006 80B2     		uxth	r0, r0
+ 159              		.loc 1 180 0
+ 160 0008 7047     		bx	lr
+ 161              	.L17:
+ 162 000a C046     		.align	2
+ 163              	.L16:
+ 164 000c 08030140 		.word	1073808136
+ 165              		.cfi_endproc
+ 166              	.LFE3:
+ 167              		.size	UART_1_IntClock_GetDividerRegister, .-UART_1_IntClock_GetDividerRegister
+ 168              		.section	.text.UART_1_IntClock_GetFractionalDividerRegister,"ax",%progbits
+ 169              		.align	2
+ 170              		.global	UART_1_IntClock_GetFractionalDividerRegister
+ 171              		.code	16
+ 172              		.thumb_func
+ 173              		.type	UART_1_IntClock_GetFractionalDividerRegister, %function
+ 174              	UART_1_IntClock_GetFractionalDividerRegister:
+ 175              	.LFB4:
  181:Generated_Source\PSoC4/UART_1_IntClock.c **** 
  182:Generated_Source\PSoC4/UART_1_IntClock.c **** 
  183:Generated_Source\PSoC4/UART_1_IntClock.c **** /*******************************************************************************
  184:Generated_Source\PSoC4/UART_1_IntClock.c **** * Function Name: UART_1_IntClock_GetFractionalDividerRegister
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 8
-
-
  185:Generated_Source\PSoC4/UART_1_IntClock.c **** ********************************************************************************
  186:Generated_Source\PSoC4/UART_1_IntClock.c **** *
  187:Generated_Source\PSoC4/UART_1_IntClock.c **** * Summary:
@@ -436,594 +404,655 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 1
  197:Generated_Source\PSoC4/UART_1_IntClock.c **** *******************************************************************************/
  198:Generated_Source\PSoC4/UART_1_IntClock.c **** uint8 UART_1_IntClock_GetFractionalDividerRegister(void)
  199:Generated_Source\PSoC4/UART_1_IntClock.c **** {
- 212              		.loc 1 199 0
- 213              		.cfi_startproc
- 214 0000 80B5     		push	{r7, lr}
- 215              		.cfi_def_cfa_offset 8
- 216              		.cfi_offset 7, -8
- 217              		.cfi_offset 14, -4
- 218 0002 00AF     		add	r7, sp, #0
- 219              		.cfi_def_cfa_register 7
+ 176              		.loc 1 199 0
+ 177              		.cfi_startproc
  200:Generated_Source\PSoC4/UART_1_IntClock.c **** #if defined (UART_1_IntClock__FRAC_MASK)
  201:Generated_Source\PSoC4/UART_1_IntClock.c ****     /* return fractional divider bits */
  202:Generated_Source\PSoC4/UART_1_IntClock.c ****     return (uint8)((UART_1_IntClock_DIV_REG & UART_1_IntClock_DIV_FRAC_MASK)
  203:Generated_Source\PSoC4/UART_1_IntClock.c ****         >> UART_1_IntClock_DIV_FRAC_SHIFT);
  204:Generated_Source\PSoC4/UART_1_IntClock.c **** #else
  205:Generated_Source\PSoC4/UART_1_IntClock.c ****     return 0u;
- 220              		.loc 1 205 0
- 221 0004 0023     		mov	r3, #0
  206:Generated_Source\PSoC4/UART_1_IntClock.c **** #endif /* UART_1_IntClock__FRAC_MASK */
  207:Generated_Source\PSoC4/UART_1_IntClock.c **** }
- 222              		.loc 1 207 0
- 223 0006 181C     		mov	r0, r3
- 224 0008 BD46     		mov	sp, r7
- 225              		@ sp needed
- 226 000a 80BD     		pop	{r7, pc}
- 227              		.cfi_endproc
- 228              	.LFE4:
- 229              		.size	UART_1_IntClock_GetFractionalDividerRegister, .-UART_1_IntClock_GetFractionalDividerRegister
- 230              		.text
- 231              	.Letext0:
- 232              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
- 233              		.section	.debug_info,"",%progbits
- 234              	.Ldebug_info0:
- 235 0000 5F010000 		.4byte	0x15f
- 236 0004 0400     		.2byte	0x4
- 237 0006 00000000 		.4byte	.Ldebug_abbrev0
- 238 000a 04       		.byte	0x4
- 239 000b 01       		.uleb128 0x1
- 240 000c 0B010000 		.4byte	.LASF25
- 241 0010 01       		.byte	0x1
- 242 0011 53000000 		.4byte	.LASF26
- 243 0015 39020000 		.4byte	.LASF27
- 244 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 245 001d 00000000 		.4byte	0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 9
+ 178              		.loc 1 207 0
+ 179 0000 0020     		mov	r0, #0
+ 180              		@ sp needed
+ 181 0002 7047     		bx	lr
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cctWUApb.s 			page 8
 
 
- 246 0021 00000000 		.4byte	.Ldebug_line0
- 247 0025 02       		.uleb128 0x2
- 248 0026 01       		.byte	0x1
- 249 0027 06       		.byte	0x6
- 250 0028 8F020000 		.4byte	.LASF0
- 251 002c 02       		.uleb128 0x2
- 252 002d 01       		.byte	0x1
- 253 002e 08       		.byte	0x8
- 254 002f A5000000 		.4byte	.LASF1
- 255 0033 02       		.uleb128 0x2
- 256 0034 02       		.byte	0x2
- 257 0035 05       		.byte	0x5
- 258 0036 20020000 		.4byte	.LASF2
- 259 003a 02       		.uleb128 0x2
- 260 003b 02       		.byte	0x2
- 261 003c 07       		.byte	0x7
- 262 003d C5000000 		.4byte	.LASF3
- 263 0041 02       		.uleb128 0x2
- 264 0042 04       		.byte	0x4
- 265 0043 05       		.byte	0x5
- 266 0044 30020000 		.4byte	.LASF4
- 267 0048 02       		.uleb128 0x2
- 268 0049 04       		.byte	0x4
- 269 004a 07       		.byte	0x7
- 270 004b B3000000 		.4byte	.LASF5
- 271 004f 02       		.uleb128 0x2
- 272 0050 08       		.byte	0x8
- 273 0051 05       		.byte	0x5
- 274 0052 E0010000 		.4byte	.LASF6
- 275 0056 02       		.uleb128 0x2
- 276 0057 08       		.byte	0x8
- 277 0058 07       		.byte	0x7
- 278 0059 B4010000 		.4byte	.LASF7
- 279 005d 03       		.uleb128 0x3
- 280 005e 04       		.byte	0x4
- 281 005f 05       		.byte	0x5
- 282 0060 696E7400 		.ascii	"int\000"
- 283 0064 02       		.uleb128 0x2
- 284 0065 04       		.byte	0x4
- 285 0066 07       		.byte	0x7
- 286 0067 A7010000 		.4byte	.LASF8
- 287 006b 04       		.uleb128 0x4
- 288 006c 2A020000 		.4byte	.LASF9
- 289 0070 02       		.byte	0x2
- 290 0071 9801     		.2byte	0x198
- 291 0073 2C000000 		.4byte	0x2c
- 292 0077 04       		.uleb128 0x4
- 293 0078 99010000 		.4byte	.LASF10
- 294 007c 02       		.byte	0x2
- 295 007d 9901     		.2byte	0x199
- 296 007f 3A000000 		.4byte	0x3a
- 297 0083 04       		.uleb128 0x4
- 298 0084 A0010000 		.4byte	.LASF11
- 299 0088 02       		.byte	0x2
- 300 0089 9A01     		.2byte	0x19a
- 301 008b 48000000 		.4byte	0x48
- 302 008f 02       		.uleb128 0x2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 10
+ 182              		.cfi_endproc
+ 183              	.LFE4:
+ 184              		.size	UART_1_IntClock_GetFractionalDividerRegister, .-UART_1_IntClock_GetFractionalDividerRegister
+ 185              		.text
+ 186              	.Letext0:
+ 187              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 188              		.section	.debug_info,"",%progbits
+ 189              	.Ldebug_info0:
+ 190 0000 62010000 		.4byte	0x162
+ 191 0004 0400     		.2byte	0x4
+ 192 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 193 000a 04       		.byte	0x4
+ 194 000b 01       		.uleb128 0x1
+ 195 000c A5000000 		.4byte	.LASF25
+ 196 0010 01       		.byte	0x1
+ 197 0011 53000000 		.4byte	.LASF26
+ 198 0015 4C020000 		.4byte	.LASF27
+ 199 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 200 001d 00000000 		.4byte	0
+ 201 0021 00000000 		.4byte	.Ldebug_line0
+ 202 0025 02       		.uleb128 0x2
+ 203 0026 01       		.byte	0x1
+ 204 0027 06       		.byte	0x6
+ 205 0028 A2020000 		.4byte	.LASF0
+ 206 002c 02       		.uleb128 0x2
+ 207 002d 01       		.byte	0x1
+ 208 002e 08       		.byte	0x8
+ 209 002f 46010000 		.4byte	.LASF1
+ 210 0033 02       		.uleb128 0x2
+ 211 0034 02       		.byte	0x2
+ 212 0035 05       		.byte	0x5
+ 213 0036 33020000 		.4byte	.LASF2
+ 214 003a 02       		.uleb128 0x2
+ 215 003b 02       		.byte	0x2
+ 216 003c 07       		.byte	0x7
+ 217 003d 66010000 		.4byte	.LASF3
+ 218 0041 02       		.uleb128 0x2
+ 219 0042 04       		.byte	0x4
+ 220 0043 05       		.byte	0x5
+ 221 0044 43020000 		.4byte	.LASF4
+ 222 0048 02       		.uleb128 0x2
+ 223 0049 04       		.byte	0x4
+ 224 004a 07       		.byte	0x7
+ 225 004b 54010000 		.4byte	.LASF5
+ 226 004f 02       		.uleb128 0x2
+ 227 0050 08       		.byte	0x8
+ 228 0051 05       		.byte	0x5
+ 229 0052 F3010000 		.4byte	.LASF6
+ 230 0056 02       		.uleb128 0x2
+ 231 0057 08       		.byte	0x8
+ 232 0058 07       		.byte	0x7
+ 233 0059 C7010000 		.4byte	.LASF7
+ 234 005d 03       		.uleb128 0x3
+ 235 005e 04       		.byte	0x4
+ 236 005f 05       		.byte	0x5
+ 237 0060 696E7400 		.ascii	"int\000"
+ 238 0064 02       		.uleb128 0x2
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cctWUApb.s 			page 9
 
 
- 303 0090 04       		.byte	0x4
- 304 0091 04       		.byte	0x4
- 305 0092 9F000000 		.4byte	.LASF12
- 306 0096 02       		.uleb128 0x2
- 307 0097 08       		.byte	0x8
- 308 0098 04       		.byte	0x4
- 309 0099 E3000000 		.4byte	.LASF13
- 310 009d 02       		.uleb128 0x2
- 311 009e 01       		.byte	0x1
- 312 009f 08       		.byte	0x8
- 313 00a0 EE010000 		.4byte	.LASF14
- 314 00a4 04       		.uleb128 0x4
- 315 00a5 00000000 		.4byte	.LASF15
- 316 00a9 02       		.byte	0x2
- 317 00aa 4402     		.2byte	0x244
- 318 00ac B0000000 		.4byte	0xb0
- 319 00b0 05       		.uleb128 0x5
- 320 00b1 83000000 		.4byte	0x83
- 321 00b5 06       		.uleb128 0x6
- 322 00b6 3B000000 		.4byte	.LASF16
- 323 00ba 01       		.byte	0x1
- 324 00bb 27       		.byte	0x27
- 325 00bc 00000000 		.4byte	.LFB0
- 326 00c0 2C000000 		.4byte	.LFE0-.LFB0
- 327 00c4 01       		.uleb128 0x1
- 328 00c5 9C       		.byte	0x9c
- 329 00c6 D9000000 		.4byte	0xd9
- 330 00ca 07       		.uleb128 0x7
- 331 00cb F1000000 		.4byte	.LASF18
- 332 00cf 01       		.byte	0x1
- 333 00d0 27       		.byte	0x27
- 334 00d1 83000000 		.4byte	0x83
- 335 00d5 02       		.uleb128 0x2
- 336 00d6 91       		.byte	0x91
- 337 00d7 74       		.sleb128 -12
- 338 00d8 00       		.byte	0
- 339 00d9 08       		.uleb128 0x8
- 340 00da CB010000 		.4byte	.LASF28
- 341 00de 01       		.byte	0x1
- 342 00df 5F       		.byte	0x5f
- 343 00e0 00000000 		.4byte	.LFB1
- 344 00e4 20000000 		.4byte	.LFE1-.LFB1
- 345 00e8 01       		.uleb128 0x1
- 346 00e9 9C       		.byte	0x9c
- 347 00ea 06       		.uleb128 0x6
- 348 00eb F3010000 		.4byte	.LASF17
- 349 00ef 01       		.byte	0x1
- 350 00f0 86       		.byte	0x86
- 351 00f1 00000000 		.4byte	.LFB2
- 352 00f5 44000000 		.4byte	.LFE2-.LFB2
- 353 00f9 01       		.uleb128 0x1
- 354 00fa 9C       		.byte	0x9c
- 355 00fb 38010000 		.4byte	0x138
- 356 00ff 07       		.uleb128 0x7
- 357 0100 D8000000 		.4byte	.LASF19
- 358 0104 01       		.byte	0x1
- 359 0105 86       		.byte	0x86
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 11
+ 239 0065 04       		.byte	0x4
+ 240 0066 07       		.byte	0x7
+ 241 0067 BA010000 		.4byte	.LASF8
+ 242 006b 04       		.uleb128 0x4
+ 243 006c 3D020000 		.4byte	.LASF9
+ 244 0070 02       		.byte	0x2
+ 245 0071 9801     		.2byte	0x198
+ 246 0073 2C000000 		.4byte	0x2c
+ 247 0077 04       		.uleb128 0x4
+ 248 0078 AC010000 		.4byte	.LASF10
+ 249 007c 02       		.byte	0x2
+ 250 007d 9901     		.2byte	0x199
+ 251 007f 3A000000 		.4byte	0x3a
+ 252 0083 04       		.uleb128 0x4
+ 253 0084 B3010000 		.4byte	.LASF11
+ 254 0088 02       		.byte	0x2
+ 255 0089 9A01     		.2byte	0x19a
+ 256 008b 48000000 		.4byte	0x48
+ 257 008f 02       		.uleb128 0x2
+ 258 0090 04       		.byte	0x4
+ 259 0091 04       		.byte	0x4
+ 260 0092 9F000000 		.4byte	.LASF12
+ 261 0096 02       		.uleb128 0x2
+ 262 0097 08       		.byte	0x8
+ 263 0098 04       		.byte	0x4
+ 264 0099 84010000 		.4byte	.LASF13
+ 265 009d 02       		.uleb128 0x2
+ 266 009e 01       		.byte	0x1
+ 267 009f 08       		.byte	0x8
+ 268 00a0 01020000 		.4byte	.LASF14
+ 269 00a4 04       		.uleb128 0x4
+ 270 00a5 00000000 		.4byte	.LASF15
+ 271 00a9 02       		.byte	0x2
+ 272 00aa 4402     		.2byte	0x244
+ 273 00ac B0000000 		.4byte	0xb0
+ 274 00b0 05       		.uleb128 0x5
+ 275 00b1 83000000 		.4byte	0x83
+ 276 00b5 06       		.uleb128 0x6
+ 277 00b6 3B000000 		.4byte	.LASF16
+ 278 00ba 01       		.byte	0x1
+ 279 00bb 27       		.byte	0x27
+ 280 00bc 00000000 		.4byte	.LFB0
+ 281 00c0 1C000000 		.4byte	.LFE0-.LFB0
+ 282 00c4 01       		.uleb128 0x1
+ 283 00c5 9C       		.byte	0x9c
+ 284 00c6 DA000000 		.4byte	0xda
+ 285 00ca 07       		.uleb128 0x7
+ 286 00cb 92010000 		.4byte	.LASF18
+ 287 00cf 01       		.byte	0x1
+ 288 00d0 27       		.byte	0x27
+ 289 00d1 83000000 		.4byte	0x83
+ 290 00d5 00000000 		.4byte	.LLST0
+ 291 00d9 00       		.byte	0
+ 292 00da 08       		.uleb128 0x8
+ 293 00db DE010000 		.4byte	.LASF28
+ 294 00df 01       		.byte	0x1
+ 295 00e0 5F       		.byte	0x5f
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cctWUApb.s 			page 10
 
 
- 360 0106 77000000 		.4byte	0x77
- 361 010a 02       		.uleb128 0x2
- 362 010b 91       		.byte	0x91
- 363 010c 6E       		.sleb128 -18
- 364 010d 07       		.uleb128 0x7
- 365 010e FD000000 		.4byte	.LASF20
- 366 0112 01       		.byte	0x1
- 367 0113 86       		.byte	0x86
- 368 0114 6B000000 		.4byte	0x6b
- 369 0118 02       		.uleb128 0x2
- 370 0119 91       		.byte	0x91
- 371 011a 6D       		.sleb128 -19
- 372 011b 09       		.uleb128 0x9
- 373 011c 06000000 		.4byte	.LASF21
- 374 0120 01       		.byte	0x1
- 375 0121 88       		.byte	0x88
- 376 0122 83000000 		.4byte	0x83
- 377 0126 02       		.uleb128 0x2
- 378 0127 91       		.byte	0x91
- 379 0128 74       		.sleb128 -12
- 380 0129 09       		.uleb128 0x9
- 381 012a EA000000 		.4byte	.LASF22
- 382 012e 01       		.byte	0x1
- 383 012f 89       		.byte	0x89
- 384 0130 83000000 		.4byte	0x83
- 385 0134 02       		.uleb128 0x2
- 386 0135 91       		.byte	0x91
- 387 0136 70       		.sleb128 -16
- 388 0137 00       		.byte	0
- 389 0138 0A       		.uleb128 0xa
- 390 0139 7C000000 		.4byte	.LASF23
- 391 013d 01       		.byte	0x1
- 392 013e B0       		.byte	0xb0
- 393 013f 77000000 		.4byte	0x77
- 394 0143 00000000 		.4byte	.LFB3
- 395 0147 18000000 		.4byte	.LFE3-.LFB3
- 396 014b 01       		.uleb128 0x1
- 397 014c 9C       		.byte	0x9c
- 398 014d 0A       		.uleb128 0xa
- 399 014e 0E000000 		.4byte	.LASF24
- 400 0152 01       		.byte	0x1
- 401 0153 C6       		.byte	0xc6
- 402 0154 6B000000 		.4byte	0x6b
- 403 0158 00000000 		.4byte	.LFB4
- 404 015c 0C000000 		.4byte	.LFE4-.LFB4
- 405 0160 01       		.uleb128 0x1
- 406 0161 9C       		.byte	0x9c
- 407 0162 00       		.byte	0
- 408              		.section	.debug_abbrev,"",%progbits
- 409              	.Ldebug_abbrev0:
- 410 0000 01       		.uleb128 0x1
- 411 0001 11       		.uleb128 0x11
- 412 0002 01       		.byte	0x1
- 413 0003 25       		.uleb128 0x25
- 414 0004 0E       		.uleb128 0xe
- 415 0005 13       		.uleb128 0x13
- 416 0006 0B       		.uleb128 0xb
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 12
+ 296 00e1 00000000 		.4byte	.LFB1
+ 297 00e5 18000000 		.4byte	.LFE1-.LFB1
+ 298 00e9 01       		.uleb128 0x1
+ 299 00ea 9C       		.byte	0x9c
+ 300 00eb 06       		.uleb128 0x6
+ 301 00ec 06020000 		.4byte	.LASF17
+ 302 00f0 01       		.byte	0x1
+ 303 00f1 86       		.byte	0x86
+ 304 00f2 00000000 		.4byte	.LFB2
+ 305 00f6 20000000 		.4byte	.LFE2-.LFB2
+ 306 00fa 01       		.uleb128 0x1
+ 307 00fb 9C       		.byte	0x9c
+ 308 00fc 3B010000 		.4byte	0x13b
+ 309 0100 07       		.uleb128 0x7
+ 310 0101 79010000 		.4byte	.LASF19
+ 311 0105 01       		.byte	0x1
+ 312 0106 86       		.byte	0x86
+ 313 0107 77000000 		.4byte	0x77
+ 314 010b 21000000 		.4byte	.LLST1
+ 315 010f 07       		.uleb128 0x7
+ 316 0110 9E010000 		.4byte	.LASF20
+ 317 0114 01       		.byte	0x1
+ 318 0115 86       		.byte	0x86
+ 319 0116 6B000000 		.4byte	0x6b
+ 320 011a 42000000 		.4byte	.LLST2
+ 321 011e 09       		.uleb128 0x9
+ 322 011f 06000000 		.4byte	.LASF21
+ 323 0123 01       		.byte	0x1
+ 324 0124 88       		.byte	0x88
+ 325 0125 83000000 		.4byte	0x83
+ 326 0129 63000000 		.4byte	.LLST3
+ 327 012d 0A       		.uleb128 0xa
+ 328 012e 8B010000 		.4byte	.LASF22
+ 329 0132 01       		.byte	0x1
+ 330 0133 89       		.byte	0x89
+ 331 0134 83000000 		.4byte	0x83
+ 332 0138 01       		.uleb128 0x1
+ 333 0139 50       		.byte	0x50
+ 334 013a 00       		.byte	0
+ 335 013b 0B       		.uleb128 0xb
+ 336 013c 7C000000 		.4byte	.LASF23
+ 337 0140 01       		.byte	0x1
+ 338 0141 B0       		.byte	0xb0
+ 339 0142 77000000 		.4byte	0x77
+ 340 0146 00000000 		.4byte	.LFB3
+ 341 014a 10000000 		.4byte	.LFE3-.LFB3
+ 342 014e 01       		.uleb128 0x1
+ 343 014f 9C       		.byte	0x9c
+ 344 0150 0B       		.uleb128 0xb
+ 345 0151 0E000000 		.4byte	.LASF24
+ 346 0155 01       		.byte	0x1
+ 347 0156 C6       		.byte	0xc6
+ 348 0157 6B000000 		.4byte	0x6b
+ 349 015b 00000000 		.4byte	.LFB4
+ 350 015f 04000000 		.4byte	.LFE4-.LFB4
+ 351 0163 01       		.uleb128 0x1
+ 352 0164 9C       		.byte	0x9c
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cctWUApb.s 			page 11
 
 
- 417 0007 03       		.uleb128 0x3
- 418 0008 0E       		.uleb128 0xe
- 419 0009 1B       		.uleb128 0x1b
- 420 000a 0E       		.uleb128 0xe
- 421 000b 55       		.uleb128 0x55
- 422 000c 17       		.uleb128 0x17
- 423 000d 11       		.uleb128 0x11
- 424 000e 01       		.uleb128 0x1
- 425 000f 10       		.uleb128 0x10
- 426 0010 17       		.uleb128 0x17
- 427 0011 00       		.byte	0
- 428 0012 00       		.byte	0
- 429 0013 02       		.uleb128 0x2
- 430 0014 24       		.uleb128 0x24
- 431 0015 00       		.byte	0
- 432 0016 0B       		.uleb128 0xb
- 433 0017 0B       		.uleb128 0xb
- 434 0018 3E       		.uleb128 0x3e
- 435 0019 0B       		.uleb128 0xb
- 436 001a 03       		.uleb128 0x3
- 437 001b 0E       		.uleb128 0xe
- 438 001c 00       		.byte	0
- 439 001d 00       		.byte	0
- 440 001e 03       		.uleb128 0x3
- 441 001f 24       		.uleb128 0x24
- 442 0020 00       		.byte	0
- 443 0021 0B       		.uleb128 0xb
- 444 0022 0B       		.uleb128 0xb
- 445 0023 3E       		.uleb128 0x3e
- 446 0024 0B       		.uleb128 0xb
- 447 0025 03       		.uleb128 0x3
- 448 0026 08       		.uleb128 0x8
- 449 0027 00       		.byte	0
- 450 0028 00       		.byte	0
- 451 0029 04       		.uleb128 0x4
- 452 002a 16       		.uleb128 0x16
- 453 002b 00       		.byte	0
- 454 002c 03       		.uleb128 0x3
- 455 002d 0E       		.uleb128 0xe
- 456 002e 3A       		.uleb128 0x3a
- 457 002f 0B       		.uleb128 0xb
- 458 0030 3B       		.uleb128 0x3b
- 459 0031 05       		.uleb128 0x5
- 460 0032 49       		.uleb128 0x49
- 461 0033 13       		.uleb128 0x13
- 462 0034 00       		.byte	0
- 463 0035 00       		.byte	0
- 464 0036 05       		.uleb128 0x5
- 465 0037 35       		.uleb128 0x35
- 466 0038 00       		.byte	0
- 467 0039 49       		.uleb128 0x49
- 468 003a 13       		.uleb128 0x13
- 469 003b 00       		.byte	0
- 470 003c 00       		.byte	0
- 471 003d 06       		.uleb128 0x6
- 472 003e 2E       		.uleb128 0x2e
- 473 003f 01       		.byte	0x1
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 13
+ 353 0165 00       		.byte	0
+ 354              		.section	.debug_abbrev,"",%progbits
+ 355              	.Ldebug_abbrev0:
+ 356 0000 01       		.uleb128 0x1
+ 357 0001 11       		.uleb128 0x11
+ 358 0002 01       		.byte	0x1
+ 359 0003 25       		.uleb128 0x25
+ 360 0004 0E       		.uleb128 0xe
+ 361 0005 13       		.uleb128 0x13
+ 362 0006 0B       		.uleb128 0xb
+ 363 0007 03       		.uleb128 0x3
+ 364 0008 0E       		.uleb128 0xe
+ 365 0009 1B       		.uleb128 0x1b
+ 366 000a 0E       		.uleb128 0xe
+ 367 000b 55       		.uleb128 0x55
+ 368 000c 17       		.uleb128 0x17
+ 369 000d 11       		.uleb128 0x11
+ 370 000e 01       		.uleb128 0x1
+ 371 000f 10       		.uleb128 0x10
+ 372 0010 17       		.uleb128 0x17
+ 373 0011 00       		.byte	0
+ 374 0012 00       		.byte	0
+ 375 0013 02       		.uleb128 0x2
+ 376 0014 24       		.uleb128 0x24
+ 377 0015 00       		.byte	0
+ 378 0016 0B       		.uleb128 0xb
+ 379 0017 0B       		.uleb128 0xb
+ 380 0018 3E       		.uleb128 0x3e
+ 381 0019 0B       		.uleb128 0xb
+ 382 001a 03       		.uleb128 0x3
+ 383 001b 0E       		.uleb128 0xe
+ 384 001c 00       		.byte	0
+ 385 001d 00       		.byte	0
+ 386 001e 03       		.uleb128 0x3
+ 387 001f 24       		.uleb128 0x24
+ 388 0020 00       		.byte	0
+ 389 0021 0B       		.uleb128 0xb
+ 390 0022 0B       		.uleb128 0xb
+ 391 0023 3E       		.uleb128 0x3e
+ 392 0024 0B       		.uleb128 0xb
+ 393 0025 03       		.uleb128 0x3
+ 394 0026 08       		.uleb128 0x8
+ 395 0027 00       		.byte	0
+ 396 0028 00       		.byte	0
+ 397 0029 04       		.uleb128 0x4
+ 398 002a 16       		.uleb128 0x16
+ 399 002b 00       		.byte	0
+ 400 002c 03       		.uleb128 0x3
+ 401 002d 0E       		.uleb128 0xe
+ 402 002e 3A       		.uleb128 0x3a
+ 403 002f 0B       		.uleb128 0xb
+ 404 0030 3B       		.uleb128 0x3b
+ 405 0031 05       		.uleb128 0x5
+ 406 0032 49       		.uleb128 0x49
+ 407 0033 13       		.uleb128 0x13
+ 408 0034 00       		.byte	0
+ 409 0035 00       		.byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cctWUApb.s 			page 12
 
 
- 474 0040 3F       		.uleb128 0x3f
- 475 0041 19       		.uleb128 0x19
- 476 0042 03       		.uleb128 0x3
- 477 0043 0E       		.uleb128 0xe
- 478 0044 3A       		.uleb128 0x3a
- 479 0045 0B       		.uleb128 0xb
- 480 0046 3B       		.uleb128 0x3b
- 481 0047 0B       		.uleb128 0xb
- 482 0048 27       		.uleb128 0x27
- 483 0049 19       		.uleb128 0x19
- 484 004a 11       		.uleb128 0x11
- 485 004b 01       		.uleb128 0x1
- 486 004c 12       		.uleb128 0x12
- 487 004d 06       		.uleb128 0x6
- 488 004e 40       		.uleb128 0x40
- 489 004f 18       		.uleb128 0x18
- 490 0050 9742     		.uleb128 0x2117
- 491 0052 19       		.uleb128 0x19
- 492 0053 01       		.uleb128 0x1
- 493 0054 13       		.uleb128 0x13
- 494 0055 00       		.byte	0
- 495 0056 00       		.byte	0
- 496 0057 07       		.uleb128 0x7
- 497 0058 05       		.uleb128 0x5
- 498 0059 00       		.byte	0
- 499 005a 03       		.uleb128 0x3
- 500 005b 0E       		.uleb128 0xe
- 501 005c 3A       		.uleb128 0x3a
- 502 005d 0B       		.uleb128 0xb
- 503 005e 3B       		.uleb128 0x3b
- 504 005f 0B       		.uleb128 0xb
- 505 0060 49       		.uleb128 0x49
- 506 0061 13       		.uleb128 0x13
- 507 0062 02       		.uleb128 0x2
- 508 0063 18       		.uleb128 0x18
- 509 0064 00       		.byte	0
- 510 0065 00       		.byte	0
- 511 0066 08       		.uleb128 0x8
- 512 0067 2E       		.uleb128 0x2e
- 513 0068 00       		.byte	0
- 514 0069 3F       		.uleb128 0x3f
- 515 006a 19       		.uleb128 0x19
- 516 006b 03       		.uleb128 0x3
- 517 006c 0E       		.uleb128 0xe
- 518 006d 3A       		.uleb128 0x3a
- 519 006e 0B       		.uleb128 0xb
- 520 006f 3B       		.uleb128 0x3b
- 521 0070 0B       		.uleb128 0xb
- 522 0071 27       		.uleb128 0x27
- 523 0072 19       		.uleb128 0x19
- 524 0073 11       		.uleb128 0x11
- 525 0074 01       		.uleb128 0x1
- 526 0075 12       		.uleb128 0x12
- 527 0076 06       		.uleb128 0x6
- 528 0077 40       		.uleb128 0x40
- 529 0078 18       		.uleb128 0x18
- 530 0079 9742     		.uleb128 0x2117
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 14
+ 410 0036 05       		.uleb128 0x5
+ 411 0037 35       		.uleb128 0x35
+ 412 0038 00       		.byte	0
+ 413 0039 49       		.uleb128 0x49
+ 414 003a 13       		.uleb128 0x13
+ 415 003b 00       		.byte	0
+ 416 003c 00       		.byte	0
+ 417 003d 06       		.uleb128 0x6
+ 418 003e 2E       		.uleb128 0x2e
+ 419 003f 01       		.byte	0x1
+ 420 0040 3F       		.uleb128 0x3f
+ 421 0041 19       		.uleb128 0x19
+ 422 0042 03       		.uleb128 0x3
+ 423 0043 0E       		.uleb128 0xe
+ 424 0044 3A       		.uleb128 0x3a
+ 425 0045 0B       		.uleb128 0xb
+ 426 0046 3B       		.uleb128 0x3b
+ 427 0047 0B       		.uleb128 0xb
+ 428 0048 27       		.uleb128 0x27
+ 429 0049 19       		.uleb128 0x19
+ 430 004a 11       		.uleb128 0x11
+ 431 004b 01       		.uleb128 0x1
+ 432 004c 12       		.uleb128 0x12
+ 433 004d 06       		.uleb128 0x6
+ 434 004e 40       		.uleb128 0x40
+ 435 004f 18       		.uleb128 0x18
+ 436 0050 9742     		.uleb128 0x2117
+ 437 0052 19       		.uleb128 0x19
+ 438 0053 01       		.uleb128 0x1
+ 439 0054 13       		.uleb128 0x13
+ 440 0055 00       		.byte	0
+ 441 0056 00       		.byte	0
+ 442 0057 07       		.uleb128 0x7
+ 443 0058 05       		.uleb128 0x5
+ 444 0059 00       		.byte	0
+ 445 005a 03       		.uleb128 0x3
+ 446 005b 0E       		.uleb128 0xe
+ 447 005c 3A       		.uleb128 0x3a
+ 448 005d 0B       		.uleb128 0xb
+ 449 005e 3B       		.uleb128 0x3b
+ 450 005f 0B       		.uleb128 0xb
+ 451 0060 49       		.uleb128 0x49
+ 452 0061 13       		.uleb128 0x13
+ 453 0062 02       		.uleb128 0x2
+ 454 0063 17       		.uleb128 0x17
+ 455 0064 00       		.byte	0
+ 456 0065 00       		.byte	0
+ 457 0066 08       		.uleb128 0x8
+ 458 0067 2E       		.uleb128 0x2e
+ 459 0068 00       		.byte	0
+ 460 0069 3F       		.uleb128 0x3f
+ 461 006a 19       		.uleb128 0x19
+ 462 006b 03       		.uleb128 0x3
+ 463 006c 0E       		.uleb128 0xe
+ 464 006d 3A       		.uleb128 0x3a
+ 465 006e 0B       		.uleb128 0xb
+ 466 006f 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cctWUApb.s 			page 13
 
 
- 531 007b 19       		.uleb128 0x19
- 532 007c 00       		.byte	0
- 533 007d 00       		.byte	0
- 534 007e 09       		.uleb128 0x9
- 535 007f 34       		.uleb128 0x34
- 536 0080 00       		.byte	0
- 537 0081 03       		.uleb128 0x3
- 538 0082 0E       		.uleb128 0xe
- 539 0083 3A       		.uleb128 0x3a
- 540 0084 0B       		.uleb128 0xb
- 541 0085 3B       		.uleb128 0x3b
- 542 0086 0B       		.uleb128 0xb
- 543 0087 49       		.uleb128 0x49
- 544 0088 13       		.uleb128 0x13
- 545 0089 02       		.uleb128 0x2
- 546 008a 18       		.uleb128 0x18
- 547 008b 00       		.byte	0
- 548 008c 00       		.byte	0
- 549 008d 0A       		.uleb128 0xa
- 550 008e 2E       		.uleb128 0x2e
- 551 008f 00       		.byte	0
- 552 0090 3F       		.uleb128 0x3f
- 553 0091 19       		.uleb128 0x19
- 554 0092 03       		.uleb128 0x3
- 555 0093 0E       		.uleb128 0xe
- 556 0094 3A       		.uleb128 0x3a
- 557 0095 0B       		.uleb128 0xb
- 558 0096 3B       		.uleb128 0x3b
- 559 0097 0B       		.uleb128 0xb
- 560 0098 27       		.uleb128 0x27
- 561 0099 19       		.uleb128 0x19
- 562 009a 49       		.uleb128 0x49
- 563 009b 13       		.uleb128 0x13
- 564 009c 11       		.uleb128 0x11
- 565 009d 01       		.uleb128 0x1
- 566 009e 12       		.uleb128 0x12
- 567 009f 06       		.uleb128 0x6
- 568 00a0 40       		.uleb128 0x40
- 569 00a1 18       		.uleb128 0x18
- 570 00a2 9742     		.uleb128 0x2117
- 571 00a4 19       		.uleb128 0x19
- 572 00a5 00       		.byte	0
- 573 00a6 00       		.byte	0
- 574 00a7 00       		.byte	0
- 575              		.section	.debug_aranges,"",%progbits
- 576 0000 3C000000 		.4byte	0x3c
- 577 0004 0200     		.2byte	0x2
- 578 0006 00000000 		.4byte	.Ldebug_info0
- 579 000a 04       		.byte	0x4
- 580 000b 00       		.byte	0
- 581 000c 0000     		.2byte	0
- 582 000e 0000     		.2byte	0
- 583 0010 00000000 		.4byte	.LFB0
- 584 0014 2C000000 		.4byte	.LFE0-.LFB0
- 585 0018 00000000 		.4byte	.LFB1
- 586 001c 20000000 		.4byte	.LFE1-.LFB1
- 587 0020 00000000 		.4byte	.LFB2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 15
+ 467 0070 0B       		.uleb128 0xb
+ 468 0071 27       		.uleb128 0x27
+ 469 0072 19       		.uleb128 0x19
+ 470 0073 11       		.uleb128 0x11
+ 471 0074 01       		.uleb128 0x1
+ 472 0075 12       		.uleb128 0x12
+ 473 0076 06       		.uleb128 0x6
+ 474 0077 40       		.uleb128 0x40
+ 475 0078 18       		.uleb128 0x18
+ 476 0079 9742     		.uleb128 0x2117
+ 477 007b 19       		.uleb128 0x19
+ 478 007c 00       		.byte	0
+ 479 007d 00       		.byte	0
+ 480 007e 09       		.uleb128 0x9
+ 481 007f 34       		.uleb128 0x34
+ 482 0080 00       		.byte	0
+ 483 0081 03       		.uleb128 0x3
+ 484 0082 0E       		.uleb128 0xe
+ 485 0083 3A       		.uleb128 0x3a
+ 486 0084 0B       		.uleb128 0xb
+ 487 0085 3B       		.uleb128 0x3b
+ 488 0086 0B       		.uleb128 0xb
+ 489 0087 49       		.uleb128 0x49
+ 490 0088 13       		.uleb128 0x13
+ 491 0089 02       		.uleb128 0x2
+ 492 008a 17       		.uleb128 0x17
+ 493 008b 00       		.byte	0
+ 494 008c 00       		.byte	0
+ 495 008d 0A       		.uleb128 0xa
+ 496 008e 34       		.uleb128 0x34
+ 497 008f 00       		.byte	0
+ 498 0090 03       		.uleb128 0x3
+ 499 0091 0E       		.uleb128 0xe
+ 500 0092 3A       		.uleb128 0x3a
+ 501 0093 0B       		.uleb128 0xb
+ 502 0094 3B       		.uleb128 0x3b
+ 503 0095 0B       		.uleb128 0xb
+ 504 0096 49       		.uleb128 0x49
+ 505 0097 13       		.uleb128 0x13
+ 506 0098 02       		.uleb128 0x2
+ 507 0099 18       		.uleb128 0x18
+ 508 009a 00       		.byte	0
+ 509 009b 00       		.byte	0
+ 510 009c 0B       		.uleb128 0xb
+ 511 009d 2E       		.uleb128 0x2e
+ 512 009e 00       		.byte	0
+ 513 009f 3F       		.uleb128 0x3f
+ 514 00a0 19       		.uleb128 0x19
+ 515 00a1 03       		.uleb128 0x3
+ 516 00a2 0E       		.uleb128 0xe
+ 517 00a3 3A       		.uleb128 0x3a
+ 518 00a4 0B       		.uleb128 0xb
+ 519 00a5 3B       		.uleb128 0x3b
+ 520 00a6 0B       		.uleb128 0xb
+ 521 00a7 27       		.uleb128 0x27
+ 522 00a8 19       		.uleb128 0x19
+ 523 00a9 49       		.uleb128 0x49
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cctWUApb.s 			page 14
 
 
- 588 0024 44000000 		.4byte	.LFE2-.LFB2
- 589 0028 00000000 		.4byte	.LFB3
- 590 002c 18000000 		.4byte	.LFE3-.LFB3
- 591 0030 00000000 		.4byte	.LFB4
- 592 0034 0C000000 		.4byte	.LFE4-.LFB4
- 593 0038 00000000 		.4byte	0
- 594 003c 00000000 		.4byte	0
- 595              		.section	.debug_ranges,"",%progbits
- 596              	.Ldebug_ranges0:
- 597 0000 00000000 		.4byte	.LFB0
- 598 0004 2C000000 		.4byte	.LFE0
- 599 0008 00000000 		.4byte	.LFB1
- 600 000c 20000000 		.4byte	.LFE1
- 601 0010 00000000 		.4byte	.LFB2
- 602 0014 44000000 		.4byte	.LFE2
- 603 0018 00000000 		.4byte	.LFB3
- 604 001c 18000000 		.4byte	.LFE3
- 605 0020 00000000 		.4byte	.LFB4
- 606 0024 0C000000 		.4byte	.LFE4
- 607 0028 00000000 		.4byte	0
- 608 002c 00000000 		.4byte	0
- 609              		.section	.debug_line,"",%progbits
- 610              	.Ldebug_line0:
- 611 0000 C8000000 		.section	.debug_str,"MS",%progbits,1
- 611      02004C00 
- 611      00000201 
- 611      FB0E0D00 
- 611      01010101 
- 612              	.LASF15:
- 613 0000 72656733 		.ascii	"reg32\000"
- 613      3200
- 614              	.LASF21:
- 615 0006 6D61736B 		.ascii	"maskVal\000"
- 615      56616C00 
- 616              	.LASF24:
- 617 000e 55415254 		.ascii	"UART_1_IntClock_GetFractionalDividerRegister\000"
- 617      5F315F49 
- 617      6E74436C 
- 617      6F636B5F 
- 617      47657446 
- 618              	.LASF16:
- 619 003b 55415254 		.ascii	"UART_1_IntClock_StartEx\000"
- 619      5F315F49 
- 619      6E74436C 
- 619      6F636B5F 
- 619      53746172 
- 620              	.LASF26:
- 621 0053 47656E65 		.ascii	"Generated_Source\\PSoC4\\UART_1_IntClock.c\000"
- 621      72617465 
- 621      645F536F 
- 621      75726365 
- 621      5C50536F 
- 622              	.LASF23:
- 623 007c 55415254 		.ascii	"UART_1_IntClock_GetDividerRegister\000"
- 623      5F315F49 
- 623      6E74436C 
- 623      6F636B5F 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 16
+ 524 00aa 13       		.uleb128 0x13
+ 525 00ab 11       		.uleb128 0x11
+ 526 00ac 01       		.uleb128 0x1
+ 527 00ad 12       		.uleb128 0x12
+ 528 00ae 06       		.uleb128 0x6
+ 529 00af 40       		.uleb128 0x40
+ 530 00b0 18       		.uleb128 0x18
+ 531 00b1 9742     		.uleb128 0x2117
+ 532 00b3 19       		.uleb128 0x19
+ 533 00b4 00       		.byte	0
+ 534 00b5 00       		.byte	0
+ 535 00b6 00       		.byte	0
+ 536              		.section	.debug_loc,"",%progbits
+ 537              	.Ldebug_loc0:
+ 538              	.LLST0:
+ 539 0000 00000000 		.4byte	.LVL0
+ 540 0004 0C000000 		.4byte	.LVL1
+ 541 0008 0100     		.2byte	0x1
+ 542 000a 50       		.byte	0x50
+ 543 000b 0C000000 		.4byte	.LVL1
+ 544 000f 1C000000 		.4byte	.LFE0
+ 545 0013 0400     		.2byte	0x4
+ 546 0015 F3       		.byte	0xf3
+ 547 0016 01       		.uleb128 0x1
+ 548 0017 50       		.byte	0x50
+ 549 0018 9F       		.byte	0x9f
+ 550 0019 00000000 		.4byte	0
+ 551 001d 00000000 		.4byte	0
+ 552              	.LLST1:
+ 553 0021 00000000 		.4byte	.LVL2
+ 554 0025 0A000000 		.4byte	.LVL4
+ 555 0029 0100     		.2byte	0x1
+ 556 002b 50       		.byte	0x50
+ 557 002c 0A000000 		.4byte	.LVL4
+ 558 0030 20000000 		.4byte	.LFE2
+ 559 0034 0400     		.2byte	0x4
+ 560 0036 F3       		.byte	0xf3
+ 561 0037 01       		.uleb128 0x1
+ 562 0038 50       		.byte	0x50
+ 563 0039 9F       		.byte	0x9f
+ 564 003a 00000000 		.4byte	0
+ 565 003e 00000000 		.4byte	0
+ 566              	.LLST2:
+ 567 0042 00000000 		.4byte	.LVL2
+ 568 0046 06000000 		.4byte	.LVL3
+ 569 004a 0100     		.2byte	0x1
+ 570 004c 51       		.byte	0x51
+ 571 004d 06000000 		.4byte	.LVL3
+ 572 0051 20000000 		.4byte	.LFE2
+ 573 0055 0400     		.2byte	0x4
+ 574 0057 F3       		.byte	0xf3
+ 575 0058 01       		.uleb128 0x1
+ 576 0059 51       		.byte	0x51
+ 577 005a 9F       		.byte	0x9f
+ 578 005b 00000000 		.4byte	0
+ 579 005f 00000000 		.4byte	0
+ 580              	.LLST3:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cctWUApb.s 			page 15
 
 
- 623      47657444 
- 624              	.LASF12:
- 625 009f 666C6F61 		.ascii	"float\000"
- 625      7400
- 626              	.LASF1:
- 627 00a5 756E7369 		.ascii	"unsigned char\000"
- 627      676E6564 
- 627      20636861 
- 627      7200
- 628              	.LASF5:
- 629 00b3 6C6F6E67 		.ascii	"long unsigned int\000"
- 629      20756E73 
- 629      69676E65 
- 629      6420696E 
- 629      7400
- 630              	.LASF3:
- 631 00c5 73686F72 		.ascii	"short unsigned int\000"
- 631      7420756E 
- 631      7369676E 
- 631      65642069 
- 631      6E7400
- 632              	.LASF19:
- 633 00d8 636C6B44 		.ascii	"clkDivider\000"
- 633      69766964 
- 633      657200
- 634              	.LASF13:
- 635 00e3 646F7562 		.ascii	"double\000"
- 635      6C6500
- 636              	.LASF22:
- 637 00ea 72656756 		.ascii	"regVal\000"
- 637      616C00
- 638              	.LASF18:
- 639 00f1 616C6967 		.ascii	"alignClkDiv\000"
- 639      6E436C6B 
- 639      44697600 
- 640              	.LASF20:
- 641 00fd 636C6B46 		.ascii	"clkFractional\000"
- 641      72616374 
- 641      696F6E61 
- 641      6C00
- 642              	.LASF25:
- 643 010b 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 643      4320342E 
- 643      392E3320 
- 643      32303135 
- 643      30333033 
- 644 013e 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
- 644      20726576 
- 644      6973696F 
- 644      6E203232 
- 644      31323230 
- 645 0171 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
- 645      66756E63 
- 645      74696F6E 
- 645      2D736563 
- 645      74696F6E 
- 646              	.LASF10:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 17
+ 581 0063 12000000 		.4byte	.LVL5
+ 582 0067 14000000 		.4byte	.LVL6
+ 583 006b 0500     		.2byte	0x5
+ 584 006d 73       		.byte	0x73
+ 585 006e 00       		.sleb128 0
+ 586 006f 37       		.byte	0x37
+ 587 0070 1A       		.byte	0x1a
+ 588 0071 9F       		.byte	0x9f
+ 589 0072 14000000 		.4byte	.LVL6
+ 590 0076 20000000 		.4byte	.LFE2
+ 591 007a 0100     		.2byte	0x1
+ 592 007c 51       		.byte	0x51
+ 593 007d 00000000 		.4byte	0
+ 594 0081 00000000 		.4byte	0
+ 595              		.section	.debug_aranges,"",%progbits
+ 596 0000 3C000000 		.4byte	0x3c
+ 597 0004 0200     		.2byte	0x2
+ 598 0006 00000000 		.4byte	.Ldebug_info0
+ 599 000a 04       		.byte	0x4
+ 600 000b 00       		.byte	0
+ 601 000c 0000     		.2byte	0
+ 602 000e 0000     		.2byte	0
+ 603 0010 00000000 		.4byte	.LFB0
+ 604 0014 1C000000 		.4byte	.LFE0-.LFB0
+ 605 0018 00000000 		.4byte	.LFB1
+ 606 001c 18000000 		.4byte	.LFE1-.LFB1
+ 607 0020 00000000 		.4byte	.LFB2
+ 608 0024 20000000 		.4byte	.LFE2-.LFB2
+ 609 0028 00000000 		.4byte	.LFB3
+ 610 002c 10000000 		.4byte	.LFE3-.LFB3
+ 611 0030 00000000 		.4byte	.LFB4
+ 612 0034 04000000 		.4byte	.LFE4-.LFB4
+ 613 0038 00000000 		.4byte	0
+ 614 003c 00000000 		.4byte	0
+ 615              		.section	.debug_ranges,"",%progbits
+ 616              	.Ldebug_ranges0:
+ 617 0000 00000000 		.4byte	.LFB0
+ 618 0004 1C000000 		.4byte	.LFE0
+ 619 0008 00000000 		.4byte	.LFB1
+ 620 000c 18000000 		.4byte	.LFE1
+ 621 0010 00000000 		.4byte	.LFB2
+ 622 0014 20000000 		.4byte	.LFE2
+ 623 0018 00000000 		.4byte	.LFB3
+ 624 001c 10000000 		.4byte	.LFE3
+ 625 0020 00000000 		.4byte	.LFB4
+ 626 0024 04000000 		.4byte	.LFE4
+ 627 0028 00000000 		.4byte	0
+ 628 002c 00000000 		.4byte	0
+ 629              		.section	.debug_line,"",%progbits
+ 630              	.Ldebug_line0:
+ 631 0000 D7000000 		.section	.debug_str,"MS",%progbits,1
+ 631      02004C00 
+ 631      00000201 
+ 631      FB0E0D00 
+ 631      01010101 
+ 632              	.LASF15:
+ 633 0000 72656733 		.ascii	"reg32\000"
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cctWUApb.s 			page 16
 
 
- 647 0199 75696E74 		.ascii	"uint16\000"
- 647      313600
- 648              	.LASF11:
- 649 01a0 75696E74 		.ascii	"uint32\000"
- 649      333200
- 650              	.LASF8:
- 651 01a7 756E7369 		.ascii	"unsigned int\000"
- 651      676E6564 
- 651      20696E74 
- 651      00
- 652              	.LASF7:
- 653 01b4 6C6F6E67 		.ascii	"long long unsigned int\000"
- 653      206C6F6E 
- 653      6720756E 
- 653      7369676E 
- 653      65642069 
- 654              	.LASF28:
- 655 01cb 55415254 		.ascii	"UART_1_IntClock_Stop\000"
- 655      5F315F49 
- 655      6E74436C 
- 655      6F636B5F 
- 655      53746F70 
- 656              	.LASF6:
- 657 01e0 6C6F6E67 		.ascii	"long long int\000"
- 657      206C6F6E 
- 657      6720696E 
- 657      7400
- 658              	.LASF14:
- 659 01ee 63686172 		.ascii	"char\000"
- 659      00
- 660              	.LASF17:
- 661 01f3 55415254 		.ascii	"UART_1_IntClock_SetFractionalDividerRegister\000"
- 661      5F315F49 
- 661      6E74436C 
- 661      6F636B5F 
- 661      53657446 
- 662              	.LASF2:
- 663 0220 73686F72 		.ascii	"short int\000"
- 663      7420696E 
- 663      7400
- 664              	.LASF9:
- 665 022a 75696E74 		.ascii	"uint8\000"
- 665      3800
- 666              	.LASF4:
- 667 0230 6C6F6E67 		.ascii	"long int\000"
- 667      20696E74 
- 667      00
- 668              	.LASF27:
- 669 0239 433A5C55 		.ascii	"C:\\Users\\glenn\\OneDrive\\PSOC\\moisture_sensor_4"
- 669      73657273 
- 669      5C676C65 
- 669      6E6E5C4F 
- 669      6E654472 
- 670 0267 6D5C4D6F 		.ascii	"m\\Moisture_Sensor\\Moisture_Sensor.cydsn\000"
- 670      69737475 
- 670      72655F53 
- 670      656E736F 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbJ341S.s 			page 18
+ 633      3200
+ 634              	.LASF21:
+ 635 0006 6D61736B 		.ascii	"maskVal\000"
+ 635      56616C00 
+ 636              	.LASF24:
+ 637 000e 55415254 		.ascii	"UART_1_IntClock_GetFractionalDividerRegister\000"
+ 637      5F315F49 
+ 637      6E74436C 
+ 637      6F636B5F 
+ 637      47657446 
+ 638              	.LASF16:
+ 639 003b 55415254 		.ascii	"UART_1_IntClock_StartEx\000"
+ 639      5F315F49 
+ 639      6E74436C 
+ 639      6F636B5F 
+ 639      53746172 
+ 640              	.LASF26:
+ 641 0053 47656E65 		.ascii	"Generated_Source\\PSoC4\\UART_1_IntClock.c\000"
+ 641      72617465 
+ 641      645F536F 
+ 641      75726365 
+ 641      5C50536F 
+ 642              	.LASF23:
+ 643 007c 55415254 		.ascii	"UART_1_IntClock_GetDividerRegister\000"
+ 643      5F315F49 
+ 643      6E74436C 
+ 643      6F636B5F 
+ 643      47657444 
+ 644              	.LASF12:
+ 645 009f 666C6F61 		.ascii	"float\000"
+ 645      7400
+ 646              	.LASF25:
+ 647 00a5 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 647      4320342E 
+ 647      392E3320 
+ 647      32303135 
+ 647      30333033 
+ 648 00d8 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 648      20726576 
+ 648      6973696F 
+ 648      6E203232 
+ 648      31323230 
+ 649 010b 32202D66 		.ascii	"2 -ffunction-sections -finline-functions -ffat-lto-"
+ 649      66756E63 
+ 649      74696F6E 
+ 649      2D736563 
+ 649      74696F6E 
+ 650 013e 6F626A65 		.ascii	"objects\000"
+ 650      63747300 
+ 651              	.LASF1:
+ 652 0146 756E7369 		.ascii	"unsigned char\000"
+ 652      676E6564 
+ 652      20636861 
+ 652      7200
+ 653              	.LASF5:
+ 654 0154 6C6F6E67 		.ascii	"long unsigned int\000"
+ 654      20756E73 
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cctWUApb.s 			page 17
 
 
- 670      725C4D6F 
- 671              	.LASF0:
- 672 028f 7369676E 		.ascii	"signed char\000"
- 672      65642063 
- 672      68617200 
- 673              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ 654      69676E65 
+ 654      6420696E 
+ 654      7400
+ 655              	.LASF3:
+ 656 0166 73686F72 		.ascii	"short unsigned int\000"
+ 656      7420756E 
+ 656      7369676E 
+ 656      65642069 
+ 656      6E7400
+ 657              	.LASF19:
+ 658 0179 636C6B44 		.ascii	"clkDivider\000"
+ 658      69766964 
+ 658      657200
+ 659              	.LASF13:
+ 660 0184 646F7562 		.ascii	"double\000"
+ 660      6C6500
+ 661              	.LASF22:
+ 662 018b 72656756 		.ascii	"regVal\000"
+ 662      616C00
+ 663              	.LASF18:
+ 664 0192 616C6967 		.ascii	"alignClkDiv\000"
+ 664      6E436C6B 
+ 664      44697600 
+ 665              	.LASF20:
+ 666 019e 636C6B46 		.ascii	"clkFractional\000"
+ 666      72616374 
+ 666      696F6E61 
+ 666      6C00
+ 667              	.LASF10:
+ 668 01ac 75696E74 		.ascii	"uint16\000"
+ 668      313600
+ 669              	.LASF11:
+ 670 01b3 75696E74 		.ascii	"uint32\000"
+ 670      333200
+ 671              	.LASF8:
+ 672 01ba 756E7369 		.ascii	"unsigned int\000"
+ 672      676E6564 
+ 672      20696E74 
+ 672      00
+ 673              	.LASF7:
+ 674 01c7 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 674      206C6F6E 
+ 674      6720756E 
+ 674      7369676E 
+ 674      65642069 
+ 675              	.LASF28:
+ 676 01de 55415254 		.ascii	"UART_1_IntClock_Stop\000"
+ 676      5F315F49 
+ 676      6E74436C 
+ 676      6F636B5F 
+ 676      53746F70 
+ 677              	.LASF6:
+ 678 01f3 6C6F6E67 		.ascii	"long long int\000"
+ 678      206C6F6E 
+ 678      6720696E 
+ 678      7400
+ 679              	.LASF14:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cctWUApb.s 			page 18
+
+
+ 680 0201 63686172 		.ascii	"char\000"
+ 680      00
+ 681              	.LASF17:
+ 682 0206 55415254 		.ascii	"UART_1_IntClock_SetFractionalDividerRegister\000"
+ 682      5F315F49 
+ 682      6E74436C 
+ 682      6F636B5F 
+ 682      53657446 
+ 683              	.LASF2:
+ 684 0233 73686F72 		.ascii	"short int\000"
+ 684      7420696E 
+ 684      7400
+ 685              	.LASF9:
+ 686 023d 75696E74 		.ascii	"uint8\000"
+ 686      3800
+ 687              	.LASF4:
+ 688 0243 6C6F6E67 		.ascii	"long int\000"
+ 688      20696E74 
+ 688      00
+ 689              	.LASF27:
+ 690 024c 433A5C55 		.ascii	"C:\\Users\\glenn\\OneDrive\\PSOC\\moisture_sensor_4"
+ 690      73657273 
+ 690      5C676C65 
+ 690      6E6E5C4F 
+ 690      6E654472 
+ 691 027a 6D5C4D6F 		.ascii	"m\\Moisture_Sensor\\Moisture_Sensor.cydsn\000"
+ 691      69737475 
+ 691      72655F53 
+ 691      656E736F 
+ 691      725C4D6F 
+ 692              	.LASF0:
+ 693 02a2 7369676E 		.ascii	"signed char\000"
+ 693      65642063 
+ 693      68617200 
+ 694              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

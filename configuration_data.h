@@ -12,7 +12,7 @@
     
 #include <project.h>
 
-#define RESISTIVE_SENSOR_NUMBER  8
+#define RESISTIVE_SENSOR_NUMBER  16
     
 typedef enum
 {

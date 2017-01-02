@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -9,7 +9,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
    6              		.eabi_attribute 24, 1
    7              		.eabi_attribute 25, 1
    8              		.eabi_attribute 26, 1
-   9              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 30, 2
   10              		.eabi_attribute 34, 0
   11              		.eabi_attribute 18, 4
   12              		.code	16
@@ -17,14 +17,14 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
   14              		.text
   15              	.Ltext0:
   16              		.cfi_sections	.debug_frame
-  17              		.section	.text.modbus_rx_interrupt_Start,"ax",%progbits
+  17              		.section	.text.modbus_rx_interrupt_Interrupt,"ax",%progbits
   18              		.align	2
-  19              		.global	modbus_rx_interrupt_Start
+  19              		.global	modbus_rx_interrupt_Interrupt
   20              		.code	16
   21              		.thumb_func
-  22              		.type	modbus_rx_interrupt_Start, %function
-  23              	modbus_rx_interrupt_Start:
-  24              	.LFB1:
+  22              		.type	modbus_rx_interrupt_Interrupt, %function
+  23              	modbus_rx_interrupt_Interrupt:
+  24              	.LFB4:
   25              		.file 1 "Generated_Source\\PSoC4\\modbus_rx_interrupt.c"
    1:Generated_Source\PSoC4/modbus_rx_interrupt.c **** /*******************************************************************************
    2:Generated_Source\PSoC4/modbus_rx_interrupt.c **** * File Name: modbus_rx_interrupt.c  
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
   30:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
   31:Generated_Source\PSoC4/modbus_rx_interrupt.c **** /* `#END` */
   32:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 2
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 2
 
 
   33:Generated_Source\PSoC4/modbus_rx_interrupt.c **** extern cyisraddress CyRamVectors[CYINT_IRQ_BASE + CY_NUM_INTERRUPTS];
@@ -86,59 +86,18 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
   55:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *******************************************************************************/
   56:Generated_Source\PSoC4/modbus_rx_interrupt.c **** void modbus_rx_interrupt_Start(void)
   57:Generated_Source\PSoC4/modbus_rx_interrupt.c **** {
-  26              		.loc 1 57 0
-  27              		.cfi_startproc
-  28 0000 80B5     		push	{r7, lr}
-  29              		.cfi_def_cfa_offset 8
-  30              		.cfi_offset 7, -8
-  31              		.cfi_offset 14, -4
-  32 0002 00AF     		add	r7, sp, #0
-  33              		.cfi_def_cfa_register 7
   58:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     /* For all we know the interrupt is active. */
   59:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     modbus_rx_interrupt_Disable();
-  34              		.loc 1 59 0
-  35 0004 FFF7FEFF 		bl	modbus_rx_interrupt_Disable
   60:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
   61:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     /* Set the ISR to point to the modbus_rx_interrupt Interrupt. */
   62:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     modbus_rx_interrupt_SetVector(&modbus_rx_interrupt_Interrupt);
-  36              		.loc 1 62 0
-  37 0008 054B     		ldr	r3, .L2
-  38 000a 181C     		mov	r0, r3
-  39 000c FFF7FEFF 		bl	modbus_rx_interrupt_SetVector
   63:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
   64:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     /* Set the priority. */
   65:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     modbus_rx_interrupt_SetPriority((uint8)modbus_rx_interrupt_INTC_PRIOR_NUMBER);
-  40              		.loc 1 65 0
-  41 0010 0320     		mov	r0, #3
-  42 0012 FFF7FEFF 		bl	modbus_rx_interrupt_SetPriority
   66:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
   67:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     /* Enable it. */
   68:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     modbus_rx_interrupt_Enable();
-  43              		.loc 1 68 0
-  44 0016 FFF7FEFF 		bl	modbus_rx_interrupt_Enable
   69:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
-  45              		.loc 1 69 0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 3
-
-
-  46 001a BD46     		mov	sp, r7
-  47              		@ sp needed
-  48 001c 80BD     		pop	{r7, pc}
-  49              	.L3:
-  50 001e C046     		.align	2
-  51              	.L2:
-  52 0020 00000000 		.word	modbus_rx_interrupt_Interrupt
-  53              		.cfi_endproc
-  54              	.LFE1:
-  55              		.size	modbus_rx_interrupt_Start, .-modbus_rx_interrupt_Start
-  56              		.section	.text.modbus_rx_interrupt_StartEx,"ax",%progbits
-  57              		.align	2
-  58              		.global	modbus_rx_interrupt_StartEx
-  59              		.code	16
-  60              		.thumb_func
-  61              		.type	modbus_rx_interrupt_StartEx, %function
-  62              	modbus_rx_interrupt_StartEx:
-  63              	.LFB2:
   70:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
   71:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
   72:Generated_Source\PSoC4/modbus_rx_interrupt.c **** /*******************************************************************************
@@ -159,6 +118,9 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
   87:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   {
   88:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   }
   89:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   Function prototype example:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 3
+
+
   90:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   CY_ISR_PROTO(MyISR);
   91:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *
   92:Generated_Source\PSoC4/modbus_rx_interrupt.c **** * Parameters:  
@@ -170,59 +132,18 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
   98:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *******************************************************************************/
   99:Generated_Source\PSoC4/modbus_rx_interrupt.c **** void modbus_rx_interrupt_StartEx(cyisraddress address)
  100:Generated_Source\PSoC4/modbus_rx_interrupt.c **** {
-  64              		.loc 1 100 0
-  65              		.cfi_startproc
-  66 0000 80B5     		push	{r7, lr}
-  67              		.cfi_def_cfa_offset 8
-  68              		.cfi_offset 7, -8
-  69              		.cfi_offset 14, -4
-  70 0002 82B0     		sub	sp, sp, #8
-  71              		.cfi_def_cfa_offset 16
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 4
-
-
-  72 0004 00AF     		add	r7, sp, #0
-  73              		.cfi_def_cfa_register 7
-  74 0006 7860     		str	r0, [r7, #4]
  101:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     /* For all we know the interrupt is active. */
  102:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     modbus_rx_interrupt_Disable();
-  75              		.loc 1 102 0
-  76 0008 FFF7FEFF 		bl	modbus_rx_interrupt_Disable
  103:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  104:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     /* Set the ISR to point to the modbus_rx_interrupt Interrupt. */
  105:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     modbus_rx_interrupt_SetVector(address);
-  77              		.loc 1 105 0
-  78 000c 7B68     		ldr	r3, [r7, #4]
-  79 000e 181C     		mov	r0, r3
-  80 0010 FFF7FEFF 		bl	modbus_rx_interrupt_SetVector
  106:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  107:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     /* Set the priority. */
  108:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     modbus_rx_interrupt_SetPriority((uint8)modbus_rx_interrupt_INTC_PRIOR_NUMBER);
-  81              		.loc 1 108 0
-  82 0014 0320     		mov	r0, #3
-  83 0016 FFF7FEFF 		bl	modbus_rx_interrupt_SetPriority
  109:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  110:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     /* Enable it. */
  111:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     modbus_rx_interrupt_Enable();
-  84              		.loc 1 111 0
-  85 001a FFF7FEFF 		bl	modbus_rx_interrupt_Enable
  112:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
-  86              		.loc 1 112 0
-  87 001e BD46     		mov	sp, r7
-  88 0020 02B0     		add	sp, sp, #8
-  89              		@ sp needed
-  90 0022 80BD     		pop	{r7, pc}
-  91              		.cfi_endproc
-  92              	.LFE2:
-  93              		.size	modbus_rx_interrupt_StartEx, .-modbus_rx_interrupt_StartEx
-  94              		.section	.text.modbus_rx_interrupt_Stop,"ax",%progbits
-  95              		.align	2
-  96              		.global	modbus_rx_interrupt_Stop
-  97              		.code	16
-  98              		.thumb_func
-  99              		.type	modbus_rx_interrupt_Stop, %function
- 100              	modbus_rx_interrupt_Stop:
- 101              	.LFB3:
  113:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  114:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  115:Generated_Source\PSoC4/modbus_rx_interrupt.c **** /*******************************************************************************
@@ -238,51 +159,15 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
  125:Generated_Source\PSoC4/modbus_rx_interrupt.c **** * Return:
  126:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   None
  127:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 5
-
-
  128:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *******************************************************************************/
  129:Generated_Source\PSoC4/modbus_rx_interrupt.c **** void modbus_rx_interrupt_Stop(void)
  130:Generated_Source\PSoC4/modbus_rx_interrupt.c **** {
- 102              		.loc 1 130 0
- 103              		.cfi_startproc
- 104 0000 80B5     		push	{r7, lr}
- 105              		.cfi_def_cfa_offset 8
- 106              		.cfi_offset 7, -8
- 107              		.cfi_offset 14, -4
- 108 0002 00AF     		add	r7, sp, #0
- 109              		.cfi_def_cfa_register 7
  131:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     /* Disable this interrupt. */
  132:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     modbus_rx_interrupt_Disable();
- 110              		.loc 1 132 0
- 111 0004 FFF7FEFF 		bl	modbus_rx_interrupt_Disable
  133:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  134:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     /* Set the ISR to point to the passive one. */
  135:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     modbus_rx_interrupt_SetVector(&IntDefaultHandler);
- 112              		.loc 1 135 0
- 113 0008 024B     		ldr	r3, .L6
- 114 000a 181C     		mov	r0, r3
- 115 000c FFF7FEFF 		bl	modbus_rx_interrupt_SetVector
  136:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
- 116              		.loc 1 136 0
- 117 0010 BD46     		mov	sp, r7
- 118              		@ sp needed
- 119 0012 80BD     		pop	{r7, pc}
- 120              	.L7:
- 121              		.align	2
- 122              	.L6:
- 123 0014 00000000 		.word	IntDefaultHandler
- 124              		.cfi_endproc
- 125              	.LFE3:
- 126              		.size	modbus_rx_interrupt_Stop, .-modbus_rx_interrupt_Stop
- 127              		.section	.text.modbus_rx_interrupt_Interrupt,"ax",%progbits
- 128              		.align	2
- 129              		.global	modbus_rx_interrupt_Interrupt
- 130              		.code	16
- 131              		.thumb_func
- 132              		.type	modbus_rx_interrupt_Interrupt, %function
- 133              	modbus_rx_interrupt_Interrupt:
- 134              	.LFB4:
  137:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  138:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  139:Generated_Source\PSoC4/modbus_rx_interrupt.c **** /*******************************************************************************
@@ -293,14 +178,14 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
  144:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   The default Interrupt Service Routine for modbus_rx_interrupt.
  145:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *
  146:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   Add custom code between the START and END comments to keep the next version
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 4
+
+
  147:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   of this file from over-writing your code.
  148:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *
  149:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   Note You may use either the default ISR by using this API, or you may define
  150:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   your own separate ISR through ISR_StartEx().
  151:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 6
-
-
  152:Generated_Source\PSoC4/modbus_rx_interrupt.c **** * Parameters:  
  153:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   None
  154:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *
@@ -310,14 +195,8 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
  158:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *******************************************************************************/
  159:Generated_Source\PSoC4/modbus_rx_interrupt.c **** CY_ISR(modbus_rx_interrupt_Interrupt)
  160:Generated_Source\PSoC4/modbus_rx_interrupt.c **** {
- 135              		.loc 1 160 0
- 136              		.cfi_startproc
- 137 0000 80B5     		push	{r7, lr}
- 138              		.cfi_def_cfa_offset 8
- 139              		.cfi_offset 7, -8
- 140              		.cfi_offset 14, -4
- 141 0002 00AF     		add	r7, sp, #0
- 142              		.cfi_def_cfa_register 7
+  26              		.loc 1 160 0
+  27              		.cfi_startproc
  161:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     #ifdef modbus_rx_interrupt_INTERRUPT_INTERRUPT_CALLBACK
  162:Generated_Source\PSoC4/modbus_rx_interrupt.c ****         modbus_rx_interrupt_Interrupt_InterruptCallback();
  163:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     #endif /* modbus_rx_interrupt_INTERRUPT_INTERRUPT_CALLBACK */ 
@@ -327,21 +206,29 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
  167:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  168:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     /* `#END` */
  169:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
- 143              		.loc 1 169 0
- 144 0004 BD46     		mov	sp, r7
- 145              		@ sp needed
- 146 0006 80BD     		pop	{r7, pc}
- 147              		.cfi_endproc
- 148              	.LFE4:
- 149              		.size	modbus_rx_interrupt_Interrupt, .-modbus_rx_interrupt_Interrupt
- 150              		.section	.text.modbus_rx_interrupt_SetVector,"ax",%progbits
- 151              		.align	2
- 152              		.global	modbus_rx_interrupt_SetVector
- 153              		.code	16
- 154              		.thumb_func
- 155              		.type	modbus_rx_interrupt_SetVector, %function
- 156              	modbus_rx_interrupt_SetVector:
- 157              	.LFB5:
+  28              		.loc 1 169 0
+  29              		@ sp needed
+  30 0000 7047     		bx	lr
+  31              		.cfi_endproc
+  32              	.LFE4:
+  33              		.size	modbus_rx_interrupt_Interrupt, .-modbus_rx_interrupt_Interrupt
+  34 0002 C046     		.section	.text.modbus_rx_interrupt_Start,"ax",%progbits
+  35              		.align	2
+  36              		.global	modbus_rx_interrupt_Start
+  37              		.code	16
+  38              		.thumb_func
+  39              		.type	modbus_rx_interrupt_Start, %function
+  40              	modbus_rx_interrupt_Start:
+  41              	.LFB1:
+  57:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     /* For all we know the interrupt is active. */
+  42              		.loc 1 57 0
+  43              		.cfi_startproc
+  44 0000 10B5     		push	{r4, lr}
+  45              		.cfi_def_cfa_offset 8
+  46              		.cfi_offset 4, -8
+  47              		.cfi_offset 14, -4
+  48              	.LBB26:
+  49              	.LBB27:
  170:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  171:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  172:Generated_Source\PSoC4/modbus_rx_interrupt.c **** /*******************************************************************************
@@ -351,6 +238,9 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
  176:Generated_Source\PSoC4/modbus_rx_interrupt.c **** * Summary:
  177:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   Change the ISR vector for the Interrupt. Note calling modbus_rx_interrupt_Start
  178:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   will override any effect this method would have had. To set the vector 
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 5
+
+
  179:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   before the component has been started use modbus_rx_interrupt_StartEx instead.
  180:Generated_Source\PSoC4/modbus_rx_interrupt.c **** * 
  181:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
@@ -358,9 +248,6 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
  183:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *
  184:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   Function definition example:
  185:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   CY_ISR(MyISR)
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 7
-
-
  186:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   {
  187:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   }
  188:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *
@@ -376,51 +263,13 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
  198:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *******************************************************************************/
  199:Generated_Source\PSoC4/modbus_rx_interrupt.c **** void modbus_rx_interrupt_SetVector(cyisraddress address)
  200:Generated_Source\PSoC4/modbus_rx_interrupt.c **** {
- 158              		.loc 1 200 0
- 159              		.cfi_startproc
- 160 0000 80B5     		push	{r7, lr}
- 161              		.cfi_def_cfa_offset 8
- 162              		.cfi_offset 7, -8
- 163              		.cfi_offset 14, -4
- 164 0002 82B0     		sub	sp, sp, #8
- 165              		.cfi_def_cfa_offset 16
- 166 0004 00AF     		add	r7, sp, #0
- 167              		.cfi_def_cfa_register 7
- 168 0006 7860     		str	r0, [r7, #4]
  201:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     CyRamVectors[CYINT_IRQ_BASE + modbus_rx_interrupt__INTC_NUMBER] = address;
- 169              		.loc 1 201 0
- 170 0008 024B     		ldr	r3, .L10
- 171 000a 7A68     		ldr	r2, [r7, #4]
- 172 000c 1A64     		str	r2, [r3, #64]
  202:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
- 173              		.loc 1 202 0
- 174 000e BD46     		mov	sp, r7
- 175 0010 02B0     		add	sp, sp, #8
- 176              		@ sp needed
- 177 0012 80BD     		pop	{r7, pc}
- 178              	.L11:
- 179              		.align	2
- 180              	.L10:
- 181 0014 00000000 		.word	CyRamVectors
- 182              		.cfi_endproc
- 183              	.LFE5:
- 184              		.size	modbus_rx_interrupt_SetVector, .-modbus_rx_interrupt_SetVector
- 185              		.section	.text.modbus_rx_interrupt_GetVector,"ax",%progbits
- 186              		.align	2
- 187              		.global	modbus_rx_interrupt_GetVector
- 188              		.code	16
- 189              		.thumb_func
- 190              		.type	modbus_rx_interrupt_GetVector, %function
- 191              	modbus_rx_interrupt_GetVector:
- 192              	.LFB6:
  203:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  204:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  205:Generated_Source\PSoC4/modbus_rx_interrupt.c **** /*******************************************************************************
  206:Generated_Source\PSoC4/modbus_rx_interrupt.c **** * Function Name: modbus_rx_interrupt_GetVector
  207:Generated_Source\PSoC4/modbus_rx_interrupt.c **** ********************************************************************************
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 8
-
-
  208:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *
  209:Generated_Source\PSoC4/modbus_rx_interrupt.c **** * Summary:
  210:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   Gets the "address" of the current ISR vector for the Interrupt.
@@ -434,39 +283,8 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
  218:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *******************************************************************************/
  219:Generated_Source\PSoC4/modbus_rx_interrupt.c **** cyisraddress modbus_rx_interrupt_GetVector(void)
  220:Generated_Source\PSoC4/modbus_rx_interrupt.c **** {
- 193              		.loc 1 220 0
- 194              		.cfi_startproc
- 195 0000 80B5     		push	{r7, lr}
- 196              		.cfi_def_cfa_offset 8
- 197              		.cfi_offset 7, -8
- 198              		.cfi_offset 14, -4
- 199 0002 00AF     		add	r7, sp, #0
- 200              		.cfi_def_cfa_register 7
  221:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     return CyRamVectors[CYINT_IRQ_BASE + modbus_rx_interrupt__INTC_NUMBER];
- 201              		.loc 1 221 0
- 202 0004 024B     		ldr	r3, .L14
- 203 0006 1B6C     		ldr	r3, [r3, #64]
  222:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
- 204              		.loc 1 222 0
- 205 0008 181C     		mov	r0, r3
- 206 000a BD46     		mov	sp, r7
- 207              		@ sp needed
- 208 000c 80BD     		pop	{r7, pc}
- 209              	.L15:
- 210 000e C046     		.align	2
- 211              	.L14:
- 212 0010 00000000 		.word	CyRamVectors
- 213              		.cfi_endproc
- 214              	.LFE6:
- 215              		.size	modbus_rx_interrupt_GetVector, .-modbus_rx_interrupt_GetVector
- 216              		.section	.text.modbus_rx_interrupt_SetPriority,"ax",%progbits
- 217              		.align	2
- 218              		.global	modbus_rx_interrupt_SetPriority
- 219              		.code	16
- 220              		.thumb_func
- 221              		.type	modbus_rx_interrupt_SetPriority, %function
- 222              	modbus_rx_interrupt_SetPriority:
- 223              	.LFB7:
  223:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  224:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  225:Generated_Source\PSoC4/modbus_rx_interrupt.c **** /*******************************************************************************
@@ -478,11 +296,11 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
  231:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *
  232:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   Note calling modbus_rx_interrupt_Start or modbus_rx_interrupt_StartEx will 
  233:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   override any effect this API would have had. This API should only be called
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 9
-
-
  234:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   after modbus_rx_interrupt_Start or modbus_rx_interrupt_StartEx has been called. 
  235:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   To set the initial priority for the component, use the Design-Wide Resources
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 6
+
+
  236:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   Interrupt Editor.
  237:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *
  238:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   Note This API has no effect on Non-maskable interrupt NMI).
@@ -498,83 +316,14 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
  248:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *******************************************************************************/
  249:Generated_Source\PSoC4/modbus_rx_interrupt.c **** void modbus_rx_interrupt_SetPriority(uint8 priority)
  250:Generated_Source\PSoC4/modbus_rx_interrupt.c **** {
- 224              		.loc 1 250 0
- 225              		.cfi_startproc
- 226 0000 90B5     		push	{r4, r7, lr}
- 227              		.cfi_def_cfa_offset 12
- 228              		.cfi_offset 4, -12
- 229              		.cfi_offset 7, -8
- 230              		.cfi_offset 14, -4
- 231 0002 85B0     		sub	sp, sp, #20
- 232              		.cfi_def_cfa_offset 32
- 233 0004 00AF     		add	r7, sp, #0
- 234              		.cfi_def_cfa_register 7
- 235 0006 021C     		mov	r2, r0
- 236 0008 FB1D     		add	r3, r7, #7
- 237 000a 1A70     		strb	r2, [r3]
  251:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 	uint8 interruptState;
  252:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     uint32 priorityOffset = ((modbus_rx_interrupt__INTC_NUMBER % 4u) * 8u) + 6u;
- 238              		.loc 1 252 0
- 239 000c 0623     		mov	r3, #6
- 240 000e FB60     		str	r3, [r7, #12]
  253:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     
  254:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 	interruptState = CyEnterCriticalSection();
- 241              		.loc 1 254 0
- 242 0010 0B23     		mov	r3, #11
- 243 0012 FC18     		add	r4, r7, r3
- 244 0014 FFF7FEFF 		bl	CyEnterCriticalSection
- 245 0018 031C     		mov	r3, r0
- 246 001a 2370     		strb	r3, [r4]
  255:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     *modbus_rx_interrupt_INTC_PRIOR = (*modbus_rx_interrupt_INTC_PRIOR & (uint32)(~modbus_rx_interr
- 247              		.loc 1 255 0
- 248 001c 0A4B     		ldr	r3, .L17
- 249 001e 0A4A     		ldr	r2, .L17
- 250 0020 1268     		ldr	r2, [r2]
- 251 0022 C021     		mov	r1, #192
- 252 0024 8A43     		bic	r2, r1
- 253 0026 111C     		mov	r1, r2
  256:Generated_Source\PSoC4/modbus_rx_interrupt.c ****                                     ((uint32)priority << priorityOffset);
- 254              		.loc 1 256 0
- 255 0028 FA1D     		add	r2, r7, #7
- 256 002a 1078     		ldrb	r0, [r2]
- 257 002c FA68     		ldr	r2, [r7, #12]
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 10
-
-
- 258 002e 9040     		lsl	r0, r0, r2
- 259 0030 021C     		mov	r2, r0
- 255:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     *modbus_rx_interrupt_INTC_PRIOR = (*modbus_rx_interrupt_INTC_PRIOR & (uint32)(~modbus_rx_interr
- 260              		.loc 1 255 0
- 261 0032 0A43     		orr	r2, r1
- 262 0034 1A60     		str	r2, [r3]
  257:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 	CyExitCriticalSection(interruptState);
- 263              		.loc 1 257 0
- 264 0036 0B23     		mov	r3, #11
- 265 0038 FB18     		add	r3, r7, r3
- 266 003a 1B78     		ldrb	r3, [r3]
- 267 003c 181C     		mov	r0, r3
- 268 003e FFF7FEFF 		bl	CyExitCriticalSection
  258:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
- 269              		.loc 1 258 0
- 270 0042 BD46     		mov	sp, r7
- 271 0044 05B0     		add	sp, sp, #20
- 272              		@ sp needed
- 273 0046 90BD     		pop	{r4, r7, pc}
- 274              	.L18:
- 275              		.align	2
- 276              	.L17:
- 277 0048 00E400E0 		.word	-536812544
- 278              		.cfi_endproc
- 279              	.LFE7:
- 280              		.size	modbus_rx_interrupt_SetPriority, .-modbus_rx_interrupt_SetPriority
- 281              		.section	.text.modbus_rx_interrupt_GetPriority,"ax",%progbits
- 282              		.align	2
- 283              		.global	modbus_rx_interrupt_GetPriority
- 284              		.code	16
- 285              		.thumb_func
- 286              		.type	modbus_rx_interrupt_GetPriority, %function
- 287              	modbus_rx_interrupt_GetPriority:
- 288              	.LFB8:
  259:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  260:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  261:Generated_Source\PSoC4/modbus_rx_interrupt.c **** /*******************************************************************************
@@ -595,62 +344,13 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
  276:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *******************************************************************************/
  277:Generated_Source\PSoC4/modbus_rx_interrupt.c **** uint8 modbus_rx_interrupt_GetPriority(void)
  278:Generated_Source\PSoC4/modbus_rx_interrupt.c **** {
- 289              		.loc 1 278 0
- 290              		.cfi_startproc
- 291 0000 80B5     		push	{r7, lr}
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 11
-
-
- 292              		.cfi_def_cfa_offset 8
- 293              		.cfi_offset 7, -8
- 294              		.cfi_offset 14, -4
- 295 0002 82B0     		sub	sp, sp, #8
- 296              		.cfi_def_cfa_offset 16
- 297 0004 00AF     		add	r7, sp, #0
- 298              		.cfi_def_cfa_register 7
  279:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     uint32 priority;
  280:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 	uint32 priorityOffset = ((modbus_rx_interrupt__INTC_NUMBER % 4u) * 8u) + 6u;
- 299              		.loc 1 280 0
- 300 0006 0623     		mov	r3, #6
- 301 0008 7B60     		str	r3, [r7, #4]
  281:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  282:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     priority = (*modbus_rx_interrupt_INTC_PRIOR & modbus_rx_interrupt__INTC_PRIOR_MASK) >> priority
- 302              		.loc 1 282 0
- 303 000a 074B     		ldr	r3, .L21
- 304 000c 1B68     		ldr	r3, [r3]
- 305 000e C022     		mov	r2, #192
- 306 0010 1A40     		and	r2, r3
- 307 0012 7B68     		ldr	r3, [r7, #4]
- 308 0014 DA40     		lsr	r2, r2, r3
- 309 0016 131C     		mov	r3, r2
- 310 0018 3B60     		str	r3, [r7]
  283:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  284:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     return (uint8)priority;
- 311              		.loc 1 284 0
- 312 001a 3B68     		ldr	r3, [r7]
- 313 001c DBB2     		uxtb	r3, r3
  285:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
- 314              		.loc 1 285 0
- 315 001e 181C     		mov	r0, r3
- 316 0020 BD46     		mov	sp, r7
- 317 0022 02B0     		add	sp, sp, #8
- 318              		@ sp needed
- 319 0024 80BD     		pop	{r7, pc}
- 320              	.L22:
- 321 0026 C046     		.align	2
- 322              	.L21:
- 323 0028 00E400E0 		.word	-536812544
- 324              		.cfi_endproc
- 325              	.LFE8:
- 326              		.size	modbus_rx_interrupt_GetPriority, .-modbus_rx_interrupt_GetPriority
- 327              		.section	.text.modbus_rx_interrupt_Enable,"ax",%progbits
- 328              		.align	2
- 329              		.global	modbus_rx_interrupt_Enable
- 330              		.code	16
- 331              		.thumb_func
- 332              		.type	modbus_rx_interrupt_Enable, %function
- 333              	modbus_rx_interrupt_Enable:
- 334              	.LFB9:
  286:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  287:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  288:Generated_Source\PSoC4/modbus_rx_interrupt.c **** /*******************************************************************************
@@ -658,7 +358,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
  290:Generated_Source\PSoC4/modbus_rx_interrupt.c **** ********************************************************************************
  291:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *
  292:Generated_Source\PSoC4/modbus_rx_interrupt.c **** * Summary:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 12
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 7
 
 
  293:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   Enables the interrupt to the interrupt controller. Do not call this function
@@ -674,40 +374,9 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
  303:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *******************************************************************************/
  304:Generated_Source\PSoC4/modbus_rx_interrupt.c **** void modbus_rx_interrupt_Enable(void)
  305:Generated_Source\PSoC4/modbus_rx_interrupt.c **** {
- 335              		.loc 1 305 0
- 336              		.cfi_startproc
- 337 0000 80B5     		push	{r7, lr}
- 338              		.cfi_def_cfa_offset 8
- 339              		.cfi_offset 7, -8
- 340              		.cfi_offset 14, -4
- 341 0002 00AF     		add	r7, sp, #0
- 342              		.cfi_def_cfa_register 7
  306:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     /* Enable the general interrupt. */
  307:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     *modbus_rx_interrupt_INTC_SET_EN = modbus_rx_interrupt__INTC_MASK;
- 343              		.loc 1 307 0
- 344 0004 024B     		ldr	r3, .L24
- 345 0006 0122     		mov	r2, #1
- 346 0008 1A60     		str	r2, [r3]
  308:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
- 347              		.loc 1 308 0
- 348 000a BD46     		mov	sp, r7
- 349              		@ sp needed
- 350 000c 80BD     		pop	{r7, pc}
- 351              	.L25:
- 352 000e C046     		.align	2
- 353              	.L24:
- 354 0010 00E100E0 		.word	-536813312
- 355              		.cfi_endproc
- 356              	.LFE9:
- 357              		.size	modbus_rx_interrupt_Enable, .-modbus_rx_interrupt_Enable
- 358              		.section	.text.modbus_rx_interrupt_GetState,"ax",%progbits
- 359              		.align	2
- 360              		.global	modbus_rx_interrupt_GetState
- 361              		.code	16
- 362              		.thumb_func
- 363              		.type	modbus_rx_interrupt_GetState, %function
- 364              	modbus_rx_interrupt_GetState:
- 365              	.LFB10:
  309:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  310:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  311:Generated_Source\PSoC4/modbus_rx_interrupt.c **** /*******************************************************************************
@@ -718,9 +387,6 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
  316:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   Gets the state (enabled, disabled) of the Interrupt.
  317:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *
  318:Generated_Source\PSoC4/modbus_rx_interrupt.c **** * Parameters:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 13
-
-
  319:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   None
  320:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *
  321:Generated_Source\PSoC4/modbus_rx_interrupt.c **** * Return:
@@ -729,44 +395,9 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
  324:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *******************************************************************************/
  325:Generated_Source\PSoC4/modbus_rx_interrupt.c **** uint8 modbus_rx_interrupt_GetState(void)
  326:Generated_Source\PSoC4/modbus_rx_interrupt.c **** {
- 366              		.loc 1 326 0
- 367              		.cfi_startproc
- 368 0000 80B5     		push	{r7, lr}
- 369              		.cfi_def_cfa_offset 8
- 370              		.cfi_offset 7, -8
- 371              		.cfi_offset 14, -4
- 372 0002 00AF     		add	r7, sp, #0
- 373              		.cfi_def_cfa_register 7
  327:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     /* Get the state of the general interrupt. */
  328:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     return ((*modbus_rx_interrupt_INTC_SET_EN & (uint32)modbus_rx_interrupt__INTC_MASK) != 0u) ? 1u
- 374              		.loc 1 328 0
- 375 0004 044B     		ldr	r3, .L28
- 376 0006 1B68     		ldr	r3, [r3]
- 377 0008 DBB2     		uxtb	r3, r3
- 378 000a 0122     		mov	r2, #1
- 379 000c 1340     		and	r3, r2
- 380 000e DBB2     		uxtb	r3, r3
  329:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
- 381              		.loc 1 329 0
- 382 0010 181C     		mov	r0, r3
- 383 0012 BD46     		mov	sp, r7
- 384              		@ sp needed
- 385 0014 80BD     		pop	{r7, pc}
- 386              	.L29:
- 387 0016 C046     		.align	2
- 388              	.L28:
- 389 0018 00E100E0 		.word	-536813312
- 390              		.cfi_endproc
- 391              	.LFE10:
- 392              		.size	modbus_rx_interrupt_GetState, .-modbus_rx_interrupt_GetState
- 393              		.section	.text.modbus_rx_interrupt_Disable,"ax",%progbits
- 394              		.align	2
- 395              		.global	modbus_rx_interrupt_Disable
- 396              		.code	16
- 397              		.thumb_func
- 398              		.type	modbus_rx_interrupt_Disable, %function
- 399              	modbus_rx_interrupt_Disable:
- 400              	.LFB11:
  330:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  331:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  332:Generated_Source\PSoC4/modbus_rx_interrupt.c **** /*******************************************************************************
@@ -778,9 +409,6 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
  338:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *
  339:Generated_Source\PSoC4/modbus_rx_interrupt.c **** * Parameters:
  340:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   None
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 14
-
-
  341:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *
  342:Generated_Source\PSoC4/modbus_rx_interrupt.c **** * Return:
  343:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   None
@@ -788,40 +416,497 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
  345:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *******************************************************************************/
  346:Generated_Source\PSoC4/modbus_rx_interrupt.c **** void modbus_rx_interrupt_Disable(void)
  347:Generated_Source\PSoC4/modbus_rx_interrupt.c **** {
- 401              		.loc 1 347 0
- 402              		.cfi_startproc
- 403 0000 80B5     		push	{r7, lr}
- 404              		.cfi_def_cfa_offset 8
- 405              		.cfi_offset 7, -8
- 406              		.cfi_offset 14, -4
- 407 0002 00AF     		add	r7, sp, #0
- 408              		.cfi_def_cfa_register 7
  348:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     /* Disable the general interrupt. */
  349:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     *modbus_rx_interrupt_INTC_CLR_EN = modbus_rx_interrupt__INTC_MASK;
- 409              		.loc 1 349 0
- 410 0004 024B     		ldr	r3, .L31
- 411 0006 0122     		mov	r2, #1
- 412 0008 1A60     		str	r2, [r3]
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 8
+
+
+  50              		.loc 1 349 0
+  51 0002 0124     		mov	r4, #1
+  52 0004 084B     		ldr	r3, .L3
+  53              	.LBE27:
+  54              	.LBE26:
+  55              	.LBB29:
+  56              	.LBB30:
+ 201:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
+  57              		.loc 1 201 0
+  58 0006 094A     		ldr	r2, .L3+4
+  59              	.LBE30:
+  60              	.LBE29:
+  61              	.LBB33:
+  62              	.LBB28:
+  63              		.loc 1 349 0
+  64 0008 1C60     		str	r4, [r3]
+  65              	.LVL0:
+  66              	.LBE28:
+  67              	.LBE33:
+  68              	.LBB34:
+  69              	.LBB31:
+ 201:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
+  70              		.loc 1 201 0
+  71 000a 094B     		ldr	r3, .L3+8
+  72              	.LBE31:
+  73              	.LBE34:
+  69:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
+  74              		.loc 1 69 0
+  75              		@ sp needed
+  76              	.LBB35:
+  77              	.LBB32:
+ 201:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
+  78              		.loc 1 201 0
+  79 000c 1A64     		str	r2, [r3, #64]
+  80              	.LVL1:
+  81              	.LBE32:
+  82              	.LBE35:
+  83              	.LBB36:
+  84              	.LBB37:
+ 254:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     *modbus_rx_interrupt_INTC_PRIOR = (*modbus_rx_interrupt_INTC_PRIOR & (uint32)(~modbus_rx_interr
+  85              		.loc 1 254 0
+  86 000e FFF7FEFF 		bl	CyEnterCriticalSection
+  87              	.LVL2:
+ 255:Generated_Source\PSoC4/modbus_rx_interrupt.c ****                                     ((uint32)priority << priorityOffset);
+  88              		.loc 1 255 0
+  89 0012 C023     		mov	r3, #192
+  90 0014 074A     		ldr	r2, .L3+12
+  91 0016 1168     		ldr	r1, [r2]
+  92 0018 0B43     		orr	r3, r1
+  93 001a 1360     		str	r3, [r2]
+ 257:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
+  94              		.loc 1 257 0
+  95 001c FFF7FEFF 		bl	CyExitCriticalSection
+  96              	.LVL3:
+  97              	.LBE37:
+  98              	.LBE36:
+  99              	.LBB38:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 9
+
+
+ 100              	.LBB39:
+ 307:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
+ 101              		.loc 1 307 0
+ 102 0020 054B     		ldr	r3, .L3+16
+ 103 0022 1C60     		str	r4, [r3]
+ 104              	.LBE39:
+ 105              	.LBE38:
+  69:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
+ 106              		.loc 1 69 0
+ 107 0024 10BD     		pop	{r4, pc}
+ 108              	.L4:
+ 109 0026 C046     		.align	2
+ 110              	.L3:
+ 111 0028 80E100E0 		.word	-536813184
+ 112 002c 00000000 		.word	modbus_rx_interrupt_Interrupt
+ 113 0030 00000000 		.word	CyRamVectors
+ 114 0034 00E400E0 		.word	-536812544
+ 115 0038 00E100E0 		.word	-536813312
+ 116              		.cfi_endproc
+ 117              	.LFE1:
+ 118              		.size	modbus_rx_interrupt_Start, .-modbus_rx_interrupt_Start
+ 119              		.section	.text.modbus_rx_interrupt_StartEx,"ax",%progbits
+ 120              		.align	2
+ 121              		.global	modbus_rx_interrupt_StartEx
+ 122              		.code	16
+ 123              		.thumb_func
+ 124              		.type	modbus_rx_interrupt_StartEx, %function
+ 125              	modbus_rx_interrupt_StartEx:
+ 126              	.LFB2:
+ 100:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     /* For all we know the interrupt is active. */
+ 127              		.loc 1 100 0
+ 128              		.cfi_startproc
+ 129              	.LVL4:
+ 130 0000 10B5     		push	{r4, lr}
+ 131              		.cfi_def_cfa_offset 8
+ 132              		.cfi_offset 4, -8
+ 133              		.cfi_offset 14, -4
+ 134              	.LBB48:
+ 135              	.LBB49:
+ 136              		.loc 1 349 0
+ 137 0002 0124     		mov	r4, #1
+ 138 0004 074B     		ldr	r3, .L6
+ 139              	.LBE49:
+ 140              	.LBE48:
+ 112:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
+ 141              		.loc 1 112 0
+ 142              		@ sp needed
+ 143              	.LBB51:
+ 144              	.LBB50:
+ 145              		.loc 1 349 0
+ 146 0006 1C60     		str	r4, [r3]
+ 147              	.LVL5:
+ 148              	.LBE50:
+ 149              	.LBE51:
+ 150              	.LBB52:
+ 151              	.LBB53:
+ 201:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 10
+
+
+ 152              		.loc 1 201 0
+ 153 0008 074B     		ldr	r3, .L6+4
+ 154 000a 1864     		str	r0, [r3, #64]
+ 155              	.LVL6:
+ 156              	.LBE53:
+ 157              	.LBE52:
+ 158              	.LBB54:
+ 159              	.LBB55:
+ 254:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     *modbus_rx_interrupt_INTC_PRIOR = (*modbus_rx_interrupt_INTC_PRIOR & (uint32)(~modbus_rx_interr
+ 160              		.loc 1 254 0
+ 161 000c FFF7FEFF 		bl	CyEnterCriticalSection
+ 162              	.LVL7:
+ 255:Generated_Source\PSoC4/modbus_rx_interrupt.c ****                                     ((uint32)priority << priorityOffset);
+ 163              		.loc 1 255 0
+ 164 0010 C023     		mov	r3, #192
+ 165 0012 064A     		ldr	r2, .L6+8
+ 166 0014 1168     		ldr	r1, [r2]
+ 167 0016 0B43     		orr	r3, r1
+ 168 0018 1360     		str	r3, [r2]
+ 257:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
+ 169              		.loc 1 257 0
+ 170 001a FFF7FEFF 		bl	CyExitCriticalSection
+ 171              	.LVL8:
+ 172              	.LBE55:
+ 173              	.LBE54:
+ 174              	.LBB56:
+ 175              	.LBB57:
+ 307:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
+ 176              		.loc 1 307 0
+ 177 001e 044B     		ldr	r3, .L6+12
+ 178 0020 1C60     		str	r4, [r3]
+ 179              	.LBE57:
+ 180              	.LBE56:
+ 112:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
+ 181              		.loc 1 112 0
+ 182 0022 10BD     		pop	{r4, pc}
+ 183              	.L7:
+ 184              		.align	2
+ 185              	.L6:
+ 186 0024 80E100E0 		.word	-536813184
+ 187 0028 00000000 		.word	CyRamVectors
+ 188 002c 00E400E0 		.word	-536812544
+ 189 0030 00E100E0 		.word	-536813312
+ 190              		.cfi_endproc
+ 191              	.LFE2:
+ 192              		.size	modbus_rx_interrupt_StartEx, .-modbus_rx_interrupt_StartEx
+ 193              		.section	.text.modbus_rx_interrupt_Stop,"ax",%progbits
+ 194              		.align	2
+ 195              		.global	modbus_rx_interrupt_Stop
+ 196              		.code	16
+ 197              		.thumb_func
+ 198              		.type	modbus_rx_interrupt_Stop, %function
+ 199              	modbus_rx_interrupt_Stop:
+ 200              	.LFB3:
+ 130:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     /* Disable this interrupt. */
+ 201              		.loc 1 130 0
+ 202              		.cfi_startproc
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 11
+
+
+ 203              	.LBB58:
+ 204              	.LBB59:
+ 205              		.loc 1 349 0
+ 206 0000 0122     		mov	r2, #1
+ 207 0002 034B     		ldr	r3, .L9
+ 208              	.LBE59:
+ 209              	.LBE58:
+ 136:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
+ 210              		.loc 1 136 0
+ 211              		@ sp needed
+ 212              	.LBB61:
+ 213              	.LBB60:
+ 214              		.loc 1 349 0
+ 215 0004 1A60     		str	r2, [r3]
+ 216              	.LVL9:
+ 217              	.LBE60:
+ 218              	.LBE61:
+ 219              	.LBB62:
+ 220              	.LBB63:
+ 201:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
+ 221              		.loc 1 201 0
+ 222 0006 034A     		ldr	r2, .L9+4
+ 223 0008 034B     		ldr	r3, .L9+8
+ 224 000a 1A64     		str	r2, [r3, #64]
+ 225              	.LBE63:
+ 226              	.LBE62:
+ 136:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
+ 227              		.loc 1 136 0
+ 228 000c 7047     		bx	lr
+ 229              	.L10:
+ 230 000e C046     		.align	2
+ 231              	.L9:
+ 232 0010 80E100E0 		.word	-536813184
+ 233 0014 00000000 		.word	IntDefaultHandler
+ 234 0018 00000000 		.word	CyRamVectors
+ 235              		.cfi_endproc
+ 236              	.LFE3:
+ 237              		.size	modbus_rx_interrupt_Stop, .-modbus_rx_interrupt_Stop
+ 238              		.section	.text.modbus_rx_interrupt_SetVector,"ax",%progbits
+ 239              		.align	2
+ 240              		.global	modbus_rx_interrupt_SetVector
+ 241              		.code	16
+ 242              		.thumb_func
+ 243              		.type	modbus_rx_interrupt_SetVector, %function
+ 244              	modbus_rx_interrupt_SetVector:
+ 245              	.LFB5:
+ 200:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     CyRamVectors[CYINT_IRQ_BASE + modbus_rx_interrupt__INTC_NUMBER] = address;
+ 246              		.loc 1 200 0
+ 247              		.cfi_startproc
+ 248              	.LVL10:
+ 201:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
+ 249              		.loc 1 201 0
+ 250 0000 014B     		ldr	r3, .L12
+ 202:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
+ 251              		.loc 1 202 0
+ 252              		@ sp needed
+ 201:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 12
+
+
+ 253              		.loc 1 201 0
+ 254 0002 1864     		str	r0, [r3, #64]
+ 202:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
+ 255              		.loc 1 202 0
+ 256 0004 7047     		bx	lr
+ 257              	.L13:
+ 258 0006 C046     		.align	2
+ 259              	.L12:
+ 260 0008 00000000 		.word	CyRamVectors
+ 261              		.cfi_endproc
+ 262              	.LFE5:
+ 263              		.size	modbus_rx_interrupt_SetVector, .-modbus_rx_interrupt_SetVector
+ 264              		.section	.text.modbus_rx_interrupt_GetVector,"ax",%progbits
+ 265              		.align	2
+ 266              		.global	modbus_rx_interrupt_GetVector
+ 267              		.code	16
+ 268              		.thumb_func
+ 269              		.type	modbus_rx_interrupt_GetVector, %function
+ 270              	modbus_rx_interrupt_GetVector:
+ 271              	.LFB6:
+ 220:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     return CyRamVectors[CYINT_IRQ_BASE + modbus_rx_interrupt__INTC_NUMBER];
+ 272              		.loc 1 220 0
+ 273              		.cfi_startproc
+ 221:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
+ 274              		.loc 1 221 0
+ 275 0000 014B     		ldr	r3, .L15
+ 222:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
+ 276              		.loc 1 222 0
+ 277              		@ sp needed
+ 221:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
+ 278              		.loc 1 221 0
+ 279 0002 186C     		ldr	r0, [r3, #64]
+ 222:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
+ 280              		.loc 1 222 0
+ 281 0004 7047     		bx	lr
+ 282              	.L16:
+ 283 0006 C046     		.align	2
+ 284              	.L15:
+ 285 0008 00000000 		.word	CyRamVectors
+ 286              		.cfi_endproc
+ 287              	.LFE6:
+ 288              		.size	modbus_rx_interrupt_GetVector, .-modbus_rx_interrupt_GetVector
+ 289              		.section	.text.modbus_rx_interrupt_SetPriority,"ax",%progbits
+ 290              		.align	2
+ 291              		.global	modbus_rx_interrupt_SetPriority
+ 292              		.code	16
+ 293              		.thumb_func
+ 294              		.type	modbus_rx_interrupt_SetPriority, %function
+ 295              	modbus_rx_interrupt_SetPriority:
+ 296              	.LFB7:
+ 250:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 	uint8 interruptState;
+ 297              		.loc 1 250 0
+ 298              		.cfi_startproc
+ 299              	.LVL11:
+ 300 0000 10B5     		push	{r4, lr}
+ 301              		.cfi_def_cfa_offset 8
+ 302              		.cfi_offset 4, -8
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 13
+
+
+ 303              		.cfi_offset 14, -4
+ 250:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 	uint8 interruptState;
+ 304              		.loc 1 250 0
+ 305 0002 041C     		mov	r4, r0
+ 254:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     *modbus_rx_interrupt_INTC_PRIOR = (*modbus_rx_interrupt_INTC_PRIOR & (uint32)(~modbus_rx_interr
+ 306              		.loc 1 254 0
+ 307 0004 FFF7FEFF 		bl	CyEnterCriticalSection
+ 308              	.LVL12:
+ 255:Generated_Source\PSoC4/modbus_rx_interrupt.c ****                                     ((uint32)priority << priorityOffset);
+ 309              		.loc 1 255 0
+ 310 0008 C021     		mov	r1, #192
+ 311 000a 044A     		ldr	r2, .L18
+ 256:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 	CyExitCriticalSection(interruptState);
+ 312              		.loc 1 256 0
+ 313 000c A401     		lsl	r4, r4, #6
+ 255:Generated_Source\PSoC4/modbus_rx_interrupt.c ****                                     ((uint32)priority << priorityOffset);
+ 314              		.loc 1 255 0
+ 315 000e 1368     		ldr	r3, [r2]
+ 258:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
+ 316              		.loc 1 258 0
+ 317              		@ sp needed
+ 255:Generated_Source\PSoC4/modbus_rx_interrupt.c ****                                     ((uint32)priority << priorityOffset);
+ 318              		.loc 1 255 0
+ 319 0010 8B43     		bic	r3, r1
+ 320 0012 2343     		orr	r3, r4
+ 321 0014 1360     		str	r3, [r2]
+ 257:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
+ 322              		.loc 1 257 0
+ 323 0016 FFF7FEFF 		bl	CyExitCriticalSection
+ 324              	.LVL13:
+ 258:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
+ 325              		.loc 1 258 0
+ 326 001a 10BD     		pop	{r4, pc}
+ 327              	.L19:
+ 328              		.align	2
+ 329              	.L18:
+ 330 001c 00E400E0 		.word	-536812544
+ 331              		.cfi_endproc
+ 332              	.LFE7:
+ 333              		.size	modbus_rx_interrupt_SetPriority, .-modbus_rx_interrupt_SetPriority
+ 334              		.section	.text.modbus_rx_interrupt_GetPriority,"ax",%progbits
+ 335              		.align	2
+ 336              		.global	modbus_rx_interrupt_GetPriority
+ 337              		.code	16
+ 338              		.thumb_func
+ 339              		.type	modbus_rx_interrupt_GetPriority, %function
+ 340              	modbus_rx_interrupt_GetPriority:
+ 341              	.LFB8:
+ 278:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     uint32 priority;
+ 342              		.loc 1 278 0
+ 343              		.cfi_startproc
+ 344              	.LVL14:
+ 282:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
+ 345              		.loc 1 282 0
+ 346 0000 024B     		ldr	r3, .L21
+ 285:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
+ 347              		.loc 1 285 0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 14
+
+
+ 348              		@ sp needed
+ 282:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
+ 349              		.loc 1 282 0
+ 350 0002 1868     		ldr	r0, [r3]
+ 351              	.LVL15:
+ 352 0004 0006     		lsl	r0, r0, #24
+ 353              	.LVL16:
+ 284:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
+ 354              		.loc 1 284 0
+ 355 0006 800F     		lsr	r0, r0, #30
+ 285:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
+ 356              		.loc 1 285 0
+ 357 0008 7047     		bx	lr
+ 358              	.L22:
+ 359 000a C046     		.align	2
+ 360              	.L21:
+ 361 000c 00E400E0 		.word	-536812544
+ 362              		.cfi_endproc
+ 363              	.LFE8:
+ 364              		.size	modbus_rx_interrupt_GetPriority, .-modbus_rx_interrupt_GetPriority
+ 365              		.section	.text.modbus_rx_interrupt_Enable,"ax",%progbits
+ 366              		.align	2
+ 367              		.global	modbus_rx_interrupt_Enable
+ 368              		.code	16
+ 369              		.thumb_func
+ 370              		.type	modbus_rx_interrupt_Enable, %function
+ 371              	modbus_rx_interrupt_Enable:
+ 372              	.LFB9:
+ 305:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     /* Enable the general interrupt. */
+ 373              		.loc 1 305 0
+ 374              		.cfi_startproc
+ 307:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
+ 375              		.loc 1 307 0
+ 376 0000 0122     		mov	r2, #1
+ 377 0002 014B     		ldr	r3, .L24
+ 308:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
+ 378              		.loc 1 308 0
+ 379              		@ sp needed
+ 307:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
+ 380              		.loc 1 307 0
+ 381 0004 1A60     		str	r2, [r3]
+ 308:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
+ 382              		.loc 1 308 0
+ 383 0006 7047     		bx	lr
+ 384              	.L25:
+ 385              		.align	2
+ 386              	.L24:
+ 387 0008 00E100E0 		.word	-536813312
+ 388              		.cfi_endproc
+ 389              	.LFE9:
+ 390              		.size	modbus_rx_interrupt_Enable, .-modbus_rx_interrupt_Enable
+ 391              		.section	.text.modbus_rx_interrupt_GetState,"ax",%progbits
+ 392              		.align	2
+ 393              		.global	modbus_rx_interrupt_GetState
+ 394              		.code	16
+ 395              		.thumb_func
+ 396              		.type	modbus_rx_interrupt_GetState, %function
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 15
+
+
+ 397              	modbus_rx_interrupt_GetState:
+ 398              	.LFB10:
+ 326:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     /* Get the state of the general interrupt. */
+ 399              		.loc 1 326 0
+ 400              		.cfi_startproc
+ 328:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
+ 401              		.loc 1 328 0
+ 402 0000 0120     		mov	r0, #1
+ 403 0002 024B     		ldr	r3, .L27
+ 329:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
+ 404              		.loc 1 329 0
+ 405              		@ sp needed
+ 328:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
+ 406              		.loc 1 328 0
+ 407 0004 1B68     		ldr	r3, [r3]
+ 408 0006 1840     		and	r0, r3
+ 329:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
+ 409              		.loc 1 329 0
+ 410 0008 7047     		bx	lr
+ 411              	.L28:
+ 412 000a C046     		.align	2
+ 413              	.L27:
+ 414 000c 00E100E0 		.word	-536813312
+ 415              		.cfi_endproc
+ 416              	.LFE10:
+ 417              		.size	modbus_rx_interrupt_GetState, .-modbus_rx_interrupt_GetState
+ 418              		.section	.text.modbus_rx_interrupt_Disable,"ax",%progbits
+ 419              		.align	2
+ 420              		.global	modbus_rx_interrupt_Disable
+ 421              		.code	16
+ 422              		.thumb_func
+ 423              		.type	modbus_rx_interrupt_Disable, %function
+ 424              	modbus_rx_interrupt_Disable:
+ 425              	.LFB11:
+ 347:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     /* Disable the general interrupt. */
+ 426              		.loc 1 347 0
+ 427              		.cfi_startproc
+ 428              		.loc 1 349 0
+ 429 0000 0122     		mov	r2, #1
+ 430 0002 014B     		ldr	r3, .L30
  350:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
- 413              		.loc 1 350 0
- 414 000a BD46     		mov	sp, r7
- 415              		@ sp needed
- 416 000c 80BD     		pop	{r7, pc}
- 417              	.L32:
- 418 000e C046     		.align	2
- 419              	.L31:
- 420 0010 80E100E0 		.word	-536813184
- 421              		.cfi_endproc
- 422              	.LFE11:
- 423              		.size	modbus_rx_interrupt_Disable, .-modbus_rx_interrupt_Disable
- 424              		.section	.text.modbus_rx_interrupt_SetPending,"ax",%progbits
- 425              		.align	2
- 426              		.global	modbus_rx_interrupt_SetPending
- 427              		.code	16
- 428              		.thumb_func
- 429              		.type	modbus_rx_interrupt_SetPending, %function
- 430              	modbus_rx_interrupt_SetPending:
- 431              	.LFB12:
+ 431              		.loc 1 350 0
+ 432              		@ sp needed
+ 349:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
+ 433              		.loc 1 349 0
+ 434 0004 1A60     		str	r2, [r3]
+ 435              		.loc 1 350 0
+ 436 0006 7047     		bx	lr
+ 437              	.L31:
+ 438              		.align	2
+ 439              	.L30:
+ 440 0008 80E100E0 		.word	-536813184
+ 441              		.cfi_endproc
+ 442              	.LFE11:
+ 443              		.size	modbus_rx_interrupt_Disable, .-modbus_rx_interrupt_Disable
+ 444              		.section	.text.modbus_rx_interrupt_SetPending,"ax",%progbits
+ 445              		.align	2
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 16
+
+
+ 446              		.global	modbus_rx_interrupt_SetPending
+ 447              		.code	16
+ 448              		.thumb_func
+ 449              		.type	modbus_rx_interrupt_SetPending, %function
+ 450              	modbus_rx_interrupt_SetPending:
+ 451              	.LFB12:
  351:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  352:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  353:Generated_Source\PSoC4/modbus_rx_interrupt.c **** /*******************************************************************************
@@ -838,9 +923,6 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
  364:Generated_Source\PSoC4/modbus_rx_interrupt.c **** * Return:
  365:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   None
  366:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 15
-
-
  367:Generated_Source\PSoC4/modbus_rx_interrupt.c **** * Side Effects:
  368:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   If interrupts are enabled and the interrupt is set up properly, the ISR is
  369:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   entered (depending on the priority of this interrupt and other pending 
@@ -849,39 +931,38 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
  372:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *******************************************************************************/
  373:Generated_Source\PSoC4/modbus_rx_interrupt.c **** void modbus_rx_interrupt_SetPending(void)
  374:Generated_Source\PSoC4/modbus_rx_interrupt.c **** {
- 432              		.loc 1 374 0
- 433              		.cfi_startproc
- 434 0000 80B5     		push	{r7, lr}
- 435              		.cfi_def_cfa_offset 8
- 436              		.cfi_offset 7, -8
- 437              		.cfi_offset 14, -4
- 438 0002 00AF     		add	r7, sp, #0
- 439              		.cfi_def_cfa_register 7
+ 452              		.loc 1 374 0
+ 453              		.cfi_startproc
  375:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     *modbus_rx_interrupt_INTC_SET_PD = modbus_rx_interrupt__INTC_MASK;
- 440              		.loc 1 375 0
- 441 0004 024B     		ldr	r3, .L34
- 442 0006 0122     		mov	r2, #1
- 443 0008 1A60     		str	r2, [r3]
+ 454              		.loc 1 375 0
+ 455 0000 0122     		mov	r2, #1
+ 456 0002 014B     		ldr	r3, .L33
  376:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
- 444              		.loc 1 376 0
- 445 000a BD46     		mov	sp, r7
- 446              		@ sp needed
- 447 000c 80BD     		pop	{r7, pc}
- 448              	.L35:
- 449 000e C046     		.align	2
- 450              	.L34:
- 451 0010 00E200E0 		.word	-536813056
- 452              		.cfi_endproc
- 453              	.LFE12:
- 454              		.size	modbus_rx_interrupt_SetPending, .-modbus_rx_interrupt_SetPending
- 455              		.section	.text.modbus_rx_interrupt_ClearPending,"ax",%progbits
- 456              		.align	2
- 457              		.global	modbus_rx_interrupt_ClearPending
- 458              		.code	16
- 459              		.thumb_func
- 460              		.type	modbus_rx_interrupt_ClearPending, %function
- 461              	modbus_rx_interrupt_ClearPending:
- 462              	.LFB13:
+ 457              		.loc 1 376 0
+ 458              		@ sp needed
+ 375:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     *modbus_rx_interrupt_INTC_SET_PD = modbus_rx_interrupt__INTC_MASK;
+ 459              		.loc 1 375 0
+ 460 0004 1A60     		str	r2, [r3]
+ 461              		.loc 1 376 0
+ 462 0006 7047     		bx	lr
+ 463              	.L34:
+ 464              		.align	2
+ 465              	.L33:
+ 466 0008 00E200E0 		.word	-536813056
+ 467              		.cfi_endproc
+ 468              	.LFE12:
+ 469              		.size	modbus_rx_interrupt_SetPending, .-modbus_rx_interrupt_SetPending
+ 470              		.section	.text.modbus_rx_interrupt_ClearPending,"ax",%progbits
+ 471              		.align	2
+ 472              		.global	modbus_rx_interrupt_ClearPending
+ 473              		.code	16
+ 474              		.thumb_func
+ 475              		.type	modbus_rx_interrupt_ClearPending, %function
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 17
+
+
+ 476              	modbus_rx_interrupt_ClearPending:
+ 477              	.LFB13:
  377:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  378:Generated_Source\PSoC4/modbus_rx_interrupt.c **** 
  379:Generated_Source\PSoC4/modbus_rx_interrupt.c **** /*******************************************************************************
@@ -898,9 +979,6 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
  390:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *
  391:Generated_Source\PSoC4/modbus_rx_interrupt.c **** * Parameters:
  392:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   None
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 16
-
-
  393:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *
  394:Generated_Source\PSoC4/modbus_rx_interrupt.c **** * Return:
  395:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *   None
@@ -908,994 +986,1526 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 1
  397:Generated_Source\PSoC4/modbus_rx_interrupt.c **** *******************************************************************************/
  398:Generated_Source\PSoC4/modbus_rx_interrupt.c **** void modbus_rx_interrupt_ClearPending(void)
  399:Generated_Source\PSoC4/modbus_rx_interrupt.c **** {
- 463              		.loc 1 399 0
- 464              		.cfi_startproc
- 465 0000 80B5     		push	{r7, lr}
- 466              		.cfi_def_cfa_offset 8
- 467              		.cfi_offset 7, -8
- 468              		.cfi_offset 14, -4
- 469 0002 00AF     		add	r7, sp, #0
- 470              		.cfi_def_cfa_register 7
+ 478              		.loc 1 399 0
+ 479              		.cfi_startproc
  400:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     *modbus_rx_interrupt_INTC_CLR_PD = modbus_rx_interrupt__INTC_MASK;
- 471              		.loc 1 400 0
- 472 0004 024B     		ldr	r3, .L37
- 473 0006 0122     		mov	r2, #1
- 474 0008 1A60     		str	r2, [r3]
+ 480              		.loc 1 400 0
+ 481 0000 0122     		mov	r2, #1
+ 482 0002 014B     		ldr	r3, .L36
  401:Generated_Source\PSoC4/modbus_rx_interrupt.c **** }
- 475              		.loc 1 401 0
- 476 000a BD46     		mov	sp, r7
- 477              		@ sp needed
- 478 000c 80BD     		pop	{r7, pc}
- 479              	.L38:
- 480 000e C046     		.align	2
- 481              	.L37:
- 482 0010 80E200E0 		.word	-536812928
- 483              		.cfi_endproc
- 484              	.LFE13:
- 485              		.size	modbus_rx_interrupt_ClearPending, .-modbus_rx_interrupt_ClearPending
- 486              		.text
- 487              	.Letext0:
- 488              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
- 489              		.section	.debug_info,"",%progbits
- 490              	.Ldebug_info0:
- 491 0000 42020000 		.4byte	0x242
- 492 0004 0400     		.2byte	0x4
- 493 0006 00000000 		.4byte	.Ldebug_abbrev0
- 494 000a 04       		.byte	0x4
- 495 000b 01       		.uleb128 0x1
- 496 000c 2E010000 		.4byte	.LASF33
- 497 0010 01       		.byte	0x1
- 498 0011 DC020000 		.4byte	.LASF34
- 499 0015 09030000 		.4byte	.LASF35
- 500 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 501 001d 00000000 		.4byte	0
- 502 0021 00000000 		.4byte	.Ldebug_line0
- 503 0025 02       		.uleb128 0x2
- 504 0026 01       		.byte	0x1
- 505 0027 06       		.byte	0x6
- 506 0028 5F030000 		.4byte	.LASF0
- 507 002c 02       		.uleb128 0x2
- 508 002d 01       		.byte	0x1
- 509 002e 08       		.byte	0x8
- 510 002f BA000000 		.4byte	.LASF1
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 17
+ 483              		.loc 1 401 0
+ 484              		@ sp needed
+ 400:Generated_Source\PSoC4/modbus_rx_interrupt.c ****     *modbus_rx_interrupt_INTC_CLR_PD = modbus_rx_interrupt__INTC_MASK;
+ 485              		.loc 1 400 0
+ 486 0004 1A60     		str	r2, [r3]
+ 487              		.loc 1 401 0
+ 488 0006 7047     		bx	lr
+ 489              	.L37:
+ 490              		.align	2
+ 491              	.L36:
+ 492 0008 80E200E0 		.word	-536812928
+ 493              		.cfi_endproc
+ 494              	.LFE13:
+ 495              		.size	modbus_rx_interrupt_ClearPending, .-modbus_rx_interrupt_ClearPending
+ 496              		.text
+ 497              	.Letext0:
+ 498              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 499              		.file 3 "Generated_Source\\PSoC4/CyLib.h"
+ 500              		.section	.debug_info,"",%progbits
+ 501              	.Ldebug_info0:
+ 502 0000 D2030000 		.4byte	0x3d2
+ 503 0004 0400     		.2byte	0x4
+ 504 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 505 000a 04       		.byte	0x4
+ 506 000b 01       		.uleb128 0x1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 18
 
 
- 511 0033 02       		.uleb128 0x2
- 512 0034 02       		.byte	0x2
- 513 0035 05       		.byte	0x5
- 514 0036 A1020000 		.4byte	.LASF2
- 515 003a 02       		.uleb128 0x2
- 516 003b 02       		.byte	0x2
- 517 003c 07       		.byte	0x7
- 518 003d 67000000 		.4byte	.LASF3
- 519 0041 02       		.uleb128 0x2
- 520 0042 04       		.byte	0x4
- 521 0043 05       		.byte	0x5
- 522 0044 D3020000 		.4byte	.LASF4
- 523 0048 02       		.uleb128 0x2
- 524 0049 04       		.byte	0x4
- 525 004a 07       		.byte	0x7
- 526 004b 06010000 		.4byte	.LASF5
- 527 004f 02       		.uleb128 0x2
- 528 0050 08       		.byte	0x8
- 529 0051 05       		.byte	0x5
- 530 0052 71020000 		.4byte	.LASF6
- 531 0056 02       		.uleb128 0x2
- 532 0057 08       		.byte	0x8
- 533 0058 07       		.byte	0x7
- 534 0059 F4010000 		.4byte	.LASF7
- 535 005d 03       		.uleb128 0x3
- 536 005e 04       		.byte	0x4
- 537 005f 05       		.byte	0x5
- 538 0060 696E7400 		.ascii	"int\000"
- 539 0064 02       		.uleb128 0x2
- 540 0065 04       		.byte	0x4
- 541 0066 07       		.byte	0x7
- 542 0067 DF010000 		.4byte	.LASF8
- 543 006b 04       		.uleb128 0x4
- 544 006c 18010000 		.4byte	.LASF9
- 545 0070 02       		.byte	0x2
- 546 0071 9801     		.2byte	0x198
- 547 0073 2C000000 		.4byte	0x2c
- 548 0077 04       		.uleb128 0x4
- 549 0078 BC010000 		.4byte	.LASF10
- 550 007c 02       		.byte	0x2
- 551 007d 9A01     		.2byte	0x19a
- 552 007f 48000000 		.4byte	0x48
- 553 0083 02       		.uleb128 0x2
- 554 0084 04       		.byte	0x4
- 555 0085 04       		.byte	0x4
- 556 0086 96000000 		.4byte	.LASF11
- 557 008a 02       		.uleb128 0x2
- 558 008b 08       		.byte	0x8
- 559 008c 04       		.byte	0x4
- 560 008d 27010000 		.4byte	.LASF12
- 561 0091 02       		.uleb128 0x2
- 562 0092 01       		.byte	0x1
- 563 0093 08       		.byte	0x8
- 564 0094 9C020000 		.4byte	.LASF13
- 565 0098 04       		.uleb128 0x4
- 566 0099 00000000 		.4byte	.LASF14
- 567 009d 02       		.byte	0x2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 18
+ 507 000c B3000000 		.4byte	.LASF33
+ 508 0010 01       		.byte	0x1
+ 509 0011 1C030000 		.4byte	.LASF34
+ 510 0015 49030000 		.4byte	.LASF35
+ 511 0019 68000000 		.4byte	.Ldebug_ranges0+0x68
+ 512 001d 00000000 		.4byte	0
+ 513 0021 00000000 		.4byte	.Ldebug_line0
+ 514 0025 02       		.uleb128 0x2
+ 515 0026 01       		.byte	0x1
+ 516 0027 06       		.byte	0x6
+ 517 0028 9F030000 		.4byte	.LASF0
+ 518 002c 02       		.uleb128 0x2
+ 519 002d 01       		.byte	0x1
+ 520 002e 08       		.byte	0x8
+ 521 002f 54010000 		.4byte	.LASF1
+ 522 0033 02       		.uleb128 0x2
+ 523 0034 02       		.byte	0x2
+ 524 0035 05       		.byte	0x5
+ 525 0036 C3020000 		.4byte	.LASF2
+ 526 003a 02       		.uleb128 0x2
+ 527 003b 02       		.byte	0x2
+ 528 003c 07       		.byte	0x7
+ 529 003d 67000000 		.4byte	.LASF3
+ 530 0041 02       		.uleb128 0x2
+ 531 0042 04       		.byte	0x4
+ 532 0043 05       		.byte	0x5
+ 533 0044 F5020000 		.4byte	.LASF4
+ 534 0048 02       		.uleb128 0x2
+ 535 0049 04       		.byte	0x4
+ 536 004a 07       		.byte	0x7
+ 537 004b A0010000 		.4byte	.LASF5
+ 538 004f 02       		.uleb128 0x2
+ 539 0050 08       		.byte	0x8
+ 540 0051 05       		.byte	0x5
+ 541 0052 93020000 		.4byte	.LASF6
+ 542 0056 02       		.uleb128 0x2
+ 543 0057 08       		.byte	0x8
+ 544 0058 07       		.byte	0x7
+ 545 0059 9C000000 		.4byte	.LASF7
+ 546 005d 03       		.uleb128 0x3
+ 547 005e 04       		.byte	0x4
+ 548 005f 05       		.byte	0x5
+ 549 0060 696E7400 		.ascii	"int\000"
+ 550 0064 02       		.uleb128 0x2
+ 551 0065 04       		.byte	0x4
+ 552 0066 07       		.byte	0x7
+ 553 0067 E6010000 		.4byte	.LASF8
+ 554 006b 04       		.uleb128 0x4
+ 555 006c B2010000 		.4byte	.LASF9
+ 556 0070 02       		.byte	0x2
+ 557 0071 9801     		.2byte	0x198
+ 558 0073 2C000000 		.4byte	0x2c
+ 559 0077 04       		.uleb128 0x4
+ 560 0078 C8010000 		.4byte	.LASF10
+ 561 007c 02       		.byte	0x2
+ 562 007d 9A01     		.2byte	0x19a
+ 563 007f 48000000 		.4byte	0x48
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 19
 
 
- 568 009e 4402     		.2byte	0x244
- 569 00a0 A4000000 		.4byte	0xa4
- 570 00a4 05       		.uleb128 0x5
- 571 00a5 77000000 		.4byte	0x77
- 572 00a9 04       		.uleb128 0x4
- 573 00aa 0B020000 		.4byte	.LASF15
- 574 00ae 02       		.byte	0x2
- 575 00af 5402     		.2byte	0x254
- 576 00b1 B5000000 		.4byte	0xb5
- 577 00b5 06       		.uleb128 0x6
- 578 00b6 04       		.byte	0x4
- 579 00b7 BB000000 		.4byte	0xbb
- 580 00bb 07       		.uleb128 0x7
- 581 00bc 02       		.uleb128 0x2
- 582 00bd 04       		.byte	0x4
- 583 00be 07       		.byte	0x7
- 584 00bf 68020000 		.4byte	.LASF16
- 585 00c3 08       		.uleb128 0x8
- 586 00c4 32000000 		.4byte	.LASF17
- 587 00c8 01       		.byte	0x1
- 588 00c9 38       		.byte	0x38
- 589 00ca 00000000 		.4byte	.LFB1
- 590 00ce 24000000 		.4byte	.LFE1-.LFB1
- 591 00d2 01       		.uleb128 0x1
- 592 00d3 9C       		.byte	0x9c
- 593 00d4 09       		.uleb128 0x9
- 594 00d5 C3010000 		.4byte	.LASF20
- 595 00d9 01       		.byte	0x1
- 596 00da 63       		.byte	0x63
- 597 00db 00000000 		.4byte	.LFB2
- 598 00df 24000000 		.4byte	.LFE2-.LFB2
- 599 00e3 01       		.uleb128 0x1
- 600 00e4 9C       		.byte	0x9c
- 601 00e5 F8000000 		.4byte	0xf8
- 602 00e9 0A       		.uleb128 0xa
- 603 00ea EC010000 		.4byte	.LASF22
- 604 00ee 01       		.byte	0x1
- 605 00ef 63       		.byte	0x63
- 606 00f0 A9000000 		.4byte	0xa9
- 607 00f4 02       		.uleb128 0x2
- 608 00f5 91       		.byte	0x91
- 609 00f6 74       		.sleb128 -12
- 610 00f7 00       		.byte	0
- 611 00f8 08       		.uleb128 0x8
- 612 00f9 AB020000 		.4byte	.LASF18
- 613 00fd 01       		.byte	0x1
- 614 00fe 81       		.byte	0x81
- 615 00ff 00000000 		.4byte	.LFB3
- 616 0103 18000000 		.4byte	.LFE3-.LFB3
- 617 0107 01       		.uleb128 0x1
- 618 0108 9C       		.byte	0x9c
- 619 0109 0B       		.uleb128 0xb
- 620 010a C8000000 		.4byte	.LASF19
- 621 010e 01       		.byte	0x1
- 622 010f 9F       		.byte	0x9f
- 623 0110 00000000 		.4byte	.LFB4
- 624 0114 08000000 		.4byte	.LFE4-.LFB4
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 19
+ 564 0083 02       		.uleb128 0x2
+ 565 0084 04       		.byte	0x4
+ 566 0085 04       		.byte	0x4
+ 567 0086 96000000 		.4byte	.LASF11
+ 568 008a 02       		.uleb128 0x2
+ 569 008b 08       		.byte	0x8
+ 570 008c 04       		.byte	0x4
+ 571 008d C1010000 		.4byte	.LASF12
+ 572 0091 02       		.uleb128 0x2
+ 573 0092 01       		.byte	0x1
+ 574 0093 08       		.byte	0x8
+ 575 0094 BE020000 		.4byte	.LASF13
+ 576 0098 04       		.uleb128 0x4
+ 577 0099 00000000 		.4byte	.LASF14
+ 578 009d 02       		.byte	0x2
+ 579 009e 4402     		.2byte	0x244
+ 580 00a0 A4000000 		.4byte	0xa4
+ 581 00a4 05       		.uleb128 0x5
+ 582 00a5 77000000 		.4byte	0x77
+ 583 00a9 04       		.uleb128 0x4
+ 584 00aa 11020000 		.4byte	.LASF15
+ 585 00ae 02       		.byte	0x2
+ 586 00af 5402     		.2byte	0x254
+ 587 00b1 B5000000 		.4byte	0xb5
+ 588 00b5 06       		.uleb128 0x6
+ 589 00b6 04       		.byte	0x4
+ 590 00b7 BB000000 		.4byte	0xbb
+ 591 00bb 07       		.uleb128 0x7
+ 592 00bc 02       		.uleb128 0x2
+ 593 00bd 04       		.byte	0x4
+ 594 00be 07       		.byte	0x7
+ 595 00bf 8A020000 		.4byte	.LASF16
+ 596 00c3 08       		.uleb128 0x8
+ 597 00c4 7A000000 		.4byte	.LASF17
+ 598 00c8 01       		.byte	0x1
+ 599 00c9 5A01     		.2byte	0x15a
+ 600 00cb 01       		.byte	0x1
+ 601 00cc 09       		.uleb128 0x9
+ 602 00cd AB030000 		.4byte	.LASF19
+ 603 00d1 01       		.byte	0x1
+ 604 00d2 C7       		.byte	0xc7
+ 605 00d3 01       		.byte	0x1
+ 606 00d4 E4000000 		.4byte	0xe4
+ 607 00d8 0A       		.uleb128 0xa
+ 608 00d9 F3010000 		.4byte	.LASF21
+ 609 00dd 01       		.byte	0x1
+ 610 00de C7       		.byte	0xc7
+ 611 00df A9000000 		.4byte	0xa9
+ 612 00e3 00       		.byte	0
+ 613 00e4 08       		.uleb128 0x8
+ 614 00e5 4C000000 		.4byte	.LASF18
+ 615 00e9 01       		.byte	0x1
+ 616 00ea 3001     		.2byte	0x130
+ 617 00ec 01       		.byte	0x1
+ 618 00ed 0B       		.uleb128 0xb
+ 619 00ee 62010000 		.4byte	.LASF30
+ 620 00f2 01       		.byte	0x1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 20
 
 
- 625 0118 01       		.uleb128 0x1
- 626 0119 9C       		.byte	0x9c
- 627 011a 0C       		.uleb128 0xc
- 628 011b 6B030000 		.4byte	.LASF21
- 629 011f 01       		.byte	0x1
- 630 0120 C7       		.byte	0xc7
- 631 0121 00000000 		.4byte	.LFB5
- 632 0125 18000000 		.4byte	.LFE5-.LFB5
- 633 0129 01       		.uleb128 0x1
- 634 012a 9C       		.byte	0x9c
- 635 012b 3E010000 		.4byte	0x13e
- 636 012f 0A       		.uleb128 0xa
- 637 0130 EC010000 		.4byte	.LASF22
- 638 0134 01       		.byte	0x1
- 639 0135 C7       		.byte	0xc7
- 640 0136 A9000000 		.4byte	0xa9
- 641 013a 02       		.uleb128 0x2
- 642 013b 91       		.byte	0x91
- 643 013c 74       		.sleb128 -12
- 644 013d 00       		.byte	0
- 645 013e 0D       		.uleb128 0xd
- 646 013f 9C000000 		.4byte	.LASF28
- 647 0143 01       		.byte	0x1
- 648 0144 DB       		.byte	0xdb
- 649 0145 A9000000 		.4byte	0xa9
- 650 0149 00000000 		.4byte	.LFB6
- 651 014d 14000000 		.4byte	.LFE6-.LFB6
- 652 0151 01       		.uleb128 0x1
- 653 0152 9C       		.byte	0x9c
- 654 0153 09       		.uleb128 0x9
- 655 0154 18020000 		.4byte	.LASF23
- 656 0158 01       		.byte	0x1
- 657 0159 F9       		.byte	0xf9
- 658 015a 00000000 		.4byte	.LFB7
- 659 015e 4C000000 		.4byte	.LFE7-.LFB7
- 660 0162 01       		.uleb128 0x1
- 661 0163 9C       		.byte	0x9c
- 662 0164 93010000 		.4byte	0x193
- 663 0168 0A       		.uleb128 0xa
- 664 0169 1E010000 		.4byte	.LASF24
- 665 016d 01       		.byte	0x1
- 666 016e F9       		.byte	0xf9
- 667 016f 6B000000 		.4byte	0x6b
- 668 0173 02       		.uleb128 0x2
- 669 0174 91       		.byte	0x91
- 670 0175 67       		.sleb128 -25
- 671 0176 0E       		.uleb128 0xe
- 672 0177 38020000 		.4byte	.LASF25
- 673 017b 01       		.byte	0x1
- 674 017c FB       		.byte	0xfb
- 675 017d 6B000000 		.4byte	0x6b
- 676 0181 02       		.uleb128 0x2
- 677 0182 91       		.byte	0x91
- 678 0183 6B       		.sleb128 -21
- 679 0184 0E       		.uleb128 0xe
- 680 0185 C4020000 		.4byte	.LASF26
- 681 0189 01       		.byte	0x1
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 20
+ 621 00f3 9F       		.byte	0x9f
+ 622 00f4 00000000 		.4byte	.LFB4
+ 623 00f8 02000000 		.4byte	.LFE4-.LFB4
+ 624 00fc 01       		.uleb128 0x1
+ 625 00fd 9C       		.byte	0x9c
+ 626 00fe 09       		.uleb128 0x9
+ 627 00ff 1E020000 		.4byte	.LASF20
+ 628 0103 01       		.byte	0x1
+ 629 0104 F9       		.byte	0xf9
+ 630 0105 01       		.byte	0x1
+ 631 0106 2C010000 		.4byte	0x12c
+ 632 010a 0A       		.uleb128 0xa
+ 633 010b B8010000 		.4byte	.LASF22
+ 634 010f 01       		.byte	0x1
+ 635 0110 F9       		.byte	0xf9
+ 636 0111 6B000000 		.4byte	0x6b
+ 637 0115 0C       		.uleb128 0xc
+ 638 0116 3E020000 		.4byte	.LASF23
+ 639 011a 01       		.byte	0x1
+ 640 011b FB       		.byte	0xfb
+ 641 011c 6B000000 		.4byte	0x6b
+ 642 0120 0C       		.uleb128 0xc
+ 643 0121 E6020000 		.4byte	.LASF24
+ 644 0125 01       		.byte	0x1
+ 645 0126 FC       		.byte	0xfc
+ 646 0127 77000000 		.4byte	0x77
+ 647 012b 00       		.byte	0
+ 648 012c 0D       		.uleb128 0xd
+ 649 012d 32000000 		.4byte	.LASF25
+ 650 0131 01       		.byte	0x1
+ 651 0132 38       		.byte	0x38
+ 652 0133 00000000 		.4byte	.LFB1
+ 653 0137 3C000000 		.4byte	.LFE1-.LFB1
+ 654 013b 01       		.uleb128 0x1
+ 655 013c 9C       		.byte	0x9c
+ 656 013d C5010000 		.4byte	0x1c5
+ 657 0141 0E       		.uleb128 0xe
+ 658 0142 C3000000 		.4byte	0xc3
+ 659 0146 02000000 		.4byte	.LBB26
+ 660 014a 00000000 		.4byte	.Ldebug_ranges0+0
+ 661 014e 01       		.byte	0x1
+ 662 014f 3B       		.byte	0x3b
+ 663 0150 0F       		.uleb128 0xf
+ 664 0151 CC000000 		.4byte	0xcc
+ 665 0155 06000000 		.4byte	.LBB29
+ 666 0159 18000000 		.4byte	.Ldebug_ranges0+0x18
+ 667 015d 01       		.byte	0x1
+ 668 015e 3E       		.byte	0x3e
+ 669 015f 70010000 		.4byte	0x170
+ 670 0163 10       		.uleb128 0x10
+ 671 0164 D8000000 		.4byte	0xd8
+ 672 0168 06       		.uleb128 0x6
+ 673 0169 03       		.byte	0x3
+ 674 016a 00000000 		.4byte	modbus_rx_interrupt_Interrupt
+ 675 016e 9F       		.byte	0x9f
+ 676 016f 00       		.byte	0
+ 677 0170 11       		.uleb128 0x11
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 21
 
 
- 682 018a FC       		.byte	0xfc
- 683 018b 77000000 		.4byte	0x77
- 684 018f 02       		.uleb128 0x2
- 685 0190 91       		.byte	0x91
- 686 0191 6C       		.sleb128 -20
- 687 0192 00       		.byte	0
- 688 0193 0F       		.uleb128 0xf
- 689 0194 E6000000 		.4byte	.LASF36
- 690 0198 01       		.byte	0x1
- 691 0199 1501     		.2byte	0x115
- 692 019b 6B000000 		.4byte	0x6b
- 693 019f 00000000 		.4byte	.LFB8
- 694 01a3 2C000000 		.4byte	.LFE8-.LFB8
- 695 01a7 01       		.uleb128 0x1
- 696 01a8 9C       		.byte	0x9c
- 697 01a9 CC010000 		.4byte	0x1cc
- 698 01ad 10       		.uleb128 0x10
- 699 01ae 1E010000 		.4byte	.LASF24
- 700 01b2 01       		.byte	0x1
- 701 01b3 1701     		.2byte	0x117
- 702 01b5 77000000 		.4byte	0x77
- 703 01b9 02       		.uleb128 0x2
- 704 01ba 91       		.byte	0x91
- 705 01bb 70       		.sleb128 -16
- 706 01bc 10       		.uleb128 0x10
- 707 01bd C4020000 		.4byte	.LASF26
- 708 01c1 01       		.byte	0x1
- 709 01c2 1801     		.2byte	0x118
- 710 01c4 77000000 		.4byte	0x77
- 711 01c8 02       		.uleb128 0x2
- 712 01c9 91       		.byte	0x91
- 713 01ca 74       		.sleb128 -12
- 714 01cb 00       		.byte	0
- 715 01cc 11       		.uleb128 0x11
- 716 01cd 4C000000 		.4byte	.LASF27
- 717 01d1 01       		.byte	0x1
- 718 01d2 3001     		.2byte	0x130
- 719 01d4 00000000 		.4byte	.LFB9
- 720 01d8 14000000 		.4byte	.LFE9-.LFB9
- 721 01dc 01       		.uleb128 0x1
- 722 01dd 9C       		.byte	0x9c
- 723 01de 12       		.uleb128 0x12
- 724 01df 7F020000 		.4byte	.LASF29
- 725 01e3 01       		.byte	0x1
- 726 01e4 4501     		.2byte	0x145
- 727 01e6 6B000000 		.4byte	0x6b
- 728 01ea 00000000 		.4byte	.LFB10
- 729 01ee 1C000000 		.4byte	.LFE10-.LFB10
- 730 01f2 01       		.uleb128 0x1
- 731 01f3 9C       		.byte	0x9c
- 732 01f4 11       		.uleb128 0x11
- 733 01f5 7A000000 		.4byte	.LASF30
- 734 01f9 01       		.byte	0x1
- 735 01fa 5A01     		.2byte	0x15a
- 736 01fc 00000000 		.4byte	.LFB11
- 737 0200 14000000 		.4byte	.LFE11-.LFB11
- 738 0204 01       		.uleb128 0x1
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 21
+ 678 0171 FE000000 		.4byte	0xfe
+ 679 0175 0E000000 		.4byte	.LBB36
+ 680 0179 12000000 		.4byte	.LBE36-.LBB36
+ 681 017d 01       		.byte	0x1
+ 682 017e 41       		.byte	0x41
+ 683 017f B5010000 		.4byte	0x1b5
+ 684 0183 12       		.uleb128 0x12
+ 685 0184 0A010000 		.4byte	0x10a
+ 686 0188 03       		.byte	0x3
+ 687 0189 13       		.uleb128 0x13
+ 688 018a 0E000000 		.4byte	.LBB37
+ 689 018e 12000000 		.4byte	.LBE37-.LBB37
+ 690 0192 14       		.uleb128 0x14
+ 691 0193 15010000 		.4byte	0x115
+ 692 0197 00000000 		.4byte	.LLST0
+ 693 019b 15       		.uleb128 0x15
+ 694 019c 20010000 		.4byte	0x120
+ 695 01a0 06       		.byte	0x6
+ 696 01a1 16       		.uleb128 0x16
+ 697 01a2 12000000 		.4byte	.LVL2
+ 698 01a6 BD030000 		.4byte	0x3bd
+ 699 01aa 16       		.uleb128 0x16
+ 700 01ab 20000000 		.4byte	.LVL3
+ 701 01af C8030000 		.4byte	0x3c8
+ 702 01b3 00       		.byte	0
+ 703 01b4 00       		.byte	0
+ 704 01b5 17       		.uleb128 0x17
+ 705 01b6 E4000000 		.4byte	0xe4
+ 706 01ba 20000000 		.4byte	.LBB38
+ 707 01be 04000000 		.4byte	.LBE38-.LBB38
+ 708 01c2 01       		.byte	0x1
+ 709 01c3 44       		.byte	0x44
+ 710 01c4 00       		.byte	0
+ 711 01c5 0D       		.uleb128 0xd
+ 712 01c6 6E020000 		.4byte	.LASF26
+ 713 01ca 01       		.byte	0x1
+ 714 01cb 63       		.byte	0x63
+ 715 01cc 00000000 		.4byte	.LFB2
+ 716 01d0 34000000 		.4byte	.LFE2-.LFB2
+ 717 01d4 01       		.uleb128 0x1
+ 718 01d5 9C       		.byte	0x9c
+ 719 01d6 6A020000 		.4byte	0x26a
+ 720 01da 18       		.uleb128 0x18
+ 721 01db F3010000 		.4byte	.LASF21
+ 722 01df 01       		.byte	0x1
+ 723 01e0 63       		.byte	0x63
+ 724 01e1 A9000000 		.4byte	0xa9
+ 725 01e5 13000000 		.4byte	.LLST1
+ 726 01e9 0E       		.uleb128 0xe
+ 727 01ea C3000000 		.4byte	0xc3
+ 728 01ee 02000000 		.4byte	.LBB48
+ 729 01f2 38000000 		.4byte	.Ldebug_ranges0+0x38
+ 730 01f6 01       		.byte	0x1
+ 731 01f7 66       		.byte	0x66
+ 732 01f8 11       		.uleb128 0x11
+ 733 01f9 CC000000 		.4byte	0xcc
+ 734 01fd 08000000 		.4byte	.LBB52
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 22
 
 
- 739 0205 9C       		.byte	0x9c
- 740 0206 11       		.uleb128 0x11
- 741 0207 06000000 		.4byte	.LASF31
- 742 020b 01       		.byte	0x1
- 743 020c 7501     		.2byte	0x175
- 744 020e 00000000 		.4byte	.LFB12
- 745 0212 14000000 		.4byte	.LFE12-.LFB12
- 746 0216 01       		.uleb128 0x1
- 747 0217 9C       		.byte	0x9c
- 748 0218 11       		.uleb128 0x11
- 749 0219 47020000 		.4byte	.LASF32
- 750 021d 01       		.byte	0x1
- 751 021e 8E01     		.2byte	0x18e
- 752 0220 00000000 		.4byte	.LFB13
- 753 0224 14000000 		.4byte	.LFE13-.LFB13
- 754 0228 01       		.uleb128 0x1
- 755 0229 9C       		.byte	0x9c
- 756 022a 13       		.uleb128 0x13
- 757 022b A9000000 		.4byte	0xa9
- 758 022f 3A020000 		.4byte	0x23a
- 759 0233 14       		.uleb128 0x14
- 760 0234 BC000000 		.4byte	0xbc
- 761 0238 2F       		.byte	0x2f
- 762 0239 00       		.byte	0
- 763 023a 15       		.uleb128 0x15
- 764 023b 25000000 		.4byte	.LASF37
- 765 023f 01       		.byte	0x1
- 766 0240 21       		.byte	0x21
- 767 0241 2A020000 		.4byte	0x22a
- 768 0245 00       		.byte	0
- 769              		.section	.debug_abbrev,"",%progbits
- 770              	.Ldebug_abbrev0:
- 771 0000 01       		.uleb128 0x1
- 772 0001 11       		.uleb128 0x11
- 773 0002 01       		.byte	0x1
- 774 0003 25       		.uleb128 0x25
- 775 0004 0E       		.uleb128 0xe
- 776 0005 13       		.uleb128 0x13
- 777 0006 0B       		.uleb128 0xb
- 778 0007 03       		.uleb128 0x3
- 779 0008 0E       		.uleb128 0xe
- 780 0009 1B       		.uleb128 0x1b
- 781 000a 0E       		.uleb128 0xe
- 782 000b 55       		.uleb128 0x55
- 783 000c 17       		.uleb128 0x17
- 784 000d 11       		.uleb128 0x11
- 785 000e 01       		.uleb128 0x1
- 786 000f 10       		.uleb128 0x10
- 787 0010 17       		.uleb128 0x17
- 788 0011 00       		.byte	0
- 789 0012 00       		.byte	0
- 790 0013 02       		.uleb128 0x2
- 791 0014 24       		.uleb128 0x24
- 792 0015 00       		.byte	0
- 793 0016 0B       		.uleb128 0xb
- 794 0017 0B       		.uleb128 0xb
- 795 0018 3E       		.uleb128 0x3e
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 22
+ 735 0201 04000000 		.4byte	.LBE52-.LBB52
+ 736 0205 01       		.byte	0x1
+ 737 0206 69       		.byte	0x69
+ 738 0207 15020000 		.4byte	0x215
+ 739 020b 19       		.uleb128 0x19
+ 740 020c D8000000 		.4byte	0xd8
+ 741 0210 34000000 		.4byte	.LLST2
+ 742 0214 00       		.byte	0
+ 743 0215 11       		.uleb128 0x11
+ 744 0216 FE000000 		.4byte	0xfe
+ 745 021a 0C000000 		.4byte	.LBB54
+ 746 021e 12000000 		.4byte	.LBE54-.LBB54
+ 747 0222 01       		.byte	0x1
+ 748 0223 6C       		.byte	0x6c
+ 749 0224 5A020000 		.4byte	0x25a
+ 750 0228 12       		.uleb128 0x12
+ 751 0229 0A010000 		.4byte	0x10a
+ 752 022d 03       		.byte	0x3
+ 753 022e 13       		.uleb128 0x13
+ 754 022f 0C000000 		.4byte	.LBB55
+ 755 0233 12000000 		.4byte	.LBE55-.LBB55
+ 756 0237 14       		.uleb128 0x14
+ 757 0238 15010000 		.4byte	0x115
+ 758 023c 55000000 		.4byte	.LLST3
+ 759 0240 15       		.uleb128 0x15
+ 760 0241 20010000 		.4byte	0x120
+ 761 0245 06       		.byte	0x6
+ 762 0246 16       		.uleb128 0x16
+ 763 0247 10000000 		.4byte	.LVL7
+ 764 024b BD030000 		.4byte	0x3bd
+ 765 024f 16       		.uleb128 0x16
+ 766 0250 1E000000 		.4byte	.LVL8
+ 767 0254 C8030000 		.4byte	0x3c8
+ 768 0258 00       		.byte	0
+ 769 0259 00       		.byte	0
+ 770 025a 17       		.uleb128 0x17
+ 771 025b E4000000 		.4byte	0xe4
+ 772 025f 1E000000 		.4byte	.LBB56
+ 773 0263 04000000 		.4byte	.LBE56-.LBB56
+ 774 0267 01       		.byte	0x1
+ 775 0268 6F       		.byte	0x6f
+ 776 0269 00       		.byte	0
+ 777 026a 0D       		.uleb128 0xd
+ 778 026b CD020000 		.4byte	.LASF27
+ 779 026f 01       		.byte	0x1
+ 780 0270 81       		.byte	0x81
+ 781 0271 00000000 		.4byte	.LFB3
+ 782 0275 1C000000 		.4byte	.LFE3-.LFB3
+ 783 0279 01       		.uleb128 0x1
+ 784 027a 9C       		.byte	0x9c
+ 785 027b A4020000 		.4byte	0x2a4
+ 786 027f 0E       		.uleb128 0xe
+ 787 0280 C3000000 		.4byte	0xc3
+ 788 0284 00000000 		.4byte	.LBB58
+ 789 0288 50000000 		.4byte	.Ldebug_ranges0+0x50
+ 790 028c 01       		.byte	0x1
+ 791 028d 84       		.byte	0x84
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 23
 
 
- 796 0019 0B       		.uleb128 0xb
- 797 001a 03       		.uleb128 0x3
- 798 001b 0E       		.uleb128 0xe
- 799 001c 00       		.byte	0
- 800 001d 00       		.byte	0
- 801 001e 03       		.uleb128 0x3
- 802 001f 24       		.uleb128 0x24
- 803 0020 00       		.byte	0
- 804 0021 0B       		.uleb128 0xb
- 805 0022 0B       		.uleb128 0xb
- 806 0023 3E       		.uleb128 0x3e
- 807 0024 0B       		.uleb128 0xb
- 808 0025 03       		.uleb128 0x3
- 809 0026 08       		.uleb128 0x8
- 810 0027 00       		.byte	0
- 811 0028 00       		.byte	0
- 812 0029 04       		.uleb128 0x4
- 813 002a 16       		.uleb128 0x16
- 814 002b 00       		.byte	0
- 815 002c 03       		.uleb128 0x3
- 816 002d 0E       		.uleb128 0xe
- 817 002e 3A       		.uleb128 0x3a
- 818 002f 0B       		.uleb128 0xb
- 819 0030 3B       		.uleb128 0x3b
- 820 0031 05       		.uleb128 0x5
- 821 0032 49       		.uleb128 0x49
- 822 0033 13       		.uleb128 0x13
- 823 0034 00       		.byte	0
- 824 0035 00       		.byte	0
- 825 0036 05       		.uleb128 0x5
- 826 0037 35       		.uleb128 0x35
- 827 0038 00       		.byte	0
- 828 0039 49       		.uleb128 0x49
- 829 003a 13       		.uleb128 0x13
- 830 003b 00       		.byte	0
- 831 003c 00       		.byte	0
- 832 003d 06       		.uleb128 0x6
- 833 003e 0F       		.uleb128 0xf
- 834 003f 00       		.byte	0
- 835 0040 0B       		.uleb128 0xb
- 836 0041 0B       		.uleb128 0xb
- 837 0042 49       		.uleb128 0x49
- 838 0043 13       		.uleb128 0x13
- 839 0044 00       		.byte	0
- 840 0045 00       		.byte	0
- 841 0046 07       		.uleb128 0x7
- 842 0047 15       		.uleb128 0x15
- 843 0048 00       		.byte	0
- 844 0049 27       		.uleb128 0x27
- 845 004a 19       		.uleb128 0x19
- 846 004b 00       		.byte	0
- 847 004c 00       		.byte	0
- 848 004d 08       		.uleb128 0x8
- 849 004e 2E       		.uleb128 0x2e
- 850 004f 00       		.byte	0
- 851 0050 3F       		.uleb128 0x3f
- 852 0051 19       		.uleb128 0x19
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 23
+ 792 028e 1A       		.uleb128 0x1a
+ 793 028f CC000000 		.4byte	0xcc
+ 794 0293 06000000 		.4byte	.LBB62
+ 795 0297 06000000 		.4byte	.LBE62-.LBB62
+ 796 029b 01       		.byte	0x1
+ 797 029c 87       		.byte	0x87
+ 798 029d 1B       		.uleb128 0x1b
+ 799 029e D8000000 		.4byte	0xd8
+ 800 02a2 00       		.byte	0
+ 801 02a3 00       		.byte	0
+ 802 02a4 1C       		.uleb128 0x1c
+ 803 02a5 CC000000 		.4byte	0xcc
+ 804 02a9 00000000 		.4byte	.LFB5
+ 805 02ad 0C000000 		.4byte	.LFE5-.LFB5
+ 806 02b1 01       		.uleb128 0x1
+ 807 02b2 9C       		.byte	0x9c
+ 808 02b3 BF020000 		.4byte	0x2bf
+ 809 02b7 10       		.uleb128 0x10
+ 810 02b8 D8000000 		.4byte	0xd8
+ 811 02bc 01       		.uleb128 0x1
+ 812 02bd 50       		.byte	0x50
+ 813 02be 00       		.byte	0
+ 814 02bf 1D       		.uleb128 0x1d
+ 815 02c0 FE020000 		.4byte	.LASF28
+ 816 02c4 01       		.byte	0x1
+ 817 02c5 DB       		.byte	0xdb
+ 818 02c6 A9000000 		.4byte	0xa9
+ 819 02ca 00000000 		.4byte	.LFB6
+ 820 02ce 0C000000 		.4byte	.LFE6-.LFB6
+ 821 02d2 01       		.uleb128 0x1
+ 822 02d3 9C       		.byte	0x9c
+ 823 02d4 1C       		.uleb128 0x1c
+ 824 02d5 FE000000 		.4byte	0xfe
+ 825 02d9 00000000 		.4byte	.LFB7
+ 826 02dd 20000000 		.4byte	.LFE7-.LFB7
+ 827 02e1 01       		.uleb128 0x1
+ 828 02e2 9C       		.byte	0x9c
+ 829 02e3 12030000 		.4byte	0x312
+ 830 02e7 19       		.uleb128 0x19
+ 831 02e8 0A010000 		.4byte	0x10a
+ 832 02ec 68000000 		.4byte	.LLST4
+ 833 02f0 14       		.uleb128 0x14
+ 834 02f1 15010000 		.4byte	0x115
+ 835 02f5 89000000 		.4byte	.LLST5
+ 836 02f9 15       		.uleb128 0x15
+ 837 02fa 20010000 		.4byte	0x120
+ 838 02fe 06       		.byte	0x6
+ 839 02ff 16       		.uleb128 0x16
+ 840 0300 08000000 		.4byte	.LVL12
+ 841 0304 BD030000 		.4byte	0x3bd
+ 842 0308 16       		.uleb128 0x16
+ 843 0309 1A000000 		.4byte	.LVL13
+ 844 030d C8030000 		.4byte	0x3c8
+ 845 0311 00       		.byte	0
+ 846 0312 1E       		.uleb128 0x1e
+ 847 0313 80010000 		.4byte	.LASF36
+ 848 0317 01       		.byte	0x1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 24
 
 
- 853 0052 03       		.uleb128 0x3
- 854 0053 0E       		.uleb128 0xe
- 855 0054 3A       		.uleb128 0x3a
- 856 0055 0B       		.uleb128 0xb
- 857 0056 3B       		.uleb128 0x3b
- 858 0057 0B       		.uleb128 0xb
- 859 0058 27       		.uleb128 0x27
- 860 0059 19       		.uleb128 0x19
- 861 005a 11       		.uleb128 0x11
- 862 005b 01       		.uleb128 0x1
- 863 005c 12       		.uleb128 0x12
- 864 005d 06       		.uleb128 0x6
- 865 005e 40       		.uleb128 0x40
- 866 005f 18       		.uleb128 0x18
- 867 0060 9642     		.uleb128 0x2116
- 868 0062 19       		.uleb128 0x19
- 869 0063 00       		.byte	0
- 870 0064 00       		.byte	0
- 871 0065 09       		.uleb128 0x9
- 872 0066 2E       		.uleb128 0x2e
- 873 0067 01       		.byte	0x1
- 874 0068 3F       		.uleb128 0x3f
- 875 0069 19       		.uleb128 0x19
- 876 006a 03       		.uleb128 0x3
- 877 006b 0E       		.uleb128 0xe
- 878 006c 3A       		.uleb128 0x3a
- 879 006d 0B       		.uleb128 0xb
- 880 006e 3B       		.uleb128 0x3b
- 881 006f 0B       		.uleb128 0xb
- 882 0070 27       		.uleb128 0x27
- 883 0071 19       		.uleb128 0x19
- 884 0072 11       		.uleb128 0x11
- 885 0073 01       		.uleb128 0x1
- 886 0074 12       		.uleb128 0x12
- 887 0075 06       		.uleb128 0x6
- 888 0076 40       		.uleb128 0x40
- 889 0077 18       		.uleb128 0x18
- 890 0078 9642     		.uleb128 0x2116
- 891 007a 19       		.uleb128 0x19
- 892 007b 01       		.uleb128 0x1
- 893 007c 13       		.uleb128 0x13
- 894 007d 00       		.byte	0
- 895 007e 00       		.byte	0
- 896 007f 0A       		.uleb128 0xa
- 897 0080 05       		.uleb128 0x5
- 898 0081 00       		.byte	0
- 899 0082 03       		.uleb128 0x3
- 900 0083 0E       		.uleb128 0xe
- 901 0084 3A       		.uleb128 0x3a
- 902 0085 0B       		.uleb128 0xb
- 903 0086 3B       		.uleb128 0x3b
- 904 0087 0B       		.uleb128 0xb
- 905 0088 49       		.uleb128 0x49
- 906 0089 13       		.uleb128 0x13
- 907 008a 02       		.uleb128 0x2
- 908 008b 18       		.uleb128 0x18
- 909 008c 00       		.byte	0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 24
+ 849 0318 1501     		.2byte	0x115
+ 850 031a 6B000000 		.4byte	0x6b
+ 851 031e 00000000 		.4byte	.LFB8
+ 852 0322 10000000 		.4byte	.LFE8-.LFB8
+ 853 0326 01       		.uleb128 0x1
+ 854 0327 9C       		.byte	0x9c
+ 855 0328 4A030000 		.4byte	0x34a
+ 856 032c 1F       		.uleb128 0x1f
+ 857 032d B8010000 		.4byte	.LASF22
+ 858 0331 01       		.byte	0x1
+ 859 0332 1701     		.2byte	0x117
+ 860 0334 77000000 		.4byte	0x77
+ 861 0338 9C000000 		.4byte	.LLST6
+ 862 033c 20       		.uleb128 0x20
+ 863 033d E6020000 		.4byte	.LASF24
+ 864 0341 01       		.byte	0x1
+ 865 0342 1801     		.2byte	0x118
+ 866 0344 77000000 		.4byte	0x77
+ 867 0348 06       		.byte	0x6
+ 868 0349 00       		.byte	0
+ 869 034a 21       		.uleb128 0x21
+ 870 034b E4000000 		.4byte	0xe4
+ 871 034f 00000000 		.4byte	.LFB9
+ 872 0353 0C000000 		.4byte	.LFE9-.LFB9
+ 873 0357 01       		.uleb128 0x1
+ 874 0358 9C       		.byte	0x9c
+ 875 0359 22       		.uleb128 0x22
+ 876 035a A1020000 		.4byte	.LASF29
+ 877 035e 01       		.byte	0x1
+ 878 035f 4501     		.2byte	0x145
+ 879 0361 6B000000 		.4byte	0x6b
+ 880 0365 00000000 		.4byte	.LFB10
+ 881 0369 10000000 		.4byte	.LFE10-.LFB10
+ 882 036d 01       		.uleb128 0x1
+ 883 036e 9C       		.byte	0x9c
+ 884 036f 21       		.uleb128 0x21
+ 885 0370 C3000000 		.4byte	0xc3
+ 886 0374 00000000 		.4byte	.LFB11
+ 887 0378 0C000000 		.4byte	.LFE11-.LFB11
+ 888 037c 01       		.uleb128 0x1
+ 889 037d 9C       		.byte	0x9c
+ 890 037e 23       		.uleb128 0x23
+ 891 037f 06000000 		.4byte	.LASF31
+ 892 0383 01       		.byte	0x1
+ 893 0384 7501     		.2byte	0x175
+ 894 0386 00000000 		.4byte	.LFB12
+ 895 038a 0C000000 		.4byte	.LFE12-.LFB12
+ 896 038e 01       		.uleb128 0x1
+ 897 038f 9C       		.byte	0x9c
+ 898 0390 23       		.uleb128 0x23
+ 899 0391 4D020000 		.4byte	.LASF32
+ 900 0395 01       		.byte	0x1
+ 901 0396 8E01     		.2byte	0x18e
+ 902 0398 00000000 		.4byte	.LFB13
+ 903 039c 0C000000 		.4byte	.LFE13-.LFB13
+ 904 03a0 01       		.uleb128 0x1
+ 905 03a1 9C       		.byte	0x9c
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 25
 
 
- 910 008d 00       		.byte	0
- 911 008e 0B       		.uleb128 0xb
- 912 008f 2E       		.uleb128 0x2e
- 913 0090 00       		.byte	0
- 914 0091 3F       		.uleb128 0x3f
- 915 0092 19       		.uleb128 0x19
- 916 0093 03       		.uleb128 0x3
- 917 0094 0E       		.uleb128 0xe
- 918 0095 3A       		.uleb128 0x3a
- 919 0096 0B       		.uleb128 0xb
- 920 0097 3B       		.uleb128 0x3b
- 921 0098 0B       		.uleb128 0xb
- 922 0099 27       		.uleb128 0x27
- 923 009a 19       		.uleb128 0x19
- 924 009b 11       		.uleb128 0x11
- 925 009c 01       		.uleb128 0x1
- 926 009d 12       		.uleb128 0x12
- 927 009e 06       		.uleb128 0x6
- 928 009f 40       		.uleb128 0x40
- 929 00a0 18       		.uleb128 0x18
- 930 00a1 9742     		.uleb128 0x2117
- 931 00a3 19       		.uleb128 0x19
- 932 00a4 00       		.byte	0
- 933 00a5 00       		.byte	0
- 934 00a6 0C       		.uleb128 0xc
- 935 00a7 2E       		.uleb128 0x2e
- 936 00a8 01       		.byte	0x1
- 937 00a9 3F       		.uleb128 0x3f
- 938 00aa 19       		.uleb128 0x19
- 939 00ab 03       		.uleb128 0x3
- 940 00ac 0E       		.uleb128 0xe
- 941 00ad 3A       		.uleb128 0x3a
- 942 00ae 0B       		.uleb128 0xb
- 943 00af 3B       		.uleb128 0x3b
- 944 00b0 0B       		.uleb128 0xb
- 945 00b1 27       		.uleb128 0x27
- 946 00b2 19       		.uleb128 0x19
- 947 00b3 11       		.uleb128 0x11
- 948 00b4 01       		.uleb128 0x1
- 949 00b5 12       		.uleb128 0x12
- 950 00b6 06       		.uleb128 0x6
- 951 00b7 40       		.uleb128 0x40
- 952 00b8 18       		.uleb128 0x18
- 953 00b9 9742     		.uleb128 0x2117
- 954 00bb 19       		.uleb128 0x19
- 955 00bc 01       		.uleb128 0x1
- 956 00bd 13       		.uleb128 0x13
- 957 00be 00       		.byte	0
- 958 00bf 00       		.byte	0
- 959 00c0 0D       		.uleb128 0xd
- 960 00c1 2E       		.uleb128 0x2e
- 961 00c2 00       		.byte	0
- 962 00c3 3F       		.uleb128 0x3f
- 963 00c4 19       		.uleb128 0x19
- 964 00c5 03       		.uleb128 0x3
- 965 00c6 0E       		.uleb128 0xe
- 966 00c7 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 25
+ 906 03a2 24       		.uleb128 0x24
+ 907 03a3 A9000000 		.4byte	0xa9
+ 908 03a7 B2030000 		.4byte	0x3b2
+ 909 03ab 25       		.uleb128 0x25
+ 910 03ac BC000000 		.4byte	0xbc
+ 911 03b0 2F       		.byte	0x2f
+ 912 03b1 00       		.byte	0
+ 913 03b2 26       		.uleb128 0x26
+ 914 03b3 25000000 		.4byte	.LASF37
+ 915 03b7 01       		.byte	0x1
+ 916 03b8 21       		.byte	0x21
+ 917 03b9 A2030000 		.4byte	0x3a2
+ 918 03bd 27       		.uleb128 0x27
+ 919 03be CF010000 		.4byte	.LASF38
+ 920 03c2 03       		.byte	0x3
+ 921 03c3 E3       		.byte	0xe3
+ 922 03c4 6B000000 		.4byte	0x6b
+ 923 03c8 28       		.uleb128 0x28
+ 924 03c9 FB010000 		.4byte	.LASF39
+ 925 03cd 03       		.byte	0x3
+ 926 03ce E4       		.byte	0xe4
+ 927 03cf 29       		.uleb128 0x29
+ 928 03d0 6B000000 		.4byte	0x6b
+ 929 03d4 00       		.byte	0
+ 930 03d5 00       		.byte	0
+ 931              		.section	.debug_abbrev,"",%progbits
+ 932              	.Ldebug_abbrev0:
+ 933 0000 01       		.uleb128 0x1
+ 934 0001 11       		.uleb128 0x11
+ 935 0002 01       		.byte	0x1
+ 936 0003 25       		.uleb128 0x25
+ 937 0004 0E       		.uleb128 0xe
+ 938 0005 13       		.uleb128 0x13
+ 939 0006 0B       		.uleb128 0xb
+ 940 0007 03       		.uleb128 0x3
+ 941 0008 0E       		.uleb128 0xe
+ 942 0009 1B       		.uleb128 0x1b
+ 943 000a 0E       		.uleb128 0xe
+ 944 000b 55       		.uleb128 0x55
+ 945 000c 17       		.uleb128 0x17
+ 946 000d 11       		.uleb128 0x11
+ 947 000e 01       		.uleb128 0x1
+ 948 000f 10       		.uleb128 0x10
+ 949 0010 17       		.uleb128 0x17
+ 950 0011 00       		.byte	0
+ 951 0012 00       		.byte	0
+ 952 0013 02       		.uleb128 0x2
+ 953 0014 24       		.uleb128 0x24
+ 954 0015 00       		.byte	0
+ 955 0016 0B       		.uleb128 0xb
+ 956 0017 0B       		.uleb128 0xb
+ 957 0018 3E       		.uleb128 0x3e
+ 958 0019 0B       		.uleb128 0xb
+ 959 001a 03       		.uleb128 0x3
+ 960 001b 0E       		.uleb128 0xe
+ 961 001c 00       		.byte	0
+ 962 001d 00       		.byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 26
 
 
- 967 00c8 0B       		.uleb128 0xb
- 968 00c9 3B       		.uleb128 0x3b
- 969 00ca 0B       		.uleb128 0xb
- 970 00cb 27       		.uleb128 0x27
- 971 00cc 19       		.uleb128 0x19
- 972 00cd 49       		.uleb128 0x49
- 973 00ce 13       		.uleb128 0x13
- 974 00cf 11       		.uleb128 0x11
- 975 00d0 01       		.uleb128 0x1
- 976 00d1 12       		.uleb128 0x12
- 977 00d2 06       		.uleb128 0x6
- 978 00d3 40       		.uleb128 0x40
- 979 00d4 18       		.uleb128 0x18
- 980 00d5 9742     		.uleb128 0x2117
- 981 00d7 19       		.uleb128 0x19
- 982 00d8 00       		.byte	0
- 983 00d9 00       		.byte	0
- 984 00da 0E       		.uleb128 0xe
- 985 00db 34       		.uleb128 0x34
- 986 00dc 00       		.byte	0
- 987 00dd 03       		.uleb128 0x3
- 988 00de 0E       		.uleb128 0xe
- 989 00df 3A       		.uleb128 0x3a
- 990 00e0 0B       		.uleb128 0xb
- 991 00e1 3B       		.uleb128 0x3b
- 992 00e2 0B       		.uleb128 0xb
- 993 00e3 49       		.uleb128 0x49
- 994 00e4 13       		.uleb128 0x13
- 995 00e5 02       		.uleb128 0x2
- 996 00e6 18       		.uleb128 0x18
- 997 00e7 00       		.byte	0
- 998 00e8 00       		.byte	0
- 999 00e9 0F       		.uleb128 0xf
- 1000 00ea 2E       		.uleb128 0x2e
- 1001 00eb 01       		.byte	0x1
- 1002 00ec 3F       		.uleb128 0x3f
- 1003 00ed 19       		.uleb128 0x19
- 1004 00ee 03       		.uleb128 0x3
- 1005 00ef 0E       		.uleb128 0xe
- 1006 00f0 3A       		.uleb128 0x3a
- 1007 00f1 0B       		.uleb128 0xb
- 1008 00f2 3B       		.uleb128 0x3b
- 1009 00f3 05       		.uleb128 0x5
- 1010 00f4 27       		.uleb128 0x27
- 1011 00f5 19       		.uleb128 0x19
- 1012 00f6 49       		.uleb128 0x49
- 1013 00f7 13       		.uleb128 0x13
- 1014 00f8 11       		.uleb128 0x11
- 1015 00f9 01       		.uleb128 0x1
- 1016 00fa 12       		.uleb128 0x12
- 1017 00fb 06       		.uleb128 0x6
- 1018 00fc 40       		.uleb128 0x40
- 1019 00fd 18       		.uleb128 0x18
- 1020 00fe 9742     		.uleb128 0x2117
- 1021 0100 19       		.uleb128 0x19
- 1022 0101 01       		.uleb128 0x1
- 1023 0102 13       		.uleb128 0x13
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 26
+ 963 001e 03       		.uleb128 0x3
+ 964 001f 24       		.uleb128 0x24
+ 965 0020 00       		.byte	0
+ 966 0021 0B       		.uleb128 0xb
+ 967 0022 0B       		.uleb128 0xb
+ 968 0023 3E       		.uleb128 0x3e
+ 969 0024 0B       		.uleb128 0xb
+ 970 0025 03       		.uleb128 0x3
+ 971 0026 08       		.uleb128 0x8
+ 972 0027 00       		.byte	0
+ 973 0028 00       		.byte	0
+ 974 0029 04       		.uleb128 0x4
+ 975 002a 16       		.uleb128 0x16
+ 976 002b 00       		.byte	0
+ 977 002c 03       		.uleb128 0x3
+ 978 002d 0E       		.uleb128 0xe
+ 979 002e 3A       		.uleb128 0x3a
+ 980 002f 0B       		.uleb128 0xb
+ 981 0030 3B       		.uleb128 0x3b
+ 982 0031 05       		.uleb128 0x5
+ 983 0032 49       		.uleb128 0x49
+ 984 0033 13       		.uleb128 0x13
+ 985 0034 00       		.byte	0
+ 986 0035 00       		.byte	0
+ 987 0036 05       		.uleb128 0x5
+ 988 0037 35       		.uleb128 0x35
+ 989 0038 00       		.byte	0
+ 990 0039 49       		.uleb128 0x49
+ 991 003a 13       		.uleb128 0x13
+ 992 003b 00       		.byte	0
+ 993 003c 00       		.byte	0
+ 994 003d 06       		.uleb128 0x6
+ 995 003e 0F       		.uleb128 0xf
+ 996 003f 00       		.byte	0
+ 997 0040 0B       		.uleb128 0xb
+ 998 0041 0B       		.uleb128 0xb
+ 999 0042 49       		.uleb128 0x49
+ 1000 0043 13       		.uleb128 0x13
+ 1001 0044 00       		.byte	0
+ 1002 0045 00       		.byte	0
+ 1003 0046 07       		.uleb128 0x7
+ 1004 0047 15       		.uleb128 0x15
+ 1005 0048 00       		.byte	0
+ 1006 0049 27       		.uleb128 0x27
+ 1007 004a 19       		.uleb128 0x19
+ 1008 004b 00       		.byte	0
+ 1009 004c 00       		.byte	0
+ 1010 004d 08       		.uleb128 0x8
+ 1011 004e 2E       		.uleb128 0x2e
+ 1012 004f 00       		.byte	0
+ 1013 0050 3F       		.uleb128 0x3f
+ 1014 0051 19       		.uleb128 0x19
+ 1015 0052 03       		.uleb128 0x3
+ 1016 0053 0E       		.uleb128 0xe
+ 1017 0054 3A       		.uleb128 0x3a
+ 1018 0055 0B       		.uleb128 0xb
+ 1019 0056 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 27
 
 
- 1024 0103 00       		.byte	0
- 1025 0104 00       		.byte	0
- 1026 0105 10       		.uleb128 0x10
- 1027 0106 34       		.uleb128 0x34
- 1028 0107 00       		.byte	0
- 1029 0108 03       		.uleb128 0x3
- 1030 0109 0E       		.uleb128 0xe
- 1031 010a 3A       		.uleb128 0x3a
- 1032 010b 0B       		.uleb128 0xb
- 1033 010c 3B       		.uleb128 0x3b
- 1034 010d 05       		.uleb128 0x5
- 1035 010e 49       		.uleb128 0x49
- 1036 010f 13       		.uleb128 0x13
- 1037 0110 02       		.uleb128 0x2
- 1038 0111 18       		.uleb128 0x18
- 1039 0112 00       		.byte	0
- 1040 0113 00       		.byte	0
- 1041 0114 11       		.uleb128 0x11
- 1042 0115 2E       		.uleb128 0x2e
- 1043 0116 00       		.byte	0
- 1044 0117 3F       		.uleb128 0x3f
- 1045 0118 19       		.uleb128 0x19
- 1046 0119 03       		.uleb128 0x3
- 1047 011a 0E       		.uleb128 0xe
- 1048 011b 3A       		.uleb128 0x3a
- 1049 011c 0B       		.uleb128 0xb
- 1050 011d 3B       		.uleb128 0x3b
- 1051 011e 05       		.uleb128 0x5
- 1052 011f 27       		.uleb128 0x27
- 1053 0120 19       		.uleb128 0x19
- 1054 0121 11       		.uleb128 0x11
- 1055 0122 01       		.uleb128 0x1
- 1056 0123 12       		.uleb128 0x12
- 1057 0124 06       		.uleb128 0x6
- 1058 0125 40       		.uleb128 0x40
- 1059 0126 18       		.uleb128 0x18
- 1060 0127 9742     		.uleb128 0x2117
- 1061 0129 19       		.uleb128 0x19
- 1062 012a 00       		.byte	0
- 1063 012b 00       		.byte	0
- 1064 012c 12       		.uleb128 0x12
- 1065 012d 2E       		.uleb128 0x2e
- 1066 012e 00       		.byte	0
- 1067 012f 3F       		.uleb128 0x3f
- 1068 0130 19       		.uleb128 0x19
- 1069 0131 03       		.uleb128 0x3
- 1070 0132 0E       		.uleb128 0xe
- 1071 0133 3A       		.uleb128 0x3a
- 1072 0134 0B       		.uleb128 0xb
- 1073 0135 3B       		.uleb128 0x3b
- 1074 0136 05       		.uleb128 0x5
- 1075 0137 27       		.uleb128 0x27
- 1076 0138 19       		.uleb128 0x19
- 1077 0139 49       		.uleb128 0x49
- 1078 013a 13       		.uleb128 0x13
- 1079 013b 11       		.uleb128 0x11
- 1080 013c 01       		.uleb128 0x1
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 27
+ 1020 0057 05       		.uleb128 0x5
+ 1021 0058 27       		.uleb128 0x27
+ 1022 0059 19       		.uleb128 0x19
+ 1023 005a 20       		.uleb128 0x20
+ 1024 005b 0B       		.uleb128 0xb
+ 1025 005c 00       		.byte	0
+ 1026 005d 00       		.byte	0
+ 1027 005e 09       		.uleb128 0x9
+ 1028 005f 2E       		.uleb128 0x2e
+ 1029 0060 01       		.byte	0x1
+ 1030 0061 3F       		.uleb128 0x3f
+ 1031 0062 19       		.uleb128 0x19
+ 1032 0063 03       		.uleb128 0x3
+ 1033 0064 0E       		.uleb128 0xe
+ 1034 0065 3A       		.uleb128 0x3a
+ 1035 0066 0B       		.uleb128 0xb
+ 1036 0067 3B       		.uleb128 0x3b
+ 1037 0068 0B       		.uleb128 0xb
+ 1038 0069 27       		.uleb128 0x27
+ 1039 006a 19       		.uleb128 0x19
+ 1040 006b 20       		.uleb128 0x20
+ 1041 006c 0B       		.uleb128 0xb
+ 1042 006d 01       		.uleb128 0x1
+ 1043 006e 13       		.uleb128 0x13
+ 1044 006f 00       		.byte	0
+ 1045 0070 00       		.byte	0
+ 1046 0071 0A       		.uleb128 0xa
+ 1047 0072 05       		.uleb128 0x5
+ 1048 0073 00       		.byte	0
+ 1049 0074 03       		.uleb128 0x3
+ 1050 0075 0E       		.uleb128 0xe
+ 1051 0076 3A       		.uleb128 0x3a
+ 1052 0077 0B       		.uleb128 0xb
+ 1053 0078 3B       		.uleb128 0x3b
+ 1054 0079 0B       		.uleb128 0xb
+ 1055 007a 49       		.uleb128 0x49
+ 1056 007b 13       		.uleb128 0x13
+ 1057 007c 00       		.byte	0
+ 1058 007d 00       		.byte	0
+ 1059 007e 0B       		.uleb128 0xb
+ 1060 007f 2E       		.uleb128 0x2e
+ 1061 0080 00       		.byte	0
+ 1062 0081 3F       		.uleb128 0x3f
+ 1063 0082 19       		.uleb128 0x19
+ 1064 0083 03       		.uleb128 0x3
+ 1065 0084 0E       		.uleb128 0xe
+ 1066 0085 3A       		.uleb128 0x3a
+ 1067 0086 0B       		.uleb128 0xb
+ 1068 0087 3B       		.uleb128 0x3b
+ 1069 0088 0B       		.uleb128 0xb
+ 1070 0089 27       		.uleb128 0x27
+ 1071 008a 19       		.uleb128 0x19
+ 1072 008b 11       		.uleb128 0x11
+ 1073 008c 01       		.uleb128 0x1
+ 1074 008d 12       		.uleb128 0x12
+ 1075 008e 06       		.uleb128 0x6
+ 1076 008f 40       		.uleb128 0x40
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 28
 
 
- 1081 013d 12       		.uleb128 0x12
- 1082 013e 06       		.uleb128 0x6
- 1083 013f 40       		.uleb128 0x40
- 1084 0140 18       		.uleb128 0x18
- 1085 0141 9742     		.uleb128 0x2117
- 1086 0143 19       		.uleb128 0x19
- 1087 0144 00       		.byte	0
- 1088 0145 00       		.byte	0
- 1089 0146 13       		.uleb128 0x13
- 1090 0147 01       		.uleb128 0x1
- 1091 0148 01       		.byte	0x1
- 1092 0149 49       		.uleb128 0x49
- 1093 014a 13       		.uleb128 0x13
- 1094 014b 01       		.uleb128 0x1
- 1095 014c 13       		.uleb128 0x13
- 1096 014d 00       		.byte	0
- 1097 014e 00       		.byte	0
- 1098 014f 14       		.uleb128 0x14
- 1099 0150 21       		.uleb128 0x21
- 1100 0151 00       		.byte	0
- 1101 0152 49       		.uleb128 0x49
- 1102 0153 13       		.uleb128 0x13
- 1103 0154 2F       		.uleb128 0x2f
- 1104 0155 0B       		.uleb128 0xb
- 1105 0156 00       		.byte	0
- 1106 0157 00       		.byte	0
- 1107 0158 15       		.uleb128 0x15
- 1108 0159 34       		.uleb128 0x34
- 1109 015a 00       		.byte	0
- 1110 015b 03       		.uleb128 0x3
- 1111 015c 0E       		.uleb128 0xe
- 1112 015d 3A       		.uleb128 0x3a
- 1113 015e 0B       		.uleb128 0xb
- 1114 015f 3B       		.uleb128 0x3b
- 1115 0160 0B       		.uleb128 0xb
- 1116 0161 49       		.uleb128 0x49
- 1117 0162 13       		.uleb128 0x13
- 1118 0163 3F       		.uleb128 0x3f
- 1119 0164 19       		.uleb128 0x19
- 1120 0165 3C       		.uleb128 0x3c
- 1121 0166 19       		.uleb128 0x19
- 1122 0167 00       		.byte	0
- 1123 0168 00       		.byte	0
- 1124 0169 00       		.byte	0
- 1125              		.section	.debug_aranges,"",%progbits
- 1126 0000 7C000000 		.4byte	0x7c
- 1127 0004 0200     		.2byte	0x2
- 1128 0006 00000000 		.4byte	.Ldebug_info0
- 1129 000a 04       		.byte	0x4
- 1130 000b 00       		.byte	0
- 1131 000c 0000     		.2byte	0
- 1132 000e 0000     		.2byte	0
- 1133 0010 00000000 		.4byte	.LFB1
- 1134 0014 24000000 		.4byte	.LFE1-.LFB1
- 1135 0018 00000000 		.4byte	.LFB2
- 1136 001c 24000000 		.4byte	.LFE2-.LFB2
- 1137 0020 00000000 		.4byte	.LFB3
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 28
+ 1077 0090 18       		.uleb128 0x18
+ 1078 0091 9742     		.uleb128 0x2117
+ 1079 0093 19       		.uleb128 0x19
+ 1080 0094 00       		.byte	0
+ 1081 0095 00       		.byte	0
+ 1082 0096 0C       		.uleb128 0xc
+ 1083 0097 34       		.uleb128 0x34
+ 1084 0098 00       		.byte	0
+ 1085 0099 03       		.uleb128 0x3
+ 1086 009a 0E       		.uleb128 0xe
+ 1087 009b 3A       		.uleb128 0x3a
+ 1088 009c 0B       		.uleb128 0xb
+ 1089 009d 3B       		.uleb128 0x3b
+ 1090 009e 0B       		.uleb128 0xb
+ 1091 009f 49       		.uleb128 0x49
+ 1092 00a0 13       		.uleb128 0x13
+ 1093 00a1 00       		.byte	0
+ 1094 00a2 00       		.byte	0
+ 1095 00a3 0D       		.uleb128 0xd
+ 1096 00a4 2E       		.uleb128 0x2e
+ 1097 00a5 01       		.byte	0x1
+ 1098 00a6 3F       		.uleb128 0x3f
+ 1099 00a7 19       		.uleb128 0x19
+ 1100 00a8 03       		.uleb128 0x3
+ 1101 00a9 0E       		.uleb128 0xe
+ 1102 00aa 3A       		.uleb128 0x3a
+ 1103 00ab 0B       		.uleb128 0xb
+ 1104 00ac 3B       		.uleb128 0x3b
+ 1105 00ad 0B       		.uleb128 0xb
+ 1106 00ae 27       		.uleb128 0x27
+ 1107 00af 19       		.uleb128 0x19
+ 1108 00b0 11       		.uleb128 0x11
+ 1109 00b1 01       		.uleb128 0x1
+ 1110 00b2 12       		.uleb128 0x12
+ 1111 00b3 06       		.uleb128 0x6
+ 1112 00b4 40       		.uleb128 0x40
+ 1113 00b5 18       		.uleb128 0x18
+ 1114 00b6 9742     		.uleb128 0x2117
+ 1115 00b8 19       		.uleb128 0x19
+ 1116 00b9 01       		.uleb128 0x1
+ 1117 00ba 13       		.uleb128 0x13
+ 1118 00bb 00       		.byte	0
+ 1119 00bc 00       		.byte	0
+ 1120 00bd 0E       		.uleb128 0xe
+ 1121 00be 1D       		.uleb128 0x1d
+ 1122 00bf 00       		.byte	0
+ 1123 00c0 31       		.uleb128 0x31
+ 1124 00c1 13       		.uleb128 0x13
+ 1125 00c2 52       		.uleb128 0x52
+ 1126 00c3 01       		.uleb128 0x1
+ 1127 00c4 55       		.uleb128 0x55
+ 1128 00c5 17       		.uleb128 0x17
+ 1129 00c6 58       		.uleb128 0x58
+ 1130 00c7 0B       		.uleb128 0xb
+ 1131 00c8 59       		.uleb128 0x59
+ 1132 00c9 0B       		.uleb128 0xb
+ 1133 00ca 00       		.byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 29
 
 
- 1138 0024 18000000 		.4byte	.LFE3-.LFB3
- 1139 0028 00000000 		.4byte	.LFB4
- 1140 002c 08000000 		.4byte	.LFE4-.LFB4
- 1141 0030 00000000 		.4byte	.LFB5
- 1142 0034 18000000 		.4byte	.LFE5-.LFB5
- 1143 0038 00000000 		.4byte	.LFB6
- 1144 003c 14000000 		.4byte	.LFE6-.LFB6
- 1145 0040 00000000 		.4byte	.LFB7
- 1146 0044 4C000000 		.4byte	.LFE7-.LFB7
- 1147 0048 00000000 		.4byte	.LFB8
- 1148 004c 2C000000 		.4byte	.LFE8-.LFB8
- 1149 0050 00000000 		.4byte	.LFB9
- 1150 0054 14000000 		.4byte	.LFE9-.LFB9
- 1151 0058 00000000 		.4byte	.LFB10
- 1152 005c 1C000000 		.4byte	.LFE10-.LFB10
- 1153 0060 00000000 		.4byte	.LFB11
- 1154 0064 14000000 		.4byte	.LFE11-.LFB11
- 1155 0068 00000000 		.4byte	.LFB12
- 1156 006c 14000000 		.4byte	.LFE12-.LFB12
- 1157 0070 00000000 		.4byte	.LFB13
- 1158 0074 14000000 		.4byte	.LFE13-.LFB13
- 1159 0078 00000000 		.4byte	0
- 1160 007c 00000000 		.4byte	0
- 1161              		.section	.debug_ranges,"",%progbits
- 1162              	.Ldebug_ranges0:
- 1163 0000 00000000 		.4byte	.LFB1
- 1164 0004 24000000 		.4byte	.LFE1
- 1165 0008 00000000 		.4byte	.LFB2
- 1166 000c 24000000 		.4byte	.LFE2
- 1167 0010 00000000 		.4byte	.LFB3
- 1168 0014 18000000 		.4byte	.LFE3
- 1169 0018 00000000 		.4byte	.LFB4
- 1170 001c 08000000 		.4byte	.LFE4
- 1171 0020 00000000 		.4byte	.LFB5
- 1172 0024 18000000 		.4byte	.LFE5
- 1173 0028 00000000 		.4byte	.LFB6
- 1174 002c 14000000 		.4byte	.LFE6
- 1175 0030 00000000 		.4byte	.LFB7
- 1176 0034 4C000000 		.4byte	.LFE7
- 1177 0038 00000000 		.4byte	.LFB8
- 1178 003c 2C000000 		.4byte	.LFE8
- 1179 0040 00000000 		.4byte	.LFB9
- 1180 0044 14000000 		.4byte	.LFE9
- 1181 0048 00000000 		.4byte	.LFB10
- 1182 004c 1C000000 		.4byte	.LFE10
- 1183 0050 00000000 		.4byte	.LFB11
- 1184 0054 14000000 		.4byte	.LFE11
- 1185 0058 00000000 		.4byte	.LFB12
- 1186 005c 14000000 		.4byte	.LFE12
- 1187 0060 00000000 		.4byte	.LFB13
- 1188 0064 14000000 		.4byte	.LFE13
- 1189 0068 00000000 		.4byte	0
- 1190 006c 00000000 		.4byte	0
- 1191              		.section	.debug_line,"",%progbits
- 1192              	.Ldebug_line0:
- 1193 0000 4E010000 		.section	.debug_str,"MS",%progbits,1
- 1193      02005000 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 29
+ 1134 00cb 00       		.byte	0
+ 1135 00cc 0F       		.uleb128 0xf
+ 1136 00cd 1D       		.uleb128 0x1d
+ 1137 00ce 01       		.byte	0x1
+ 1138 00cf 31       		.uleb128 0x31
+ 1139 00d0 13       		.uleb128 0x13
+ 1140 00d1 52       		.uleb128 0x52
+ 1141 00d2 01       		.uleb128 0x1
+ 1142 00d3 55       		.uleb128 0x55
+ 1143 00d4 17       		.uleb128 0x17
+ 1144 00d5 58       		.uleb128 0x58
+ 1145 00d6 0B       		.uleb128 0xb
+ 1146 00d7 59       		.uleb128 0x59
+ 1147 00d8 0B       		.uleb128 0xb
+ 1148 00d9 01       		.uleb128 0x1
+ 1149 00da 13       		.uleb128 0x13
+ 1150 00db 00       		.byte	0
+ 1151 00dc 00       		.byte	0
+ 1152 00dd 10       		.uleb128 0x10
+ 1153 00de 05       		.uleb128 0x5
+ 1154 00df 00       		.byte	0
+ 1155 00e0 31       		.uleb128 0x31
+ 1156 00e1 13       		.uleb128 0x13
+ 1157 00e2 02       		.uleb128 0x2
+ 1158 00e3 18       		.uleb128 0x18
+ 1159 00e4 00       		.byte	0
+ 1160 00e5 00       		.byte	0
+ 1161 00e6 11       		.uleb128 0x11
+ 1162 00e7 1D       		.uleb128 0x1d
+ 1163 00e8 01       		.byte	0x1
+ 1164 00e9 31       		.uleb128 0x31
+ 1165 00ea 13       		.uleb128 0x13
+ 1166 00eb 11       		.uleb128 0x11
+ 1167 00ec 01       		.uleb128 0x1
+ 1168 00ed 12       		.uleb128 0x12
+ 1169 00ee 06       		.uleb128 0x6
+ 1170 00ef 58       		.uleb128 0x58
+ 1171 00f0 0B       		.uleb128 0xb
+ 1172 00f1 59       		.uleb128 0x59
+ 1173 00f2 0B       		.uleb128 0xb
+ 1174 00f3 01       		.uleb128 0x1
+ 1175 00f4 13       		.uleb128 0x13
+ 1176 00f5 00       		.byte	0
+ 1177 00f6 00       		.byte	0
+ 1178 00f7 12       		.uleb128 0x12
+ 1179 00f8 05       		.uleb128 0x5
+ 1180 00f9 00       		.byte	0
+ 1181 00fa 31       		.uleb128 0x31
+ 1182 00fb 13       		.uleb128 0x13
+ 1183 00fc 1C       		.uleb128 0x1c
+ 1184 00fd 0B       		.uleb128 0xb
+ 1185 00fe 00       		.byte	0
+ 1186 00ff 00       		.byte	0
+ 1187 0100 13       		.uleb128 0x13
+ 1188 0101 0B       		.uleb128 0xb
+ 1189 0102 01       		.byte	0x1
+ 1190 0103 11       		.uleb128 0x11
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 30
 
 
- 1193      00000201 
- 1193      FB0E0D00 
- 1193      01010101 
- 1194              	.LASF14:
- 1195 0000 72656733 		.ascii	"reg32\000"
- 1195      3200
- 1196              	.LASF31:
- 1197 0006 6D6F6462 		.ascii	"modbus_rx_interrupt_SetPending\000"
- 1197      75735F72 
- 1197      785F696E 
- 1197      74657272 
- 1197      7570745F 
- 1198              	.LASF37:
- 1199 0025 43795261 		.ascii	"CyRamVectors\000"
- 1199      6D566563 
- 1199      746F7273 
- 1199      00
- 1200              	.LASF17:
- 1201 0032 6D6F6462 		.ascii	"modbus_rx_interrupt_Start\000"
- 1201      75735F72 
- 1201      785F696E 
- 1201      74657272 
- 1201      7570745F 
- 1202              	.LASF27:
- 1203 004c 6D6F6462 		.ascii	"modbus_rx_interrupt_Enable\000"
- 1203      75735F72 
- 1203      785F696E 
- 1203      74657272 
- 1203      7570745F 
- 1204              	.LASF3:
- 1205 0067 73686F72 		.ascii	"short unsigned int\000"
- 1205      7420756E 
- 1205      7369676E 
- 1205      65642069 
- 1205      6E7400
- 1206              	.LASF30:
- 1207 007a 6D6F6462 		.ascii	"modbus_rx_interrupt_Disable\000"
- 1207      75735F72 
- 1207      785F696E 
- 1207      74657272 
- 1207      7570745F 
- 1208              	.LASF11:
- 1209 0096 666C6F61 		.ascii	"float\000"
- 1209      7400
- 1210              	.LASF28:
- 1211 009c 6D6F6462 		.ascii	"modbus_rx_interrupt_GetVector\000"
- 1211      75735F72 
- 1211      785F696E 
- 1211      74657272 
- 1211      7570745F 
- 1212              	.LASF1:
- 1213 00ba 756E7369 		.ascii	"unsigned char\000"
- 1213      676E6564 
- 1213      20636861 
- 1213      7200
- 1214              	.LASF19:
- 1215 00c8 6D6F6462 		.ascii	"modbus_rx_interrupt_Interrupt\000"
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 30
+ 1191 0104 01       		.uleb128 0x1
+ 1192 0105 12       		.uleb128 0x12
+ 1193 0106 06       		.uleb128 0x6
+ 1194 0107 00       		.byte	0
+ 1195 0108 00       		.byte	0
+ 1196 0109 14       		.uleb128 0x14
+ 1197 010a 34       		.uleb128 0x34
+ 1198 010b 00       		.byte	0
+ 1199 010c 31       		.uleb128 0x31
+ 1200 010d 13       		.uleb128 0x13
+ 1201 010e 02       		.uleb128 0x2
+ 1202 010f 17       		.uleb128 0x17
+ 1203 0110 00       		.byte	0
+ 1204 0111 00       		.byte	0
+ 1205 0112 15       		.uleb128 0x15
+ 1206 0113 34       		.uleb128 0x34
+ 1207 0114 00       		.byte	0
+ 1208 0115 31       		.uleb128 0x31
+ 1209 0116 13       		.uleb128 0x13
+ 1210 0117 1C       		.uleb128 0x1c
+ 1211 0118 0B       		.uleb128 0xb
+ 1212 0119 00       		.byte	0
+ 1213 011a 00       		.byte	0
+ 1214 011b 16       		.uleb128 0x16
+ 1215 011c 898201   		.uleb128 0x4109
+ 1216 011f 00       		.byte	0
+ 1217 0120 11       		.uleb128 0x11
+ 1218 0121 01       		.uleb128 0x1
+ 1219 0122 31       		.uleb128 0x31
+ 1220 0123 13       		.uleb128 0x13
+ 1221 0124 00       		.byte	0
+ 1222 0125 00       		.byte	0
+ 1223 0126 17       		.uleb128 0x17
+ 1224 0127 1D       		.uleb128 0x1d
+ 1225 0128 00       		.byte	0
+ 1226 0129 31       		.uleb128 0x31
+ 1227 012a 13       		.uleb128 0x13
+ 1228 012b 11       		.uleb128 0x11
+ 1229 012c 01       		.uleb128 0x1
+ 1230 012d 12       		.uleb128 0x12
+ 1231 012e 06       		.uleb128 0x6
+ 1232 012f 58       		.uleb128 0x58
+ 1233 0130 0B       		.uleb128 0xb
+ 1234 0131 59       		.uleb128 0x59
+ 1235 0132 0B       		.uleb128 0xb
+ 1236 0133 00       		.byte	0
+ 1237 0134 00       		.byte	0
+ 1238 0135 18       		.uleb128 0x18
+ 1239 0136 05       		.uleb128 0x5
+ 1240 0137 00       		.byte	0
+ 1241 0138 03       		.uleb128 0x3
+ 1242 0139 0E       		.uleb128 0xe
+ 1243 013a 3A       		.uleb128 0x3a
+ 1244 013b 0B       		.uleb128 0xb
+ 1245 013c 3B       		.uleb128 0x3b
+ 1246 013d 0B       		.uleb128 0xb
+ 1247 013e 49       		.uleb128 0x49
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 31
 
 
- 1215      75735F72 
- 1215      785F696E 
- 1215      74657272 
- 1215      7570745F 
- 1216              	.LASF36:
- 1217 00e6 6D6F6462 		.ascii	"modbus_rx_interrupt_GetPriority\000"
- 1217      75735F72 
- 1217      785F696E 
- 1217      74657272 
- 1217      7570745F 
- 1218              	.LASF5:
- 1219 0106 6C6F6E67 		.ascii	"long unsigned int\000"
- 1219      20756E73 
- 1219      69676E65 
- 1219      6420696E 
- 1219      7400
- 1220              	.LASF9:
- 1221 0118 75696E74 		.ascii	"uint8\000"
- 1221      3800
- 1222              	.LASF24:
- 1223 011e 7072696F 		.ascii	"priority\000"
- 1223      72697479 
- 1223      00
- 1224              	.LASF12:
- 1225 0127 646F7562 		.ascii	"double\000"
- 1225      6C6500
- 1226              	.LASF33:
- 1227 012e 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 1227      4320342E 
- 1227      392E3320 
- 1227      32303135 
- 1227      30333033 
- 1228 0161 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
- 1228      20726576 
- 1228      6973696F 
- 1228      6E203232 
- 1228      31323230 
- 1229 0194 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
- 1229      66756E63 
- 1229      74696F6E 
- 1229      2D736563 
- 1229      74696F6E 
- 1230              	.LASF10:
- 1231 01bc 75696E74 		.ascii	"uint32\000"
- 1231      333200
- 1232              	.LASF20:
- 1233 01c3 6D6F6462 		.ascii	"modbus_rx_interrupt_StartEx\000"
- 1233      75735F72 
- 1233      785F696E 
- 1233      74657272 
- 1233      7570745F 
- 1234              	.LASF8:
- 1235 01df 756E7369 		.ascii	"unsigned int\000"
- 1235      676E6564 
- 1235      20696E74 
- 1235      00
- 1236              	.LASF22:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 31
+ 1248 013f 13       		.uleb128 0x13
+ 1249 0140 02       		.uleb128 0x2
+ 1250 0141 17       		.uleb128 0x17
+ 1251 0142 00       		.byte	0
+ 1252 0143 00       		.byte	0
+ 1253 0144 19       		.uleb128 0x19
+ 1254 0145 05       		.uleb128 0x5
+ 1255 0146 00       		.byte	0
+ 1256 0147 31       		.uleb128 0x31
+ 1257 0148 13       		.uleb128 0x13
+ 1258 0149 02       		.uleb128 0x2
+ 1259 014a 17       		.uleb128 0x17
+ 1260 014b 00       		.byte	0
+ 1261 014c 00       		.byte	0
+ 1262 014d 1A       		.uleb128 0x1a
+ 1263 014e 1D       		.uleb128 0x1d
+ 1264 014f 01       		.byte	0x1
+ 1265 0150 31       		.uleb128 0x31
+ 1266 0151 13       		.uleb128 0x13
+ 1267 0152 11       		.uleb128 0x11
+ 1268 0153 01       		.uleb128 0x1
+ 1269 0154 12       		.uleb128 0x12
+ 1270 0155 06       		.uleb128 0x6
+ 1271 0156 58       		.uleb128 0x58
+ 1272 0157 0B       		.uleb128 0xb
+ 1273 0158 59       		.uleb128 0x59
+ 1274 0159 0B       		.uleb128 0xb
+ 1275 015a 00       		.byte	0
+ 1276 015b 00       		.byte	0
+ 1277 015c 1B       		.uleb128 0x1b
+ 1278 015d 05       		.uleb128 0x5
+ 1279 015e 00       		.byte	0
+ 1280 015f 31       		.uleb128 0x31
+ 1281 0160 13       		.uleb128 0x13
+ 1282 0161 00       		.byte	0
+ 1283 0162 00       		.byte	0
+ 1284 0163 1C       		.uleb128 0x1c
+ 1285 0164 2E       		.uleb128 0x2e
+ 1286 0165 01       		.byte	0x1
+ 1287 0166 31       		.uleb128 0x31
+ 1288 0167 13       		.uleb128 0x13
+ 1289 0168 11       		.uleb128 0x11
+ 1290 0169 01       		.uleb128 0x1
+ 1291 016a 12       		.uleb128 0x12
+ 1292 016b 06       		.uleb128 0x6
+ 1293 016c 40       		.uleb128 0x40
+ 1294 016d 18       		.uleb128 0x18
+ 1295 016e 9742     		.uleb128 0x2117
+ 1296 0170 19       		.uleb128 0x19
+ 1297 0171 01       		.uleb128 0x1
+ 1298 0172 13       		.uleb128 0x13
+ 1299 0173 00       		.byte	0
+ 1300 0174 00       		.byte	0
+ 1301 0175 1D       		.uleb128 0x1d
+ 1302 0176 2E       		.uleb128 0x2e
+ 1303 0177 00       		.byte	0
+ 1304 0178 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 32
 
 
- 1237 01ec 61646472 		.ascii	"address\000"
- 1237      65737300 
- 1238              	.LASF7:
- 1239 01f4 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1239      206C6F6E 
- 1239      6720756E 
- 1239      7369676E 
- 1239      65642069 
- 1240              	.LASF15:
- 1241 020b 63796973 		.ascii	"cyisraddress\000"
- 1241      72616464 
- 1241      72657373 
- 1241      00
- 1242              	.LASF23:
- 1243 0218 6D6F6462 		.ascii	"modbus_rx_interrupt_SetPriority\000"
- 1243      75735F72 
- 1243      785F696E 
- 1243      74657272 
- 1243      7570745F 
- 1244              	.LASF25:
- 1245 0238 696E7465 		.ascii	"interruptState\000"
- 1245      72727570 
- 1245      74537461 
- 1245      746500
- 1246              	.LASF32:
- 1247 0247 6D6F6462 		.ascii	"modbus_rx_interrupt_ClearPending\000"
- 1247      75735F72 
- 1247      785F696E 
- 1247      74657272 
- 1247      7570745F 
- 1248              	.LASF16:
- 1249 0268 73697A65 		.ascii	"sizetype\000"
- 1249      74797065 
- 1249      00
- 1250              	.LASF6:
- 1251 0271 6C6F6E67 		.ascii	"long long int\000"
- 1251      206C6F6E 
- 1251      6720696E 
- 1251      7400
- 1252              	.LASF29:
- 1253 027f 6D6F6462 		.ascii	"modbus_rx_interrupt_GetState\000"
- 1253      75735F72 
- 1253      785F696E 
- 1253      74657272 
- 1253      7570745F 
- 1254              	.LASF13:
- 1255 029c 63686172 		.ascii	"char\000"
- 1255      00
- 1256              	.LASF2:
- 1257 02a1 73686F72 		.ascii	"short int\000"
- 1257      7420696E 
- 1257      7400
- 1258              	.LASF18:
- 1259 02ab 6D6F6462 		.ascii	"modbus_rx_interrupt_Stop\000"
- 1259      75735F72 
- 1259      785F696E 
- 1259      74657272 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccbr3Zkw.s 			page 32
+ 1305 0179 19       		.uleb128 0x19
+ 1306 017a 03       		.uleb128 0x3
+ 1307 017b 0E       		.uleb128 0xe
+ 1308 017c 3A       		.uleb128 0x3a
+ 1309 017d 0B       		.uleb128 0xb
+ 1310 017e 3B       		.uleb128 0x3b
+ 1311 017f 0B       		.uleb128 0xb
+ 1312 0180 27       		.uleb128 0x27
+ 1313 0181 19       		.uleb128 0x19
+ 1314 0182 49       		.uleb128 0x49
+ 1315 0183 13       		.uleb128 0x13
+ 1316 0184 11       		.uleb128 0x11
+ 1317 0185 01       		.uleb128 0x1
+ 1318 0186 12       		.uleb128 0x12
+ 1319 0187 06       		.uleb128 0x6
+ 1320 0188 40       		.uleb128 0x40
+ 1321 0189 18       		.uleb128 0x18
+ 1322 018a 9742     		.uleb128 0x2117
+ 1323 018c 19       		.uleb128 0x19
+ 1324 018d 00       		.byte	0
+ 1325 018e 00       		.byte	0
+ 1326 018f 1E       		.uleb128 0x1e
+ 1327 0190 2E       		.uleb128 0x2e
+ 1328 0191 01       		.byte	0x1
+ 1329 0192 3F       		.uleb128 0x3f
+ 1330 0193 19       		.uleb128 0x19
+ 1331 0194 03       		.uleb128 0x3
+ 1332 0195 0E       		.uleb128 0xe
+ 1333 0196 3A       		.uleb128 0x3a
+ 1334 0197 0B       		.uleb128 0xb
+ 1335 0198 3B       		.uleb128 0x3b
+ 1336 0199 05       		.uleb128 0x5
+ 1337 019a 27       		.uleb128 0x27
+ 1338 019b 19       		.uleb128 0x19
+ 1339 019c 49       		.uleb128 0x49
+ 1340 019d 13       		.uleb128 0x13
+ 1341 019e 11       		.uleb128 0x11
+ 1342 019f 01       		.uleb128 0x1
+ 1343 01a0 12       		.uleb128 0x12
+ 1344 01a1 06       		.uleb128 0x6
+ 1345 01a2 40       		.uleb128 0x40
+ 1346 01a3 18       		.uleb128 0x18
+ 1347 01a4 9742     		.uleb128 0x2117
+ 1348 01a6 19       		.uleb128 0x19
+ 1349 01a7 01       		.uleb128 0x1
+ 1350 01a8 13       		.uleb128 0x13
+ 1351 01a9 00       		.byte	0
+ 1352 01aa 00       		.byte	0
+ 1353 01ab 1F       		.uleb128 0x1f
+ 1354 01ac 34       		.uleb128 0x34
+ 1355 01ad 00       		.byte	0
+ 1356 01ae 03       		.uleb128 0x3
+ 1357 01af 0E       		.uleb128 0xe
+ 1358 01b0 3A       		.uleb128 0x3a
+ 1359 01b1 0B       		.uleb128 0xb
+ 1360 01b2 3B       		.uleb128 0x3b
+ 1361 01b3 05       		.uleb128 0x5
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 33
 
 
- 1259      7570745F 
- 1260              	.LASF26:
- 1261 02c4 7072696F 		.ascii	"priorityOffset\000"
- 1261      72697479 
- 1261      4F666673 
- 1261      657400
- 1262              	.LASF4:
- 1263 02d3 6C6F6E67 		.ascii	"long int\000"
- 1263      20696E74 
- 1263      00
- 1264              	.LASF34:
- 1265 02dc 47656E65 		.ascii	"Generated_Source\\PSoC4\\modbus_rx_interrupt.c\000"
- 1265      72617465 
- 1265      645F536F 
- 1265      75726365 
- 1265      5C50536F 
- 1266              	.LASF35:
- 1267 0309 433A5C55 		.ascii	"C:\\Users\\glenn\\OneDrive\\PSOC\\moisture_sensor_4"
- 1267      73657273 
- 1267      5C676C65 
- 1267      6E6E5C4F 
- 1267      6E654472 
- 1268 0337 6D5C4D6F 		.ascii	"m\\Moisture_Sensor\\Moisture_Sensor.cydsn\000"
- 1268      69737475 
- 1268      72655F53 
- 1268      656E736F 
- 1268      725C4D6F 
- 1269              	.LASF0:
- 1270 035f 7369676E 		.ascii	"signed char\000"
- 1270      65642063 
- 1270      68617200 
- 1271              	.LASF21:
- 1272 036b 6D6F6462 		.ascii	"modbus_rx_interrupt_SetVector\000"
- 1272      75735F72 
- 1272      785F696E 
- 1272      74657272 
- 1272      7570745F 
- 1273              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ 1362 01b4 49       		.uleb128 0x49
+ 1363 01b5 13       		.uleb128 0x13
+ 1364 01b6 02       		.uleb128 0x2
+ 1365 01b7 17       		.uleb128 0x17
+ 1366 01b8 00       		.byte	0
+ 1367 01b9 00       		.byte	0
+ 1368 01ba 20       		.uleb128 0x20
+ 1369 01bb 34       		.uleb128 0x34
+ 1370 01bc 00       		.byte	0
+ 1371 01bd 03       		.uleb128 0x3
+ 1372 01be 0E       		.uleb128 0xe
+ 1373 01bf 3A       		.uleb128 0x3a
+ 1374 01c0 0B       		.uleb128 0xb
+ 1375 01c1 3B       		.uleb128 0x3b
+ 1376 01c2 05       		.uleb128 0x5
+ 1377 01c3 49       		.uleb128 0x49
+ 1378 01c4 13       		.uleb128 0x13
+ 1379 01c5 1C       		.uleb128 0x1c
+ 1380 01c6 0B       		.uleb128 0xb
+ 1381 01c7 00       		.byte	0
+ 1382 01c8 00       		.byte	0
+ 1383 01c9 21       		.uleb128 0x21
+ 1384 01ca 2E       		.uleb128 0x2e
+ 1385 01cb 00       		.byte	0
+ 1386 01cc 31       		.uleb128 0x31
+ 1387 01cd 13       		.uleb128 0x13
+ 1388 01ce 11       		.uleb128 0x11
+ 1389 01cf 01       		.uleb128 0x1
+ 1390 01d0 12       		.uleb128 0x12
+ 1391 01d1 06       		.uleb128 0x6
+ 1392 01d2 40       		.uleb128 0x40
+ 1393 01d3 18       		.uleb128 0x18
+ 1394 01d4 9742     		.uleb128 0x2117
+ 1395 01d6 19       		.uleb128 0x19
+ 1396 01d7 00       		.byte	0
+ 1397 01d8 00       		.byte	0
+ 1398 01d9 22       		.uleb128 0x22
+ 1399 01da 2E       		.uleb128 0x2e
+ 1400 01db 00       		.byte	0
+ 1401 01dc 3F       		.uleb128 0x3f
+ 1402 01dd 19       		.uleb128 0x19
+ 1403 01de 03       		.uleb128 0x3
+ 1404 01df 0E       		.uleb128 0xe
+ 1405 01e0 3A       		.uleb128 0x3a
+ 1406 01e1 0B       		.uleb128 0xb
+ 1407 01e2 3B       		.uleb128 0x3b
+ 1408 01e3 05       		.uleb128 0x5
+ 1409 01e4 27       		.uleb128 0x27
+ 1410 01e5 19       		.uleb128 0x19
+ 1411 01e6 49       		.uleb128 0x49
+ 1412 01e7 13       		.uleb128 0x13
+ 1413 01e8 11       		.uleb128 0x11
+ 1414 01e9 01       		.uleb128 0x1
+ 1415 01ea 12       		.uleb128 0x12
+ 1416 01eb 06       		.uleb128 0x6
+ 1417 01ec 40       		.uleb128 0x40
+ 1418 01ed 18       		.uleb128 0x18
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 34
+
+
+ 1419 01ee 9742     		.uleb128 0x2117
+ 1420 01f0 19       		.uleb128 0x19
+ 1421 01f1 00       		.byte	0
+ 1422 01f2 00       		.byte	0
+ 1423 01f3 23       		.uleb128 0x23
+ 1424 01f4 2E       		.uleb128 0x2e
+ 1425 01f5 00       		.byte	0
+ 1426 01f6 3F       		.uleb128 0x3f
+ 1427 01f7 19       		.uleb128 0x19
+ 1428 01f8 03       		.uleb128 0x3
+ 1429 01f9 0E       		.uleb128 0xe
+ 1430 01fa 3A       		.uleb128 0x3a
+ 1431 01fb 0B       		.uleb128 0xb
+ 1432 01fc 3B       		.uleb128 0x3b
+ 1433 01fd 05       		.uleb128 0x5
+ 1434 01fe 27       		.uleb128 0x27
+ 1435 01ff 19       		.uleb128 0x19
+ 1436 0200 11       		.uleb128 0x11
+ 1437 0201 01       		.uleb128 0x1
+ 1438 0202 12       		.uleb128 0x12
+ 1439 0203 06       		.uleb128 0x6
+ 1440 0204 40       		.uleb128 0x40
+ 1441 0205 18       		.uleb128 0x18
+ 1442 0206 9742     		.uleb128 0x2117
+ 1443 0208 19       		.uleb128 0x19
+ 1444 0209 00       		.byte	0
+ 1445 020a 00       		.byte	0
+ 1446 020b 24       		.uleb128 0x24
+ 1447 020c 01       		.uleb128 0x1
+ 1448 020d 01       		.byte	0x1
+ 1449 020e 49       		.uleb128 0x49
+ 1450 020f 13       		.uleb128 0x13
+ 1451 0210 01       		.uleb128 0x1
+ 1452 0211 13       		.uleb128 0x13
+ 1453 0212 00       		.byte	0
+ 1454 0213 00       		.byte	0
+ 1455 0214 25       		.uleb128 0x25
+ 1456 0215 21       		.uleb128 0x21
+ 1457 0216 00       		.byte	0
+ 1458 0217 49       		.uleb128 0x49
+ 1459 0218 13       		.uleb128 0x13
+ 1460 0219 2F       		.uleb128 0x2f
+ 1461 021a 0B       		.uleb128 0xb
+ 1462 021b 00       		.byte	0
+ 1463 021c 00       		.byte	0
+ 1464 021d 26       		.uleb128 0x26
+ 1465 021e 34       		.uleb128 0x34
+ 1466 021f 00       		.byte	0
+ 1467 0220 03       		.uleb128 0x3
+ 1468 0221 0E       		.uleb128 0xe
+ 1469 0222 3A       		.uleb128 0x3a
+ 1470 0223 0B       		.uleb128 0xb
+ 1471 0224 3B       		.uleb128 0x3b
+ 1472 0225 0B       		.uleb128 0xb
+ 1473 0226 49       		.uleb128 0x49
+ 1474 0227 13       		.uleb128 0x13
+ 1475 0228 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 35
+
+
+ 1476 0229 19       		.uleb128 0x19
+ 1477 022a 3C       		.uleb128 0x3c
+ 1478 022b 19       		.uleb128 0x19
+ 1479 022c 00       		.byte	0
+ 1480 022d 00       		.byte	0
+ 1481 022e 27       		.uleb128 0x27
+ 1482 022f 2E       		.uleb128 0x2e
+ 1483 0230 00       		.byte	0
+ 1484 0231 3F       		.uleb128 0x3f
+ 1485 0232 19       		.uleb128 0x19
+ 1486 0233 03       		.uleb128 0x3
+ 1487 0234 0E       		.uleb128 0xe
+ 1488 0235 3A       		.uleb128 0x3a
+ 1489 0236 0B       		.uleb128 0xb
+ 1490 0237 3B       		.uleb128 0x3b
+ 1491 0238 0B       		.uleb128 0xb
+ 1492 0239 27       		.uleb128 0x27
+ 1493 023a 19       		.uleb128 0x19
+ 1494 023b 49       		.uleb128 0x49
+ 1495 023c 13       		.uleb128 0x13
+ 1496 023d 3C       		.uleb128 0x3c
+ 1497 023e 19       		.uleb128 0x19
+ 1498 023f 00       		.byte	0
+ 1499 0240 00       		.byte	0
+ 1500 0241 28       		.uleb128 0x28
+ 1501 0242 2E       		.uleb128 0x2e
+ 1502 0243 01       		.byte	0x1
+ 1503 0244 3F       		.uleb128 0x3f
+ 1504 0245 19       		.uleb128 0x19
+ 1505 0246 03       		.uleb128 0x3
+ 1506 0247 0E       		.uleb128 0xe
+ 1507 0248 3A       		.uleb128 0x3a
+ 1508 0249 0B       		.uleb128 0xb
+ 1509 024a 3B       		.uleb128 0x3b
+ 1510 024b 0B       		.uleb128 0xb
+ 1511 024c 27       		.uleb128 0x27
+ 1512 024d 19       		.uleb128 0x19
+ 1513 024e 3C       		.uleb128 0x3c
+ 1514 024f 19       		.uleb128 0x19
+ 1515 0250 00       		.byte	0
+ 1516 0251 00       		.byte	0
+ 1517 0252 29       		.uleb128 0x29
+ 1518 0253 05       		.uleb128 0x5
+ 1519 0254 00       		.byte	0
+ 1520 0255 49       		.uleb128 0x49
+ 1521 0256 13       		.uleb128 0x13
+ 1522 0257 00       		.byte	0
+ 1523 0258 00       		.byte	0
+ 1524 0259 00       		.byte	0
+ 1525              		.section	.debug_loc,"",%progbits
+ 1526              	.Ldebug_loc0:
+ 1527              	.LLST0:
+ 1528 0000 12000000 		.4byte	.LVL2
+ 1529 0004 1F000000 		.4byte	.LVL3-1
+ 1530 0008 0100     		.2byte	0x1
+ 1531 000a 50       		.byte	0x50
+ 1532 000b 00000000 		.4byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 36
+
+
+ 1533 000f 00000000 		.4byte	0
+ 1534              	.LLST1:
+ 1535 0013 00000000 		.4byte	.LVL4
+ 1536 0017 0F000000 		.4byte	.LVL7-1
+ 1537 001b 0100     		.2byte	0x1
+ 1538 001d 50       		.byte	0x50
+ 1539 001e 0F000000 		.4byte	.LVL7-1
+ 1540 0022 34000000 		.4byte	.LFE2
+ 1541 0026 0400     		.2byte	0x4
+ 1542 0028 F3       		.byte	0xf3
+ 1543 0029 01       		.uleb128 0x1
+ 1544 002a 50       		.byte	0x50
+ 1545 002b 9F       		.byte	0x9f
+ 1546 002c 00000000 		.4byte	0
+ 1547 0030 00000000 		.4byte	0
+ 1548              	.LLST2:
+ 1549 0034 08000000 		.4byte	.LVL5
+ 1550 0038 0F000000 		.4byte	.LVL7-1
+ 1551 003c 0100     		.2byte	0x1
+ 1552 003e 50       		.byte	0x50
+ 1553 003f 0F000000 		.4byte	.LVL7-1
+ 1554 0043 34000000 		.4byte	.LFE2
+ 1555 0047 0400     		.2byte	0x4
+ 1556 0049 F3       		.byte	0xf3
+ 1557 004a 01       		.uleb128 0x1
+ 1558 004b 50       		.byte	0x50
+ 1559 004c 9F       		.byte	0x9f
+ 1560 004d 00000000 		.4byte	0
+ 1561 0051 00000000 		.4byte	0
+ 1562              	.LLST3:
+ 1563 0055 10000000 		.4byte	.LVL7
+ 1564 0059 1D000000 		.4byte	.LVL8-1
+ 1565 005d 0100     		.2byte	0x1
+ 1566 005f 50       		.byte	0x50
+ 1567 0060 00000000 		.4byte	0
+ 1568 0064 00000000 		.4byte	0
+ 1569              	.LLST4:
+ 1570 0068 00000000 		.4byte	.LVL11
+ 1571 006c 07000000 		.4byte	.LVL12-1
+ 1572 0070 0100     		.2byte	0x1
+ 1573 0072 50       		.byte	0x50
+ 1574 0073 07000000 		.4byte	.LVL12-1
+ 1575 0077 20000000 		.4byte	.LFE7
+ 1576 007b 0400     		.2byte	0x4
+ 1577 007d F3       		.byte	0xf3
+ 1578 007e 01       		.uleb128 0x1
+ 1579 007f 50       		.byte	0x50
+ 1580 0080 9F       		.byte	0x9f
+ 1581 0081 00000000 		.4byte	0
+ 1582 0085 00000000 		.4byte	0
+ 1583              	.LLST5:
+ 1584 0089 08000000 		.4byte	.LVL12
+ 1585 008d 19000000 		.4byte	.LVL13-1
+ 1586 0091 0100     		.2byte	0x1
+ 1587 0093 50       		.byte	0x50
+ 1588 0094 00000000 		.4byte	0
+ 1589 0098 00000000 		.4byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 37
+
+
+ 1590              	.LLST6:
+ 1591 009c 04000000 		.4byte	.LVL15
+ 1592 00a0 06000000 		.4byte	.LVL16
+ 1593 00a4 0800     		.2byte	0x8
+ 1594 00a6 70       		.byte	0x70
+ 1595 00a7 00       		.sleb128 0
+ 1596 00a8 08       		.byte	0x8
+ 1597 00a9 C0       		.byte	0xc0
+ 1598 00aa 1A       		.byte	0x1a
+ 1599 00ab 36       		.byte	0x36
+ 1600 00ac 25       		.byte	0x25
+ 1601 00ad 9F       		.byte	0x9f
+ 1602 00ae 00000000 		.4byte	0
+ 1603 00b2 00000000 		.4byte	0
+ 1604              		.section	.debug_aranges,"",%progbits
+ 1605 0000 7C000000 		.4byte	0x7c
+ 1606 0004 0200     		.2byte	0x2
+ 1607 0006 00000000 		.4byte	.Ldebug_info0
+ 1608 000a 04       		.byte	0x4
+ 1609 000b 00       		.byte	0
+ 1610 000c 0000     		.2byte	0
+ 1611 000e 0000     		.2byte	0
+ 1612 0010 00000000 		.4byte	.LFB4
+ 1613 0014 02000000 		.4byte	.LFE4-.LFB4
+ 1614 0018 00000000 		.4byte	.LFB1
+ 1615 001c 3C000000 		.4byte	.LFE1-.LFB1
+ 1616 0020 00000000 		.4byte	.LFB2
+ 1617 0024 34000000 		.4byte	.LFE2-.LFB2
+ 1618 0028 00000000 		.4byte	.LFB3
+ 1619 002c 1C000000 		.4byte	.LFE3-.LFB3
+ 1620 0030 00000000 		.4byte	.LFB5
+ 1621 0034 0C000000 		.4byte	.LFE5-.LFB5
+ 1622 0038 00000000 		.4byte	.LFB6
+ 1623 003c 0C000000 		.4byte	.LFE6-.LFB6
+ 1624 0040 00000000 		.4byte	.LFB7
+ 1625 0044 20000000 		.4byte	.LFE7-.LFB7
+ 1626 0048 00000000 		.4byte	.LFB8
+ 1627 004c 10000000 		.4byte	.LFE8-.LFB8
+ 1628 0050 00000000 		.4byte	.LFB9
+ 1629 0054 0C000000 		.4byte	.LFE9-.LFB9
+ 1630 0058 00000000 		.4byte	.LFB10
+ 1631 005c 10000000 		.4byte	.LFE10-.LFB10
+ 1632 0060 00000000 		.4byte	.LFB11
+ 1633 0064 0C000000 		.4byte	.LFE11-.LFB11
+ 1634 0068 00000000 		.4byte	.LFB12
+ 1635 006c 0C000000 		.4byte	.LFE12-.LFB12
+ 1636 0070 00000000 		.4byte	.LFB13
+ 1637 0074 0C000000 		.4byte	.LFE13-.LFB13
+ 1638 0078 00000000 		.4byte	0
+ 1639 007c 00000000 		.4byte	0
+ 1640              		.section	.debug_ranges,"",%progbits
+ 1641              	.Ldebug_ranges0:
+ 1642 0000 02000000 		.4byte	.LBB26
+ 1643 0004 06000000 		.4byte	.LBE26
+ 1644 0008 08000000 		.4byte	.LBB33
+ 1645 000c 0A000000 		.4byte	.LBE33
+ 1646 0010 00000000 		.4byte	0
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 38
+
+
+ 1647 0014 00000000 		.4byte	0
+ 1648 0018 06000000 		.4byte	.LBB29
+ 1649 001c 08000000 		.4byte	.LBE29
+ 1650 0020 0A000000 		.4byte	.LBB34
+ 1651 0024 0C000000 		.4byte	.LBE34
+ 1652 0028 0C000000 		.4byte	.LBB35
+ 1653 002c 0E000000 		.4byte	.LBE35
+ 1654 0030 00000000 		.4byte	0
+ 1655 0034 00000000 		.4byte	0
+ 1656 0038 02000000 		.4byte	.LBB48
+ 1657 003c 06000000 		.4byte	.LBE48
+ 1658 0040 06000000 		.4byte	.LBB51
+ 1659 0044 08000000 		.4byte	.LBE51
+ 1660 0048 00000000 		.4byte	0
+ 1661 004c 00000000 		.4byte	0
+ 1662 0050 00000000 		.4byte	.LBB58
+ 1663 0054 04000000 		.4byte	.LBE58
+ 1664 0058 04000000 		.4byte	.LBB61
+ 1665 005c 06000000 		.4byte	.LBE61
+ 1666 0060 00000000 		.4byte	0
+ 1667 0064 00000000 		.4byte	0
+ 1668 0068 00000000 		.4byte	.LFB4
+ 1669 006c 02000000 		.4byte	.LFE4
+ 1670 0070 00000000 		.4byte	.LFB1
+ 1671 0074 3C000000 		.4byte	.LFE1
+ 1672 0078 00000000 		.4byte	.LFB2
+ 1673 007c 34000000 		.4byte	.LFE2
+ 1674 0080 00000000 		.4byte	.LFB3
+ 1675 0084 1C000000 		.4byte	.LFE3
+ 1676 0088 00000000 		.4byte	.LFB5
+ 1677 008c 0C000000 		.4byte	.LFE5
+ 1678 0090 00000000 		.4byte	.LFB6
+ 1679 0094 0C000000 		.4byte	.LFE6
+ 1680 0098 00000000 		.4byte	.LFB7
+ 1681 009c 20000000 		.4byte	.LFE7
+ 1682 00a0 00000000 		.4byte	.LFB8
+ 1683 00a4 10000000 		.4byte	.LFE8
+ 1684 00a8 00000000 		.4byte	.LFB9
+ 1685 00ac 0C000000 		.4byte	.LFE9
+ 1686 00b0 00000000 		.4byte	.LFB10
+ 1687 00b4 10000000 		.4byte	.LFE10
+ 1688 00b8 00000000 		.4byte	.LFB11
+ 1689 00bc 0C000000 		.4byte	.LFE11
+ 1690 00c0 00000000 		.4byte	.LFB12
+ 1691 00c4 0C000000 		.4byte	.LFE12
+ 1692 00c8 00000000 		.4byte	.LFB13
+ 1693 00cc 0C000000 		.4byte	.LFE13
+ 1694 00d0 00000000 		.4byte	0
+ 1695 00d4 00000000 		.4byte	0
+ 1696              		.section	.debug_line,"",%progbits
+ 1697              	.Ldebug_line0:
+ 1698 0000 B1010000 		.section	.debug_str,"MS",%progbits,1
+ 1698      02005B00 
+ 1698      00000201 
+ 1698      FB0E0D00 
+ 1698      01010101 
+ 1699              	.LASF14:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 39
+
+
+ 1700 0000 72656733 		.ascii	"reg32\000"
+ 1700      3200
+ 1701              	.LASF31:
+ 1702 0006 6D6F6462 		.ascii	"modbus_rx_interrupt_SetPending\000"
+ 1702      75735F72 
+ 1702      785F696E 
+ 1702      74657272 
+ 1702      7570745F 
+ 1703              	.LASF37:
+ 1704 0025 43795261 		.ascii	"CyRamVectors\000"
+ 1704      6D566563 
+ 1704      746F7273 
+ 1704      00
+ 1705              	.LASF25:
+ 1706 0032 6D6F6462 		.ascii	"modbus_rx_interrupt_Start\000"
+ 1706      75735F72 
+ 1706      785F696E 
+ 1706      74657272 
+ 1706      7570745F 
+ 1707              	.LASF18:
+ 1708 004c 6D6F6462 		.ascii	"modbus_rx_interrupt_Enable\000"
+ 1708      75735F72 
+ 1708      785F696E 
+ 1708      74657272 
+ 1708      7570745F 
+ 1709              	.LASF3:
+ 1710 0067 73686F72 		.ascii	"short unsigned int\000"
+ 1710      7420756E 
+ 1710      7369676E 
+ 1710      65642069 
+ 1710      6E7400
+ 1711              	.LASF17:
+ 1712 007a 6D6F6462 		.ascii	"modbus_rx_interrupt_Disable\000"
+ 1712      75735F72 
+ 1712      785F696E 
+ 1712      74657272 
+ 1712      7570745F 
+ 1713              	.LASF11:
+ 1714 0096 666C6F61 		.ascii	"float\000"
+ 1714      7400
+ 1715              	.LASF7:
+ 1716 009c 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1716      206C6F6E 
+ 1716      6720756E 
+ 1716      7369676E 
+ 1716      65642069 
+ 1717              	.LASF33:
+ 1718 00b3 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1718      4320342E 
+ 1718      392E3320 
+ 1718      32303135 
+ 1718      30333033 
+ 1719 00e6 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 1719      20726576 
+ 1719      6973696F 
+ 1719      6E203232 
+ 1719      31323230 
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 40
+
+
+ 1720 0119 32202D66 		.ascii	"2 -ffunction-sections -finline-functions -ffat-lto-"
+ 1720      66756E63 
+ 1720      74696F6E 
+ 1720      2D736563 
+ 1720      74696F6E 
+ 1721 014c 6F626A65 		.ascii	"objects\000"
+ 1721      63747300 
+ 1722              	.LASF1:
+ 1723 0154 756E7369 		.ascii	"unsigned char\000"
+ 1723      676E6564 
+ 1723      20636861 
+ 1723      7200
+ 1724              	.LASF30:
+ 1725 0162 6D6F6462 		.ascii	"modbus_rx_interrupt_Interrupt\000"
+ 1725      75735F72 
+ 1725      785F696E 
+ 1725      74657272 
+ 1725      7570745F 
+ 1726              	.LASF36:
+ 1727 0180 6D6F6462 		.ascii	"modbus_rx_interrupt_GetPriority\000"
+ 1727      75735F72 
+ 1727      785F696E 
+ 1727      74657272 
+ 1727      7570745F 
+ 1728              	.LASF5:
+ 1729 01a0 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1729      20756E73 
+ 1729      69676E65 
+ 1729      6420696E 
+ 1729      7400
+ 1730              	.LASF9:
+ 1731 01b2 75696E74 		.ascii	"uint8\000"
+ 1731      3800
+ 1732              	.LASF22:
+ 1733 01b8 7072696F 		.ascii	"priority\000"
+ 1733      72697479 
+ 1733      00
+ 1734              	.LASF12:
+ 1735 01c1 646F7562 		.ascii	"double\000"
+ 1735      6C6500
+ 1736              	.LASF10:
+ 1737 01c8 75696E74 		.ascii	"uint32\000"
+ 1737      333200
+ 1738              	.LASF38:
+ 1739 01cf 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 1739      74657243 
+ 1739      72697469 
+ 1739      63616C53 
+ 1739      65637469 
+ 1740              	.LASF8:
+ 1741 01e6 756E7369 		.ascii	"unsigned int\000"
+ 1741      676E6564 
+ 1741      20696E74 
+ 1741      00
+ 1742              	.LASF21:
+ 1743 01f3 61646472 		.ascii	"address\000"
+ 1743      65737300 
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 41
+
+
+ 1744              	.LASF39:
+ 1745 01fb 43794578 		.ascii	"CyExitCriticalSection\000"
+ 1745      69744372 
+ 1745      69746963 
+ 1745      616C5365 
+ 1745      6374696F 
+ 1746              	.LASF15:
+ 1747 0211 63796973 		.ascii	"cyisraddress\000"
+ 1747      72616464 
+ 1747      72657373 
+ 1747      00
+ 1748              	.LASF20:
+ 1749 021e 6D6F6462 		.ascii	"modbus_rx_interrupt_SetPriority\000"
+ 1749      75735F72 
+ 1749      785F696E 
+ 1749      74657272 
+ 1749      7570745F 
+ 1750              	.LASF23:
+ 1751 023e 696E7465 		.ascii	"interruptState\000"
+ 1751      72727570 
+ 1751      74537461 
+ 1751      746500
+ 1752              	.LASF32:
+ 1753 024d 6D6F6462 		.ascii	"modbus_rx_interrupt_ClearPending\000"
+ 1753      75735F72 
+ 1753      785F696E 
+ 1753      74657272 
+ 1753      7570745F 
+ 1754              	.LASF26:
+ 1755 026e 6D6F6462 		.ascii	"modbus_rx_interrupt_StartEx\000"
+ 1755      75735F72 
+ 1755      785F696E 
+ 1755      74657272 
+ 1755      7570745F 
+ 1756              	.LASF16:
+ 1757 028a 73697A65 		.ascii	"sizetype\000"
+ 1757      74797065 
+ 1757      00
+ 1758              	.LASF6:
+ 1759 0293 6C6F6E67 		.ascii	"long long int\000"
+ 1759      206C6F6E 
+ 1759      6720696E 
+ 1759      7400
+ 1760              	.LASF29:
+ 1761 02a1 6D6F6462 		.ascii	"modbus_rx_interrupt_GetState\000"
+ 1761      75735F72 
+ 1761      785F696E 
+ 1761      74657272 
+ 1761      7570745F 
+ 1762              	.LASF13:
+ 1763 02be 63686172 		.ascii	"char\000"
+ 1763      00
+ 1764              	.LASF2:
+ 1765 02c3 73686F72 		.ascii	"short int\000"
+ 1765      7420696E 
+ 1765      7400
+ 1766              	.LASF27:
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccMxiTf9.s 			page 42
+
+
+ 1767 02cd 6D6F6462 		.ascii	"modbus_rx_interrupt_Stop\000"
+ 1767      75735F72 
+ 1767      785F696E 
+ 1767      74657272 
+ 1767      7570745F 
+ 1768              	.LASF24:
+ 1769 02e6 7072696F 		.ascii	"priorityOffset\000"
+ 1769      72697479 
+ 1769      4F666673 
+ 1769      657400
+ 1770              	.LASF4:
+ 1771 02f5 6C6F6E67 		.ascii	"long int\000"
+ 1771      20696E74 
+ 1771      00
+ 1772              	.LASF28:
+ 1773 02fe 6D6F6462 		.ascii	"modbus_rx_interrupt_GetVector\000"
+ 1773      75735F72 
+ 1773      785F696E 
+ 1773      74657272 
+ 1773      7570745F 
+ 1774              	.LASF34:
+ 1775 031c 47656E65 		.ascii	"Generated_Source\\PSoC4\\modbus_rx_interrupt.c\000"
+ 1775      72617465 
+ 1775      645F536F 
+ 1775      75726365 
+ 1775      5C50536F 
+ 1776              	.LASF35:
+ 1777 0349 433A5C55 		.ascii	"C:\\Users\\glenn\\OneDrive\\PSOC\\moisture_sensor_4"
+ 1777      73657273 
+ 1777      5C676C65 
+ 1777      6E6E5C4F 
+ 1777      6E654472 
+ 1778 0377 6D5C4D6F 		.ascii	"m\\Moisture_Sensor\\Moisture_Sensor.cydsn\000"
+ 1778      69737475 
+ 1778      72655F53 
+ 1778      656E736F 
+ 1778      725C4D6F 
+ 1779              	.LASF0:
+ 1780 039f 7369676E 		.ascii	"signed char\000"
+ 1780      65642063 
+ 1780      68617200 
+ 1781              	.LASF19:
+ 1782 03ab 6D6F6462 		.ascii	"modbus_rx_interrupt_SetVector\000"
+ 1782      75735F72 
+ 1782      785F696E 
+ 1782      74657272 
+ 1782      7570745F 
+ 1783              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
