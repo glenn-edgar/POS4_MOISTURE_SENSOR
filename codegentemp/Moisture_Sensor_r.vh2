@@ -1,6 +1,6 @@
 -- Project:   Moisture_Sensor
--- Generated: 12/19/2016 10:45:18
--- PSoC Creator  4.0
+-- Generated: 02/02/2017 11:36:27
+-- PSoC Creator  4.0 Update 1
 
 ENTITY Moisture_Sensor IS
     PORT(

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cceN47Jr.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 1
   35              		.loc 1 19 0
   36 0006 7047     		bx	lr
   37              	.L3:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 2
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cceN47Jr.s 			page 2
 
 
   38              		.align	2
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 1
   81 0018 00000000 		.word	.LANCHOR0
   82              		.cfi_endproc
   83              	.LFE63:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 3
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cceN47Jr.s 			page 3
 
 
   84              		.size	cf_status_clear_bit, .-cf_status_clear_bit
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 1
  126              		.type	cf_set_interrupt_status_bit, %function
  127              	cf_set_interrupt_status_bit:
  128              	.LFB65:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 4
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cceN47Jr.s 			page 4
 
 
   39:chain_flow/cf_status_bit.c **** 
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 1
   51:chain_flow/cf_status_bit.c **** 
   52:chain_flow/cf_status_bit.c ****    cf_status_register |= status_bit;
  170              		.loc 1 52 0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 5
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cceN47Jr.s 			page 5
 
 
  171 0008 034A     		ldr	r2, .L14
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 1
   64:chain_flow/cf_status_bit.c ****    cf_status_register = 0;
  210              		.loc 1 64 0
  211 0008 034B     		ldr	r3, .L17
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 6
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cceN47Jr.s 			page 6
 
 
   66:chain_flow/cf_status_bit.c ****    CyExitCriticalSection(criticalState);
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 1
  260 0027 06       		.byte	0x6
  261 0028 41020000 		.4byte	.LASF0
  262 002c 02       		.uleb128 0x2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 7
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cceN47Jr.s 			page 7
 
 
  263 002d 01       		.byte	0x1
@@ -399,12 +399,12 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 1
  298 006b 04       		.uleb128 0x4
  299 006c 63010000 		.4byte	.LASF9
  300 0070 02       		.byte	0x2
- 301 0071 9801     		.2byte	0x198
+ 301 0071 B901     		.2byte	0x1b9
  302 0073 2C000000 		.4byte	0x2c
  303 0077 04       		.uleb128 0x4
  304 0078 70010000 		.4byte	.LASF10
  305 007c 02       		.byte	0x2
- 306 007d 9A01     		.2byte	0x19a
+ 306 007d BB01     		.2byte	0x1bb
  307 007f 48000000 		.4byte	0x48
  308 0083 02       		.uleb128 0x2
  309 0084 04       		.byte	0x4
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 1
  317 0092 01       		.byte	0x1
  318 0093 08       		.byte	0x8
  319 0094 D3010000 		.4byte	.LASF13
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 8
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cceN47Jr.s 			page 8
 
 
  320 0098 02       		.uleb128 0x2
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 1
  374 0116 3F000000 		.4byte	.LLST2
  375 011a 09       		.uleb128 0x9
  376 011b 06000000 		.4byte	.LVL4
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 9
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cceN47Jr.s 			page 9
 
 
  377 011f F3010000 		.4byte	0x1f3
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 1
  431 01a3 00000000 		.4byte	.LFB67
  432 01a7 1C000000 		.4byte	.LFE67-.LFB67
  433 01ab 01       		.uleb128 0x1
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 10
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cceN47Jr.s 			page 10
 
 
  434 01ac 9C       		.byte	0x9c
@@ -573,12 +573,12 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 1
  463 01f3 0C       		.uleb128 0xc
  464 01f4 77010000 		.4byte	.LASF28
  465 01f8 03       		.byte	0x3
- 466 01f9 E3       		.byte	0xe3
+ 466 01f9 E5       		.byte	0xe5
  467 01fa 6B000000 		.4byte	0x6b
  468 01fe 0D       		.uleb128 0xd
  469 01ff 9B010000 		.4byte	.LASF29
  470 0203 03       		.byte	0x3
- 471 0204 E4       		.byte	0xe4
+ 471 0204 E6       		.byte	0xe6
  472 0205 0E       		.uleb128 0xe
  473 0206 6B000000 		.4byte	0x6b
  474 020a 00       		.byte	0
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 1
  488 000a 0E       		.uleb128 0xe
  489 000b 55       		.uleb128 0x55
  490 000c 17       		.uleb128 0x17
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 11
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cceN47Jr.s 			page 11
 
 
  491 000d 11       		.uleb128 0x11
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 1
  545 0043 11       		.uleb128 0x11
  546 0044 01       		.uleb128 0x1
  547 0045 12       		.uleb128 0x12
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 12
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cceN47Jr.s 			page 12
 
 
  548 0046 06       		.uleb128 0x6
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 1
  602 007e 3B       		.uleb128 0x3b
  603 007f 0B       		.uleb128 0xb
  604 0080 49       		.uleb128 0x49
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 13
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cceN47Jr.s 			page 13
 
 
  605 0081 13       		.uleb128 0x13
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 1
  659 00ba 00       		.byte	0
  660 00bb 00       		.byte	0
  661 00bc 0C       		.uleb128 0xc
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 14
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cceN47Jr.s 			page 14
 
 
  662 00bd 2E       		.uleb128 0x2e
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 1
  716 0016 14000000 		.4byte	.LVL3
  717 001a 1C000000 		.4byte	.LFE63
  718 001e 0400     		.2byte	0x4
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 15
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cceN47Jr.s 			page 15
 
 
  719 0020 F3       		.byte	0xf3
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 1
  773 00a3 13000000 		.4byte	.LVL10-1
  774 00a7 0100     		.2byte	0x1
  775 00a9 50       		.byte	0x50
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 16
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cceN47Jr.s 			page 16
 
 
  776 00aa 00000000 		.4byte	0
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 1
  830 0028 00000000 		.4byte	.LFB67
  831 002c 1C000000 		.4byte	.LFE67
  832 0030 00000000 		.4byte	0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 17
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cceN47Jr.s 			page 17
 
 
  833 0034 00000000 		.4byte	0
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 1
  854      6720756E 
  854      7369676E 
  854      65642069 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 18
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cceN47Jr.s 			page 18
 
 
  855              	.LASF23:
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 1
  875      6374696F 
  876              	.LASF14:
  877 01b1 73697A65 		.ascii	"sizetype\000"
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 19
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cceN47Jr.s 			page 19
 
 
  877      74797065 
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 1
  900 0284 63665F69 		.ascii	"cf_initialize_status_manager\000"
  900      6E697469 
  900      616C697A 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccVoJZCR.s 			page 20
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cceN47Jr.s 			page 20
 
 
  900      655F7374 

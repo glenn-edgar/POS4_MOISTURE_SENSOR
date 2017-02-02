@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccG1tFTe.s 			page 1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cclw8oJx.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccG1tFTe.s 			page 1
   30:Generated_Source\PSoC4/Switch_Pin_PM.c **** *
   31:Generated_Source\PSoC4/Switch_Pin_PM.c **** * <b>Note</b> This function is available in PSoC 4 only.
   32:Generated_Source\PSoC4/Switch_Pin_PM.c **** *
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccG1tFTe.s 			page 2
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cclw8oJx.s 			page 2
 
 
   33:Generated_Source\PSoC4/Switch_Pin_PM.c **** * \return 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccG1tFTe.s 			page 1
   50              		.thumb_func
   51              		.type	Switch_Pin_Wakeup, %function
   52              	Switch_Pin_Wakeup:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccG1tFTe.s 			page 3
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cclw8oJx.s 			page 3
 
 
   53              	.LFB1:
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccG1tFTe.s 			page 1
   72              	.LFE1:
   73              		.size	Switch_Pin_Wakeup, .-Switch_Pin_Wakeup
   74              		.bss
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccG1tFTe.s 			page 4
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cclw8oJx.s 			page 4
 
 
   75              		.align	2
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccG1tFTe.s 			page 1
  127 0056 02       		.uleb128 0x2
  128 0057 08       		.byte	0x8
  129 0058 07       		.byte	0x7
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccG1tFTe.s 			page 5
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cclw8oJx.s 			page 5
 
 
  130 0059 79010000 		.4byte	.LASF7
@@ -253,7 +253,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccG1tFTe.s 			page 1
  139 006b 04       		.uleb128 0x4
  140 006c 65010000 		.4byte	.LASF12
  141 0070 02       		.byte	0x2
- 142 0071 9A01     		.2byte	0x19a
+ 142 0071 BB01     		.2byte	0x1bb
  143 0073 48000000 		.4byte	0x48
  144 0077 02       		.uleb128 0x2
  145 0078 04       		.byte	0x4
@@ -270,7 +270,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccG1tFTe.s 			page 1
  156 008c 04       		.uleb128 0x4
  157 008d 00000000 		.4byte	.LASF13
  158 0091 02       		.byte	0x2
- 159 0092 4402     		.2byte	0x244
+ 159 0092 6502     		.2byte	0x265
  160 0094 98000000 		.4byte	0x98
  161 0098 05       		.uleb128 0x5
  162 0099 6B000000 		.4byte	0x6b
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccG1tFTe.s 			page 1
  184 00c4 6B000000 		.4byte	0x6b
  185 00c8 08       		.byte	0x8
  186 00c9 00       		.byte	0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccG1tFTe.s 			page 6
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cclw8oJx.s 			page 6
 
 
  187 00ca 08       		.uleb128 0x8
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccG1tFTe.s 			page 1
  241 0016 0B       		.uleb128 0xb
  242 0017 0B       		.uleb128 0xb
  243 0018 3E       		.uleb128 0x3e
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccG1tFTe.s 			page 7
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cclw8oJx.s 			page 7
 
 
  244 0019 0B       		.uleb128 0xb
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccG1tFTe.s 			page 1
  298 004f 3A       		.uleb128 0x3a
  299 0050 0B       		.uleb128 0xb
  300 0051 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccG1tFTe.s 			page 8
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cclw8oJx.s 			page 8
 
 
  301 0052 0B       		.uleb128 0xb
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccG1tFTe.s 			page 1
  355 0089 02       		.uleb128 0x2
  356 008a 18       		.uleb128 0x18
  357 008b 00       		.byte	0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccG1tFTe.s 			page 9
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cclw8oJx.s 			page 9
 
 
  358 008c 00       		.byte	0
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccG1tFTe.s 			page 1
  394      75726365 
  394      5C50536F 
  395              	.LASF9:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccG1tFTe.s 			page 10
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cclw8oJx.s 			page 10
 
 
  396 0059 666C6F61 		.ascii	"float\000"
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccG1tFTe.s 			page 1
  415      333200
  416              	.LASF8:
  417 016c 756E7369 		.ascii	"unsigned int\000"
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccG1tFTe.s 			page 11
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\cclw8oJx.s 			page 11
 
 
  417      676E6564 

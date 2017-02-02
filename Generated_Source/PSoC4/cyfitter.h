@@ -1716,7 +1716,7 @@
 
 /* Miscellaneous */
 #define CY_PROJECT_NAME "Moisture_Sensor"
-#define CY_VERSION "PSoC Creator  4.0"
+#define CY_VERSION "PSoC Creator  4.0 Update 1"
 #define CYDEV_BANDGAP_VOLTAGE 1.024
 #define CYDEV_BCLK__HFCLK__HZ 40000000U
 #define CYDEV_BCLK__HFCLK__KHZ 40000U

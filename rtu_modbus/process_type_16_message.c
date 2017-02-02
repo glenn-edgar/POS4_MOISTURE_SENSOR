@@ -217,6 +217,9 @@ static uint16  clear_moisture_flag( uint8 *buffer )
     return 1;
 }    
 
+
+
+
 #define TABLE_LENGTH 14
 static const TYPE_16_STRUCT type_16_access_functions[TABLE_LENGTH] = 
 {

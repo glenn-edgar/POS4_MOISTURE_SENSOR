@@ -24,6 +24,9 @@ CY_ISR(WdtIsrHandler);
 static void setup_one_second_timer_watch_dog( void );
 static void SysTickInit( void );
 
+int pat_watch_dog(unsigned link_id, unsigned param_1,
+  unsigned param_2, unsigned param_3, unsigned event, unsigned data);
+
 static inline void  process_status_data( unsigned status_data)
 {
 
@@ -35,6 +38,7 @@ static inline void  process_status_data( unsigned status_data)
     }
     if( status_data & CF_PROCESS_MODBUS )
     {
+      pat_watch_dog(0,0,0,0,0,0);  // parameters for pat_watch_dog is not used
       process_rx_modbus_rtu_message( );
       cf_status_clear_bit(  CF_PROCESS_MODBUS );
     }

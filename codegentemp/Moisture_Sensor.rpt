@@ -1,4 +1,4 @@
-Loading plugins phase: Elapsed time ==> 0s.310ms
+Loading plugins phase: Elapsed time ==> 2s.780ms
 <CYPRESSTAG name="CyDsfit arguments...">
 cydsfit arguments: -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\Moisture_Sensor.cyprj -d CY8C4247AZI-M485 -s C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\Generated_Source\PSoC4 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE</CYPRESSTAG>
 <CYPRESSTAG name="Design elaboration results...">
@@ -6,10 +6,10 @@ ADD: sdb.M0061: information: Info from component: ADC_SAR_Seq_1. The actual samp
  * C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\TopDesign\TopDesign.cysch (Instance:ADC_SAR_Seq_1)
 
 </CYPRESSTAG>
-Elaboration phase: Elapsed time ==> 3s.039ms
+Elaboration phase: Elapsed time ==> 4s.764ms
 <CYPRESSTAG name="HDL generation results...">
 </CYPRESSTAG>
-HDL generation phase: Elapsed time ==> 0s.151ms
+HDL generation phase: Elapsed time ==> 0s.194ms
 <CYPRESSTAG name="Synthesis results...">
 
      | | | | | | |
@@ -43,7 +43,7 @@ Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\glenn
 ======================================================================
 
 vlogfe V6.3 IR 41:  Verilog parser
-Mon Dec 19 10:45:15 2016
+Thu Feb 02 11:36:23 2017
 
 
 ======================================================================
@@ -53,7 +53,7 @@ Options  :    -yv2 -q10 Moisture_Sensor.v
 ======================================================================
 
 vpp V6.3 IR 41:  Verilog Pre-Processor
-Mon Dec 19 10:45:15 2016
+Thu Feb 02 11:36:23 2017
 
 Flattening file 'C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_virtualmux_v1_0\cy_virtualmux_v1_0.v'
 Flattening file 'C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\ZeroTerminal\ZeroTerminal.v'
@@ -105,7 +105,7 @@ Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\glenn
 ======================================================================
 
 tovif V6.3 IR 41:  High-level synthesis
-Mon Dec 19 10:45:16 2016
+Thu Feb 02 11:36:23 2017
 
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\warp\lib\common\std.vhd'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\warp\lib\common\cypress.vhd'.
@@ -143,7 +143,7 @@ Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\glenn
 ======================================================================
 
 topld V6.3 IR 41:  Synthesis and optimization
-Mon Dec 19 10:45:16 2016
+Thu Feb 02 11:36:24 2017
 
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\warp\lib\common\std.vhd'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\warp\lib\common\cypress.vhd'.
@@ -678,14 +678,14 @@ CYPRESS_DIR    : C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\wa
 Warp Program   : C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\warp\bin\warp.exe
 Warp Arguments : -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\Moisture_Sensor.cyprj -dcpsoc3 Moisture_Sensor.v -verilog
 </CYPRESSTAG>
-Warp synthesis phase: Elapsed time ==> 1s.298ms
+Warp synthesis phase: Elapsed time ==> 1s.698ms
 <CYPRESSTAG name="Fitter results...">
 <CYPRESSTAG name="Fitter startup details...">
-cyp3fit: V4.0.0.432, Family: PSoC3, Started at: Monday, 19 December 2016 10:45:16
+cyp3fit: V4.0.0.432, Family: PSoC3, Started at: Thursday, 02 February 2017 11:36:24
 Options: -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\Moisture_Sensor.cyprj -d CY8C4247AZI-M485 Moisture_Sensor.v -verilog
 </CYPRESSTAG>
 <CYPRESSTAG name="Design parsing">
-Design parsing phase: Elapsed time ==> 0s.024ms
+Design parsing phase: Elapsed time ==> 0s.036ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Tech Mapping">
 <CYPRESSTAG name="Initial Mapping" icon="FILE_RPT_TECHM">
@@ -2887,20 +2887,20 @@ DAC                           :      :      :      :
   7-bit IDAC                  :    0 :    2 :    2 :  0.00 %
   8-bit IDAC                  :    0 :    2 :    2 :  0.00 %
 </CYPRESSTAG>
-Technology Mapping: Elapsed time ==> 0s.061ms
-Tech Mapping phase: Elapsed time ==> 0s.103ms
+Technology Mapping: Elapsed time ==> 0s.075ms
+Tech Mapping phase: Elapsed time ==> 0s.140ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Placement">
 <CYPRESSTAG name="Analog Placement">
-Elapsed time ==> 0.4494323s
+Elapsed time ==> 0.6017559s
 </CYPRESSTAG>
-Analog Placement phase: Elapsed time ==> 0s.714ms
+Analog Placement phase: Elapsed time ==> 0s.956ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Routing">
 <CYPRESSTAG name="Analog Routing">
-Route success=True, Iterations=1 Elapsed=0.0632205 secs
+Route success=True, Iterations=1 Elapsed=0.0770672 secs
 </CYPRESSTAG>
-Analog Routing phase: Elapsed time ==> 0s.064ms
+Analog Routing phase: Elapsed time ==> 0s.077ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Code Generation">
 ============ Analog Final Answer Routes ============
@@ -3288,11 +3288,11 @@ Mux Info {
     }
   }
 }
-Analog Code Generation phase: Elapsed time ==> 0s.048ms
+Analog Code Generation phase: Elapsed time ==> 0s.132ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Digital Placement">
 <CYPRESSTAG name="Detailed placement messages">
-I2076: Total run-time: 0.5 sec.
+I2076: Total run-time: 0.7 sec.
 
 </CYPRESSTAG>
 <CYPRESSTAG name="PLD Packing">
@@ -3316,14 +3316,14 @@ PLD Packing Summary
 <CYPRESSTAG name="Packed PLD Contents">
 Packed PLD Contents not displayed at this verbose level.</CYPRESSTAG>
 </CYPRESSTAG>
-PLD Packing: Elapsed time ==> 0s.002ms
+PLD Packing: Elapsed time ==> 0s.005ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Partitioning">
 <CYPRESSTAG name="Initial Partitioning Summary">
 Initial Partitioning Summary not displayed at this verbose level.</CYPRESSTAG>
 <CYPRESSTAG name="Final Partitioning Summary">
 Final Partitioning Summary not displayed at this verbose level.</CYPRESSTAG>
-Partitioning: Elapsed time ==> 0s.038ms
+Partitioning: Elapsed time ==> 0s.046ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Final Placement Summary">
 
@@ -5698,32 +5698,32 @@ Port | Pin | Fixed |      Type |       Drive Mode |                 Name | Conne
 </CYPRESSTAG>
 </CYPRESSTAG>
 </CYPRESSTAG>
-Digital component placer commit/Report: Elapsed time ==> 0s.005ms
-Digital Placement phase: Elapsed time ==> 0s.853ms
+Digital component placer commit/Report: Elapsed time ==> 0s.006ms
+Digital Placement phase: Elapsed time ==> 1s.424ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Digital Routing">
 Routing successful.
-Digital Routing phase: Elapsed time ==> 1s.165ms
+Digital Routing phase: Elapsed time ==> 1s.767ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Bitstream Generation">
-Bitstream Generation phase: Elapsed time ==> 0s.382ms
+Bitstream Generation phase: Elapsed time ==> 0s.525ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Bitstream Verification">
-Bitstream Verification phase: Elapsed time ==> 0s.033ms
+Bitstream Verification phase: Elapsed time ==> 0s.071ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Static timing analysis">
 Timing report is in Moisture_Sensor_timing.html.
-Static timing analysis phase: Elapsed time ==> 0s.471ms
+Static timing analysis phase: Elapsed time ==> 0s.742ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Data reporting">
 Data reporting phase: Elapsed time ==> 0s.000ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Database update...">
-Design database save phase: Elapsed time ==> 0s.244ms
+Design database save phase: Elapsed time ==> 0s.398ms
 </CYPRESSTAG>
-cydsfit: Elapsed time ==> 4s.155ms
+cydsfit: Elapsed time ==> 6s.349ms
 </CYPRESSTAG>
-Fitter phase: Elapsed time ==> 4s.156ms
-API generation phase: Elapsed time ==> 3s.058ms
-Dependency generation phase: Elapsed time ==> 0s.045ms
-Cleanup phase: Elapsed time ==> 0s.002ms
+Fitter phase: Elapsed time ==> 6s.351ms
+API generation phase: Elapsed time ==> 4s.624ms
+Dependency generation phase: Elapsed time ==> 0s.068ms
+Cleanup phase: Elapsed time ==> 0s.001ms

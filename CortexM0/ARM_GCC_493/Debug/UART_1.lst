@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
   30:Generated_Source\PSoC4/UART_1.c ****     volatile uint8 UART_1_txBuffer[UART_1_TX_BUFFER_SIZE];
   31:Generated_Source\PSoC4/UART_1.c ****     volatile uint8 UART_1_txBufferRead = 0u;
   32:Generated_Source\PSoC4/UART_1.c ****     uint8 UART_1_txBufferWrite = 0u;
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 2
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 2
 
 
   33:Generated_Source\PSoC4/UART_1.c **** #endif /* (UART_1_TX_INTERRUPT_ENABLED && UART_1_TX_ENABLED) */
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
   33 0002 174B     		ldr	r3, .L4
   34 0004 1A78     		ldrb	r2, [r3]
   35 0006 002A     		cmp	r2, #0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 3
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 3
 
 
   36 0008 10D1     		bne	.L2
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
   43              		.loc 1 126 0
   44 0010 154A     		ldr	r2, .L4+8
   45 0012 5239     		sub	r1, r1, #82
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 4
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 4
 
 
   46 0014 1170     		strb	r1, [r2]
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  159:Generated_Source\PSoC4/UART_1.c ****     #endif /* End UART_1_PARITY_TYPE_SW */
  160:Generated_Source\PSoC4/UART_1.c **** }
  161:Generated_Source\PSoC4/UART_1.c **** 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 5
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 5
 
 
  162:Generated_Source\PSoC4/UART_1.c **** 
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  204:Generated_Source\PSoC4/UART_1.c ****     #if(UART_1_TX_ENABLED)
  205:Generated_Source\PSoC4/UART_1.c ****         /* TX Counter (DP/Count7) Enable */
  206:Generated_Source\PSoC4/UART_1.c ****         #if(!UART_1_TXCLKGEN_DP)
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 6
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 6
 
 
  207:Generated_Source\PSoC4/UART_1.c ****             UART_1_TXBITCTR_CONTROL_REG |= UART_1_CNTR_ENABLE;
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  111              	.LBE26:
  112              	.LBE27:
   86:Generated_Source\PSoC4/UART_1.c **** 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 7
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 7
 
 
  113              		.loc 1 86 0
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  159              		.loc 1 150 0
  160 0018 054B     		ldr	r3, .L7+16
  161 001a 3D3A     		sub	r2, r2, #61
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 8
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 8
 
 
  162 001c 1A70     		strb	r2, [r3]
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  207 0014 1023     		mov	r3, #16
  208 0016 0949     		ldr	r1, .L10+4
  223:Generated_Source\PSoC4/UART_1.c **** }
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 9
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 9
 
 
  209              		.loc 1 223 0
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  234:Generated_Source\PSoC4/UART_1.c **** *  None.
  235:Generated_Source\PSoC4/UART_1.c **** *
  236:Generated_Source\PSoC4/UART_1.c **** * Return:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 10
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 10
 
 
  237:Generated_Source\PSoC4/UART_1.c **** *  None.
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  273:Generated_Source\PSoC4/UART_1.c ****             UART_1_DisableTxInt();
  274:Generated_Source\PSoC4/UART_1.c ****         #endif /* (UART_1_TX_INTERRUPT_ENABLED) */
  275:Generated_Source\PSoC4/UART_1.c ****     #endif /* (UART_1_TX_ENABLED) */
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 11
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 11
 
 
  276:Generated_Source\PSoC4/UART_1.c **** 
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  310              	.LFB5:
  279:Generated_Source\PSoC4/UART_1.c **** 
  280:Generated_Source\PSoC4/UART_1.c **** 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 12
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 12
 
 
  281:Generated_Source\PSoC4/UART_1.c **** /*******************************************************************************
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  318:Generated_Source\PSoC4/UART_1.c **** *******************************************************************************/
  319:Generated_Source\PSoC4/UART_1.c **** void  UART_1_WriteControlRegister(uint8 control) 
  320:Generated_Source\PSoC4/UART_1.c **** {
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 13
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 13
 
 
  328              		.loc 1 320 0
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  358:Generated_Source\PSoC4/UART_1.c ****     *******************************************************************************/
  359:Generated_Source\PSoC4/UART_1.c ****     void UART_1_SetRxInterruptMode(uint8 intSrc) 
  360:Generated_Source\PSoC4/UART_1.c ****     {
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 14
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 14
 
 
  345              		.loc 1 360 0
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  388:Generated_Source\PSoC4/UART_1.c ****     * Reentrant:
  389:Generated_Source\PSoC4/UART_1.c ****     *  No.
  390:Generated_Source\PSoC4/UART_1.c ****     *
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 15
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 15
 
 
  391:Generated_Source\PSoC4/UART_1.c ****     *******************************************************************************/
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  443:Generated_Source\PSoC4/UART_1.c ****         UART_1_EnableRxInt();
  444:Generated_Source\PSoC4/UART_1.c **** 
  445:Generated_Source\PSoC4/UART_1.c ****     #else
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 16
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 16
 
 
  446:Generated_Source\PSoC4/UART_1.c **** 
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  474:Generated_Source\PSoC4/UART_1.c ****     *  register read.
  475:Generated_Source\PSoC4/UART_1.c ****     *
  476:Generated_Source\PSoC4/UART_1.c ****     * Global Variables:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 17
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 17
 
 
  477:Generated_Source\PSoC4/UART_1.c ****     *  UART_1_rxBufferOverflow - used to indicate overload condition.
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  425              		.type	UART_1_GetChar, %function
  426              	UART_1_GetChar:
  427              	.LFB10:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 18
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 18
 
 
  501:Generated_Source\PSoC4/UART_1.c **** 
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  552:Generated_Source\PSoC4/UART_1.c ****             {
  553:Generated_Source\PSoC4/UART_1.c ****                 locRxBufferRead = 0u;
  554:Generated_Source\PSoC4/UART_1.c ****             }
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 19
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 19
 
 
  555:Generated_Source\PSoC4/UART_1.c ****             /* Update the real pointer */
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  441 000a 07D5     		bpl	.L27
  598:Generated_Source\PSoC4/UART_1.c ****         {
  599:Generated_Source\PSoC4/UART_1.c ****             /* Read received data from FIFO */
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 20
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 20
 
 
  600:Generated_Source\PSoC4/UART_1.c ****             rxData = UART_1_RXDATA_REG;
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  620:Generated_Source\PSoC4/UART_1.c ****     *  Reads UART RX buffer immediately, returns received character and error
  621:Generated_Source\PSoC4/UART_1.c ****     *  condition.
  622:Generated_Source\PSoC4/UART_1.c ****     *
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 21
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 21
 
 
  623:Generated_Source\PSoC4/UART_1.c ****     * Parameters:
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  502 0008 1278     		ldrb	r2, [r2]
  503              	.LVL25:
  504              	.LBE33:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 22
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 22
 
 
  505              	.LBE35:
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  677:Generated_Source\PSoC4/UART_1.c ****     *  No.
  678:Generated_Source\PSoC4/UART_1.c ****     *
  679:Generated_Source\PSoC4/UART_1.c ****     * Theory:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 23
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 23
 
 
  680:Generated_Source\PSoC4/UART_1.c ****     *  Allows the user to find out how full the RX Buffer is.
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  538 0004 8006     		lsl	r0, r0, #26
  539              	.LVL27:
  722:Generated_Source\PSoC4/UART_1.c ****     }
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 24
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 24
 
 
  540              		.loc 1 722 0
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  559              		.loc 1 758 0
  560              		.cfi_startproc
  561 0000 08B5     		push	{r3, lr}
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 25
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 25
 
 
  562              		.cfi_def_cfa_offset 8
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  588 001c 08BD     		pop	{r3, pc}
  589              	.L42:
  590 001e C046     		.align	2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 26
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 26
 
 
  591              	.L41:
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  820:Generated_Source\PSoC4/UART_1.c ****                     /* Suppress compiler warning */
  821:Generated_Source\PSoC4/UART_1.c ****                 }
  822:Generated_Source\PSoC4/UART_1.c ****             #else /* UART_1_CONTROL_REG_REMOVED */
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 27
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 27
 
 
  823:Generated_Source\PSoC4/UART_1.c ****                 uint8 tmpCtrl;
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  624              		.loc 1 859 0
  625 0000 014B     		ldr	r3, .L45
  860:Generated_Source\PSoC4/UART_1.c ****     }
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 28
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 28
 
 
  626              		.loc 1 860 0
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  658              	.L49:
  659 0006 C046     		.align	2
  660              	.L48:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 29
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 29
 
 
  661 0008 31000F40 		.word	1074724913
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  683 0004 7047     		bx	lr
  684              	.L52:
  685 0006 C046     		.align	2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 30
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 30
 
 
  686              	.L51:
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  706 0006 01D0     		beq	.L53
  946:Generated_Source\PSoC4/UART_1.c ****         {
  947:Generated_Source\PSoC4/UART_1.c ****         #if (UART_1_TX_INTERRUPT_ENABLED)
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 31
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 31
 
 
  948:Generated_Source\PSoC4/UART_1.c **** 
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  728              	UART_1_ReadTxStatus:
  729              	.LFB19:
  981:Generated_Source\PSoC4/UART_1.c **** 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 32
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 32
 
 
  982:Generated_Source\PSoC4/UART_1.c **** 
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
 1009:Generated_Source\PSoC4/UART_1.c ****     /*******************************************************************************
 1010:Generated_Source\PSoC4/UART_1.c ****     * Function Name: UART_1_PutChar
 1011:Generated_Source\PSoC4/UART_1.c ****     ********************************************************************************
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 33
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 33
 
 
 1012:Generated_Source\PSoC4/UART_1.c ****     *
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
 1063:Generated_Source\PSoC4/UART_1.c ****             /* Enable interrupt to continue transmission */
 1064:Generated_Source\PSoC4/UART_1.c ****             UART_1_EnableTxInt();
 1065:Generated_Source\PSoC4/UART_1.c ****         #endif /* (UART_1_TX_BUFFER_SIZE > UART_1_MAX_BYTE_VALUE) && (CY_PSOC3) */
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 34
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 34
 
 
 1066:Generated_Source\PSoC4/UART_1.c ****         }
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
 1112:Generated_Source\PSoC4/UART_1.c ****         /* Add directly to the FIFO */
 1113:Generated_Source\PSoC4/UART_1.c ****         UART_1_TXDATA_REG = txDataByte;
  767              		.loc 1 1113 0 is_stmt 1
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 35
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 35
 
 
  768 000a 024B     		ldr	r3, .L66+4
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
 1144:Generated_Source\PSoC4/UART_1.c ****     *******************************************************************************/
 1145:Generated_Source\PSoC4/UART_1.c ****     void UART_1_PutString(const char8 string[]) 
 1146:Generated_Source\PSoC4/UART_1.c ****     {
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 36
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 36
 
 
  791              		.loc 1 1146 0
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  831              	.LBE38:
  832              	.LBE39:
  833              		.loc 1 1156 0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 37
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 37
 
 
  834 0022 A4B2     		uxth	r4, r4
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
 1182:Generated_Source\PSoC4/UART_1.c ****     * Reentrant:
 1183:Generated_Source\PSoC4/UART_1.c ****     *  No.
 1184:Generated_Source\PSoC4/UART_1.c ****     *
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 38
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 38
 
 
 1185:Generated_Source\PSoC4/UART_1.c ****     * Theory:
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  897              	.LVL43:
  898              	.L83:
  899              	.LBB43:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 39
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 39
 
 
  900              	.LBB42:
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
 1217:Generated_Source\PSoC4/UART_1.c ****     *  txDataByte: Data byte to transmit before the carriage return and line feed.
 1218:Generated_Source\PSoC4/UART_1.c ****     *
 1219:Generated_Source\PSoC4/UART_1.c ****     * Return:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 40
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 40
 
 
 1220:Generated_Source\PSoC4/UART_1.c ****     *  None.
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  973              	.LBB47:
 1113:Generated_Source\PSoC4/UART_1.c **** 
  974              		.loc 1 1113 0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 41
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 41
 
 
  975 0018 1870     		strb	r0, [r3]
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
 1237:Generated_Source\PSoC4/UART_1.c ****             UART_1_PutChar(0x0Au);
 1238:Generated_Source\PSoC4/UART_1.c ****         }
 1239:Generated_Source\PSoC4/UART_1.c ****     }
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 42
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 42
 
 
  1020              		.loc 1 1239 0
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
 1274:Generated_Source\PSoC4/UART_1.c ****                                                             
 1275:Generated_Source\PSoC4/UART_1.c ****     {
  1040              		.loc 1 1275 0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 43
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 43
 
 
  1041              		.cfi_startproc
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
 1314:Generated_Source\PSoC4/UART_1.c ****             /* We only know there is data in the fifo. */
 1315:Generated_Source\PSoC4/UART_1.c ****             size = 1u;
 1316:Generated_Source\PSoC4/UART_1.c ****         }
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 44
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 44
 
 
 1317:Generated_Source\PSoC4/UART_1.c **** 
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
 1342:Generated_Source\PSoC4/UART_1.c ****     *  No.
 1343:Generated_Source\PSoC4/UART_1.c ****     *
 1344:Generated_Source\PSoC4/UART_1.c ****     * Theory:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 45
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 45
 
 
 1345:Generated_Source\PSoC4/UART_1.c ****     *  Setting the pointers to zero makes the system believe there is no data to
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  1102              		.loc 1 1360 0
  1103 0010 1A70     		strb	r2, [r3]
 1361:Generated_Source\PSoC4/UART_1.c ****         UART_1_TXDATA_AUX_CTL_REG &= (uint8) ~UART_1_TX_FIFO_CLR;
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 46
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 46
 
 
  1104              		.loc 1 1361 0
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
 1406:Generated_Source\PSoC4/UART_1.c ****     * Reentrant:
 1407:Generated_Source\PSoC4/UART_1.c ****     *  No.
 1408:Generated_Source\PSoC4/UART_1.c ****     *
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 47
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 47
 
 
 1409:Generated_Source\PSoC4/UART_1.c ****     * Theory:
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
 1449:Generated_Source\PSoC4/UART_1.c **** 
 1450:Generated_Source\PSoC4/UART_1.c ****         #if(UART_1_HD_ENABLED) /* Half Duplex mode*/
 1451:Generated_Source\PSoC4/UART_1.c **** 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 48
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 48
 
 
 1452:Generated_Source\PSoC4/UART_1.c ****             if( (retMode == UART_1_SEND_BREAK) ||
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  1146              		.loc 1 1501 0
  1147 000e 134B     		ldr	r3, .L138+4
 1502:Generated_Source\PSoC4/UART_1.c ****                     UART_1_TXBITCLKTX_COMPLETE_REG = UART_1_TXBITCTR_BREAKBITS;
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 49
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 49
 
 
 1503:Generated_Source\PSoC4/UART_1.c ****                 #else
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
 1524:Generated_Source\PSoC4/UART_1.c ****                 }
 1525:Generated_Source\PSoC4/UART_1.c ****                 while(((uint8)~tmpStat & UART_1_TX_STS_COMPLETE) != 0u);
 1526:Generated_Source\PSoC4/UART_1.c ****             }
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 50
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 50
 
 
 1527:Generated_Source\PSoC4/UART_1.c **** 
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
 1525:Generated_Source\PSoC4/UART_1.c ****             }
  1206              		.loc 1 1525 0 discriminator 1
  1207 004c 151C     		mov	r5, r2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 51
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 51
 
 
 1523:Generated_Source\PSoC4/UART_1.c ****                 }
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  1234              		.loc 1 1573 0
  1235              		.cfi_startproc
  1236              	.LVL62:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 52
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 52
 
 
 1574:Generated_Source\PSoC4/UART_1.c ****         /* Mark/Space sending enable */
@@ -3090,9 +3090,9 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  1247              		.size	UART_1_initVar, 1
  1248              	UART_1_initVar:
  1249 0000 00       		.space	1
- 1250              		.type	txPeriod.4898, %object
- 1251              		.size	txPeriod.4898, 1
- 1252              	txPeriod.4898:
+ 1250              		.type	txPeriod.4902, %object
+ 1251              		.size	txPeriod.4902, 1
+ 1252              	txPeriod.4902:
  1253 0001 00       		.space	1
  1254              		.text
  1255              	.Letext0:
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  1275 0027 06       		.byte	0x6
  1276 0028 53010000 		.4byte	.LASF0
  1277 002c 02       		.uleb128 0x2
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 53
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 53
 
 
  1278 002d 01       		.byte	0x1
@@ -3159,17 +3159,17 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  1313 006b 04       		.uleb128 0x4
  1314 006c A5010000 		.4byte	.LASF9
  1315 0070 02       		.byte	0x2
- 1316 0071 9801     		.2byte	0x198
+ 1316 0071 B901     		.2byte	0x1b9
  1317 0073 2C000000 		.4byte	0x2c
  1318 0077 04       		.uleb128 0x4
  1319 0078 00000000 		.4byte	.LASF10
  1320 007c 02       		.byte	0x2
- 1321 007d 9901     		.2byte	0x199
+ 1321 007d BA01     		.2byte	0x1ba
  1322 007f 3A000000 		.4byte	0x3a
  1323 0083 04       		.uleb128 0x4
  1324 0084 D3010000 		.4byte	.LASF11
  1325 0088 02       		.byte	0x2
- 1326 0089 9A01     		.2byte	0x19a
+ 1326 0089 BB01     		.2byte	0x1bb
  1327 008b 48000000 		.4byte	0x48
  1328 008f 02       		.uleb128 0x2
  1329 0090 04       		.byte	0x4
@@ -3178,14 +3178,14 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  1332 0096 02       		.uleb128 0x2
  1333 0097 08       		.byte	0x8
  1334 0098 04       		.byte	0x4
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 54
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 54
 
 
  1335 0099 AB010000 		.4byte	.LASF13
  1336 009d 04       		.uleb128 0x4
  1337 009e 7A040000 		.4byte	.LASF14
  1338 00a2 02       		.byte	0x2
- 1339 00a3 A901     		.2byte	0x1a9
+ 1339 00a3 CA01     		.2byte	0x1ca
  1340 00a5 A9000000 		.4byte	0xa9
  1341 00a9 02       		.uleb128 0x2
  1342 00aa 01       		.byte	0x1
@@ -3194,7 +3194,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  1345 00b0 04       		.uleb128 0x4
  1346 00b1 AF030000 		.4byte	.LASF16
  1347 00b5 02       		.byte	0x2
- 1348 00b6 4202     		.2byte	0x242
+ 1348 00b6 6302     		.2byte	0x263
  1349 00b8 BC000000 		.4byte	0xbc
  1350 00bc 05       		.uleb128 0x5
  1351 00bd 6B000000 		.4byte	0x6b
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  1389 0111 01       		.byte	0x1
  1390 0112 1104     		.2byte	0x411
  1391 0114 01       		.byte	0x1
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 55
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 55
 
 
  1392 0115 26010000 		.4byte	0x126
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  1446 0197 50       		.byte	0x50
  1447 0198 02       		.uleb128 0x2
  1448 0199 08       		.byte	0x8
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 56
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 56
 
 
  1449 019a FF       		.byte	0xff
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  1503 0206 00       		.byte	0
  1504 0207 00       		.byte	0
  1505 0208 0D       		.uleb128 0xd
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 57
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 57
 
 
  1506 0209 D7020000 		.4byte	.LASF26
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  1560 0287 01       		.uleb128 0x1
  1561 0288 50       		.byte	0x50
  1562 0289 00       		.byte	0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 58
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 58
 
 
  1563 028a 1A       		.uleb128 0x1a
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  1617 02ff 9C       		.byte	0x9c
  1618 0300 25030000 		.4byte	0x325
  1619 0304 1E       		.uleb128 0x1e
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 59
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 59
 
 
  1620 0305 6E040000 		.4byte	.LASF21
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  1674 0382 00       		.byte	0
  1675 0383 00       		.byte	0
  1676 0384 00       		.byte	0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 60
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 60
 
 
  1677 0385 1D       		.uleb128 0x1d
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  1731 040c 50       		.byte	0x50
  1732 040d 00       		.byte	0
  1733 040e 1A       		.uleb128 0x1a
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 61
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 61
 
 
  1734 040f 16030000 		.4byte	.LASF39
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  1788 0485 00000000 		.4byte	.LFB18
  1789 0489 18000000 		.4byte	.LFE18-.LFB18
  1790 048d 01       		.uleb128 0x1
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 62
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 62
 
 
  1791 048e 9C       		.byte	0x9c
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  1845 0508 0C010000 		.4byte	0x10c
  1846 050c 12000000 		.4byte	.LBB36
  1847 0510 48000000 		.4byte	.Ldebug_ranges0+0x48
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 63
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 63
 
 
  1848 0514 01       		.byte	0x1
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  1902 0595 1A       		.uleb128 0x1a
  1903 0596 68010000 		.4byte	.LASF52
  1904 059a 01       		.byte	0x1
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 64
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 64
 
 
  1905 059b CE04     		.2byte	0x4ce
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  1959 0622 37060000 		.4byte	0x637
  1960 0626 1E       		.uleb128 0x1e
  1961 0627 6E020000 		.4byte	.LASF35
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 65
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 65
 
 
  1962 062b 01       		.byte	0x1
@@ -3898,10 +3898,10 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  2016 06b3 6B000000 		.4byte	0x6b
  2017 06b7 05       		.uleb128 0x5
  2018 06b8 03       		.byte	0x3
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 66
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 66
 
 
- 2019 06b9 01000000 		.4byte	txPeriod.4898
+ 2019 06b9 01000000 		.4byte	txPeriod.4902
  2020 06bd 00       		.byte	0
  2021 06be 00       		.byte	0
  2022 06bf 1A       		.uleb128 0x1a
@@ -3932,7 +3932,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  2047 06f5 29       		.uleb128 0x29
  2048 06f6 57020000 		.4byte	.LASF68
  2049 06fa 04       		.byte	0x4
- 2050 06fb E3       		.byte	0xe3
+ 2050 06fb E5       		.byte	0xe5
  2051 06fc 6B000000 		.4byte	0x6b
  2052 0700 2A       		.uleb128 0x2a
  2053 0701 77010000 		.4byte	.LASF60
@@ -3945,7 +3945,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  2060 0711 2A       		.uleb128 0x2a
  2061 0712 1C000000 		.4byte	.LASF61
  2062 0716 04       		.byte	0x4
- 2063 0717 E4       		.byte	0xe4
+ 2063 0717 E6       		.byte	0xe6
  2064 0718 22070000 		.4byte	0x722
  2065 071c 2B       		.uleb128 0x2b
  2066 071d 6B000000 		.4byte	0x6b
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  2073              		.section	.debug_abbrev,"",%progbits
  2074              	.Ldebug_abbrev0:
  2075 0000 01       		.uleb128 0x1
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 67
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 67
 
 
  2076 0001 11       		.uleb128 0x11
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  2130 0037 35       		.uleb128 0x35
  2131 0038 00       		.byte	0
  2132 0039 49       		.uleb128 0x49
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 68
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 68
 
 
  2133 003a 13       		.uleb128 0x13
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  2187 0070 09       		.uleb128 0x9
  2188 0071 2E       		.uleb128 0x2e
  2189 0072 01       		.byte	0x1
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 69
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 69
 
 
  2190 0073 3F       		.uleb128 0x3f
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  2244 00a9 0B       		.uleb128 0xb
  2245 00aa 3B       		.uleb128 0x3b
  2246 00ab 0B       		.uleb128 0xb
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 70
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 70
 
 
  2247 00ac 49       		.uleb128 0x49
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  2301 00e3 0B       		.uleb128 0xb
  2302 00e4 59       		.uleb128 0x59
  2303 00e5 0B       		.uleb128 0xb
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 71
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 71
 
 
  2304 00e6 00       		.byte	0
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  2358 0125 00       		.byte	0
  2359 0126 00       		.byte	0
  2360 0127 16       		.uleb128 0x16
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 72
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 72
 
 
  2361 0128 2E       		.uleb128 0x2e
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  2415 0160 0B       		.uleb128 0xb
  2416 0161 3B       		.uleb128 0x3b
  2417 0162 05       		.uleb128 0x5
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 73
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 73
 
 
  2418 0163 27       		.uleb128 0x27
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  2472 019b 1C       		.uleb128 0x1c
  2473 019c 34       		.uleb128 0x34
  2474 019d 00       		.byte	0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 74
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 74
 
 
  2475 019e 31       		.uleb128 0x31
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  2529 01d5 01       		.uleb128 0x1
  2530 01d6 55       		.uleb128 0x55
  2531 01d7 17       		.uleb128 0x17
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 75
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 75
 
 
  2532 01d8 58       		.uleb128 0x58
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  2586 020e 00       		.byte	0
  2587 020f 25       		.uleb128 0x25
  2588 0210 05       		.uleb128 0x5
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 76
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 76
 
 
  2589 0211 00       		.byte	0
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  2643 0247 29       		.uleb128 0x29
  2644 0248 2E       		.uleb128 0x2e
  2645 0249 00       		.byte	0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 77
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 77
 
 
  2646 024a 3F       		.uleb128 0x3f
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  2700 0280 19       		.uleb128 0x19
  2701 0281 3C       		.uleb128 0x3c
  2702 0282 19       		.uleb128 0x19
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 78
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 78
 
 
  2703 0283 00       		.byte	0
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  2757 007a 48       		.byte	0x48
  2758 007b 24       		.byte	0x24
  2759 007c 30       		.byte	0x30
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 79
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 79
 
 
  2760 007d 2E       		.byte	0x2e
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  2814 0103 0200     		.2byte	0x2
  2815 0105 30       		.byte	0x30
  2816 0106 9F       		.byte	0x9f
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 80
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 80
 
 
  2817 0107 1C000000 		.4byte	.LVL42
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  2871 018e 50       		.byte	0x50
  2872 018f 00000000 		.4byte	0
  2873 0193 00000000 		.4byte	0
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 81
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 81
 
 
  2874              	.LLST16:
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  2928 0054 10000000 		.4byte	.LFE9-.LFB9
  2929 0058 00000000 		.4byte	.LFB10
  2930 005c 28000000 		.4byte	.LFE10-.LFB10
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 82
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 82
 
 
  2931 0060 00000000 		.4byte	.LFB11
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  2985 0040 00000000 		.4byte	0
  2986 0044 00000000 		.4byte	0
  2987 0048 12000000 		.4byte	.LBB36
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 83
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 83
 
 
  2988 004c 1E000000 		.4byte	.LBE36
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  3042 0124 0C000000 		.4byte	.LFE7
  3043 0128 00000000 		.4byte	.LFB8
  3044 012c 0C000000 		.4byte	.LFE8
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 84
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 84
 
 
  3045 0130 00000000 		.4byte	.LFB9
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  3091      54784275 
  3091      66666572 
  3092              	.LASF61:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 85
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 85
 
 
  3093 001c 43794578 		.ascii	"CyExitCriticalSection\000"
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  3112 012e 55415254 		.ascii	"UART_1_GetTxBufferSize\000"
  3112      5F315F47 
  3112      65745478 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 86
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 86
 
 
  3112      42756666 
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  3137              	.LASF29:
  3138 01da 636F6E74 		.ascii	"control\000"
  3138      726F6C00 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 87
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 87
 
 
  3139              	.LASF28:
@@ -5218,7 +5218,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  3160      6E646578 
  3160      00
  3161              	.LASF59:
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 88
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 88
 
 
  3162 029d 55415254 		.ascii	"UART_1_SetTxAddressMode\000"
@@ -5278,7 +5278,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  3184      00
  3185              	.LASF42:
  3186 0351 55415254 		.ascii	"UART_1_SetTxInterruptMode\000"
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 89
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 89
 
 
  3186      5F315F53 
@@ -5338,7 +5338,7 @@ ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 1
  3208      73657273 
  3208      5C676C65 
  3208      6E6E5C4F 
-ARM GAS  C:\Users\glenn\AppData\Local\Temp\cc1XABAq.s 			page 90
+ARM GAS  C:\Users\glenn\AppData\Local\Temp\ccL1SOG7.s 			page 90
 
 
  3208      6E654472 

@@ -25,7 +25,7 @@
       <Tool Name="postbuild" Command="" Options="" />
     </Toolchain>
   </Toolchains>
-  <Project Name="Moisture_Sensor" Path="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn" Version="5.40" Type="Normal">
+  <Project Name="Moisture_Sensor" Path="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn" Version="5.50" Type="Normal">
     <CMSIS_SVD_File>Moisture_Sensor.svd</CMSIS_SVD_File>
     <Datasheet />
     <LinkerFiles>
@@ -50,8 +50,8 @@
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\moisture_measurement">
         <Files Root="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn">
-          <File BuildType="BUILD" Toolchain="">moisture_measurement\moisture_measurements.c</File>
           <File BuildType="BUILD" Toolchain="">moisture_measurement\moisture_measurements.h</File>
+          <File BuildType="BUILD" Toolchain="">moisture_measurement\moisture_measurements.c</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\glenn\OneDrive\PSOC\moisture_sensor_4m\Moisture_Sensor\Moisture_Sensor.cydsn\chain_flow">
