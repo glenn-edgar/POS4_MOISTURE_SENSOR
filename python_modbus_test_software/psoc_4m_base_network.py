@@ -105,6 +105,7 @@ class PSOC_BASE_4M():
  
    def read_system_variables( self, modbus_address ):
        return_value = {}
+       print "modbus_address",modbus_address
        data =  self.instrument.read_registers( modbus_address,   self.system_var_start ,len(self.system_var_list) , 3 ,False)
        for i in range(0,len(self.system_var_list)):
           return_value[self.system_var_list[i]] = data[i]
@@ -169,14 +170,15 @@ class PSOC_BASE_4M():
        
  
 if __name__ == "__main__": 
-       import new_instrument
+       import new_instrument_network
        import time
-       new_instrument  =  new_instrument.new_instrument( "COM4" )
+       new_instrument  =  new_instrument_network.new_instrument_network()
+       new_instrument.set_ip(ip= "192.168.1.82", port = 5005)       
        psoc_4m = PSOC_BASE_4M( new_instrument, 0x201 )
        #for i in range(0,100):
        #   print i, psoc_4m.read_system_variables(40)
        
-       print  psoc_4m.read_system_variables(40)
+       print  psoc_4m.read_system_variables(100)
 
        print psoc_4m.read_time( 40 )
        print psoc_4m.update_current_time(40)
