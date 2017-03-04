@@ -1,7 +1,7 @@
 
 
 import datetime
-from  psoc_4m_base import *
+from  psoc_4m_base_network import *
 
 class PSOC_4M_MOISTURE_UNIT(PSOC_BASE_4M):
     
@@ -156,9 +156,10 @@ class PSOC_4M_MOISTURE_UNIT(PSOC_BASE_4M):
         
  
 if __name__ == "__main__": 
-       import new_instrument
+       import new_instrument_network
        import time
-       new_instrument  =  new_instrument.new_instrument( "COM4" ) 
+       new_instrument  =  new_instrument_network.new_instrument_network()
+       new_instrument.set_ip(ip= "192.168.1.82", port = 5005)       
        
        psoc_moisture = PSOC_4M_MOISTURE_UNIT( new_instrument )
        #psoc_moisture.update_current_time( 40 )

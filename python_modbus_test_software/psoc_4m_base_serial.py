@@ -180,7 +180,7 @@ if __name__ == "__main__":
 
        print psoc_4m.read_time( 40 )
        print psoc_4m.update_current_time(40)
-       #time.sleep(10.0)
+       time.sleep(10.0)
        print "time out over"
        print "made it here"
        print psoc_4m.read_time( 40 )

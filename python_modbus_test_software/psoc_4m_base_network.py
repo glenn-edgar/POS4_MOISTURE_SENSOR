@@ -177,13 +177,15 @@ if __name__ == "__main__":
        psoc_4m = PSOC_BASE_4M( new_instrument, 0x201 )
        #for i in range(0,100):
        #   print i, psoc_4m.read_system_variables(40)
-       
-       print  psoc_4m.read_system_variables(100)
-
-       print psoc_4m.read_time( 40 )
-       print psoc_4m.update_current_time(40)
-       print psoc_4m.read_time( 40 )
-       print psoc_4m.clear_watch_dog_flag(40)
+       #print psoc_4m.process_event_queue( 40, 0 )
+       #print  psoc_4m.read_system_variables(100)
+       #print new_instrument.read_registers( 100,   10 ,1, 3 ,False)
+   
+       #print psoc_4m.read_time( 40 )
+       #print psoc_4m.update_current_time(40)
+       #print psoc_4m.read_time( 40 )
+       #print psoc_4m.clear_watch_dog_flag(40)
+       ##time.sleep(1.0)
        print  psoc_4m.read_system_variables(40)
        
        print psoc_4m.set_controller_watch_dog_flag(40)

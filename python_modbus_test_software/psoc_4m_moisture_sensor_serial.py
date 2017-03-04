@@ -177,7 +177,7 @@ if __name__ == "__main__":
  
        print psoc_moisture.check_status(40)
        print psoc_moisture.read_moisture_control(40)
-       psoc_moisture. update_moisture_sensor_configuration ( 40,[ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1] )
+       #psoc_moisture. update_moisture_sensor_configuration ( 40,[ 2,1,1,0 ,2,1,1,0 ,0,0,0,0 ,0,0,0,0] )
        print psoc_moisture.read_moisture_configuration( 40 )
        print psoc_moisture.force_moisture_reading(40)
        time.sleep(1.)
